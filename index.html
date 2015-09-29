@@ -65,48 +65,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-hello-world-1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/29/hello-world-1/" class="article-date">
-  <time datetime="2015-09-29T02:29:34.000Z" itemprop="datePublished">2015-09-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/29/hello-world-1/">如何使用hexo与github搭建个人静态博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>GitHub上建立一个名为phenix3443.github.io的repo，其中phenix3443是自己的用户名，github规定每个用户只能建一个这样的repo。</li>
-<li>git clone<br>默认文件编码使用utf-8，要不然会出现中文乱码。</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://phenix3443.github.io/2015/09/29/hello-world-1/" data-id="cif53cbjm0000vcuy7gcogjqe" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo-github/">Hexo,github,</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-hexo-github-build-blog" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/09/29/hexo-github-build-blog/" class="article-date">
@@ -129,7 +87,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
+        <p>只是使用wordpress在空间上写了一段时间的博客，但是后来感觉域名购买比较坑，自己写的也比较少，加上想试试markdown，就想着在github建立了一个静态博客就已经够用了。</p>
+<p>同时备选的有hexo与jelly，但是同学说hexo简单一点，所以就先试试这个，果然安装比较方便。</p>
+<p>这篇博客主要是用来介绍这个静态网站从搭建到优化后面一步步的过程，所以也注定是持续更新的。</p>
+<ul>
 <li>GitHub上建立一个名为phenix3443.github.io的repo，其中phenix3443是自己的用户名，github规定每个用户只能建一个这样的repo。</li>
 <li>根据Hexo官方文档进行安装</li>
 <li>mkdir -p ~/projects/hexo</li>
@@ -141,6 +102,7 @@
 <p>接下来就是要把博客内容发布（deploy）github上面，需要在hexo的配置文件中进行设置</p>
 <ul>
 <li>将_config.yml文件Deployment字段设置如下：<br>deploy：<br>type: git<br>repo: git@github.com:phenix3443/phenix3443.github.io.git<br>branch: master</li>
+<li>保证本机生成了ssh-key，并在github进行了注册。</li>
 <li>hexo d #发布</li>
 <li>浏览器打开phenix3443.github.io就能看到文件了。</li>
 <li>注意，post文件要使用utf-8进行编码，要不容易出现乱码。</li>
@@ -149,7 +111,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://phenix3443.github.io/2015/09/29/hexo-github-build-blog/" data-id="cif53cbkt0003vcuyskdkpfw0" class="article-share-link">Share</a>
+      <a data-url="http://phenix3443.github.io/2015/09/29/hexo-github-build-blog/" data-id="cif53t3dt0001fguytx2hfisk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo-github/">Hexo,github,</a></li></ul>
@@ -196,7 +158,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://phenix3443.github.io/2015/09/28/hello-world/" data-id="cif53cbl20005vcuyra76ceyt" class="article-share-link">Share</a>
+      <a data-url="http://phenix3443.github.io/2015/09/28/hello-world/" data-id="cif53t3cn0000fguyjlzzvet6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -217,7 +179,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo-github/">Hexo,github,</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo-github/">Hexo,github,</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -235,7 +197,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -245,10 +207,6 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/2015/09/29/hello-world-1/">如何使用hexo与github搭建个人静态博客</a>
-          </li>
         
           <li>
             <a href="/2015/09/29/hexo-github-build-blog/">如何使用hexo与github搭建个人静态博客</a>

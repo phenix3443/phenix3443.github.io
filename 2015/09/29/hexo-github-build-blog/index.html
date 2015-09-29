@@ -5,40 +5,28 @@
   
   <title>如何使用hexo与github搭建个人静态博客 | Phenix3443</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="GitHub上建立一个名为phenix3443.github.io的repo，其中phenix3443是自己的用户名，github规定每个用户只能建一个这样的repo。
-根据Hexo官方文档进行安装
-mkdir -p ~/projects/hexo
-hexo init
-hexo g
-hexo s #启动hexoserver
-打开localhost:4000就能看到刚才写的第一篇博客了
+  <meta name="description" content="只是使用wordpress在空间上写了一段时间的博客，但是后来感觉域名购买比较坑，自己写的也比较少，加上想试试markdown，就想着在github建立了一个静态博客就已经够用了。
+同时备选的有hexo与jelly，但是同学说hexo简单一点，所以就先试试这个，果然安装比较方便。
+这篇博客主要是用来介绍这个静态网站从搭建到优化后面一步步的过程，所以也注定是持续更新的。
 
-接下来就是">
+GitHub上建立一个名为">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何使用hexo与github搭建个人静态博客">
 <meta property="og:url" content="http://phenix3443.github.io/2015/09/29/hexo-github-build-blog/index.html">
 <meta property="og:site_name" content="Phenix3443">
-<meta property="og:description" content="GitHub上建立一个名为phenix3443.github.io的repo，其中phenix3443是自己的用户名，github规定每个用户只能建一个这样的repo。
-根据Hexo官方文档进行安装
-mkdir -p ~/projects/hexo
-hexo init
-hexo g
-hexo s #启动hexoserver
-打开localhost:4000就能看到刚才写的第一篇博客了
+<meta property="og:description" content="只是使用wordpress在空间上写了一段时间的博客，但是后来感觉域名购买比较坑，自己写的也比较少，加上想试试markdown，就想着在github建立了一个静态博客就已经够用了。
+同时备选的有hexo与jelly，但是同学说hexo简单一点，所以就先试试这个，果然安装比较方便。
+这篇博客主要是用来介绍这个静态网站从搭建到优化后面一步步的过程，所以也注定是持续更新的。
 
-接下来就是">
-<meta property="og:updated_time" content="2015-09-29T08:12:13.343Z">
+GitHub上建立一个名为">
+<meta property="og:updated_time" content="2015-09-29T08:29:09.191Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何使用hexo与github搭建个人静态博客">
-<meta name="twitter:description" content="GitHub上建立一个名为phenix3443.github.io的repo，其中phenix3443是自己的用户名，github规定每个用户只能建一个这样的repo。
-根据Hexo官方文档进行安装
-mkdir -p ~/projects/hexo
-hexo init
-hexo g
-hexo s #启动hexoserver
-打开localhost:4000就能看到刚才写的第一篇博客了
+<meta name="twitter:description" content="只是使用wordpress在空间上写了一段时间的博客，但是后来感觉域名购买比较坑，自己写的也比较少，加上想试试markdown，就想着在github建立了一个静态博客就已经够用了。
+同时备选的有hexo与jelly，但是同学说hexo简单一点，所以就先试试这个，果然安装比较方便。
+这篇博客主要是用来介绍这个静态网站从搭建到优化后面一步步的过程，所以也注定是持续更新的。
 
-接下来就是">
+GitHub上建立一个名为">
   
     <link rel="alternative" href="/atom.xml" title="Phenix3443" type="application/atom+xml">
   
@@ -110,7 +98,10 @@ hexo s #启动hexoserver
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
+        <p>只是使用wordpress在空间上写了一段时间的博客，但是后来感觉域名购买比较坑，自己写的也比较少，加上想试试markdown，就想着在github建立了一个静态博客就已经够用了。</p>
+<p>同时备选的有hexo与jelly，但是同学说hexo简单一点，所以就先试试这个，果然安装比较方便。</p>
+<p>这篇博客主要是用来介绍这个静态网站从搭建到优化后面一步步的过程，所以也注定是持续更新的。</p>
+<ul>
 <li>GitHub上建立一个名为phenix3443.github.io的repo，其中phenix3443是自己的用户名，github规定每个用户只能建一个这样的repo。</li>
 <li>根据Hexo官方文档进行安装</li>
 <li>mkdir -p ~/projects/hexo</li>
@@ -122,6 +113,7 @@ hexo s #启动hexoserver
 <p>接下来就是要把博客内容发布（deploy）github上面，需要在hexo的配置文件中进行设置</p>
 <ul>
 <li>将_config.yml文件Deployment字段设置如下：<br>deploy：<br>type: git<br>repo: git@github.com:phenix3443/phenix3443.github.io.git<br>branch: master</li>
+<li>保证本机生成了ssh-key，并在github进行了注册。</li>
 <li>hexo d #发布</li>
 <li>浏览器打开phenix3443.github.io就能看到文件了。</li>
 <li>注意，post文件要使用utf-8进行编码，要不容易出现乱码。</li>
@@ -130,7 +122,7 @@ hexo s #启动hexoserver
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://phenix3443.github.io/2015/09/29/hexo-github-build-blog/" data-id="cif53cbkt0003vcuyskdkpfw0" class="article-share-link">Share</a>
+      <a data-url="http://phenix3443.github.io/2015/09/29/hexo-github-build-blog/" data-id="cif53t3dt0001fguytx2hfisk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo-github/">Hexo,github,</a></li></ul>
@@ -140,15 +132,6 @@ hexo s #启动hexoserver
   
     
 <nav id="article-nav">
-  
-    <a href="/2015/09/29/hello-world-1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          如何使用hexo与github搭建个人静态博客
-        
-      </div>
-    </a>
   
   
     <a href="/2015/09/28/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
@@ -171,7 +154,7 @@ hexo s #启动hexoserver
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo-github/">Hexo,github,</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo-github/">Hexo,github,</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -189,7 +172,7 @@ hexo s #启动hexoserver
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -199,10 +182,6 @@ hexo s #启动hexoserver
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/2015/09/29/hello-world-1/">如何使用hexo与github搭建个人静态博客</a>
-          </li>
         
           <li>
             <a href="/2015/09/29/hexo-github-build-blog/">如何使用hexo与github搭建个人静态博客</a>
