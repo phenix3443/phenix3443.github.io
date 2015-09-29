@@ -1,0 +1,53 @@
+#+DATE: [2014-08-19 二 00:43]
+#+POSTID:2114
+#+CATEGORY:专业知识
+#+TAGS:Emacs
+#+DESCRIPTION:主要介绍 Emacs 在不同操作系统中的编译和安装
+#+TITLE:【Emacs】编译与安装
+
+* Emacs 简单介绍
+  可能你已经听过 Emacs  被称为“神的编译器”，也有可能见过许多关于它和 “编译器之神” vim   之间的争论，我们不去管那些争论。我自己是一个实用主义者，什么东西好，我就直接拿来用，其实哪有什么东西是万能的，只有适合或者不适合。使用 Emacs 目的只有一个：效率！！
+ 
+* Emacs 编译和安装
+** Ubuntu
+1. 编译环境
+   #+BEGIN_SRC sh
+     $ uname -a
+     Linux ubuntu 3.8.0-35-generic #50~precise1-Ubuntu SMP Wed Dec 4 17:28:45 UTC 2013 i686 i686 i386 GNU/Linux
+   #+END_SRC
+2. 安装依赖包
+   #+BEGIN_SRC sh
+     $ sudo apt-get install -y libgtk2.0-dev libxpm-dev libgif-dev libtiff4-dev libjpeg-dev libpng12-dev libncurses-dev     
+   #+END_SRC
+3. 编译安装
+   #+BEGIN_SRC sh
+     $ tar zxf ~/Downloads/emacs-24.3.tar.gz
+     $ cd emacs-24.3/
+     $ ./configure
+     $ make
+     $ sudo make install
+   #+END_SRC
+
+** CentOS
+1. 编译环境
+   #+BEGIN_SRC sh
+     $ uname -a
+     Linux localhost.localdomain 2.6.32-431.3.1.el6.i686 #1 SMP Fri Jan 3 18:53:30 UTC 2014 i686 i686 i386 GNU/Linux
+   #+END_SRC
+
+2. 安装依赖包
+   #+BEGIN_SRC sh
+     $ sudo yum install -y gtk+-devel gtk2-devel libXpm-devel libpng-devel giflib-devel ncurses-devel gpm-devel GConf2-devel pkgconfig libXft-devel libjpeg-devel libtiff-devel
+   #+END_SRC
+
+3. 编译安装
+   
+   同上
+
+** Windows
+1. 下载Emacs windows版本，解压。
+2. 运行\bin\addpm.exe，并将安装路径添加到环境变量Path当中。
+
+* Emacs 简单使用
+* Emacs Todo
+

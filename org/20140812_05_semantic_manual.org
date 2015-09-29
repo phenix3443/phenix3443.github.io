@@ -1,0 +1,12 @@
+#+BLOG:panghuli
+#+POSTID:
+#+DATE:Tue Aug 12 14:13:41 2014
+#+OPTIONS:
+#+CATEGORY:专业知识
+#+TAGS:Emacs
+#+DESCRIPTION:semantic manual translation
+#+TITLE:Semantic Manual 中文版
+
+
+参考链接：
++ [[http://www.gnu.org/software/emacs/manual/html_mono/semantic.html][Semantic Manual]]

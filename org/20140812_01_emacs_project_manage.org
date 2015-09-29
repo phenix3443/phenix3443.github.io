@@ -1,0 +1,86 @@
+#+POSTID:
+#+DATE:Thu Aug 14 19:45:25 2014
+#+OPTIONS:
+#+CATEGORY:专业知识
+#+TAGS:Emacs
+#+DESCRIPTION:主要说明如何在 Emacs 中进行工程项目的管理，并对常见的项目管理插件做了说明和对比
+#+TITLE:Emacs中的项目管理
+
+* EDE[fn:1]
+
+* eproject[fn:2]
+
+* projectitle[fn:3]
+projectile 是 Emacs 的一个与项目管理有关的库。它的目的是提供一些操作于项目层次的特性集合，这些操作没有外部依赖（如果可能的话）。例如，查找工程文件有一个可移植的时间，它是通过由纯 Emacs Lisp 编写的，并且没有用到 GNU find（但是考虑到性能因素，也存在由外部命令支持的索引机制）。
+
+projectile 试图做到可用性，可移植性是极好的，但是如果一些可用的外部工具能够显著加快一些任务，projectile 将会充分利用它们。
+
+该库提供了易用的项目管理和导航功能。一个项目的概念是非常基本的：只是一个包含特定文件的文件夹。目前 git，mercurial，darcs 和 bazaar 容器都会默认为是一个工程。 lein，maven，sbt，rebar 和 bundler 也同样如此。如果想手动标记一个文件夹是一个工程，只需要在里面创建一个空的 .projectile 文件即可。projectile 的一些特性如下：
+
++ 跳转到工程内的文件。
++ 跳转到工程内的目录。
++ 跳转到指定目录的文件。
++ 跳转到指定工程 buffer。
++ 跳转到工程内的测试。
++ 代码和对应测试间的切换
++ 跳转到工程内最近查看的文件
++ 在工作过的工程间切换
++ 关掉所有的工程 buffer
++ 工程内替换
++ 工程 buffer 内多次发生
++ 工程内 grep
++ 重新生成工程的 etags 或 gtags （依赖于 gtags）
++ 在 dired 中查看工程
++ 只需要一个按键就能执行 make
+
+用法：
++ 索引方法：
+projectile 提供了来两种操作模式，一种是可移植的，用 Emacs Lisp实现，因而是　Emacs 原生的，被称为本地索引方法（native indexing method），另一种依赖于外部命令，例如 find，git等等，来获取项目的文件列表。
+
+可以通过命令  C-c p f (M-x projectile-find-file RET) 来查找文件。
+
+由于本地索引方法更慢，除了 windows 外，其他操作系统中都作为备选方法。通过设置变量可以强制使用本地索引。
+
+(setq projectile-indexing-method 'native)
+
++ 缓存
+- 项目缓存
+由于打开大的工程项目并不是很快，特别是 Emacs Lisp 项目，projectile 可以缓存工程文件，当通过启用本地索引的时候会默认启用这种缓存。通过代码也可以手动启动。
+
+(setq projectile-enable-caching t)
+
+- 文件存在缓存
+projectile 自从定义了工程 root 之后就做了很多文件存在性检测。正常情况下这没有问题，但是如果系统的速度比平常慢很多， 在打开和浏览目录的时候 Emacs 可能会假死。
+
+最常见的例子是使用 TRAMP/ssh 连接远程系统的时候。默认情况下，远程文件的存在性检查是缓存的。
+
++ 任意地方使用工程
+如果想在每一个目录中都使用projectile，做如下设置：
+
+setq projectile-require-project-root nil)
+
+但这可能不是一个好主意，比如在你的 home 目录中使用 projectile。
+
++ 切换工程
+
+当运行 projectile-switch-project (C-c p p) Projectile 调用 projectile-switch-project-action 中指定的命令(默认是 projectile-find-file). 
+
+当 projectile-remember-window-configs 是 t (default is nil), 最近的工程的窗口会被恢复，而不是调用 projectile-switch-project-action. 如果目标工程没有窗口配置， projectile-switch-project-action 才会如上描述一样被调用。
+
++ 补全选项
+projectile 将 ido 作为它的默认补全系统。 ido 已经很流行并内建于 Emacs。
+另外一个补全系统是  Grizzl。如果两个都不如你法眼，还可以使用正则表达式或自定义的补全函数。
+
++ 重建 tags
+通过命令 projectile-tags-command 可以重建工程的 tags，你应该安装 exuberant tags来代替 Emacs 发行版中自带的 ctags。
+
++ 忽略文件
+如果想要 projectile 忽略项目中的文件，可以在 .projectile 文件中指定， 以 - 开始的相对文件路径。还有一些其他规则参看 github 介绍吧。
+
++ 定制工程 root 文件
++ 存储工程设置
++ 
+参考：
+[fn:1]
+[fn:2]
+[fn:3] [[http://batsov.com/projectile/][offcial projectile web site]]

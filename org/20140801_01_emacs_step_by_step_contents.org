@@ -1,0 +1,17 @@
+#+CATEGORY:专业知识
+#+TAGS:Emacs
+#+DESCRIPTION: step by step 目录
+#+TITLE:【Emacs】step by step content
+
+这是我通过 org2blog mode 发出的第一篇文章，此后的文章我都会使用 org mode 这个神器来发送。这章记录了我使用 Emacs 过程中的的点点滴滴，从安装到配置，整个使用过程中不是简单的拷贝粘贴，而是通过查找官方的手册，力求弄懂每个配置的要点，尽量做到每个配置都有理有据，大家可以根据我给出的链接进一步详细了解知识点。
+
+这篇文章是这个系列的第一篇文章，文笔不好，看官们请见谅。Emacs 系列的文章不是对 Emacs manual 或者 Emacs Lisp 的翻译，更多的是在使用的同时，思考问题和解决问题的一个记录。文章中不会有大段的 lisp 源码，我的配置文件全部放在 github 上，想去看的请猛戳右边侧边栏的 git 图标。
+
+1. 简介、安装
+2. 帮助系统
+3. 启动流程
+4. 配置文件
+5. 插件系统
+
+[fn:1] [[http://www.gnu.org/software/emacs/][official Emacs web site]]
+[fn:2] [[http://en.wikipedia.org/wiki/Emacs][Emacs Wiki]]

@@ -1,0 +1,172 @@
+#+BLOG: panghuli_blog
+#+POSTID: 75
+#+DATE: [2014-11-24 周一 18:19]
+#+CATEGORY:专业知识
+#+TAGS:emacs
+#+DESCRIPTION:将 emacs 配置为 IDE
+#+TITLE:【Emacs】将 Emacs 打造为 IDE
+
+这篇文章主要讲解如何将 Emacs 配置成为一个强大的 IDE，内容包括项目工程管理、文件查找、代码补全等等。
+* 工程管理（Project Management）
+** 工程操作
+工程管理有很多工具，包括 [[http://cedet.sourceforge.net/ede.shtml][ede]]， [[https://github.com/bbatsov/projectile][projectile]] 等工具，在尝试了几款插件之后，最合适我的还是 projectile。 正如 projectile 所言，它提供了一系列特性来支持工程管理，这些特性不依赖第三方，当然，有些情况下结合第三方工具能提供更好的性能。 
+#+HTML:<!--more-->
+projectile 中的工程概念十分简单：包含特殊文件的文件夹。目前 git, mercurial, darcs 和 bazaar 的容器都会默认为一个工程目录，lein, maven, sbt, scons, rebar and bundler 也同样如此。如果想手动指定文件夹为工程目录，只需要在其中新建一个名字为 .projectile 的空文件即可。
+
+prjectile 通过和 helm 整合在一起（helm-projectile），可以在工程切换、文件路径补全方面得到更好的支持，如可以指定更多切换工程后的要执行的动作，补全可以为渐进补全等。helm-projectile 提供了一些 helm 版本的 projectile 命令，这些命令更加好用。参考 [[http://tuhdo.github.io/helm-projectile.html][《Exploring large projects with Projectile and Helm Projectile》]]
+
+下面将一步步介绍如何使用 projectile 来实现工程管理的一些需求，当然中间也会适当的引入其他插件作为补充。
+
+*** 切换工程
+**** projectile
+helm-projectile-switch-project (C-c p p) 
+*** 保存当前工程所有打开文件
+**** projectile
+projectile-save-project-buffers (C-c p S)
+*** 关闭当前工程所有打开文件
+**** projectile
+projectile-kill-buffers (C-c p k)
+*** 浏览当前工程根目录
+**** projectile
+projectile-dired (C-c p D)
+**** speedbar
+使用 cedet 包中的 speedbar 可以单独分出一个侧边栏，用来浏览整个工程，包括文件变量等。
+*** 浏览当前工程指定目录
+**** projectile
+helm-projectile-find-dire (C-c p d)
+*** 清除当前工程文件缓存
+**** projectile
+projectile-invalidate-cache (C-c p i)
+
+** 文件操作（File in Project）
+*** 在所有已知工程中查找文件
+**** projectile
+helm-projectile-find-file-in-known-project (C-c p F)
+*** 切换当前工程打开文件
+**** projectile
+helm-projectile-switch-to-buffer (C-c p b)
+*** 当前工程中查找文件
+**** projectile
+helm-projectile-find-file (C-c p f)
+projectile 提供了有两种文件索引方法：内部索引和外部索引。内部索引，也叫本地索引（native index method),使用纯 Emacs Lisp 代码实现，不依赖 GNU find 等第三方程序，索引速度较慢。外部索引则借助了第三方工具，如 find 命令或者 git 等工具加快了索引速度，外部索引机制不支持 windows，所以除 windows 外都默认使用外部索引机制。
+
+为了加快文件索引速度，windows 上需要开启文件缓存机制，（将 projectile-enable-caching 设置为 t）。
+
+需要注意的是，非 windows系统如果开启文件缓存，就会先采用缓存机制，而不是借助外部索引，这样导致查找文件的时候不能列出所有工程文件。
+
+另外借助 git 查找文件结果受到 .gitignore 文件的影响，ignore 里面的文件或者文件夹不会出现在搜索结果中，此时可采用采用 helm-locate 查找所需文件。其他版本控制文件不知道是否由此情况。
+*** 当前工程指定目录中查找文件
+**** projectile
+projectile-find-file-in-directory (C-c p l)
+*** 打开当前光标下文件
+**** projectile
+projectile-find-file-dwim （C-c p g）
+*** 同名但不同类型文件切换
+例如 .h <-> .c/.cpp, Gemfile <-> Gemfile.lock...
+**** projectile
+helm-projectile-find-other-file (C-c p a)
+*** 跳转到当前工程最近浏览文件（jump to recently visited files in the project）
+**** projectile
+helm-projectile-recentf (C-c p e)
+*** 添加文件到工程
+**** projectile
+projectile-cache-current-file (C-c p z)
+
+** 代码导航（Code Navigation）
+*** projectile
+helm-projectile-grep
+helm-projectile-ag
+搜索速度ag>ack>grep，所以推荐使用ag进行工程内符号(symbol)和单词(word)的全局搜索。[[https://github.com/ggreer/the_silver_searcher][the silver search]]
+*** helm-gtags
+GNU Global（全称为GNU Global source code tagging system，以下简称 Global） 是一个可以跨越各种环境的代码标记系统，支持 Emacs、VI、Bash Shell 甚至是浏览器，主要用来查找代码中各种符号的定义和引用。最新版本的 global （6.3.3）除了软件本身支持的 C, C++, Yacc, Java, PHP4 and assembly 六种语言，在将 Pygments 和 Exuberant Ctags 作为解析器后，还可以支持 Awk, Dos batch, COBOL, C, C++, C#, Erlang, Fortran, Java, JavaScript, Lisp, Lua, Pascal, Perl, PHP, Python, Ruby, Matlab, OCaml, Scheme, Tcl, TeX, Verilog, Vhdl and Vim 等 25 种语言。
+
+gtags 默认会解析当前目录下的所有文件，有两个问题：
+
+1. 如果工程过大花费时间较多。
+2. 如果工程目录中存在符号链接，可能会导致解析出错（5.2.2存在）。
+
+解决的办法是指定要解析的文件。可以提供 gtags.files 文件，或者指定 gtags 的 -f 参数，windows下一个要注意的问题是将 路径分隔符 "\" 换为 "\\" 或者 "/"。否则会提示“文件不在工程中”的错误。 
+
+pygments 解析文件有时候会出现 "UnicodeDecodeError"，这是由于 pygments 内部全部使用 unicode 来解析。参见 [[http://pygments.org/docs/unicode/][pygments unicode and encodings]](待解决)
+
+helm-gtags 是 Emacs 版本的 Global 前端，用其可以方便的在符号的定义和引用间进行跳转。
+
+Windows 二进制版本的 Global 中自带了 ctags，所以只需额外安装 Pygments。 安装过程中需要新建 GTAGSCONF 和 GTAGSLABEL 两个环境变量来指示 Global 将 pygments 作为分析器，具体参见 Global 源码包 plugin-factory 目录下两个 HOWTO 文件。
+
+需要注意的是 global 只能分析当前工程目录下的文件，不能跟踪解析工程文件中引用到其他地方的文件。
+
+不能解析Cpp .h 头文件需要设置环境变量 GTAGSFORCECPP 环境变量。（待解决）
+
+使用 gtags 生成文件的时候经常遇到的一个错误是“UnicodeError”,这个是由于字符编码问题引起的，个人觉得作者(pygments_parser.py)应该针对这个问题进行相应的改进，自动转换编码。一个解决办法是主动告诉gtags要解析的文件，可以新建 gtags.files （命令 where /R . *.el > gtags.files），也可以使用 -f 参数。通过 "gtags --debug" 可以看到文件解析的过程，进而知道具体哪个文件解析不成功。
+**** 生成 tags（create tags）
+***** helm-gtags
+helm-gtags-create-tags (C-c g c)
+**** 更新 tags（update tags）
+***** helm-gtags-update-tags (C-c g u)
+**** 查找 tag 定义 （find tags defination）
+***** helm-gtags
+helm-gtags-find-tag (C-c g d)
+**** 查找 tag 引用 （find tags reference）
+***** helm-gtags
+helm-gtags-find-rtags (C-c g r)
+**** 全局搜索（grep in project）
+***** projectile
+helm-projectile-grep (C-c p s g)
+helm-projectile-ag (C-c p s s)
+*** find-xxx 系列函数
+该系列函数主要针对 lisp 编程。
+在 Emacs 使用过程中经常遇到的一个问题是查看库、函数和变量的源码，Emacs 本身提供了一系列的函数来帮助我们进行这些操作：
+**** 查看库定义（find-library）
+**** 查看那函数（find-function、find-function-on-key、find-function-at-point）
+**** 查看变量定义(find-variable)
+*** elisp-slime-nav
+elisp-slime-nav 是一款插件，不仅可以查看库、函数、变量的定义，还可以查看一些 face 的定义。
+*** helm
+helm 利用 imenu 提供了一个符号导航窗口。
+helm-semantic-or-imenu (F8)
+* 编辑代码（Source Code Editor）
+** 全局替换（replace in project）
+*** projectile
+projctile-replace (C-c p r)
+** 高亮作用域内同名符号（highlight symbol）
+*** multi-occur
+
+** 自动补全（auto complete）
+*** yasnippet
+yasnippet 提供了代码模板，将简写扩充为代码，主要针对各种程序语言中的关键字，如 if、while、for、class 等，也可以自定义代码模板。
+*** auto-complete
+aut-complete 是一个补全前端。
+*** company
+company 同样是一个补全前端。
+*** semantic
+** 语法检查
+*** flycheck
+** 自动添加和更新文件头（auto insert and update file header）
+根据文件扩展名，新建文件的时候自动插入文件头，关闭文件的时候自动更新文件头，文件头内容可以定制。
+*** header2
+
+* 编译代码（Compiler）
+** projectile
+*** helm-projectile-compile-project
+*** 
+** 
+* 调试代码（Debug）
+** jump to a test in project
+*** projectile
+** toggle between code and its test
+*** projectile
+
+* 工程文档（Document）
+** Doxygen
+
+* 版本控制（Version Control）
+** projectile
+helm-projectile-vc (C-c p v)
+
+** Git
+*** magit
+** Subversion
+
+** Bazaar
+
+** Mercurial

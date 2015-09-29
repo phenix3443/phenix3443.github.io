@@ -1,0 +1,9 @@
+#+BLOG:panghuli
+#+POSTID:
+#+DATE:Fri Aug 15 14:26:28 2014
+#+OPTIONS:
+#+CATEGORY:专业知识
+#+TAGS:Emacs
+#+DESCRIPTION:简要介绍 Emacs 的插件系统
+#+TITLE:【Emacs】插件系统
+

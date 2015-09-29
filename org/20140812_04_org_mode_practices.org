@@ -1,0 +1,71 @@
+#+POSTID:
+#+CATEGORY:专业知识
+#+TAGS:Emacs
+#+DESCRIPTION:主要总结了 Org mode 使用过程中的一些技巧
+#+TITLE:【Emacs】Org Mode practice
+
+Org Mode 是 Emacs 的一个杀手级的应用，可以用来做笔记、维护 TODO List、做项目管理等等，结合 org2blog mode 还可以直接发布文章到博客。
+
+* 关于本文
+
+这篇文章假设读者对 Org Mode 有一定的了解，对一些概念，比如 agenda、capture mode，不会一无所知。如果你还是新手，建议先去官网[fn:1]阅读 guide[fn:2], 更多细节的知识则参考 manual[fn:3]。
+
+我也是刚刚开始使用 Org Mode，本文主要记录了我的相关配置，有些配置是默认配置，我也明确的写出来，这样重要的配置很明确，及时以后版本更改，这些配置也不会改变，使用过程中也会不断的修改，不定期更新。
+   
+* 许可证
+  这篇文章的 html 和 org 形式都基于 GPL V3 发布。
+  
+* 更新历史
+  #+NAME: org-mode-doc-version
+  #+BEGIN_SRC emacs-lisp :exports none
+    (format-time-string "%Y.%m.%d" (current-time))
+  #+END_SRC
+
+  #+NAME: org-mode-version
+  #+BEGIN_SRC emacs-lisp :exports none 
+    org-version
+  #+END_SRC
+
+  本文现在的版本是 call_org-mode-doc-version，通过 org-mode version call_org-mode-version 进行发布，这篇文章的源码在个人 github 上，更新时间不定。
+
+* 开始
+** 安装
+   在 Emacs 中可以通过 ELPA 进行安装。
+** 配置
+   #+NAME: org-mode-conf-1
+   #+BEGIN_SRC emacs-lisp exports:code 
+
+   #+END_SRC
+* TODO 做笔记
+
+* TODO 任务管理
+  
+* TODO 日程安排
+
+* TODO 发布
+
+
+
+  除了上面的这些，之外，在使用的过程中还遇到一些问题，以及相应的解决技巧，记录如下：
+
++ plain lists 使用注意事项：
+	- 使用C-ret可以换行并缩进。
+	- 标号和文字之间要有一个空格。
++ 使用 C-c ' 可以源码在代码段（#+BEGIN_SRC）中正常缩进。[fn:5]
++ 插入 shell 脚本的时候：
+	- #+BEGIN_SRC shell 在发布 html 时候终端，出现错误：“(wrong-type-argument processp nil)”。
+	- #+BEGIN_SRC shell-script 再输入 script 最后一个字幕t的时候会有卡顿，提示“Indentation setup for shell type bash”。
+	- #+BEGIN_SRC bash 不能进入 shell 环境编辑。
+	- #+BEGIN_SRC sh 可以正常使用。
+
+
+
+
+* 参考链接
++ [fn:1] [[http://orgmode.org/][Org Mode Official Site]]
++ [fn:2] [[https://www.gnu.org/software/emacs/manual/html_node/org/][Org Mode Manual]]
++ [fn:3] [[http://orgmode.org/guide/][Org Mode Guide]]
++ [fn:4] [[http://www.cnblogs.com/holbrook/archive/2012/04/12/2444992.html][Org Mode 简单中文教程]]
++ [fn:5] [[http://doc.norang.ca/org-mode.html][Org Mode - Organize Your Life In Plain Text!]]
++ [fn:5] [[http://hahack.com/tools/a-fantastic-usage/][C-c ' 在 org-mode 中的妙用]]
+
