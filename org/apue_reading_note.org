@@ -1,0 +1,29 @@
+* chapter 7 进程环境
+  1. main函数的执行流程（程序员的自我修养）(todo)
+  2. _exit直接进入内核，exit先执行标准I/O库的清理操作：对所有打开流调用fclose函数。
+
+     #+NAME: main__ret__code
+     #+BEGIN_SRC c -r :tangle xxxxxx.c :comment yes
+#include <stdio.h>
+
+main(){
+	printf("hello,world\n"); (ref:code)
+}
+     #+END_SRC
+
+     #+BEGIN_SRC sh
+       gcc -g main_ret_code.c -o main_ret_code
+     #+END_SRC
+
+     in the code line [[(code)]]
+  3. 使用atexit来登记终止处理程序，每登记一次就会调用一次，如若程序调用exec函数族中的任意函数，则将清除所有已安装的终止处理程序。
+  4. 如果exec没有出错，则exec之后的代码都不会执行。
+  5. malloc、TCMalloc原理以及应用。
+
+* chapter 8 进程控制
+  1. 子进程获得父进程数据空间、堆、栈的副本。使用写时复制技术，这些由父子进程共享，内核将他们的访问权限改变为只读。如果父子进程试图修改这些区域，则内核只为修改区域的那块内存制作一个副本。
+  2. 父子进程共享的属性。（L185）不继承：进程ID，父进程PID，tms_utime、tms_stime、tms_cutime、tms_ustime、文件锁、未处理的闹钟、未处理信号集。
+  3. vfork保证子进程先运行，在它调用exec或exit之后父进程才可能被调度运行。vfork生成的子进程在调用exec或exit之前在父进程空间中运行，但如果子进程修改数据、进行函数调用、或者没有调用exec或exit就返回可能带来未知的结果。
+  4. fork两次来避免僵死进程和waitpid阻塞。
+
+* chapter 15 进程间通信
