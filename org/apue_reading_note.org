@@ -3,7 +3,7 @@
   2. _exit直接进入内核，exit先执行标准I/O库的清理操作：对所有打开流调用fclose函数。
 
      #+NAME: main__ret__code
-     #+BEGIN_SRC c -r :tangle xxxxxx.c :comment yes
+     #+BEGIN_SRC C -r :tangle xxxxxx.c :comment yes
 #include <stdio.h>
 
 main(){
@@ -11,11 +11,13 @@ main(){
 }
      #+END_SRC
 
+     in the code line [[(code)]]
+
      #+BEGIN_SRC sh
        gcc -g main_ret_code.c -o main_ret_code
      #+END_SRC
 
-     in the code line [[(code)]]
+
   3. 使用atexit来登记终止处理程序，每登记一次就会调用一次，如若程序调用exec函数族中的任意函数，则将清除所有已安装的终止处理程序。
   4. 如果exec没有出错，则exec之后的代码都不会执行。
   5. malloc、TCMalloc原理以及应用。
