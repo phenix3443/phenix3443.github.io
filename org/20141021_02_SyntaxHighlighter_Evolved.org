@@ -1,7 +1,0 @@
-#+CATEGORY:专业知识
-#+TAGS:wordpress
-#+DESCRIPTION:主要对SyntaxHighlighter Evolved插件进行分析
-#+TITLE:【WordPress】SyntaxHighlighter Evolved 分析
-
-
-

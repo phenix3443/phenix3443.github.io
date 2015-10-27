@@ -1,6 +1,0 @@
-#+CATEGORY:专业知识
-#+TAGS:C++学习书籍
-#+DESCRIPTION:C++学习过程中资料记录
-#+TITLE:C++学习资料记录
-
-1.Google C++ 风格指南 [[http://zh-google-styleguide.readthedocs.org/en/latest/google-cpp-styleguide/contents/][中文版]]

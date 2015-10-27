@@ -1,5 +1,0 @@
-#+CATEGORY:专业知识
-#+TAGS:proxy 翻墙
-#+DESCRIPTION:介绍代理知识和基本配置
-#+TITLE:使用代理翻墙
-

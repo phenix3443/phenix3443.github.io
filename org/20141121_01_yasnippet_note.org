@@ -1,6 +1,0 @@
-#+CATEGORY:专业知识
-#+TAGS:yasnippet
-#+DESCRIPTION:yasnippet 知识点总结
-#+TITLE:【yasnippet】使用总结
-
-[[https://github.com/capitaomorte/yasnippet][Yasnippet]] 是 Emacs 的模板系统，它可以将缩写扩展为函数模板，自带的语言模板包括  C, C++, C#, Perl, Python, Ruby, SQL, LaTeX, HTML, CSS 以及更多。 它的语法收到 TextMate 语法的启发，甚至可以导入 TextMate 的模板。
