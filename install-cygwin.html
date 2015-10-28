@@ -3,10 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>INDEX Sitemap for project org</title>
-<!-- 2015-10-29 周四 01:00 -->
+<title>使用cygwin编译 GNU Global</title>
+<!-- 2015-10-29 周四 00:59 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
+<meta  name="description" content="在windows8.1上使用cygwin编译GNU Global"
+ />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center; }
@@ -136,89 +138,38 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">INDEX Sitemap for project org</h1>
-<ul class="org-ul">
-<li>emacs
-<ul class="org-ul">
-<li><a href="emacs/emacs_font_setting.html">Emacs 中的字体设置</a>
-</li>
-<li><a href="emacs/emacs_startup_process.html">Emacs 启动过程介绍</a>
-</li>
-<li><a href="emacs/emacs_help_system.html">Emacs 帮助系统简介</a>
-</li>
-<li><a href="emacs/emacs_project_manage.html">Emacs中的项目管理</a>
-</li>
-<li><a href="emacs/semantic_manual.html">Semantic Manual 中文版</a>
-</li>
-<li><a href="emacs/org_mode_practices.html">【Emacs】Org Mode practice</a>
-</li>
-<li><a href="emacs/emacs_step_by_step_contents.html">【Emacs】step by step content</a>
-</li>
-<li><a href="emacs/emacs_code_completation.html">【Emacs】代码补全</a>
-</li>
-<li><a href="emacs/use_emacs_as_an_IDE.html">【Emacs】将 Emacs 打造为 IDE</a>
-</li>
-<li><a href="emacs/emacs_packages_system.html">【Emacs】插件系统</a>
-</li>
-<li><a href="emacs/emacs_installation.html">【Emacs】编译与安装</a>
-</li>
-<li><a href="emacs/yasnippet_note.html">【yasnippet】使用总结</a>
-</li>
-<li><a href="emacs/emacs_code_browse.html">如何使用 Emacs 浏览源码</a>
-</li>
+<h1 class="title">使用cygwin编译 GNU Global</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. 安装 cygwin</a></li>
+<li><a href="#sec-2">2. 编译 GNU Global</a></li>
 </ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 安装 cygwin</h2>
+<div class="outline-text-2" id="text-1">
+<ol class="org-ol">
+<li>选择安装位置、下载位置、源（163），其余选项默认。
 </li>
-<li><a href="apue-reading-note.html">APUE笔记</a>
+<li>不要贪图省事选全部安装，这样在安装结束的时候会一直提示“incomplete install”，根据需要安装。
 </li>
-<li><a href="cpp-books.html">C++学习资料记录</a>
+<li>如果下载时出事进度条卡顿，重新安装的除了将 install 换位 reinstall，不要更改其他设置。
 </li>
-<li><a href="index.html">INDEX</a>
+<li>如果点击桌面图标，但是提示正在查找 mintty，先通过安装程序安装 mintty，然后更改桌面快捷图片属性中 url，将其中的 mintty 改为 mintty.exe。
 </li>
-<li><a href="theindex.html">Index</a>
-</li>
-<li><a href="linux-command-practices.html">Linux常用命令</a>
-</li>
-<li><a href="alog-program-faq.html">alog-program-faq</a>
-</li>
-<li><a href="interview_question.html">interview<sub>question</sub></a>
-</li>
-<li><a href="level-0.html">level-0</a>
-</li>
-<li><a href="org-info-js.html">org-info-js</a>
-</li>
-<li><a href="shadowsocks_practices.html">shadowsocks<sub>practices</sub></a>
-</li>
-<li><a href="tinyhttpd-analysis.html">tinyhttpd源码分析</a>
-</li>
-<li><a href="unp_reading_note.html">unp<sub>reading</sub><sub>note</sub></a>
-</li>
-<li><a href="org2blog.html">【Emacs】Org2blog</a>
-</li>
-<li><a href="sysbench-usage.html">【MySQL】sysbench基准测试</a>
-</li>
-<li><a href="ubuntu-use-note.html">【Ubuntu】使用笔记</a>
-</li>
-<li><a href="change-wamp-default-directory.html">【WAMP】使用记录</a>
-</li>
-<li><a href="panghuli-blog-tune.html">【WordPress】Blog Tune</a>
-</li>
-<li><a href="ubuntu-mount-ntfs-permission.html">【ubuntu】挂载 ntfs 系统</a>
-</li>
-<li><a href="gdb_practices.html">使用GDB调试程序</a>
-</li>
-<li><a href="install-cygwin.html">使用cygwin编译 GNU Global</a>
-</li>
-<li><a href="use-proxy.html">使用代理翻墙</a>
-</li>
-<li><a href="use-dnsmasq-pdnds-openwrt-to-pass-GFW.html">通过openwrt翻墙</a>
-</li>
-</ul>
-<p>
-hello, this is an index file.
-</p>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 编译 GNU Global</h2>
+</div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2015-10-29 周四 01:00</p>
+<p class="date">Created: 2015-10-29 周四 00:59</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
