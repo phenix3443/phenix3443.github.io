@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>如何使用 Emacs 浏览源码</title>
+<!-- 2015-10-29 周四 01:00 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="description" content="主要如何在 Emacs 中提供代码跳转、语法分析等功能。"
+ />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">如何使用 Emacs 浏览源码</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. 需求：该具备什么样的特性</a></li>
+<li><a href="#sec-2">2. 现状：常用插件介绍及对比</a></li>
+<li><a href="#sec-3">3. 解决方案：强强结合</a></li>
+<li><a href="#sec-4">4. 参考链接</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 需求：该具备什么样的特性</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+理想的 IDE 至少应该支持以下功能：
+</p>
+<ul class="org-ul">
+<li>代码导航，包括源文件、变量、函数的查找和跳转
+</li>
+<li>代码补全
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 现状：常用插件介绍及对比</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Emacs 中代码的查找和跳转都是通过 tag 进行的。tag 代表程序或文档中的一个子单元。程序源码中，tags 代表了程序的语法元素：函数、子程序、数据类型、宏等等。文档中，tags 代表了章、节、附录等等。每个 tag 都指明了对应的子单元所在文件的文件名，以及定义的位置。tag table 记录了通过扫描程序的源码文件或文档提取出来的 tags<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>，tags 文件通常命名为 tags 或者 TAGS。
+</p>
+
+<ul class="org-ul">
+<li>Emacs 产生 tags table 的默认工具是 etags，支持22种语言，包括 C、C++、Java、LaTex、Lisp、Scheme、Lua、PHP、Perl、Python等等。进一步了解请阅读 Emacs Manual 相关章节<sup><a id="fnr.1.100" name="fnr.1.100" class="footref" href="#fn.1">1</a></sup>。除了 etags， 常用的 tags 插件还有 ebrowse<sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup>、exuberant ctags<sup><a id="fnr.3" name="fnr.3" class="footref" href="#fn.3">3</a></sup>、cscope<sup><a id="fnr.4" name="fnr.4" class="footref" href="#fn.4">4</a></sup><sup>, </sup><sup><a id="fnr.5" name="fnr.5" class="footref" href="#fn.5">5</a></sup>、GNU Global<sup><a id="fnr.6" name="fnr.6" class="footref" href="#fn.6">6</a></sup>、Semantic<sup><a id="fnr.7" name="fnr.7" class="footref" href="#fn.7">7</a></sup>。stackoverfllow上面有一篇文章<sup><a id="fnr.8" name="fnr.8" class="footref" href="#fn.8">8</a></sup>主要讲述他们之间的关系。
+</li>
+<li>Ebrowse 采取的机制与 etags 类似，但只能用于 C++，并对 C++ 进行了定制。
+</li>
+<li>exuberant ctags 同样可以产生 TAGS 文件，而且支持更多的语言（41种），针对语言对象产生元数据信息要更加丰富，但可惜的是 Emacs 不能解析这些额外的数据。
+</li>
+
+<li>cscope 是针对C、C++、java的集成化代码浏览工具，而且更加强力（至少对于 C/C++ 和 Java 来说如此），通过这个玩意不仅可以查到符号声明和定义，还可以查找所有引用。Emacs中可以通过 xcscope.el 来使用。
+</li>
+<li>GNU Global是一个源码标记系统，和上面工具不同的是它独立于编辑器。Emacs 有很多的插件可以使用：xgtags.el、ggtags.el、helm-gtags.el等。
+</li>
+<li>为了智能补全，需要一个源码分析器，比如semantic，否则不知道对象（或者实例）的类型和它们可以调用的方法。semantic带来了代码的自动感知，尽管支持语言较少，但毕竟缩短了 Emacs 和 IDE之间差距。
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 解决方案：强强结合</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+综上所述：
+</p>
+<ul class="org-ul">
+<li>tag文件最主要的用途来查找类、方法、函数、常量等的声明和定义。
+</li>
+<li>ctags 和 etags使用的是文本文件存储tags，而 cscope 和 GNU global 使用的是 键值对的数据库，并且提供搜索和增量更新 tags 文件。
+</li>
+<li>C/C++ 工程更加依赖cscope， 其他类型的工程更加依赖 ctags。
+</li>
+</ul>
+
+<p>
+所以最终解决方案应该是：
+</p>
+<ul class="org-ul">
+<li>首先安装好 exuberant ctags。
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">E:\myfiles\linux-3.16&gt;ctags --version
+Exuberant Ctags 5.8, Copyright (C) 1996-2009 Darren Hiebert
+  Compiled: Jul  9 2009, 17:05:35
+  Addresses: <a href="mailto:dhiebert%40users.sourceforge.net">&lt;dhiebert@users.sourceforge.net&gt;</a>, http://ctags.sourceforge.net
+  Optional compiled features: +win32, +regex, +internal-sort
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>将 ctags 作为 GNU Global 的一个分析插件，编译 Global 时候启用支持。
+</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">$ ./configure --with-exuberant-ctags=/usr/local/bin/ctags
+$ make &amp;&amp; sudo make install
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>cscope也作为 GNU Global的一个客户端， Global 本身提供命令 gtags-cscope 来作为cscope的一个接口，这样，cscope 本身使用 Global 作为一个搜索引擎来替代自身包含的。 但还是觉得如果工程比较大的话，xcscope朝赵比较慢，而且ctags和Global的支持已经足够了。
+</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh" id="">$ gtags-cscope          <span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">this is GLOBAL version of cscope</span>
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 参考链接</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
+<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Tags.html#Tags">Emacs Manual &#x2013; Tags Tables</a>
+</p></div>
+
+<div class="footdef"><sup><a id="fn.2" name="fn.2" class="footnum" href="#fnr.2">2</a></sup> <p class="footpara">
+<a href="http://www.gnu.org/software/emacs/manual/html_mono/ebrowse.html#Top">Emacs Manual &#x2013; Ebrowse</a>
+</p></div>
+
+<div class="footdef"><sup><a id="fn.3" name="fn.3" class="footnum" href="#fnr.3">3</a></sup> <p class="footpara">
+<a href="http://ctags.sourceforge.net/">official Exuberant Ctags web site</a>
+</p></div>
+
+<div class="footdef"><sup><a id="fn.4" name="fn.4" class="footnum" href="#fnr.4">4</a></sup> <p class="footpara">
+<a href="http://cscope.sourceforge.net/">official cscope web site</a>
+</p></div>
+
+<div class="footdef"><sup><a id="fn.5" name="fn.5" class="footnum" href="#fnr.5">5</a></sup> <p class="footpara">
+<a href="http://www.emacswiki.org/emacs/CScopeAndEmacs">Emacs wiki &#x2013; cscope and Emacs</a>
+</p></div>
+
+<div class="footdef"><sup><a id="fn.6" name="fn.6" class="footnum" href="#fnr.6">6</a></sup> <p class="footpara">
+<a href="http://www.gnu.org/software/global/">official GNU Global web site</a>
+</p></div>
+
+<div class="footdef"><sup><a id="fn.7" name="fn.7" class="footnum" href="#fnr.7">7</a></sup> <p class="footpara">
+<a href="http://www.gnu.org/software/emacs/manual/html_mono/semantic.html">Semantic Manual</a>
+</p></div>
+
+<div class="footdef"><sup><a id="fn.8" name="fn.8" class="footnum" href="#fnr.8">8</a></sup> <p class="footpara">
+<a href="http://stackoverflow.com/questions/12922526/tags-for-emacs-relationship-between-etags-ebrowse-cscope-gnu-global-and-exhu">Tags for Emacs: Relationship between etags, ebrowse, cscope, GNU Global and exhuberant ctags</a>
+</p></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="date">Date: Tue Aug 12 10:19:22 2014</p>
+<p class="date">Created: 2015-10-29 周四 01:00</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
