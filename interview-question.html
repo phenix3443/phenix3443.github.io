@@ -3,12 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>【Emacs】编译与安装</title>
-<!-- 2015-10-29 周四 01:00 -->
+<title>interview-question</title>
+<!-- 2015-10-29 周四 14:26 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
-<meta  name="description" content="主要介绍 Emacs 在不同操作系统中的编译和安装"
- />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center; }
@@ -135,170 +133,49 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
-<script type="text/javascript">
-<!--/*--><![CDATA[/*><!--*/
-    MathJax.Hub.Config({
-        // Only one of the two following lines, depending on user settings
-        // First allows browser-native MathML display, second forces HTML/CSS
-        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
-            jax: ["input/TeX", "output/HTML-CSS"],
-        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
-                     "TeX/noUndefined.js"],
-        tex2jax: {
-            inlineMath: [ ["\\(","\\)"] ],
-            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
-            skipTags: ["script","noscript","style","textarea","pre","code"],
-            ignoreClass: "tex2jax_ignore",
-            processEscapes: false,
-            processEnvironments: true,
-            preview: "TeX"
-        },
-        showProcessingMessages: true,
-        displayAlign: "center",
-        displayIndent: "2em",
-
-        "HTML-CSS": {
-             scale: 100,
-             availableFonts: ["STIX","TeX"],
-             preferredFont: "TeX",
-             webFont: "TeX",
-             imageFont: "TeX",
-             showMathMenu: true,
-        },
-        MMLorHTML: {
-             prefer: {
-                 MSIE:    "MML",
-                 Firefox: "MML",
-                 Opera:   "HTML",
-                 other:   "HTML"
-             }
-        }
-    });
-/*]]>*///-->
-</script>
 </head>
 <body>
 <div id="content">
-<h1 class="title">【Emacs】编译与安装</h1>
+<h1 class="title">interview-question</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. Emacs 简单介绍</a></li>
-<li><a href="#sec-2">2. Emacs 编译和安装</a>
-<ul>
-<li><a href="#sec-2-1">2.1. Ubuntu</a></li>
-<li><a href="#sec-2-2">2.2. CentOS</a></li>
-<li><a href="#sec-2-3">2.3. Windows</a></li>
-</ul>
-</li>
-<li><a href="#sec-3">3. Emacs 简单使用</a></li>
-<li><a href="#sec-4">4. Emacs Todo</a></li>
+<li><a href="#sec-1">1. 线程和进程的区别联系：</a></li>
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> Emacs 简单介绍</h2>
+<h2 id="sec-1"><span class="section-number-2">1</span> 线程和进程的区别联系：</h2>
 <div class="outline-text-2" id="text-1">
+<ol class="org-ol">
+<li>进程：子进程是父进程的复制品。子进程获得父进程数据空间、堆和栈的复制品。
+</li>
+<li>线程：相对与进程而言，线程是一个更加接近与执行体的概念，它可以与同进程的其他线程共享数据，但拥有自己的栈空间，拥有独立的执行序列。
+</li>
+</ol>
 <p>
-可能你已经听过 Emacs  被称为“神的编译器”，也有可能见过许多关于它和 “编译器之神” vim   之间的争论，我们不去管那些争论。我自己是一个实用主义者，什么东西好，我就直接拿来用，其实哪有什么东西是万能的，只有适合或者不适合。使用 Emacs 目的只有一个：效率！！
+两者都可以提高程序的并发度，提高程序运行效率和响应时间。
+线程和进程在使用上各有优缺点：线程执行开销小，但不利于资源管理和保护；而进程正相反。同时，线程适合于在 SMP 机器上运行，而进程则可以跨机器迁移。
+根本区别就一点：用多进程每个进程有自己的地址空间 (address space)，线
+程则共享地址空间。所有其它区别都是由此而来的：
+</p>
+<ol class="org-ol">
+<li>速度：线程产生的速度快，线程间的通讯快、切换快等，因为他们在同一个地址空间内。
+</li>
+<li>资源利用率：线程的资源利用率比较好也是因为他们在同一个地址空间内。
+</li>
+<li>同步问题：线程使用公共变量 / 内存时需要使用同步机制还是因为他们在同一个地址空间内
+</li>
+</ol>
+<p>
+*
 </p>
 </div>
-</div>
-
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> Emacs 编译和安装</h2>
-<div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Ubuntu</h3>
-<div class="outline-text-3" id="text-2-1">
-<ol class="org-ol">
-<li>编译环境
-<div class="org-src-container">
-
-<pre class="src src-sh">$ uname -a
-Linux ubuntu 3.8.0-35-generic <span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">50~precise1-Ubuntu SMP Wed Dec 4 17:28:45 UTC 2013 i686 i686 i386 GNU/Linux</span>
-</pre>
-</div>
-</li>
-<li>安装依赖包
-<div class="org-src-container">
-
-<pre class="src src-sh">$ sudo apt-get install -y libgtk2.0-dev libxpm-dev libgif-dev libtiff4-dev libjpeg-dev libpng12-dev libncurses-dev
-</pre>
-</div>
-</li>
-<li>编译安装
-<div class="org-src-container">
-
-<pre class="src src-sh">$ tar zxf ~/Downloads/emacs-24.3.tar.gz
-$ cd emacs-24.3/
-$ ./configure
-$ make
-$ sudo make install
-</pre>
-</div>
-</li>
-</ol>
-</div>
-</div>
-
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2"><span class="section-number-3">2.2</span> CentOS</h3>
-<div class="outline-text-3" id="text-2-2">
-<ol class="org-ol">
-<li>编译环境
-<div class="org-src-container">
-
-<pre class="src src-sh">$ uname -a
-Linux localhost.localdomain 2.6.32-431.3.1.el6.i686 <span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">1 SMP Fri Jan 3 18:53:30 UTC 2014 i686 i686 i386 GNU/Linux</span>
-</pre>
-</div>
-</li>
-
-<li>安装依赖包
-<div class="org-src-container">
-
-<pre class="src src-sh">$ sudo yum install -y gtk+-devel gtk2-devel libXpm-devel libpng-devel giflib-devel ncurses-devel gpm-devel GConf2-devel pkgconfig libXft-devel libjpeg-devel libtiff-devel
-</pre>
-</div>
-</li>
-
-<li>编译安装
-
-<p>
-同上
-</p>
-</li>
-</ol>
-</div>
-</div>
-
-<div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Windows</h3>
-<div class="outline-text-3" id="text-2-3">
-<ol class="org-ol">
-<li>下载Emacs windows版本，解压。
-</li>
-<li>运行\bin\addpm.exe，并将安装路径添加到环境变量Path当中。
-</li>
-</ol>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> Emacs 简单使用</h2>
-</div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> Emacs Todo</h2>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">[2014-08-19 二 00:43]</span></span></p>
-<p class="date">Created: 2015-10-29 周四 01:00</p>
+<p class="date">Created: 2015-10-29 周四 14:26</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

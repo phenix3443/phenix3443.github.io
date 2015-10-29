@@ -3,12 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Emacs 帮助系统简介</title>
-<!-- 2015-10-29 周四 01:07 -->
+<title>unp-reading-note</title>
+<!-- 2015-10-29 周四 14:26 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
-<meta  name="description" content="简单介绍 Emacs 使用过程中如何通过帮助系统来解决遇到的问题。"
- />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center; }
@@ -138,12 +136,38 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Emacs 帮助系统简介</h1>
+<h1 class="title">unp-reading-note</h1>
+<p>
+L11：线程函数遇到错误时并不设置标准Unix的error变量，而是把errno的值作为函数返回值返回调用者。
+L13: INADDR<sub>ANY的使用。</sub>
+L14：必须小心使用sprintf、gets、strcat、strcpy，使用snprintf、fgets、strlcat、strlcpy替代。
+L17：网络应用绕过传输层直接使用IPv4和IPv6是可能的，这就是所谓的原始套接字。
+L25：套接字API对套接字地址结构的长度使用了socklen<sub>t数据类型。不使用size</sub><sub>t是为了避免32和64位系统转换。</sub>
+</p>
 
+<p>
+L26：SCTP与TCP类似之处在于它也是一个可靠的传输控制协议，但是他还提供消息边界、传输级别多宿支持以及将头端阻塞减少到最小的一种方法。
+L30：TCP含有用于动态估算客户和服务器之间的往返时间（RTT）的算法，以便它知道等待一个确认需要多少时间。
+L31：UDP可以是全双工的。
+L32：SYN占据一个字节的序列号空间。
+L36：捎带ack通常在服务器处理请求并产生应答的时间少于200ms时产生。
+L37：
+MSL最长分节生命期，是任何IP数据包能够在因特网上存活的最长时间。
+TIME<sub>WAIT状态有两个存在的理由：1）可靠地实现TCP全双工连接的终止。2）允许老的重复分解在网络中消逝。</sub>
+L44：在服务器主机上区分监听套接字和已连接套接字。已连接套接字使用与监听套接字相同的本地端口。还要注意在多宿主服务器主机上，连接一旦建立，已连接套接字的本地地址随即填入。
+L46：影响IP数据报大小的限制：
+</p>
+
+<p>
+L56：套接字地址结构会在内核与进程间传递。
+L57：所有的套接字地址结构大小至少都是16字节。
+L58：32位IPv4地址存在两种不同的访问方法。
+L59：从应用程序开发人员的观点看，这些通用套接字地址结构的唯一用途就是对只想特定于协议的套接字地址结构的指针执行强制类型转换。
+L62：sock api中传递值结果参数的作用。
+</p>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: Fri Aug 15 11:32:23 2014</p>
-<p class="date">Created: 2015-10-29 周四 01:07</p>
+<p class="date">Created: 2015-10-29 周四 14:26</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
