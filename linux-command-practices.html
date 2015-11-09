@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<!-- 2015-11-09 一 12:23 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta  name="viewport" content="width=device-width, initial-scale=1">
+<title>Linux常用命令</title>
+<meta  name="generator" content="Org-mode">
+<meta  name="author" content="ubuntu">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Linux常用命令</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. c++filt</a></li>
+<li><a href="#orgheadline2">2. core dump</a></li>
+<li><a href="#orgheadline3">3. gdb</a></li>
+<li><a href="#orgheadline4">4. objdump</a></li>
+<li><a href="#orgheadline5">5. ps</a></li>
+<li><a href="#orgheadline6">6. psstack</a></li>
+<li><a href="#orgheadline7">7. pstree</a></li>
+<li><a href="#orgheadline8">8. strace</a></li>
+<li><a href="#orgheadline9">9. ulimit</a></li>
+<li><a href="#orgheadline17">10. wc</a>
+<ul>
+<li><a href="#orgheadline10">10.1. 命令格式</a></li>
+<li><a href="#orgheadline11">10.2. 常用参数</a></li>
+<li><a href="#orgheadline16">10.3. 应用举例</a>
+<ul>
+<li><a href="#orgheadline12">10.3.1. 打印文件行数等</a></li>
+<li><a href="#orgheadline13">10.3.2. 只打印统计数字不打印文件名</a></li>
+<li><a href="#orgheadline14">10.3.3. 用来统计当前目录下的文件数</a></li>
+<li><a href="#orgheadline15">10.3.4. 统计代码量</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> c++filt</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+c++为允许重载，编译器将描述函数参数类型的信息合并到函数的原始名称中， 从而为重载函数生成唯一的函数名称。为名称完全相同的函数生成唯一名称的过程叫做名称改编（name mangling）。C++ 标准没有为名称改编方案制定标准， 因此，编译器设计人员必须自己制定标准。为了区分函数重载版本，我们需要一个能够理解编译器（这里为 g++）的名称改编方案的工具，c++filt正是这样一个实用工具。c++filt 将每个输入的名称看成是改编后的名称（mangled name），并设法确定用于生成该名称的编译器。如果这个名称是一个合法的改编名称，那么，c++filt就输出改编之前的原始名称；如果 c++filt 无法识别一个改编名称，那它就按原样输出该名称。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> core dump</h2>
+</div>
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">3</span> gdb</h2>
+</div>
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">4</span> objdump</h2>
+</div>
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5"><span class="section-number-2">5</span> ps</h2>
+</div>
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">6</span> psstack</h2>
+</div>
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7"><span class="section-number-2">7</span> pstree</h2>
+</div>
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8"><span class="section-number-2">8</span> strace</h2>
+</div>
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9"><span class="section-number-2">9</span> ulimit</h2>
+</div>
+
+<div id="outline-container-orgheadline17" class="outline-2">
+<h2 id="orgheadline17"><span class="section-number-2">10</span> wc</h2>
+<div class="outline-text-2" id="text-10">
+</div><div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">10.1</span> 命令格式</h3>
+<div class="outline-text-3" id="text-10-1">
+<pre class="example">
+wc [OPTION]... [FILE]...
+</pre>
+<p>
+统计指定文件中的字节数、字数、行数，并将统计结果显示输出。该命令统计指定文件中的字节数、字数、行数。如果没有给出文件名，则从标准输入读取。wc 同时也给出所指定文件的总统计数。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">10.2</span> 常用参数</h3>
+<div class="outline-text-3" id="text-10-2">
+<p>
+以下参数可组合使用。
+</p>
+<ul class="org-ul">
+<li>-c, <code>--bytes</code> 打印字节数</li>
+<li>-m, <code>--chars</code> 打印字符数</li>
+<li>-l, <code>--lines</code> 打印行数</li>
+<li>-L, <code>--max-line-length</code> 打印最长的行的长度</li>
+<li>-w, <code>--words</code> 统计字数。一个字被定义为由空白、跳格或换行字符分隔的字符串。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16"><span class="section-number-3">10.3</span> 应用举例</h3>
+<div class="outline-text-3" id="text-10-3">
+</div><div id="outline-container-orgheadline12" class="outline-4">
+<h4 id="orgheadline12"><span class="section-number-4">10.3.1</span> 打印文件行数等</h4>
+<div class="outline-text-4" id="text-10-3-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">wc -cmlwL /etc/passwd
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline13" class="outline-4">
+<h4 id="orgheadline13"><span class="section-number-4">10.3.2</span> 只打印统计数字不打印文件名</h4>
+<div class="outline-text-4" id="text-10-3-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">cat /etc/passwd | wc -l
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline14" class="outline-4">
+<h4 id="orgheadline14"><span class="section-number-4">10.3.3</span> 用来统计当前目录下的文件数</h4>
+<div class="outline-text-4" id="text-10-3-3">
+<div class="org-src-container">
+
+<pre class="src src-sh">ls -l | wc -l
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline15" class="outline-4">
+<h4 id="orgheadline15"><span class="section-number-4">10.3.4</span> 统计代码量</h4>
+<div class="outline-text-4" id="text-10-3-4">
+<div class="org-src-container">
+
+<pre class="src src-sh">find . -name <span style="color: #66cccc;">'*.c'</span> | xargs wc -l
+</pre>
+</div>
+
+<p>
+统计并按行数排序
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">find . -name <span style="color: #66cccc;">'*.c'</span> | xargs wc -l | sort -n
+</pre>
+</div>
+
+<p>
+统计目录并按文件名排序
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">find . -name *.c | xargs wc -l | sort -k2
+</pre>
+</div>
+
+<p>
+只想知道最后的总的统计结果：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">find . -name <span style="color: #66cccc;">"*.[ch]*"</span>| xargs wc -l | grep<span style="color: #66cccc;">"total"</span>| awk<span style="color: #66cccc;">'{print $1}'</span>
+</pre>
+</div>
+
+<p>
+代码统计工具还有cloc<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>，Windows下面的代码统计工具有SourceCounterCN<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://github.com/AlDanial/cloc">cloc on github</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://code.google.com/p/boomworks/wiki/SourceCounterCN">SourceCounter on google code</a>
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: ubuntu</p>
+<p class="date">Created: 2015-11-09 一 12:23</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
