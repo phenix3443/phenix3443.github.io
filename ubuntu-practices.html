@@ -1,13 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-11-09 一 12:23 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8">
-<meta  name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2015-11-16 一 15:34 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>【Ubuntu】使用笔记</title>
-<meta  name="generator" content="Org-mode">
-<meta  name="author" content="ubuntu">
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="ubuntu" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -153,7 +154,7 @@ for the JavaScript code in this tag.
 <li><a href="#orgheadline2">1.2. 虚拟机安装</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline4">2. 选择最快的软件源,更新软件。</a></li>
+<li><a href="#orgheadline4">2. 更新软件</a></li>
 <li><a href="#orgheadline7">3. 安装输入法</a>
 <ul>
 <li><a href="#orgheadline5">3.1. sogou 输入法</a></li>
@@ -176,8 +177,9 @@ for the JavaScript code in this tag.
 <li><a href="#orgheadline18">13. 安装 Uget 与 aria2 作为下载工具。</a></li>
 <li><a href="#orgheadline19">14. 安装最好的截图软件 Shutter</a></li>
 <li><a href="#orgheadline20">15. 安装7zip作为解压工具 p7z-ful</a></li>
-<li><a href="#orgheadline21">16. 安装 texlive-full</a></li>
-<li><a href="#orgheadline22">17. 安装有道词典</a></li>
+<li><a href="#orgheadline21">16. PDF阅读软件okular</a></li>
+<li><a href="#orgheadline22">17. 安装 texlive-full</a></li>
+<li><a href="#orgheadline23">18. 安装有道词典</a></li>
 </ul>
 </div>
 </div>
@@ -207,7 +209,7 @@ for the JavaScript code in this tag.
 </div>
 </div>
 <div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4"><span class="section-number-2">2</span> 选择最快的软件源,更新软件。</h2>
+<h2 id="orgheadline4"><span class="section-number-2">2</span> 更新软件</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 
@@ -432,24 +434,38 @@ sudo apt-get install virtualbox-4.3
 <h2 id="orgheadline20"><span class="section-number-2">15</span> 安装7zip作为解压工具 p7z-ful</h2>
 </div>
 <div id="outline-container-orgheadline21" class="outline-2">
-<h2 id="orgheadline21"><span class="section-number-2">16</span> 安装 texlive-full</h2>
+<h2 id="orgheadline21"><span class="section-number-2">16</span> PDF阅读软件okular</h2>
 <div class="outline-text-2" id="text-16">
 <div class="org-src-container">
 
-<pre class="src src-sh" id="orgsrcblock11">sudo add-apt-repository ppa:pidgin-developers/ppa <span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">pidgin</span>
+<pre class="src src-sh">sudo add-apt-repository ppa:pidgin-developers/ppa <span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">pidgin</span>
 sudo add-apt-repository ppa:rvm/smplayer <span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">smplayer</span>
 sudo add-apt-repository ppa:plushuang-tw/uget-stable <span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">uget</span>
 sudo add-apt-repository ppa:t-tujikawa/ppa <span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">aria2</span>
 sudo apt-get update
-sudo apt-get install -y pidgin smplayer smplayer-themes uget aria2 shutter p7z-full texlive-full texmaker
+sudo apt-get install -y pidgin smplayer smplayer-themes uget aria2 shutter p7z-full okular
 </pre>
 </div>
 </div>
 </div>
 
 <div id="outline-container-orgheadline22" class="outline-2">
-<h2 id="orgheadline22"><span class="section-number-2">17</span> 安装有道词典</h2>
+<h2 id="orgheadline22"><span class="section-number-2">17</span> 安装 texlive-full</h2>
 <div class="outline-text-2" id="text-17">
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo aptitude install texlive-full xzdec libdigest-perl-md5-perl perl-tk
+tlmgr init-usertree
+tlmgr update -all
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline23" class="outline-2">
+<h2 id="orgheadline23"><span class="section-number-2">18</span> 安装有道词典</h2>
+<div class="outline-text-2" id="text-18">
 <p>
 <a href="https://github.com/justzx2011/openyoudao">项目网址</a>
 </p>
@@ -458,7 +474,7 @@ sudo apt-get install -y pidgin smplayer smplayer-themes uget aria2 shutter p7z-f
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: ubuntu</p>
-<p class="date">Created: 2015-11-09 一 12:23</p>
+<p class="date">Created: 2015-11-16 一 15:34</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

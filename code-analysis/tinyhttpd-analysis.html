@@ -1,13 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-11-09 一 12:23 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8">
-<meta  name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2015-11-16 一 15:34 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>TinyHTTPd源码分析</title>
-<meta  name="generator" content="Org-mode">
-<meta  name="author" content="ubuntu">
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="ubuntu" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -324,7 +325,7 @@ gcc -g -W -Wall  httpd.c -o httpd -lpthread
 </p>
 
 <div class="figure">
-<p><img src="../img/tinyhttpd-analysis/index.png" alt="index.png">
+<p><img src="../img/tinyhttpd-analysis/index.png" alt="index.png" />
 </p>
 <p><span class="figure-number">Figure 1:</span> index.html</p>
 </div>
@@ -381,7 +382,7 @@ print $<span style="color: #ffcc66;">cgi</span>-&gt;end_html;             <span 
 </p>
 
 <div class="figure">
-<p><img src="../img/tinyhttpd-analysis/display-abnormal.png" alt="display-abnormal.png">
+<p><img src="../img/tinyhttpd-analysis/display-abnormal.png" alt="display-abnormal.png" />
 </p>
 <p><span class="figure-number">Figure 2:</span> 没有返回</p>
 </div>
@@ -419,7 +420,7 @@ bash: ./color.cgi: /usr/local/bin/perl: 解释器错误: 没有那个文件或�
 </p>
 
 <div class="figure">
-<p><img src="../img/tinyhttpd-analysis/display-normal.png" alt="display-normal.png">
+<p><img src="../img/tinyhttpd-analysis/display-normal.png" alt="display-normal.png" />
 </p>
 <p><span class="figure-number">Figure 3:</span> 正常显示</p>
 </div>
@@ -434,7 +435,7 @@ bash: ./color.cgi: /usr/local/bin/perl: 解释器错误: 没有那个文件或�
 <div class="outline-text-3" id="text-4-1">
 
 <div class="figure">
-<p><img src="../img/tinyhttpd-analysis/tinyhttpd-work-flow.png" alt="tinyhttpd-work-flow.png">
+<p><img src="../img/tinyhttpd-analysis/tinyhttpd-work-flow.png" alt="tinyhttpd-work-flow.png" />
 </p>
 <p><span class="figure-number">Figure 4:</span> 程序流程图</p>
 </div>
@@ -616,7 +617,7 @@ startup函数很简单，不做过多的分析。
 </ul>
 
 <div class="figure">
-<p><img src="../img/tinyhttpd-analysis/fork-pipe.png" alt="fork-pipe.png">
+<p><img src="../img/tinyhttpd-analysis/fork-pipe.png" alt="fork-pipe.png" />
 </p>
 <p><span class="figure-number">Figure 5:</span> 父子进程管道通信</p>
 </div>
@@ -765,7 +766,7 @@ localhost:12345/test.sh?red
 </p>
 
 <div class="figure">
-<p><img src="../img/tinyhttpd-analysis/cgi-test-sh.png" alt="cgi-test-sh.png">
+<p><img src="../img/tinyhttpd-analysis/cgi-test-sh.png" alt="cgi-test-sh.png" />
 </p>
 <p><span class="figure-number">Figure 6:</span> cgi test.sh运行</p>
 </div>
@@ -792,7 +793,7 @@ HTTP 有两种报文：请求报文和响应报文，具体介绍如下
 </p>
 
 <div class="figure">
-<p><img src="../img/tinyhttpd-analysis/http-request-format.png" alt="http-request-format.png">
+<p><img src="../img/tinyhttpd-analysis/http-request-format.png" alt="http-request-format.png" />
 </p>
 <p><span class="figure-number">Figure 7:</span> HTTP请求报文格式</p>
 </div>
@@ -859,14 +860,14 @@ POST：当客户端给服务器提供信息较多时可以使用 POST 方法。P
 
 
 <div class="figure">
-<p><img src="../img/tinyhttpd-analysis/http-get-request.png" alt="http-get-request.png">
+<p><img src="../img/tinyhttpd-analysis/http-get-request.png" alt="http-get-request.png" />
 </p>
 <p><span class="figure-number">Figure 8:</span> GET 请求示例</p>
 </div>
 
 
 <div class="figure">
-<p><img src="../img/tinyhttpd-analysis/http-post-request.png" alt="http-post-request.png">
+<p><img src="../img/tinyhttpd-analysis/http-post-request.png" alt="http-post-request.png" />
 </p>
 <p><span class="figure-number">Figure 9:</span> POST请求示例</p>
 </div>
@@ -881,7 +882,7 @@ HTTP 响应报文主要由状态行、响应头部、响应正文 3 部分组成
 </p>
 
 <div class="figure">
-<p><img src="../img/tinyhttpd-analysis/http-response-format.png" alt="http-response-format.png">
+<p><img src="../img/tinyhttpd-analysis/http-response-format.png" alt="http-response-format.png" />
 </p>
 <p><span class="figure-number">Figure 10:</span> HTTP响应报文格式</p>
 </div>
@@ -921,7 +922,7 @@ HTTP 响应报文主要由状态行、响应头部、响应正文 3 部分组成
 </ul>
 
 <div class="figure">
-<p><img src="../img/tinyhttpd-analysis/http-response.png" alt="http-response.png">
+<p><img src="../img/tinyhttpd-analysis/http-response.png" alt="http-response.png" />
 </p>
 <p><span class="figure-number">Figure 11:</span> HTTP响应示例</p>
 </div>
@@ -1032,7 +1033,7 @@ bash: ./printf-newline: 没有那个文件或目录
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: ubuntu</p>
-<p class="date">Created: 2015-11-09 一 12:23</p>
+<p class="date">Created: 2015-11-16 一 15:34</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
