@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-11-16 一 15:49 -->
+<!-- 2015-11-30 一 21:34 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>skynet实践</title>
@@ -242,7 +242,7 @@ Skynet 的消息传递都是单向的，以数据包为单位传递的。并没�
 </p>
 
 <p>
-Skynet 原则上主张所有的服务都在同一个 OS 进程中协作完成。所以在核心层内，不考虑跨机通讯的机制，也不为单独一个服务的崩溃，重启等提供相应的支持。和普通的单线程程序一样，你要为你代码中的 bug 和意外负责。如果你的程序出了问题而崩溃，你不应该把错误藏起来，假装它们没有发生。至少，这些不是核心层做的事情。和操作系统不一样，操作系统会认为用户进程都是不可靠的，不会让一个用户进程的错误影响到另一个进程。但在 Skynet 提供的框架内，所有的服务都有统一的目的，为游戏服务器的最终客户服务，如果有某个环节出了错都可能是致命的，没有必要被问题隔离开。
+Skynet 原则上主张所有的服务都在同一个 OS 进程中协作完成。所以在核心层内，不考虑跨机通讯的机制，也不为单独一个服务的崩溃，重启等提供相应的支持。和普通的单线程程序一样，你要为你代码中的 bug 和意外负责。如果你的程序出了问题而崩溃，你不应该把错误藏起来，假装它们没有发生。至少，这些不是核心层做的事情。和操作系统不一样，操作系统会认为用户进程都是不可靠的，不会让一个用户进程的错误影响到另一个进程。但在 Skynet 提供的框架内，所有的服务都有统一的目的，为游戏服务器的最终客户服务，如果有某个环节出了错都可能是致命的，没有必要把问题隔离开。
 </p>
 
 <p>
@@ -303,25 +303,25 @@ Skynet 原则上主张所有的服务都在同一个 OS 进程中协作完成。
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #6699cc;">int</span> <span style="color: #f99157;">skynet_send</span>(
-    <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">skynet_context</span> * <span style="color: #ffcc66;">context</span>,
-    <span style="color: #6699cc;">uint32_t</span> <span style="color: #ffcc66;">source</span>,
-    <span style="color: #6699cc;">uint32_t</span> <span style="color: #ffcc66;">destination</span>,
-    <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">type</span>,
-    <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">session</span>,
-    <span style="color: #6699cc;">void</span> * <span style="color: #ffcc66;">msg</span>,
-    <span style="color: #6699cc;">size_t</span> <span style="color: #ffcc66;">sz</span>
-    );
+<pre class="src src-c">   <span style="color: #6699cc;">int</span> <span style="color: #f99157;">skynet_send</span>(
+       <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">skynet_context</span> * <span style="color: #ffcc66;">context</span>,
+       <span style="color: #6699cc;">uint32_t</span> <span style="color: #ffcc66;">source</span>,
+       <span style="color: #6699cc;">uint32_t</span> <span style="color: #ffcc66;">destination</span>,
+       <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">type</span>,
+       <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">session</span>,
+       <span style="color: #6699cc;">void</span> * <span style="color: #ffcc66;">msg</span>,
+       <span style="color: #6699cc;">size_t</span> <span style="color: #ffcc66;">sz</span>
+       );
 
-<span style="color: #99cc99;">typedef</span> <span style="color: #6699cc;">int</span> (*<span style="color: #6699cc;">skynet_cb</span>)(
-    <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">skynet_context</span> * <span style="color: #ffcc66;">context</span>,
-    <span style="color: #6699cc;">void</span> *<span style="color: #ffcc66;">ud</span>,
-    <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">type</span>,
-    <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">session</span>,
-    <span style="color: #6699cc;">uint32_t</span> <span style="color: #ffcc66;">source</span> ,
-    <span style="color: #99cc99;">const</span> <span style="color: #6699cc;">void</span> * <span style="color: #ffcc66;">msg</span>,
-    <span style="color: #6699cc;">size_t</span> <span style="color: #ffcc66;">sz</span>
-    );
+   <span style="color: #99cc99;">typedef</span> <span style="color: #6699cc;">int</span> (*<span style="color: #6699cc;">skynet_cb</span>)(
+       <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">skynet_context</span> * <span style="color: #ffcc66;">context</span>,
+       <span style="color: #6699cc;">void</span> *<span style="color: #ffcc66;">ud</span>,
+       <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">type</span>,
+       <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">session</span>,
+       <span style="color: #6699cc;">uint32_t</span> <span style="color: #ffcc66;">source</span> ,
+       <span style="color: #99cc99;">const</span> <span style="color: #6699cc;">void</span> * <span style="color: #ffcc66;">msg</span>,
+       <span style="color: #6699cc;">size_t</span> <span style="color: #ffcc66;">sz</span>
+       );
 </pre>
 </div>
 
@@ -404,14 +404,14 @@ Skynet 原则上主张所有的服务都在同一个 OS 进程中协作完成。
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #cc99cc;">#define</span> <span style="color: #ffcc66;">PTYPE_TEXT</span> 0
-<span style="color: #cc99cc;">#define</span> <span style="color: #ffcc66;">PTYPE_RESPONSE</span> 1
-<span style="color: #cc99cc;">#define</span> <span style="color: #ffcc66;">PTYPE_MULTICAST</span> 2
-<span style="color: #cc99cc;">#define</span> <span style="color: #ffcc66;">PTYPE_CLIENT</span> 3
-<span style="color: #cc99cc;">#define</span> <span style="color: #ffcc66;">PTYPE_SYSTEM</span> 4
-<span style="color: #cc99cc;">#define</span> <span style="color: #ffcc66;">PTYPE_HARBOR</span> 5
-<span style="color: #cc99cc;">#define</span> <span style="color: #ffcc66;">PTYPE_TAG_DONTCOPY</span> 0x10000
-<span style="color: #cc99cc;">#define</span> <span style="color: #ffcc66;">PTYPE_TAG_ALLOCSESSION</span> 0x20000
+<pre class="src src-c"><span style="color: #cc99cc;">    #define</span> <span style="color: #ffcc66;">PTYPE_TEXT</span> 0
+<span style="color: #cc99cc;">    #define</span> <span style="color: #ffcc66;">PTYPE_RESPONSE</span> 1
+<span style="color: #cc99cc;">    #define</span> <span style="color: #ffcc66;">PTYPE_MULTICAST</span> 2
+<span style="color: #cc99cc;">    #define</span> <span style="color: #ffcc66;">PTYPE_CLIENT</span> 3
+<span style="color: #cc99cc;">    #define</span> <span style="color: #ffcc66;">PTYPE_SYSTEM</span> 4
+<span style="color: #cc99cc;">    #define</span> <span style="color: #ffcc66;">PTYPE_HARBOR</span> 5
+<span style="color: #cc99cc;">    #define</span> <span style="color: #ffcc66;">PTYPE_TAG_DONTCOPY</span> 0x10000
+<span style="color: #cc99cc;">    #define</span> <span style="color: #ffcc66;">PTYPE_TAG_ALLOCSESSION</span> 0x20000
 </pre>
 </div>
 
@@ -527,12 +527,12 @@ Skynet 维护了两级消息队列。
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">skynet_message</span> {
-    <span style="color: #6699cc;">uint32_t</span> <span style="color: #ffcc66;">source</span>;
-    <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">session</span>;
-    <span style="color: #6699cc;">void</span> * <span style="color: #ffcc66;">data</span>;
-    <span style="color: #6699cc;">size_t</span> <span style="color: #ffcc66;">sz</span>;
-};
+<pre class="src src-c">    <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">skynet_message</span> {
+        <span style="color: #6699cc;">uint32_t</span> <span style="color: #ffcc66;">source</span>;
+        <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">session</span>;
+        <span style="color: #6699cc;">void</span> * <span style="color: #ffcc66;">data</span>;
+        <span style="color: #6699cc;">size_t</span> <span style="color: #ffcc66;">sz</span>;
+    };
 </pre>
 </div>
 
@@ -684,11 +684,11 @@ skynet 所有代码以及引用的第三方库都可以被支持 C99 的编译�
 
 <div class="org-src-container">
 
-<pre class="src src-sh">sudo apt-get install libreadline-dev
-sudo apt-get install lua5.3
-git clone https://github.com/cloudwu/skynet.git
-<span style="color: #cc99cc;">cd</span> skynet
-make <span style="color: #66cccc;">'linux'</span>
+<pre class="src src-sh">    sudo apt-get install libreadline-dev
+    sudo apt-get install lua5.3
+    git clone https://github.com/cloudwu/skynet.git
+    <span style="color: #cc99cc;">cd</span> skynet
+    make <span style="color: #66cccc;">'linux'</span>
 </pre>
 </div>
 
@@ -707,8 +707,8 @@ make <span style="color: #66cccc;">'linux'</span>
 
 <div class="org-src-container">
 
-<pre class="src src-sh">./skynet examples/config    <span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">Launch first skynet node  (Gate server) and a skynet-master (see config for standalone option)</span>
-./3rd/lua/lua examples/client.lua
+<pre class="src src-sh">    ./skynet examples/config    <span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">Launch first skynet node  (Gate server) and a skynet-master (see config for standalone option)</span>
+    ./3rd/lua/lua examples/client.lua
 </pre>
 </div>
 </div>
@@ -718,34 +718,34 @@ make <span style="color: #66cccc;">'linux'</span>
 <h2 id="orgheadline17"><span class="section-number-2">5</span> Bootstrap<sup><a id="fnr.6" class="footref" href="#fn.6">6</a></sup></h2>
 <div class="outline-text-2" id="text-5">
 <pre class="example">
-$ ./skynet examples/config
-[:01000001] LAUNCH logger
-[:01000002] LAUNCH snlua bootstrap
-[:01000003] LAUNCH snlua launcher
-[:01000004] LAUNCH snlua cmaster
-[:01000004] master listen socket 0.0.0.0:2013
-[:01000005] LAUNCH snlua cslave
-[:01000005] slave connect to master 127.0.0.1:2013
-[:01000004] connect from 127.0.0.1:41066 4
-[:01000006] LAUNCH harbor 1 16777221
-[:01000004] Harbor 1 (fd=4) report 127.0.0.1:2526
-[:01000005] Waiting for 0 harbors
-[:01000005] Shakehand ready
-[:01000007] LAUNCH snlua datacenterd
-[:01000008] LAUNCH snlua service_mgr
-[:01000009] LAUNCH snlua main
-Server start
-[:0100000a] LAUNCH snlua protoloader
-[:0100000b] LAUNCH snlua console
-[:0100000c] LAUNCH snlua debug_console 8000
-[:0100000c] Start debug console at 127.0.0.1 8000
-[:0100000d] LAUNCH snlua simpledb
-[:0100000e] LAUNCH snlua watchdog
-[:0100000f] LAUNCH snlua gate
-[:0100000f] Listen on 0.0.0.0:8888
-Watchdog listen on  8888
-[:01000009] KILL self
-[:01000002] KILL self
+    $ ./skynet examples/config
+    [:01000001] LAUNCH logger
+    [:01000002] LAUNCH snlua bootstrap
+    [:01000003] LAUNCH snlua launcher
+    [:01000004] LAUNCH snlua cmaster
+    [:01000004] master listen socket 0.0.0.0:2013
+    [:01000005] LAUNCH snlua cslave
+    [:01000005] slave connect to master 127.0.0.1:2013
+    [:01000004] connect from 127.0.0.1:41066 4
+    [:01000006] LAUNCH harbor 1 16777221
+    [:01000004] Harbor 1 (fd=4) report 127.0.0.1:2526
+    [:01000005] Waiting for 0 harbors
+    [:01000005] Shakehand ready
+    [:01000007] LAUNCH snlua datacenterd
+    [:01000008] LAUNCH snlua service_mgr
+    [:01000009] LAUNCH snlua main
+    Server start
+    [:0100000a] LAUNCH snlua protoloader
+    [:0100000b] LAUNCH snlua console
+    [:0100000c] LAUNCH snlua debug_console 8000
+    [:0100000c] Start debug console at 127.0.0.1 8000
+    [:0100000d] LAUNCH snlua simpledb
+    [:0100000e] LAUNCH snlua watchdog
+    [:0100000f] LAUNCH snlua gate
+    [:0100000f] Listen on 0.0.0.0:8888
+    Watchdog listen on  8888
+    [:01000009] KILL self
+    [:01000002] KILL self
 </pre>
 <p>
 skynet 由一个或多个进程构成， <b>每个进程被称为一个 skynet 节点，节点中的服务对应进程中的线程</b> 。本文描述了 skynet 节点的启动流程。
@@ -755,23 +755,23 @@ skynet 由一个或多个进程构成， <b>每个进程被称为一个 skynet �
 skynet 节点通过运行 skynet 主程序启动，必须在启动命令行传入一个 Config 文件名作为启动参数。skynet 会读取这个 config 文件获得启动需要的参数。
 </p>
 <pre class="example">
-root = "./"
-thread = 8
-logger = nil
-logpath = "."
-harbor = 1
-address = "127.0.0.1:2526"
-master = "127.0.0.1:2013"
-start = "main"  -- main script
-bootstrap = "snlua bootstrap"   -- The service for bootstrap
-standalone = "0.0.0.0:2013"
-luaservice = root.."service/?.lua;"..root.."test/?.lua;"..root.."examples/?.lua"
-lualoader = "lualib/loader.lua"
--- preload = "./examples/preload.lua"   -- run preload.lua before every lua service run
-snax = root.."examples/?.lua;"..root.."test/?.lua"
--- snax_interface_g = "snax_g"
-cpath = root.."cservice/?.so"
--- daemon = "./skynet.pid"
+    root = "./"
+    thread = 8
+    logger = nil
+    logpath = "."
+    harbor = 1
+    address = "127.0.0.1:2526"
+    master = "127.0.0.1:2013"
+    start = "main"  -- main script
+    bootstrap = "snlua bootstrap"   -- The service for bootstrap
+    standalone = "0.0.0.0:2013"
+    luaservice = root.."service/?.lua;"..root.."test/?.lua;"..root.."examples/?.lua"
+    lualoader = "lualib/loader.lua"
+    -- preload = "./examples/preload.lua"   -- run preload.lua before every lua service run
+    snax = root.."examples/?.lua;"..root.."test/?.lua"
+    -- snax_interface_g = "snax_g"
+    cpath = root.."cservice/?.so"
+    -- daemon = "./skynet.pid"
 </pre>
 <p>
 第一个启动的服务是 logger ，它负责记录之后的服务中的 log 输出。logger 是一个简单的 C 服务， <code>skynet_error</code> 这个 C API 会把字符串发送给它。在 config 文件中，logger 配置项可以配置 log 输出的文件名，默认是 nil ，表示输出到标准输出。
@@ -786,49 +786,49 @@ bootstrap 这个配置项关系着 skynet 运行的第二个服务。通常通�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua"><span style="color: #99cc99;">local</span> <span style="color: #ffcc66;">skynet</span> = <span style="color: #cc99cc;">require</span> <span style="color: #66cccc;">"skynet"</span>
-<span style="color: #99cc99;">local</span> <span style="color: #ffcc66;">harbor</span> = <span style="color: #cc99cc;">require</span> <span style="color: #66cccc;">"skynet.harbor"</span>
+<pre class="src src-lua">    <span style="color: #99cc99;">local</span> <span style="color: #ffcc66;">skynet</span> = <span style="color: #cc99cc;">require</span> <span style="color: #66cccc;">"skynet"</span>
+    <span style="color: #99cc99;">local</span> <span style="color: #ffcc66;">harbor</span> = <span style="color: #cc99cc;">require</span> <span style="color: #66cccc;">"skynet.harbor"</span>
 
-skynet.start(<span style="color: #99cc99;">function</span>()
-        <span style="color: #99cc99;">local</span> <span style="color: #ffcc66;">standalone</span> = skynet.getenv <span style="color: #66cccc;">"standalone"</span>
+    skynet.start(<span style="color: #99cc99;">function</span>()
+            <span style="color: #99cc99;">local</span> <span style="color: #ffcc66;">standalone</span> = skynet.getenv <span style="color: #66cccc;">"standalone"</span>
 
-        <span style="color: #99cc99;">local</span> <span style="color: #ffcc66;">launcher</span> = <span style="color: #cc99cc;">assert</span>(skynet.launch(<span style="color: #66cccc;">"snlua"</span>,<span style="color: #66cccc;">"launcher"</span>))
-        skynet.name(<span style="color: #66cccc;">".launcher"</span>, launcher)
+            <span style="color: #99cc99;">local</span> <span style="color: #ffcc66;">launcher</span> = <span style="color: #cc99cc;">assert</span>(skynet.launch(<span style="color: #66cccc;">"snlua"</span>,<span style="color: #66cccc;">"launcher"</span>))
+            skynet.name(<span style="color: #66cccc;">".launcher"</span>, launcher)
 
-        <span style="color: #99cc99;">local</span> <span style="color: #ffcc66;">harbor_id</span> = <span style="color: #cc99cc;">tonumber</span>(skynet.getenv <span style="color: #66cccc;">"harbor"</span>)
-        <span style="color: #99cc99;">if</span> harbor_id == 0 <span style="color: #99cc99;">then</span>
-            <span style="color: #cc99cc;">assert</span>(standalone ==  <span style="color: #6699cc;">nil</span>)
-            standalone = <span style="color: #6699cc;">true</span>
-            skynet.setenv(<span style="color: #66cccc;">"standalone"</span>, <span style="color: #66cccc;">"true"</span>)
+            <span style="color: #99cc99;">local</span> <span style="color: #ffcc66;">harbor_id</span> = <span style="color: #cc99cc;">tonumber</span>(skynet.getenv <span style="color: #66cccc;">"harbor"</span>)
+            <span style="color: #99cc99;">if</span> harbor_id == 0 <span style="color: #99cc99;">then</span>
+                <span style="color: #cc99cc;">assert</span>(standalone ==  <span style="color: #6699cc;">nil</span>)
+                standalone = <span style="color: #6699cc;">true</span>
+                skynet.setenv(<span style="color: #66cccc;">"standalone"</span>, <span style="color: #66cccc;">"true"</span>)
 
-            <span style="color: #99cc99;">local</span> <span style="color: #ffcc66;">ok</span>, <span style="color: #ffcc66;">slave</span> = <span style="color: #cc99cc;">pcall</span>(skynet.newservice, <span style="color: #66cccc;">"cdummy"</span>)
-            <span style="color: #99cc99;">if</span> <span style="color: #99cc99;">not</span> ok <span style="color: #99cc99;">then</span>
-                skynet.abort()
-            <span style="color: #99cc99;">end</span>
-            skynet.name(<span style="color: #66cccc;">".slave"</span>, slave)
-
-        <span style="color: #99cc99;">else</span>
-            <span style="color: #99cc99;">if</span> standalone <span style="color: #99cc99;">then</span>
-                <span style="color: #99cc99;">if</span> <span style="color: #99cc99;">not</span> <span style="color: #cc99cc;">pcall</span>(skynet.newservice,<span style="color: #66cccc;">"cmaster"</span>) <span style="color: #99cc99;">then</span>
+                <span style="color: #99cc99;">local</span> <span style="color: #ffcc66;">ok</span>, <span style="color: #ffcc66;">slave</span> = <span style="color: #cc99cc;">pcall</span>(skynet.newservice, <span style="color: #66cccc;">"cdummy"</span>)
+                <span style="color: #99cc99;">if</span> <span style="color: #99cc99;">not</span> ok <span style="color: #99cc99;">then</span>
                     skynet.abort()
                 <span style="color: #99cc99;">end</span>
+                skynet.name(<span style="color: #66cccc;">".slave"</span>, slave)
+
+            <span style="color: #99cc99;">else</span>
+                <span style="color: #99cc99;">if</span> standalone <span style="color: #99cc99;">then</span>
+                    <span style="color: #99cc99;">if</span> <span style="color: #99cc99;">not</span> <span style="color: #cc99cc;">pcall</span>(skynet.newservice,<span style="color: #66cccc;">"cmaster"</span>) <span style="color: #99cc99;">then</span>
+                        skynet.abort()
+                    <span style="color: #99cc99;">end</span>
+                <span style="color: #99cc99;">end</span>
+
+                <span style="color: #99cc99;">local</span> <span style="color: #ffcc66;">ok</span>, <span style="color: #ffcc66;">slave</span> = <span style="color: #cc99cc;">pcall</span>(skynet.newservice, <span style="color: #66cccc;">"cslave"</span>)
+                <span style="color: #99cc99;">if</span> <span style="color: #99cc99;">not</span> ok <span style="color: #99cc99;">then</span>
+                    skynet.abort()
+                <span style="color: #99cc99;">end</span>
+                skynet.name(<span style="color: #66cccc;">".slave"</span>, slave)
             <span style="color: #99cc99;">end</span>
 
-            <span style="color: #99cc99;">local</span> <span style="color: #ffcc66;">ok</span>, <span style="color: #ffcc66;">slave</span> = <span style="color: #cc99cc;">pcall</span>(skynet.newservice, <span style="color: #66cccc;">"cslave"</span>)
-            <span style="color: #99cc99;">if</span> <span style="color: #99cc99;">not</span> ok <span style="color: #99cc99;">then</span>
-                skynet.abort()
+            <span style="color: #99cc99;">if</span> standalone <span style="color: #99cc99;">then</span>
+                <span style="color: #99cc99;">local</span> <span style="color: #ffcc66;">datacenter</span> = skynet.newservice <span style="color: #66cccc;">"datacenterd"</span>
+                skynet.name(<span style="color: #66cccc;">"DATACENTER"</span>, datacenter)
             <span style="color: #99cc99;">end</span>
-            skynet.name(<span style="color: #66cccc;">".slave"</span>, slave)
-        <span style="color: #99cc99;">end</span>
-
-        <span style="color: #99cc99;">if</span> standalone <span style="color: #99cc99;">then</span>
-            <span style="color: #99cc99;">local</span> <span style="color: #ffcc66;">datacenter</span> = skynet.newservice <span style="color: #66cccc;">"datacenterd"</span>
-            skynet.name(<span style="color: #66cccc;">"DATACENTER"</span>, datacenter)
-        <span style="color: #99cc99;">end</span>
-        skynet.newservice <span style="color: #66cccc;">"service_mgr"</span>
-        <span style="color: #cc99cc;">pcall</span>(skynet.newservice,skynet.getenv <span style="color: #66cccc;">"start"</span> <span style="color: #99cc99;">or</span> <span style="color: #66cccc;">"main"</span>)
-        skynet.exit()
-<span style="color: #99cc99;">end</span>)
+            skynet.newservice <span style="color: #66cccc;">"service_mgr"</span>
+            <span style="color: #cc99cc;">pcall</span>(skynet.newservice,skynet.getenv <span style="color: #66cccc;">"start"</span> <span style="color: #99cc99;">or</span> <span style="color: #66cccc;">"main"</span>)
+            skynet.exit()
+    <span style="color: #99cc99;">end</span>)
 </pre>
 </div>
 
@@ -882,25 +882,25 @@ skynet.start(<span style="color: #99cc99;">function</span>()
 <div class="outline-text-4" id="text-9-1-1">
 <div class="org-src-container">
 
-<pre class="src src-sh">tree skynet -L 1
+<pre class="src src-sh">   tree skynet -L 1
 </pre>
 </div>
 
 <pre class="example">
-skynet/
-├── 3rd          # 第三方代码，主要生成一些给lua用的so动态库
-├── examples     # 示例代码
-├── HISTORY.md   # 版本更新记录
-├── LICENSE      # 许可证
-├── lualib       # lua库
-├── lualib-src   # 给Lua用的C库
-├── Makefile
-├── platform.mk
-├── README.md
-├── service      # Lua服务
-├── service-src  # C服务
-├── skynet-src   # skynet主程序
-└── test         # 测试代码
+   skynet/
+   ├── 3rd          # 第三方代码，主要生成一些给lua用的so动态库
+   ├── examples     # 示例代码
+   ├── HISTORY.md   # 版本更新记录
+   ├── LICENSE      # 许可证
+   ├── lualib       # lua库
+   ├── lualib-src   # 给Lua用的C库
+   ├── Makefile
+   ├── platform.mk
+   ├── README.md
+   ├── service      # Lua服务
+   ├── service-src  # C服务
+   ├── skynet-src   # skynet主程序
+   └── test         # 测试代码
 </pre>
 </div>
 </div>
@@ -908,11 +908,11 @@ skynet/
 <h4 id="orgheadline22"><span class="section-number-4">9.1.2</span> 3rd</h4>
 <div class="outline-text-4" id="text-9-1-2">
 <pre class="example">
-3rd/
-├── jemalloc
-├── lpeg
-├── lua
-└── lua-md5
+   3rd/
+   ├── jemalloc
+   ├── lpeg
+   ├── lua
+   └── lua-md5
 </pre>
 </div>
 </div>
@@ -920,41 +920,41 @@ skynet/
 <h4 id="orgheadline23"><span class="section-number-4">9.1.3</span> example</h4>
 <div class="outline-text-4" id="text-9-1-3">
 <pre class="example">
-examples/
-├── abort.lua
-├── agent.lua
-├── client.lua
-├── cluster1.lua
-├── cluster2.lua
-├── clustername.lua
-├── config
-├── config.c1
-├── config.c2
-├── config_log
-├── config.login
-├── config.mc
-├── config.mysql
-├── config.userlog
-├── globallog.lua
-├── injectlaunch.lua
-├── login
-│   ├── client.lua
-│   ├── gated.lua
-│   ├── logind.lua
-│   ├── main.lua
-│   └── msgagent.lua
-├── main_log.lua
-├── main.lua
-├── main_mysql.lua
-├── preload.lua
-├── protoloader.lua
-├── proto.lua
-├── share.lua
-├── simpledb.lua
-├── simplemonitor.lua
-├── simpleweb.lua
-├── userlog.lua
-└── watchdog.lua
+    examples/
+    ├── abort.lua
+    ├── agent.lua
+    ├── client.lua
+    ├── cluster1.lua
+    ├── cluster2.lua
+    ├── clustername.lua
+    ├── config
+    ├── config.c1
+    ├── config.c2
+    ├── config_log
+    ├── config.login
+    ├── config.mc
+    ├── config.mysql
+    ├── config.userlog
+    ├── globallog.lua
+    ├── injectlaunch.lua
+    ├── login
+    │   ├── client.lua
+    │   ├── gated.lua
+    │   ├── logind.lua
+    │   ├── main.lua
+    │   └── msgagent.lua
+    ├── main_log.lua
+    ├── main.lua
+    ├── main_mysql.lua
+    ├── preload.lua
+    ├── protoloader.lua
+    ├── proto.lua
+    ├── share.lua
+    ├── simpledb.lua
+    ├── simplemonitor.lua
+    ├── simpleweb.lua
+    ├── userlog.lua
+    └── watchdog.lua
 </pre>
 </div>
 </div>
@@ -962,48 +962,48 @@ examples/
 <h4 id="orgheadline24"><span class="section-number-4">9.1.4</span> lualib</h4>
 <div class="outline-text-4" id="text-9-1-4">
 <pre class="example">
-lualib
-├── cluster.lua
-├── datacenter.lua
-├── dns.lua
-├── http
-│   ├── httpc.lua
-│   ├── httpd.lua
-│   ├── internal.lua
-│   ├── sockethelper.lua
-│   └── url.lua
-├── loader.lua
-├── md5.lua
-├── mongo.lua
-├── mqueue.lua
-├── multicast.lua
-├── mysql.lua
-├── redis.lua
-├── sharedata
-│   └── corelib.lua
-├── sharedata.lua
-├── sharemap.lua
-├── skynet
-│   ├── debug.lua
-│   ├── harbor.lua
-│   ├── injectcode.lua
-│   ├── inject.lua
-│   ├── manager.lua
-│   ├── queue.lua
-│   └── remotedebug.lua
-├── skynet.lua
-├── snax
-│   ├── gateserver.lua
-│   ├── hotfix.lua
-│   ├── interface.lua
-│   ├── loginserver.lua
-│   └── msgserver.lua
-├── snax.lua
-├── socketchannel.lua
-├── socket.lua
-├── sprotoloader.lua
-├── sproto.lua
-└── sprotoparser.lua
+    lualib
+    ├── cluster.lua
+    ├── datacenter.lua
+    ├── dns.lua
+    ├── http
+    │   ├── httpc.lua
+    │   ├── httpd.lua
+    │   ├── internal.lua
+    │   ├── sockethelper.lua
+    │   └── url.lua
+    ├── loader.lua
+    ├── md5.lua
+    ├── mongo.lua
+    ├── mqueue.lua
+    ├── multicast.lua
+    ├── mysql.lua
+    ├── redis.lua
+    ├── sharedata
+    │   └── corelib.lua
+    ├── sharedata.lua
+    ├── sharemap.lua
+    ├── skynet
+    │   ├── debug.lua
+    │   ├── harbor.lua
+    │   ├── injectcode.lua
+    │   ├── inject.lua
+    │   ├── manager.lua
+    │   ├── queue.lua
+    │   └── remotedebug.lua
+    ├── skynet.lua
+    ├── snax
+    │   ├── gateserver.lua
+    │   ├── hotfix.lua
+    │   ├── interface.lua
+    │   ├── loginserver.lua
+    │   └── msgserver.lua
+    ├── snax.lua
+    ├── socketchannel.lua
+    ├── socket.lua
+    ├── sprotoloader.lua
+    ├── sproto.lua
+    └── sprotoparser.lua
 </pre>
 </div>
 </div>
@@ -1011,32 +1011,32 @@ lualib
 <h4 id="orgheadline25"><span class="section-number-4">9.1.5</span> lualib-src</h4>
 <div class="outline-text-4" id="text-9-1-5">
 <pre class="example">
-lualib-src/
-├── lsha1.c
-├── lua-bson.c
-├── lua-clientsocket.c
-├── lua-cluster.c
-├── lua-crypt.c
-├── lua-debugchannel.c
-├── lua-memory.c
-├── lua-mongo.c
-├── lua-multicast.c
-├── lua-mysqlaux.c
-├── lua-netpack.c
-├── lua-profile.c
-├── lua-seri.c
-├── lua-seri.h
-├── lua-sharedata.c
-├── lua-skynet.c
-├── lua-socket.c
-├── lua-stm.c
-└── sproto
-    ├── lsproto.c
-    ├── msvcint.h
-    ├── README
-    ├── README.md
-    ├── sproto.c
-    └── sproto.h
+    lualib-src/
+    ├── lsha1.c
+    ├── lua-bson.c
+    ├── lua-clientsocket.c
+    ├── lua-cluster.c
+    ├── lua-crypt.c
+    ├── lua-debugchannel.c
+    ├── lua-memory.c
+    ├── lua-mongo.c
+    ├── lua-multicast.c
+    ├── lua-mysqlaux.c
+    ├── lua-netpack.c
+    ├── lua-profile.c
+    ├── lua-seri.c
+    ├── lua-seri.h
+    ├── lua-sharedata.c
+    ├── lua-skynet.c
+    ├── lua-socket.c
+    ├── lua-stm.c
+    └── sproto
+        ├── lsproto.c
+        ├── msvcint.h
+        ├── README
+        ├── README.md
+        ├── sproto.c
+        └── sproto.h
 </pre>
 </div>
 </div>
@@ -1044,25 +1044,25 @@ lualib-src/
 <h4 id="orgheadline26"><span class="section-number-4">9.1.6</span> service</h4>
 <div class="outline-text-4" id="text-9-1-6">
 <pre class="example">
-service/
-├── bootstrap.lua
-├── cdummy.lua
-├── clusterd.lua
-├── clusterproxy.lua
-├── cmaster.lua
-├── cmemory.lua
-├── console.lua
-├── cslave.lua
-├── datacenterd.lua
-├── dbg.lua
-├── debug_agent.lua
-├── debug_console.lua
-├── gate.lua
-├── launcher.lua
-├── multicastd.lua
-├── service_mgr.lua
-├── sharedatad.lua
-└── snaxd.lua
+    service/
+    ├── bootstrap.lua
+    ├── cdummy.lua
+    ├── clusterd.lua
+    ├── clusterproxy.lua
+    ├── cmaster.lua
+    ├── cmemory.lua
+    ├── console.lua
+    ├── cslave.lua
+    ├── datacenterd.lua
+    ├── dbg.lua
+    ├── debug_agent.lua
+    ├── debug_console.lua
+    ├── gate.lua
+    ├── launcher.lua
+    ├── multicastd.lua
+    ├── service_mgr.lua
+    ├── sharedatad.lua
+    └── snaxd.lua
 </pre>
 </div>
 </div>
@@ -1070,13 +1070,13 @@ service/
 <h4 id="orgheadline27"><span class="section-number-4">9.1.7</span> service-src</h4>
 <div class="outline-text-4" id="text-9-1-7">
 <pre class="example">
-service-src/
-├── databuffer.h
-├── hashid.h
-├── service_gate.c
-├── service_harbor.c
-├── service_logger.c
-└── service_snlua.c
+    service-src/
+    ├── databuffer.h
+    ├── hashid.h
+    ├── service_gate.c
+    ├── service_harbor.c
+    ├── service_logger.c
+    └── service_snlua.c
 </pre>
 </div>
 </div>
@@ -1084,47 +1084,47 @@ service-src/
 <h4 id="orgheadline28"><span class="section-number-4">9.1.8</span> skynet-src</h4>
 <div class="outline-text-4" id="text-9-1-8">
 <pre class="example">
-skynet-src/
-├── atomic.h
-├── luashrtbl.h
-├── malloc_hook.c
-├── malloc_hook.h
-├── rwlock.h
-├── skynet_daemon.c
-├── skynet_daemon.h
-├── skynet_env.c
-├── skynet_env.h
-├── skynet_error.c
-├── skynet.h
-├── skynet_handle.c
-├── skynet_handle.h
-├── skynet_harbor.c
-├── skynet_harbor.h
-├── skynet_imp.h
-├── skynet_log.c
-├── skynet_log.h
-├── skynet_main.c     # 读取配置文件，设置环境变量，调用skynet_start.c中的skynet_start函数
-├── skynet_malloc.h
-├── skynet_module.c
-├── skynet_module.h
-├── skynet_monitor.c
-├── skynet_monitor.h
-├── skynet_mq.c
-├── skynet_mq.h
-├── skynet_server.c
-├── skynet_server.h
-├── skynet_socket.c
-├── skynet_socket.h
-├── skynet_start.c  # 调用_start函数启动_timer线程、socket线程、_monitor线程以及配置的多个_worker线程开始工作
+    skynet-src/
+    ├── atomic.h
+    ├── luashrtbl.h
+    ├── malloc_hook.c
+    ├── malloc_hook.h
+    ├── rwlock.h
+    ├── skynet_daemon.c
+    ├── skynet_daemon.h
+    ├── skynet_env.c
+    ├── skynet_env.h
+    ├── skynet_error.c
+    ├── skynet.h
+    ├── skynet_handle.c
+    ├── skynet_handle.h
+    ├── skynet_harbor.c
+    ├── skynet_harbor.h
+    ├── skynet_imp.h
+    ├── skynet_log.c
+    ├── skynet_log.h
+    ├── skynet_main.c     # 读取配置文件，设置环境变量，调用skynet_start.c中的skynet_start函数
+    ├── skynet_malloc.h
+    ├── skynet_module.c
+    ├── skynet_module.h
+    ├── skynet_monitor.c
+    ├── skynet_monitor.h
+    ├── skynet_mq.c
+    ├── skynet_mq.h
+    ├── skynet_server.c
+    ├── skynet_server.h
+    ├── skynet_socket.c
+    ├── skynet_socket.h
+    ├── skynet_start.c  # 调用_start函数启动_timer线程、socket线程、_monitor线程以及配置的多个_worker线程开始工作
 
-├── skynet_timer.c
-├── skynet_timer.h
-├── socket_epoll.h
-├── socket_kqueue.h
-├── socket_poll.h
-├── socket_server.c
-├── socket_server.h
-└── spinlock.h
+    ├── skynet_timer.c
+    ├── skynet_timer.h
+    ├── socket_epoll.h
+    ├── socket_kqueue.h
+    ├── socket_poll.h
+    ├── socket_server.c
+    ├── socket_server.h
+    └── spinlock.h
 </pre>
 </div>
 </div>
@@ -1132,46 +1132,46 @@ skynet-src/
 <h4 id="orgheadline29"><span class="section-number-4">9.1.9</span> test</h4>
 <div class="outline-text-4" id="text-9-1-9">
 <pre class="example">
-skynet-src/
-├── atomic.h
-├── luashrtbl.h
-├── malloc_hook.c
-├── malloc_hook.h
-├── rwlock.h
-├── skynet_daemon.c
-├── skynet_daemon.h
-├── skynet_env.c
-├── skynet_env.h
-├── skynet_error.c
-├── skynet.h
-├── skynet_handle.c
-├── skynet_handle.h
-├── skynet_harbor.c
-├── skynet_harbor.h
-├── skynet_imp.h
-├── skynet_log.c
-├── skynet_log.h
-├── skynet_main.c
-├── skynet_malloc.h
-├── skynet_module.c
-├── skynet_module.h
-├── skynet_monitor.c
-├── skynet_monitor.h
-├── skynet_mq.c
-├── skynet_mq.h
-├── skynet_server.c
-├── skynet_server.h
-├── skynet_socket.c
-├── skynet_socket.h
-├── skynet_start.c
-├── skynet_timer.c
-├── skynet_timer.h
-├── socket_epoll.h
-├── socket_kqueue.h
-├── socket_poll.h
-├── socket_server.c
-├── socket_server.h
-└── spinlock.h
+   skynet-src/
+   ├── atomic.h
+   ├── luashrtbl.h
+   ├── malloc_hook.c
+   ├── malloc_hook.h
+   ├── rwlock.h
+   ├── skynet_daemon.c
+   ├── skynet_daemon.h
+   ├── skynet_env.c
+   ├── skynet_env.h
+   ├── skynet_error.c
+   ├── skynet.h
+   ├── skynet_handle.c
+   ├── skynet_handle.h
+   ├── skynet_harbor.c
+   ├── skynet_harbor.h
+   ├── skynet_imp.h
+   ├── skynet_log.c
+   ├── skynet_log.h
+   ├── skynet_main.c
+   ├── skynet_malloc.h
+   ├── skynet_module.c
+   ├── skynet_module.h
+   ├── skynet_monitor.c
+   ├── skynet_monitor.h
+   ├── skynet_mq.c
+   ├── skynet_mq.h
+   ├── skynet_server.c
+   ├── skynet_server.h
+   ├── skynet_socket.c
+   ├── skynet_socket.h
+   ├── skynet_start.c
+   ├── skynet_timer.c
+   ├── skynet_timer.h
+   ├── socket_epoll.h
+   ├── socket_kqueue.h
+   ├── socket_poll.h
+   ├── socket_server.c
+   ├── socket_server.h
+   └── spinlock.h
 </pre>
 </div>
 </div>
@@ -1240,7 +1240,7 @@ PTYPE_CLIENT 是历史遗留的。原本 gate 服务是先于现在的 socket �
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: ubuntu</p>
-<p class="date">Created: 2015-11-16 一 15:49</p>
+<p class="date">Created: 2015-11-30 一 21:34</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

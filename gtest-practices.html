@@ -6,7 +6,7 @@
 <!-- 2015-11-30 一 21:31 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>使用GDB调试程序</title>
+<title>Google Test Frame Practices</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="ubuntu" />
 <style type="text/css">
@@ -143,119 +143,149 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">使用GDB调试程序</h1>
+<h1 class="title">Google Test Frame Practices</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. 调试单进程</a></li>
-<li><a href="#orgheadline2">2. 调试多进程</a></li>
-<li><a href="#orgheadline3">3. 调试多线程死锁</a></li>
-<li><a href="#orgheadline4">4. 调试core dump文件</a></li>
+<li><a href="#orgheadline3">1. 简介</a>
+<ul>
+<li><a href="#orgheadline1">1.1. gtest</a></li>
+<li><a href="#orgheadline2">1.2. gmock</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline8">2. 编译与安装</a>
+<ul>
+<li><a href="#orgheadline4">2.1. Windows</a></li>
+<li><a href="#orgheadline7">2.2. Ubuntu</a>
+<ul>
+<li><a href="#orgheadline5">2.2.1. gtest</a></li>
+<li><a href="#orgheadline6">2.2.2. gmock</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline11">3. 实战</a>
+<ul>
+<li><a href="#orgheadline9">3.1. gtest</a></li>
+<li><a href="#orgheadline10">3.2. gmock</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline12">4. 源码</a></li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> 调试单进程</h2>
-<div class="outline-text-2" id="text-1">
-<div class="org-src-container">
-
-<pre class="src src-c++"><span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;iostream&gt;</span>
-
-<span style="color: #6699cc;">int</span> <span style="color: #f99157;">div</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">a</span>, <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">b</span>) {
-    <span style="color: #99cc99;">return</span> a/b;
-}
-
-<span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">argc</span>, <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">argv</span>[])
-{
-    <span style="color: #99cc99;">for</span> (<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span>=0; i&lt;10; ++i) {
-        <span style="color: #6699cc;">std</span>::cout &lt;&lt; div(10+i, 10-i) &lt;&lt; <span style="color: #6699cc;">std</span>::endl;
-    }
-    <span style="color: #99cc99;">return</span> 0;
-}
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">2</span> 调试多进程</h2>
-<div class="outline-text-2" id="text-2">
-<div class="org-src-container">
-
-<pre class="src src-c++"></pre>
-</div>
-</div>
-</div>
 <div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3"><span class="section-number-2">3</span> 调试多线程死锁</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="orgheadline3"><span class="section-number-2">1</span> 简介</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Google Test Framwork<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> 是google 一套开源的C++测试框架。主要包括两个部分：
+</p>
+</div>
+<div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> gtest</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+gtest 测试框架是 google 开源的用于在不同平台上（Linux，Mac OS X，Windows，Cygwin，Windows CE 和 Symbian）为编写 C++ 测试用例的项目。它是基于 xUnit 架构的测试框架，支持自动发现测试，丰富的断言集， 用户定义的断言，death 测试，致命与非致命的失败，类型参数化测试，各类运行测试的选项和 XML 的测试报告。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">1.2</span> gmock</h3>
+</div>
+</div>
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8"><span class="section-number-2">2</span> 编译与安装</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">2.1</span> Windows<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></h3>
+</div>
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">2.2</span> Ubuntu</h3>
+<div class="outline-text-3" id="text-2-2">
+</div><div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5"><span class="section-number-4">2.2.1</span> gtest</h4>
+<div class="outline-text-4" id="text-2-2-1">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;iostream&gt;</span>
-<span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;pthread.h&gt;</span>
-
-<span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">Arg</span> {
-    <span style="color: #6699cc;">double</span> <span style="color: #ffcc66;">a</span>;
-    <span style="color: #6699cc;">double</span> <span style="color: #ffcc66;">b</span>;
-};
-
-<span style="color: #6699cc;">void</span>* <span style="color: #f99157;">div</span>(<span style="color: #6699cc;">void</span> *<span style="color: #ffcc66;">arg</span>) {
-    <span style="color: #6699cc;">double</span> <span style="color: #ffcc66;">a</span> = ((<span style="color: #6699cc;">Arg</span>*)arg)-&gt;a;
-    <span style="color: #6699cc;">double</span> <span style="color: #ffcc66;">b</span> = ((<span style="color: #6699cc;">Arg</span>*)arg)-&gt;b;
-    <span style="color: #6699cc;">double</span> *<span style="color: #ffcc66;">rval</span> = <span style="color: #99cc99;">new</span> <span style="color: #6699cc;">double</span>;
-    *rval = a / b;
-    <span style="color: #99cc99;">return</span> (<span style="color: #6699cc;">void</span>*)rval;
-}
-
-<span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">argc</span>, <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">argv</span>[])
-{
-    <span style="color: #6699cc;">pthread_t</span> <span style="color: #ffcc66;">tid</span>;
-    <span style="color: #6699cc;">Arg</span> <span style="color: #ffcc66;">param</span> = {1,2};
-    <span style="color: #99cc99;">if</span> (<span style="color: #6699cc;">!</span>pthread_create(&amp;tid, <span style="color: #6699cc;">NULL</span>, div,&amp;param)) {
-        <span style="color: #6699cc;">std</span>::cout &lt;&lt; <span style="color: #66cccc;">"create thread errorr"</span> &lt;&lt; <span style="color: #6699cc;">std</span>::endl;
-        <span style="color: #99cc99;">return</span> 1;
-    }
-    <span style="color: #6699cc;">double</span> *<span style="color: #ffcc66;">ret</span> = <span style="color: #6699cc;">NULL</span>;
-    pthread_join(tid, (<span style="color: #6699cc;">void</span>**)&amp;ret);
-    <span style="color: #6699cc;">std</span>::cout &lt;&lt; <span style="color: #66cccc;">"return val is : "</span> &lt;&lt; *ret &lt;&lt; <span style="color: #6699cc;">std</span>::endl;
-    <span style="color: #99cc99;">delete</span> ret;
-
-    <span style="color: #99cc99;">return</span> 0;
-}
+<pre class="src src-sh">    <span style="color: #cc99cc;">cd</span> ~/projects
+    git clone git@github.com:google/googletest.git
+    <span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">&#26681;&#25454;googletest/googleteset/README.md&#36827;&#34892;&#23433;&#35013;</span>
+    <span style="color: #cc99cc;">cd</span> googletest/googletest/
+    cmake CMakeLists.txt
+    make
+    sudo mv libgtest.a /usr/local/lib/
+    sudo cp -r include/gtest/ /usr/local/include/
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4"><span class="section-number-2">4</span> 调试core dump文件</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6"><span class="section-number-4">2.2.2</span> gmock</h4>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11"><span class="section-number-2">3</span> 实战<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup></h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">3.1</span> gtest</h3>
+<div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;cstdio&gt;</span>
+<pre class="src src-c++"><span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;iostream&gt;</span>
+<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;gtest/gtest.h&gt;</span>
 
-    <span style="color: #6699cc;">void</span> <span style="color: #f99157;">dump_code</span>(){
-        <span style="color: #6699cc;">char</span>* <span style="color: #ffcc66;">p</span> = (<span style="color: #6699cc;">char</span>*)0;
-        *p = <span style="color: #66cccc;">'a'</span>;
+    <span style="color: #6699cc;">int</span> <span style="color: #f99157;">Add</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">a</span>, <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">b</span>) {
+        <span style="color: #99cc99;">return</span> a + b;
+    }
+
+    <span style="color: #f99157;">TEST</span>(SomeTest, Add) {
+        EXPECT_EQ(3, Add(1,2));
     }
 
     <span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">argc</span>, <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">argv</span>[])
     {
-        dump_code();
-        <span style="color: #99cc99;">return</span> 0;
+        <span style="color: #6699cc;">testing</span>::InitGoogleTest(&amp;argc, argv);
+        <span style="color: #99cc99;">return</span> RUN_ALL_TESTS();
     }
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-sh">    g++ -g -S -O0 -m32 gdb_test.cc -o-|c++filt &gt;gdb_test.format.s
+<pre class="src src-sh">    g++ gtest_1.cc -lgtest -lpthread -o gtest_1.out <span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">&#27880;&#24847;&#19981;&#35201;&#20351;&#29992;gcc</span>
 </pre>
 </div>
 </div>
 </div>
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">3.2</span> gmock</h3>
 </div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12"><span class="section-number-2">4</span> 源码</h2>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://github.com/google/googletest">gtest on github</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<a href="http://www.cnblogs.com/coderzh/archive/2009/03/31/1426758.html">玩转 Google 开源 C++ 单元测试框架 Google Test 系列 (gtest) 之一 - 初识 gtest</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://code.google.com/p/googletest/wiki/V1_7_Documentation">google test V1_7_Documentation</a>
+</p></div></div>
+
+
+</div>
+</div></div>
 <div id="postamble" class="status">
 <p class="author">Author: ubuntu</p>
 <p class="date">Created: 2015-11-30 一 21:31</p>
