@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-12-13 日 00:42 -->
+<!-- 2015-12-17 四 00:49 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>【Ubuntu】使用笔记</title>
@@ -292,6 +292,7 @@ shadowsocks 主要由两个模块组成: ss-local 和 ss-server ，ss-local 是�
 wget -O- http://shadowsocks.org/debian/1D27208A.gpg | sudo apt-key add -
 
 <span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">Install the binaries by adding each of the following repositories to your system.</span>
+su root
 <span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">On Debian Wheezy, Ubuntu 12.04 or any distribution with libssl &gt; 1.0.0</span>
 <span style="color: #cc99cc;">echo</span> <span style="color: #66cccc;">"deb http://shadowsocks.org/debian wheezy main"</span> &gt;&gt; /etc/apt/sources.list
 <span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">On Debian Squeeze, Ubuntu 11.04, or any distribution with libssl &gt; 0.9.8, but &lt; 1.0.0</span>
@@ -300,6 +301,7 @@ wget -O- http://shadowsocks.org/debian/1D27208A.gpg | sudo apt-key add -
 <span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">Then</span>
 apt-get update
 apt-get install shadowsocks-libev
+<span style="color: #99cc99;">exit</span>
 </pre>
 </div>
 </div>
@@ -349,7 +351,7 @@ shadowsocks配置文件名为config.json ：
 }
 </pre>
 
-<table border="1" cellspacing="0" cellpadding="6" rules="groups" frame="box" width="auto">
+<table border="1" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" width="auto">
 <caption class="t-above"><span class="table-number">Table 1:</span> 配置的说明</caption>
 
 <colgroup>
@@ -490,39 +492,71 @@ Warning: DO NOT ENABLE net.ipv4.tcp_tw_recycle!!! See <a href="http://vincent.be
 <div id="outline-container-orgheadline11" class="outline-4">
 <h4 id="orgheadline11"><span class="section-number-4">3.1.5</span> 开机自启动</h4>
 <div class="outline-text-4" id="text-3-1-5">
+<p>
+编辑/etc/rc.local文件，在exit 0上面添加
+</p>
 <div class="org-src-container">
 
-<pre class="src src-sh">sudo vim /etc/init.d/shadowsocks
+<pre class="src src-sh">nohup /usr/local/bin/ssserver -c /etc/shadowsocks/config.json &amp;
 </pre>
 </div>
 
+<p>
+或者使用systemd控制自启动。
+</p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">!/bin/</span><span style="color: #99cc99;">sh</span>
-<span style="color: #f99157;">start</span>(){
-    ss-server -c /etc/shadowsocks-libev/config.json -d start
-}
+<pre class="src src-sh">vim /etc/systemd/system/ss-server.service
+</pre>
+</div>
+<p>
+写入以下内容：
+</p>
+<pre class="example">
+[Unit]
+Description=Shadowsocks Server
+After=network.target
 
-<span style="color: #f99157;">stop</span>(){
-    ss-server -c /etc/shadowsocks-libev/config.json -d stop
-}
+[Service]
+Type=forking
+PIDFile=/var/run/shadowsocks/server.pid
+PermissionsStartOnly=true
+ExecStartPre=/bin/mkdir -p /run/shadowsocks
+ExecStartPre=/bin/chown nobody:nobody /var/run/shadowsocks
+ExecStart=/usr/bin/ss-server --pid-file /var/run/shadowsocks/server.pid -c /etc/shadowsocks-libev/server.json
+Restart=always
+RestartSec=24h
+User=nobody
+Group=nobody
+UMask=0027
 
-<span style="color: #99cc99;">case</span> <span style="color: #66cccc;">"$1"</span><span style="color: #99cc99;"> in</span>
-    start)
-        start
-        ;;
-    stop)
-        stop
-        ;;
-    restart)
-        stop
-        start
-        ;;
-    *)
-        <span style="color: #cc99cc;">echo</span> <span style="color: #66cccc;">"Usage: $0 {start|reload|stop}"</span>
-        <span style="color: #99cc99;">exit</span> 1
-        ;;
-<span style="color: #99cc99;">esac</span>
+[Install]
+WantedBy=multi-user.target
+</pre>
+<p>
+然后运行
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">chmod 755 /etc/systemd/system/ss-server.service
+systemctl enable ss-server.service
+</pre>
+</div>
+<p>
+开启服务：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">systemctl start ss-server
+</pre>
+</div>
+
+<p>
+查看状态:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">systemctl status ss-server
 </pre>
 </div>
 </div>
@@ -994,7 +1028,7 @@ git clone git@github.com:phenix3443/emacs.d.git ~/.emacs.d
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: ubuntu</p>
-<p class="date">Created: 2015-12-13 日 00:42</p>
+<p class="date">Created: 2015-12-17 四 00:49</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
