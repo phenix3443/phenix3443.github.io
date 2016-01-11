@@ -1,0 +1,667 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-01-12 二 01:04 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Emacs Manual</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="ubuntu" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Emacs Manual</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. Enter Emacs</a></li>
+<li><a href="#orgheadline2">2. Exiting Emacs</a></li>
+<li><a href="#orgheadline3">3. Basic Editing Commands</a></li>
+<li><a href="#orgheadline4">4. The Minibuffer</a></li>
+<li><a href="#orgheadline7">5. 12 Killing and Moving Text</a>
+<ul>
+<li><a href="#orgheadline5">5.1. 12.5 Rectangles</a></li>
+<li><a href="#orgheadline6">5.2. 12.6 CUA Bindings</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline8">6. Controlling the Display</a></li>
+<li><a href="#orgheadline9">7. Searching and Replacement</a></li>
+<li><a href="#orgheadline10">8. File Handling</a></li>
+<li><a href="#orgheadline11">9. Multiple Windows</a></li>
+<li><a href="#orgheadline12">10. Frames and Graphical Displays</a></li>
+<li><a href="#orgheadline15">11. 22 International character set support</a>
+<ul>
+<li><a href="#orgheadline13">11.1. 22.5 Coding Systems</a></li>
+<li><a href="#orgheadline14">11.2. 22.7 Specifying a File’s Coding System</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline16">12. Indentation</a></li>
+<li><a href="#orgheadline17">13. Commands for Human Languages</a></li>
+<li><a href="#orgheadline18">14. Editing Programs</a></li>
+<li><a href="#orgheadline19">15. Compiling and Testing Programs</a></li>
+<li><a href="#orgheadline20">16. Maintaining Large Programs</a></li>
+<li><a href="#orgheadline21">17. Saving Emacs Sessions</a></li>
+<li><a href="#orgheadline25">18. 47 Emacs Lisp Packages</a>
+<ul>
+<li><a href="#orgheadline22">18.1. 47.1 The Package Menu Buffer</a></li>
+<li><a href="#orgheadline23">18.2. 47.2 Package Installation</a></li>
+<li><a href="#orgheadline24">18.3. 47.3 Package Files and Directory Layout</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline26">19. Customization</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Enter Emacs</h2>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> Exiting Emacs</h2>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">3</span> Basic Editing Commands</h2>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">4</span> The Minibuffer</h2>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7"><span class="section-number-2">5</span> 12 Killing and Moving Text</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">5.1</span> 12.5 Rectangles</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Rectangle commands operate on rectangular areas of the text: all the characters between a certain pair of columns, in a certain range of lines. Emacs has commands to kill rectangles, yank killed rectangles, clear them out, fill them with blanks or text, or delete them. Rectangle commands are useful with text in multicolumn formats, and for changing text into or out of such formats.
+</p>
+
+<p>
+To specify a rectangle for a command to work on, set the mark at one corner and point at the opposite corner. The rectangle thus specified is called the region-rectangle. If point and the mark are in the same column, the region-rectangle is empty. If they are in the same line, the region-rectangle is one line high.
+</p>
+
+
+<p>
+The region-rectangle is controlled in much the same way as the region is controlled. But remember that a given combination of point and mark values can be interpreted either as a region or as a rectangle, depending on the command that uses them.
+</p>
+
+<ul class="org-ul">
+<li><p>
+C-x r k
+</p>
+
+<p>
+Kill the text of the region-rectangle, saving its contents as the “last killed rectangle” (kill-rectangle).
+</p></li>
+
+<li><p>
+C-x r M-w
+</p>
+
+<p>
+Save the text of the region-rectangle as the “last killed rectangle” (copy-rectangle-as-kill).
+</p></li>
+
+<li><p>
+C-x r d
+</p>
+
+<p>
+Delete the text of the region-rectangle (delete-rectangle).
+</p></li>
+
+<li><p>
+C-x r y
+</p>
+
+<p>
+Yank the last killed rectangle with its upper left corner at point (yank-rectangle).
+</p></li>
+
+<li><p>
+C-x r o
+</p>
+
+<p>
+Insert blank space to fill the space of the region-rectangle (open-rectangle). This pushes the previous contents of the region-rectangle to the right.
+</p></li>
+
+<li><p>
+C-x r N
+</p>
+
+<p>
+Insert line numbers along the left edge of the region-rectangle (rectangle-number-lines). This pushes the previous contents of the region-rectangle to the right.
+</p></li>
+
+<li><p>
+C-x r c
+</p>
+
+<p>
+Clear the region-rectangle by replacing all of its contents with spaces (clear-rectangle).
+</p></li>
+
+<li><p>
+M-x delete-whitespace-rectangle
+</p>
+
+<p>
+Delete whitespace in each of the lines on the specified rectangle, starting from the left edge column of the rectangle.
+</p></li>
+
+<li><p>
+C-x r t string RET
+</p>
+
+<p>
+Replace rectangle contents with string on each line (string-rectangle).
+</p></li>
+
+<li><p>
+M-x string-insert-rectangle RET string RET
+</p>
+
+<p>
+Insert string on each line of the rectangle.
+</p></li>
+
+<li><p>
+C-x SPC
+</p>
+
+<p>
+Toggle Rectangle Mark mode (rectangle-mark-mode). When this mode is active, the region-rectangle is highlighted and can be shrunk/grown, and the standard kill and yank commands operate on it.
+</p></li>
+</ul>
+
+<p>
+The rectangle operations fall into two classes: commands to erase or insert rectangles, and commands to make blank rectangles.
+</p>
+
+<p>
+There are two ways to erase the text in a rectangle: C-x r d (delete-rectangle) to delete the text outright, or C-x r k (kill-rectangle) to remove the text and save it as the last killed rectangle. In both cases, erasing the region-rectangle is like erasing the specified text on each line of the rectangle; if there is any following text on the line, it moves backwards to fill the gap.
+</p>
+
+<p>
+“Killing” a rectangle is not killing in the usual sense; the rectangle is not stored in the kill ring, but in a special place that only records the most recent rectangle killed. This is because yanking a rectangle is so different from yanking linear text that different yank commands have to be used. Yank-popping is not defined for rectangles.
+</p>
+
+<p>
+C-x r M-w (copy-rectangle-as-kill) is the equivalent of M-w for rectangles: it records the rectangle as the “last killed rectangle”, without deleting the text from the buffer.
+</p>
+
+<p>
+To yank the last killed rectangle, type C-x r y (yank-rectangle). The rectangle’s first line is inserted at point, the rectangle’s second line is inserted at the same horizontal position one line vertically below, and so on. The number of lines affected is determined by the height of the saved rectangle.
+</p>
+
+<p>
+For example, you can convert two single-column lists into a double-column list by killing one of the single-column lists as a rectangle, and then yanking it beside the other list.
+</p>
+
+<p>
+You can also copy rectangles into and out of registers with C-x r r r and C-x r i r. See Rectangle Registers.
+</p>
+
+<p>
+There are two commands you can use for making blank rectangles: C-x r c (clear-rectangle) blanks out existing text in the region-rectangle, and C-x r o (open-rectangle) inserts a blank rectangle.
+</p>
+
+<p>
+M-x delete-whitespace-rectangle deletes horizontal whitespace starting from a particular column. This applies to each of the lines in the rectangle, and the column is specified by the left edge of the rectangle. The right edge of the rectangle does not make any difference to this command.
+</p>
+
+<p>
+The command C-x r N (rectangle-number-lines) inserts line numbers along the left edge of the region-rectangle. Normally, the numbering begins from 1 (for the first line of the rectangle). With a prefix argument, the command prompts for a number to begin from, and for a format string with which to print the numbers (see Formatting Strings in The Emacs Lisp Reference Manual).
+</p>
+
+<p>
+The command C-x r t (string-rectangle) replaces the contents of a region-rectangle with a string on each line. The string’s width need not be the same as the width of the rectangle. If the string’s width is less, the text after the rectangle shifts left; if the string is wider than the rectangle, the text after the rectangle shifts right.
+</p>
+
+<p>
+The command M-x string-insert-rectangle is similar to string-rectangle, but inserts the string on each line, shifting the original text to the right.
+</p>
+
+<p>
+The command C-x SPC (rectangle-mark-mode) toggles whether the region-rectangle or the standard region is highlighted (first activating the region if necessary). When this mode is enabled, commands that resize the region (C-f, C-n etc.) do so in a rectangular fashion, and killing and yanking operate on the rectangle. See Killing. The mode persists only as long as the region is active.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">5.2</span> 12.6 CUA Bindings</h3>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8"><span class="section-number-2">6</span> Controlling the Display</h2>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9"><span class="section-number-2">7</span> Searching and Replacement</h2>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-2">
+<h2 id="orgheadline10"><span class="section-number-2">8</span> File Handling</h2>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11"><span class="section-number-2">9</span> Multiple Windows</h2>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12"><span class="section-number-2">10</span> Frames and Graphical Displays</h2>
+</div>
+
+<div id="outline-container-orgheadline15" class="outline-2">
+<h2 id="orgheadline15"><span class="section-number-2">11</span> 22 International character set support</h2>
+<div class="outline-text-2" id="text-11">
+</div><div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13"><span class="section-number-3">11.1</span> 22.5 Coding Systems</h3>
+<div class="outline-text-3" id="text-11-1">
+<p>
+Users of various languages have established many more-or-less standard coding systems for representing them. Emacs does not use these coding systems internally; instead, it converts from various coding systems to its own system when reading data, and converts the internal coding system to other coding systems when writing data. Conversion is possible in reading or writing files, in sending or receiving from the terminal, and in exchanging data with subprocesses.
+</p>
+
+<p>
+Emacs assigns a name to each coding system. Most coding systems are used for one language, and the name of the coding system starts with the language name. Some coding systems are used for several languages; their names usually start with ‘iso’. There are also special coding systems, such as no-conversion, raw-text, and emacs-internal.
+</p>
+
+<p>
+A special class of coding systems, collectively known as codepages, is designed to support text encoded by MS-Windows and MS-DOS software. The names of these coding systems are cpnnnn, where nnnn is a 3- or 4-digit number of the codepage. You can use these encodings just like any other coding system; for example, to visit a file encoded in codepage 850, type C-x RET c cp850 RET C-x C-f filename RET.
+</p>
+
+<p>
+In addition to converting various representations of non-ASCII characters, a coding system can perform end-of-line conversion. Emacs handles three different conventions for how to separate lines in a file: newline (“unix”), carriage-return linefeed (“dos”), and just carriage-return (“mac”).
+</p>
+
+<ul class="org-ul">
+<li>C-h C coding RET
+Describe coding system coding (describe-coding-system).</li>
+<li>C-h C RET
+Describe the coding systems currently in use.</li>
+<li>M-x list-coding-systems
+Display a list of all the supported coding systems.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14"><span class="section-number-3">11.2</span> 22.7 Specifying a File’s Coding System</h3>
+<div class="outline-text-3" id="text-11-2">
+<p>
+If Emacs recognizes the encoding of a file incorrectly, you can reread the file using the correct coding system with C-x RET r (revert-buffer-with-coding-system). This command prompts for the coding system to use. To see what coding system Emacs actually used to decode the file, look at the coding system mnemonic letter near the left edge of the mode line (see Mode Line), or type C-h C (describe-coding-system).
+</p>
+
+<p>
+You can specify the coding system for a particular file in the file itself, using the ‘-*-…-*-’ construct at the beginning, or a local variables list at the end (see File Variables). You do this by defining a value for the “variable” named coding. Emacs does not really have a variable coding; instead of setting a variable, this uses the specified coding system for the file. For example, ‘-*-mode: C; coding: latin-1;-*-’ specifies use of the Latin-1 coding system, as well as C mode. When you specify the coding explicitly in the file, that overrides file-coding-system-alist.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline16" class="outline-2">
+<h2 id="orgheadline16"><span class="section-number-2">12</span> Indentation</h2>
+</div>
+<div id="outline-container-orgheadline17" class="outline-2">
+<h2 id="orgheadline17"><span class="section-number-2">13</span> Commands for Human Languages</h2>
+</div>
+
+<div id="outline-container-orgheadline18" class="outline-2">
+<h2 id="orgheadline18"><span class="section-number-2">14</span> Editing Programs</h2>
+</div>
+
+<div id="outline-container-orgheadline19" class="outline-2">
+<h2 id="orgheadline19"><span class="section-number-2">15</span> Compiling and Testing Programs</h2>
+</div>
+
+<div id="outline-container-orgheadline20" class="outline-2">
+<h2 id="orgheadline20"><span class="section-number-2">16</span> Maintaining Large Programs</h2>
+</div>
+
+<div id="outline-container-orgheadline21" class="outline-2">
+<h2 id="orgheadline21"><span class="section-number-2">17</span> Saving Emacs Sessions</h2>
+</div>
+
+<div id="outline-container-orgheadline25" class="outline-2">
+<h2 id="orgheadline25"><span class="section-number-2">18</span> 47 Emacs Lisp Packages</h2>
+<div class="outline-text-2" id="text-18">
+<p>
+Emacs includes a facility that lets you easily download and install packages that implement additional features. Each package is a separate Emacs Lisp program, sometimes including other components such as an Info manual.
+</p>
+
+<p>
+Emacs有一种机制可以很容易的下载并安装实现额外功能的包。每个包都是一个单独Emacs Lisp程序，有时候还包括其他组件，比如Info手册。
+</p>
+
+<p>
+M-x list-packages brings up a buffer named <b>Packages</b> with a list of all packages. You can install or uninstall packages via this buffer. See <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Package-Menu">Package Menua</a>.
+</p>
+
+<p>
+M-x list-package 产生一个名叫 <b>Packages</b> 、包含所有包列表的buffer。可以通过这个buffer安装或卸载包。参看 <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Package-Menu">Package Menua</a>。
+</p>
+
+<p>
+The command C-h P (describe-package) prompts for the name of a package, and displays a help buffer describing the attributes of the package and the features that it implements.
+</p>
+
+<p>
+C-h P（describe-package）提示输入包的名字，然后用help buffer描述包的属性和它实现的特性。
+</p>
+
+<p>
+By default, Emacs downloads packages from a package archive maintained by the Emacs developers and hosted by the GNU project. Optionally, you can also download packages from archives maintained by third parties. See Package Installation.
+</p>
+
+<p>
+默认情况下，Emacs从由GNU project主持、Emacs开发者维护的包档案中下载包。也可以从第三方维护的档案中下载包。参看Package Installation。
+</p>
+
+<p>
+For information about turning an Emacs Lisp program into an installable package, See Packaging in The Emacs Lisp Reference Manual. For information about finding third-party packages and other Emacs Lisp extensions, See Packages that do not come with Emacs in GNU Emacs FAQ.
+</p>
+
+<p>
+关于如何将Emacs Lisp程序转化为安装包的信息，参见 <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Packaging">Packaging</a> in The Emacs Lisp Reference Manual。关于需找第三方包和其他Emacs Lisp扩展的信息，参见<a href="https://www.gnu.org/software/emacs/manual/html_mono/efaq.html#Packages-that-do-not-come-with-Emacs">Packages that do not come with Emacs</a> in GNU Emacs FAQ.
+</p>
+</div>
+
+<div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22"><span class="section-number-3">18.1</span> 47.1 The Package Menu Buffer</h3>
+</div>
+
+<div id="outline-container-orgheadline23" class="outline-3">
+<h3 id="orgheadline23"><span class="section-number-3">18.2</span> 47.2 Package Installation</h3>
+<div class="outline-text-3" id="text-18-2">
+<p>
+Packages are most conveniently installed using the package menu (see <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Package-Menu">Package Menu</a>), but you can also use the command M-x package-install. This prompts for the name of a package with the ‘available’ status, then downloads and installs it.
+</p>
+
+<p>
+安装包最方便的方法是使用package menu，但是也可以使用M-x package-install命令。它会提示处于可用状态的包名字，然后下载并进行安装。
+</p>
+
+<p>
+A package may require certain other packages to be installed, because it relies on functionality provided by them. When Emacs installs such a package, it also automatically downloads and installs any required package that is not already installed. (If a required package is somehow unavailable, Emacs signals an error and stops installation.) A package’s requirements list is shown in its help buffer.
+</p>
+
+<p>
+一个包可能要求安装其他包，因为它需要这些包提供的功能。当Emacs安装这样的包时会自动下载没有安装的依赖包。（如果依赖的包由于某些原因不可用，Emacs会给出错误信号并停止安装。）包的依赖列表会在它的help buffer中显示出来。
+</p>
+
+<p>
+By default, packages are downloaded from a single package archive maintained by the Emacs developers. This is controlled by the variable package-archives, whose value is a list of package archives known to Emacs. Each list element must have the form (id . location), where id is the name of a package archive and location is the HTTP address or directory name of the package archive. You can alter this list if you wish to use third party package archives—but do so at your own risk, and use only third parties that you think you can trust!
+</p>
+
+<p>
+默认情况下，包从单独的Emacs开发者维护的包档案中下载。这是由变量package-archives控制的，它的是Emacs了解的包档案列表。每个列表元素的格式必须是（id . location），id是包档案的名字，location是HTTP地址或包档案的目录名字。如果想要使用第三方的包档案的话可以改变该列表。&#x2014;但这样做可能面临风险，请只使用觉得可以信赖的第三方。
+</p>
+
+<p>
+The maintainers of package archives can increase the trust that you can have in their packages by signing them. They generate a private/public pair of cryptographic keys, and use the private key to create a signature file for each package. With the public key, you can use the signature files to verify who created the package, and that it has not been modified. A valid signature is not a cast-iron guarantee that a package is not malicious, so you should still exercise caution. Package archives should provide instructions on how you can obtain their public key. One way is to download the key from a server such as <a href="http://pgp.mit.edu/">http://pgp.mit.edu/</a>. Use M-x package-import-keyring to import the key into Emacs. Emacs stores package keys in the gnupg subdirectory of package-user-dir. The public key for the GNU package archive is distributed with Emacs, in the etc/package-keyring.gpg. Emacs uses it automatically.
+</p>
+
+<p>
+包档案维护人员对包进行签名可以提高自己的信任度。他们生成一对私有/公有密钥对，使用私钥为每个包生成签名文件。可以通过公钥来确定包的创建者，包是否被修改。有效的签名并不能保证包是无害的，你仍然应该谨慎。包档案应该说明如何获得它们的密钥。一个方法是从服务器上下载，比如<a href="http://gpg.mit.edu/">http://gpg.mit.edu/</a> 。使用M-x package-import-keyring将密钥导入Emacs。Emacs在package-user-dir的gnupg子目录存储包的密钥。GNU 包档案的公钥随Emacs发布，放在etc/package-keyring.gpg。Emacs自动使用它。
+</p>
+
+<p>
+If the user option package-check-signature is non-nil, Emacs attempts to verify signatures when you install packages. If the option has the value allow-unsigned, you can still install a package that is not signed. If you use some archives that do not sign their packages, you can add them to the list package-unsigned-archives.
+</p>
+
+<p>
+如果用户选项package-check-signature非nil，Emacs在安装包时会验证签名。如果选项值允许不用签名，仍然可以安装没有经过签名的包。所以如果使用没有签名包的包档案，可以将它们添加到package-unsigned-archives列表。
+</p>
+
+<p>
+For more information on cryptographic keys and signing, see Top in The GNU Privacy Guard Manual. Emacs comes with an interface to GNU Privacy Guard, see <a href="http://www.gnu.org/software/emacs/manual/html_mono/epa.html#Top">EasyPG</a> in Emacs EasyPG Assistant Manual.
+</p>
+
+<p>
+更多关于密钥和签名的信息，参考上面关于GNU Privacy Guard Manual的信息。Emacs针对GNU 隐私保护有一个借口，see EasyPG in Emacs EasyPG Assistant Manual。
+</p>
+
+<p>
+If you have more than one package archive enabled, and some of them offer different versions of the same package, you may find the option package-pinned-packages useful. You can add package/archive pairs to this list, to ensure that the specified package is only ever downloaded from the specified archive.
+</p>
+
+<p>
+如果启用了不止一个包档案，它们有同一包有不同版本，这时选项package-pinned-packages就有用了。可以向该列表添加package/archive对，来确保指定的包只从指定管理器下载。
+</p>
+
+<p>
+Once a package is downloaded and installed, it is loaded into the current Emacs session. Loading a package is not quite the same as loading a Lisp library (see <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Lisp-Libraries">Lisp Libraries</a>); its effect varies from package to package. Most packages just make some new commands available, while others have more wide-ranging effects on the Emacs session. For such information, consult the package’s help buffer.
+</p>
+
+<p>
+一旦下载和安装了包，它就会被加载到当前的Emacs会话中。加载包和加载Lisp库不太一样；它的效果因包而异。大多数的包只是提供一些新的可用命令，另一些则对Emacs会话有更广泛的影响。更多信息查看包的help buffer。
+</p>
+
+<p>
+By default, Emacs also automatically loads all installed packages in subsequent Emacs sessions. This happens at startup, after processing the init file (see <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Init-File">Init File</a>). As an exception, Emacs does not load packages at startup if invoked with the ‘-q’ or ‘&#x2013;no-init-file’ options (see <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Initial-Options">Initial Options</a>).
+</p>
+
+<p>
+默认情况下，Emacs会在随后的会话中加载所有已经安装的包。这发生在启动时，处理完init文件之后。有个例外，如果使用‘-q' 或 '&#x2013;no-init-file'启动Emacs，就不会加载包。
+</p>
+
+<p>
+To disable automatic package loading, change the variable package-enable-at-startup to nil.
+</p>
+
+<p>
+将package-enable-at-startup设置为nil来关闭包的自动加载。
+</p>
+
+<p>
+The reason automatic package loading occurs after loading the init file is that user options only receive their customized values after loading the init file, including user options which affect the packaging system. In some circumstances, you may want to load packages explicitly in your init file (usually because some other code in your init file depends on a package). In that case, your init file should call the function package-initialize. It is up to you to ensure that relevant user options, such as package-load-list (see below), are set up prior to the package-initialize call. You should also set package-enable-at-startup to nil, to avoid loading the packages again after processing the init file. Alternatively, you may choose to completely inhibit package loading at startup, and invoke the command M-x package-initialize to load your packages manually.
+</p>
+
+<p>
+自动加载包发生在加载init文件之后是因为加载init文件后才知道用户选项的定制值，包括影响包管理系统的用户选项。在某些情况下，可能希望在init文件中显示加载某些包（通常是因为init代码中代码依赖这些包）。这种情况下，init文件应该调用package-initialize函数。这时确定调用package-initialize调用之前设置了相关的用户选项，比如package-load-list。应该将package-enable-at-startup设置为nil，避免处理完init文件之后再次加载包。或者可以选择在启动的时候完全禁止包启动，通过调用M-x package-initialize来手动加载包。
+</p>
+
+<p>
+For finer control over package loading, you can use the variable package-load-list. Its value should be a list. A list element of the form (name version) tells Emacs to load version version of the package named name. Here, version should be a version string (corresponding to a specific version of the package), or t (which means to load any installed version), or nil (which means no version; this “disables” the package, preventing it from being loaded). A list element can also be the symbol all, which means to load the latest installed version of any package not named by the other list elements. The default value is just '(all).
+</p>
+
+<p>
+使用变量package-load-list可以更好的控制包加载的过程。它的值是一个列表。形式为（name version）的列表元素告诉Emacs要加载的包的名字和版本。这里version应该是版本字符串（对应于包的特定版本），或者t（意味着加载任何已经安装的版本），或者nil（意味着没有版本，这会禁用包，阻止加载）。一个列表元素也可以是符号all，意味着加载任何没有被其他列表元素命令的包的已安装的最新版本。默认值就是'(all)。
+</p>
+
+<p>
+For example, if you set package-load-list to '((muse "3.20") all), then Emacs only loads version 3.20 of the ‘muse’ package, plus any installed version of packages other than ‘muse’. Any other version of ‘muse’ that happens to be installed will be ignored. The ‘muse’ package will be listed in the package menu with the ‘held’ status.
+</p>
+
+<p>
+例如，将package-load-list设置为'((muse "3.20") all)，Emacs只会加载版本为3.20的‘muse'包，以及除了muse意外的任何已安装版本的包。muse的其他已安装版本都会被忽略。muse将会在报菜单中held状态。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline24" class="outline-3">
+<h3 id="orgheadline24"><span class="section-number-3">18.3</span> 47.3 Package Files and Directory Layout</h3>
+<div class="outline-text-3" id="text-18-3">
+<p>
+Each package is downloaded from the package archive in the form of a single package file—either an Emacs Lisp source file, or a tar file containing multiple Emacs Lisp source and other files. Package files are automatically retrieved, processed, and disposed of by the Emacs commands that install packages. Normally, you will not need to deal directly with them, unless you are making a package (see <a href="http://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Packaging">Packaging</a> in The Emacs Lisp Reference Manual). Should you ever need to install a package directly from a package file, use the command M-x package-install-file.
+</p>
+
+<p>
+每个从包档案下载的包要么是Emacs Lisp源码文件，要么是包含很多Emacs Lisp源码文件和其他文件的打包文件。包文件会被安装命令自动检索、处理和处置。通常，除了制作包不需要直接处理它们。绝对不要直接从包文件进行安装，应该使用M-x package-install-file命令。
+</p>
+
+<p>
+Once installed, the contents of a package are placed in a subdirectory of ~/.emacs.d/elpa/ (you can change the name of that directory by changing the variable package-user-dir). The package subdirectory is named name-version, where name is the package name and version is its version string.
+</p>
+
+<p>
+安装后，包的内容就会放在~/.emacs.d/elpa/下的子目录（可以改变变量package-user-dir来改变该目录的名字）。子目录的名字是name-version，name是包名，version是版本。
+</p>
+
+<p>
+In addition to package-user-dir, Emacs looks for installed packages in the directories listed in package-directory-list. These directories are meant for system administrators to make Emacs packages available system-wide; Emacs itself never installs packages there. The package subdirectories for package-directory-list are laid out in the same way as in package-user-dir.
+</p>
+
+<p>
+除了package-user-dir，Emacs还在package-directory-list列出的目录中寻找已经安装的包的名字。系统管理员用这些目录来向整个系统提供可用的Emacs package；Emacs本身绝不会在那里安装软件包，package-directory-list下面包的子目录布局和package-user-dir是一样的。
+</p>
+
+<p>
+Deleting a package (see Package Menu) involves deleting the corresponding package subdirectory. This only works for packages installed in package-user-dir; if told to act on a package in a system-wide package directory, the deletion command signals an error.
+</p>
+
+<p>
+删除包会删除相应的子目录，这只适用于package-user-dir中安装的包；如果用在系统范围的包目录上，删除命令会报错。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline26" class="outline-2">
+<h2 id="orgheadline26"><span class="section-number-2">19</span> Customization</h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: ubuntu</p>
+<p class="date">Created: 2016-01-12 二 01:04</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
