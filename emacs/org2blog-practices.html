@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-11-16 一 15:49 -->
+<!-- 2016-01-12 二 00:29 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>【Emacs】Org2blog</title>
@@ -201,7 +201,7 @@ emacs可以通过 elpa 进行安装或者自行从 github 下载安装，建议�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-bash" id="orgsrcblock1">git clone http://github.com/punchagan/org2blog.git
+<pre class="src src-bash" id="orgsrcblock1">  git clone http://github.com/punchagan/org2blog.git
 </pre>
 </div>
 <!--more-->
@@ -210,8 +210,8 @@ emacs可以通过 elpa 进行安装或者自行从 github 下载安装，建议�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp" id="orgsrcblock2">(setq load-path (cons <span style="color: #66cccc;">"~/.emacs.d/org2blog/"</span> load-path))
-(<span style="color: #99cc99;">require</span> '<span style="color: #6699cc;">org2blog-autoloads</span>)
+<pre class="src src-elisp" id="orgsrcblock2">  (<span style="color: #99cc99;">setq</span> load-path (cons <span style="color: #66cccc;">"~/.emacs.d/org2blog/"</span> load-path))
+  (<span style="color: #99cc99;">require</span> '<span style="color: #6699cc;">org2blog-autoloads</span>)
 </pre>
 </div>
 </div>
@@ -239,16 +239,16 @@ org2blog 依赖于:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp" id="orgsrcblock3">(setq org2blog/wp-blog-alist
-      '((<span style="color: #66cccc;">"wordpress"</span>
-         <span style="color: #cc99cc;">:url</span> <span style="color: #66cccc;">"http://username.wordpress.com/xmlrpc.php"</span>
-         <span style="color: #cc99cc;">:username</span> <span style="color: #66cccc;">"username"</span>
-         <span style="color: #cc99cc;">:default-title</span> <span style="color: #66cccc;">"Hello World"</span>
-         <span style="color: #cc99cc;">:default-categories</span> (<span style="color: #66cccc;">"org2blog"</span> <span style="color: #66cccc;">"emacs"</span>)
-         <span style="color: #cc99cc;">:tags-as-categories</span> nil)
-        (<span style="color: #66cccc;">"my-blog"</span>
-         <span style="color: #cc99cc;">:url</span> <span style="color: #66cccc;">"http://username.server.com/xmlrpc.php"</span>
-         <span style="color: #cc99cc;">:username</span> <span style="color: #66cccc;">"admin"</span>)))
+<pre class="src src-elisp" id="orgsrcblock3">  (<span style="color: #99cc99;">setq</span> org2blog/wp-blog-alist
+        '((<span style="color: #66cccc;">"wordpress"</span>
+           <span style="color: #cc99cc;">:url</span> <span style="color: #66cccc;">"http://username.wordpress.com/xmlrpc.php"</span>
+           <span style="color: #cc99cc;">:username</span> <span style="color: #66cccc;">"username"</span>
+           <span style="color: #cc99cc;">:default-title</span> <span style="color: #66cccc;">"Hello World"</span>
+           <span style="color: #cc99cc;">:default-categories</span> (<span style="color: #66cccc;">"org2blog"</span> <span style="color: #66cccc;">"emacs"</span>)
+           <span style="color: #cc99cc;">:tags-as-categories</span> nil)
+          (<span style="color: #66cccc;">"my-blog"</span>
+           <span style="color: #cc99cc;">:url</span> <span style="color: #66cccc;">"http://username.server.com/xmlrpc.php"</span>
+           <span style="color: #cc99cc;">:username</span> <span style="color: #66cccc;">"admin"</span>)))
 </pre>
 </div>
 <p>
@@ -260,7 +260,7 @@ org2blog 依赖于:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-text" id="orgsrcblock4">machine myblog login myusername password myrealpassword
+<pre class="src src-text" id="orgsrcblock4">  machine myblog login myusername password myrealpassword
 </pre>
 </div>
 
@@ -269,17 +269,17 @@ org2blog 依赖于:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp" id="orgsrcblock5">(<span style="color: #99cc99;">require</span> '<span style="color: #6699cc;">auth-source</span>) <span style="color: #999999; font-style: italic;">;; </span><span style="color: #999999; font-style: italic;">or nothing if already in the load-path</span>
+<pre class="src src-elisp" id="orgsrcblock5">  (<span style="color: #99cc99;">require</span> '<span style="color: #6699cc;">auth-source</span>) <span style="color: #999999; font-style: italic;">;; </span><span style="color: #999999; font-style: italic;">or nothing if already in the load-path</span>
 
-(<span style="color: #99cc99;">let</span> (credentials)
-  <span style="color: #999999; font-style: italic;">;; </span><span style="color: #999999; font-style: italic;">only required if your auth file is not already in the list of auth-sources</span>
-  (add-to-list 'auth-sources <span style="color: #66cccc;">"~/.netrc"</span>)
-  (setq credentials (auth-source-user-and-password <span style="color: #66cccc;">"myblog"</span>))
-  (setq org2blog/wp-blog-alist
-        `((<span style="color: #66cccc;">"my-blog"</span>
-           <span style="color: #cc99cc;">:url</span> <span style="color: #66cccc;">"http://username.server.com/xmlrpc.php"</span>
-           <span style="color: #cc99cc;">:username</span> ,(car credentials)
-           <span style="color: #cc99cc;">:password</span> ,(cadr credentials)))))
+  (<span style="color: #99cc99;">let</span> (credentials)
+    <span style="color: #999999; font-style: italic;">;; </span><span style="color: #999999; font-style: italic;">only required if your auth file is not already in the list of auth-sources</span>
+    (add-to-list 'auth-sources <span style="color: #66cccc;">"~/.netrc"</span>)
+    (<span style="color: #99cc99;">setq</span> credentials (auth-source-user-and-password <span style="color: #66cccc;">"myblog"</span>))
+    (<span style="color: #99cc99;">setq</span> org2blog/wp-blog-alist
+          `((<span style="color: #66cccc;">"my-blog"</span>
+             <span style="color: #cc99cc;">:url</span> <span style="color: #66cccc;">"http://username.server.com/xmlrpc.php"</span>
+             <span style="color: #cc99cc;">:username</span> ,(car credentials)
+             <span style="color: #cc99cc;">:password</span> ,(cadr credentials)))))
 </pre>
 </div>
 
@@ -288,7 +288,7 @@ org2blog 依赖于:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-text" id="orgsrcblock6">M-x customize-group org2blog/wp RET
+<pre class="src src-text" id="orgsrcblock6">  M-x customize-group org2blog/wp RET
 </pre>
 </div>
 </div>
@@ -325,17 +325,17 @@ org2blog 依赖于:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp" id="orgsrcblock7">(setq org2blog/wp-buffer-template
-<span style="color: #66cccc;">"-----------------------</span>
-<span style="color: #66cccc;">#+TITLE: %s</span>
-<span style="color: #66cccc;">#+DATE: %s</span>
-<span style="color: #66cccc;">-----------------------\n"</span>)
+<pre class="src src-elisp" id="orgsrcblock7">  (<span style="color: #99cc99;">setq</span> org2blog/wp-buffer-template
+  <span style="color: #66cccc;">"-----------------------</span>
+<span style="color: #66cccc;">  #+TITLE: %s</span>
+<span style="color: #66cccc;">  #+DATE: %s</span>
+<span style="color: #66cccc;">  -----------------------\n"</span>)
 
-(<span style="color: #99cc99;">defun</span> <span style="color: #f99157;">my-format-function</span> (format-string)
-   (format format-string
-           org2blog/wp-default-title
-           (format-time-string <span style="color: #66cccc;">"%d-%m-%Y"</span> (current-time)))))
-(setq org2blog/wp-buffer-format-function 'my-format-function)
+  (<span style="color: #99cc99;">defun</span> <span style="color: #f99157;">my-format-function</span> (format-string)
+     (format format-string
+             org2blog/wp-default-title
+             (format-time-string <span style="color: #66cccc;">"%d-%m-%Y"</span> (current-time)))))
+  (<span style="color: #99cc99;">setq</span> org2blog/wp-buffer-format-function 'my-format-function)
 </pre>
 </div>
 </div>
@@ -353,7 +353,7 @@ org2blog 依赖于:
 <div id="outline-container-orgheadline7" class="outline-4">
 <h4 id="orgheadline7"><span class="section-number-4">3.1.5</span> 发布（Publishing）</h4>
 <div class="outline-text-4" id="text-3-1-5">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table border="1" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" width="auto">
 
 
 <colgroup>
@@ -468,7 +468,7 @@ C-u post-id M-x org2blog/wp-delete-entry</li>
 使用  M-x org2blog/wp-mode，定义的键绑定如下：
 </p>
 
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table border="1" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" width="auto">
 
 
 <colgroup>
@@ -546,7 +546,7 @@ org2blog 会跟踪所有使用它创建的 blog 文章，这样可以很容易�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp" id="orgsrcblock8">(setq org2blog/wp-default-title <span style="color: #66cccc;">"My New Title"</span>)
+<pre class="src src-elisp" id="orgsrcblock8">  (<span style="color: #99cc99;">setq</span> org2blog/wp-default-title <span style="color: #66cccc;">"My New Title"</span>)
 </pre>
 </div></li>
 <li>如何只改变某个 blog 默认文章标题？
@@ -556,7 +556,7 @@ org2blog 会跟踪所有使用它创建的 blog 文章，这样可以很容易�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq org2blog/wp-use-tags-as-categories t)
+<pre class="src src-elisp">  (<span style="color: #99cc99;">setq</span> org2blog/wp-use-tags-as-categories t)
 </pre>
 </div></li>
 <li><p>
@@ -564,7 +564,7 @@ org2blog 会跟踪所有使用它创建的 blog 文章，这样可以很容易�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq org2blog/wp-confirm-post t)
+<pre class="src src-elisp">  (<span style="color: #99cc99;">setq</span> org2blog/wp-confirm-post t)
 </pre>
 </div></li>
 </ol>
@@ -574,7 +574,7 @@ org2blog 会跟踪所有使用它创建的 blog 文章，这样可以很容易�
 <div id="postamble" class="status">
 <p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">[2014-10-22 三 13:37]</span></span></p>
 <p class="author">Author: ubuntu</p>
-<p class="date">Created: 2015-11-16 一 15:49</p>
+<p class="date">Created: 2016-01-12 二 00:29</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

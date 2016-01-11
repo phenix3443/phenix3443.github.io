@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-11-16 一 15:49 -->
+<!-- 2016-01-12 二 00:29 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>redis源码分析</title>
+<title>redis入门指南阅读笔记</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="ubuntu" />
 <style type="text/css">
@@ -143,16 +143,19 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">redis源码分析</h1>
+<h1 class="title">redis入门指南阅读笔记</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#orgheadline1">1. 简介</a></li>
-<li><a href="#orgheadline2">2. 编译</a></li>
-<li><a href="#orgheadline3">3. 使用</a></li>
-<li><a href="#orgheadline4">4. 源码目录结构</a></li>
-<li><a href="#orgheadline5">5. 源码分析</a></li>
+<li><a href="#orgheadline2">2. 安装</a></li>
+<li><a href="#orgheadline3">3. 实践</a></li>
+<li><a href="#orgheadline5">4. 源码分析</a>
+<ul>
+<li><a href="#orgheadline4">4.1. 目录结构</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -167,29 +170,30 @@ redis<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
 </div>
 
 <div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">2</span> 编译</h2>
+<h2 id="orgheadline2"><span class="section-number-2">2</span> 安装</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 
-<pre class="src src-sh">wget -P ~/Downloads/ http://download.redis.io/releases/redis-3.0.5.tar.gz
-<span style="color: #cc99cc;">cd</span> ~/projects/
-tar zxf ~/Downloads/redis*.tar.gz
-<span style="color: #cc99cc;">cd</span> redis
+<pre class="src src-sh">    wget -P ~/Downloads/ http://download.redis.io/releases/redis-3.0.5.tar.gz
+    <span style="color: #cc99cc;">cd</span> ~/projects/
+    tar zxf ~/Downloads/redis*.tar.gz
+    <span style="color: #cc99cc;">cd</span> redis
 </pre>
 </div>
 </div>
 </div>
 
 <div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3"><span class="section-number-2">3</span> 使用</h2>
+<h2 id="orgheadline3"><span class="section-number-2">3</span> 实践</h2>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4"><span class="section-number-2">4</span> 源码目录结构</h2>
-</div>
 
 <div id="outline-container-orgheadline5" class="outline-2">
-<h2 id="orgheadline5"><span class="section-number-2">5</span> 源码分析</h2>
+<h2 id="orgheadline5"><span class="section-number-2">4</span> 源码分析</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">4.1</span> 目录结构</h3>
+</div>
 </div>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>
@@ -204,7 +208,7 @@ tar zxf ~/Downloads/redis*.tar.gz
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: ubuntu</p>
-<p class="date">Created: 2015-11-16 一 15:49</p>
+<p class="date">Created: 2016-01-12 二 00:29</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

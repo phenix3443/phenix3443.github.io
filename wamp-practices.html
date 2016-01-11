@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-11-16 一 15:49 -->
+<!-- 2016-01-12 二 00:28 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>【WAMP】使用记录</title>
@@ -196,7 +196,7 @@ L61:change
 </ul>
 <div class="org-src-container">
 
-<pre class="src src-text">$wwwDir =$c_installDir.&#8217;/www&#8217;;
+<pre class="src src-text">  $wwwDir =$c_installDir.&#8217;/www&#8217;;
 </pre>
 </div>
 <p>
@@ -204,7 +204,7 @@ to
 </p>
 <div class="org-src-container">
 
-<pre class="src src-text">$wwwDir = my_path ;
+<pre class="src src-text">     $wwwDir = my_path ;
 </pre>
 </div>
 <ul class="org-ul">
@@ -218,7 +218,7 @@ L230:change
 </ul>
 <div class="org-src-container">
 
-<pre class="src src-text">DocumentRoot &#8220;C:/wamp/www/&#8221;
+<pre class="src src-text">     DocumentRoot &#8220;C:/wamp/www/&#8221;
 </pre>
 </div>
 <p>
@@ -226,7 +226,7 @@ to
 </p>
 <div class="org-src-container">
 
-<pre class="src src-text">DocumentRoot my_path
+<pre class="src src-text">     DocumentRoot my_path
 </pre>
 </div>
 
@@ -235,7 +235,7 @@ L252:change
 </p>
 <div class="org-src-container">
 
-<pre class="src src-text">&lt;Directory &#8220;C:/wamp/www/&#8220;&gt;
+<pre class="src src-text">     &lt;Directory &#8220;C:/wamp/www/&#8220;&gt;
 </pre>
 </div>
 <p>
@@ -243,7 +243,7 @@ to
 </p>
 <div class="org-src-container">
 
-<pre class="src src-text">&lt;Directory my_path&gt;
+<pre class="src src-text">     &lt;Directory my_path&gt;
 </pre>
 </div>
 </div>
@@ -258,7 +258,7 @@ L513:去掉注释
 </p>
 <div class="org-src-container">
 
-<pre class="src src-text">Include conf/extra/httpd-vhosts.conf
+<pre class="src src-text">     Include conf/extra/httpd-vhosts.conf
 </pre>
 </div>
 <p>
@@ -266,21 +266,21 @@ C:\wamp\bin\apache\apache2.4.9\conf\extra\httpd-vhosts.conf
 </p>
 <div class="org-src-container">
 
-<pre class="src src-text">&lt;VirtualHost *:80&gt;
-    ServerAdmin panghuli_root@main.localhost.com
-    DocumentRoot "D:/my_files/projects/panghuli_site/public_html/main"
-    ServerName main.localhost.com
-    ErrorLog "logs/main.localhost.com-error.log"
-    CustomLog "logs/main.localhost.com.log" common
-&lt;/VirtualHost&gt;
+<pre class="src src-text">  &lt;VirtualHost *:80&gt;
+      ServerAdmin panghuli_root@main.localhost.com
+      DocumentRoot "D:/my_files/projects/panghuli_site/public_html/main"
+      ServerName main.localhost.com
+      ErrorLog "logs/main.localhost.com-error.log"
+      CustomLog "logs/main.localhost.com.log" common
+  &lt;/VirtualHost&gt;
 
-&lt;VirtualHost *:80&gt;
-    ServerAdmin panghuli_blog@blog.localhost.com
-    DocumentRoot "D:/my_files/projects/panghuli_site/public_html/blog"
-    ServerName blog.localhost.com
-    ErrorLog "logs/blog.localhost.com-error.log"
-    CustomLog "logs/blog.localhost.com.log" common
-&lt;/VirtualHost&gt;
+  &lt;VirtualHost *:80&gt;
+      ServerAdmin panghuli_blog@blog.localhost.com
+      DocumentRoot "D:/my_files/projects/panghuli_site/public_html/blog"
+      ServerName blog.localhost.com
+      ErrorLog "logs/blog.localhost.com-error.log"
+      CustomLog "logs/blog.localhost.com.log" common
+  &lt;/VirtualHost&gt;
 </pre>
 </div>
 <p>
@@ -289,8 +289,8 @@ c:\windows\system32\drivers\etc\host
 </p>
 <div class="org-src-container">
 
-<pre class="src src-text">127.0.0.1       blog.localhost.com
-127.0.0.1       main.localhost.com
+<pre class="src src-text">  127.0.0.1       blog.localhost.com
+  127.0.0.1       main.localhost.com
 </pre>
 </div>
 </div>
@@ -302,7 +302,7 @@ c:\windows\system32\drivers\etc\host
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: ubuntu</p>
-<p class="date">Created: 2015-11-16 一 15:49</p>
+<p class="date">Created: 2016-01-12 二 00:28</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

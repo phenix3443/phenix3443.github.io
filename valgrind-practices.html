@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-11-16 Ò» 15:48 -->
+<!-- 2016-01-12 ¶þ 00:28 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>µ÷²»¾¡µÄÄÚ´æÐ¹Â©£¬ÓÃ²»ÍêµÄValgrind</title>
@@ -207,11 +207,11 @@ for the JavaScript code in this tag.
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 
-<pre class="src src-sh">wget http://valgrind.org/downloads/valgrind-3.11.0.tar.bz2
-tar &#8211;jxvf ~/Downloads/valgrind-*.tar.bz2
-<span style="color: #cc99cc;">cd</span> valgrind-3.11.0
-./autogen.sh
-./configure &amp;&amp; make &amp;&amp; sudo make install
+<pre class="src src-sh">    wget http://valgrind.org/downloads/valgrind-3.11.0.tar.bz2
+    tar &#8211;jxvf ~/Downloads/valgrind-*.tar.bz2
+    <span style="color: #cc99cc;">cd</span> valgrind-3.11.0
+    ./autogen.sh
+    ./configure &amp;&amp; make &amp;&amp; sudo make install
 </pre>
 </div>
 </div>
@@ -269,7 +269,7 @@ CallgrindÊÕ¼¯³ÌÐòÔËÐÐÊ±µÄÒ»Ð©Êý¾Ý£¬º¯Êýµ÷ÓÃ¹ØÏµµÈÐÅÏ¢£¬»¹¿ÉÒÔÓÐÑ¡ÔñµØ½øÐÐcache Ä
 
 <div class="org-src-container">
 
-<pre class="src src-sh">valgrind --tool=callgrind ./sec_infod
+<pre class="src src-sh">    valgrind --tool=callgrind ./sec_infod
 </pre>
 </div>
 
@@ -279,7 +279,7 @@ CallgrindÊÕ¼¯³ÌÐòÔËÐÐÊ±µÄÒ»Ð©Êý¾Ý£¬º¯Êýµ÷ÓÃ¹ØÏµµÈÐÅÏ¢£¬»¹¿ÉÒÔÓÐÑ¡ÔñµØ½øÐÐcache Ä
 
 <div class="org-src-container">
 
-<pre class="src src-sh">killall callgrind
+<pre class="src src-sh">    killall callgrind
 </pre>
 </div>
 
@@ -289,8 +289,8 @@ CallgrindÊÕ¼¯³ÌÐòÔËÐÐÊ±µÄÒ»Ð©Êý¾Ý£¬º¯Êýµ÷ÓÃ¹ØÏµµÈÐÅÏ¢£¬»¹¿ÉÒÔÓÐÑ¡ÔñµØ½øÐÐcache Ä
 
 <div class="org-src-container">
 
-<pre class="src src-sh">callgrind_annotate --auto=yes callgrind.out.[pid] &gt; log
-vi log
+<pre class="src src-sh">    callgrind_annotate --auto=yes callgrind.out.[pid] &gt; log
+    vi log
 </pre>
 </div>
 </div>
@@ -320,7 +320,7 @@ lackeyÊÇÒ»¸öÊ¾Àý³ÌÐò£¬ÒÔÆäÎªÄ£°æ¿ÉÒÔ´´½¨Äã×Ô¼ºµÄ¹¤¾ß¡£ÔÚ³ÌÐò½áÊøºó£¬Ëü´òÓ¡³öÒ»Ð©
 ÓÃ·¨:
 </p>
 <pre class="example">
-valgrind [options] prog-and-args [options]:
+    valgrind [options] prog-and-args [options]:
 </pre>
 </div>
 
@@ -507,15 +507,15 @@ show &lt;number&gt; callers in stack traces
 <div class="outline-text-3" id="text-5-1">
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;stdio.h&gt;</span>
-<span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">argc</span>, <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">argv</span>[])
-{
-    <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">x</span>;
-    <span style="color: #99cc99;">if</span>(x == 0) {
-        printf(<span style="color: #66cccc;">"X is zero"</span>);
+<pre class="src src-c"><span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;stdio.h&gt;</span>
+    <span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">argc</span>, <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">argv</span>[])
+    {
+        <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">x</span>;
+        <span style="color: #99cc99;">if</span>(x == 0) {
+            printf(<span style="color: #66cccc;">"X is zero"</span>);
+        }
+        <span style="color: #99cc99;">return</span> 0;
     }
-    <span style="color: #99cc99;">return</span> 0;
-}
 </pre>
 </div>
 
@@ -524,8 +524,8 @@ show &lt;number&gt; callers in stack traces
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">gcc -g uninit-mem.c -o uninit-mem
-valgrind  --tool=memcheck ./uninit-mem
+<pre class="src src-sh">   gcc -g uninit-mem.c -o uninit-mem
+   valgrind  --tool=memcheck ./uninit-mem
 </pre>
 </div>
 
@@ -550,22 +550,22 @@ valgrind  --tool=memcheck ./uninit-mem
 <div class="outline-text-4" id="text-5-1-1">
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;stdlib.h&gt;</span>
-<span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;stdio.h&gt;</span>
+<pre class="src src-c"><span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;stdlib.h&gt;</span>
+<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;stdio.h&gt;</span>
 
-<span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">argc</span>,<span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">argv</span>[])
-{
-    <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">len</span>=5;
-    <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span>;
-    <span style="color: #6699cc;">int</span> *<span style="color: #ffcc66;">pt</span>=(<span style="color: #6699cc;">int</span>*)malloc(<span style="color: #6699cc;">len</span>*<span style="color: #99cc99;">sizeof</span>(<span style="color: #6699cc;">int</span>));
-    <span style="color: #6699cc;">int</span> *<span style="color: #ffcc66;">p</span>=pt;
-    <span style="color: #99cc99;">for</span>(i=0;i&lt;len;i++)
-    {p++;}
-    *p=5;
-    printf(&#8220;%d&#8221;,*p);
+    <span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">argc</span>,<span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">argv</span>[])
+    {
+        <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">len</span>=5;
+        <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span>;
+        <span style="color: #6699cc;">int</span> *<span style="color: #ffcc66;">pt</span>=(<span style="color: #6699cc;">int</span>*)malloc(<span style="color: #6699cc;">len</span>*<span style="color: #99cc99;">sizeof</span>(<span style="color: #6699cc;">int</span>));
+        <span style="color: #6699cc;">int</span> *<span style="color: #ffcc66;">p</span>=pt;
+        <span style="color: #99cc99;">for</span>(i=0;i&lt;len;i++)
+        {p++;}
+        *p=5;
+        printf(&#8220;%d&#8221;,*p);
 
-    <span style="color: #99cc99;">return</span>;
-}
+        <span style="color: #99cc99;">return</span>;
+    }
 </pre>
 </div>
 
@@ -581,29 +581,29 @@ valgrind  --tool=memcheck ./uninit-mem
 <div class="outline-text-4" id="text-5-1-2">
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;stdlib.h&gt;</span>
-<span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;stdio.h&gt;</span>
-<span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;string.h&gt;</span>
+<pre class="src src-c"><span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;stdlib.h&gt;</span>
+<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;stdio.h&gt;</span>
+<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;string.h&gt;</span>
 
-<span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">argc</span>,<span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">argv</span>[])
-{
-    <span style="color: #6699cc;">char</span> <span style="color: #ffcc66;">x</span>[50];
-    <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span>;
-    <span style="color: #99cc99;">for</span>(i=0;i&lt;50;i++)
+    <span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">argc</span>,<span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">argv</span>[])
     {
-        x[i]=i;
+        <span style="color: #6699cc;">char</span> <span style="color: #ffcc66;">x</span>[50];
+        <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span>;
+        <span style="color: #99cc99;">for</span>(i=0;i&lt;50;i++)
+        {
+            x[i]=i;
+        }
+        strncpy(x+20,x,20); <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">Good</span>
+        strncpy(x+20,x,21); <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">Overlap</span>
+        x[39]=&#8217;\0&#8217;;
+        strcpy(x,x+20); <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">Good</span>
+        x[39]=40;
+        x[40]=&#8217;\0&#8217;;
+        strcpy(x,x+20); <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">Overlap</span>
+
+        <span style="color: #99cc99;">return</span> 0;
+
     }
-    strncpy(x+20,x,20); <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">Good</span>
-    strncpy(x+20,x,21); <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">Overlap</span>
-    x[39]=&#8217;\0&#8217;;
-    strcpy(x,x+20); <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">Good</span>
-    x[39]=40;
-    x[40]=&#8217;\0&#8217;;
-    strcpy(x,x+20); <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">Overlap</span>
-
-    <span style="color: #99cc99;">return</span> 0;
-
-}
 </pre>
 </div>
 </div>
@@ -632,25 +632,25 @@ valgrind  --tool=memcheck ./uninit-mem
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;stdlib.h&gt;</span>
-<span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;stdio.h&gt;</span>
+<pre class="src src-c"><span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;stdlib.h&gt;</span>
+<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;stdio.h&gt;</span>
 
-<span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">argc</span>,<span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">argv</span>[])
-{
-    <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">p</span>=(<span style="color: #6699cc;">char</span>*)malloc(10);
-    <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">pt</span>=p;
-    <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span>;
-    <span style="color: #99cc99;">for</span>(i=0;i&lt;10;i++)
+    <span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">argc</span>,<span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">argv</span>[])
     {
-        p[i]=&#8217;z&#8217;;
+        <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">p</span>=(<span style="color: #6699cc;">char</span>*)malloc(10);
+        <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">pt</span>=p;
+        <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span>;
+        <span style="color: #99cc99;">for</span>(i=0;i&lt;10;i++)
+        {
+            p[i]=&#8217;z&#8217;;
+        }
+        <span style="color: #6699cc;">delete</span> <span style="color: #ffcc66;">p</span>;
+        p[1]=&#8217;a&#8217;;
+        free(pt);
+
+        <span style="color: #99cc99;">return</span> 0;
+
     }
-    <span style="color: #6699cc;">delete</span> <span style="color: #ffcc66;">p</span>;
-    p[1]=&#8217;a&#8217;;
-    free(pt);
-
-    <span style="color: #99cc99;">return</span> 0;
-
-}
 </pre>
 </div>
 </div>
@@ -662,19 +662,19 @@ valgrind  --tool=memcheck ./uninit-mem
 <div class="outline-text-4" id="text-5-1-4">
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;stdlib.h&gt;</span>
+<pre class="src src-c"><span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;stdlib.h&gt;</span>
 
-<span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>()
-{
-    <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">x</span> = (<span style="color: #6699cc;">char</span>*)malloc(20);
-    <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">y</span> = (<span style="color: #6699cc;">char</span>*)malloc(20);
-    x=y;
-    free(x);
-    free(y);
+    <span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>()
+    {
+        <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">x</span> = (<span style="color: #6699cc;">char</span>*)malloc(20);
+        <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">y</span> = (<span style="color: #6699cc;">char</span>*)malloc(20);
+        x=y;
+        free(x);
+        free(y);
 
-    <span style="color: #99cc99;">return</span> 0;
+        <span style="color: #99cc99;">return</span> 0;
 
-}
+    }
 </pre>
 </div>
 </div>
@@ -686,16 +686,16 @@ valgrind  --tool=memcheck ./uninit-mem
 <div class="outline-text-4" id="text-5-1-5">
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>()
-{
-    <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span>, *<span style="color: #ffcc66;">x</span>;
-    x = (<span style="color: #6699cc;">int</span> *)malloc(10*<span style="color: #99cc99;">sizeof</span>(<span style="color: #6699cc;">int</span>));
-    <span style="color: #99cc99;">for</span> (i=0; i&lt;11; i++)
-        x[i] = i;
-    free(x);
+<pre class="src src-c">    <span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>()
+    {
+        <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span>, *<span style="color: #ffcc66;">x</span>;
+        x = (<span style="color: #6699cc;">int</span> *)malloc(10*<span style="color: #99cc99;">sizeof</span>(<span style="color: #6699cc;">int</span>));
+        <span style="color: #99cc99;">for</span> (i=0; i&lt;11; i++)
+            x[i] = i;
+        free(x);
 
-    <span style="color: #99cc99;">return</span> 0;
-}
+        <span style="color: #99cc99;">return</span> 0;
+    }
 </pre>
 </div>
 </div>
@@ -706,17 +706,17 @@ valgrind  --tool=memcheck ./uninit-mem
 <div class="outline-text-4" id="text-5-1-6">
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;stdlib.h&gt;</span>
+<pre class="src src-c"><span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;stdlib.h&gt;</span>
 
-<span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>()
-{
-    <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">x</span> = malloc(10);
-    x[10] = <span style="color: #66cccc;">'a'</span>;
-    free(x);
+    <span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>()
+    {
+        <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">x</span> = malloc(10);
+        x[10] = <span style="color: #66cccc;">'a'</span>;
+        free(x);
 
-    <span style="color: #99cc99;">return</span> 0;
+        <span style="color: #99cc99;">return</span> 0;
 
-}
+    }
 </pre>
 </div>
 </div>
@@ -727,16 +727,16 @@ valgrind  --tool=memcheck ./uninit-mem
 <div class="outline-text-4" id="text-5-1-7">
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;stdlib.h&gt;</span>
+<pre class="src src-c"><span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;stdlib.h&gt;</span>
 
-<span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">argc</span>, <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">argv</span>[])
-{
-    <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">x</span> = malloc(10);
-    free(x);
-    free(x);
+    <span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">argc</span>, <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">argv</span>[])
+    {
+        <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">x</span> = malloc(10);
+        free(x);
+        free(x);
 
-    <span style="color: #99cc99;">return</span> 0;
-}
+        <span style="color: #99cc99;">return</span> 0;
+    }
 </pre>
 </div>
 </div>
@@ -752,12 +752,12 @@ Valgrind ²»¶Ô¾²Ì¬Êý×é (·ÖÅäÔÚÕ»ÉÏ) ½øÐÐ±ß½ç¼ì²é¡£Èç¹ûÔÚ³ÌÐòÖÐÉùÃ÷ÁËÒ»¸öÊý×é:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">argc</span>, <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">argv</span>[])
-{
-    <span style="color: #6699cc;">char</span> <span style="color: #ffcc66;">x</span>[10];
-    x[11] = <span style="color: #66cccc;">'a'</span>;
-    <span style="color: #99cc99;">return</span> 0;
-}
+<pre class="src src-c">    <span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">argc</span>, <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">argv</span>[])
+    {
+        <span style="color: #6699cc;">char</span> <span style="color: #ffcc66;">x</span>[10];
+        x[11] = <span style="color: #66cccc;">'a'</span>;
+        <span style="color: #99cc99;">return</span> 0;
+    }
 </pre>
 </div>
 
@@ -1306,7 +1306,7 @@ GNU C ¿â (libc.so)£¬ËùÓÐ³ÌÐò¹²ÓÃµÄ£¬¿ÉÄÜ»á·ÖÅäÒ»²¿·ÖÄÚ´æ×ÔÒÑÓÃ¡£Í¨³£ÔÚ³ÌÐòÍË³öÊ±
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: ubuntu</p>
-<p class="date">Created: 2015-11-16 Ò» 15:48</p>
+<p class="date">Created: 2016-01-12 ¶þ 00:28</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

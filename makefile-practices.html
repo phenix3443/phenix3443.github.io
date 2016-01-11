@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-11-16 一 15:49 -->
+<!-- 2016-01-12 二 00:29 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Makefile实践</title>
@@ -192,26 +192,26 @@ for the JavaScript code in this tag.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #ffcc66;">VPATH</span>=path1:path2:...
+<pre class="src src-sh">    <span style="color: #ffcc66;">VPATH</span>=path1:path2:...
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span style="color: #ffcc66;">CFLAGS</span> = -Iadd -Isub
-<span style="color: #ffcc66;">OBJSDIR</span> = .objs
-<span style="color: #ffcc66;">VPATH</span> = subdir1:subdir2:.
-<span style="color: #ffcc66;">OBJS</span> = add_int.o add_float.o sub_int.o sub_float.o main.o
+<pre class="src src-makefile">    <span style="color: #ffcc66;">CFLAGS</span> = -Iadd -Isub
+    <span style="color: #ffcc66;">OBJSDIR</span> = .objs
+    <span style="color: #ffcc66;">VPATH</span> = subdir1:subdir2:.
+    <span style="color: #ffcc66;">OBJS</span> = add_int.o add_float.o sub_int.o sub_float.o main.o
 
-<span style="color: #f99157;">$(</span><span style="color: #f99157;">OBJSDIR</span><span style="color: #f99157;">)</span>:
-    mkdir -p ./<span style="color: #f99157;">$</span><span style="color: #6699cc;">@</span>
-<span style="color: #f99157;">$(</span><span style="color: #f99157;">TARGET</span><span style="color: #f99157;">)</span>:$(<span style="color: #ffcc66;">OBJSDIR</span>) $(<span style="color: #ffcc66;">OBJS</span>)
-    $(<span style="color: #ffcc66;">CC</span>) -o $(<span style="color: #ffcc66;">TARGET</span>) $(<span style="color: #ffcc66;">OBJSDIR</span>)/*.o $(<span style="color: #ffcc66;">CFLAGS</span>)
-<span style="color: #f99157;">$(</span><span style="color: #f99157;">OBJS</span><span style="color: #f99157;">)</span>:%.o:%.c
-    $(<span style="color: #ffcc66;">CC</span>) -c $(<span style="color: #ffcc66;">CFLAGS</span>) $<span style="color: #6699cc;">&lt;</span> -o $(<span style="color: #ffcc66;">OBJSDIR</span>)/<span style="color: #f99157;">$</span><span style="color: #6699cc;">@</span>
-<span style="color: #f99157;">clean</span>:
-    <span style="color: #6699cc;">-</span>$(<span style="color: #ffcc66;">RM</span>) $(<span style="color: #ffcc66;">TARGET</span>)
-    <span style="color: #6699cc;">-</span>$(<span style="color: #ffcc66;">RM</span>) $(<span style="color: #ffcc66;">OBJSDIR</span>)/*.o
+    <span style="color: #f99157;">$(</span><span style="color: #f99157;">OBJSDIR</span><span style="color: #f99157;">)</span>:
+        mkdir -p ./<span style="color: #f99157;">$</span><span style="color: #6699cc;">@</span>
+    <span style="color: #f99157;">$(</span><span style="color: #f99157;">TARGET</span><span style="color: #f99157;">)</span>:$(<span style="color: #ffcc66;">OBJSDIR</span>) $(<span style="color: #ffcc66;">OBJS</span>)
+        $(<span style="color: #ffcc66;">CC</span>) -o $(<span style="color: #ffcc66;">TARGET</span>) $(<span style="color: #ffcc66;">OBJSDIR</span>)/*.o $(<span style="color: #ffcc66;">CFLAGS</span>)
+    <span style="color: #f99157;">$(</span><span style="color: #f99157;">OBJS</span><span style="color: #f99157;">)</span>:%.o:%.c
+        $(<span style="color: #ffcc66;">CC</span>) -c $(<span style="color: #ffcc66;">CFLAGS</span>) $<span style="color: #6699cc;">&lt;</span> -o $(<span style="color: #ffcc66;">OBJSDIR</span>)/<span style="color: #f99157;">$</span><span style="color: #6699cc;">@</span>
+    <span style="color: #f99157;">clean</span>:
+        -$(<span style="color: #ffcc66;">RM</span>) $(<span style="color: #ffcc66;">TARGET</span>)
+        -$(<span style="color: #ffcc66;">RM</span>) $(<span style="color: #ffcc66;">OBJSDIR</span>)/*.o
 </pre>
 </div>
 </div>
@@ -225,8 +225,8 @@ for the JavaScript code in this tag.
 
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span style="color: #f99157;">subdir</span>:
-    $(<span style="color: #ffcc66;">MAKE</span>)  -C subdir
+<pre class="src src-makefile">    <span style="color: #f99157;">subdir</span>:
+        $(<span style="color: #ffcc66;">MAKE</span>)  -C subdir
 </pre>
 </div>
 
@@ -235,13 +235,13 @@ subdir1 makefile
 </p>
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span style="color: #ffcc66;">OBJS</span> = app1
-<span style="color: #ffcc66;">CFLAGS</span> = -O2
-<span style="color: #f99157;">all</span>:$(<span style="color: #ffcc66;">OBJS</span>)
-<span style="color: #f99157;">$(</span><span style="color: #f99157;">OBJS</span><span style="color: #f99157;">)</span>:%:%.c
-    $(<span style="color: #ffcc66;">CC</span>) $(<span style="color: #ffcc66;">CFLAGS</span>) $<span style="color: #6699cc;">&lt;</span> -o $(<span style="color: #ffcc66;">OBJSDIR</span>)/<span style="color: #f99157;">$</span><span style="color: #6699cc;">@</span>
-<span style="color: #f99157;">clean</span>:
-    $(<span style="color: #ffcc66;">RM</span>) $(<span style="color: #ffcc66;">OBJS</span>)
+<pre class="src src-makefile">    <span style="color: #ffcc66;">OBJS</span> = app1
+    <span style="color: #ffcc66;">CFLAGS</span> = -O2
+    <span style="color: #f99157;">all</span>:$(<span style="color: #ffcc66;">OBJS</span>)
+    <span style="color: #f99157;">$(</span><span style="color: #f99157;">OBJS</span><span style="color: #f99157;">)</span>:%:%.c
+        $(<span style="color: #ffcc66;">CC</span>) $(<span style="color: #ffcc66;">CFLAGS</span>) $<span style="color: #6699cc;">&lt;</span> -o $(<span style="color: #ffcc66;">OBJSDIR</span>)/<span style="color: #f99157;">$</span><span style="color: #6699cc;">@</span>
+    <span style="color: #f99157;">clean</span>:
+        $(<span style="color: #ffcc66;">RM</span>) $(<span style="color: #ffcc66;">OBJS</span>)
 </pre>
 </div>
 
@@ -250,13 +250,13 @@ subdir2 makefile
 </p>
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span style="color: #ffcc66;">OBJS</span> = app2
-<span style="color: #ffcc66;">CFLAGS</span> = -O2
-<span style="color: #f99157;">all</span>: $(<span style="color: #ffcc66;">OBJS</span>)
-<span style="color: #f99157;">$(</span><span style="color: #f99157;">OBJS</span><span style="color: #f99157;">)</span>:%:%.c
-    $(<span style="color: #ffcc66;">CC</span>) $(<span style="color: #ffcc66;">CFLAGS</span>) $<span style="color: #6699cc;">&lt;</span> -o $(<span style="color: #ffcc66;">OBJSDIR</span>)/<span style="color: #f99157;">$</span><span style="color: #6699cc;">@</span>
-<span style="color: #f99157;">clean</span>:
-    $(<span style="color: #ffcc66;">RM</span>) $(<span style="color: #ffcc66;">OBJS</span>)
+<pre class="src src-makefile">    <span style="color: #ffcc66;">OBJS</span> = app2
+    <span style="color: #ffcc66;">CFLAGS</span> = -O2
+    <span style="color: #f99157;">all</span>: $(<span style="color: #ffcc66;">OBJS</span>)
+    <span style="color: #f99157;">$(</span><span style="color: #f99157;">OBJS</span><span style="color: #f99157;">)</span>:%:%.c
+        $(<span style="color: #ffcc66;">CC</span>) $(<span style="color: #ffcc66;">CFLAGS</span>) $<span style="color: #6699cc;">&lt;</span> -o $(<span style="color: #ffcc66;">OBJSDIR</span>)/<span style="color: #f99157;">$</span><span style="color: #6699cc;">@</span>
+    <span style="color: #f99157;">clean</span>:
+        $(<span style="color: #ffcc66;">RM</span>) $(<span style="color: #ffcc66;">OBJS</span>)
 </pre>
 </div>
 
@@ -266,21 +266,21 @@ subdir2 makefile
 
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span style="color: #ffcc66;">CC</span> = gcc
-<span style="color: #ffcc66;">CFLAGS</span> = -O2
-<span style="color: #ffcc66;">TARGET</span> = main
-export <span style="color: #ffcc66;">OBJSDIR</span> = ${<span style="color: #ffcc66;">shell</span> pwd}/.objs
-<span style="color: #f99157;">$(</span><span style="color: #f99157;">TARGET</span><span style="color: #f99157;">)</span>:$(<span style="color: #ffcc66;">OBJSDIR</span>) main.o
-    $(<span style="color: #ffcc66;">MAKE</span>) -C add
-    $(<span style="color: #ffcc66;">MAKE</span>) -C sub
-    $(<span style="color: #ffcc66;">CC</span>) -o $(<span style="color: #ffcc66;">TARGET</span>) $(<span style="color: #ffcc66;">OBJSDIR</span>)/*.o
-<span style="color: #f99157;">main.o</span>:%.o:%.c
-    $(<span style="color: #ffcc66;">CC</span>) -c $<span style="color: #6699cc;">&lt;</span> -o $(<span style="color: #ffcc66;">OBJSDIR</span>)/<span style="color: #f99157;">$</span><span style="color: #6699cc;">@</span> $(<span style="color: #ffcc66;">CFLAGS</span>) -Iadd -Isub
-<span style="color: #f99157;">$(</span><span style="color: #f99157;">OBJSDIR</span><span style="color: #f99157;">)</span>:
-    mkdir -p $(<span style="color: #ffcc66;">OBJSDIR</span>)
-<span style="color: #f99157;">clean</span>:
-    <span style="color: #6699cc;">-</span>$(<span style="color: #ffcc66;">RM</span>) $(<span style="color: #ffcc66;">TARGET</span>)
-    <span style="color: #6699cc;">-</span>$(<span style="color: #ffcc66;">RM</span>) $(<span style="color: #ffcc66;">OBJSDIR</span>)/*.o
+<pre class="src src-makefile">    <span style="color: #ffcc66;">CC</span> = gcc
+    <span style="color: #ffcc66;">CFLAGS</span> = -O2
+    <span style="color: #ffcc66;">TARGET</span> = main
+    export OBJSDIR = ${<span style="color: #ffcc66;">shell</span> pwd}/.objs
+    <span style="color: #f99157;">$(</span><span style="color: #f99157;">TARGET</span><span style="color: #f99157;">)</span>:$(<span style="color: #ffcc66;">OBJSDIR</span>) main.o
+        $(<span style="color: #ffcc66;">MAKE</span>) -C add
+        $(<span style="color: #ffcc66;">MAKE</span>) -C sub
+        $(<span style="color: #ffcc66;">CC</span>) -o $(<span style="color: #ffcc66;">TARGET</span>) $(<span style="color: #ffcc66;">OBJSDIR</span>)/*.o
+    <span style="color: #f99157;">main.o</span>:%.o:%.c
+        $(<span style="color: #ffcc66;">CC</span>) -c $<span style="color: #6699cc;">&lt;</span> -o $(<span style="color: #ffcc66;">OBJSDIR</span>)/<span style="color: #f99157;">$</span><span style="color: #6699cc;">@</span> $(<span style="color: #ffcc66;">CFLAGS</span>) -Iadd -Isub
+    <span style="color: #f99157;">$(</span><span style="color: #f99157;">OBJSDIR</span><span style="color: #f99157;">)</span>:
+        mkdir -p $(<span style="color: #ffcc66;">OBJSDIR</span>)
+    <span style="color: #f99157;">clean</span>:
+        -$(<span style="color: #ffcc66;">RM</span>) $(<span style="color: #ffcc66;">TARGET</span>)
+        -$(<span style="color: #ffcc66;">RM</span>) $(<span style="color: #ffcc66;">OBJSDIR</span>)/*.o
 </pre>
 </div>
 
@@ -297,26 +297,26 @@ export <span style="color: #ffcc66;">OBJSDIR</span> = ${<span style="color: #ffc
 </p>
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span style="color: #f99157;">.PHONY</span> : all
+<pre class="src src-makefile">    <span style="color: #f99157;">.PHONY</span> : all
 
-<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">arg1 dir</span>
-define EXPAND_temp
-<span style="color: #ffcc66;">FILES</span> := $(<span style="color: #ffcc66;">wildcard</span> $(<span style="color: #ffcc66;">1</span>)*)
-<span style="color: #ffcc66;">DIRS</span> :=
-$$(foreach e, $$(FILES), $$(if $$(wildcard $$(e)/*), $$(eval DIRS := $$(DIRS) $$(e))))
-<span style="color: #ffcc66;">FILES</span> := $$(filter-out $$(DIRS),$$(FILES))
+    <span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">arg1 dir</span>
+    define EXPAND_temp
+    <span style="color: #ffcc66;">FILES</span> := $(<span style="color: #ffcc66;">wildcard</span> $(<span style="color: #ffcc66;">1</span>)*)
+    <span style="color: #ffcc66;">DIRS</span> :=
+    $$(foreach e, $$(FILES), $$(if $$(wildcard $$(e)/*), $$(eval DIRS := $$(DIRS) $$(e))))
+    <span style="color: #ffcc66;">FILES</span> := $$(filter-out $$(DIRS),$$(FILES))
 
-<span style="color: #ffcc66;">ALLDIRS</span> := $$(ALLDIRS) $$(DIRS)
-<span style="color: #ffcc66;">ALLFILES</span> := $$(ALLFILES) $$(FILES)
-$$(foreach e,$$(DIRS),$$(eval $$(call EXPAND_temp,$$(e)/)))
-endef
+    <span style="color: #ffcc66;">ALLDIRS</span> := $$(ALLDIRS) $$(DIRS)
+    <span style="color: #ffcc66;">ALLFILES</span> := $$(ALLFILES) $$(FILES)
+    $$(foreach e,$$(DIRS),$$(eval $$(call EXPAND_temp,$$(e)/)))
+    endef
 
-$(<span style="color: #ffcc66;">eval</span> $(<span style="color: #ffcc66;">call</span> EXPAND_temp))
+    $(<span style="color: #ffcc66;">eval</span> $(<span style="color: #ffcc66;">call</span> EXPAND_temp))
 
-<span style="color: #f99157;">all</span> :
-    <span style="color: #6699cc;">@</span>for subdir in $(<span style="color: #ffcc66;">ALLDIRS</span>); do \
-        echo $$subdir; \
-    done
+    <span style="color: #f99157;">all</span> :
+        @for subdir in $(<span style="color: #ffcc66;">ALLDIRS</span>); do \
+            echo $$subdir; \
+        done
 </pre>
 </div>
 </div>
@@ -339,7 +339,7 @@ $(<span style="color: #ffcc66;">eval</span> $(<span style="color: #ffcc66;">call
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: ubuntu</p>
-<p class="date">Created: 2015-11-16 一 15:49</p>
+<p class="date">Created: 2016-01-12 二 00:29</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

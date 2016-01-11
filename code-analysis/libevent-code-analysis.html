@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-11-16 一 15:49 -->
+<!-- 2016-01-12 二 00:29 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>libevent源码分析</title>
@@ -238,7 +238,7 @@ Whenever possible, the most natural way to write a program with Libevent should 
 
 <div class="org-src-container">
 
-<pre class="src src-sh">./configure &amp;&amp; make &amp;&amp; sudo make install
+<pre class="src src-sh">    ./configure &amp;&amp; make &amp;&amp; sudo make install
 </pre>
 </div>
 
@@ -433,7 +433,7 @@ This library provides support for encrypted communications using bufferevents an
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
 
-<pre class="src src-sh">sudo apt-get install -y tree
+<pre class="src src-sh">    sudo apt-get install -y tree
 </pre>
 </div>
 <p>
@@ -441,12 +441,12 @@ libevent源代码中的目录和文件分为如下部分：
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #cc99cc;">cd</span> ~/projects/libevent-2.0.22-stable/
-tree -d
+<pre class="src src-sh">    <span style="color: #cc99cc;">cd</span> ~/projects/libevent-2.0.22-stable/
+    tree -d
 </pre>
 </div>
 
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table border="1" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" width="auto">
 
 
 <colgroup>
@@ -464,8 +464,8 @@ tree -d
 </tr>
 
 <tr>
-<td class="org-left">phenix@ubuntu:~/projects/libevent-2.0.22-stable$</td>
 <td class="org-left">.</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">&#xa0;</td>
 </tr>
 
@@ -543,11 +543,11 @@ tree -d
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">tree compat
+<pre class="src src-sh">    tree compat
 </pre>
 </div>
 
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table border="1" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" width="auto">
 
 
 <colgroup>
@@ -604,11 +604,11 @@ include/event2/ 头文件目录
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">tree include
+<pre class="src src-sh">    tree include
 </pre>
 </div>
 
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table border="1" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" width="auto">
 
 
 <colgroup>
@@ -925,147 +925,147 @@ include/event2/ 头文件目录
 <div class="outline-text-3" id="text-6-1">
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #999999; font-style: italic;">/*</span>
-<span style="color: #999999; font-style: italic;">  This exmple program provides a trivial server program that listens for TCP</span>
-<span style="color: #999999; font-style: italic;">  connections on port 9995.  When they arrive, it writes a short message to</span>
-<span style="color: #999999; font-style: italic;">  each client connection, and closes each connection once it is flushed.</span>
+<pre class="src src-c">    <span style="color: #999999; font-style: italic;">/*</span>
+<span style="color: #999999; font-style: italic;">      This exmple program provides a trivial server program that listens for TCP</span>
+<span style="color: #999999; font-style: italic;">      connections on port 9995.  When they arrive, it writes a short message to</span>
+<span style="color: #999999; font-style: italic;">      each client connection, and closes each connection once it is flushed.</span>
 
-<span style="color: #999999; font-style: italic;">  Where possible, it exits cleanly in response to a SIGINT (ctrl-c).</span>
-<span style="color: #999999; font-style: italic;">*/</span>
+<span style="color: #999999; font-style: italic;">      Where possible, it exits cleanly in response to a SIGINT (ctrl-c).</span>
+<span style="color: #999999; font-style: italic;">    </span><span style="color: #999999; font-style: italic;">*/</span>
 
 
-<span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;string.h&gt;</span>
-<span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;errno.h&gt;</span>
-<span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;stdio.h&gt;</span>
-<span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;signal.h&gt;</span>
-<span style="color: #cc99cc;">#if</span><span style="color: #cc99cc;">n</span><span style="color: #cc99cc;">def</span> WIN32
-<span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;netinet/in.h&gt;</span>
-<span style="color: #cc99cc;"># ifdef</span> _XOPEN_SOURCE_EXTENDED
-<span style="color: #cc99cc;">#  include</span> <span style="color: #66cccc;">&lt;arpa/inet.h&gt;</span>
-<span style="color: #cc99cc;"># endif</span>
-<span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;sys/socket.h&gt;</span>
-<span style="color: #cc99cc;">#endif</span>
+<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;string.h&gt;</span>
+<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;errno.h&gt;</span>
+<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;stdio.h&gt;</span>
+<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;signal.h&gt;</span>
+<span style="color: #cc99cc;">    #if</span><span style="color: #cc99cc;">n</span><span style="color: #cc99cc;">def</span> WIN32
+<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;netinet/in.h&gt;</span>
+<span style="color: #cc99cc;">    # ifdef</span> _XOPEN_SOURCE_EXTENDED
+<span style="color: #cc99cc;">    #  include</span> <span style="color: #66cccc;">&lt;arpa/inet.h&gt;</span>
+<span style="color: #cc99cc;">    # endif</span>
+<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;sys/socket.h&gt;</span>
+<span style="color: #cc99cc;">    #endif</span>
 
-<span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;event2/bufferevent.h&gt;</span>
-<span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;event2/buffer.h&gt;</span>
-<span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;event2/listener.h&gt;</span>
-<span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;event2/util.h&gt;</span>
-<span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;event2/event.h&gt;</span>
+<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;event2/bufferevent.h&gt;</span>
+<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;event2/buffer.h&gt;</span>
+<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;event2/listener.h&gt;</span>
+<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;event2/util.h&gt;</span>
+<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;event2/event.h&gt;</span>
 
-<span style="color: #99cc99;">static</span> <span style="color: #99cc99;">const</span> <span style="color: #6699cc;">char</span> <span style="color: #ffcc66;">MESSAGE</span>[] = <span style="color: #66cccc;">"Hello, World!\n"</span>;
+    <span style="color: #99cc99;">static</span> <span style="color: #99cc99;">const</span> <span style="color: #6699cc;">char</span> <span style="color: #ffcc66;">MESSAGE</span>[] = <span style="color: #66cccc;">"Hello, World!\n"</span>;
 
-<span style="color: #99cc99;">static</span> <span style="color: #99cc99;">const</span> <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">PORT</span> = 9995;
+    <span style="color: #99cc99;">static</span> <span style="color: #99cc99;">const</span> <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">PORT</span> = 9995;
 
-<span style="color: #99cc99;">static</span> <span style="color: #6699cc;">void</span> <span style="color: #f99157;">listener_cb</span>(<span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">evconnlistener</span> *, <span style="color: #6699cc;">evutil_socket_t</span>,
-    <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">sockaddr</span> *, <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">socklen</span>, <span style="color: #6699cc;">void</span> *);
-<span style="color: #99cc99;">static</span> <span style="color: #6699cc;">void</span> <span style="color: #f99157;">conn_writecb</span>(<span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">bufferevent</span> *, <span style="color: #6699cc;">void</span> *);
-<span style="color: #99cc99;">static</span> <span style="color: #6699cc;">void</span> <span style="color: #f99157;">conn_eventcb</span>(<span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">bufferevent</span> *, <span style="color: #6699cc;">short</span>, <span style="color: #6699cc;">void</span> *);
-<span style="color: #99cc99;">static</span> <span style="color: #6699cc;">void</span> <span style="color: #f99157;">signal_cb</span>(<span style="color: #6699cc;">evutil_socket_t</span>, <span style="color: #6699cc;">short</span>, <span style="color: #6699cc;">void</span> *);
+    <span style="color: #99cc99;">static</span> <span style="color: #6699cc;">void</span> <span style="color: #f99157;">listener_cb</span>(<span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">evconnlistener</span> *, <span style="color: #6699cc;">evutil_socket_t</span>,
+        <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">sockaddr</span> *, <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">socklen</span>, <span style="color: #6699cc;">void</span> *);
+    <span style="color: #99cc99;">static</span> <span style="color: #6699cc;">void</span> <span style="color: #f99157;">conn_writecb</span>(<span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">bufferevent</span> *, <span style="color: #6699cc;">void</span> *);
+    <span style="color: #99cc99;">static</span> <span style="color: #6699cc;">void</span> <span style="color: #f99157;">conn_eventcb</span>(<span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">bufferevent</span> *, <span style="color: #6699cc;">short</span>, <span style="color: #6699cc;">void</span> *);
+    <span style="color: #99cc99;">static</span> <span style="color: #6699cc;">void</span> <span style="color: #f99157;">signal_cb</span>(<span style="color: #6699cc;">evutil_socket_t</span>, <span style="color: #6699cc;">short</span>, <span style="color: #6699cc;">void</span> *);
 
-<span style="color: #6699cc;">int</span>
-<span style="color: #f99157;">main</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">argc</span>, <span style="color: #6699cc;">char</span> **<span style="color: #ffcc66;">argv</span>)
-{
-    <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">event_base</span> *<span style="color: #ffcc66;">base</span>;
-    <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">evconnlistener</span> *<span style="color: #ffcc66;">listener</span>;
-    <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">event</span> *<span style="color: #ffcc66;">signal_event</span>;
+    <span style="color: #6699cc;">int</span>
+    <span style="color: #f99157;">main</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">argc</span>, <span style="color: #6699cc;">char</span> **<span style="color: #ffcc66;">argv</span>)
+    {
+        <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">event_base</span> *<span style="color: #ffcc66;">base</span>;
+        <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">evconnlistener</span> *<span style="color: #ffcc66;">listener</span>;
+        <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">event</span> *<span style="color: #ffcc66;">signal_event</span>;
 
-    <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">sockaddr_in</span> <span style="color: #ffcc66;">sin</span>;
-<span style="color: #cc99cc;">#ifdef</span> WIN32
-    <span style="color: #6699cc;">WSADATA</span> <span style="color: #ffcc66;">wsa_data</span>;
-    WSAStartup(0x0201, &amp;wsa_data);
-<span style="color: #cc99cc;">#endif</span>
+        <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">sockaddr_in</span> <span style="color: #ffcc66;">sin</span>;
+<span style="color: #cc99cc;">    #ifdef</span> WIN32
+        <span style="color: #6699cc;">WSADATA</span> <span style="color: #ffcc66;">wsa_data</span>;
+        WSAStartup(0x0201, &amp;wsa_data);
+<span style="color: #cc99cc;">    #endif</span>
 
-    base = event_base_new();
-    <span style="color: #99cc99;">if</span> (<span style="color: #6699cc;">!</span>base) {
-        fprintf(stderr, <span style="color: #66cccc;">"Could not initialize libevent!\n"</span>);
-        <span style="color: #99cc99;">return</span> 1;
+        base = event_base_new();
+        <span style="color: #99cc99;">if</span> (<span style="color: #6699cc;">!</span>base) {
+            fprintf(stderr, <span style="color: #66cccc;">"Could not initialize libevent!\n"</span>);
+            <span style="color: #99cc99;">return</span> 1;
+        }
+
+        memset(&amp;sin, 0, <span style="color: #99cc99;">sizeof</span>(sin));
+        sin.sin_family = AF_INET;
+        sin.sin_port = htons(PORT);
+
+        listener = evconnlistener_new_bind(base, listener_cb, (<span style="color: #6699cc;">void</span> *)base,
+            LEV_OPT_REUSEABLE|LEV_OPT_CLOSE_ON_FREE, -1,
+            (<span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">sockaddr</span>*)&amp;sin,
+            <span style="color: #99cc99;">sizeof</span>(sin));
+
+        <span style="color: #99cc99;">if</span> (<span style="color: #6699cc;">!</span>listener) {
+            fprintf(stderr, <span style="color: #66cccc;">"Could not create a listener!\n"</span>);
+            <span style="color: #99cc99;">return</span> 1;
+        }
+
+        signal_event = evsignal_new(base, SIGINT, signal_cb, (<span style="color: #6699cc;">void</span> *)base);
+
+        <span style="color: #99cc99;">if</span> (<span style="color: #6699cc;">!</span>signal_event || event_add(signal_event, <span style="color: #6699cc;">NULL</span>)&lt;0) {
+            fprintf(stderr, <span style="color: #66cccc;">"Could not create/add a signal event!\n"</span>);
+            <span style="color: #99cc99;">return</span> 1;
+        }
+
+        event_base_dispatch(base);
+
+        evconnlistener_free(listener);
+        event_free(signal_event);
+        event_base_free(base);
+
+        printf(<span style="color: #66cccc;">"done\n"</span>);
+        <span style="color: #99cc99;">return</span> 0;
     }
 
-    memset(&amp;sin, 0, <span style="color: #99cc99;">sizeof</span>(sin));
-    sin.sin_family = AF_INET;
-    sin.sin_port = htons(PORT);
+    <span style="color: #99cc99;">static</span> <span style="color: #6699cc;">void</span>
+    <span style="color: #f99157;">listener_cb</span>(<span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">evconnlistener</span> *<span style="color: #ffcc66;">listener</span>, <span style="color: #6699cc;">evutil_socket_t</span> <span style="color: #ffcc66;">fd</span>,
+        <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">sockaddr</span> *<span style="color: #ffcc66;">sa</span>, <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">socklen</span>, <span style="color: #6699cc;">void</span> *<span style="color: #ffcc66;">user_data</span>)
+    {
+        <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">event_base</span> *<span style="color: #ffcc66;">base</span> = user_data;
+        <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">bufferevent</span> *<span style="color: #ffcc66;">bev</span>;
 
-    listener = evconnlistener_new_bind(base, listener_cb, (<span style="color: #6699cc;">void</span> *)base,
-        LEV_OPT_REUSEABLE|LEV_OPT_CLOSE_ON_FREE, -1,
-        (<span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">sockaddr</span>*)&amp;sin,
-        <span style="color: #99cc99;">sizeof</span>(sin));
+        bev = bufferevent_socket_new(base, fd, BEV_OPT_CLOSE_ON_FREE);
+        <span style="color: #99cc99;">if</span> (<span style="color: #6699cc;">!</span>bev) {
+            fprintf(stderr, <span style="color: #66cccc;">"Error constructing bufferevent!"</span>);
+            event_base_loopbreak(base);
+            <span style="color: #99cc99;">return</span>;
+        }
+        bufferevent_setcb(bev, <span style="color: #6699cc;">NULL</span>, conn_writecb, conn_eventcb, <span style="color: #6699cc;">NULL</span>);
+        bufferevent_enable(bev, EV_WRITE);
+        bufferevent_disable(bev, EV_READ);
 
-    <span style="color: #99cc99;">if</span> (<span style="color: #6699cc;">!</span>listener) {
-        fprintf(stderr, <span style="color: #66cccc;">"Could not create a listener!\n"</span>);
-        <span style="color: #99cc99;">return</span> 1;
+        bufferevent_write(bev, MESSAGE, strlen(MESSAGE));
     }
 
-    signal_event = evsignal_new(base, SIGINT, signal_cb, (<span style="color: #6699cc;">void</span> *)base);
-
-    <span style="color: #99cc99;">if</span> (<span style="color: #6699cc;">!</span>signal_event || event_add(signal_event, <span style="color: #6699cc;">NULL</span>)&lt;0) {
-        fprintf(stderr, <span style="color: #66cccc;">"Could not create/add a signal event!\n"</span>);
-        <span style="color: #99cc99;">return</span> 1;
+    <span style="color: #99cc99;">static</span> <span style="color: #6699cc;">void</span>
+    <span style="color: #f99157;">conn_writecb</span>(<span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">bufferevent</span> *<span style="color: #ffcc66;">bev</span>, <span style="color: #6699cc;">void</span> *<span style="color: #ffcc66;">user_data</span>)
+    {
+        <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">evbuffer</span> *<span style="color: #ffcc66;">output</span> = bufferevent_get_output(bev);
+        <span style="color: #99cc99;">if</span> (evbuffer_get_length(output) == 0) {
+            printf(<span style="color: #66cccc;">"flushed answer\n"</span>);
+            bufferevent_free(bev);
+        }
     }
 
-    event_base_dispatch(base);
-
-    evconnlistener_free(listener);
-    event_free(signal_event);
-    event_base_free(base);
-
-    printf(<span style="color: #66cccc;">"done\n"</span>);
-    <span style="color: #99cc99;">return</span> 0;
-}
-
-<span style="color: #99cc99;">static</span> <span style="color: #6699cc;">void</span>
-<span style="color: #f99157;">listener_cb</span>(<span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">evconnlistener</span> *<span style="color: #ffcc66;">listener</span>, <span style="color: #6699cc;">evutil_socket_t</span> <span style="color: #ffcc66;">fd</span>,
-    <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">sockaddr</span> *<span style="color: #ffcc66;">sa</span>, <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">socklen</span>, <span style="color: #6699cc;">void</span> *<span style="color: #ffcc66;">user_data</span>)
-{
-    <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">event_base</span> *<span style="color: #ffcc66;">base</span> = user_data;
-    <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">bufferevent</span> *<span style="color: #ffcc66;">bev</span>;
-
-    bev = bufferevent_socket_new(base, fd, BEV_OPT_CLOSE_ON_FREE);
-    <span style="color: #99cc99;">if</span> (<span style="color: #6699cc;">!</span>bev) {
-        fprintf(stderr, <span style="color: #66cccc;">"Error constructing bufferevent!"</span>);
-        event_base_loopbreak(base);
-        <span style="color: #99cc99;">return</span>;
-    }
-    bufferevent_setcb(bev, <span style="color: #6699cc;">NULL</span>, conn_writecb, conn_eventcb, <span style="color: #6699cc;">NULL</span>);
-    bufferevent_enable(bev, EV_WRITE);
-    bufferevent_disable(bev, EV_READ);
-
-    bufferevent_write(bev, MESSAGE, strlen(MESSAGE));
-}
-
-<span style="color: #99cc99;">static</span> <span style="color: #6699cc;">void</span>
-<span style="color: #f99157;">conn_writecb</span>(<span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">bufferevent</span> *<span style="color: #ffcc66;">bev</span>, <span style="color: #6699cc;">void</span> *<span style="color: #ffcc66;">user_data</span>)
-{
-    <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">evbuffer</span> *<span style="color: #ffcc66;">output</span> = bufferevent_get_output(bev);
-    <span style="color: #99cc99;">if</span> (evbuffer_get_length(output) == 0) {
-        printf(<span style="color: #66cccc;">"flushed answer\n"</span>);
+    <span style="color: #99cc99;">static</span> <span style="color: #6699cc;">void</span>
+    <span style="color: #f99157;">conn_eventcb</span>(<span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">bufferevent</span> *<span style="color: #ffcc66;">bev</span>, <span style="color: #6699cc;">short</span> <span style="color: #ffcc66;">events</span>, <span style="color: #6699cc;">void</span> *<span style="color: #ffcc66;">user_data</span>)
+    {
+        <span style="color: #99cc99;">if</span> (events &amp; BEV_EVENT_EOF) {
+            printf(<span style="color: #66cccc;">"Connection closed.\n"</span>);
+        } <span style="color: #99cc99;">else</span> <span style="color: #99cc99;">if</span> (events &amp; BEV_EVENT_ERROR) {
+            printf(<span style="color: #66cccc;">"Got an error on the connection: %s\n"</span>,
+                strerror(errno));<span style="color: #999999; font-style: italic;">/*</span><span style="color: #999999; font-style: italic;">XXX win32</span><span style="color: #999999; font-style: italic;">*/</span>
+        }
+        <span style="color: #999999; font-style: italic;">/* </span><span style="color: #999999; font-style: italic;">None of the other events can happen here, since we haven't enabled</span>
+<span style="color: #999999; font-style: italic;">         * timeouts </span><span style="color: #999999; font-style: italic;">*/</span>
         bufferevent_free(bev);
     }
-}
 
-<span style="color: #99cc99;">static</span> <span style="color: #6699cc;">void</span>
-<span style="color: #f99157;">conn_eventcb</span>(<span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">bufferevent</span> *<span style="color: #ffcc66;">bev</span>, <span style="color: #6699cc;">short</span> <span style="color: #ffcc66;">events</span>, <span style="color: #6699cc;">void</span> *<span style="color: #ffcc66;">user_data</span>)
-{
-    <span style="color: #99cc99;">if</span> (events &amp; BEV_EVENT_EOF) {
-        printf(<span style="color: #66cccc;">"Connection closed.\n"</span>);
-    } <span style="color: #99cc99;">else</span> <span style="color: #99cc99;">if</span> (events &amp; BEV_EVENT_ERROR) {
-        printf(<span style="color: #66cccc;">"Got an error on the connection: %s\n"</span>,
-            strerror(errno));<span style="color: #999999; font-style: italic;">/*</span><span style="color: #999999; font-style: italic;">XXX win32</span><span style="color: #999999; font-style: italic;">*/</span>
+    <span style="color: #99cc99;">static</span> <span style="color: #6699cc;">void</span>
+    <span style="color: #f99157;">signal_cb</span>(<span style="color: #6699cc;">evutil_socket_t</span> <span style="color: #ffcc66;">sig</span>, <span style="color: #6699cc;">short</span> <span style="color: #ffcc66;">events</span>, <span style="color: #6699cc;">void</span> *<span style="color: #ffcc66;">user_data</span>)
+    {
+        <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">event_base</span> *<span style="color: #ffcc66;">base</span> = user_data;
+        <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">timeval</span> <span style="color: #ffcc66;">delay</span> = { 2, 0 };
+
+        printf(<span style="color: #66cccc;">"Caught an interrupt signal; exiting cleanly in two seconds.\n"</span>);
+
+        event_base_loopexit(base, &amp;delay);
     }
-    <span style="color: #999999; font-style: italic;">/* </span><span style="color: #999999; font-style: italic;">None of the other events can happen here, since we haven't enabled</span>
-<span style="color: #999999; font-style: italic;">     * timeouts </span><span style="color: #999999; font-style: italic;">*/</span>
-    bufferevent_free(bev);
-}
-
-<span style="color: #99cc99;">static</span> <span style="color: #6699cc;">void</span>
-<span style="color: #f99157;">signal_cb</span>(<span style="color: #6699cc;">evutil_socket_t</span> <span style="color: #ffcc66;">sig</span>, <span style="color: #6699cc;">short</span> <span style="color: #ffcc66;">events</span>, <span style="color: #6699cc;">void</span> *<span style="color: #ffcc66;">user_data</span>)
-{
-    <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">event_base</span> *<span style="color: #ffcc66;">base</span> = user_data;
-    <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">timeval</span> <span style="color: #ffcc66;">delay</span> = { 2, 0 };
-
-    printf(<span style="color: #66cccc;">"Caught an interrupt signal; exiting cleanly in two seconds.\n"</span>);
-
-    event_base_loopexit(base, &amp;delay);
-}
 </pre>
 </div>
 <p>
@@ -1073,7 +1073,7 @@ include/event2/ 头文件目录
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">gcc -g sample-1.c -o sample-1 -levent
+<pre class="src src-sh">    gcc -g sample-1.c -o sample-1 -levent
 </pre>
 </div>
 
@@ -1103,7 +1103,7 @@ sample-1.c代码简单，但是基本上描述了libevent库的主要逻辑：
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: ubuntu</p>
-<p class="date">Created: 2015-11-16 一 15:49</p>
+<p class="date">Created: 2016-01-12 二 00:29</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
