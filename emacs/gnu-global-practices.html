@@ -1,0 +1,1160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-02-19 Fri 17:00 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>GNU Global Practices</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="ubuntu-company" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">GNU Global Practices</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline5">1. Manual</a>
+<ul>
+<li><a href="#orgheadline4">1.1. Overview of this tool</a>
+<ul>
+<li><a href="#orgheadline1">1.1.1. What is GNU GLOBAL?</a></li>
+<li><a href="#orgheadline2">1.1.2. Concept of project</a></li>
+<li><a href="#orgheadline3">1.1.3. Features</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline9">2. Command line</a>
+<ul>
+<li><a href="#orgheadline6">2.1. Preparation</a></li>
+<li><a href="#orgheadline7">2.2. Basic usage</a></li>
+<li><a href="#orgheadline8">2.3. Applied usage</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline22">3. Various applications</a>
+<ul>
+<li><a href="#orgheadline10">3.1. Global facility for Bash</a></li>
+<li><a href="#orgheadline11">3.2. Less using GLOBAL</a></li>
+<li><a href="#orgheadline12">3.3. Nvi-1.81.5 using GLOBAL</a></li>
+<li><a href="#orgheadline13">3.4. Elvis using GLOBAL</a></li>
+<li><a href="#orgheadline14">3.5. Vim using GLOBAL</a></li>
+<li><a href="#orgheadline18">3.6. Extended Emacs using GLOBAL</a>
+<ul>
+<li><a href="#orgheadline15">3.6.1. Features</a></li>
+<li><a href="#orgheadline16">3.6.2. Preparation</a></li>
+<li><a href="#orgheadline17">3.6.3. Usage</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline19">3.7. Gtags-cscope</a></li>
+<li><a href="#orgheadline20">3.8. Hypertext generator</a></li>
+<li><a href="#orgheadline21">3.9. Doxygen using GLOBAL</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline26">4. Other topics</a>
+<ul>
+<li><a href="#orgheadline23">4.1. How to configure GLOBAL</a></li>
+<li><a href="#orgheadline24">4.2. Plug-in parser</a></li>
+<li><a href="#orgheadline25">4.3. Incremental updating</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline34">5. Command References</a>
+<ul>
+<li><a href="#orgheadline27">5.1. global - print locations of given symbols</a></li>
+<li><a href="#orgheadline28">5.2. gtags - create tag files for global.</a></li>
+<li><a href="#orgheadline29">5.3. htags - generate a hypertext from a set of source files.</a></li>
+<li><a href="#orgheadline30">5.4. htags-server - start a private Web/CGI server for hyper-text</a></li>
+<li><a href="#orgheadline31">5.5. gozilla - force mozilla to display specified part of a source file.</a></li>
+<li><a href="#orgheadline32">5.6. gtags-cscope - interactively examine a C program.</a></li>
+<li><a href="#orgheadline33">5.7. globash - a special shell for GLOBAL using GNU bash.</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+主要根据<a href="https://www.gnu.org/software/global/globaldoc_toc.html">GNU Global Tutorial</a>介绍一下其在 Emacs 下面的使用。
+GNU Global（全称为 GNU Global source code tagging system，以下简称 Global） 是一个可以跨越各种环境的代码标记系统，支持 Emacs、VI、Bash Shell 甚至是浏览器，主要用来查找代码中各种符号的定义和引用。最新版本的 global（6.5.2）除了软件本身支持的 C, C++, Yacc, Java, PHP4 and assembly 六种语言，在将 Pygments 和 Exuberant Ctags 作为解析器后，还可以支持 Awk, Dos batch, COBOL, C, C++, C#, Erlang, Fortran, Java, JavaScript, Lisp, Lua, Pascal, Perl, PHP, Python, Ruby, Matlab, OCaml, Scheme, Tcl, TeX, Verilog, Vhdl and Vim 等 25 种语言。helm-gtags 是 Emacs 版本的 Global 前端，用其可以方便的在符号的定义和引用间进行跳转。Windows 二进制版本的 Global 中自带了 ctags，所以只需额外安装 Pygments。 安装过程中需要新建 GTAGSCONF 和 GTAGSLABEL 两个环境变量来指示 Global 将 pygments 作为分析器，具体参见 Global 源码包 plugin-factory 目录下两个 HOWTO 文件。需要注意的是 global 只能分析当前工程目录下的文件，不能跟踪解析工程文件中引用到其他地方的文件。不能解析 Cpp .h 头文件需要设置环境变量 GTAGSFORCECPP 环境变量。（待解决）
+</p>
+
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5"><span class="section-number-2">1</span> <a href="https://www.gnu.org/software/global/globaldoc_toc.html">Manual</a></h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">1.1</span> Overview of this tool</h3>
+<div class="outline-text-3" id="text-1-1">
+</div><div id="outline-container-orgheadline1" class="outline-4">
+<h4 id="orgheadline1"><span class="section-number-4">1.1.1</span> What is GNU GLOBAL?</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+GNU GLOBAL is a source code tag system that works the same way across diverse environments, such as Emacs editor, Vi editor, Less viewer, Bash shell, various web browsers, etc. You can locate specified symbols, such as functions, macros, structs and classes in your source files and move there easily. It is useful for hacking large projects which contain many sub-directories, many #ifdef and many main() functions. It is similar to ctags or etags, but is different from them at the point of independence of any editor.
+</p>
+
+<p>
+<a href="https://www.gnu.org/software/global/globaldoc_toc.html">GNU Global</a>(全称 GNU GLOBAL Source Code Tag System)是一个源代码标记系统，以相同的方式工作在不同的环境中，比如 Emacs editor, Vi editor, Less viewer, Bash shell, various web browsers 等等。通过找到的指定的符号，比如函数（function）、宏（macros）、结构体（struct）、类（class），并进行快速跳转。对于 hack 那些包含很多子目录，很多#ifdef 和 main()函数的大型项目是很有用的。它类似 ctags 或者 etags，但在独立于编辑器这一点上是不同的。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-4">
+<h4 id="orgheadline2"><span class="section-number-4">1.1.2</span> Concept of project</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+GNU GLOBAL can treat a source tree containing sub-directories as a project. Anywhere in the project, you can utilize a high performance tag database. You need not specify where the database is, as global(1) locates it by itself. Because of this feature, you can move freely in a project, and in and out of many projects.
+</p>
+
+<p>
+GNU GLOBAL 将包含子目录的源码树看作是一个项目。在项目的任意地方，都可以利用一个高性能的 tag 数据库。不需要指定数据库的位置，global 会自己定位。正式由于这个特性，可以在项目中自由移动，也可以在项目间移动。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3"><span class="section-number-4">1.1.3</span> Features</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<p>
+GNU GLOBAL has the following features:
+</p>
+
+<ul class="org-ul">
+<li>supports C, C++, Yacc, Java, PHP4 and assembly.</li>
+<li>works the same way across diverse environments like follows:
+<ul class="org-ul">
+<li>Shell command line</li>
+<li>Bash shell</li>
+<li>Vi editor (Nvi, Elvis, vim)</li>
+<li>Less viewer</li>
+<li>Emacs editor (Emacs, Mule, Xemacs)</li>
+<li>Web browser</li>
+<li>Doxygen documentation system</li>
+</ul></li>
+<li><p>
+finds locations of specified symbol quickly.
+</p>
+
+<p>
+快速查找指定符号（symbol）位置。
+</p></li>
+
+<li><p>
+locates not only definitions but also references.
+</p>
+
+<p>
+除了定位定义还可以定位引用。
+</p></li>
+
+<li><p>
+allows duplicate tags.
+</p>
+
+<p>
+允许重复 tag。
+</p></li>
+
+<li><p>
+locates paths which matches to the specified pattern.
+</p>
+
+<p>
+定位匹配指定模式的路径。
+</p></li>
+
+<li><p>
+hierarchical searches by default.
+</p>
+
+<p>
+默认层次搜索。
+</p></li>
+
+<li><p>
+searches not only in a source project but also in library projects.
+</p>
+
+<p>
+不仅在源码工程搜索，还可以在库工程搜索。
+</p></li>
+
+<li><p>
+generates completion list for completing input method.
+</p>
+
+<p>
+为补全输入方法产生补全列表。
+</p></li>
+
+<li><p>
+supports various output formats.
+</p>
+
+<p>
+支持多种输出格式。
+</p></li>
+
+<li><p>
+allows customizing of a set of candidate files to be tagged.
+</p>
+
+<p>
+允许定制一组可以用来标记的候选文件。
+</p></li>
+
+<li><p>
+understands POSIX 1003.2 regular expression.
+</p>
+
+<p>
+了解 POSIX 1003.2 正则表达式。
+</p></li>
+
+<li><p>
+supports idutils as an external search engine.
+</p>
+
+<p>
+支持 idutils 作为外部的搜索引擎。
+</p></li>
+
+<li><p>
+tag files are independent of machine architecture.
+</p>
+
+<p>
+tag 文件独立于机器的体系结构。
+</p></li>
+
+<li><p>
+supports incremental updating of tag files.
+</p>
+
+<p>
+支持标记文件的递增更新。
+</p></li>
+
+<li><p>
+plug-in parser is available to treat new language.
+</p>
+
+<p>
+解析器支持插件用来分析新语言。
+</p></li>
+
+<li><p>
+supports customizing using ‘gtags.conf’.
+</p>
+
+<p>
+通过使用 gtags.confg 来进行定制。
+</p></li>
+
+<li><p>
+generates a hypertext of source code.
+</p>
+
+<p>
+为源码生成超文本文件。
+</p></li>
+
+<li><p>
+compact format to save disk space.
+</p>
+
+<p>
+格式紧凑，节省磁盘空间。
+</p></li>
+
+<li><p>
+supports client/server environment (TRAMP ready).
+</p>
+
+<p>
+支持客户端/服务器环境。
+</p></li>
+
+<li><p>
+ignores binary files, dot files and specified files.
+</p>
+
+<p>
+忽略二进制文件、点文件和指定文件。
+</p></li>
+
+<li><p>
+includes cscope-compatible program (gtags-cscope).
+</p>
+
+<p>
+包括 cscope 兼容程序（gtags-cscope）。
+</p></li>
+
+<li><p>
+includes grep-like command (-g command).
+</p>
+
+<p>
+包括 grep-like 命令（-g command）。
+</p></li>
+
+<li><p>
+supports grep-like symbol highlighting.
+</p>
+
+<p>
+支持 grep-like 符号高亮。
+</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9"><span class="section-number-2">2</span> Command line</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+You can use tag facilities from the shell command line. It is a big merit of GLOBAL compared with any other tag system.
+</p>
+
+<p>
+可以从命令行使用 tag 机制。和其他 tag 系统相比，这是一个很大的优点。
+</p>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">2.1</span> Preparation</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Before beginning, please read the FAQ (Frequently Asked Questions) file.
+</p>
+
+<p>
+开始前，先去阅读 FAQ 文件。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">more /usr/local/share/gtags/FAQ&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+<p>
+First of all, you must execute gtags(1) (see section gtags - create tag files for global.) at the root of the source tree. For example, if you want to browse the source code of Vi editor in FreeBSD, please move to the source directory and invoke gtags(1).
+</p>
+
+<p>
+首先必须在源码树根目录执行 gtags，比如，如果想浏览 FreeBSD 中 vi 编辑器 i 的源码，应该在源码目录中调用 gtags。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #d18aff;">cd</span> /usr/src/usr.bin/vi&#57344;&#57345;&#57345;
+gtags&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+<p>
+Gtags traverses sub-directories, picks up symbols from the source files and makes three tag files at the current directory. After this, all files and directories under the current directory are treated as a project.
+</p>
+
+<p>
+gtags 遍历子目录，从源文件中提取符号，在当前目录生成三个 tag 文件。此后，当前目录中的所有文件和目录都会被当作一个项目。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">ls G*&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+<pre class="example">
+ GPATH   GRTAGS  GTAGS
+</pre>
+
+<ul class="org-ul">
+<li>‘GTAGS’    definition database</li>
+<li>‘GRTAGS’   reference database</li>
+<li>‘GPATH’    path name database</li>
+</ul>
+
+<p>
+You should prepare for considerable disk space for tag files. For example, Linux-2.6.32 source code requires the following disk space.
+</p>
+
+<p>
+应该为 tag 文件准备相当大的磁盘空间，例如，linux-2.6.32 源码需要一次磁盘空间：
+</p>
+
+<pre class="example">
+source code(Linux-2.6.32)       390MB
+
+GPATH                             6MB
+GTAGS                            81MB
+GRTAGS                          202MB
+-------------------------------------
+total of tag files              289MB
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">2.2</span> Basic usage</h3>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">2.3</span> Applied usage</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li><p>
+You can customize a set of candidate files to be tagged.
+</p>
+
+<p>
+可以定制将要标记的候选文件：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">find . -type f -print &gt;/tmp/list     <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">make a file set</span>&#57344;&#57345;&#57345;
+vi /tmp/list                         <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">customize the file set</span>&#57344;&#57345;&#57345;
+gtags -f /tmp/list&#57344;&#57345;&#57345;
+</pre>
+</div></li>
+
+<li><p>
+If your source files are on a read-only device, such as CDROM, then you cannot make tag files at the root of the source tree. In such case, you can make tag files in another place using GTAGSROOT environment variable.
+</p>
+
+<p>
+如果源文件在只读设备上，比如 CDROM，这样不能在源码树的根目录生成 tag 文件。这种情况下，可以通过 GTAGSROOT 环境变量在别的地方生成 tag 文件。
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">mkdir /var/dbpath&#57344;&#57345;&#57345;
+<span style="color: #d18aff;">cd</span> /cdrom/src                 <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">the root of source tree</span>&#57344;&#57345;&#57345;
+gtags /var/dbpath             <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">make tag files in /var/dbpath</span>&#57344;&#57345;&#57345;
+<span style="color: #d18aff;">export</span> <span style="color: #ff8700;">GTAGSROOT</span>=<span style="color: #fa8072;">`pwd`</span>&#57344;&#57345;&#57345;
+<span style="color: #d18aff;">export</span> <span style="color: #ff8700;">GTAGSDBPATH</span>=/var/dbpath&#57344;&#57345;&#57345;
+global func&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+<p>
+There is another method for it. Since global(1) locates tag files also in ‘/usr/obj’ + &lt;current directory&gt;, you can setup like follows: It is ’obj’ directory.
+</p>
+
+<p>
+还有另外一种方法。因为 global 还会在‘/usr/obj’ + &lt;current directory&gt;定位 tag 文件，所以可以设置如下：它就是‘obj’目录。
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #d18aff;">cd</span> /cdrom/src                 <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">the root of source tree</span>&#57344;&#57345;&#57345;
+mkdir -p /usr/obj/cdrom/src&#57344;&#57345;&#57345;
+gtags /usr/obj/cdrom/src      <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">make tag files in /usr/obj/cdrom/src</span>&#57344;&#57345;&#57345;
+global func&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+<p>
+The ‘-O, &#x2013;objdir’ option does it automatically for you.
+</p>
+
+<p>
+选项‘-O, &#x2013;objdir’自动作这些。
+</p>
+
+<p>
+The path of obj directory can be changed by environment variable MAKEOBJDIRPREFIX.
+</p>
+
+<p>
+可以通过环境变量 MAKEOBJDIRPREFIX 改版 obj 目录路径。
+</p></li>
+
+<li><p>
+If you want to locate symbols that are not defined in the source tree, then you can specify library directories with GTAGSLIBPATH environment variable.
+</p>
+
+<p>
+如果定位的符号不再源码树中，可以通过环境变量 GTAGSLIBPATH 指定库目录。
+</p>
+
+<p>
+You should execute gtags(1) at each directory in the GTAGSLIBPATH. If ‘GTAGS’ is not found there, global ignores such directories.
+</p>
+
+<p>
+应该在 GTAGSLIBPATH 的每个目录执行 gtags。如果 GTAGS 没有找到，global 会忽略该目录。
+</p>
+
+<pre class="example">
+$ pwd
+/develop/src/mh                 # this is a source project
+$ gtags
+$ ls G*TAGS
+GRTAGS  GTAGS
+$ global mhl
+uip/mhlsbr.c                    # mhl() is found
+$ global strlen                 # strlen() is not found
+$ (cd /usr/src/lib; gtags)      # library source
+$ (cd /usr/src/sys; gtags)      # kernel source
+$ export GTAGSLIBPATH=/usr/src/lib:/usr/src/sys
+$ global strlen
+../../../usr/src/lib/libc/string/strlen.c  # found in library
+$ global access
+../../../usr/src/sys/kern/vfs_syscalls.c   # found in kernel
+</pre>
+
+<p>
+Or, you can take a more straightforward way to do the same thing. In the following example, we treat as if the system library and the kernel are part of our project.
+</p>
+
+<p>
+或者可以更直接的方式作同样的事情。下面的例子中，我们认为系统库和 kernel 是我们项目的一部分。
+</p>
+
+<pre class="example">
+$ ln -s /usr/src/lib .
+$ ln -s /usr/src/sys .
+$ gtags
+$ global strlen
+lib/libc/string/strlen.c
+$ global access
+sys/kern/vfs_syscalls.c
+</pre></li>
+
+<li><p>
+If you forget symbol names, you can use the ‘-c’ (complete) command.
+</p>
+
+<p>
+如果忘记符号名字，可以使用‘-c’（补全）命令
+</p>
+
+<pre class="example">
+$ global -c kmem                # maybe k..k.. kmem..
+kmem_alloc
+kmem_alloc_pageable
+kmem_alloc_wait
+kmem_free
+kmem_free_wakeup
+kmem_init
+kmem_malloc
+kmem_suballoc                   # This is what I need!
+$ global kmem_suballoc
+../vm/vm_kern.c
+</pre></li>
+
+<li><p>
+You can use the ‘-c’ command with the complete command in the shell.
+</p>
+
+<p>
+shell 中‘-c’命令和 complete 命令一起使用。
+</p>
+
+<p>
+In Bash:
+</p>
+
+<pre class="example">
+$ funcs()
+&gt; {
+&gt;         local cur
+&gt;         cur=${COMP_WORDS[COMP_CWORD]}
+&gt;         COMPREPLY=(`global -c $cur`)
+&gt; }
+$ complete -F funcs global
+$ global kmem_&lt;TAB&gt;&lt;TAB&gt;
+kmem_alloc           kmem_alloc_wait      kmem_init
+kmem_alloc_nofault   kmem_free            kmem_malloc
+kmem_alloc_pageable  kmem_free_wakeup     kmem_suballoc
+$ global kmem_s&lt;TAB&gt;
+$ global kmem_suballoc
+../vm/vm_kern.c
+</pre>
+
+<p>
+If you like input completion, you should try globash (see section Global facility for Bash). It supports you in a suitable way without any preparation.
+</p>
+
+<p>
+如果想进行输入补全，实施 globash，不用任何准备就可以合适的方式支持。
+</p></li>
+
+<li><p>
+You can edit all files which have specified tags by typing one command. For example:
+</p>
+
+<p>
+通过一个命令可以编辑包含指定 tag 的所有文件。例如：
+</p>
+
+<pre class="example">
+   $ vi `global func1`     # edit fileB.c
+</pre></li>
+
+<li><p>
+If you want to browse many files in order, do the following:
+</p>
+
+<p>
+如果想顺序浏览很多文件，这么作：
+</p>
+
+<pre class="example">
+$ global -xr fork | awk '{printf "view +%s %s\n",$2,$3}'
+view +650 ../dev/aic7xxx/aic7xxx_asm.c
+view +250 ibcs2/ibcs2_misc.c
+view +401 linux/linux_misc.c
+view +310 ../kern/init_main.c
+view +318 ../kern/init_main.c
+view +336 ../kern/init_main.c
+view +351 ../kern/init_main.c
+$ !! | sh            # from now on, go to next tag with 'ZZ'.
+</pre></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline22" class="outline-2">
+<h2 id="orgheadline22"><span class="section-number-2">3</span> Various applications</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">3.1</span> Global facility for Bash</h3>
+</div>
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">3.2</span> Less using GLOBAL</h3>
+</div>
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12"><span class="section-number-3">3.3</span> Nvi-1.81.5 using GLOBAL</h3>
+</div>
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13"><span class="section-number-3">3.4</span> Elvis using GLOBAL</h3>
+</div>
+<div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14"><span class="section-number-3">3.5</span> Vim using GLOBAL</h3>
+</div>
+<div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18"><span class="section-number-3">3.6</span> Extended Emacs using GLOBAL</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+You can use GLOBAL as the tag system of Emacs editor instead of etags.
+</p>
+
+<p>
+GLOBAL 替代 etags 作为 Emacs 的 tag 系统。
+</p>
+</div>
+<div id="outline-container-orgheadline15" class="outline-4">
+<h4 id="orgheadline15"><span class="section-number-4">3.6.1</span> Features</h4>
+<div class="outline-text-4" id="text-3-6-1">
+<ul class="org-ul">
+<li><p>
+You can use most of GLOBAL’s facilities from the editor.
+</p>
+
+<p>
+可以从编辑器中使用 GLOBAL 的大部分功能。
+</p></li>
+
+<li><p>
+More intelligent recognition of the current token and its type.
+</p>
+
+<p>
+更智能识别当前 token 和它的类型。
+</p></li>
+
+<li><p>
+Tag completion is available for input tag name.
+</p>
+
+<p>
+tag 补全可用于输入 tag 名字。
+</p></li>
+
+<li><p>
+Mouse is supported.
+</p>
+
+<p>
+支持鼠标。
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline16" class="outline-4">
+<h4 id="orgheadline16"><span class="section-number-4">3.6.2</span> Preparation</h4>
+<div class="outline-text-4" id="text-3-6-2">
+<p>
+First, do the preparation of global. See section Preparation.
+</p>
+
+<p>
+首先，完成 global 的准备工作。
+</p>
+
+<p>
+Second, to use global from Emacs, you need to load the ‘gtags.el’ and execute gtags-mode function in it.
+</p>
+
+<p>
+其次，为了在 emacs 中使用 global，需要载入‘gtags.el’并执行 gtags-mode 函数。
+</p>
+
+<p>
+Write the call to autoload function to your ‘$HOME/.emacs’, start Emacs and execute gtags-mode function. If you put ‘gtags.el’ in a directory other than the standard macro directory, you need to add it to load-path.
+</p>
+
+<p>
+在‘$HOME/.emacs’中编写自动加载汉书，启动 emacs 并执行 gtags-mode 函数。
+</p>
+
+<pre class="example">
+$HOME/.emacs
++------------------------------------------------------p
+|(setq load-path (cons "/home/owner/global" load-path))
+|(autoload 'gtags-mode "gtags" "" t)
+
+$ emacs
+
+|
+|J_:-----Mule: *scratch*       (Lisp Interaction)--L16--All----
+|M-x gtags-mode[RET]
++------------------------------------------------------
+</pre>
+
+<p>
+If you want to get into gtags-mode whenever you get into c-mode then you can append the following code to your ‘$HOME/.emacs’.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-elisp">(setq c-mode-hook&#57344;&#57345;&#57345;
+      '(<span style="color: #a1db00;">lambda</span> ()&#57344;&#57345;&#57345;
+         (gtags-mode 1)&#57344;&#57345;&#57345;
+         ))&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+<p>
+About key mappings, please see the comment of gtags.el.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline17" class="outline-4">
+<h4 id="orgheadline17"><span class="section-number-4">3.6.3</span> Usage</h4>
+<div class="outline-text-4" id="text-3-6-3">
+<ul class="org-ul">
+<li><p>
+To go to func1, invoke gtags-find-tag and you can see a prompt in the mini-buffer. Then input the tag name.
+</p>
+<pre class="example">
+    Find tag: func1			&lt;- 'Find tag: ' is a prompt
+</pre></li>
+<li><p>
+To go to the referenced point of func1, invoke gtags-find-rtag.
+</p>
+<pre class="example">
+    Find tag (reference): func1
+</pre></li>
+<li><p>
+Tag name completion is available.
+</p>
+<pre class="example">
+Find tag: fuTAB
+
+Find tag: func1                     &lt;- 'nc1' is appended by emacs
+</pre></li>
+<li><p>
+If a number of tags are located, Emacs goes into GTAGS SELECT MODE like this:
+</p>
+<pre class="example">
++-------------------------------------------------------------
+|main             347 i386/isa/ultra14f.c main()
+|main             128 kern/init_main.c   main(framep)
+|main             104 netiso/clnp_debug.c main()
+|main             164 netiso/xebec/main.c main(argc, argv)
+|
+|
+|
+|
+|
+|J_:--%*-Mule: *scratch*       (Gtags Select)--L1--All----
+|[GTAGS SELECT MODE] 4 lines
++-------------------------------------------------------------
+</pre>
+<p>
+Please select a tag line by any Emacs command and press &lt;RET&gt;, and you can go to the tag’s point. When you want to go to the next or previous tag, please return to the above mode with gtags-pop-stack and reselect.
+</p>
+
+<p>
+You can customize the path style in this mode by setting gtags-path-style variable.
+</p>
+<ul class="org-ul">
+<li><p>
+root
+</p>
+
+<p>
+relative from the root of the project (Default)
+</p></li>
+
+<li><p>
+relative
+</p>
+
+<p>
+relative from the current directory
+</p></li>
+
+<li><p>
+absolute
+</p>
+
+<p>
+absolute (relative from the system root directory)
+</p></li>
+</ul>
+<p>
+There are two methods to set this variable:
+</p>
+<ul class="org-ul">
+<li>You can change it dynamically using the customize command of Emacs. You will find the entry in the Programming/Tools/Gtags group.</li>
+
+<li><p>
+You can change it when Emacs is loaded using ‘.emacs’ file like this:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp">(setq gtags-mode-hook&#57344;&#57345;&#57345;
+      '(<span style="color: #a1db00;">lambda</span> ()&#57344;&#57345;&#57345;
+         (setq gtags-path-style 'relative)))&#57344;&#57345;&#57345;
+</pre>
+</div></li>
+</ul></li>
+<li><p>
+gtags-find-tag-from-here command is available.
+</p>
+
+<p>
+If current token is a definition, it is equivalent to Find tag (reference): current-token&lt;RET&gt;, otherwise it is equivalent to Find tag: current-token&lt;RET&gt;.
+</p></li>
+<li><p>
+To locate symbols which are not defined in ‘GTAGS’, try gtags-find-symbol.
+</p>
+
+<p>
+Find symbol: lbolt          &lt;- 'Find symbol:' is a prompt
+</p></li>
+
+<li><p>
+To locate strings, try gtags-find-with-grep.
+</p>
+
+<p>
+Find pattern: Copyright
+</p></li>
+
+<li><p>
+You can use POSIX regular expressions.
+</p>
+
+<p>
+Find tag: ^put_             &lt;- locate tags starting with 'put_'
+</p></li>
+
+<li><p>
+Mouse command is available.
+</p>
+
+<p>
+If you use X version Emacs, try the following:
+</p>
+
+<p>
+Move the mouse cursor to a symbol name and click the middle button, and you can go to the point of the definitions, or to its references, depending on the context. In ’GTAGS SELECT MODE’, move the mouse cursor to a line and click the center button.
+</p>
+
+<p>
+To return to the previous position, click the right button.
+</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline19" class="outline-3">
+<h3 id="orgheadline19"><span class="section-number-3">3.7</span> Gtags-cscope</h3>
+</div>
+<div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20"><span class="section-number-3">3.8</span> Hypertext generator</h3>
+</div>
+<div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21"><span class="section-number-3">3.9</span> Doxygen using GLOBAL</h3>
+</div>
+</div>
+<div id="outline-container-orgheadline26" class="outline-2">
+<h2 id="orgheadline26"><span class="section-number-2">4</span> Other topics</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-orgheadline23" class="outline-3">
+<h3 id="orgheadline23"><span class="section-number-3">4.1</span> How to configure GLOBAL</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+You can customize GLOBAL using configuration file.
+</p>
+
+<p>
+可以通过配置文件配置 GLOBAL。
+</p>
+
+<pre class="example">
+# cp gtags.conf /etc/gtags.conf         # system wide config file.
+# vi /etc/gtags.conf
+
+$ cp gtags.conf $HOME/.globalrc         # personal config file.
+$ vi $HOME/.globalrc
+</pre>
+
+<p>
+If ‘$HOME/.globalrc’ exists then GLOBAL uses it; else if ‘/etc/gtags.conf’ exists then GLOBAL uses it; otherwise default value is used. The format of ‘gtags.conf’ resembles termcap(5). By default, ’default’ target is used. About the capabilities, please see each command manual. See section Command References.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline24" class="outline-3">
+<h3 id="orgheadline24"><span class="section-number-3">4.2</span> Plug-in parser</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+You can write a new parser for gtags(1).
+</p>
+
+<p>
+Command layer plug-in parser was abolished. Please write function layer plug-in parser instead. See ‘plugin-factory/’ to discover the function layer plug-in parser.
+</p>
+
+<p>
+You can use Exuberant ctags as a plug-in parser too. This requires Exuberant ctags version 5.5 or later.
+</p>
+
+<pre class="example">
+# Installation of GLOBAL
+# It assumed that ctags command is installed in '/usr/local/bin'.
+
+$ ./configure --with-exuberant-ctags=/usr/local/bin/ctags
+$ make
+$ sudo make install
+
+# Executing of gtags
+# It assumed that GLOBAL is installed in '/usr/local'.
+
+$ export GTAGSCONF=/usr/local/share/gtags/gtags.conf
+$ export GTAGSLABEL=ctags
+$ gtags                         # gtags invokes Exuberant Ctags internally
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline25" class="outline-3">
+<h3 id="orgheadline25"><span class="section-number-3">4.3</span> Incremental updating</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+Modifying some source files, you need not remake the entire tag files. Instead, you can use incremental updating facility (‘-u’ option).
+</p>
+
+<pre class="example">
+$ gtags
+$ cd kernel
+$ vi user.c                             # modify user.c
+...
+:wq
+$ global -vu                            # -v means verbose
+[Sat May 29 00:31:41 JST 2010] Gtags started.
+Tag found in '/usr/local/src/linux-2.6.32'.
+Incremental updating.
+[Sat May 29 00:31:43 JST 2010] Updating 'GTAGS' and 'GRTAGS'.
+[1/1] deleting tags of kernel/user.c
+[1/1] extracting tags of kernel/user.c
+Global databases have been modified.
+[Sat May 29 00:31:51 JST 2010] Done.
+
+$ global -vu                            # try again
+[Sat May 29 00:33:16 JST 2010] Gtags started.
+Tag found in '/usr/local/src/linux-2.6.32'.
+Incremental updating.
+Global databases are up to date.       # do nothing
+[Sat May 29 00:33:19 JST 2010] Done.
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline34" class="outline-2">
+<h2 id="orgheadline34"><span class="section-number-2">5</span> Command References</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-orgheadline27" class="outline-3">
+<h3 id="orgheadline27"><span class="section-number-3">5.1</span> global - print locations of given symbols</h3>
+</div>
+<div id="outline-container-orgheadline28" class="outline-3">
+<h3 id="orgheadline28"><span class="section-number-3">5.2</span> gtags - create tag files for global.</h3>
+</div>
+<div id="outline-container-orgheadline29" class="outline-3">
+<h3 id="orgheadline29"><span class="section-number-3">5.3</span> htags - generate a hypertext from a set of source files.</h3>
+</div>
+<div id="outline-container-orgheadline30" class="outline-3">
+<h3 id="orgheadline30"><span class="section-number-3">5.4</span> htags-server - start a private Web/CGI server for hyper-text</h3>
+</div>
+<div id="outline-container-orgheadline31" class="outline-3">
+<h3 id="orgheadline31"><span class="section-number-3">5.5</span> gozilla - force mozilla to display specified part of a source file.</h3>
+</div>
+<div id="outline-container-orgheadline32" class="outline-3">
+<h3 id="orgheadline32"><span class="section-number-3">5.6</span> gtags-cscope - interactively examine a C program.</h3>
+</div>
+<div id="outline-container-orgheadline33" class="outline-3">
+<h3 id="orgheadline33"><span class="section-number-3">5.7</span> globash - a special shell for GLOBAL using GNU bash.</h3>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: ubuntu-company</p>
+<p class="date">Created: 2016-02-19 Fri 17:00</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

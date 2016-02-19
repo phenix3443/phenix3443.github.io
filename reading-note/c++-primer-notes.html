@@ -1,0 +1,1155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-02-19 Fri 16:59 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>c++ primer reading notes</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="ubuntu-company" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">c++ primer reading notes</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. 第 1 章 开始</a></li>
+<li><a href="#orgheadline14">2. 第一部分 C++基础</a>
+<ul>
+<li><a href="#orgheadline8">2.1. 第 2 章 变量和基本类型</a>
+<ul>
+<li><a href="#orgheadline2">2.1.1. 基本内置类型</a></li>
+<li><a href="#orgheadline3">2.1.2. 变量</a></li>
+<li><a href="#orgheadline4">2.1.3. 复合类型</a></li>
+<li><a href="#orgheadline5">2.1.4. const 限定符</a></li>
+<li><a href="#orgheadline6">2.1.5. 处理类型</a></li>
+<li><a href="#orgheadline7">2.1.6. 自定义数据结构</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline9">2.2. 第 3 章 字符串、向量和数组</a></li>
+<li><a href="#orgheadline10">2.3. 第 4 章 表达式</a></li>
+<li><a href="#orgheadline11">2.4. 第 5 章 语句</a></li>
+<li><a href="#orgheadline12">2.5. 第 6 章 函数</a></li>
+<li><a href="#orgheadline13">2.6. 第 7 章 类</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline64">3. 第二部分 C++ 标准库</a>
+<ul>
+<li><a href="#orgheadline20">3.1. 第 8 章 IO 库</a>
+<ul>
+<li><a href="#orgheadline17">3.1.1. IO 类</a>
+<ul>
+<li><a href="#orgheadline15">IO 对象无拷贝或赋值</a></li>
+<li><a href="#orgheadline16">条件状态</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline18">3.1.2. 文件输入输出</a></li>
+<li><a href="#orgheadline19">3.1.3. string 流</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline40">3.2. 第 9 章 顺序容器</a>
+<ul>
+<li><a href="#orgheadline21">3.2.1. 顺序容器概述</a></li>
+<li><a href="#orgheadline29">3.2.2. 容器库概览</a>
+<ul>
+<li><a href="#orgheadline22">迭代器</a></li>
+<li><a href="#orgheadline23">容器类型成员</a></li>
+<li><a href="#orgheadline24">begin 和 end 成员</a></li>
+<li><a href="#orgheadline25">容器的定义和初始化</a></li>
+<li><a href="#orgheadline26">赋值和 swap</a></li>
+<li><a href="#orgheadline27">容器大小操作</a></li>
+<li><a href="#orgheadline28">关系操作符</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline36">3.2.3. 顺序容器操作</a>
+<ul>
+<li><a href="#orgheadline30">向顺序容器添加元素</a></li>
+<li><a href="#orgheadline31">访问元素</a></li>
+<li><a href="#orgheadline32">删除元素</a></li>
+<li><a href="#orgheadline33">特殊的 forward_list 操作</a></li>
+<li><a href="#orgheadline34">改变容器的大小</a></li>
+<li><a href="#orgheadline35">容器操作可能使迭代器失效</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline37">3.2.4. vector 对象是如何增长的</a></li>
+<li><a href="#orgheadline38">3.2.5. 额外的 string 操作</a></li>
+<li><a href="#orgheadline39">3.2.6. 容器适配器</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline46">3.3. 第 10 章 泛型算法</a>
+<ul>
+<li><a href="#orgheadline41">3.3.1. 概述</a></li>
+<li><a href="#orgheadline42">3.3.2. 初始泛型算法</a></li>
+<li><a href="#orgheadline43">3.3.3. 定制操作</a></li>
+<li><a href="#orgheadline44">3.3.4. 再探迭代其</a></li>
+<li><a href="#orgheadline45">3.3.5. 泛型算法结构</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline58">3.4. 第 11 章 关联容器</a>
+<ul>
+<li><a href="#orgheadline47">3.4.1. 使用关联容器</a></li>
+<li><a href="#orgheadline50">3.4.2. 关联容器概述</a>
+<ul>
+<li><a href="#orgheadline48">定义关联容器</a></li>
+<li><a href="#orgheadline49">关键字类型的要求</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline56">3.4.3. 关联容器操作</a>
+<ul>
+<li><a href="#orgheadline51">关联容器和迭代器</a></li>
+<li><a href="#orgheadline52">添加元素</a></li>
+<li><a href="#orgheadline53">删除元素</a></li>
+<li><a href="#orgheadline54">map 的下标操作</a></li>
+<li><a href="#orgheadline55">访问元素</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline57">3.4.4. 无序容器</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline63">3.5. 第 12 章 动态内存</a>
+<ul>
+<li><a href="#orgheadline60">3.5.1. 动态内存与智能指针</a>
+<ul>
+<li><a href="#orgheadline59">实现智能指针类</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline61">3.5.2. 动态数组</a></li>
+<li><a href="#orgheadline62">3.5.3. 使用标准库：文本查询程序</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline78">4. 第三部分 类设计者的工具</a>
+<ul>
+<li><a href="#orgheadline65">4.1. 第 13 章 拷贝控制</a></li>
+<li><a href="#orgheadline75">4.2. 第 14 章 重载运算与类型转换</a>
+<ul>
+<li><a href="#orgheadline66">4.2.1. 基本概念</a></li>
+<li><a href="#orgheadline67">4.2.2. 输入和输出运算符</a></li>
+<li><a href="#orgheadline68">4.2.3. 算术和关系运算符</a></li>
+<li><a href="#orgheadline69">4.2.4. 赋值运算符</a></li>
+<li><a href="#orgheadline70">4.2.5. 下标运算符</a></li>
+<li><a href="#orgheadline71">4.2.6. 递增和递减运算符</a></li>
+<li><a href="#orgheadline72">4.2.7. 成员访问运算符</a></li>
+<li><a href="#orgheadline73">4.2.8. 函数调用运算符</a></li>
+<li><a href="#orgheadline74">4.2.9. 重载、类型转换与运算符</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline76">4.3. 第 15 章 面向对象程序设计</a></li>
+<li><a href="#orgheadline77">4.4. 第 16 章 模板与泛型编程</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline94">5. 第四部分 高级主题</a>
+<ul>
+<li><a href="#orgheadline79">5.1. 第 17 章 标准库特殊设施</a></li>
+<li><a href="#orgheadline83">5.2. 第 18 章 用于大型程序的工具</a>
+<ul>
+<li><a href="#orgheadline80">5.2.1. 异常处理</a></li>
+<li><a href="#orgheadline81">5.2.2. 命名空间</a></li>
+<li><a href="#orgheadline82">5.2.3. 多重继承与虚继承</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline93">5.3. 第 19 章 特殊工具与技术</a>
+<ul>
+<li><a href="#orgheadline85">5.3.1. 控制内存分配</a>
+<ul>
+<li><a href="#orgheadline84">定位 new 修改内存数据</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline86">5.3.2. 运行时类型识别</a></li>
+<li><a href="#orgheadline87">5.3.3. 枚举类型</a></li>
+<li><a href="#orgheadline88">5.3.4. 类成员指针</a></li>
+<li><a href="#orgheadline89">5.3.5. 嵌套类</a></li>
+<li><a href="#orgheadline90">5.3.6. union</a></li>
+<li><a href="#orgheadline91">5.3.7. 局部类</a></li>
+<li><a href="#orgheadline92">5.3.8. 固有的不可移植的特性</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> 第 1 章 开始</h2>
+</div>
+
+<div id="outline-container-orgheadline14" class="outline-2">
+<h2 id="orgheadline14"><span class="section-number-2">2</span> 第一部分 C++基础</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">2.1</span> 第 2 章 变量和基本类型</h3>
+<div class="outline-text-3" id="text-2-1">
+</div><div id="outline-container-orgheadline2" class="outline-4">
+<h4 id="orgheadline2"><span class="section-number-4">2.1.1</span> 基本内置类型</h4>
+</div>
+<div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3"><span class="section-number-4">2.1.2</span> 变量</h4>
+</div>
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4"><span class="section-number-4">2.1.3</span> 复合类型</h4>
+</div>
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5"><span class="section-number-4">2.1.4</span> const 限定符</h4>
+<div class="outline-text-4" id="text-2-1-4">
+<div class="org-src-container">
+
+<pre class="src src-c++">   <span style="color: #ffd700;">TEST</span> (TestConst, ConstVar) {&#57344;&#57345;&#57345;
+       <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">var</span> = 10;&#57344;&#57345;&#57345;
+       <span style="color: #00d7af;">int</span>* <span style="color: #ff8700;">ptr</span> = <span style="color: #a1db00;">const_cast</span>&lt;<span style="color: #00d7af;">int</span>*&gt;(&amp;var);&#57344;&#57345;&#57345;
+       *ptr = 20;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+       <span style="color: #5fafd7;">std</span>::cout &lt;&lt; var &lt;&lt; <span style="color: #ff4ea3;">" "</span> &lt;&lt; *ptr &lt;&lt; <span style="color: #5fafd7;">std</span>::endl; <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#27492;&#22788;&#32534;&#35793;&#22120;&#20351;&#29992;&#24120;&#37327;&#30452;&#25509;&#36827;&#34892;&#20102;&#26367;&#20195;</span>&#57344;&#57345;
+       EXPECT_EQ (&amp;var, ptr) &lt;&lt; <span style="color: #ff4ea3;">"var &#19982; ptr&#22320;&#22336;&#19981;&#19968;&#33268;"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
+       EXPECT_EQ (var, 10) &lt;&lt; <span style="color: #ff4ea3;">"var is "</span> &lt;&lt; var &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
+       EXPECT_EQ (*ptr, 20) &lt;&lt; <span style="color: #ff4ea3;">"ptr is "</span> &lt;&lt; *ptr &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+       <span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">Test</span> {&#57344;&#57345;&#57345;
+           <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">var_</span>;&#57344;&#57345;&#57345;
+           <span style="color: #ffd700;">Test</span>():<span style="color: #ffd700;">var_</span>(10){ }&#57344;&#57345;&#57345;
+       };&#57344;&#57345;&#57345;
+       <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">Test</span> <span style="color: #ff8700;">t</span>;&#57344;&#57345;&#57345;
+       <span style="color: #a1db00;">auto</span> <span style="color: #00d7af;">p_var</span> = &amp;<span style="color: #5fafd7;">Test</span>::var_; <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#25968;&#25454;&#25104;&#21592;&#25351;&#38024;</span>&#57344;&#57345;&#57345;
+       <span style="color: #a1db00;">auto</span> <span style="color: #00d7af;">ptr2</span> = <span style="color: #a1db00;">const_cast</span>&lt;<span style="color: #00d7af;">int</span>*&gt;(&amp;(t.*p_var));&#57344;&#57345;&#57345;
+       *ptr2 = 20;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+       <span style="color: #5fafd7;">std</span>::cout &lt;&lt; t.var_ &lt;&lt; <span style="color: #ff4ea3;">" "</span> &lt;&lt; *ptr2 &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
+       EXPECT_EQ (&amp;t.var_, ptr2) &lt;&lt; <span style="color: #ff4ea3;">"t.var_ &#19982; ptr2 &#22320;&#22336;&#19981;&#19968;&#33268;"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;
+       EXPECT_EQ (t.var_, 20) &lt;&lt; <span style="color: #ff4ea3;">"t.var_ is "</span> &lt;&lt; t.var_ &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
+       EXPECT_EQ (*ptr2, 20) &lt;&lt; <span style="color: #ff4ea3;">"ptr2 is "</span> &lt;&lt; ptr2 &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
+   }&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6"><span class="section-number-4">2.1.5</span> 处理类型</h4>
+</div>
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7"><span class="section-number-4">2.1.6</span> 自定义数据结构</h4>
+</div>
+</div>
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">2.2</span> 第 3 章 字符串、向量和数组</h3>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">2.3</span> 第 4 章 表达式</h3>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">2.4</span> 第 5 章 语句</h3>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12"><span class="section-number-3">2.5</span> 第 6 章 函数</h3>
+</div>
+
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13"><span class="section-number-3">2.6</span> 第 7 章 类</h3>
+</div>
+</div>
+
+<div id="outline-container-orgheadline64" class="outline-2">
+<h2 id="orgheadline64"><span class="section-number-2">3</span> 第二部分 C++ 标准库</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20"><span class="section-number-3">3.1</span> 第 8 章 IO 库</h3>
+<div class="outline-text-3" id="text-3-1">
+</div><div id="outline-container-orgheadline17" class="outline-4">
+<h4 id="orgheadline17"><span class="section-number-4">3.1.1</span> IO 类</h4>
+<div class="outline-text-4" id="text-3-1-1">
+</div><div id="outline-container-orgheadline15" class="outline-5">
+<h5 id="orgheadline15">IO 对象无拷贝或赋值</h5>
+<div class="outline-text-5" id="text-orgheadline15">
+<p>
+L279:我们不能对 IO 对象进行拷贝。读写一个 IO 对象会改变其状态，因此传递和返回的引用不能是 const。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline16" class="outline-5">
+<h5 id="orgheadline16">条件状态</h5>
+<div class="outline-text-5" id="text-orgheadline16">
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
+{&#57344;&#57345;&#57345;
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #5fafd7;">std</span>::cout.bad() &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline18" class="outline-4">
+<h4 id="orgheadline18"><span class="section-number-4">3.1.2</span> 文件输入输出</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
+<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;fstream&gt;</span>&#57344;&#57345;&#57345;
+<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;sstream&gt;</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;vector&gt;</span>&#57344;&#57345;&#57345;
+<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;string&gt;</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+   <span style="color: #a1db00;">using</span> <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">std</span>;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+   <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">TestStream</span>() {&#57344;&#57345;&#57345;
+       <span style="color: #00d7af;">ofstream</span> <span style="color: #ff8700;">outFile</span>(<span style="color: #ff4ea3;">"hello.txt"</span>, <span style="color: #5fafd7;">ofstream</span>::out);&#57344;&#57345;&#57345;
+       <span style="color: #a1db00;">if</span> (outFile) {&#57344;&#57345;&#57345;
+           <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span> = 0; i &lt; 100; ++i) {&#57344;&#57345;&#57345;
+               outFile &lt;&lt; <span style="color: #ff4ea3;">"This is Line "</span> &lt;&lt; i &lt;&lt; endl;&#57344;&#57345;&#57345;
+           }&#57344;&#57345;&#57345;
+           outFile.close();&#57344;&#57345;&#57345;
+       }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+       <span style="color: #00d7af;">ifstream</span> <span style="color: #ff8700;">inFile</span>(<span style="color: #ff4ea3;">"hello.txt"</span>, <span style="color: #5fafd7;">ifstream</span>::in);&#57344;&#57345;&#57345;
+       <span style="color: #a1db00;">if</span> (inFile) {&#57344;&#57345;&#57345;
+           <span style="color: #00d7af;">string</span> <span style="color: #ff8700;">line</span>;&#57344;&#57345;&#57345;
+           <span style="color: #a1db00;">while</span> (getline(inFile, line)) {&#57344;&#57345;&#57345;
+               cout &lt;&lt; line &lt;&lt; endl;&#57344;&#57345;&#57345;
+           }&#57344;&#57345;&#57345;
+           inFile.close();&#57344;&#57345;&#57345;
+       }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+       <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
+   }&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline19" class="outline-4">
+<h4 id="orgheadline19"><span class="section-number-4">3.1.3</span> string 流</h4>
+</div>
+</div>
+<div id="outline-container-orgheadline40" class="outline-3">
+<h3 id="orgheadline40"><span class="section-number-3">3.2</span> 第 9 章 顺序容器</h3>
+<div class="outline-text-3" id="text-3-2">
+</div><div id="outline-container-orgheadline21" class="outline-4">
+<h4 id="orgheadline21"><span class="section-number-4">3.2.1</span> 顺序容器概述</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+L292:顺序容器都是考虑到两个方面的折中体现：1.添加或删除容器的代价。2.非顺序访问容器中元素的代价。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline29" class="outline-4">
+<h4 id="orgheadline29"><span class="section-number-4">3.2.2</span> 容器库概览</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<p>
+L294:如果顺序容器中要保存的元素类型没有默认构造函数，我们在定义的时候需要手动传递一个元素初始化器。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #00d7af;">vector</span>&lt;nodefault&gt; <span style="color: #ffd700;">v</span>(n,init);&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+<div id="outline-container-orgheadline22" class="outline-5">
+<h5 id="orgheadline22">迭代器</h5>
+</div>
+<div id="outline-container-orgheadline23" class="outline-5">
+<h5 id="orgheadline23">容器类型成员</h5>
+<div class="outline-text-5" id="text-orgheadline23">
+<p>
+L298:通过类型别名，我们可以在不了解容器中元素的情况下使用它。一般用在泛型编程中比较多。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline24" class="outline-5">
+<h5 id="orgheadline24">begin 和 end 成员</h5>
+</div>
+<div id="outline-container-orgheadline25" class="outline-5">
+<h5 id="orgheadline25">容器的定义和初始化</h5>
+<div class="outline-text-5" id="text-orgheadline25">
+<p>
+L300:当传递迭代器参数来拷贝一个范围时，不要求容器类型相同，而且新荣器和原容器的元素类型也可以不同，只要能将容器的元素类型进行转化即可。
+</p>
+
+<p>
+L301:标准 array 具有固定大小，所以定义的时候除了指定元素类型，还要指定容器大小。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline26" class="outline-5">
+<h5 id="orgheadline26">赋值和 swap</h5>
+<div class="outline-text-5" id="text-orgheadline26">
+<p>
+L302:赋值运算符左右两侧的运算对象类型要相同。array 不支持 assign 进行赋值，也不支持花括号包围的值列表进行赋值。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline27" class="outline-5">
+<h5 id="orgheadline27">容器大小操作</h5>
+<div class="outline-text-5" id="text-orgheadline27">
+<p>
+L304：forward_list 不支持 size。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline28" class="outline-5">
+<h5 id="orgheadline28">关系操作符</h5>
+<div class="outline-text-5" id="text-orgheadline28">
+<p>
+<b>**</b>
+</p>
+
+<p>
+L303:调用 swap 会导致迭代器、指针或引用失效。统一使用非成员版本的 swap 是一个好习惯。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline36" class="outline-4">
+<h4 id="orgheadline36"><span class="section-number-4">3.2.3</span> 顺序容器操作</h4>
+<div class="outline-text-4" id="text-3-2-3">
+</div><div id="outline-container-orgheadline30" class="outline-5">
+<h5 id="orgheadline30">向顺序容器添加元素</h5>
+<div class="outline-text-5" id="text-orgheadline30">
+<p>
+L306: 不支持以下操作的容器:
+</p>
+<ul class="org-ul">
+<li>push_back: array、forward_list</li>
+<li>push_front: vector、array</li>
+<li>insert：array</li>
+</ul>
+
+<p>
+注意：insert 插入到迭代器指示的位置之前，并返回指向插入的第一个元素的迭代器。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline31" class="outline-5">
+<h5 id="orgheadline31">访问元素</h5>
+<div class="outline-text-5" id="text-orgheadline31">
+<p>
+L310:访问成员函数 front、back、at 返回的是引用。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline32" class="outline-5">
+<h5 id="orgheadline32">删除元素</h5>
+<div class="outline-text-5" id="text-orgheadline32">
+<p>
+L311:不支持以下操作的容器：
+</p>
+<ul class="org-ul">
+<li>pop_front：vector、string</li>
+<li>pop_back：forward_list</li>
+</ul>
+
+<p>
+注意：erase（p）删除 p 所指定的元素，返回一个指向被删除元素之后元素的迭代器。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline33" class="outline-5">
+<h5 id="orgheadline33">特殊的 forward_list 操作</h5>
+</div>
+<div id="outline-container-orgheadline34" class="outline-5">
+<h5 id="orgheadline34">改变容器的大小</h5>
+</div>
+<div id="outline-container-orgheadline35" class="outline-5">
+<h5 id="orgheadline35">容器操作可能使迭代器失效</h5>
+</div>
+</div>
+<div id="outline-container-orgheadline37" class="outline-4">
+<h4 id="orgheadline37"><span class="section-number-4">3.2.4</span> vector 对象是如何增长的</h4>
+</div>
+<div id="outline-container-orgheadline38" class="outline-4">
+<h4 id="orgheadline38"><span class="section-number-4">3.2.5</span> 额外的 string 操作</h4>
+</div>
+<div id="outline-container-orgheadline39" class="outline-4">
+<h4 id="orgheadline39"><span class="section-number-4">3.2.6</span> 容器适配器</h4>
+<div class="outline-text-4" id="text-3-2-6">
+<p>
+L329:本质上、一个适配器是一种机制，能使某种事物的行为看起来像另外一种事物。
+</p>
+
+<p>
+默认情况下，stack 和 queue 是基于 deque 实现的，priority_queue 是基于 vector 实现的。
+</p>
+
+<p>
+优先队列使用举例：<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
+</p>
+<div class="org-src-container">
+<label class="org-src-name">使用优先队列实现哈夫曼压缩算法</label>
+<pre class="src src-c++"></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline46" class="outline-3">
+<h3 id="orgheadline46"><span class="section-number-3">3.3</span> 第 10 章 泛型算法</h3>
+<div class="outline-text-3" id="text-3-3">
+</div><div id="outline-container-orgheadline41" class="outline-4">
+<h4 id="orgheadline41"><span class="section-number-4">3.3.1</span> 概述</h4>
+</div>
+<div id="outline-container-orgheadline42" class="outline-4">
+<h4 id="orgheadline42"><span class="section-number-4">3.3.2</span> 初始泛型算法</h4>
+</div>
+<div id="outline-container-orgheadline43" class="outline-4">
+<h4 id="orgheadline43"><span class="section-number-4">3.3.3</span> 定制操作</h4>
+</div>
+<div id="outline-container-orgheadline44" class="outline-4">
+<h4 id="orgheadline44"><span class="section-number-4">3.3.4</span> 再探迭代其</h4>
+</div>
+<div id="outline-container-orgheadline45" class="outline-4">
+<h4 id="orgheadline45"><span class="section-number-4">3.3.5</span> 泛型算法结构</h4>
+</div>
+</div>
+<div id="outline-container-orgheadline58" class="outline-3">
+<h3 id="orgheadline58"><span class="section-number-3">3.4</span> 第 11 章 关联容器</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+L374:无序容器使用哈希函数来组织元素。
+</p>
+</div>
+<div id="outline-container-orgheadline47" class="outline-4">
+<h4 id="orgheadline47"><span class="section-number-4">3.4.1</span> 使用关联容器</h4>
+</div>
+<div id="outline-container-orgheadline50" class="outline-4">
+<h4 id="orgheadline50"><span class="section-number-4">3.4.2</span> 关联容器概述</h4>
+<div class="outline-text-4" id="text-3-4-2">
+<p>
+L376:关联容器不支持顺序容器的位置相关的操作，因为关联容器是根据关键字存储的。
+</p>
+</div>
+<div id="outline-container-orgheadline48" class="outline-5">
+<h5 id="orgheadline48">定义关联容器</h5>
+</div>
+<div id="outline-container-orgheadline49" class="outline-5">
+<h5 id="orgheadline49">关键字类型的要求</h5>
+<div class="outline-text-5" id="text-orgheadline49">
+<p>
+L378:有序容器关键字类型必须定义元素比较方法。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #00d7af;">multiset</span>&lt;key,decltype(compare)*&gt; <span style="color: #ff8700;">s</span>; <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#27880;&#24847;&#19981;&#35201;&#24536;&#35760;*&#25351;&#23450;&#20989;&#25968;&#25351;&#38024;</span>&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline56" class="outline-4">
+<h4 id="orgheadline56"><span class="section-number-4">3.4.3</span> 关联容器操作</h4>
+<div class="outline-text-4" id="text-3-4-3">
+</div><div id="outline-container-orgheadline51" class="outline-5">
+<h5 id="orgheadline51">关联容器和迭代器</h5>
+<div class="outline-text-5" id="text-orgheadline51">
+<p>
+L383：我们通过不对关联容器使用泛型算法。关键是 const 这一特性意味着不能将关联容器传递给修改或重排容器元素的算法。
+</p>
+
+<p>
+L383:对关联容器使用泛型搜索算法（快排）是一个坏主意，应该使用关联容器的 find 成员函数。
+</p>
+
+<p>
+L383：在实际编程中，如果真要对一个关联容器使用算法，它经常作为一个源序列或者目的位置。copy 算法。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline52" class="outline-5">
+<h5 id="orgheadline52">添加元素</h5>
+<div class="outline-text-5" id="text-orgheadline52">
+<p>
+L384：对于不包含重复关键字的容器，insert 函数返回的是一个 pair，first 是一个指向给定关键字元素的迭代器，second 成员是 bool，表明插入成功还是已在容器中。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline53" class="outline-5">
+<h5 id="orgheadline53">删除元素</h5>
+<div class="outline-text-5" id="text-orgheadline53">
+<div class="org-src-container">
+
+<pre class="src src-c++">c.erase(k) <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#36820;&#22238;&#21024;&#38500;&#20803;&#32032;&#30340;&#25968;&#37327;</span>&#57344;&#57345;&#57345;
+c.erase(p) c.erase(b,e) <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#21024;&#38500;&#25351;&#23450;&#65288;&#33539;&#22260;&#65289;&#20803;&#32032;&#65292;&#36820;&#22238;&#26368;&#21518;&#19968;&#20010;&#25351;&#21521;&#26368;&#21518;&#19968;&#20010;&#34987;&#21024;&#38500;&#20803;&#32032;&#20043;&#21518;&#20301;&#32622;&#30340;&#36845;&#20195;&#22120;</span>&#57344;&#57345;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline54" class="outline-5">
+<h5 id="orgheadline54">map 的下标操作</h5>
+<div class="outline-text-5" id="text-orgheadline54">
+<p>
+L387:与其他下标运算符不同的是，如果关键字并不在 map 中，会为它创建一个元素并插入到 map 中。 *但是 at 函数不会执行插入操作，而是抛出 out_of_range*的异常。
+注意 map 下标操作符返回 <code>mapped_type</code> ，迭代器解引用返回 <code>value_type</code> 。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline55" class="outline-5">
+<h5 id="orgheadline55">访问元素</h5>
+<div class="outline-text-5" id="text-orgheadline55">
+<div class="org-src-container">
+
+<pre class="src src-c++">c.find(k)&#57344;&#57345;&#57345;
+c.cout(k)&#57344;&#57345;&#57345;
+c.lower_bound(k)&#57344;&#57345;&#57345;
+c.upper_bound(k)&#57344;&#57345;&#57345;
+c.equal_range(k)&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline57" class="outline-4">
+<h4 id="orgheadline57"><span class="section-number-4">3.4.4</span> 无序容器</h4>
+<div class="outline-text-4" id="text-3-4-4">
+<div class="org-src-container">
+<label class="org-src-name">使用无序容器统计出现次数最多的 K 个数。</label>
+<pre class="src src-c++"></pre>
+</div>
+
+<div class="org-src-container">
+<label class="org-src-name">求两个字符串数组的交集</label>
+<pre class="src src-c++"></pre>
+</div>
+<p>
+L395:无序容器的性能依赖与哈希函数的质量和桶的数量和大小。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline63" class="outline-3">
+<h3 id="orgheadline63"><span class="section-number-3">3.5</span> 第 12 章 动态内存</h3>
+<div class="outline-text-3" id="text-3-5">
+</div><div id="outline-container-orgheadline60" class="outline-4">
+<h4 id="orgheadline60"><span class="section-number-4">3.5.1</span> 动态内存与智能指针</h4>
+<div class="outline-text-4" id="text-3-5-1">
+</div><div id="outline-container-orgheadline59" class="outline-5">
+<h5 id="orgheadline59">实现智能指针类</h5>
+<div class="outline-text-5" id="text-orgheadline59">
+<div class="org-src-container">
+
+<pre class="src src-c++">   <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#30693;&#35782;&#28857;&#65306;&#24120;&#35265;&#30340;&#26234;&#33021;&#25351;&#38024;&#25805;&#20316;</span>&#57344;&#57345;&#57345;
+   <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">phenix3443</span> {&#57344;&#57345;&#57345;
+       <span style="color: #a1db00;">template</span> &lt;<span style="color: #a1db00;">typename</span> <span style="color: #00d7af;">T</span>&gt;&#57344;&#57345;&#57345;
+       <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">SmartPtr</span> {&#57344;&#57345;&#57345;
+       <span style="color: #a1db00;">public</span>:&#57344;&#57345;&#57345;
+           <span style="color: #ffd700;">SmartPtr</span> (<span style="color: #00d7af;">T</span>* <span style="color: #ff8700;">p</span> = nullptr) :ptr (p), use (<span style="color: #a1db00;">new</span> <span style="color: #00d7af;">size_t</span> (0)) { p ? *++use : ; }&#57344;&#57345;
+           <span style="color: #ffd700;">SmartPtr</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">SmartPtr</span>&amp; <span style="color: #ff8700;">rsh</span>);&#57344;&#57345;&#57345;
+           <span style="color: #00d7af;">SmartPtr</span> &amp; <span style="color: #a1db00;">operator</span><span style="color: #ffd700;">=</span>(<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">SmartPtr</span>&amp; <span style="color: #ff8700;">rsh</span>);&#57344;&#57345;&#57345;
+           ~<span style="color: #ffd700;">SmartPtr</span> ();&#57344;&#57345;&#57345;
+           <span style="color: #00d7af;">T</span>&amp; <span style="color: #a1db00;">operator</span><span style="color: #ffd700;">*</span>() <span style="color: #a1db00;">const</span> { <span style="color: #a1db00;">return</span> *ptr; }&#57344;&#57345;&#57345;
+           <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#30693;&#35782;&#28857;&#65306;&#37325;&#36733;&#31661;&#22836;&#25805;&#20316;&#31526;&#65292;&#27880;&#24847;&#36820;&#22238;&#20540;&#12290;</span>&#57344;&#57345;&#57345;
+           <span style="color: #00d7af;">T</span>* <span style="color: #a1db00;">operator</span><span style="color: #ffd700;">-&gt;</span>() <span style="color: #a1db00;">const</span> { <span style="color: #a1db00;">return</span> ptr; }&#57344;&#57345;&#57345;
+           <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#30693;&#35782;&#28857;&#65306;&#31867;&#31867;&#22411;&#36716;&#25442;</span>&#57344;&#57345;&#57345;
+           <span style="color: #a1db00;">explicit</span> <span style="color: #a1db00;">operator</span> <span style="color: #00d7af;">bool</span> () <span style="color: #a1db00;">const</span> { <span style="color: #a1db00;">return</span> nullptr == ptr; }&#57344;&#57345;&#57345;
+           <span style="color: #00d7af;">bool</span> <span style="color: #ffd700;">unique</span> () { <span style="color: #a1db00;">return</span> (1 == *use) ? <span style="color: #5fafd7;">true</span> : fasle; }&#57344;&#57345;&#57345;
+           <span style="color: #00d7af;">size_t</span> <span style="color: #ffd700;">count</span> () { <span style="color: #a1db00;">return</span> *use; }&#57344;&#57345;&#57345;
+           <span style="color: #00d7af;">T</span>* <span style="color: #ffd700;">get</span> () { <span style="color: #a1db00;">return</span> ptr; }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+       <span style="color: #a1db00;">private</span>:&#57344;&#57345;&#57345;
+           <span style="color: #00d7af;">T</span>* <span style="color: #ff8700;">ptr</span>;&#57344;&#57345;&#57345;
+           <span style="color: #00d7af;">size_t</span>* <span style="color: #ff8700;">use</span>;&#57344;&#57345;&#57345;
+       };&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+       <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#30693;&#35782;&#28857;&#65306;&#22312;&#22806;&#37096;&#23450;&#20041;&#31867;&#27169;&#26495;&#30340;&#25104;&#21592;&#20989;&#25968;</span>&#57344;&#57345;&#57345;
+       <span style="color: #a1db00;">template</span>&lt;<span style="color: #a1db00;">typename</span> <span style="color: #00d7af;">T</span>&gt;&#57344;&#57345;&#57345;
+       <span style="color: #a1db00;">inline</span>  <span style="color: #5fafd7;">SmartPtr</span>&lt;<span style="color: #00d7af;">T</span>&gt;::<span style="color: #ffd700;">SmartPtr</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">SmartPtr</span>&amp; <span style="color: #ff8700;">rsh</span>) {&#57344;&#57345;&#57345;
+           ++*rsh.use;&#57344;&#57345;&#57345;
+           use = rsh.use;&#57344;&#57345;&#57345;
+           ptr = rsh.ptr;&#57344;&#57345;&#57345;
+       }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+       <span style="color: #a1db00;">template</span>&lt;<span style="color: #a1db00;">typename</span> <span style="color: #00d7af;">T</span>&gt;&#57344;&#57345;&#57345;
+       <span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">SmartPtr</span>&lt;<span style="color: #00d7af;">T</span>&gt;&amp; <span style="color: #5fafd7;">SmartPtr</span>&lt;<span style="color: #00d7af;">T</span>&gt;::<span style="color: #a1db00;">operator</span><span style="color: #ffd700;">=</span>(<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">SmartPtr</span>&amp; <span style="color: #ff8700;">rsh</span>) {&#57344;&#57345;
+           <span style="color: #a1db00;">if</span> ( --*use == 0 ) {&#57344;&#57345;&#57345;
+               <span style="color: #a1db00;">delete</span> ptr;&#57344;&#57345;&#57345;
+               <span style="color: #a1db00;">delete</span> use;&#57344;&#57345;&#57345;
+           }&#57344;&#57345;&#57345;
+           use = rsh.use;&#57344;&#57345;&#57345;
+           ++*use;&#57344;&#57345;&#57345;
+           ptr = rsh.ptr;&#57344;&#57345;&#57345;
+           <span style="color: #a1db00;">return</span> *<span style="color: #a1db00;">this</span>;&#57344;&#57345;&#57345;
+       }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+       <span style="color: #a1db00;">template</span>&lt;<span style="color: #a1db00;">typename</span> <span style="color: #00d7af;">T</span>&gt;&#57344;&#57345;&#57345;
+       <span style="color: #a1db00;">inline</span> <span style="color: #5fafd7;">SmartPtr</span>&lt;<span style="color: #00d7af;">T</span>&gt;::~<span style="color: #ffd700;">SmartPtr</span> () {&#57344;&#57345;&#57345;
+           <span style="color: #a1db00;">if</span> ( --*use == 0 ) {&#57344;&#57345;&#57345;
+               <span style="color: #a1db00;">delete</span> ptr;&#57344;&#57345;&#57345;
+               <span style="color: #a1db00;">delete</span> use;&#57344;&#57345;&#57345;
+               <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#30693;&#35782;&#28857;&#65306;&#39044;&#38450;&#37326;&#25351;&#38024;</span>&#57344;&#57345;&#57345;
+               ptr = <span style="color: #5fafd7;">NULL</span>;&#57344;&#57345;&#57345;
+               use = <span style="color: #5fafd7;">NULL</span>;&#57344;&#57345;&#57345;
+           }&#57344;&#57345;&#57345;
+       }&#57344;&#57345;&#57345;
+   }&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline61" class="outline-4">
+<h4 id="orgheadline61"><span class="section-number-4">3.5.2</span> 动态数组</h4>
+</div>
+<div id="outline-container-orgheadline62" class="outline-4">
+<h4 id="orgheadline62"><span class="section-number-4">3.5.3</span> 使用标准库：文本查询程序</h4>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline78" class="outline-2">
+<h2 id="orgheadline78"><span class="section-number-2">4</span> 第三部分 类设计者的工具</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-orgheadline65" class="outline-3">
+<h3 id="orgheadline65"><span class="section-number-3">4.1</span> 第 13 章 拷贝控制</h3>
+</div>
+<div id="outline-container-orgheadline75" class="outline-3">
+<h3 id="orgheadline75"><span class="section-number-3">4.2</span> 第 14 章 重载运算与类型转换</h3>
+<div class="outline-text-3" id="text-4-2">
+</div><div id="outline-container-orgheadline66" class="outline-4">
+<h4 id="orgheadline66"><span class="section-number-4">4.2.1</span> 基本概念</h4>
+</div>
+<div id="outline-container-orgheadline67" class="outline-4">
+<h4 id="orgheadline67"><span class="section-number-4">4.2.2</span> 输入和输出运算符</h4>
+</div>
+<div id="outline-container-orgheadline68" class="outline-4">
+<h4 id="orgheadline68"><span class="section-number-4">4.2.3</span> 算术和关系运算符</h4>
+</div>
+<div id="outline-container-orgheadline69" class="outline-4">
+<h4 id="orgheadline69"><span class="section-number-4">4.2.4</span> 赋值运算符</h4>
+</div>
+<div id="outline-container-orgheadline70" class="outline-4">
+<h4 id="orgheadline70"><span class="section-number-4">4.2.5</span> 下标运算符</h4>
+</div>
+<div id="outline-container-orgheadline71" class="outline-4">
+<h4 id="orgheadline71"><span class="section-number-4">4.2.6</span> 递增和递减运算符</h4>
+</div>
+<div id="outline-container-orgheadline72" class="outline-4">
+<h4 id="orgheadline72"><span class="section-number-4">4.2.7</span> 成员访问运算符</h4>
+</div>
+<div id="outline-container-orgheadline73" class="outline-4">
+<h4 id="orgheadline73"><span class="section-number-4">4.2.8</span> 函数调用运算符</h4>
+<div class="outline-text-4" id="text-4-2-8">
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;map&gt;</span>&#57344;&#57345;&#57345;
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;functional&gt;</span>&#57344;&#57345;&#57345;
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;gtest\gtest.h&gt;</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">phenix3443</span> {&#57344;&#57345;&#57345;
+        <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">add</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">b</span>) {&#57344;&#57345;&#57345;
+            <span style="color: #a1db00;">return</span> a + b;&#57344;&#57345;&#57345;
+        }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">divide</span> {&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">public</span>:&#57344;&#57345;&#57345;
+            <span style="color: #00d7af;">int</span> <span style="color: #a1db00;">operator</span><span style="color: #ffd700;">()</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">b</span>) {&#57344;&#57345;&#57345;
+                <span style="color: #a1db00;">return</span> a / b;&#57344;&#57345;&#57345;
+            }&#57344;&#57345;&#57345;
+        };&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">auto</span> <span style="color: #00d7af;">mod</span> = [](<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">b</span>) { <span style="color: #a1db00;">return</span> a%b; };&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+        <span style="color: #5fafd7;">std</span>::map&lt;<span style="color: #5fafd7;">std</span>::string, <span style="color: #5fafd7;">std</span>::function&lt;<span style="color: #00d7af;">int</span> (<span style="color: #00d7af;">int</span>, <span style="color: #00d7af;">int</span>)&gt;&gt; binops = {&#57344;&#57345;
+            { <span style="color: #ff4ea3;">"+"</span>, add },&#57344;&#57345;&#57345;
+            { <span style="color: #ff4ea3;">"-"</span>, <span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">minus</span>&lt;<span style="color: #00d7af;">int</span>&gt; () },&#57344;&#57345;&#57345;
+            { <span style="color: #ff4ea3;">"/"</span>, divide () },&#57344;&#57345;&#57345;
+            { <span style="color: #ff4ea3;">"*"</span>, [](<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">b</span>) {<span style="color: #a1db00;">return</span> a*b; } },&#57344;&#57345;&#57345;
+            { <span style="color: #ff4ea3;">"%"</span>, mod }&#57344;&#57345;&#57345;
+        };&#57344;&#57345;&#57345;
+        <span style="color: #ffd700;">TEST</span>(TestFunction,Calulator){&#57344;&#57345;&#57345;
+            EXPECT_EQ (30, binops[<span style="color: #ff4ea3;">"+"</span>] (10, 20));&#57344;&#57345;&#57345;
+        }&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline74" class="outline-4">
+<h4 id="orgheadline74"><span class="section-number-4">4.2.9</span> 重载、类型转换与运算符</h4>
+</div>
+</div>
+<div id="outline-container-orgheadline76" class="outline-3">
+<h3 id="orgheadline76"><span class="section-number-3">4.3</span> 第 15 章 面向对象程序设计</h3>
+</div>
+<div id="outline-container-orgheadline77" class="outline-3">
+<h3 id="orgheadline77"><span class="section-number-3">4.4</span> 第 16 章 模板与泛型编程</h3>
+</div>
+</div>
+<div id="outline-container-orgheadline94" class="outline-2">
+<h2 id="orgheadline94"><span class="section-number-2">5</span> 第四部分 高级主题</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-orgheadline79" class="outline-3">
+<h3 id="orgheadline79"><span class="section-number-3">5.1</span> 第 17 章 标准库特殊设施</h3>
+</div>
+<div id="outline-container-orgheadline83" class="outline-3">
+<h3 id="orgheadline83"><span class="section-number-3">5.2</span> 第 18 章 用于大型程序的工具</h3>
+<div class="outline-text-3" id="text-5-2">
+</div><div id="outline-container-orgheadline80" class="outline-4">
+<h4 id="orgheadline80"><span class="section-number-4">5.2.1</span> 异常处理</h4>
+</div>
+<div id="outline-container-orgheadline81" class="outline-4">
+<h4 id="orgheadline81"><span class="section-number-4">5.2.2</span> 命名空间</h4>
+<div class="outline-text-4" id="text-5-2-2">
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #d18aff;">  #include</span> <span style="color: #ff4ea3;">&lt;gtest\gtest.h&gt;</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+  <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#27979;&#35797;&#21629;&#21517;&#31354;&#38388;</span>&#57344;&#57345;&#57345;
+  <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">phenix3443</span> {&#57344;&#57345;&#57345;
+      <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">NS</span> {&#57344;&#57345;&#57345;
+          <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">Quote</span> { };&#57344;&#57345;&#57345;
+          <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">display</span> (<span style="color: #00d7af;">Quote</span>&amp;) { <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"function in ns namespace"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl; }&#57344;&#57345;
+      }&#57344;&#57345;&#57345;
+      <span style="color: #ffd700;">TEST</span> (TestNameSpace, TestFunctionFind) {&#57344;&#57345;&#57345;
+          <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#27979;&#35797;&#23884;&#22871;&#21629;&#21517;&#31354;&#38388;&#20013;&#20989;&#25968;&#34453;&#39135;&#26159;&#31867;&#23545;&#35937;&#30340;&#26597;&#25214;&#36807;&#31243;&#12290;</span>&#57344;&#57345;&#57345;
+          display (<span style="color: #5fafd7;">NS</span>::<span style="color: #ff8700;">Quote</span> ());&#57344;&#57345;&#57345;
+      }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+      <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">A</span> { <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span> = 0, <span style="color: #ff8700;">j</span> = 0; }&#57344;&#57345;&#57345;
+      <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">f</span> () {&#57344;&#57345;&#57345;
+          <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span> = 1;&#57344;&#57345;&#57345;
+          <span style="color: #a1db00;">using</span> <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">A</span>;&#57344;&#57345;&#57345;
+          <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"f() i = "</span> &lt;&lt; i &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
+          <span style="color: #a1db00;">return</span> i;&#57344;&#57345;&#57345;
+      }&#57344;&#57345;&#57345;
+      <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">g</span> () {&#57344;&#57345;&#57345;
+          <span style="color: #a1db00;">using</span> <span style="color: #5fafd7;">A</span>::<span style="color: #00d7af;">i</span>;&#57344;&#57345;&#57345;
+          <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"g() i = "</span> &lt;&lt; i &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
+          <span style="color: #a1db00;">return</span> i;&#57344;&#57345;&#57345;
+      }&#57344;&#57345;&#57345;
+      <span style="color: #ffd700;">TEST</span> (TestNameSpace, TestUsing) {&#57344;&#57345;&#57345;
+          <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#27979;&#35797;using&#22768;&#26126;&#21644;using&#25351;&#31034;&#20316;&#29992;&#22495;&#30340;&#24046;&#21035;</span>&#57344;&#57345;&#57345;
+          EXPECT_EQ (1, f ());&#57344;&#57345;&#57345;
+          EXPECT_EQ (0, g ());&#57344;&#57345;&#57345;
+      }&#57344;&#57345;&#57345;
+  }&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline82" class="outline-4">
+<h4 id="orgheadline82"><span class="section-number-4">5.2.3</span> 多重继承与虚继承</h4>
+</div>
+</div>
+<div id="outline-container-orgheadline93" class="outline-3">
+<h3 id="orgheadline93"><span class="section-number-3">5.3</span> 第 19 章 特殊工具与技术</h3>
+<div class="outline-text-3" id="text-5-3">
+</div><div id="outline-container-orgheadline85" class="outline-4">
+<h4 id="orgheadline85"><span class="section-number-4">5.3.1</span> 控制内存分配</h4>
+<div class="outline-text-4" id="text-5-3-1">
+</div><div id="outline-container-orgheadline84" class="outline-5">
+<h5 id="orgheadline84">定位 new 修改内存数据</h5>
+<div class="outline-text-5" id="text-orgheadline84">
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #d18aff;">  #include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
+<span style="color: #d18aff;">  #include</span> <span style="color: #ff4ea3;">&lt;gtest\gtest.h&gt;</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+  <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#27979;&#35797;new&#21644;delete</span>&#57344;&#57345;&#57345;
+  <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">phenix3443</span> {&#57344;&#57345;&#57345;
+      <span style="color: #ffd700;">TEST</span> (NewDelete, PlaceNew) {&#57344;&#57345;&#57345;
+          <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#27979;&#35797;&#23450;&#20301;new&#20462;&#25913;&#21046;&#23450;&#20869;&#23384;&#25968;&#25454;</span>&#57344;&#57345;&#57345;
+          <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span> = 10;&#57344;&#57345;&#57345;
+          <span style="color: #00d7af;">int</span>* <span style="color: #ff8700;">ps</span> = <span style="color: #a1db00;">new</span>(&amp;a) <span style="color: #00d7af;">int</span> (20);&#57344;&#57345;&#57345;
+          EXPECT_EQ (20, a);&#57344;&#57345;&#57345;
+      }&#57344;&#57345;&#57345;
+  }&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline86" class="outline-4">
+<h4 id="orgheadline86"><span class="section-number-4">5.3.2</span> 运行时类型识别</h4>
+<div class="outline-text-4" id="text-5-3-2">
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;gtest\gtest.h&gt;</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#27979;&#35797;RTTI,&#36890;&#36807;RTTI&#22914;&#20309;&#23450;&#20041;&#31867;&#30340;&#30456;&#31561;&#25805;&#20316;&#12290;</span>&#57344;&#57345;&#57345;
+    <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">phenix3443</span> {&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">Base</span> {&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">public</span>:&#57344;&#57345;&#57345;
+            <span style="color: #ffd700;">Base</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span> = 0) :b_ (i) { }&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">protected</span>:&#57344;&#57345;&#57345;
+            <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">bool</span> <span style="color: #ffd700;">Equal</span> (<span style="color: #00d7af;">Base</span>&amp; <span style="color: #ff8700;">rsh</span>) { <span style="color: #a1db00;">return</span> b_ == rsh.b_; }&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">private</span>:&#57344;&#57345;&#57345;
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">b_</span>;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+            <span style="color: #a1db00;">friend</span> <span style="color: #00d7af;">bool</span> <span style="color: #a1db00;">operator</span><span style="color: #ffd700;">==</span> (<span style="color: #00d7af;">Base</span>&amp; <span style="color: #ff8700;">a</span>, <span style="color: #00d7af;">Base</span>&amp; <span style="color: #ff8700;">b</span>);&#57344;&#57345;&#57345;
+        };&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">Derived</span> : <span style="color: #a1db00;">public</span> <span style="color: #00d7af;">Base</span> {&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">public</span>:&#57344;&#57345;&#57345;
+            <span style="color: #ffd700;">Derived</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">j</span>=1) :d_ (j) { }&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">protected</span>:&#57344;&#57345;&#57345;
+            <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">bool</span> <span style="color: #ffd700;">Equal</span> (<span style="color: #00d7af;">Base</span>&amp; <span style="color: #ff8700;">rsh</span>) {&#57344;&#57345;&#57345;
+                <span style="color: #00d7af;">Derived</span>&amp; <span style="color: #ff8700;">tmp</span> = <span style="color: #a1db00;">dynamic_cast</span>&lt;Derived&amp;&gt;(rsh);&#57344;&#57345;&#57345;
+                <span style="color: #a1db00;">return</span> d_ == tmp.d_;&#57344;&#57345;&#57345;
+            }&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">private</span>:&#57344;&#57345;&#57345;
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">d_</span>;&#57344;&#57345;&#57345;
+        };&#57344;&#57345;&#57345;
+        <span style="color: #00d7af;">bool</span> <span style="color: #a1db00;">operator</span><span style="color: #ffd700;">==</span>(<span style="color: #00d7af;">Base</span>&amp; <span style="color: #ff8700;">a</span>, <span style="color: #00d7af;">Base</span>&amp; <span style="color: #ff8700;">b</span>) {&#57344;&#57345;&#57345;
+            <span style="color: #a1db00;">return</span> (<span style="color: #a1db00;">typeid</span>(a) == <span style="color: #a1db00;">typeid</span>(b) &amp;&amp; a.Equal (b));&#57344;&#57345;&#57345;
+        }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+        <span style="color: #ffd700;">TEST</span> (TestRTTI, ClassEqual) {&#57344;&#57345;&#57345;
+            <span style="color: #00d7af;">Base</span> <span style="color: #ff8700;">b</span>;&#57344;&#57345;&#57345;
+            <span style="color: #00d7af;">Derived</span> <span style="color: #ff8700;">d1</span>, <span style="color: #ff8700;">d2</span>;&#57344;&#57345;&#57345;
+            <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"Class Base's name is "</span> &lt;&lt; <span style="color: #a1db00;">typeid</span>(b).name() &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;
+            <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"Class Derive's name is "</span> &lt;&lt; <span style="color: #a1db00;">typeid</span>(d1).name() &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;
+            EXPECT_TRUE (<span style="color: #a1db00;">typeid</span>(b).before (<span style="color: #a1db00;">typeid</span>(d1)));&#57344;&#57345;&#57345;
+            EXPECT_FALSE (b == d1);&#57344;&#57345;&#57345;
+            EXPECT_TRUE(d1 == d2);&#57344;&#57345;&#57345;
+            <span style="color: #00d7af;">Base</span>&amp; <span style="color: #ff8700;">br</span> = d1;&#57344;&#57345;&#57345;
+            EXPECT_TRUE (br == d1);&#57344;&#57345;&#57345;
+        }&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline87" class="outline-4">
+<h4 id="orgheadline87"><span class="section-number-4">5.3.3</span> 枚举类型</h4>
+</div>
+<div id="outline-container-orgheadline88" class="outline-4">
+<h4 id="orgheadline88"><span class="section-number-4">5.3.4</span> 类成员指针</h4>
+<div class="outline-text-4" id="text-5-3-4">
+<div class="org-src-container">
+
+<pre class="src src-c++">    <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#27979;&#35797;&#20989;&#25968;&#25104;&#21592;&#25351;&#38024;</span>&#57344;&#57345;&#57345;
+    <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">phenix3443</span> {&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">Screen</span> {&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">public</span>:&#57344;&#57345;&#57345;
+            <span style="color: #ffd700;">Screen</span> () { }&#57344;&#57345;&#57345;
+            <span style="color: #ffd700;">Screen</span> (<span style="color: #a1db00;">const</span> <span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">initializer_list</span>&lt;<span style="color: #5fafd7;">std</span>::string&gt;&amp; <span style="color: #ff8700;">il</span>) :content_ (il) { }&#57344;&#57345;
+            <span style="color: #00d7af;">char</span> <span style="color: #ffd700;">get</span> () <span style="color: #a1db00;">const</span> {&#57344;&#57345;&#57345;
+                <span style="color: #a1db00;">return</span> content_[cursor_[0]][cursor_[1]];&#57344;&#57345;&#57345;
+            }&#57344;&#57345;&#57345;
+            <span style="color: #00d7af;">Screen</span>&amp; <span style="color: #ffd700;">Home</span> () {&#57344;&#57345;&#57345;
+                cursor_ = { 0,0 };&#57344;&#57345;&#57345;
+                <span style="color: #a1db00;">return</span> *<span style="color: #a1db00;">this</span>;&#57344;&#57345;&#57345;
+            }&#57344;&#57345;&#57345;
+            <span style="color: #00d7af;">Screen</span>&amp; <span style="color: #ffd700;">End</span> () {&#57344;&#57345;&#57345;
+                cursor_ = { content_.size () - 1,content_.back ().size () - 1 };&#57344;&#57345;
+                <span style="color: #a1db00;">return</span> *<span style="color: #a1db00;">this</span>;&#57344;&#57345;&#57345;
+            }&#57344;&#57345;&#57345;
+            <span style="color: #00d7af;">Screen</span>&amp; <span style="color: #ffd700;">Forward</span> () {&#57344;&#57345;&#57345;
+                <span style="color: #a1db00;">if</span> ( cursor_[1] &lt; content_[cursor_[0]].size () - 1 ) {&#57345;
+                    ++cursor_[1];&#57344;&#57345;&#57345;
+                }&#57344;&#57345;&#57345;
+                <span style="color: #a1db00;">else</span> {&#57344;&#57345;&#57345;
+                    <span style="color: #a1db00;">if</span> ( cursor_[0] &lt; content_.size () - 1 ) {&#57344;&#57345;&#57345;
+                        ++cursor_[0];&#57344;&#57345;&#57345;
+                        cursor_[1] = 0;&#57344;&#57345;&#57345;
+                    }&#57344;&#57345;&#57345;
+                }&#57344;&#57345;&#57345;
+                <span style="color: #a1db00;">return</span> *<span style="color: #a1db00;">this</span>;&#57344;&#57345;&#57345;
+            }&#57344;&#57345;&#57345;
+            <span style="color: #00d7af;">Screen</span>&amp; <span style="color: #ffd700;">Back</span> () {&#57344;&#57345;&#57345;
+                <span style="color: #a1db00;">if</span> ( cursor_[1] &gt; 0 ) {&#57344;&#57345;&#57345;
+                    --cursor_[1];&#57344;&#57345;&#57345;
+                }&#57344;&#57345;&#57345;
+                <span style="color: #a1db00;">else</span> {&#57344;&#57345;&#57345;
+                    <span style="color: #a1db00;">if</span> ( cursor_[0] &gt; 0 ) {&#57344;&#57345;&#57345;
+                        --cursor_[0];&#57344;&#57345;&#57345;
+                        cursor_[1] = content_[cursor_[0]].size () - 1;&#57345;
+                    }&#57344;&#57345;&#57345;
+                }&#57344;&#57345;&#57345;
+                <span style="color: #a1db00;">return</span> *<span style="color: #a1db00;">this</span>;&#57344;&#57345;&#57345;
+            }&#57344;&#57345;&#57345;
+            <span style="color: #a1db00;">enum</span> <span style="color: #00d7af;">Direction</span> { <span style="color: #ff8700;">HOME</span>, <span style="color: #ff8700;">FORWARD</span>, <span style="color: #ff8700;">BACK</span>, <span style="color: #ff8700;">END</span> };&#57344;&#57345;&#57345;
+            <span style="color: #a1db00;">using</span> <span style="color: #00d7af;">Action</span> = Screen&amp; (<span style="color: #5fafd7;">Screen</span>::*)();&#57344;&#57345;&#57345;
+            <span style="color: #00d7af;">Screen</span>&amp; <span style="color: #ffd700;">Move</span> (<span style="color: #00d7af;">Direction</span> <span style="color: #ff8700;">d</span>) {&#57344;&#57345;&#57345;
+                <span style="color: #a1db00;">return</span> (<span style="color: #a1db00;">this</span>-&gt;*menu_[d])();&#57344;&#57345;&#57345;
+            }&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">private</span>:&#57344;&#57345;&#57345;
+            <span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">vector</span>&lt;<span style="color: #5fafd7;">std</span>::string&gt; <span style="color: #ff8700;">content_</span>;&#57344;&#57345;&#57345;
+            <span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">array</span>&lt;<span style="color: #00d7af;">size_t</span>, 2&gt; <span style="color: #ff8700;">cursor_</span> = { 0,0 };&#57344;&#57345;&#57345;
+            <span style="color: #a1db00;">static</span> <span style="color: #00d7af;">Action</span> <span style="color: #ff8700;">menu_</span>[];&#57344;&#57345;&#57345;
+        };&#57344;&#57345;&#57345;
+        <span style="color: #5fafd7;">Screen</span>::<span style="color: #00d7af;">Action</span> <span style="color: #5fafd7;">Screen</span>::<span style="color: #ff8700;">menu_</span>[] = { &amp;<span style="color: #5fafd7;">Screen</span>::Home,&amp;<span style="color: #5fafd7;">Screen</span>::Forward,&amp;<span style="color: #5fafd7;">Screen</span>::Back,&amp;<span style="color: #5fafd7;">Screen</span>::End };&#57344;&#57345;
+&#57344;&#57345;&#57345;
+        <span style="color: #ffd700;">TEST</span> (ClassMemPoint, ScreenTest) {&#57344;&#57345;&#57345;
+            <span style="color: #00d7af;">Screen</span> <span style="color: #ff8700;">text</span> = { <span style="color: #ff4ea3;">"first"</span>,<span style="color: #ff4ea3;">"second"</span>,<span style="color: #ff4ea3;">"third"</span> };&#57344;&#57345;&#57345;
+            EXPECT_EQ (<span style="color: #ff4ea3;">'f'</span>, text.get ());&#57344;&#57345;&#57345;
+            text.Move (<span style="color: #5fafd7;">Screen</span>::FORWARD);&#57344;&#57345;&#57345;
+            EXPECT_EQ (<span style="color: #ff4ea3;">'i'</span>, text.get ());&#57344;&#57345;&#57345;
+        }&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline89" class="outline-4">
+<h4 id="orgheadline89"><span class="section-number-4">5.3.5</span> 嵌套类</h4>
+</div>
+<div id="outline-container-orgheadline90" class="outline-4">
+<h4 id="orgheadline90"><span class="section-number-4">5.3.6</span> union</h4>
+</div>
+<div id="outline-container-orgheadline91" class="outline-4">
+<h4 id="orgheadline91"><span class="section-number-4">5.3.7</span> 局部类</h4>
+</div>
+<div id="outline-container-orgheadline92" class="outline-4">
+<h4 id="orgheadline92"><span class="section-number-4">5.3.8</span> 固有的不可移植的特性</h4>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<a href="http://coolshell.cn/articles/7459.html">Huffman 编码压缩算法</a>
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: ubuntu-company</p>
+<p class="date">Created: 2016-02-19 Fri 16:59</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
