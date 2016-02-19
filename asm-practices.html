@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-11-16 一 15:48 -->
+<!-- 2016-02-19 Fri 16:59 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>汇编语言实践</title>
+<title>asm practices</title>
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="ubuntu" />
+<meta  name="author" content="ubuntu-company" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -143,59 +143,11 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">汇编语言实践</h1>
-<div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#orgheadline2">1. 实例</a>
-<ul>
-<li><a href="#orgheadline1">1.1. 打印CPU信息</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">1</span> 实例</h2>
-<div class="outline-text-2" id="text-1">
-</div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1"><span class="section-number-3">1.1</span> 打印CPU信息</h3>
-<div class="outline-text-3" id="text-1-1">
-<div class="org-src-container">
-
-<pre class="src src-asm">#cpuid.s Sample program to extract the processor Vendor ID
-<span style="color: #99cc99;">.section</span> .data
-<span style="color: #f99157;">output</span>:
-        <span style="color: #99cc99;">.ascii</span> <span style="color: #66cccc;">"the processor Vendor ID is 'xxxxxxxxxxxx'\n"</span>
-<span style="color: #99cc99;">.section</span> .text
-<span style="color: #99cc99;">.globl</span> main
-<span style="color: #f99157;">main</span>:
-        <span style="color: #99cc99;">movl</span> $0, <span style="color: #ffcc66;">%eax</span>
-        <span style="color: #99cc99;">cpuid</span>
-
-        <span style="color: #99cc99;">movl</span> $output, <span style="color: #ffcc66;">%edi</span>
-        <span style="color: #99cc99;">movl</span> <span style="color: #ffcc66;">%ebx</span>, 28(<span style="color: #ffcc66;">%edi</span>)
-        <span style="color: #99cc99;">movl</span> <span style="color: #ffcc66;">%edx</span>, 32(<span style="color: #ffcc66;">%edi</span>)
-        <span style="color: #99cc99;">movl</span> <span style="color: #ffcc66;">%ecx</span>, 36(<span style="color: #ffcc66;">%edi</span>)
-        <span style="color: #99cc99;">movl</span> $4, <span style="color: #ffcc66;">%eax</span>
-        <span style="color: #99cc99;">movl</span> $1, <span style="color: #ffcc66;">%ebx</span>
-        <span style="color: #99cc99;">movl</span> $output, <span style="color: #ffcc66;">%ecx</span>
-        <span style="color: #99cc99;">movl</span> $42, <span style="color: #ffcc66;">%edx</span>
-        <span style="color: #99cc99;">int</span> $0x80
-        <span style="color: #99cc99;">movl</span> $1, <span style="color: #ffcc66;">%eax</span>
-        <span style="color: #99cc99;">movl</span> $0, <span style="color: #ffcc66;">%ebx</span>
-        <span style="color: #99cc99;">int</span> $0x80
-</pre>
-</div>
-</div>
-</div>
-</div>
+<h1 class="title">asm practices</h1>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: ubuntu</p>
-<p class="date">Created: 2015-11-16 一 15:48</p>
+<p class="author">Author: ubuntu-company</p>
+<p class="date">Created: 2016-02-19 Fri 16:59</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

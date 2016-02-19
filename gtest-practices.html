@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-11-30 一 21:31 -->
+<!-- 2016-02-19 Fri 16:59 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Google Test Frame Practices</title>
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="ubuntu" />
+<meta  name="author" content="ubuntu-company" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -179,7 +179,7 @@ for the JavaScript code in this tag.
 <h2 id="orgheadline3"><span class="section-number-2">1</span> 简介</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Google Test Framwork<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> 是google 一套开源的C++测试框架。主要包括两个部分：
+Google Test Framwork<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> 是 google 一套开源的 C++测试框架。主要包括两个部分：
 </p>
 </div>
 <div id="outline-container-orgheadline1" class="outline-3">
@@ -208,14 +208,14 @@ gtest 测试框架是 google 开源的用于在不同平台上（Linux，Mac OS 
 <div class="outline-text-4" id="text-2-2-1">
 <div class="org-src-container">
 
-<pre class="src src-sh">    <span style="color: #cc99cc;">cd</span> ~/projects
-    git clone git@github.com:google/googletest.git
-    <span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">&#26681;&#25454;googletest/googleteset/README.md&#36827;&#34892;&#23433;&#35013;</span>
-    <span style="color: #cc99cc;">cd</span> googletest/googletest/
-    cmake CMakeLists.txt
-    make
-    sudo mv libgtest.a /usr/local/lib/
-    sudo cp -r include/gtest/ /usr/local/include/
+<pre class="src src-sh">    <span style="color: #d18aff;">cd</span> ~/projects&#57344;&#57345;&#57345;
+    git clone git@github.com:google/googletest.git&#57344;&#57345;&#57345;
+    <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">&#26681;&#25454; googletest/googleteset/README.md &#36827;&#34892;&#23433;&#35013;</span>&#57344;&#57345;&#57345;
+    <span style="color: #d18aff;">cd</span> googletest/googletest/&#57344;&#57345;&#57345;
+    cmake CMakeLists.txt&#57344;&#57345;&#57345;
+    make&#57344;&#57345;&#57345;
+    sudo mv libgtest.a /usr/local/lib/&#57344;&#57345;&#57345;
+    sudo cp -r include/gtest/ /usr/local/include/&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -233,28 +233,28 @@ gtest 测试框架是 google 开源的用于在不同平台上（Linux，Mac OS 
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;iostream&gt;</span>
-<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;gtest/gtest.h&gt;</span>
-
-    <span style="color: #6699cc;">int</span> <span style="color: #f99157;">Add</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">a</span>, <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">b</span>) {
-        <span style="color: #99cc99;">return</span> a + b;
-    }
-
-    <span style="color: #f99157;">TEST</span>(SomeTest, Add) {
-        EXPECT_EQ(3, Add(1,2));
-    }
-
-    <span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">argc</span>, <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">argv</span>[])
-    {
-        <span style="color: #6699cc;">testing</span>::InitGoogleTest(&amp;argc, argv);
-        <span style="color: #99cc99;">return</span> RUN_ALL_TESTS();
-    }
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;gtest/gtest.h&gt;</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">Add</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">b</span>) {&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">return</span> a + b;&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #ffd700;">TEST</span>(SomeTest, Add) {&#57344;&#57345;&#57345;
+        EXPECT_EQ(3, Add(1,2));&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
+    {&#57344;&#57345;&#57345;
+        <span style="color: #5fafd7;">testing</span>::InitGoogleTest(&amp;argc, argv);&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">return</span> RUN_ALL_TESTS();&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-sh">    g++ gtest_1.cc -lgtest -lpthread -o gtest_1.out <span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">&#27880;&#24847;&#19981;&#35201;&#20351;&#29992;gcc</span>
+<pre class="src src-sh">    g++ gtest_1.cc -lgtest -lpthread -o gtest_1.out <span style="color: #6c6c6c; font-style: italic;">#</span><span style="color: #6c6c6c; font-style: italic;">&#27880;&#24847;&#19981;&#35201;&#20351;&#29992; gcc</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -287,8 +287,8 @@ gtest 测试框架是 google 开源的用于在不同平台上（Linux，Mac OS 
 </div>
 </div></div>
 <div id="postamble" class="status">
-<p class="author">Author: ubuntu</p>
-<p class="date">Created: 2015-11-30 一 21:31</p>
+<p class="author">Author: ubuntu-company</p>
+<p class="date">Created: 2016-02-19 Fri 16:59</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

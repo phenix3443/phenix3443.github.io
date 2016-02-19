@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-11-16 一 15:49 -->
+<!-- 2016-02-19 Fri 17:00 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>TinyHTTPd源码分析</title>
+<title>TinyHTTPd 源码分析</title>
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="ubuntu" />
+<meta  name="author" content="ubuntu-company" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -165,7 +165,7 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">TinyHTTPd源码分析</h1>
+<h1 class="title">TinyHTTPd 源码分析</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
@@ -189,7 +189,7 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#orgheadline17">5. 附录</a>
 <ul>
-<li><a href="#orgheadline14">5.1. HTTP报文格式</a>
+<li><a href="#orgheadline14">5.1. HTTP 报文格式</a>
 <ul>
 <li><a href="#orgheadline12">5.1.1. 请求报文</a></li>
 <li><a href="#orgheadline13">5.1.2. 响应报文</a></li>
@@ -210,7 +210,10 @@ for the JavaScript code in this tag.
 <h2 id="orgheadline1"><span class="section-number-2">1</span> 简介</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-TinyHTTPd<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>是一个超轻量型 Http Server，使用C语言开发，httpd只有
+TinyHTTPd<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>是一个超轻量型 Http Server，使用 C 语言开发，httpd 只有
+</p>
+
+<p>
 <code>521</code>
 行，附带一个简单的 Client，也只有
 <code>33</code>
@@ -223,7 +226,7 @@ TinyHTTPd<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>是一个超
 <h2 id="orgheadline2"><span class="section-number-2">2</span> 编译</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-源程序是在sparc solaris 2.6 下编译的，在linux下编译需要进行以下修改：
+源程序是在 sparc solaris 2.6 下编译的，在 linux 下编译需要进行以下修改：
 </p>
 <ul class="org-ul">
 <li><p>
@@ -231,41 +234,41 @@ TinyHTTPd<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>是一个超
 </p>
 
 <p>
-第33行函数声明
+第 33 行函数声明
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #999999; font-style: italic;">/* </span><span style="color: #999999; font-style: italic;">void accept_request(int); </span><span style="color: #999999; font-style: italic;">*/</span>
-<span style="color: #6699cc;">void</span> *<span style="color: #f99157;">accept_request</span>(<span style="color: #6699cc;">void</span> *);
+<pre class="src src-c">    <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">void accept_request(int); </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+    <span style="color: #00d7af;">void</span> *<span style="color: #ffd700;">accept_request</span>(<span style="color: #00d7af;">void</span> *);&#57344;&#57345;&#57345;
 </pre>
 </div>
 
 <p>
-第52行相应的函数定义
+第 52 行相应的函数定义
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #999999; font-style: italic;">/* </span><span style="color: #999999; font-style: italic;">void accept_request(int client) </span><span style="color: #999999; font-style: italic;">*/</span>
-<span style="color: #6699cc;">void</span> *<span style="color: #f99157;">accept_request</span>(<span style="color: #6699cc;">void</span> * <span style="color: #ffcc66;">tclient</span>)
+<pre class="src src-c">    <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">void accept_request(int client) </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+    <span style="color: #00d7af;">void</span> *<span style="color: #ffd700;">accept_request</span>(<span style="color: #00d7af;">void</span> * <span style="color: #ff8700;">tclient</span>)&#57344;&#57345;&#57345;
 </pre>
 </div>
 
 <p>
-第131行添加返回值
+第 131 行添加返回值
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #99cc99;">return</span> <span style="color: #6699cc;">NULL</span>;
+<pre class="src src-c">    <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">NULL</span>;&#57344;&#57345;&#57345;
 </pre>
 </div>
 
 <p>
-第503 行
+第 503 行
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #999999; font-style: italic;">/* </span><span style="color: #999999; font-style: italic;">if (pthread_create(&amp;newthread , NULL, accept_request, client_sock) != 0) </span><span style="color: #999999; font-style: italic;">*/</span>
-<span style="color: #99cc99;">if</span> (pthread_create(&amp;newthread , <span style="color: #6699cc;">NULL</span>, accept_request, (<span style="color: #6699cc;">void</span> *)&amp;client_sock) != 0)
+<pre class="src src-c">    <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">if (pthread_create(&amp;newthread , NULL, accept_request, client_sock) != 0) </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;
+    <span style="color: #a1db00;">if</span> (pthread_create(&amp;newthread , <span style="color: #5fafd7;">NULL</span>, accept_request, (<span style="color: #00d7af;">void</span> *)&amp;client_sock) != 0)&#57344;&#57345;
 </pre>
 </div></li>
 <li><p>
@@ -273,47 +276,47 @@ TinyHTTPd<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>是一个超
 </p>
 
 <p>
-第441行
+第 441 行
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #999999; font-style: italic;">/* </span><span style="color: #999999; font-style: italic;">int namelen = sizeof(name); </span><span style="color: #999999; font-style: italic;">*/</span>
-<span style="color: #6699cc;">socklen_t</span> <span style="color: #ffcc66;">namelen</span> = <span style="color: #99cc99;">sizeof</span>(name);
+<pre class="src src-c">    <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">int namelen = sizeof(name); </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+    <span style="color: #00d7af;">socklen_t</span> <span style="color: #ff8700;">namelen</span> = <span style="color: #a1db00;">sizeof</span>(name);&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
-第488行
+第 488 行
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #999999; font-style: italic;">/* </span><span style="color: #999999; font-style: italic;">int client_name_len = sizeof(client_name); </span><span style="color: #999999; font-style: italic;">*/</span>
-<span style="color: #6699cc;">socklen_t</span> <span style="color: #ffcc66;">client_name_len</span> = <span style="color: #99cc99;">sizeof</span>(client_name);
+<pre class="src src-c">    <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">int client_name_len = sizeof(client_name); </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+    <span style="color: #00d7af;">socklen_t</span> <span style="color: #ff8700;">client_name_len</span> = <span style="color: #a1db00;">sizeof</span>(client_name);&#57344;&#57345;&#57345;
 </pre>
 </div></li>
 
 <li><p>
-第277行 逻辑错误
+第 277 行 逻辑错误
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #999999; font-style: italic;">/* </span><span style="color: #999999; font-style: italic;">execl(path, path, NULL); </span><span style="color: #999999; font-style: italic;">*/</span>
-execl(path, query_string, <span style="color: #6699cc;">NULL</span>);
+<pre class="src src-c">    <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">execl(path, path, NULL); </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+    execl(path, query_string, <span style="color: #5fafd7;">NULL</span>);&#57344;&#57345;&#57345;
 </pre>
 </div></li>
 
 <li><p>
-Makefile添加debug选项、去掉 libsocket 的依赖。
+Makefile 添加 debug 选项、去掉 libsocket 的依赖。
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">gcc -W -Wall -lsocket -lpthread -o httpd httpd.c</span>
-gcc -g -W -Wall  httpd.c -o httpd -lpthread
+<pre class="src src-sh">    <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">gcc -W -Wall -lsocket -lpthread -o httpd httpd.c</span>&#57344;&#57345;&#57345;
+    gcc -g -W -Wall  httpd.c -o httpd -lpthread&#57344;&#57345;&#57345;
 </pre>
 </div></li>
 </ul>
 
 <p>
-执行make即可。
+执行 make 即可。
 </p>
 </div>
 </div>
@@ -321,7 +324,7 @@ gcc -g -W -Wall  httpd.c -o httpd -lpthread
 <h2 id="orgheadline3"><span class="section-number-2">3</span> 使用<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></h2>
 <div class="outline-text-2" id="text-3">
 <p>
-浏览器访问 <code>localhost:12345</code> 可以看到index.html页面。
+浏览器访问 <code>localhost:12345</code> 可以看到 index.html 页面。
 </p>
 
 <div class="figure">
@@ -331,30 +334,30 @@ gcc -g -W -Wall  httpd.c -o httpd -lpthread
 </div>
 
 <p>
-页面提示说要在输入框里面输入一个color，但是填了red什么都没有什么正常的反馈，看一下源码：
+页面提示说要在输入框里面输入一个 color，但是填了 red 什么都没有什么正常的反馈，看一下源码：
 </p>
 <div class="org-src-container">
 
-<pre class="src src-xml">&lt;<span style="color: #f99157;">FORM</span> <span style="color: #ffcc66;">ACTION</span>=<span style="color: #66cccc;">"</span><span style="color: #66cccc;">color.cgi</span><span style="color: #66cccc;">"</span> <span style="color: #ffcc66;">METHOD</span>=<span style="color: #66cccc;">"</span><span style="color: #66cccc;">POST</span><span style="color: #66cccc;">"</span>&gt;
-Enter a color: &lt;<span style="color: #f99157;">INPUT</span> <span style="color: #ffcc66;">TYPE</span>=<span style="color: #66cccc;">"</span><span style="color: #66cccc;">text</span><span style="color: #66cccc;">"</span> <span style="color: #ffcc66;">NAME</span>=<span style="color: #66cccc;">"</span><span style="color: #66cccc;">color</span><span style="color: #66cccc;">"</span>&gt;
-&lt;<span style="color: #f99157;">INPUT</span> <span style="color: #ffcc66;">TYPE</span>=<span style="color: #66cccc;">"</span><span style="color: #66cccc;">submit</span><span style="color: #66cccc;">"</span>&gt;
+<pre class="src src-xml">    &lt;<span style="color: #ffd700;">FORM</span> <span style="color: #ff8700;">ACTION</span>=<span style="color: #ff4ea3;">"</span><span style="color: #ff4ea3;">color.cgi</span><span style="color: #ff4ea3;">"</span> <span style="color: #ff8700;">METHOD</span>=<span style="color: #ff4ea3;">"</span><span style="color: #ff4ea3;">POST</span><span style="color: #ff4ea3;">"</span>&gt;
+    Enter a color: &lt;<span style="color: #ffd700;">INPUT</span> <span style="color: #ff8700;">TYPE</span>=<span style="color: #ff4ea3;">"</span><span style="color: #ff4ea3;">text</span><span style="color: #ff4ea3;">"</span> <span style="color: #ff8700;">NAME</span>=<span style="color: #ff4ea3;">"</span><span style="color: #ff4ea3;">color</span><span style="color: #ff4ea3;">"</span>&gt;
+    &lt;<span style="color: #ffd700;">INPUT</span> <span style="color: #ff8700;">TYPE</span>=<span style="color: #ff4ea3;">"</span><span style="color: #ff4ea3;">submit</span><span style="color: #ff4ea3;">"</span>&gt;
 </pre>
 </div>
 <p>
-简单说一下Form 本身的参数：ACTION是指向 CGI 脚本的 URL。METHOD可以是 GET 或 POST。 区别在于使用 GET 的情况下，值会显示在浏览器的地址栏里，而使用 POST 时，他们会被隐藏。
+简单说一下 Form 本身的参数：ACTION 是指向 CGI 脚本的 URL。METHOD 可以是 GET 或 POST。 区别在于使用 GET 的情况下，值会显示在浏览器的地址栏里，而使用 POST 时，他们会被隐藏。
 </p>
 
 <p>
-简单来看一下color.cgi：
+简单来看一下 color.cgi：
 </p>
 
 <p>
-加载CGI模块，并创建一个新的 CGI 对象，my作用类似lua里面的local，用来定义变量。
+加载 CGI 模块，并创建一个新的 CGI 对象，my 作用类似 lua 里面的 local，用来定义变量。
 </p>
 <div class="org-src-container">
 
-<pre class="src src-perl"><span style="color: #99cc99;">use</span> <span style="color: #6699cc;">CGI</span>;
-<span style="color: #6699cc;">my</span>($<span style="color: #ffcc66;">cgi</span>) = new CGI;
+<pre class="src src-perl">    <span style="color: #a1db00;">use</span> <span style="color: #5fafd7;">CGI</span>;&#57344;&#57345;&#57345;
+    <span style="color: #00d7af;">my</span>($<span style="color: #ff8700;">cgi</span>) = new CGI;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -362,23 +365,23 @@ Enter a color: &lt;<span style="color: #f99157;">INPUT</span> <span style="color
 </p>
 <div class="org-src-container">
 
-<pre class="src src-perl">print $<span style="color: #ffcc66;">cgi</span>-&gt;header;             <span style="color: #999999; font-style: italic;"># &#25171;&#21360;HTTP &#21709;&#24212;&#25253;&#22836;&#65292;&#31867;&#20284;print "Content-Type: text/html; charset=ISO-8859-1\r\n";</span>
-<span style="color: #6699cc;">my</span>($<span style="color: #ffcc66;">color</span>) = <span style="color: #66cccc;">"blue"</span>;            <span style="color: #999999; font-style: italic;"># &#23450;&#20041;color&#21464;&#37327;</span>
-$<span style="color: #ffcc66;">color</span> = $<span style="color: #ffcc66;">cgi</span>-&gt;param(<span style="color: #66cccc;">'color'</span>) <span style="color: #99cc99;">if</span> defined $<span style="color: #ffcc66;">cgi</span>-&gt;param(<span style="color: #66cccc;">'color'</span>); <span style="color: #999999; font-style: italic;"># &#20174;&#25552;&#20132;&#30340;&#34920;&#21333;&#20013;&#33719;&#21462;&#21442;&#25968;</span>
+<pre class="src src-perl">    print $<span style="color: #ff8700;">cgi</span>-&gt;header;             <span style="color: #6c6c6c; font-style: italic;"># &#25171;&#21360; HTTP &#21709;&#24212;&#25253;&#22836;&#65292;&#31867;&#20284; print "Content-Type: text/html; charset=ISO-8859-1\r\n";</span>&#57344;&#57345;
+    <span style="color: #00d7af;">my</span>($<span style="color: #ff8700;">color</span>) = <span style="color: #ff4ea3;">"blue"</span>;            <span style="color: #6c6c6c; font-style: italic;"># &#23450;&#20041; color &#21464;&#37327;</span>&#57344;&#57345;&#57345;
+    $<span style="color: #ff8700;">color</span> = $<span style="color: #ff8700;">cgi</span>-&gt;param(<span style="color: #ff4ea3;">'color'</span>) <span style="color: #a1db00;">if</span> defined $<span style="color: #ff8700;">cgi</span>-&gt;param(<span style="color: #ff4ea3;">'color'</span>); <span style="color: #6c6c6c; font-style: italic;"># &#20174;&#25552;&#20132;&#30340;&#34920;&#21333;&#20013;&#33719;&#21462;&#21442;&#25968;</span>&#57344;&#57345;
 </pre>
 </div>
 <p>
-cgi输出：
+cgi 输出：
 </p>
 <div class="org-src-container">
 
-<pre class="src src-perl">print $<span style="color: #ffcc66;">cgi</span>-&gt;start_html(-title =&gt; uc($<span style="color: #ffcc66;">color</span>),-BGCOLOR =&gt; $<span style="color: #ffcc66;">color</span>); <span style="color: #999999; font-style: italic;"># start the html</span>
-print $<span style="color: #ffcc66;">cgi</span>-&gt;h1(<span style="color: #66cccc;">"This is $color"</span>); <span style="color: #999999; font-style: italic;"># level1 header</span>
-print $<span style="color: #ffcc66;">cgi</span>-&gt;end_html;             <span style="color: #999999; font-style: italic;"># end the html</span>
+<pre class="src src-perl">    print $<span style="color: #ff8700;">cgi</span>-&gt;start_html(-title =&gt; uc($<span style="color: #ff8700;">color</span>),-BGCOLOR =&gt; $<span style="color: #ff8700;">color</span>); <span style="color: #6c6c6c; font-style: italic;"># start the html</span>&#57344;&#57345;
+    print $<span style="color: #ff8700;">cgi</span>-&gt;h1(<span style="color: #ff4ea3;">"This is $color"</span>); <span style="color: #6c6c6c; font-style: italic;"># level1 header</span>&#57344;&#57345;&#57345;
+    print $<span style="color: #ff8700;">cgi</span>-&gt;end_html;             <span style="color: #6c6c6c; font-style: italic;"># end the html</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
-看到这里应该想到返回的html的内容了：一个设置了标题、背景色、header的html页面。我们试试：在输入框填入#0000FF（蓝色），提交。
+看到这里应该想到返回的 html 的内容了：一个设置了标题、背景色、header 的 html 页面。我们试试：在输入框填入#0000FF（蓝色），提交。
 </p>
 
 <div class="figure">
@@ -388,18 +391,18 @@ print $<span style="color: #ffcc66;">cgi</span>-&gt;end_html;             <span 
 </div>
 
 <p>
-可是还是没有返回结果，问题出在哪里呢？先单独执行一下color.cgi看看是不是它的问题。
+可是还是没有返回结果，问题出在哪里呢？先单独执行一下 color.cgi 看看是不是它的问题。
 </p>
 <pre class="example">
-$ ./color.cgi
-bash: ./color.cgi: /usr/local/bin/perl: 解释器错误: 没有那个文件或目录
+    $ ./color.cgi
+    bash: ./color.cgi: /usr/local/bin/perl: 解释器错误: 没有那个文件或目录
 </pre>
 <p>
-原来是perl的路径没找到。找一下本机的perl路径：
+原来是 perl 的路径没找到。找一下本机的 perl 路径：
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">which perl
+<pre class="src src-sh">    which perl&#57344;&#57345;&#57345;
 </pre>
 </div>
 
@@ -408,11 +411,11 @@ bash: ./color.cgi: /usr/local/bin/perl: 解释器错误: 没有那个文件或�
 </pre>
 
 <p>
-重新设定color.cgi中的perl路径，
+重新设定 color.cgi 中的 perl 路径，
 </p>
 <div class="org-src-container">
 
-<pre class="src src-perl"><span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">!/usr/bin/perl -Tw</span>
+<pre class="src src-perl">    <span style="color: #6c6c6c; font-style: italic;">#!/usr/bin/perl -Tw</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -448,7 +451,7 @@ bash: ./color.cgi: /usr/local/bin/perl: 解释器错误: 没有那个文件或�
 <h4 id="orgheadline5"><span class="section-number-4">4.2.1</span> main</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <p>
-main函数通过startup函数来绑定和监听端口,accept一个客户端链接后创建一个线程调用 <code>accept_request</code> 函数来处理用户发来的HTTP请求报文。
+main 函数通过 startup 函数来绑定和监听端口,accept 一个客户端链接后创建一个线程调用 <code>accept_request</code> 函数来处理用户发来的 HTTP 请求报文。
 </p>
 </div>
 </div>
@@ -456,7 +459,7 @@ main函数通过startup函数来绑定和监听端口,accept一个客户端链�
 <h4 id="orgheadline6"><span class="section-number-4">4.2.2</span> startup</h4>
 <div class="outline-text-4" id="text-4-2-2">
 <p>
-startup函数很简单，不做过多的分析。
+startup 函数很简单，不做过多的分析。
 </p>
 </div>
 </div>
@@ -464,95 +467,95 @@ startup函数很简单，不做过多的分析。
 <h4 id="orgheadline7"><span class="section-number-4">4.2.3</span> <code>accept_request</code></h4>
 <div class="outline-text-4" id="text-4-2-3">
 <p>
-<code>accept_request</code> 通过 <code>get_line</code> 按行处理HTTP请求。
+<code>accept_request</code> 通过 <code>get_line</code> 按行处理 HTTP 请求。
 </p>
 <ul class="org-ul">
 <li>请求行
 <ul class="org-ul">
-<li>将请求方法放在method中，只能处理get或者post方法，如果是post方法设置cgi处理标识。</li>
-<li>判断是何种 method （GET or POST）以及获取 url。对于 GET 方法，如果携带参数，设置cgi处理标识，截断url，并将 <code>query_string</code> 指针指向 url 中 ? 后面的 GET 参数。</li>
-<li>将htdocs与url拼接为path，如果path最后一个字符是‘/’，则继续拼接index.html，即默认访问path下的index.html文件。</li>
-<li>如果path所指的文件不存在，读取并丢弃剩余请求首部，并向客户端返回404错误。</li>
-<li>如果path所指文件存在，是目录则拼接index.html，是文件则根据是否可执行设置cgi标识。</li>
-<li>根据cgi标识决定执行 <code>serve_file</code> 还是 <code>execute_cgi</code> 。</li>
+<li>将请求方法放在 method 中，只能处理 get 或者 post 方法，如果是 post 方法设置 cgi 处理标识。</li>
+<li>判断是何种 method（GET or POST）以及获取 url。对于 GET 方法，如果携带参数，设置 cgi 处理标识，截断 url，并将 <code>query_string</code> 指针指向 url 中 ? 后面的 GET 参数。</li>
+<li>将 htdocs 与 url 拼接为 path，如果 path 最后一个字符是‘/’，则继续拼接 index.html，即默认访问 path 下的 index.html 文件。</li>
+<li>如果 path 所指的文件不存在，读取并丢弃剩余请求首部，并向客户端返回 404 错误。</li>
+<li>如果 path 所指文件存在，是目录则拼接 index.html，是文件则根据是否可执行设置 cgi 标识。</li>
+<li>根据 cgi 标识决定执行 <code>serve_file</code> 还是 <code>execute_cgi</code> 。</li>
 </ul></li>
 </ul>
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #6699cc;">void</span> <span style="color: #f99157;">accept_request</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">client</span>)
-{
-    <span style="color: #6699cc;">char</span> <span style="color: #ffcc66;">buf</span>[1024];
-    <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">numchars</span>;
-    <span style="color: #6699cc;">char</span> <span style="color: #ffcc66;">method</span>[255];           <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#20445;&#23384;&#35831;&#27714;&#34892;&#20013;&#30340;&#35831;&#27714;&#26041;&#27861;GET or POST</span>
-    <span style="color: #6699cc;">char</span> <span style="color: #ffcc66;">url</span>[255];   <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#35831;&#27714;&#34892;&#30340;url&#23383;&#27573;</span>
-    <span style="color: #6699cc;">char</span> <span style="color: #ffcc66;">path</span>[512];  <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#35831;&#27714;&#34892;&#20013;&#25991;&#20214;&#22312;&#26381;&#21153;&#22120;&#19978;&#30340;&#36335;&#24452;</span>
-    <span style="color: #6699cc;">size_t</span> <span style="color: #ffcc66;">i</span>, <span style="color: #ffcc66;">j</span>;
-    <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">stat</span> <span style="color: #ffcc66;">st</span>;
-    <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">cgi</span> = 0;      <span style="color: #999999; font-style: italic;">/* </span><span style="color: #999999; font-style: italic;">becomes true if server decides this is a CGI</span>
-<span style="color: #999999; font-style: italic;">                       * program </span><span style="color: #999999; font-style: italic;">*/</span>
-    <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">query_string</span> = <span style="color: #6699cc;">NULL</span>; <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">get&#35831;&#27714;&#65311;&#20043;&#21518;&#30340;&#26597;&#35810;&#21442;&#25968;</span>
-
-    numchars = get_line(client, buf, <span style="color: #99cc99;">sizeof</span>(buf));<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#33719;&#21462;&#35831;&#27714;&#34892;</span>
-    i = 0; j = 0;
-    <span style="color: #999999; font-style: italic;">/* </span><span style="color: #999999; font-style: italic;">&#22788;&#29702;&#35831;&#27714;&#34892; </span><span style="color: #999999; font-style: italic;">*/</span>
-    <span style="color: #999999; font-style: italic;">/* </span><span style="color: #999999; font-style: italic;">&#35831;&#27714;&#26041;&#27861; </span><span style="color: #999999; font-style: italic;">*/</span>
-    <span style="color: #99cc99;">while</span> (<span style="color: #6699cc;">!</span>ISspace(buf[j]) &amp;&amp; (i &lt; <span style="color: #99cc99;">sizeof</span>(method) - 1))
-    {
-        method[i] = buf[j];<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#26681;&#25454;http&#35831;&#27714;&#25253;&#25991;&#26684;&#24335;&#65292;&#36825;&#37324;&#24471;&#21040;&#30340;&#26159;&#35831;&#27714;&#26041;&#27861;</span>
-        i++; j++;
-    }
-    method[i] = <span style="color: #66cccc;">'\0'</span>;
-    <span style="color: #999999; font-style: italic;">/* </span><span style="color: #999999; font-style: italic;">&#30465;&#30053; </span><span style="color: #999999; font-style: italic;">*/</span>
-    <span style="color: #999999; font-style: italic;">/* </span><span style="color: #999999; font-style: italic;">URL&#23383;&#27573; </span><span style="color: #999999; font-style: italic;">*/</span>
-    <span style="color: #99cc99;">while</span> (<span style="color: #6699cc;">!</span>ISspace(buf[j]) &amp;&amp; (i &lt; <span style="color: #99cc99;">sizeof</span>(url) - 1) &amp;&amp; (j &lt; <span style="color: #99cc99;">sizeof</span>(buf)))
-    {
-        url[i] = buf[j];<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#33719;&#21462;&#30340;&#26159;URL&#65288;&#20114;&#32852;&#32593;&#26631;&#20934;&#36164;&#28304;&#30340;&#22320;&#22336;&#65289;</span>
-        i++; j++;
-    }
-    url[i] = <span style="color: #66cccc;">'\0'</span>;
-
-    <span style="color: #99cc99;">if</span> (strcasecmp(method, <span style="color: #66cccc;">"GET"</span>) == 0)
-    {
-        query_string = url;<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#35831;&#27714;&#20449;&#24687;</span>
-        <span style="color: #99cc99;">while</span> ((*query_string != <span style="color: #66cccc;">'?'</span>) &amp;&amp; (*query_string != <span style="color: #66cccc;">'\0'</span>))<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#25130;&#21462;'?'&#21069;&#30340;&#23383;&#31526;</span>
-            query_string++;<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#38382;&#21495;&#21069;&#38754;&#26159;&#36335;&#24452;&#65292;&#21518;&#38754;&#26159;&#21442;&#25968;</span>
-        <span style="color: #99cc99;">if</span> (*query_string == <span style="color: #66cccc;">'?'</span>)<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#26377;'?'&#65292;&#34920;&#26126;&#21160;&#24577;&#35831;&#27714;</span>
-        {
-            cgi = 1;
-            *query_string = <span style="color: #66cccc;">'\0'</span>;
-            query_string++;
-        }
-    }
-    <span style="color: #999999; font-style: italic;">/* </span><span style="color: #999999; font-style: italic;">&#26681;&#25454;url&#25340;&#25509;url&#22312;&#26381;&#21153;&#22120;&#19978;&#30340;&#36335;&#24452; </span><span style="color: #999999; font-style: italic;">*/</span>
-    sprintf(path, <span style="color: #66cccc;">"htdocs%s"</span>, url);
-    <span style="color: #99cc99;">if</span> (path[strlen(path) - 1] == <span style="color: #66cccc;">'/'</span>)<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#22914;&#26524;url&#26159;&#30446;&#24405;(/)&#65292;&#21017;&#21152;&#19978;index.html</span>
-        strcat(path, <span style="color: #66cccc;">"index.html"</span>);<span style="color: #999999; font-style: italic;">//</span>
-
-    <span style="color: #999999; font-style: italic;">/* </span><span style="color: #999999; font-style: italic;">&#26597;&#25214;path&#25351;&#21521;&#30340;&#25991;&#20214; </span><span style="color: #999999; font-style: italic;">*/</span>
-    <span style="color: #99cc99;">if</span> (stat(path, &amp;st) == -1) {<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#25191;&#34892;&#22833;&#36133;&#65292;&#25991;&#20214;&#26410;&#25214;&#21040;</span>
-        <span style="color: #999999; font-style: italic;">/*</span><span style="color: #999999; font-style: italic;">&#20002;&#24323;&#25152;&#26377; headers &#30340;&#20449;&#24687;</span><span style="color: #999999; font-style: italic;">*/</span>
-        <span style="color: #99cc99;">while</span> ((numchars &gt; 0) &amp;&amp; strcmp(<span style="color: #66cccc;">"\n"</span>, buf))  <span style="color: #999999; font-style: italic;">/* </span><span style="color: #999999; font-style: italic;">read &amp; discard headers </span><span style="color: #999999; font-style: italic;">*/</span>
-            numchars = get_line(client, buf, <span style="color: #99cc99;">sizeof</span>(buf));<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#20174;&#23458;&#25143;&#31471;&#35835;&#21462;&#25968;&#25454;&#36827;buf</span>
-        not_found(client);<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#22238;&#24212;&#23458;&#25143;&#31471;&#25214;&#19981;&#21040;</span>
-    }
-    <span style="color: #99cc99;">else</span>
-    {
-        <span style="color: #999999; font-style: italic;">/*</span><span style="color: #999999; font-style: italic;">&#22914;&#26524;path&#26159;&#20010;&#30446;&#24405;&#65292;&#21017;&#40664;&#35748;&#20351;&#29992;&#35813;&#30446;&#24405;&#19979; index.html &#25991;&#20214;</span><span style="color: #999999; font-style: italic;">*/</span>
-        <span style="color: #99cc99;">if</span> ((st.st_mode &amp; S_IFMT) == S_IFDIR)
-            strcat(path, <span style="color: #66cccc;">"/index.html"</span>);
-        <span style="color: #999999; font-style: italic;">/* </span><span style="color: #999999; font-style: italic;">&#22914;&#26524;path&#26159;&#21487;&#25191;&#34892;&#25991;&#20214;&#65292;&#35774;&#32622;cgi&#26631;&#35782; </span><span style="color: #999999; font-style: italic;">*/</span>
-        <span style="color: #99cc99;">if</span> ((st.st_mode &amp; S_IXUSR) ||
-            (st.st_mode &amp; S_IXGRP) ||
-            (st.st_mode &amp; S_IXOTH)    )
-            cgi = 1;
-        <span style="color: #99cc99;">if</span> (<span style="color: #6699cc;">!</span>cgi)<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#38745;&#24577;&#39029;&#38754;&#35831;&#27714;</span>
-            serve_file(client, path);<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#30452;&#25509;&#36820;&#22238;&#25991;&#20214;&#20449;&#24687;&#32473;&#23458;&#25143;&#31471;&#65292;&#38745;&#24577;&#39029;&#38754;&#36820;&#22238;</span>
-        <span style="color: #99cc99;">else</span><span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#21160;&#24577;&#39029;&#38754;&#35831;&#27714;</span>
-            execute_cgi(client, path, method, query_string);<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#25191;&#34892;cgi&#33050;&#26412;</span>
-    }
-
-    close(client);<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#20851;&#38381;&#23458;&#25143;&#31471;&#22871;&#25509;&#23383;</span>
-}
+<pre class="src src-c">    <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">accept_request</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">client</span>)&#57344;&#57345;&#57345;
+    {&#57344;&#57345;&#57345;
+        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">buf</span>[1024];&#57344;&#57345;&#57345;
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">numchars</span>;&#57344;&#57345;&#57345;
+        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">method</span>[255];           <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#20445;&#23384;&#35831;&#27714;&#34892;&#20013;&#30340;&#35831;&#27714;&#26041;&#27861; GET or POST</span>&#57344;&#57345;
+        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">url</span>[255];   <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#35831;&#27714;&#34892;&#30340; url &#23383;&#27573;</span>&#57344;&#57345;&#57345;
+        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">path</span>[512];  <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#35831;&#27714;&#34892;&#20013;&#25991;&#20214;&#22312;&#26381;&#21153;&#22120;&#19978;&#30340;&#36335;&#24452;</span>&#57344;&#57345;&#57345;
+        <span style="color: #00d7af;">size_t</span> <span style="color: #ff8700;">i</span>, <span style="color: #ff8700;">j</span>;&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">stat</span> <span style="color: #ff8700;">st</span>;&#57344;&#57345;&#57345;
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">cgi</span> = 0;      <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">becomes true if server decides this is a CGI</span>&#57344;&#57345;
+<span style="color: #6c6c6c; font-style: italic;">                           * program </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+        <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">query_string</span> = <span style="color: #5fafd7;">NULL</span>; <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">get &#35831;&#27714;&#65311;&#20043;&#21518;&#30340;&#26597;&#35810;&#21442;&#25968;</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+        numchars = get_line(client, buf, <span style="color: #a1db00;">sizeof</span>(buf));<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#33719;&#21462;&#35831;&#27714;&#34892;</span>&#57344;&#57345;&#57345;
+        i = 0; j = 0;&#57344;&#57345;&#57345;
+        <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#22788;&#29702;&#35831;&#27714;&#34892; </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+        <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#35831;&#27714;&#26041;&#27861; </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">while</span> (<span style="color: #ff4b4b;">!</span>ISspace(buf[j]) &amp;&amp; (i &lt; <span style="color: #a1db00;">sizeof</span>(method) - 1))&#57344;&#57345;&#57345;
+        {&#57344;&#57345;&#57345;
+            method[i] = buf[j];<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#26681;&#25454; http &#35831;&#27714;&#25253;&#25991;&#26684;&#24335;&#65292;&#36825;&#37324;&#24471;&#21040;&#30340;&#26159;&#35831;&#27714;&#26041;&#27861;</span>&#57344;&#57345;
+            i++; j++;&#57344;&#57345;&#57345;
+        }&#57344;&#57345;&#57345;
+        method[i] = <span style="color: #ff4ea3;">'\0'</span>;&#57344;&#57345;&#57345;
+        <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#30465;&#30053; </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+        <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">URL &#23383;&#27573; </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">while</span> (<span style="color: #ff4b4b;">!</span>ISspace(buf[j]) &amp;&amp; (i &lt; <span style="color: #a1db00;">sizeof</span>(url) - 1) &amp;&amp; (j &lt; <span style="color: #a1db00;">sizeof</span>(buf)))&#57344;&#57345;
+        {&#57344;&#57345;&#57345;
+            url[i] = buf[j];<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#33719;&#21462;&#30340;&#26159; URL&#65288;&#20114;&#32852;&#32593;&#26631;&#20934;&#36164;&#28304;&#30340;&#22320;&#22336;&#65289;</span>&#57344;&#57345;&#57345;
+            i++; j++;&#57344;&#57345;&#57345;
+        }&#57344;&#57345;&#57345;
+        url[i] = <span style="color: #ff4ea3;">'\0'</span>;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">if</span> (strcasecmp(method, <span style="color: #ff4ea3;">"GET"</span>) == 0)&#57344;&#57345;&#57345;
+        {&#57344;&#57345;&#57345;
+            query_string = url;<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#35831;&#27714;&#20449;&#24687;</span>&#57344;&#57345;&#57345;
+            <span style="color: #a1db00;">while</span> ((*query_string != <span style="color: #ff4ea3;">'?'</span>) &amp;&amp; (*query_string != <span style="color: #ff4ea3;">'\0'</span>))<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#25130;&#21462;'?'&#21069;&#30340;&#23383;&#31526;</span>&#57344;&#57345;
+                query_string++;<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#38382;&#21495;&#21069;&#38754;&#26159;&#36335;&#24452;&#65292;&#21518;&#38754;&#26159;&#21442;&#25968;</span>&#57344;&#57345;&#57345;
+            <span style="color: #a1db00;">if</span> (*query_string == <span style="color: #ff4ea3;">'?'</span>)<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#26377;'?'&#65292;&#34920;&#26126;&#21160;&#24577;&#35831;&#27714;</span>&#57344;&#57345;&#57345;
+            {&#57344;&#57345;&#57345;
+                cgi = 1;&#57344;&#57345;&#57345;
+                *query_string = <span style="color: #ff4ea3;">'\0'</span>;&#57344;&#57345;&#57345;
+                query_string++;&#57344;&#57345;&#57345;
+            }&#57344;&#57345;&#57345;
+        }&#57344;&#57345;&#57345;
+        <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#26681;&#25454; url &#25340;&#25509; url &#22312;&#26381;&#21153;&#22120;&#19978;&#30340;&#36335;&#24452; </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+        sprintf(path, <span style="color: #ff4ea3;">"htdocs%s"</span>, url);&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">if</span> (path[strlen(path) - 1] == <span style="color: #ff4ea3;">'/'</span>)<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#22914;&#26524; url &#26159;&#30446;&#24405;(/)&#65292;&#21017;&#21152;&#19978; index.html</span>&#57344;&#57345;
+            strcat(path, <span style="color: #ff4ea3;">"index.html"</span>);<span style="color: #6c6c6c; font-style: italic;">//</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+        <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#26597;&#25214; path &#25351;&#21521;&#30340;&#25991;&#20214; </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">if</span> (stat(path, &amp;st) == -1) {<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#25191;&#34892;&#22833;&#36133;&#65292;&#25991;&#20214;&#26410;&#25214;&#21040;</span>&#57344;&#57345;&#57345;
+            <span style="color: #6c6c6c; font-style: italic;">/*</span><span style="color: #6c6c6c; font-style: italic;">&#20002;&#24323;&#25152;&#26377; headers &#30340;&#20449;&#24687;</span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+            <span style="color: #a1db00;">while</span> ((numchars &gt; 0) &amp;&amp; strcmp(<span style="color: #ff4ea3;">"\n"</span>, buf))  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">read &amp; discard headers </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;
+                numchars = get_line(client, buf, <span style="color: #a1db00;">sizeof</span>(buf));<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#20174;&#23458;&#25143;&#31471;&#35835;&#21462;&#25968;&#25454;&#36827; buf</span>&#57344;&#57345;
+            not_found(client);<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#22238;&#24212;&#23458;&#25143;&#31471;&#25214;&#19981;&#21040;</span>&#57344;&#57345;&#57345;
+        }&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">else</span>&#57344;&#57345;&#57345;
+        {&#57344;&#57345;&#57345;
+            <span style="color: #6c6c6c; font-style: italic;">/*</span><span style="color: #6c6c6c; font-style: italic;">&#22914;&#26524; path &#26159;&#20010;&#30446;&#24405;&#65292;&#21017;&#40664;&#35748;&#20351;&#29992;&#35813;&#30446;&#24405;&#19979; index.html &#25991;&#20214;</span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57345;
+            <span style="color: #a1db00;">if</span> ((st.st_mode &amp; S_IFMT) == S_IFDIR)&#57344;&#57345;&#57345;
+                strcat(path, <span style="color: #ff4ea3;">"/index.html"</span>);&#57344;&#57345;&#57345;
+            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#22914;&#26524; path &#26159;&#21487;&#25191;&#34892;&#25991;&#20214;&#65292;&#35774;&#32622; cgi &#26631;&#35782; </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+            <span style="color: #a1db00;">if</span> ((st.st_mode &amp; S_IXUSR) ||&#57344;&#57345;&#57345;
+                (st.st_mode &amp; S_IXGRP) ||&#57344;&#57345;&#57345;
+                (st.st_mode &amp; S_IXOTH)    )&#57344;&#57345;&#57345;
+                cgi = 1;&#57344;&#57345;&#57345;
+            <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>cgi)<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#38745;&#24577;&#39029;&#38754;&#35831;&#27714;</span>&#57344;&#57345;&#57345;
+                serve_file(client, path);<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#30452;&#25509;&#36820;&#22238;&#25991;&#20214;&#20449;&#24687;&#32473;&#23458;&#25143;&#31471;&#65292;&#38745;&#24577;&#39029;&#38754;&#36820;&#22238;</span>&#57344;&#57345;
+            <span style="color: #a1db00;">else</span><span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#21160;&#24577;&#39029;&#38754;&#35831;&#27714;</span>&#57344;&#57345;&#57345;
+                execute_cgi(client, path, method, query_string);<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#25191;&#34892; cgi &#33050;&#26412;</span>&#57344;&#57345;
+        }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+        close(client);<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#20851;&#38381;&#23458;&#25143;&#31471;&#22871;&#25509;&#23383;</span>&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -561,43 +564,43 @@ startup函数很简单，不做过多的分析。
 <h4 id="orgheadline8"><span class="section-number-4">4.2.4</span> <code>get_line</code></h4>
 <div class="outline-text-4" id="text-4-2-4">
 <p>
-该函数不管行原来是以 \n 、\r还是 \r\n 结束，均转化为以\n再加\0字符结束。
+该函数不管行原来是以 \n、\r 还是 \r\n 结束，均转化为以\n 再加\0 字符结束。
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #6699cc;">int</span> <span style="color: #f99157;">get_line</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">sock</span>, <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">buf</span>, <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">size</span>)
-{
-    <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span> = 0;
-    <span style="color: #6699cc;">char</span> <span style="color: #ffcc66;">c</span> = <span style="color: #66cccc;">'\0'</span>;
-    <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">n</span>;
-
-    <span style="color: #999999; font-style: italic;">/* </span><span style="color: #999999; font-style: italic;">http&#35831;&#27714;&#25253;&#25991;&#27599;&#34892;&#37117;&#26159;\r\n&#32467;&#23614; </span><span style="color: #999999; font-style: italic;">*/</span>
-    <span style="color: #99cc99;">while</span> ((i &lt; size - 1) &amp;&amp; (c != <span style="color: #66cccc;">'\n'</span>))
-    {
-        n = recv(sock, &amp;c, 1, 0);
-
-        <span style="color: #99cc99;">if</span> (n &gt; 0)
-        {
-            <span style="color: #99cc99;">if</span> (c == <span style="color: #66cccc;">'\r'</span>)<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#22914;&#26524;&#26159;&#22238;&#36710;&#31526;&#65292;&#32487;&#32493;&#35835;&#21462;</span>
-            {
-                <span style="color: #999999; font-style: italic;">/* </span><span style="color: #999999; font-style: italic;">MSG_PEEK&#25506;&#27979;&#19979;&#19968;&#20010;&#23383;&#31526;&#26159;&#19981;&#26159;\n </span><span style="color: #999999; font-style: italic;">*/</span>
-                n = recv(sock, &amp;c, 1, MSG_PEEK);
-
-                <span style="color: #99cc99;">if</span> ((n &gt; 0) &amp;&amp; (c == <span style="color: #66cccc;">'\n'</span>))<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#22914;&#26524;&#26159;&#22238;&#36710;&#25442;&#34892;&#31526;&#35828;&#26126;&#35835;&#23436;&#19968;&#34892;</span>
-                    recv(sock, &amp;c, 1, 0);
-                <span style="color: #99cc99;">else</span>
-                    c = <span style="color: #66cccc;">'\n'</span>;<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#25442;&#34892;&#26367;&#25442;&#22238;&#36710;&#65292;&#24403;&#20316;&#19968;&#34892;&#36820;&#22238;</span>
-            }
-            buf[i] = c;
-            i++;
-        }
-        <span style="color: #99cc99;">else</span>
-            c = <span style="color: #66cccc;">'\n'</span>;
-    }
-    buf[i] = <span style="color: #66cccc;">'\0'</span>; <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#36820;&#22238;&#19968;&#34892;</span>
-
-    <span style="color: #99cc99;">return</span>(i);<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#36820;&#22238;&#35835;&#21040;&#30340;&#23383;&#31526;&#20010;&#25968;(&#21253;&#25324;'\0')</span>
-}
+<pre class="src src-c">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">get_line</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">sock</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">buf</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">size</span>)&#57344;&#57345;&#57345;
+    {&#57344;&#57345;&#57345;
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span> = 0;&#57344;&#57345;&#57345;
+        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">c</span> = <span style="color: #ff4ea3;">'\0'</span>;&#57344;&#57345;&#57345;
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">n</span>;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+        <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">http &#35831;&#27714;&#25253;&#25991;&#27599;&#34892;&#37117;&#26159;\r\n &#32467;&#23614; </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">while</span> ((i &lt; size - 1) &amp;&amp; (c != <span style="color: #ff4ea3;">'\n'</span>))&#57344;&#57345;&#57345;
+        {&#57344;&#57345;&#57345;
+            n = recv(sock, &amp;c, 1, 0);&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+            <span style="color: #a1db00;">if</span> (n &gt; 0)&#57344;&#57345;&#57345;
+            {&#57344;&#57345;&#57345;
+                <span style="color: #a1db00;">if</span> (c == <span style="color: #ff4ea3;">'\r'</span>)<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#22914;&#26524;&#26159;&#22238;&#36710;&#31526;&#65292;&#32487;&#32493;&#35835;&#21462;</span>&#57344;&#57345;&#57345;
+                {&#57344;&#57345;&#57345;
+                    <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">MSG_PEEK &#25506;&#27979;&#19979;&#19968;&#20010;&#23383;&#31526;&#26159;&#19981;&#26159;\n </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+                    n = recv(sock, &amp;c, 1, MSG_PEEK);&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+                    <span style="color: #a1db00;">if</span> ((n &gt; 0) &amp;&amp; (c == <span style="color: #ff4ea3;">'\n'</span>))<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#22914;&#26524;&#26159;&#22238;&#36710;&#25442;&#34892;&#31526;&#35828;&#26126;&#35835;&#23436;&#19968;&#34892;</span>&#57344;&#57345;
+                        recv(sock, &amp;c, 1, 0);&#57344;&#57345;&#57345;
+                    <span style="color: #a1db00;">else</span>&#57344;&#57345;&#57345;
+                        c = <span style="color: #ff4ea3;">'\n'</span>;<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#25442;&#34892;&#26367;&#25442;&#22238;&#36710;&#65292;&#24403;&#20316;&#19968;&#34892;&#36820;&#22238;</span>&#57344;&#57345;&#57345;
+                }&#57344;&#57345;&#57345;
+                buf[i] = c;&#57344;&#57345;&#57345;
+                i++;&#57344;&#57345;&#57345;
+            }&#57344;&#57345;&#57345;
+            <span style="color: #a1db00;">else</span>&#57344;&#57345;&#57345;
+                c = <span style="color: #ff4ea3;">'\n'</span>;&#57344;&#57345;&#57345;
+        }&#57344;&#57345;&#57345;
+        buf[i] = <span style="color: #ff4ea3;">'\0'</span>; <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#36820;&#22238;&#19968;&#34892;</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">return</span>(i);<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#36820;&#22238;&#35835;&#21040;&#30340;&#23383;&#31526;&#20010;&#25968;(&#21253;&#25324;'\0')</span>&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -606,10 +609,10 @@ startup函数很简单，不做过多的分析。
 <h4 id="orgheadline9"><span class="section-number-4">4.2.5</span> <code>execute_cgi</code></h4>
 <div class="outline-text-4" id="text-4-2-5">
 <p>
-主要做的事情就是fork一个子进程执行可执行文件，然后通过管道将结果返回父进程，进而返回客户端。
+主要做的事情就是 fork 一个子进程执行可执行文件，然后通过管道将结果返回父进程，进而返回客户端。
 </p>
 <ul class="org-ul">
-<li>如果是get方法，就读取并丢弃整个http首部。如果是post方法，还会从中 <code>content_length</code> 长度。</li>
+<li>如果是 get 方法，就读取并丢弃整个 http 首部。如果是 post 方法，还会从中 <code>content_length</code> 长度。</li>
 <li>建立两个管道， <code>cgi_input</code> 和 <code>cgi_output</code> ，并 fork 一个进程（必须 fork 子进程，pipe 管道才有意义）。建立父子进程间的通信机制。</li>
 <li>在子进程中，对其进程下的管道进行重定向，并设置对应的环境变量（method、 <code>query_string</code> 、 <code>content_length</code> ），这些环境变量都是为了给 cgi 脚本调用，接着用 execl 运行 cgi 脚本，可以看出 cgi 脚本的执行在子进程中进行，然后结果通过管道以及重定向返回给父进程。</li>
 <li>父进程中，关闭管道一端，如果是 POST 方式，则把 POST 数据写入 <code>cgi_intput</code> ，已被重定向到 STDIN，读取  <code>cgi_output</code> 。 管道输出到客户端（浏览器输出），具体流程图参见上面的管道最终状态图。接着关闭所有管道，等待子进程结束。</li>
@@ -624,126 +627,126 @@ startup函数很简单，不做过多的分析。
 
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #6699cc;">void</span> <span style="color: #f99157;">execute_cgi</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">client</span>, <span style="color: #99cc99;">const</span> <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">path</span>, <span style="color: #99cc99;">const</span> <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">method</span>, <span style="color: #99cc99;">const</span> <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">query_string</span>)
-{
-    <span style="color: #6699cc;">char</span> <span style="color: #ffcc66;">buf</span>[1024];
-    <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">cgi_output</span>[2];
-    <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">cgi_input</span>[2];
-    <span style="color: #6699cc;">pid_t</span> <span style="color: #ffcc66;">pid</span>;
-    <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">status</span>;
-    <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span>;
-    <span style="color: #6699cc;">char</span> <span style="color: #ffcc66;">c</span>;
-    <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">numchars</span> = 1;
-    <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">content_length</span> = -1;
-
-    buf[0] = <span style="color: #66cccc;">'A'</span>; buf[1] = <span style="color: #66cccc;">'\0'</span>;
-    <span style="color: #99cc99;">if</span> (strcasecmp(method, <span style="color: #66cccc;">"GET"</span>) == 0)<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">GET&#26041;&#27861;&#65306;&#19968;&#33324;&#29992;&#20110;&#33719;&#21462;/&#26597;&#35810;&#36164;&#28304;&#20449;&#24687;</span>
-        <span style="color: #99cc99;">while</span> ((numchars &gt; 0) &amp;&amp; strcmp(<span style="color: #66cccc;">"\n"</span>, buf))  <span style="color: #999999; font-style: italic;">/* </span><span style="color: #999999; font-style: italic;">read &amp; discard headers&#35835;&#21462;&#24182;&#20002;&#24323; HTTP &#35831;&#27714; </span><span style="color: #999999; font-style: italic;">*/</span>
-            numchars = get_line(client, buf, <span style="color: #99cc99;">sizeof</span>(buf));
-    <span style="color: #99cc99;">else</span>    <span style="color: #999999; font-style: italic;">/* </span><span style="color: #999999; font-style: italic;">POST &#19968;&#33324;&#29992;&#20110;&#26356;&#26032;&#36164;&#28304;&#20449;&#24687;</span><span style="color: #999999; font-style: italic;">*/</span>
-    {
-        numchars = get_line(client, buf, <span style="color: #99cc99;">sizeof</span>(buf));
-
-        <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#33719;&#21462;HTTP&#28040;&#24687;&#23454;&#20307;&#30340;&#20256;&#36755;&#38271;&#24230;</span>
-        <span style="color: #99cc99;">while</span> ((numchars &gt; 0) &amp;&amp; strcmp(<span style="color: #66cccc;">"\n"</span>, buf))<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#19981;&#20026;&#31354;&#19988;&#19981;&#20026;&#25442;&#34892;&#31526;</span>
-        {
-            buf[15] = <span style="color: #66cccc;">'\0'</span>;
-            <span style="color: #99cc99;">if</span> (strcasecmp(buf, <span style="color: #66cccc;">"Content-Length:"</span>) == 0)<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#26159;&#21542;&#20026;Content-Length&#23383;&#27573;</span>
-                content_length = atoi(&amp;(buf[16]));<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">Content-Length&#29992;&#20110;&#25551;&#36848;HTTP&#28040;&#24687;&#23454;&#20307;&#30340;&#20256;&#36755;&#38271;&#24230;</span>
-            numchars = get_line(client, buf, <span style="color: #99cc99;">sizeof</span>(buf));
-        }
-        <span style="color: #99cc99;">if</span> (content_length == -1) {
-            bad_request(client);<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#35831;&#27714;&#30340;&#39029;&#38754;&#25968;&#25454;&#20026;&#31354;&#65292;&#27809;&#26377;&#25968;&#25454;&#65292;&#23601;&#26159;&#25105;&#20204;&#25171;&#24320;&#32593;&#39029;&#32463;&#24120;&#20986;&#29616;&#31354;&#30333;&#39029;&#38754;</span>
-            <span style="color: #99cc99;">return</span>;
-        }
-    }
-
-    sprintf(buf, <span style="color: #66cccc;">"HTTP/1.0 200 OK\r\n"</span>);<span style="color: #999999; font-style: italic;">//</span>
-    send(client, buf, strlen(buf), 0);
-
-    <span style="color: #99cc99;">if</span> (pipe(cgi_output) &lt; 0) {
-        cannot_execute(client);<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#31649;&#36947;&#24314;&#31435;&#22833;&#36133;&#65292;&#25171;&#21360;&#20986;&#38169;&#20449;&#24687;</span>
-        <span style="color: #99cc99;">return</span>;
-    }
-    <span style="color: #99cc99;">if</span> (pipe(cgi_input) &lt; 0) {
-        cannot_execute(client);
-        <span style="color: #99cc99;">return</span>;
-    }
-
-    <span style="color: #99cc99;">if</span> ((pid = fork()) &lt; 0) {
-        cannot_execute(client);
-        <span style="color: #99cc99;">return</span>;
-    }
-    <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#23454;&#29616;&#36827;&#31243;&#38388;&#30340;&#31649;&#36947;&#36890;&#20449;&#26426;&#21046;</span>
-    <span style="color: #999999; font-style: italic;">/*</span><span style="color: #999999; font-style: italic;">&#23376;&#36827;&#31243;&#32487;&#25215;&#20102;&#29238;&#36827;&#31243;&#30340;pipe&#65292;&#28982;&#21518;&#36890;&#36807;&#20851;&#38381;&#23376;&#36827;&#31243;output&#31649;&#36947;&#30340;&#36755;&#20986;&#31471;&#65292;input&#31649;&#36947;&#30340;&#20889;&#20837;&#31471;&#65307;</span>
-<span style="color: #999999; font-style: italic;">      &#20851;&#38381;&#29238;&#36827;&#31243;output&#31649;&#36947;&#30340;&#20889;&#20837;&#31471;&#65292;input&#31649;&#36947;&#30340;&#36755;&#20986;&#31471;</span><span style="color: #999999; font-style: italic;">*/</span>
-    <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#23376;&#36827;&#31243;&#65292;</span>
-    <span style="color: #99cc99;">if</span> (pid == 0)  <span style="color: #999999; font-style: italic;">/* </span><span style="color: #999999; font-style: italic;">child: CGI script </span><span style="color: #999999; font-style: italic;">*/</span>
-    {
-        <span style="color: #6699cc;">char</span> <span style="color: #ffcc66;">meth_env</span>[255];
-        <span style="color: #6699cc;">char</span> <span style="color: #ffcc66;">query_env</span>[255];
-        <span style="color: #6699cc;">char</span> <span style="color: #ffcc66;">length_env</span>[255];
-
-        <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#22797;&#21046;&#25991;&#20214;&#21477;&#26564;&#65292;&#37325;&#23450;&#21521;&#36827;&#31243;&#30340;&#26631;&#20934;&#36755;&#20837;&#36755;&#20986;</span>
-        <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">dup2&#30340;&#31532;&#19968;&#20010;&#21442;&#25968;&#25551;&#36848;&#31526;&#20851;&#38381;</span>
-        dup2(cgi_output[1], 1);<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#26631;&#20934;&#36755;&#20986;&#37325;&#23450;&#21521;&#21040;output&#31649;&#36947;&#30340;&#20889;&#20837;&#31471;</span>
-        dup2(cgi_input[0], 0);<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#26631;&#20934;&#36755;&#20837;&#37325;&#23450;&#21521;&#21040;input&#31649;&#36947;&#30340;&#35835;&#21462;&#31471;</span>
-        close(cgi_output[0]);<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#20851;&#38381;output&#31649;&#36947;&#30340;&#20889;&#20837;&#31471;</span>
-        close(cgi_input[1]);<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#20851;&#38381;&#36755;&#20986;&#31471;</span>
-        sprintf(meth_env, <span style="color: #66cccc;">"REQUEST_METHOD=%s"</span>, method);
-        putenv(meth_env);
-        <span style="color: #99cc99;">if</span> (strcasecmp(method, <span style="color: #66cccc;">"GET"</span>) == 0) {<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">GET</span>
-            <span style="color: #999999; font-style: italic;">/*</span><span style="color: #999999; font-style: italic;">&#35774;&#32622; query_string &#30340;&#29615;&#22659;&#21464;&#37327;</span><span style="color: #999999; font-style: italic;">*/</span>
-            sprintf(query_env, <span style="color: #66cccc;">"QUERY_STRING=%s"</span>, query_string);
-            putenv(query_env);
-        }
-        <span style="color: #99cc99;">else</span> {   <span style="color: #999999; font-style: italic;">/* </span><span style="color: #999999; font-style: italic;">POST </span><span style="color: #999999; font-style: italic;">*/</span>
-            <span style="color: #999999; font-style: italic;">/*</span><span style="color: #999999; font-style: italic;">&#35774;&#32622; content_length &#30340;&#29615;&#22659;&#21464;&#37327;</span><span style="color: #999999; font-style: italic;">*/</span>
-            sprintf(length_env, <span style="color: #66cccc;">"CONTENT_LENGTH=%d"</span>, content_length);
-            putenv(length_env);
-        }
-        execl(path, path, <span style="color: #6699cc;">NULL</span>);<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">exec&#20989;&#25968;&#31751;&#65292;&#25191;&#34892;CGI&#33050;&#26412;&#65292;&#33719;&#21462;cgi&#30340;&#26631;&#20934;&#36755;&#20986;&#20316;&#20026;&#30456;&#24212;&#20869;&#23481;&#21457;&#36865;&#32473;&#23458;&#25143;&#31471;</span>
-        <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#36890;&#36807;dup2&#37325;&#23450;&#21521;&#65292;&#26631;&#20934;&#36755;&#20986;&#20869;&#23481;&#36827;&#20837;&#31649;&#36947;output&#30340;&#36755;&#20837;&#31471;</span>
-
-        exit(0);<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#23376;&#36827;&#31243;&#36864;&#20986;</span>
-    }
-    <span style="color: #99cc99;">else</span> {    <span style="color: #999999; font-style: italic;">/* </span><span style="color: #999999; font-style: italic;">parent </span><span style="color: #999999; font-style: italic;">*/</span>
-        close(cgi_output[1]);<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#20851;&#38381;&#31649;&#36947;&#30340;&#19968;&#31471;&#65292;&#36825;&#26679;&#21487;&#20197;&#24314;&#31435;&#29238;&#23376;&#36827;&#31243;&#38388;&#30340;&#31649;&#36947;&#36890;&#20449;</span>
-        close(cgi_input[0]);
-        <span style="color: #999999; font-style: italic;">/*</span><span style="color: #999999; font-style: italic;">&#36890;&#36807;&#20851;&#38381;&#23545;&#24212;&#31649;&#36947;&#30340;&#36890;&#36947;&#65292;&#28982;&#21518;&#37325;&#23450;&#21521;&#23376;&#36827;&#31243;&#30340;&#31649;&#36947;&#26576;&#31471;&#65292;&#36825;&#26679;&#23601;&#22312;&#29238;&#23376;&#36827;&#31243;&#20043;&#38388;&#26500;&#24314;&#19968;&#26465;&#21333;&#21452;&#24037;&#36890;&#36947;</span>
-<span style="color: #999999; font-style: italic;">          &#22914;&#26524;&#19981;&#37325;&#23450;&#21521;&#65292;&#23558;&#26159;&#19968;&#26465;&#20856;&#22411;&#30340;&#20840;&#21452;&#24037;&#31649;&#36947;&#36890;&#20449;&#26426;&#21046;</span>
-<span style="color: #999999; font-style: italic;">        </span><span style="color: #999999; font-style: italic;">*/</span>
-        <span style="color: #99cc99;">if</span> (strcasecmp(method, <span style="color: #66cccc;">"POST"</span>) == 0)<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">POST&#26041;&#24335;&#65292;&#23558;&#25351;&#23450;&#22909;&#30340;&#20256;&#36755;&#38271;&#24230;&#23383;&#31526;&#21457;&#36865;</span>
-            <span style="color: #999999; font-style: italic;">/*</span><span style="color: #999999; font-style: italic;">&#25509;&#25910; POST &#36807;&#26469;&#30340;&#25968;&#25454;</span><span style="color: #999999; font-style: italic;">*/</span>
-            <span style="color: #99cc99;">for</span> (i = 0; i &lt; content_length; i++) {
-                recv(client, &amp;c, 1, 0);<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#20174;&#23458;&#25143;&#31471;&#25509;&#25910;&#21333;&#20010;&#23383;&#31526;</span>
-                write(cgi_input[1], &amp;c, 1);<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#20889;&#20837;input&#65292;&#28982;&#21518;&#37325;&#23450;&#21521;&#21040;&#20102;&#26631;&#20934;&#36755;&#20837;</span>
-                <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#25968;&#25454;&#20256;&#36865;&#36807;&#31243;&#65306;input[1](&#29238;&#36827;&#31243;) &#8212;&#8212;&gt; input[0](&#23376;&#36827;&#31243;)[&#25191;&#34892;cgi&#20989;&#25968;] &#8212;&#8212;&gt; STDIN &#8212;&#8212;&gt; STDOUT</span>
-                <span style="color: #999999; font-style: italic;">// </span><span style="color: #999999; font-style: italic;">&#8212;&#8212;&gt; output[1](&#23376;&#36827;&#31243;) &#8212;&#8212;&gt; output[0](&#29238;&#36827;&#31243;)[&#23558;&#32467;&#26524;&#21457;&#36865;&#32473;&#23458;&#25143;&#31471;]</span>
-
-            }
-        <span style="color: #99cc99;">while</span> (read(cgi_output[0], &amp;c, 1) &gt; 0)<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#35835;&#21462;output&#30340;&#31649;&#36947;&#36755;&#20986;&#21040;&#23458;&#25143;&#31471;&#65292;output&#36755;&#20986;&#31471;&#20026;cgi&#33050;&#26412;&#25191;&#34892;&#21518;&#30340;&#20869;&#23481;</span>
-            send(client, &amp;c, 1, 0);<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#21363;&#23558;cgi&#25191;&#34892;&#32467;&#26524;&#21457;&#36865;&#32473;&#23458;&#25143;&#31471;&#65292;&#21363;send&#21040;&#27983;&#35272;&#22120;&#65292;&#22914;&#26524;&#19981;&#26159;POST&#21017;&#21482;&#26377;&#36825;&#19968;&#22788;&#29702;</span>
-
-        close(cgi_output[0]);<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#20851;&#38381;&#21097;&#19979;&#30340;&#31649;&#36947;&#31471;&#65292;&#23376;&#36827;&#31243;&#22312;&#25191;&#34892;dup2&#20043;&#21518;&#65292;&#23601;&#24050;&#32463;&#20851;&#38381;&#20102;&#31649;&#36947;&#19968;&#31471;&#36890;&#36947;</span>
-        close(cgi_input[1]);
-        waitpid(pid, &amp;status, 0);<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#31561;&#24453;&#23376;&#36827;&#31243;&#32456;&#27490;</span>
-    }
-}
+<pre class="src src-c">    <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">execute_cgi</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">client</span>, <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">path</span>, <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">method</span>, <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">query_string</span>)&#57344;&#57345;
+    {&#57344;&#57345;&#57345;
+        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">buf</span>[1024];&#57344;&#57345;&#57345;
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">cgi_output</span>[2];&#57344;&#57345;&#57345;
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">cgi_input</span>[2];&#57344;&#57345;&#57345;
+        <span style="color: #00d7af;">pid_t</span> <span style="color: #ff8700;">pid</span>;&#57344;&#57345;&#57345;
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">status</span>;&#57344;&#57345;&#57345;
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>;&#57344;&#57345;&#57345;
+        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">c</span>;&#57344;&#57345;&#57345;
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">numchars</span> = 1;&#57344;&#57345;&#57345;
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">content_length</span> = -1;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+        buf[0] = <span style="color: #ff4ea3;">'A'</span>; buf[1] = <span style="color: #ff4ea3;">'\0'</span>;&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">if</span> (strcasecmp(method, <span style="color: #ff4ea3;">"GET"</span>) == 0)<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">GET &#26041;&#27861;&#65306;&#19968;&#33324;&#29992;&#20110;&#33719;&#21462;/&#26597;&#35810;&#36164;&#28304;&#20449;&#24687;</span>&#57344;&#57345;
+            <span style="color: #a1db00;">while</span> ((numchars &gt; 0) &amp;&amp; strcmp(<span style="color: #ff4ea3;">"\n"</span>, buf))  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">read &amp; discard headers &#35835;&#21462;&#24182;&#20002;&#24323; HTTP &#35831;&#27714; </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;
+                numchars = get_line(client, buf, <span style="color: #a1db00;">sizeof</span>(buf));&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">else</span>    <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">POST &#19968;&#33324;&#29992;&#20110;&#26356;&#26032;&#36164;&#28304;&#20449;&#24687;</span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+        {&#57344;&#57345;&#57345;
+            numchars = get_line(client, buf, <span style="color: #a1db00;">sizeof</span>(buf));&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+            <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#33719;&#21462; HTTP &#28040;&#24687;&#23454;&#20307;&#30340;&#20256;&#36755;&#38271;&#24230;</span>&#57344;&#57345;&#57345;
+            <span style="color: #a1db00;">while</span> ((numchars &gt; 0) &amp;&amp; strcmp(<span style="color: #ff4ea3;">"\n"</span>, buf))<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#19981;&#20026;&#31354;&#19988;&#19981;&#20026;&#25442;&#34892;&#31526;</span>&#57344;&#57345;
+            {&#57344;&#57345;&#57345;
+                buf[15] = <span style="color: #ff4ea3;">'\0'</span>;&#57344;&#57345;&#57345;
+                <span style="color: #a1db00;">if</span> (strcasecmp(buf, <span style="color: #ff4ea3;">"Content-Length:"</span>) == 0)<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#26159;&#21542;&#20026; Content-Length &#23383;&#27573;</span>&#57344;&#57345;
+                    content_length = atoi(&amp;(buf[16]));<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">Content-Length &#29992;&#20110;&#25551;&#36848; HTTP &#28040;&#24687;&#23454;&#20307;&#30340;&#20256;&#36755;&#38271;&#24230;</span>&#57344;&#57345;
+                numchars = get_line(client, buf, <span style="color: #a1db00;">sizeof</span>(buf));&#57344;&#57345;&#57345;
+            }&#57344;&#57345;&#57345;
+            <span style="color: #a1db00;">if</span> (content_length == -1) {&#57344;&#57345;&#57345;
+                bad_request(client);<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#35831;&#27714;&#30340;&#39029;&#38754;&#25968;&#25454;&#20026;&#31354;&#65292;&#27809;&#26377;&#25968;&#25454;&#65292;&#23601;&#26159;&#25105;&#20204;&#25171;&#24320;&#32593;&#39029;&#32463;&#24120;&#20986;&#29616;&#31354;&#30333;&#39029;&#38754;</span>&#57344;&#57345;
+                <span style="color: #a1db00;">return</span>;&#57344;&#57345;&#57345;
+            }&#57344;&#57345;&#57345;
+        }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+        sprintf(buf, <span style="color: #ff4ea3;">"HTTP/1.0 200 OK\r\n"</span>);<span style="color: #6c6c6c; font-style: italic;">//</span>&#57344;&#57345;&#57345;
+        send(client, buf, strlen(buf), 0);&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">if</span> (pipe(cgi_output) &lt; 0) {&#57344;&#57345;&#57345;
+            cannot_execute(client);<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#31649;&#36947;&#24314;&#31435;&#22833;&#36133;&#65292;&#25171;&#21360;&#20986;&#38169;&#20449;&#24687;</span>&#57344;&#57345;&#57345;
+            <span style="color: #a1db00;">return</span>;&#57344;&#57345;&#57345;
+        }&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">if</span> (pipe(cgi_input) &lt; 0) {&#57344;&#57345;&#57345;
+            cannot_execute(client);&#57344;&#57345;&#57345;
+            <span style="color: #a1db00;">return</span>;&#57344;&#57345;&#57345;
+        }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">if</span> ((pid = fork()) &lt; 0) {&#57344;&#57345;&#57345;
+            cannot_execute(client);&#57344;&#57345;&#57345;
+            <span style="color: #a1db00;">return</span>;&#57344;&#57345;&#57345;
+        }&#57344;&#57345;&#57345;
+        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#23454;&#29616;&#36827;&#31243;&#38388;&#30340;&#31649;&#36947;&#36890;&#20449;&#26426;&#21046;</span>&#57344;&#57345;&#57345;
+        <span style="color: #6c6c6c; font-style: italic;">/*</span><span style="color: #6c6c6c; font-style: italic;">&#23376;&#36827;&#31243;&#32487;&#25215;&#20102;&#29238;&#36827;&#31243;&#30340; pipe&#65292;&#28982;&#21518;&#36890;&#36807;&#20851;&#38381;&#23376;&#36827;&#31243; output &#31649;&#36947;&#30340;&#36755;&#20986;&#31471;&#65292;input &#31649;&#36947;&#30340;&#20889;&#20837;&#31471;&#65307;</span>&#57344;&#57345;
+<span style="color: #6c6c6c; font-style: italic;">          &#20851;&#38381;&#29238;&#36827;&#31243; output &#31649;&#36947;&#30340;&#20889;&#20837;&#31471;&#65292;input &#31649;&#36947;&#30340;&#36755;&#20986;&#31471;</span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#23376;&#36827;&#31243;&#65292;</span>&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">if</span> (pid == 0)  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">child: CGI script </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+        {&#57344;&#57345;&#57345;
+            <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">meth_env</span>[255];&#57344;&#57345;&#57345;
+            <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">query_env</span>[255];&#57344;&#57345;&#57345;
+            <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">length_env</span>[255];&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+            <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#22797;&#21046;&#25991;&#20214;&#21477;&#26564;&#65292;&#37325;&#23450;&#21521;&#36827;&#31243;&#30340;&#26631;&#20934;&#36755;&#20837;&#36755;&#20986;</span>&#57344;&#57345;&#57345;
+            <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">dup2 &#30340;&#31532;&#19968;&#20010;&#21442;&#25968;&#25551;&#36848;&#31526;&#20851;&#38381;</span>&#57344;&#57345;&#57345;
+            dup2(cgi_output[1], 1);<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#26631;&#20934;&#36755;&#20986;&#37325;&#23450;&#21521;&#21040; output &#31649;&#36947;&#30340;&#20889;&#20837;&#31471;</span>&#57344;&#57345;
+            dup2(cgi_input[0], 0);<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#26631;&#20934;&#36755;&#20837;&#37325;&#23450;&#21521;&#21040; input &#31649;&#36947;&#30340;&#35835;&#21462;&#31471;</span>&#57344;&#57345;
+            close(cgi_output[0]);<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#20851;&#38381; output &#31649;&#36947;&#30340;&#20889;&#20837;&#31471;</span>&#57344;&#57345;&#57345;
+            close(cgi_input[1]);<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#20851;&#38381;&#36755;&#20986;&#31471;</span>&#57344;&#57345;&#57345;
+            sprintf(meth_env, <span style="color: #ff4ea3;">"REQUEST_METHOD=%s"</span>, method);&#57344;&#57345;&#57345;
+            putenv(meth_env);&#57344;&#57345;&#57345;
+            <span style="color: #a1db00;">if</span> (strcasecmp(method, <span style="color: #ff4ea3;">"GET"</span>) == 0) {<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">GET</span>&#57344;&#57345;&#57345;
+                <span style="color: #6c6c6c; font-style: italic;">/*</span><span style="color: #6c6c6c; font-style: italic;">&#35774;&#32622; query_string &#30340;&#29615;&#22659;&#21464;&#37327;</span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+                sprintf(query_env, <span style="color: #ff4ea3;">"QUERY_STRING=%s"</span>, query_string);&#57344;&#57345;&#57345;
+                putenv(query_env);&#57344;&#57345;&#57345;
+            }&#57344;&#57345;&#57345;
+            <span style="color: #a1db00;">else</span> {   <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">POST </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+                <span style="color: #6c6c6c; font-style: italic;">/*</span><span style="color: #6c6c6c; font-style: italic;">&#35774;&#32622; content_length &#30340;&#29615;&#22659;&#21464;&#37327;</span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+                sprintf(length_env, <span style="color: #ff4ea3;">"CONTENT_LENGTH=%d"</span>, content_length);&#57344;&#57345;
+                putenv(length_env);&#57344;&#57345;&#57345;
+            }&#57344;&#57345;&#57345;
+            execl(path, path, <span style="color: #5fafd7;">NULL</span>);<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">exec &#20989;&#25968;&#31751;&#65292;&#25191;&#34892; CGI &#33050;&#26412;&#65292;&#33719;&#21462; cgi &#30340;&#26631;&#20934;&#36755;&#20986;&#20316;&#20026;&#30456;&#24212;&#20869;&#23481;&#21457;&#36865;&#32473;&#23458;&#25143;&#31471;</span>&#57344;&#57345;
+            <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#36890;&#36807; dup2 &#37325;&#23450;&#21521;&#65292;&#26631;&#20934;&#36755;&#20986;&#20869;&#23481;&#36827;&#20837;&#31649;&#36947; output &#30340;&#36755;&#20837;&#31471;</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+            exit(0);<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#23376;&#36827;&#31243;&#36864;&#20986;</span>&#57344;&#57345;&#57345;
+        }&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">else</span> {    <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">parent </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+            close(cgi_output[1]);<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#20851;&#38381;&#31649;&#36947;&#30340;&#19968;&#31471;&#65292;&#36825;&#26679;&#21487;&#20197;&#24314;&#31435;&#29238;&#23376;&#36827;&#31243;&#38388;&#30340;&#31649;&#36947;&#36890;&#20449;</span>&#57344;&#57345;
+            close(cgi_input[0]);&#57344;&#57345;&#57345;
+            <span style="color: #6c6c6c; font-style: italic;">/*</span><span style="color: #6c6c6c; font-style: italic;">&#36890;&#36807;&#20851;&#38381;&#23545;&#24212;&#31649;&#36947;&#30340;&#36890;&#36947;&#65292;&#28982;&#21518;&#37325;&#23450;&#21521;&#23376;&#36827;&#31243;&#30340;&#31649;&#36947;&#26576;&#31471;&#65292;&#36825;&#26679;&#23601;&#22312;&#29238;&#23376;&#36827;&#31243;&#20043;&#38388;&#26500;&#24314;&#19968;&#26465;&#21333;&#21452;&#24037;&#36890;&#36947;</span>&#57344;&#57345;
+<span style="color: #6c6c6c; font-style: italic;">              &#22914;&#26524;&#19981;&#37325;&#23450;&#21521;&#65292;&#23558;&#26159;&#19968;&#26465;&#20856;&#22411;&#30340;&#20840;&#21452;&#24037;&#31649;&#36947;&#36890;&#20449;&#26426;&#21046;</span>&#57344;&#57345;&#57345;
+<span style="color: #6c6c6c; font-style: italic;">            </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+            <span style="color: #a1db00;">if</span> (strcasecmp(method, <span style="color: #ff4ea3;">"POST"</span>) == 0)<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">POST &#26041;&#24335;&#65292;&#23558;&#25351;&#23450;&#22909;&#30340;&#20256;&#36755;&#38271;&#24230;&#23383;&#31526;&#21457;&#36865;</span>&#57344;&#57345;
+                <span style="color: #6c6c6c; font-style: italic;">/*</span><span style="color: #6c6c6c; font-style: italic;">&#25509;&#25910; POST &#36807;&#26469;&#30340;&#25968;&#25454;</span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
+                <span style="color: #a1db00;">for</span> (i = 0; i &lt; content_length; i++) {&#57344;&#57345;&#57345;
+                    recv(client, &amp;c, 1, 0);<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#20174;&#23458;&#25143;&#31471;&#25509;&#25910;&#21333;&#20010;&#23383;&#31526;</span>&#57344;&#57345;&#57345;
+                    write(cgi_input[1], &amp;c, 1);<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#20889;&#20837; input&#65292;&#28982;&#21518;&#37325;&#23450;&#21521;&#21040;&#20102;&#26631;&#20934;&#36755;&#20837;</span>&#57344;&#57345;
+                    <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#25968;&#25454;&#20256;&#36865;&#36807;&#31243;&#65306;input[1](&#29238;&#36827;&#31243;) &#8212;&#8212;&gt; input[0](&#23376;&#36827;&#31243;)[&#25191;&#34892; cgi &#20989;&#25968;] &#8212;&#8212;&gt; STDIN &#8212;&#8212;&gt; STDOUT</span>&#57344;&#57345;
+                    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#8212;&#8212;&gt; output[1](&#23376;&#36827;&#31243;) &#8212;&#8212;&gt; output[0](&#29238;&#36827;&#31243;)[&#23558;&#32467;&#26524;&#21457;&#36865;&#32473;&#23458;&#25143;&#31471;]</span>&#57344;&#57345;
+&#57344;&#57345;&#57345;
+                }&#57344;&#57345;&#57345;
+            <span style="color: #a1db00;">while</span> (read(cgi_output[0], &amp;c, 1) &gt; 0)<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#35835;&#21462; output &#30340;&#31649;&#36947;&#36755;&#20986;&#21040;&#23458;&#25143;&#31471;&#65292;output &#36755;&#20986;&#31471;&#20026; cgi &#33050;&#26412;&#25191;&#34892;&#21518;&#30340;&#20869;&#23481;</span>&#57344;&#57345;
+                send(client, &amp;c, 1, 0);<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#21363;&#23558; cgi &#25191;&#34892;&#32467;&#26524;&#21457;&#36865;&#32473;&#23458;&#25143;&#31471;&#65292;&#21363; send &#21040;&#27983;&#35272;&#22120;&#65292;&#22914;&#26524;&#19981;&#26159; POST &#21017;&#21482;&#26377;&#36825;&#19968;&#22788;&#29702;</span>&#57344;&#57345;
+&#57344;&#57345;&#57345;
+            close(cgi_output[0]);<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#20851;&#38381;&#21097;&#19979;&#30340;&#31649;&#36947;&#31471;&#65292;&#23376;&#36827;&#31243;&#22312;&#25191;&#34892; dup2 &#20043;&#21518;&#65292;&#23601;&#24050;&#32463;&#20851;&#38381;&#20102;&#31649;&#36947;&#19968;&#31471;&#36890;&#36947;</span>&#57344;&#57345;
+            close(cgi_input[1]);&#57344;&#57345;&#57345;
+            waitpid(pid, &amp;status, 0);<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#31561;&#24453;&#23376;&#36827;&#31243;&#32456;&#27490;</span>&#57344;&#57345;&#57345;
+        }&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
-index.html页面的输入框是使用的post方法，那么我们动手使用使用get方法也应该。但是color.cgi没有实现这个功能，我们用shell脚本来执行试试。
+index.html 页面的输入框是使用的 post 方法，那么我们动手使用使用 get 方法也应该。但是 color.cgi 没有实现这个功能，我们用 shell 脚本来执行试试。
 </p>
 
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">!/bin/</span><span style="color: #99cc99;">sh</span>
-<span style="color: #cc99cc;">echo</span> <span style="color: #66cccc;">"Content-type:text/html"</span>
-<span style="color: #cc99cc;">echo</span>
-<span style="color: #cc99cc;">echo</span> <span style="color: #66cccc;">'&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8"&gt;&lt;title&gt;MyTitle&lt;/title&gt;&lt;/head&gt;&lt;body bgcolor="'</span> $<span style="color: #ffcc66;">0</span> <span style="color: #66cccc;">'"&gt;'</span>
-<span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">$0&#36825;&#20010;&#21442;&#25968;&#20256;&#36882;&#30340;&#21548;&#24618;&#24322;&#30340;&#65292;&#20027;&#35201;&#26159;execl&#20989;&#25968;&#27809;&#20889;&#22909;&#65292;&#25042;&#24471;&#25913;&#20102;</span>
-<span style="color: #cc99cc;">echo</span> <span style="color: #66cccc;">"&lt;/body&gt;&lt;/html&gt;"</span>
+<pre class="src src-sh">    <span style="color: #6c6c6c; font-style: italic;">#</span><span style="color: #6c6c6c; font-style: italic;">!/bin/sh</span>&#57344;&#57345;&#57345;
+    <span style="color: #d18aff;">echo</span> <span style="color: #ff4ea3;">"Content-type:text/html"</span>&#57344;&#57345;&#57345;
+    <span style="color: #d18aff;">echo</span>&#57344;&#57345;&#57345;
+    <span style="color: #d18aff;">echo</span> <span style="color: #ff4ea3;">'&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8"&gt;&lt;title&gt;MyTitle&lt;/title&gt;&lt;/head&gt;&lt;body bgcolor="'</span> $<span style="color: #ff8700;">0</span> <span style="color: #ff4ea3;">'"&gt;'</span>&#57344;&#57345;
+    <span style="color: #6c6c6c; font-style: italic;">#</span><span style="color: #6c6c6c; font-style: italic;">$0 &#36825;&#20010;&#21442;&#25968;&#20256;&#36882;&#30340;&#21548;&#24618;&#24322;&#30340;&#65292;&#20027;&#35201;&#26159; execl &#20989;&#25968;&#27809;&#20889;&#22909;&#65292;&#25042;&#24471;&#25913;&#20102;</span>&#57344;&#57345;&#57345;
+    <span style="color: #d18aff;">echo</span> <span style="color: #ff4ea3;">"&lt;/body&gt;&lt;/html&gt;"</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -751,7 +754,7 @@ index.html页面的输入框是使用的post方法，那么我们动手使用使
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">chmod +x tinyhttpd-0.1.0/htdocs/test.sh
+<pre class="src src-sh">    chmod +x tinyhttpd-0.1.0/htdocs/test.sh&#57344;&#57345;&#57345;
 </pre>
 </div>
 
@@ -759,7 +762,7 @@ index.html页面的输入框是使用的post方法，那么我们动手使用使
 当在浏览器中直接输入
 </p>
 <pre class="example">
-localhost:12345/test.sh?red
+    localhost:12345/test.sh?red
 </pre>
 <p>
 服务器作出的响应。
@@ -768,7 +771,7 @@ localhost:12345/test.sh?red
 <div class="figure">
 <p><img src="../img/tinyhttpd-analysis/cgi-test-sh.png" alt="cgi-test-sh.png" />
 </p>
-<p><span class="figure-number">Figure 6:</span> cgi test.sh运行</p>
+<p><span class="figure-number">Figure 6:</span> cgi test.sh 运行</p>
 </div>
 </div>
 </div>
@@ -779,7 +782,7 @@ localhost:12345/test.sh?red
 <h2 id="orgheadline17"><span class="section-number-2">5</span> 附录</h2>
 <div class="outline-text-2" id="text-5">
 </div><div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14"><span class="section-number-3">5.1</span> HTTP报文格式</h3>
+<h3 id="orgheadline14"><span class="section-number-3">5.1</span> HTTP 报文格式</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 HTTP 有两种报文：请求报文和响应报文，具体介绍如下
@@ -795,7 +798,7 @@ HTTP 有两种报文：请求报文和响应报文，具体介绍如下
 <div class="figure">
 <p><img src="../img/tinyhttpd-analysis/http-request-format.png" alt="http-request-format.png" />
 </p>
-<p><span class="figure-number">Figure 7:</span> HTTP请求报文格式</p>
+<p><span class="figure-number">Figure 7:</span> HTTP 请求报文格式</p>
 </div>
 
 <ul class="org-ul">
@@ -869,7 +872,7 @@ POST：当客户端给服务器提供信息较多时可以使用 POST 方法。P
 <div class="figure">
 <p><img src="../img/tinyhttpd-analysis/http-post-request.png" alt="http-post-request.png" />
 </p>
-<p><span class="figure-number">Figure 9:</span> POST请求示例</p>
+<p><span class="figure-number">Figure 9:</span> POST 请求示例</p>
 </div>
 </div>
 </div>
@@ -884,7 +887,7 @@ HTTP 响应报文主要由状态行、响应头部、响应正文 3 部分组成
 <div class="figure">
 <p><img src="../img/tinyhttpd-analysis/http-response-format.png" alt="http-response-format.png" />
 </p>
-<p><span class="figure-number">Figure 10:</span> HTTP响应报文格式</p>
+<p><span class="figure-number">Figure 10:</span> HTTP 响应报文格式</p>
 </div>
 
 <ul class="org-ul">
@@ -924,7 +927,7 @@ HTTP 响应报文主要由状态行、响应头部、响应正文 3 部分组成
 <div class="figure">
 <p><img src="../img/tinyhttpd-analysis/http-response.png" alt="http-response.png" />
 </p>
-<p><span class="figure-number">Figure 11:</span> HTTP响应示例</p>
+<p><span class="figure-number">Figure 11:</span> HTTP 响应示例</p>
 </div>
 </div>
 </div>
@@ -958,33 +961,33 @@ c 语言编程时(linux) \r 就是回到本行行首，这就会把这一行以�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;stdio.h&gt;</span>
-<span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">argc</span>, <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">argv</span>[])
-{
-    printf(<span style="color: #66cccc;">"hahahaha\rxixixi"</span>);
-    <span style="color: #99cc99;">return</span> 0;
-}
+<pre class="src src-c"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;stdio.h&gt;</span>&#57344;&#57345;&#57345;
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
+    {&#57344;&#57345;&#57345;
+        printf(<span style="color: #ff4ea3;">"hahahaha\rxixixi"</span>);&#57344;&#57345;&#57345;
+        <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-sh">./printf-ret
+<pre class="src src-sh">    ./printf-ret&#57344;&#57345;&#57345;
 </pre>
 </div>
 
 <pre class="example">
-bash: ./printf-ret: 没有那个文件或目录
+bash: ./printf-ret: No such file or directory
 </pre>
 
 <p>
-TODO: 上面代码段在export时候没有正确输出结果，tty上面没有问题，需要检查。
+TODO: 上面代码段在 export 时候没有正确输出结果，tty 上面没有问题，需要检查。
 </p>
 <pre class="example">
-xixixi
+   xixixi
 </pre>
 <p>
-最后只显示xixi，而hahaha 被覆盖了。
+最后只显示 xixi，而 hahaha 被覆盖了。
 </p>
 
 <p>
@@ -992,17 +995,17 @@ xixixi
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;stdio.h&gt;</span>
-<span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">argc</span>, <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">argv</span>[])
-{
-    printf(<span style="color: #66cccc;">"hahaha\nxixi\n"</span>);
-    <span style="color: #99cc99;">return</span> 0;
-}
+<pre class="src src-c"><span style="color: #d18aff;">       #include</span> <span style="color: #ff4ea3;">&lt;stdio.h&gt;</span>&#57344;&#57345;&#57345;
+       <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
+       {&#57344;&#57345;&#57345;
+           printf(<span style="color: #ff4ea3;">"hahaha\nxixi\n"</span>);&#57344;&#57345;&#57345;
+           <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
+       }&#57344;&#57345;&#57345;
 </pre>
 </div>
 
 <pre class="example">
-bash: ./printf-newline: 没有那个文件或目录
+bash: ./printf-newline: No such file or directory
 </pre>
 </div>
 </div>
@@ -1032,8 +1035,8 @@ bash: ./printf-newline: 没有那个文件或目录
 </div>
 </div></div>
 <div id="postamble" class="status">
-<p class="author">Author: ubuntu</p>
-<p class="date">Created: 2015-11-16 一 15:49</p>
+<p class="author">Author: ubuntu-company</p>
+<p class="date">Created: 2016-02-19 Fri 17:00</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

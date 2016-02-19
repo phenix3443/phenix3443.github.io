@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-11-30 一 21:31 -->
+<!-- 2016-02-19 Fri 16:59 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>c++并发编程</title>
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="ubuntu" />
+<meta  name="author" content="ubuntu-company" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -157,7 +157,7 @@ for the JavaScript code in this tag.
 </div>
 </div>
 <p>
-c++ concurrency in action 是一本讲述如何使用C++11进行并发编程的书籍，内容从 std::thread、std::mutex、std::future 和 std::async 等基础类的使用，到内存模型和原子操作、基于锁和无锁数据结构的构建，再扩展到并行算法、线程管理，最后还介绍了多线程代码的测试工作。已有网友将该书翻译成中文放在网上<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
+c++ concurrency in action 是一本讲述如何使用 C++11 进行并发编程的书籍，内容从 std::thread、std::mutex、std::future 和 std::async 等基础类的使用，到内存模型和原子操作、基于锁和无锁数据结构的构建，再扩展到并行算法、线程管理，最后还介绍了多线程代码的测试工作。已有网友将该书翻译成中文放在网上<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
 </p>
 
 <div id="outline-container-orgheadline2" class="outline-2">
@@ -168,20 +168,20 @@ c++ concurrency in action 是一本讲述如何使用C++11进行并发编程的�
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;iostream&gt;</span>
-<span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;thread&gt;</span>
-
-<span style="color: #6699cc;">void</span> <span style="color: #f99157;">Hello</span>(<span style="color: #6699cc;">void</span>) {
-    <span style="color: #6699cc;">std</span>::cout &lt;&lt; <span style="color: #66cccc;">"Hello,concurrency world"</span> &lt;&lt; <span style="color: #6699cc;">std</span>::endl;
-}
-
-<span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">argc</span>, <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">argv</span>[])
-{
-    <span style="color: #6699cc;">std</span>::<span style="color: #6699cc;">thread</span> <span style="color: #ffcc66;">t</span>(Hello);
-    t.join();
-
-    <span style="color: #99cc99;">return</span> 0;
-}
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;thread&gt;</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">Hello</span>(<span style="color: #00d7af;">void</span>) {&#57344;&#57345;&#57345;
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"Hello,concurrency world"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
+{&#57344;&#57345;&#57345;
+    <span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">thread</span> <span style="color: #ff8700;">t</span>(Hello);&#57344;&#57345;&#57345;
+    t.join();&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -199,8 +199,8 @@ c++ concurrency in action 是一本讲述如何使用C++11进行并发编程的�
 </div>
 </div></div>
 <div id="postamble" class="status">
-<p class="author">Author: ubuntu</p>
-<p class="date">Created: 2015-11-30 一 21:31</p>
+<p class="author">Author: ubuntu-company</p>
+<p class="date">Created: 2016-02-19 Fri 16:59</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

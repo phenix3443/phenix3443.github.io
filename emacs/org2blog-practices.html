@@ -3,14 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-11-16 一 15:49 -->
+<!-- 2016-02-19 Fri 17:00 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>【Emacs】Org2blog</title>
+<title>Org2blog practices</title>
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="ubuntu" />
-<meta  name="description" content="如何使用org2blog 在 WordPress 上发表文章。"
- />
+<meta  name="author" content="ubuntu-company" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -145,7 +143,7 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">【Emacs】Org2blog</h1>
+<h1 class="title">Org2blog practices</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
@@ -197,11 +195,11 @@ org2blog 基于 GPLv3 授权。
 <h2 id="orgheadline1"><span class="section-number-2">1</span> 安装（Installation）</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-emacs可以通过 elpa 进行安装或者自行从 github 下载安装，建议使用前者进行扩展的统一安装与更新。
+emacs 可以通过 elpa 进行安装或者自行从 github 下载安装，建议使用前者进行扩展的统一安装与更新。
 </p>
 <div class="org-src-container">
 
-<pre class="src src-bash" id="orgsrcblock1">git clone http://github.com/punchagan/org2blog.git
+<pre class="src src-bash" id="orgsrcblock1">  git clone http://github.com/punchagan/org2blog.git&#57344;&#57345;&#57345;
 </pre>
 </div>
 <!--more-->
@@ -210,8 +208,8 @@ emacs可以通过 elpa 进行安装或者自行从 github 下载安装，建议�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp" id="orgsrcblock2">(setq load-path (cons <span style="color: #66cccc;">"~/.emacs.d/org2blog/"</span> load-path))
-(<span style="color: #99cc99;">require</span> '<span style="color: #6699cc;">org2blog-autoloads</span>)
+<pre class="src src-elisp" id="orgsrcblock2">  (setq load-path (cons <span style="color: #ff4ea3;">"~/.emacs.d/org2blog/"</span> load-path))&#57344;&#57345;&#57345;
+  (<span style="color: #a1db00;">require</span> '<span style="color: #5fafd7;">org2blog-autoloads</span>)&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -239,16 +237,16 @@ org2blog 依赖于:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp" id="orgsrcblock3">(setq org2blog/wp-blog-alist
-      '((<span style="color: #66cccc;">"wordpress"</span>
-         <span style="color: #cc99cc;">:url</span> <span style="color: #66cccc;">"http://username.wordpress.com/xmlrpc.php"</span>
-         <span style="color: #cc99cc;">:username</span> <span style="color: #66cccc;">"username"</span>
-         <span style="color: #cc99cc;">:default-title</span> <span style="color: #66cccc;">"Hello World"</span>
-         <span style="color: #cc99cc;">:default-categories</span> (<span style="color: #66cccc;">"org2blog"</span> <span style="color: #66cccc;">"emacs"</span>)
-         <span style="color: #cc99cc;">:tags-as-categories</span> nil)
-        (<span style="color: #66cccc;">"my-blog"</span>
-         <span style="color: #cc99cc;">:url</span> <span style="color: #66cccc;">"http://username.server.com/xmlrpc.php"</span>
-         <span style="color: #cc99cc;">:username</span> <span style="color: #66cccc;">"admin"</span>)))
+<pre class="src src-elisp" id="orgsrcblock3">  (setq org2blog/wp-blog-alist&#57344;&#57345;&#57345;
+        '((<span style="color: #ff4ea3;">"wordpress"</span>&#57344;&#57345;&#57345;
+           <span style="color: #d18aff;">:url</span> <span style="color: #ff4ea3;">"http://username.wordpress.com/xmlrpc.php"</span>&#57344;&#57345;&#57345;
+           <span style="color: #d18aff;">:username</span> <span style="color: #ff4ea3;">"username"</span>&#57344;&#57345;&#57345;
+           <span style="color: #d18aff;">:default-title</span> <span style="color: #ff4ea3;">"Hello World"</span>&#57344;&#57345;&#57345;
+           <span style="color: #d18aff;">:default-categories</span> (<span style="color: #ff4ea3;">"org2blog"</span> <span style="color: #ff4ea3;">"emacs"</span>)&#57344;&#57345;&#57345;
+           <span style="color: #d18aff;">:tags-as-categories</span> nil)&#57344;&#57345;&#57345;
+          (<span style="color: #ff4ea3;">"my-blog"</span>&#57344;&#57345;&#57345;
+           <span style="color: #d18aff;">:url</span> <span style="color: #ff4ea3;">"http://username.server.com/xmlrpc.php"</span>&#57344;&#57345;&#57345;
+           <span style="color: #d18aff;">:username</span> <span style="color: #ff4ea3;">"admin"</span>)))&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -260,7 +258,7 @@ org2blog 依赖于:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-text" id="orgsrcblock4">machine myblog login myusername password myrealpassword
+<pre class="src src-text" id="orgsrcblock4">  machine myblog login myusername password myrealpassword
 </pre>
 </div>
 
@@ -269,17 +267,17 @@ org2blog 依赖于:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp" id="orgsrcblock5">(<span style="color: #99cc99;">require</span> '<span style="color: #6699cc;">auth-source</span>) <span style="color: #999999; font-style: italic;">;; </span><span style="color: #999999; font-style: italic;">or nothing if already in the load-path</span>
-
-(<span style="color: #99cc99;">let</span> (credentials)
-  <span style="color: #999999; font-style: italic;">;; </span><span style="color: #999999; font-style: italic;">only required if your auth file is not already in the list of auth-sources</span>
-  (add-to-list 'auth-sources <span style="color: #66cccc;">"~/.netrc"</span>)
-  (setq credentials (auth-source-user-and-password <span style="color: #66cccc;">"myblog"</span>))
-  (setq org2blog/wp-blog-alist
-        `((<span style="color: #66cccc;">"my-blog"</span>
-           <span style="color: #cc99cc;">:url</span> <span style="color: #66cccc;">"http://username.server.com/xmlrpc.php"</span>
-           <span style="color: #cc99cc;">:username</span> ,(car credentials)
-           <span style="color: #cc99cc;">:password</span> ,(cadr credentials)))))
+<pre class="src src-elisp" id="orgsrcblock5">  (<span style="color: #a1db00;">require</span> '<span style="color: #5fafd7;">auth-source</span>) <span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">or nothing if already in the load-path</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+  (<span style="color: #a1db00;">let</span> (credentials)&#57344;&#57345;&#57345;
+    <span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">only required if your auth file is not already in the list of auth-sources</span>&#57344;&#57345;
+    (add-to-list 'auth-sources <span style="color: #ff4ea3;">"~/.netrc"</span>)&#57344;&#57345;&#57345;
+    (setq credentials (auth-source-user-and-password <span style="color: #ff4ea3;">"myblog"</span>))&#57344;&#57345;&#57345;
+    (setq org2blog/wp-blog-alist&#57344;&#57345;&#57345;
+          `((<span style="color: #ff4ea3;">"my-blog"</span>&#57344;&#57345;&#57345;
+             <span style="color: #d18aff;">:url</span> <span style="color: #ff4ea3;">"http://username.server.com/xmlrpc.php"</span>&#57344;&#57345;&#57345;
+             <span style="color: #d18aff;">:username</span> ,(car credentials)&#57344;&#57345;&#57345;
+             <span style="color: #d18aff;">:password</span> ,(cadr credentials)))))&#57344;&#57345;&#57345;
 </pre>
 </div>
 
@@ -288,7 +286,7 @@ org2blog 依赖于:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-text" id="orgsrcblock6">M-x customize-group org2blog/wp RET
+<pre class="src src-text" id="orgsrcblock6">  M-x customize-group org2blog/wp RET
 </pre>
 </div>
 </div>
@@ -325,17 +323,17 @@ org2blog 依赖于:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp" id="orgsrcblock7">(setq org2blog/wp-buffer-template
-<span style="color: #66cccc;">"-----------------------</span>
-<span style="color: #66cccc;">#+TITLE: %s</span>
-<span style="color: #66cccc;">#+DATE: %s</span>
-<span style="color: #66cccc;">-----------------------\n"</span>)
-
-(<span style="color: #99cc99;">defun</span> <span style="color: #f99157;">my-format-function</span> (format-string)
-   (format format-string
-           org2blog/wp-default-title
-           (format-time-string <span style="color: #66cccc;">"%d-%m-%Y"</span> (current-time)))))
-(setq org2blog/wp-buffer-format-function 'my-format-function)
+<pre class="src src-elisp" id="orgsrcblock7">  (setq org2blog/wp-buffer-template&#57344;&#57345;&#57345;
+  <span style="color: #ff4ea3;">"-----------------------</span>&#57344;&#57345;&#57345;
+<span style="color: #ff4ea3;">  #+TITLE: %s</span>&#57344;&#57345;&#57345;
+<span style="color: #ff4ea3;">  #+DATE: %s</span>&#57344;&#57345;&#57345;
+<span style="color: #ff4ea3;">  -----------------------\n"</span>)&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+  (<span style="color: #a1db00;">defun</span> <span style="color: #ffd700;">my-format-function</span> (format-string)&#57344;&#57345;&#57345;
+     (format format-string&#57344;&#57345;&#57345;
+             org2blog/wp-default-title&#57344;&#57345;&#57345;
+             (format-time-string <span style="color: #ff4ea3;">"%d-%m-%Y"</span> (current-time)))))&#57344;&#57345;&#57345;
+  (setq org2blog/wp-buffer-format-function 'my-format-function)&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -353,7 +351,7 @@ org2blog 依赖于:
 <div id="outline-container-orgheadline7" class="outline-4">
 <h4 id="orgheadline7"><span class="section-number-4">3.1.5</span> 发布（Publishing）</h4>
 <div class="outline-text-4" id="text-3-1-5">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table border="1" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" width="auto">
 
 
 <colgroup>
@@ -436,11 +434,11 @@ org2blog 有两种方式实现代码高亮：
 </ul>
 
 <p>
-变量 org2blog/wp-sourcecode-langs 定义了 org2blog 支持语法高亮的语言，该变量支持范围与syntaxHighlight基本相同，但更为重要的是变量 org2blog/wp-shortcode-langs-map ，它起到了沟通 org2blog、org、syntaxHighlight 三者的作用，如果一种语言 org2blog 不支持高亮，但被 syntaxHightlight支持，同 org-mode 也支持编辑，则可以在这个变量中定义（syntaxHight，org-mode）的映射，兼顾代码高亮和 org-mode 中的代码编辑。具体参看该变量的说明。
+变量 org2blog/wp-sourcecode-langs 定义了 org2blog 支持语法高亮的语言，该变量支持范围与 syntaxHighlight 基本相同，但更为重要的是变量 org2blog/wp-shortcode-langs-map，它起到了沟通 org2blog、org、syntaxHighlight 三者的作用，如果一种语言 org2blog 不支持高亮，但被 syntaxHightlight 支持，同 org-mode 也支持编辑，则可以在这个变量中定义（syntaxHight，org-mode）的映射，兼顾代码高亮和 org-mode 中的代码编辑。具体参看该变量的说明。
 </p>
 
 <p>
-SyntaxHighlight支持的<a href="http://en.support.wordpress.com/code/posting-source-code/#configuration-parameters">语言里列表</a>。
+SyntaxHighlight 支持的<a href="http://en.support.wordpress.com/code/posting-source-code/#configuration-parameters">语言里列表</a>。
 </p>
 </div>
 </div>
@@ -468,7 +466,7 @@ C-u post-id M-x org2blog/wp-delete-entry</li>
 使用  M-x org2blog/wp-mode，定义的键绑定如下：
 </p>
 
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table border="1" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" width="auto">
 
 
 <colgroup>
@@ -530,8 +528,8 @@ org2blog 会跟踪所有使用它创建的 blog 文章，这样可以很容易�
 <li>Tom Breton 写的 org2blog/atom。</li>
 <li>Richard Riley 写的 <a href="https://github.com/rileyrg/org-googlecl">org-googlecl</a>,</li>
 </ul></li>
-<li>写信给作者前请先阅读 README 和 FAQ 。</li>
-<li>如果有疑问、bug、功能要求，使用 git 的时间跟踪或者发邮件到 punchagan+org2blog[at]gmail[dot]com 。作者很高兴收到补丁、建议来改进文档。当然也欢迎随意评论。</li>
+<li>写信给作者前请先阅读 README 和 FAQ。</li>
+<li>如果有疑问、bug、功能要求，使用 git 的时间跟踪或者发邮件到 punchagan+org2blog[at]gmail[dot]com。作者很高兴收到补丁、建议来改进文档。当然也欢迎随意评论。</li>
 </ol>
 </div>
 </div>
@@ -546,7 +544,7 @@ org2blog 会跟踪所有使用它创建的 blog 文章，这样可以很容易�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp" id="orgsrcblock8">(setq org2blog/wp-default-title <span style="color: #66cccc;">"My New Title"</span>)
+<pre class="src src-elisp" id="orgsrcblock8">  (setq org2blog/wp-default-title <span style="color: #ff4ea3;">"My New Title"</span>)&#57344;&#57345;&#57345;
 </pre>
 </div></li>
 <li>如何只改变某个 blog 默认文章标题？
@@ -556,7 +554,7 @@ org2blog 会跟踪所有使用它创建的 blog 文章，这样可以很容易�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq org2blog/wp-use-tags-as-categories t)
+<pre class="src src-elisp">  (setq org2blog/wp-use-tags-as-categories t)&#57344;&#57345;&#57345;
 </pre>
 </div></li>
 <li><p>
@@ -564,7 +562,7 @@ org2blog 会跟踪所有使用它创建的 blog 文章，这样可以很容易�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq org2blog/wp-confirm-post t)
+<pre class="src src-elisp"> (setq org2blog/wp-confirm-post t)&#57344;&#57345;&#57345;
 </pre>
 </div></li>
 </ol>
@@ -572,9 +570,8 @@ org2blog 会跟踪所有使用它创建的 blog 文章，这样可以很容易�
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">[2014-10-22 三 13:37]</span></span></p>
-<p class="author">Author: ubuntu</p>
-<p class="date">Created: 2015-11-16 一 15:49</p>
+<p class="author">Author: ubuntu-company</p>
+<p class="date">Created: 2016-02-19 Fri 17:00</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
