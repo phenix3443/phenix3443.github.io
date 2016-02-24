@@ -6,7 +6,7 @@
 <!-- 2016-02-24 Wed 20:18 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>Index</title>
+<title>Docker Practices</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="ubuntu-company" />
 <style type="text/css">
@@ -143,9 +143,98 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Index</h1>
+<h1 class="title">Docker Practices</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. 简介</a></li>
+<li><a href="#orgheadline4">2. Install</a>
+<ul>
+<li><a href="#orgheadline3">2.1. Linux</a>
+<ul>
+<li><a href="#orgheadline2">2.1.1. Ubuntu</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> 简介</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Docker<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">2</span> Install</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">2.1</span> Linux</h3>
+<div class="outline-text-3" id="text-2-1">
+</div><div id="outline-container-orgheadline2" class="outline-4">
+<h4 id="orgheadline2"><span class="section-number-4">2.1.1</span> Ubuntu</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D&#57344;&#57345;
+su root&#57344;&#57345;&#57345;
+<span style="color: #d18aff;">echo</span> <span style="color: #ff4ea3;">"deb https://apt.dockerproject.org/repo ubuntu-wily main"</span> &gt;&gt; /etc/apt/sources.list.d/docker.list&#57344;&#57345;
+apt-get update&#57344;&#57345;&#57345;
+apt-get purge lxc-docker&#57344;&#57345;&#57345;
+apt-cache policy docker-engine&#57344;&#57345;&#57345;
+apt-get install linux-image-extra-$(<span style="color: #fa8072;">uname</span> -r)&#57344;&#57345;&#57345;
+apt-get install docker-engine&#57344;&#57345;&#57345;
+service docker start&#57344;&#57345;&#57345;
+docker run hello-world&#57344;&#57345;&#57345;
+<span style="color: #a1db00;">exit</span>&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo usermod -aG docker phenix&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">docker run hello-world&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo systemctl enable docker&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo apt-get upgrade docker-engine&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://www.docker.com/">Docker 官网</a>
+</p></div></div>
+
 
 </div>
+</div></div>
 <div id="postamble" class="status">
 <p class="author">Author: ubuntu-company</p>
 <p class="date">Created: 2016-02-24 Wed 20:18</p>

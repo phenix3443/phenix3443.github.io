@@ -6,7 +6,7 @@
 <!-- 2016-02-24 Wed 20:18 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>Index</title>
+<title>Pythone practices</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="ubuntu-company" />
 <style type="text/css">
@@ -143,8 +143,46 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Index</h1>
+<h1 class="title">Pythone practices</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. Class</a></li>
+</ul>
+</div>
+</div>
 
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Class</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">-*- coding: UTF-8 -*-</span>&#57344;&#57345;&#57345;
+<span style="color: #a1db00;">class</span> <span style="color: #00d7af;">Employee</span>:&#57344;&#57345;&#57345;
+   <span style="color: #ff4ea3;">'&#22522;&#31867;'</span>&#57344;&#57345;&#57345;
+   <span style="color: #ff8700;">empCount</span> = 0&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+   <span style="color: #a1db00;">def</span> <span style="color: #ffd700;">__init__</span>(<span style="color: #a1db00;">self</span>, name, salary):&#57344;&#57345;&#57345;
+      <span style="color: #a1db00;">self</span>.name = name&#57344;&#57345;&#57345;
+      <span style="color: #a1db00;">self</span>.salary = salary&#57344;&#57345;&#57345;
+      <span style="color: #ff8700;">Employee.empCount</span> += 1&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+   <span style="color: #a1db00;">def</span> <span style="color: #ffd700;">displayCount</span>(<span style="color: #a1db00;">self</span>):&#57344;&#57345;&#57345;
+     <span style="color: #a1db00;">print</span> <span style="color: #ff4ea3;">"Total Employee %d"</span> % Employee.empCount&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+   <span style="color: #a1db00;">def</span> <span style="color: #ffd700;">displayEmployee</span>(<span style="color: #a1db00;">self</span>):&#57344;&#57345;&#57345;
+      <span style="color: #a1db00;">print</span> <span style="color: #ff4ea3;">"Name : "</span>, <span style="color: #a1db00;">self</span>.name,  <span style="color: #ff4ea3;">", Salary: "</span>, <span style="color: #a1db00;">self</span>.salary&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #a1db00;">print</span> <span style="color: #ff4ea3;">"Employee.__doc__:"</span>, Employee.<span style="color: #d18aff;">__doc__</span>&#57344;&#57345;&#57345;
+<span style="color: #a1db00;">print</span> <span style="color: #ff4ea3;">"Employee.__name__:"</span>, Employee.<span style="color: #d18aff;">__name__</span>&#57344;&#57345;&#57345;
+<span style="color: #a1db00;">print</span> <span style="color: #ff4ea3;">"Employee.__module__:"</span>, Employee.__module__&#57344;&#57345;&#57345;
+<span style="color: #a1db00;">print</span> <span style="color: #ff4ea3;">"Employee.__bases__:"</span>, Employee.__bases__&#57344;&#57345;&#57345;
+<span style="color: #a1db00;">print</span> <span style="color: #ff4ea3;">"Employee.__dict__:"</span>, Employee.__dict__&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: ubuntu-company</p>

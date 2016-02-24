@@ -6,7 +6,7 @@
 <!-- 2016-02-24 Wed 20:18 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>Index</title>
+<title>【WAMP】使用记录</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="ubuntu-company" />
 <style type="text/css">
@@ -140,11 +140,162 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
-<h1 class="title">Index</h1>
+<h1 class="title">【WAMP】使用记录</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. 更改虚拟目录</a></li>
+<li><a href="#orgheadline2">2. 开启多站点功能</a></li>
+</ul>
+</div>
+</div>
 
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> 更改虚拟目录</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+WAMP 安装好之后，网站默认目录是安装目录下的 www 文件夹，可能需要改成其他更适合我们的文件夹：
+</p>
+<ul class="org-ul">
+<li><p>
+wamp\script\config.inc.php
+</p>
+
+<p>
+L61:change
+</p></li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-text">  $wwwDir =$c_installDir.&#8217;/www&#8217;;
+</pre>
+</div>
+<p>
+to
+</p>
+<div class="org-src-container">
+
+<pre class="src src-text">     $wwwDir = my_path ;
+</pre>
+</div>
+<ul class="org-ul">
+<li><p>
+wamp\bin\apache\apache2.2.11\conf\httpd.conf
+</p>
+
+<p>
+L230:change
+</p></li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-text">     DocumentRoot &#8220;C:/wamp/www/&#8221;
+</pre>
+</div>
+<p>
+to
+</p>
+<div class="org-src-container">
+
+<pre class="src src-text">     DocumentRoot my_path
+</pre>
+</div>
+
+<p>
+L252:change
+</p>
+<div class="org-src-container">
+
+<pre class="src src-text">     &lt;Directory &#8220;C:/wamp/www/&#8220;&gt;
+</pre>
+</div>
+<p>
+to
+</p>
+<div class="org-src-container">
+
+<pre class="src src-text">     &lt;Directory my_path&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> 开启多站点功能</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+wamp\bin\apache\apache2.4.9\conf\httpd.conf
+L513:去掉注释
+</p>
+<div class="org-src-container">
+
+<pre class="src src-text">     Include conf/extra/httpd-vhosts.conf
+</pre>
+</div>
+<p>
+C:\wamp\bin\apache\apache2.4.9\conf\extra\httpd-vhosts.conf
+</p>
+<div class="org-src-container">
+
+<pre class="src src-text">  &lt;VirtualHost *:80&gt;
+      ServerAdmin panghuli_root@main.localhost.com
+      DocumentRoot "D:/my_files/projects/panghuli_site/public_html/main"
+      ServerName main.localhost.com
+      ErrorLog "logs/main.localhost.com-error.log"
+      CustomLog "logs/main.localhost.com.log" common
+  &lt;/VirtualHost&gt;
+
+  &lt;VirtualHost *:80&gt;
+      ServerAdmin panghuli_blog@blog.localhost.com
+      DocumentRoot "D:/my_files/projects/panghuli_site/public_html/blog"
+      ServerName blog.localhost.com
+      ErrorLog "logs/blog.localhost.com-error.log"
+      CustomLog "logs/blog.localhost.com.log" common
+  &lt;/VirtualHost&gt;
+</pre>
+</div>
+<p>
+c:\windows\system32\drivers\etc\host
+添加以下内容
+</p>
+<div class="org-src-container">
+
+<pre class="src src-text">  127.0.0.1       blog.localhost.com
+  127.0.0.1       main.localhost.com
+</pre>
+</div>
+
+<p>
+*
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: ubuntu-company</p>

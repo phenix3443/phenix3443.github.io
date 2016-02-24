@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-02-24 Wed 20:18 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Makefile 实践</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="ubuntu-company" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Makefile 实践</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline4">1. 递归编译子文件夹</a>
+<ul>
+<li><a href="#orgheadline1">1.1. 使用搜索路径</a></li>
+<li><a href="#orgheadline2">1.2. 递归式</a></li>
+<li><a href="#orgheadline3">1.3. 使用纯粹的 makefile 语法</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">1</span> 递归编译子文件夹</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> 使用搜索路径<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+该方法使用了 VPATH 变量，路径以英文冒号分割：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">    <span style="color: #ff8700;">VPATH</span>=path1:path2:...&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-makefile">    <span style="color: #ff8700;">CFLAGS</span> = -Iadd -Isub&#57344;&#57345;&#57345;
+    <span style="color: #ff8700;">OBJSDIR</span> = .objs&#57344;&#57345;&#57345;
+    <span style="color: #ff8700;">VPATH</span> = subdir1:subdir2:.&#57344;&#57345;&#57345;
+    <span style="color: #ff8700;">OBJS</span> = add_int.o add_float.o sub_int.o sub_float.o main.o&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #ffd700;">$(</span><span style="color: #ffd700;">OBJSDIR</span><span style="color: #ffd700;">)</span>:&#57344;&#57345;&#57345;
+        mkdir -p ./<span style="color: #ffd700;">$</span><span style="color: #5fafd7;">@</span>&#57344;&#57345;&#57345;
+    <span style="color: #ffd700;">$(</span><span style="color: #ffd700;">TARGET</span><span style="color: #ffd700;">)</span>:$(<span style="color: #ff8700;">OBJSDIR</span>) $(<span style="color: #ff8700;">OBJS</span>)&#57344;&#57345;&#57345;
+        $(<span style="color: #ff8700;">CC</span>) -o $(<span style="color: #ff8700;">TARGET</span>) $(<span style="color: #ff8700;">OBJSDIR</span>)/*.o $(<span style="color: #ff8700;">CFLAGS</span>)&#57344;&#57345;&#57345;
+    <span style="color: #ffd700;">$(</span><span style="color: #ffd700;">OBJS</span><span style="color: #ffd700;">)</span>:%.o:%.c&#57344;&#57345;&#57345;
+        $(<span style="color: #ff8700;">CC</span>) -c $(<span style="color: #ff8700;">CFLAGS</span>) $<span style="color: #5fafd7;">&lt;</span> -o $(<span style="color: #ff8700;">OBJSDIR</span>)/<span style="color: #ffd700;">$</span><span style="color: #5fafd7;">@</span>&#57344;&#57345;&#57345;
+    <span style="color: #ffd700;">clean</span>:&#57344;&#57345;&#57345;
+        -$(<span style="color: #ff8700;">RM</span>) $(<span style="color: #ff8700;">TARGET</span>)&#57344;&#57345;&#57345;
+        -$(<span style="color: #ff8700;">RM</span>) $(<span style="color: #ff8700;">OBJSDIR</span>)/*.o&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">1.2</span> 递归式</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+为了实现每个目录下的代码具有独立的 makefile，且根目录下的 makefile 可以一次执行子目录下的 makefile，就有了递归式的方法来写父目录下的 makefile 了，该方法的实现是使用的 $(MAKE) 变量，使用格式如下：
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-makefile">    <span style="color: #ffd700;">subdir</span>:&#57344;&#57345;&#57345;
+        $(<span style="color: #ff8700;">MAKE</span>)  -C subdir&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+<p>
+subdir1 makefile
+</p>
+<div class="org-src-container">
+
+<pre class="src src-makefile">    <span style="color: #ff8700;">OBJS</span> = app1&#57344;&#57345;&#57345;
+    <span style="color: #ff8700;">CFLAGS</span> = -O2&#57344;&#57345;&#57345;
+    <span style="color: #ffd700;">all</span>:$(<span style="color: #ff8700;">OBJS</span>)&#57344;&#57345;&#57345;
+    <span style="color: #ffd700;">$(</span><span style="color: #ffd700;">OBJS</span><span style="color: #ffd700;">)</span>:%:%.c&#57344;&#57345;&#57345;
+        $(<span style="color: #ff8700;">CC</span>) $(<span style="color: #ff8700;">CFLAGS</span>) $<span style="color: #5fafd7;">&lt;</span> -o $(<span style="color: #ff8700;">OBJSDIR</span>)/<span style="color: #ffd700;">$</span><span style="color: #5fafd7;">@</span>&#57344;&#57345;&#57345;
+    <span style="color: #ffd700;">clean</span>:&#57344;&#57345;&#57345;
+        $(<span style="color: #ff8700;">RM</span>) $(<span style="color: #ff8700;">OBJS</span>)&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+<p>
+subdir2 makefile
+</p>
+<div class="org-src-container">
+
+<pre class="src src-makefile">    <span style="color: #ff8700;">OBJS</span> = app2&#57344;&#57345;&#57345;
+    <span style="color: #ff8700;">CFLAGS</span> = -O2&#57344;&#57345;&#57345;
+    <span style="color: #ffd700;">all</span>: $(<span style="color: #ff8700;">OBJS</span>)&#57344;&#57345;&#57345;
+    <span style="color: #ffd700;">$(</span><span style="color: #ffd700;">OBJS</span><span style="color: #ffd700;">)</span>:%:%.c&#57344;&#57345;&#57345;
+        $(<span style="color: #ff8700;">CC</span>) $(<span style="color: #ff8700;">CFLAGS</span>) $<span style="color: #5fafd7;">&lt;</span> -o $(<span style="color: #ff8700;">OBJSDIR</span>)/<span style="color: #ffd700;">$</span><span style="color: #5fafd7;">@</span>&#57344;&#57345;&#57345;
+    <span style="color: #ffd700;">clean</span>:&#57344;&#57345;&#57345;
+        $(<span style="color: #ff8700;">RM</span>) $(<span style="color: #ff8700;">OBJS</span>)&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+<p>
+接下来就是写主目录下面的 makefile 文件了，使用前面递归调用格式，makefile 文件如下：
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-makefile">    <span style="color: #ff8700;">CC</span> = gcc&#57344;&#57345;&#57345;
+    <span style="color: #ff8700;">CFLAGS</span> = -O2&#57344;&#57345;&#57345;
+    <span style="color: #ff8700;">TARGET</span> = main&#57344;&#57345;&#57345;
+    export OBJSDIR = ${<span style="color: #ff8700;">shell</span> pwd}/.objs&#57344;&#57345;&#57345;
+    <span style="color: #ffd700;">$(</span><span style="color: #ffd700;">TARGET</span><span style="color: #ffd700;">)</span>:$(<span style="color: #ff8700;">OBJSDIR</span>) main.o&#57344;&#57345;&#57345;
+        $(<span style="color: #ff8700;">MAKE</span>) -C add&#57344;&#57345;&#57345;
+        $(<span style="color: #ff8700;">MAKE</span>) -C sub&#57344;&#57345;&#57345;
+        $(<span style="color: #ff8700;">CC</span>) -o $(<span style="color: #ff8700;">TARGET</span>) $(<span style="color: #ff8700;">OBJSDIR</span>)/*.o&#57344;&#57345;&#57345;
+    <span style="color: #ffd700;">main.o</span>:%.o:%.c&#57344;&#57345;&#57345;
+        $(<span style="color: #ff8700;">CC</span>) -c $<span style="color: #5fafd7;">&lt;</span> -o $(<span style="color: #ff8700;">OBJSDIR</span>)/<span style="color: #ffd700;">$</span><span style="color: #5fafd7;">@</span> $(<span style="color: #ff8700;">CFLAGS</span>) -Iadd -Isub&#57344;&#57345;&#57345;
+    <span style="color: #ffd700;">$(</span><span style="color: #ffd700;">OBJSDIR</span><span style="color: #ffd700;">)</span>:&#57344;&#57345;&#57345;
+        mkdir -p $(<span style="color: #ff8700;">OBJSDIR</span>)&#57344;&#57345;&#57345;
+    <span style="color: #ffd700;">clean</span>:&#57344;&#57345;&#57345;
+        -$(<span style="color: #ff8700;">RM</span>) $(<span style="color: #ff8700;">TARGET</span>)&#57344;&#57345;&#57345;
+        -$(<span style="color: #ff8700;">RM</span>) $(<span style="color: #ff8700;">OBJSDIR</span>)/*.o&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+<p>
+　　“\((MAKE) -C add” “\)(MAKE) -C sub”这两句实现的就是在执行下面的命令前先执行子目录下的 makefile 文件
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">1.3</span> 使用纯粹的 makefile 语法<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+此种方法子目录层数多时遍历很慢。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-makefile">    <span style="color: #ffd700;">.PHONY</span> : all&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">arg1 dir</span>&#57344;&#57345;&#57345;
+    define EXPAND_temp&#57344;&#57345;&#57345;
+    <span style="color: #ff8700;">FILES</span> := $(<span style="color: #ff8700;">wildcard</span> $(<span style="color: #ff8700;">1</span>)*)&#57344;&#57345;&#57345;
+    <span style="color: #ff8700;">DIRS</span> :=&#57344;&#57345;&#57345;
+    $$(foreach e, $$(FILES), $$(if $$(wildcard $$(e)/*), $$(eval DIRS := $$(DIRS) $$(e))))&#57344;&#57345;
+    <span style="color: #ff8700;">FILES</span> := $$(filter-out $$(DIRS),$$(FILES))&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #ff8700;">ALLDIRS</span> := $$(ALLDIRS) $$(DIRS)&#57344;&#57345;&#57345;
+    <span style="color: #ff8700;">ALLFILES</span> := $$(ALLFILES) $$(FILES)&#57344;&#57345;&#57345;
+    $$(foreach e,$$(DIRS),$$(eval $$(call EXPAND_temp,$$(e)/)))&#57344;&#57345;&#57345;
+    endef&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    $(<span style="color: #ff8700;">eval</span> $(<span style="color: #ff8700;">call</span> EXPAND_temp))&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #ffd700;">all</span> :&#57344;&#57345;&#57345;
+        @for subdir in $(<span style="color: #ff8700;">ALLDIRS</span>); do \&#57344;&#57345;&#57345;
+            echo $$subdir; \&#57344;&#57345;&#57345;
+        done&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<a href="http://www.cnblogs.com/hanxi/archive/2012/06/03/2533025.html">makefile 文件的两种常用书写格式（搜索路径式 + 递归式）</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<a href="http://blog.codingnow.com/2009/06/make_recursion_directory.html">让 Make 递归所有子目录</a>
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: ubuntu-company</p>
+<p class="date">Created: 2016-02-24 Wed 20:18</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
