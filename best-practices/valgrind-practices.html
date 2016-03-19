@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-02-24 Wed 20:18 -->
+<!-- 2016-03-20 日 02:25 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>调不尽的内存泄漏，用不完的 Valgrind</title>
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="ubuntu-company" />
+<meta  name="author" content="ubuntu" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -207,11 +207,11 @@ for the JavaScript code in this tag.
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 
-<pre class="src src-sh">    wget http://valgrind.org/downloads/valgrind-3.11.0.tar.bz2&#57344;&#57345;&#57345;
-    tar &#8211;jxvf ~/Downloads/valgrind-*.tar.bz2&#57344;&#57345;&#57345;
-    <span style="color: #d18aff;">cd</span> valgrind-3.11.0&#57344;&#57345;&#57345;
-    ./autogen.sh&#57344;&#57345;&#57345;
-    ./configure &amp;&amp; make &amp;&amp; sudo make install&#57344;&#57345;&#57345;
+<pre class="src src-sh">    wget http://valgrind.org/downloads/valgrind-3.11.0.tar.bz2
+    tar &#8211;jxvf ~/Downloads/valgrind-*.tar.bz2
+    <span style="color: #d18aff;">cd</span> valgrind-3.11.0
+    ./autogen.sh
+    ./configure &amp;&amp; make &amp;&amp; sudo make install
 </pre>
 </div>
 </div>
@@ -269,7 +269,7 @@ Callgrind 收集程序运行时的一些数据，函数调用关系等信息，�
 
 <div class="org-src-container">
 
-<pre class="src src-sh">    valgrind --tool=callgrind ./sec_infod&#57344;&#57345;&#57345;
+<pre class="src src-sh">    valgrind --tool=callgrind ./sec_infod
 </pre>
 </div>
 
@@ -279,7 +279,7 @@ Callgrind 收集程序运行时的一些数据，函数调用关系等信息，�
 
 <div class="org-src-container">
 
-<pre class="src src-sh">    killall callgrind&#57344;&#57345;&#57345;
+<pre class="src src-sh">    killall callgrind
 </pre>
 </div>
 
@@ -289,8 +289,8 @@ Callgrind 收集程序运行时的一些数据，函数调用关系等信息，�
 
 <div class="org-src-container">
 
-<pre class="src src-sh">    callgrind_annotate --auto=yes callgrind.out.[pid] &gt; log&#57344;&#57345;&#57345;
-    vi log&#57344;&#57345;&#57345;
+<pre class="src src-sh">    callgrind_annotate --auto=yes callgrind.out.[pid] &gt; log
+    vi log
 </pre>
 </div>
 </div>
@@ -507,15 +507,15 @@ show &lt;number&gt; callers in stack traces
 <div class="outline-text-3" id="text-5-1">
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;stdio.h&gt;</span>&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">x</span>;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span>(x == 0) {&#57344;&#57345;&#57345;
-            printf(<span style="color: #ff4ea3;">"X is zero"</span>);&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;stdio.h&gt;</span>
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+    {
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">x</span>;
+        <span style="color: #a1db00;">if</span>(x == 0) {
+            printf(<span style="color: #ff4ea3;">"X is zero"</span>);
+        }
+        <span style="color: #a1db00;">return</span> 0;
+    }
 </pre>
 </div>
 
@@ -524,8 +524,8 @@ show &lt;number&gt; callers in stack traces
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">   gcc -g uninit-mem.c -o uninit-mem&#57344;&#57345;&#57345;
-   valgrind  --tool=memcheck ./uninit-mem&#57344;&#57345;&#57345;
+<pre class="src src-sh">   gcc -g uninit-mem.c -o uninit-mem
+   valgrind  --tool=memcheck ./uninit-mem
 </pre>
 </div>
 
@@ -550,22 +550,22 @@ show &lt;number&gt; callers in stack traces
 <div class="outline-text-4" id="text-5-1-1">
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;stdlib.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;stdio.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>,<span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>=5;&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>;&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> *<span style="color: #ff8700;">pt</span>=(<span style="color: #00d7af;">int</span>*)malloc(<span style="color: #00d7af;">len</span>*<span style="color: #a1db00;">sizeof</span>(<span style="color: #00d7af;">int</span>));&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> *<span style="color: #ff8700;">p</span>=pt;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">for</span>(i=0;i&lt;len;i++)&#57344;&#57345;&#57345;
-        {p++;}&#57344;&#57345;&#57345;
-        *p=5;&#57344;&#57345;&#57345;
-        printf(&#8220;%d&#8221;,*p);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span>;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;stdlib.h&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;stdio.h&gt;</span>
+
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>,<span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+    {
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>=5;
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>;
+        <span style="color: #00d7af;">int</span> *<span style="color: #ff8700;">pt</span>=(<span style="color: #00d7af;">int</span>*)malloc(<span style="color: #00d7af;">len</span>*<span style="color: #a1db00;">sizeof</span>(<span style="color: #00d7af;">int</span>));
+        <span style="color: #00d7af;">int</span> *<span style="color: #ff8700;">p</span>=pt;
+        <span style="color: #a1db00;">for</span>(i=0;i&lt;len;i++)
+        {p++;}
+        *p=5;
+        printf(&#8220;%d&#8221;,*p);
+
+        <span style="color: #a1db00;">return</span>;
+    }
 </pre>
 </div>
 
@@ -581,29 +581,29 @@ show &lt;number&gt; callers in stack traces
 <div class="outline-text-4" id="text-5-1-2">
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;stdlib.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;stdio.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;string.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>,<span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">x</span>[50];&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">for</span>(i=0;i&lt;50;i++)&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            x[i]=i;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        strncpy(x+20,x,20); <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">Good</span>&#57344;&#57345;&#57345;
-        strncpy(x+20,x,21); <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">Overlap</span>&#57344;&#57345;&#57345;
-        x[39]=&#8217;\0&#8217;;&#57344;&#57345;&#57345;
-        strcpy(x,x+20); <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">Good</span>&#57344;&#57345;&#57345;
-        x[39]=40;&#57344;&#57345;&#57345;
-        x[40]=&#8217;\0&#8217;;&#57344;&#57345;&#57345;
-        strcpy(x,x+20); <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">Overlap</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;stdlib.h&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;stdio.h&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;string.h&gt;</span>
+
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>,<span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+    {
+        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">x</span>[50];
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>;
+        <span style="color: #a1db00;">for</span>(i=0;i&lt;50;i++)
+        {
+            x[i]=i;
+        }
+        strncpy(x+20,x,20); <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">Good</span>
+        strncpy(x+20,x,21); <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">Overlap</span>
+        x[39]=&#8217;\0&#8217;;
+        strcpy(x,x+20); <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">Good</span>
+        x[39]=40;
+        x[40]=&#8217;\0&#8217;;
+        strcpy(x,x+20); <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">Overlap</span>
+
+        <span style="color: #a1db00;">return</span> 0;
+
+    }
 </pre>
 </div>
 </div>
@@ -632,25 +632,25 @@ show &lt;number&gt; callers in stack traces
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;stdlib.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;stdio.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>,<span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">p</span>=(<span style="color: #00d7af;">char</span>*)malloc(10);&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">pt</span>=p;&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">for</span>(i=0;i&lt;10;i++)&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            p[i]=&#8217;z&#8217;;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">delete</span> <span style="color: #ff8700;">p</span>;&#57344;&#57345;&#57345;
-        p[1]=&#8217;a&#8217;;&#57344;&#57345;&#57345;
-        free(pt);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;stdlib.h&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;stdio.h&gt;</span>
+
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>,<span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+    {
+        <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">p</span>=(<span style="color: #00d7af;">char</span>*)malloc(10);
+        <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">pt</span>=p;
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>;
+        <span style="color: #a1db00;">for</span>(i=0;i&lt;10;i++)
+        {
+            p[i]=&#8217;z&#8217;;
+        }
+        <span style="color: #00d7af;">delete</span> <span style="color: #ff8700;">p</span>;
+        p[1]=&#8217;a&#8217;;
+        free(pt);
+
+        <span style="color: #a1db00;">return</span> 0;
+
+    }
 </pre>
 </div>
 </div>
@@ -662,19 +662,19 @@ show &lt;number&gt; callers in stack traces
 <div class="outline-text-4" id="text-5-1-4">
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;stdlib.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>()&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">x</span> = (<span style="color: #00d7af;">char</span>*)malloc(20);&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">y</span> = (<span style="color: #00d7af;">char</span>*)malloc(20);&#57344;&#57345;&#57345;
-        x=y;&#57344;&#57345;&#57345;
-        free(x);&#57344;&#57345;&#57345;
-        free(y);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;stdlib.h&gt;</span>
+
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>()
+    {
+        <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">x</span> = (<span style="color: #00d7af;">char</span>*)malloc(20);
+        <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">y</span> = (<span style="color: #00d7af;">char</span>*)malloc(20);
+        x=y;
+        free(x);
+        free(y);
+
+        <span style="color: #a1db00;">return</span> 0;
+
+    }
 </pre>
 </div>
 </div>
@@ -686,16 +686,16 @@ show &lt;number&gt; callers in stack traces
 <div class="outline-text-4" id="text-5-1-5">
 <div class="org-src-container">
 
-<pre class="src src-c">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>()&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>, *<span style="color: #ff8700;">x</span>;&#57344;&#57345;&#57345;
-        x = (<span style="color: #00d7af;">int</span> *)malloc(10*<span style="color: #a1db00;">sizeof</span>(<span style="color: #00d7af;">int</span>));&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">for</span> (i=0; i&lt;11; i++)&#57344;&#57345;&#57345;
-            x[i] = i;&#57344;&#57345;&#57345;
-        free(x);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>()
+    {
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>, *<span style="color: #ff8700;">x</span>;
+        x = (<span style="color: #00d7af;">int</span> *)malloc(10*<span style="color: #a1db00;">sizeof</span>(<span style="color: #00d7af;">int</span>));
+        <span style="color: #a1db00;">for</span> (i=0; i&lt;11; i++)
+            x[i] = i;
+        free(x);
+
+        <span style="color: #a1db00;">return</span> 0;
+    }
 </pre>
 </div>
 </div>
@@ -706,17 +706,17 @@ show &lt;number&gt; callers in stack traces
 <div class="outline-text-4" id="text-5-1-6">
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;stdlib.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>()&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">x</span> = malloc(10);&#57344;&#57345;&#57345;
-        x[10] = <span style="color: #ff4ea3;">'a'</span>;&#57344;&#57345;&#57345;
-        free(x);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;stdlib.h&gt;</span>
+
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>()
+    {
+        <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">x</span> = malloc(10);
+        x[10] = <span style="color: #ff4ea3;">'a'</span>;
+        free(x);
+
+        <span style="color: #a1db00;">return</span> 0;
+
+    }
 </pre>
 </div>
 </div>
@@ -727,16 +727,16 @@ show &lt;number&gt; callers in stack traces
 <div class="outline-text-4" id="text-5-1-7">
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;stdlib.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">x</span> = malloc(10);&#57344;&#57345;&#57345;
-        free(x);&#57344;&#57345;&#57345;
-        free(x);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;stdlib.h&gt;</span>
+
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+    {
+        <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">x</span> = malloc(10);
+        free(x);
+        free(x);
+
+        <span style="color: #a1db00;">return</span> 0;
+    }
 </pre>
 </div>
 </div>
@@ -752,12 +752,12 @@ Valgrind 不对静态数组 (分配在栈上) 进行边界检查。如果在程�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">x</span>[10];&#57344;&#57345;&#57345;
-        x[11] = <span style="color: #ff4ea3;">'a'</span>;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+    {
+        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">x</span>[10];
+        x[11] = <span style="color: #ff4ea3;">'a'</span>;
+        <span style="color: #a1db00;">return</span> 0;
+    }
 </pre>
 </div>
 
@@ -1305,8 +1305,8 @@ GNU C 库 (libc.so)，所有程序共用的，可能会分配一部分内存自�
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: ubuntu-company</p>
-<p class="date">Created: 2016-02-24 Wed 20:18</p>
+<p class="author">Author: ubuntu</p>
+<p class="date">Created: 2016-03-20 日 02:25</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

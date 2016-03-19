@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-02-19 Fri 17:00 -->
+<!-- 2016-03-20 »’ 02:25 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Auto-Complete manual</title>
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="ubuntu-company" />
+<meta  name="author" content="ubuntu" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -463,9 +463,9 @@ You can also install from terminal like:
 
 <div class="org-src-container">
 
-<pre class="src src-sh">$ make install&#57344;&#57345;&#57345;
-$ <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">or with directory specified</span>&#57344;&#57345;&#57345;
-$ make install <span style="color: #ff8700;">DIR</span>=$<span style="color: #ff8700;">HOME</span>/.emacs.d/&#57344;&#57345;&#57345;
+<pre class="src src-sh">$ make install
+$ <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">or with directory specified</span>
+$ make install <span style="color: #ff8700;">DIR</span>=$<span style="color: #ff8700;">HOME</span>/.emacs.d/
 </pre>
 </div>
 
@@ -475,7 +475,7 @@ If you don't have GNU Make, run emacs like:
 
 <div class="org-src-container">
 
-<pre class="src src-sh">$ emacs -batch -l etc/install.el&#57344;&#57345;&#57345;
+<pre class="src src-sh">$ emacs -batch -l etc/install.el
 </pre>
 </div>
 
@@ -493,10 +493,10 @@ Add the following code to your .emacs:
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(add-to-list 'load-path <span style="color: #ff4ea3;">"~/.emacs.d"</span>)    <span style="color: #6c6c6c; font-style: italic;">; </span><span style="color: #6c6c6c; font-style: italic;">This may not be appeared if you have already added.</span>&#57344;&#57345;
-(<span style="color: #a1db00;">require</span> '<span style="color: #5fafd7;">auto-complete-config</span>)&#57344;&#57345;&#57345;
-(add-to-list 'ac-dictionary-directories <span style="color: #ff4ea3;">"~/.emacs.d/ac-dict"</span>)&#57344;&#57345;&#57345;
-(ac-config-default)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(add-to-list 'load-path <span style="color: #ff4ea3;">"~/.emacs.d"</span>)    <span style="color: #6c6c6c; font-style: italic;">; </span><span style="color: #6c6c6c; font-style: italic;">This may not be appeared if you have already added.</span>
+(<span style="color: #a1db00;">require</span> '<span style="color: #5fafd7;">auto-complete-config</span>)
+(add-to-list 'ac-dictionary-directories <span style="color: #ff4ea3;">"~/.emacs.d/ac-dict"</span>)
+(ac-config-default)
 </pre>
 </div>
 </div>
@@ -510,7 +510,7 @@ It is also possible to install manually if you follow a directory configuration.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">$ make byte-compile&#57344;&#57345;&#57345;
+<pre class="src src-sh">$ make byte-compile
 </pre>
 </div>
 
@@ -523,7 +523,7 @@ Then copy all .el files and .elc files to a directory which is added to load-pat
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">$ cp *.el *.elc ~/.emacs.d&#57344;&#57345;&#57345;
+<pre class="src src-sh">$ cp *.el *.elc ~/.emacs.d
 </pre>
 </div>
 
@@ -532,7 +532,7 @@ And then install dictionary files. They are optional to run Auto Complete Mode, 
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">$ cp -r dict ~/.emacs.d&#57344;&#57345;&#57345;
+<pre class="src src-sh">$ cp -r dict ~/.emacs.d
 </pre>
 </div>
 
@@ -541,9 +541,9 @@ Finally add the following code to .emacs:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(add-to-list 'ac-dictionary-directories <span style="color: #ff4ea3;">"~/.emacs.d/dict"</span>)&#57344;&#57345;&#57345;
-(<span style="color: #a1db00;">require</span> '<span style="color: #5fafd7;">auto-complete-config</span>)&#57344;&#57345;&#57345;
-(ac-config-default)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(add-to-list 'ac-dictionary-directories <span style="color: #ff4ea3;">"~/.emacs.d/dict"</span>)
+(<span style="color: #a1db00;">require</span> '<span style="color: #5fafd7;">auto-complete-config</span>)
+(ac-config-default)
 </pre>
 </div>
 
@@ -557,7 +557,7 @@ If you haven't added the directory to load-path, you need to add the following c
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(add-to-list 'load-path <span style="color: #ff4ea3;">"~/.emacs.d"</span>)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(add-to-list 'load-path <span style="color: #ff4ea3;">"~/.emacs.d"</span>)
 </pre>
 </div>
 </div>
@@ -878,7 +878,7 @@ Basically there is an assumption that auto-complete-mode will be started automat
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(define-key ac-mode-map (kbd <span style="color: #ff4ea3;">"M-TAB"</span>) 'auto-complete)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(define-key ac-mode-map (kbd <span style="color: #ff4ea3;">"M-TAB"</span>) 'auto-complete)
 </pre>
 </div>
 
@@ -994,7 +994,7 @@ It is difficult what key auto-complete command is bound to. It should be bound t
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(ac-set-trigger-key <span style="color: #ff4ea3;">"TAB"</span>)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(ac-set-trigger-key <span style="color: #ff4ea3;">"TAB"</span>)
 </pre>
 </div>
 
@@ -1008,7 +1008,7 @@ Trigger key will be enabled after inserting characters. Otherwise it is dealt as
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq ac-auto-start nil)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(setq ac-auto-start nil)
 </pre>
 </div>
 
@@ -1090,7 +1090,7 @@ User defined dictionary is composed of a list of string specified ac-user-dictio
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(add-to-list 'ac-user-dictionary <span style="color: #ff4ea3;">"foobar@example.com"</span>)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(add-to-list 'ac-user-dictionary <span style="color: #ff4ea3;">"foobar@example.com"</span>)
 </pre>
 </div>
 
@@ -1104,7 +1104,7 @@ Setting will be applied immediately. Try to input "foo" in a buffer. You may see
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq ac-user-dictionary '(<span style="color: #ff4ea3;">"foobar@example.com"</span> <span style="color: #ff4ea3;">"hogehoge@example.com"</span>))&#57344;&#57345;
+<pre class="src src-elisp">(setq ac-user-dictionary '(<span style="color: #ff4ea3;">"foobar@example.com"</span> <span style="color: #ff4ea3;">"hogehoge@example.com"</span>))
 </pre>
 </div>
 
@@ -1152,7 +1152,7 @@ You can use other dictionaries for every major-modes and extensions. A dictionar
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(add-to-list 'ac-dictionary-directories <span style="color: #ff4ea3;">"~/.emacs.d/ac-dict"</span>)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(add-to-list 'ac-dictionary-directories <span style="color: #ff4ea3;">"~/.emacs.d/ac-dict"</span>)
 </pre>
 </div>
 
@@ -1243,16 +1243,16 @@ If you wrote (ac-config-default) in your .emacs, it is rare to change a source s
 
 <div class="org-src-container">
 
-<pre class="src src-elisp"><span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Formatted</span>&#57344;&#57345;&#57345;
-(ac-source-filename&#57344;&#57345;&#57345;
- ac-source-functions&#57344;&#57345;&#57345;
- ac-source-yasnippet&#57344;&#57345;&#57345;
- ac-source-variables&#57344;&#57345;&#57345;
- ac-source-symbols&#57344;&#57345;&#57345;
- ac-source-features&#57344;&#57345;&#57345;
- ac-source-abbrev&#57344;&#57345;&#57345;
- ac-source-words-in-same-mode-buffers&#57344;&#57345;&#57345;
- ac-source-dictionary)&#57344;&#57345;&#57345;
+<pre class="src src-elisp"><span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Formatted</span>
+(ac-source-filename
+ ac-source-functions
+ ac-source-yasnippet
+ ac-source-variables
+ ac-source-symbols
+ ac-source-features
+ ac-source-abbrev
+ ac-source-words-in-same-mode-buffers
+ ac-source-dictionary)
 </pre>
 </div>
 
@@ -1274,7 +1274,7 @@ Here is an example. Imagine you are at the <b>scratch</b> buffer. As we said, th
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq ac-sources '(ac-source-symbols ac-source-words-in-same-mode-buffers))&#57344;&#57345;
+<pre class="src src-elisp">(setq ac-sources '(ac-source-symbols ac-source-words-in-same-mode-buffers))
 </pre>
 </div>
 
@@ -1288,10 +1288,10 @@ This example changes ac-source setting and enable only symbol completion and wor
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #a1db00;">defun</span> <span style="color: #ffd700;">my-ac-emacs-lisp-mode</span> ()&#57344;&#57345;&#57345;
-  (setq ac-sources '(ac-source-symbols ac-source-words-in-same-mode-buffers)))&#57344;&#57345;
-&#57344;&#57345;&#57345;
-(add-hook 'emacs-lisp-mode-hook 'my-ac-emacs-lisp-mode)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(<span style="color: #a1db00;">defun</span> <span style="color: #ffd700;">my-ac-emacs-lisp-mode</span> ()
+  (setq ac-sources '(ac-source-symbols ac-source-words-in-same-mode-buffers)))
+
+(add-hook 'emacs-lisp-mode-hook 'my-ac-emacs-lisp-mode)
 </pre>
 </div>
 
@@ -1305,8 +1305,8 @@ If the code (ac-config-default) is written in .emacs, the code above may not wor
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #a1db00;">defun</span> <span style="color: #ffd700;">ac-emacs-lisp-mode-setup</span> ()&#57344;&#57345;&#57345;
-  (setq ac-sources '(ac-source-symbols ac-source-words-in-same-mode-buffers)))&#57344;&#57345;
+<pre class="src src-elisp">(<span style="color: #a1db00;">defun</span> <span style="color: #ffd700;">ac-emacs-lisp-mode-setup</span> ()
+  (setq ac-sources '(ac-source-symbols ac-source-words-in-same-mode-buffers)))
 </pre>
 </div>
 
@@ -1344,7 +1344,7 @@ By the way, how can we change a setting for all buffers? We use setq-default to 
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq-default ac-sources '(ac-source-words-in-all-buffer))&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(setq-default ac-sources '(ac-source-words-in-all-buffer))
 </pre>
 </div>
 
@@ -1358,9 +1358,9 @@ There are other ways to do that. (ac-config-default) changes the default value o
 
 <div class="org-src-container">
 
-<pre class="src src-elisp"><span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Add ac-source-dictionary to ac-sources of all buffer</span>&#57344;&#57345;&#57345;
-(<span style="color: #a1db00;">defun</span> <span style="color: #ffd700;">ac-common-setup</span> ()&#57344;&#57345;&#57345;
-  (setq ac-sources (append ac-sources '(ac-source-dictionary))))&#57344;&#57345;&#57345;
+<pre class="src src-elisp"><span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Add ac-source-dictionary to ac-sources of all buffer</span>
+(<span style="color: #a1db00;">defun</span> <span style="color: #ffd700;">ac-common-setup</span> ()
+  (setq ac-sources (append ac-sources '(ac-source-dictionary))))
 </pre>
 </div>
 </div>
@@ -1606,7 +1606,7 @@ If you are being annoyed with displaying completion menu, you can disable automa
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq ac-auto-start nil)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(setq ac-auto-start nil)
 </pre>
 </div>
 
@@ -1620,7 +1620,7 @@ You need to bind some key to auto-complete command (because you need to complete
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(define-key ac-mode-map (kbd <span style="color: #ff4ea3;">"M-TAB"</span>) 'auto-complete)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(define-key ac-mode-map (kbd <span style="color: #ff4ea3;">"M-TAB"</span>) 'auto-complete)
 </pre>
 </div>
 
@@ -1634,7 +1634,7 @@ Or bind to global key map.
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(global-set-key <span style="color: #ff4ea3;">"\M-/"</span> 'auto-complete)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(global-set-key <span style="color: #ff4ea3;">"\M-/"</span> 'auto-complete)
 </pre>
 </div>
 
@@ -1685,7 +1685,7 @@ There is another approach to solve the annoying problem is that not to show comp
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq ac-auto-show-menu nil)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(setq ac-auto-show-menu nil)
 </pre>
 </div>
 
@@ -1707,8 +1707,8 @@ In other way, you can delay showing completion menu by setting ac-auto-show-menu
 
 <div class="org-src-container">
 
-<pre class="src src-elisp"><span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Show 0.8 second later</span>&#57344;&#57345;&#57345;
-(setq ac-auto-show-menu 0.8)&#57344;&#57345;&#57345;
+<pre class="src src-elisp"><span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Show 0.8 second later</span>
+(setq ac-auto-show-menu 0.8)
 </pre>
 </div>
 
@@ -1735,7 +1735,7 @@ You can stop completion by pressing C-g. However you won't press C-g while defin
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(define-key ac-completing-map <span style="color: #ff4ea3;">"\M-/"</span> 'ac-stop)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(define-key ac-completing-map <span style="color: #ff4ea3;">"\M-/"</span> 'ac-stop)
 </pre>
 </div>
 
@@ -1761,8 +1761,8 @@ As we described above, there is many behaviors in TAB. You need to use TAB and R
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(define-key ac-completing-map <span style="color: #ff4ea3;">"\t"</span> 'ac-complete)&#57344;&#57345;&#57345;
-(define-key ac-completing-map <span style="color: #ff4ea3;">"\r"</span> nil)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(define-key ac-completing-map <span style="color: #ff4ea3;">"\t"</span> 'ac-complete)
+(define-key ac-completing-map <span style="color: #ff4ea3;">"\r"</span> nil)
 </pre>
 </div>
 </div>
@@ -1781,9 +1781,9 @@ By evaluating the following code, you can select candidates with C-n/C-p, but it
 
 <div class="org-src-container">
 
-<pre class="src src-elisp"><span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Bad config</span>&#57344;&#57345;&#57345;
-(define-key ac-completing-map <span style="color: #ff4ea3;">"\C-n"</span> 'ac-next)&#57344;&#57345;&#57345;
-(define-key ac-completing-map <span style="color: #ff4ea3;">"\C-p"</span> 'ac-previous)&#57344;&#57345;&#57345;
+<pre class="src src-elisp"><span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Bad config</span>
+(define-key ac-completing-map <span style="color: #ff4ea3;">"\C-n"</span> 'ac-next)
+(define-key ac-completing-map <span style="color: #ff4ea3;">"\C-p"</span> 'ac-previous)
 </pre>
 </div>
 
@@ -1797,10 +1797,10 @@ In this case, it is better that selecting candidates is enabled only when comple
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq ac-use-menu-map t)&#57344;&#57345;&#57345;
-<span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Default settings</span>&#57344;&#57345;&#57345;
-(define-key ac-menu-map <span style="color: #ff4ea3;">"\C-n"</span> 'ac-next)&#57344;&#57345;&#57345;
-(define-key ac-menu-map <span style="color: #ff4ea3;">"\C-p"</span> 'ac-previous)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(setq ac-use-menu-map t)
+<span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Default settings</span>
+(define-key ac-menu-map <span style="color: #ff4ea3;">"\C-n"</span> 'ac-next)
+(define-key ac-menu-map <span style="color: #ff4ea3;">"\C-p"</span> 'ac-previous)
 </pre>
 </div>
 
@@ -1823,7 +1823,7 @@ A tooltip help that is shown when completing is called quick help. You can disab
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq ac-use-quick-help nil)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(setq ac-use-quick-help nil)
 </pre>
 </div>
 </div>
@@ -1838,8 +1838,8 @@ Set ac-menu-height to number of lines.
 
 <div class="org-src-container">
 
-<pre class="src src-elisp"><span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">20 lines</span>&#57344;&#57345;&#57345;
-(setq ac-menu-height 20)&#57344;&#57345;&#57345;
+<pre class="src src-elisp"><span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">20 lines</span>
+(setq ac-menu-height 20)
 </pre>
 </div>
 </div>
@@ -1858,7 +1858,7 @@ auto-complete-mode won't be enabled automatically for modes that are not in ac-m
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(add-to-list 'ac-modes 'brandnew-mode)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(add-to-list 'ac-modes 'brandnew-mode)
 </pre>
 </div>
 </div>
@@ -1877,12 +1877,12 @@ There is three ways to distinguish upper case and lower case.
 
 <div class="org-src-container">
 
-<pre class="src src-elisp"><span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Just ignore case</span>&#57344;&#57345;&#57345;
-(setq ac-ignore-case t)&#57344;&#57345;&#57345;
-<span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Ignore case if completion target string doesn't include upper characters</span>&#57344;&#57345;
-(setq ac-ignore-case 'smart)&#57344;&#57345;&#57345;
-<span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Distinguish case</span>&#57344;&#57345;&#57345;
-(setq ac-ignore-case nil)&#57344;&#57345;&#57345;
+<pre class="src src-elisp"><span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Just ignore case</span>
+(setq ac-ignore-case t)
+<span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Ignore case if completion target string doesn't include upper characters</span>
+(setq ac-ignore-case 'smart)
+<span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Distinguish case</span>
+(setq ac-ignore-case nil)
 </pre>
 </div>
 
@@ -1905,10 +1905,10 @@ Set ac-stop-words to words that stops completion automatically. In ruby, some pe
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(add-hook 'ruby-mode-hook&#57344;&#57345;&#57345;
-          (<span style="color: #a1db00;">lambda</span> ()&#57344;&#57345;&#57345;
-            (make-local-variable 'ac-stop-words)&#57344;&#57345;&#57345;
-            (add-to-list 'ac-stop-words <span style="color: #ff4ea3;">"end"</span>)))&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(add-hook 'ruby-mode-hook
+          (<span style="color: #a1db00;">lambda</span> ()
+            (make-local-variable 'ac-stop-words)
+            (add-to-list 'ac-stop-words <span style="color: #ff4ea3;">"end"</span>)))
 </pre>
 </div>
 
@@ -1966,10 +1966,10 @@ To change face background color, use set-face-background. To change face foregro
 
 <div class="org-src-container">
 
-<pre class="src src-elisp"><span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Examples</span>&#57344;&#57345;&#57345;
-(set-face-background 'ac-candidate-face <span style="color: #ff4ea3;">"lightgray"</span>)&#57344;&#57345;&#57345;
-(set-face-underline 'ac-candidate-face <span style="color: #ff4ea3;">"darkgray"</span>)&#57344;&#57345;&#57345;
-(set-face-background 'ac-selection-face <span style="color: #ff4ea3;">"steelblue"</span>)&#57344;&#57345;&#57345;
+<pre class="src src-elisp"><span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Examples</span>
+(set-face-background 'ac-candidate-face <span style="color: #ff4ea3;">"lightgray"</span>)
+(set-face-underline 'ac-candidate-face <span style="color: #ff4ea3;">"darkgray"</span>)
+(set-face-background 'ac-selection-face <span style="color: #ff4ea3;">"steelblue"</span>)
 </pre>
 </div>
 </div>
@@ -1988,7 +1988,7 @@ Read Source first if you don't familiar with sources. To change default of sourc
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq-default ac-sources '(ac-source-words-in-all-buffer))&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(setq-default ac-sources '(ac-source-words-in-all-buffer))
 </pre>
 </div>
 </div>
@@ -2007,7 +2007,7 @@ For example, you may want to use specific sources for C++ buffers. To do that, r
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(add-hook 'c++-mode (<span style="color: #a1db00;">lambda</span> () (add-to-list 'ac-sources 'ac-source-semantic)))&#57344;&#57345;
+<pre class="src src-elisp">(add-hook 'c++-mode (<span style="color: #a1db00;">lambda</span> () (add-to-list 'ac-sources 'ac-source-semantic)))
 </pre>
 </div>
 </div>
@@ -2026,12 +2026,12 @@ You can start completion with specific source. For example, if you want to compl
 
 <div class="org-src-container">
 
-<pre class="src src-elisp"><span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Complete member name by C-c . for C++ mode.</span>&#57344;&#57345;&#57345;
-(add-hook 'c++-mode-hook&#57344;&#57345;&#57345;
-          (<span style="color: #a1db00;">lambda</span> ()&#57344;&#57345;&#57345;
-            (local-set-key (kbd <span style="color: #ff4ea3;">"C-c ."</span>) 'ac-complete-semantic)))&#57344;&#57345;&#57345;
-<span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Complete file name by C-c /</span>&#57344;&#57345;&#57345;
-(global-set-key (kbd <span style="color: #ff4ea3;">"C-c /"</span>) 'ac-complete-filename)&#57344;&#57345;&#57345;
+<pre class="src src-elisp"><span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Complete member name by C-c . for C++ mode.</span>
+(add-hook 'c++-mode-hook
+          (<span style="color: #a1db00;">lambda</span> ()
+            (local-set-key (kbd <span style="color: #ff4ea3;">"C-c ."</span>) 'ac-complete-semantic)))
+<span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Complete file name by C-c /</span>
+(global-set-key (kbd <span style="color: #ff4ea3;">"C-c /"</span>) 'ac-complete-filename)
 </pre>
 </div>
 
@@ -2052,9 +2052,9 @@ If you want to use multiple sources for a command, you need to define a command 
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #a1db00;">defun</span> <span style="color: #ffd700;">semantic-and-gtags-complete</span> ()&#57344;&#57345;&#57345;
-  (interactive)&#57344;&#57345;&#57345;
-  (auto-complete '(ac-source-semantic ac-source-gtags)))&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(<span style="color: #a1db00;">defun</span> <span style="color: #ffd700;">semantic-and-gtags-complete</span> ()
+  (interactive)
+  (auto-complete '(ac-source-semantic ac-source-gtags)))
 </pre>
 </div>
 
@@ -2102,8 +2102,8 @@ You may bind keys to these command like:
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(define-key ac-mode-map (kbd <span style="color: #ff4ea3;">"C-c h"</span>) 'ac-last-quick-help)&#57344;&#57345;&#57345;
-(define-key ac-mode-map (kbd <span style="color: #ff4ea3;">"C-c H"</span>) 'ac-last-help)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(define-key ac-mode-map (kbd <span style="color: #ff4ea3;">"C-c h"</span>) 'ac-last-quick-help)
+(define-key ac-mode-map (kbd <span style="color: #ff4ea3;">"C-c H"</span>) 'ac-last-help)
 </pre>
 </div>
 </div>
@@ -2621,9 +2621,9 @@ Source basically takes a form of the following:
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #a1db00;">defvar</span> <span style="color: #ff8700;">ac-source-mysource1</span>&#57344;&#57345;&#57345;
-  '((prop . value)&#57344;&#57345;&#57345;
-    ...))&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(<span style="color: #a1db00;">defvar</span> <span style="color: #ff8700;">ac-source-mysource1</span>
+  '((prop . value)
+    ...))
 </pre>
 </div>
 
@@ -2642,8 +2642,8 @@ The most important property for source is candidates property. This property des
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #a1db00;">defvar</span> <span style="color: #ff8700;">ac-source-mysource1</span>&#57344;&#57345;&#57345;
-  '((candidates . (list <span style="color: #ff4ea3;">"Foo"</span> <span style="color: #ff4ea3;">"Bar"</span> <span style="color: #ff4ea3;">"Baz"</span>))))&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(<span style="color: #a1db00;">defvar</span> <span style="color: #ff8700;">ac-source-mysource1</span>
+  '((candidates . (list <span style="color: #ff4ea3;">"Foo"</span> <span style="color: #ff4ea3;">"Bar"</span> <span style="color: #ff4ea3;">"Baz"</span>))))
 </pre>
 </div>
 
@@ -2653,7 +2653,7 @@ Then add this source to ac-sources and use:
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq ac-sources '(ac-source-mysource1))&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(setq ac-sources '(ac-source-mysource1))
 </pre>
 </div>
 
@@ -2663,11 +2663,11 @@ It is successful if you have "Bar" and "Baz" by inserting "B". The example above
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #a1db00;">defun</span> <span style="color: #ffd700;">mysource1-candidates</span> ()&#57344;&#57345;&#57345;
-  '(<span style="color: #ff4ea3;">"Foo"</span> <span style="color: #ff4ea3;">"Bar"</span> <span style="color: #ff4ea3;">"Baz"</span>))&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-(<span style="color: #a1db00;">defvar</span> <span style="color: #ff8700;">ac-source-mysource1</span>&#57344;&#57345;&#57345;
-  '((candidates . mysource1-candidates)))&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(<span style="color: #a1db00;">defun</span> <span style="color: #ffd700;">mysource1-candidates</span> ()
+  '(<span style="color: #ff4ea3;">"Foo"</span> <span style="color: #ff4ea3;">"Bar"</span> <span style="color: #ff4ea3;">"Baz"</span>))
+
+(<span style="color: #a1db00;">defvar</span> <span style="color: #ff8700;">ac-source-mysource1</span>
+  '((candidates . mysource1-candidates)))
 </pre>
 </div>
 
@@ -2686,14 +2686,14 @@ You may want to initialize a source at first time to complete. Use init property
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #a1db00;">defvar</span> <span style="color: #ff8700;">mysource2-cache</span> nil)&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-(<span style="color: #a1db00;">defun</span> <span style="color: #ffd700;">mysource2-init</span> ()&#57344;&#57345;&#57345;
-  (setq mysource2-cache '(<span style="color: #ff4ea3;">"Huge"</span> <span style="color: #ff4ea3;">"Processing"</span> <span style="color: #ff4ea3;">"Is"</span> <span style="color: #ff4ea3;">"Done"</span> <span style="color: #ff4ea3;">"Here"</span>)))&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-(<span style="color: #a1db00;">defvar</span> <span style="color: #ff8700;">ac-source-mysource2</span>&#57344;&#57345;&#57345;
-  '((init . mysource2-init)&#57344;&#57345;&#57345;
-    (candidates . mysource2-cache)))&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(<span style="color: #a1db00;">defvar</span> <span style="color: #ff8700;">mysource2-cache</span> nil)
+
+(<span style="color: #a1db00;">defun</span> <span style="color: #ffd700;">mysource2-init</span> ()
+  (setq mysource2-cache '(<span style="color: #ff4ea3;">"Huge"</span> <span style="color: #ff4ea3;">"Processing"</span> <span style="color: #ff4ea3;">"Is"</span> <span style="color: #ff4ea3;">"Done"</span> <span style="color: #ff4ea3;">"Here"</span>)))
+
+(<span style="color: #a1db00;">defvar</span> <span style="color: #ff8700;">ac-source-mysource2</span>
+  '((init . mysource2-init)
+    (candidates . mysource2-cache)))
 </pre>
 </div>
 
@@ -2721,12 +2721,12 @@ Rewrite the example in previous section by using cache property.
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #a1db00;">defun</span> <span style="color: #ffd700;">mysource2-candidates</span> ()&#57344;&#57345;&#57345;
-  '(<span style="color: #ff4ea3;">"Huge"</span> <span style="color: #ff4ea3;">"Processing"</span> <span style="color: #ff4ea3;">"Is"</span> <span style="color: #ff4ea3;">"Done"</span> <span style="color: #ff4ea3;">"Here"</span>))&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-(<span style="color: #a1db00;">defvar</span> <span style="color: #ff8700;">ac-source-mysource2</span>&#57344;&#57345;&#57345;
-  '((candidates . mysource2-candidates)&#57344;&#57345;&#57345;
-    (cache)))&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(<span style="color: #a1db00;">defun</span> <span style="color: #ffd700;">mysource2-candidates</span> ()
+  '(<span style="color: #ff4ea3;">"Huge"</span> <span style="color: #ff4ea3;">"Processing"</span> <span style="color: #ff4ea3;">"Is"</span> <span style="color: #ff4ea3;">"Done"</span> <span style="color: #ff4ea3;">"Here"</span>))
+
+(<span style="color: #a1db00;">defvar</span> <span style="color: #ff8700;">ac-source-mysource2</span>
+  '((candidates . mysource2-candidates)
+    (cache)))
 </pre>
 </div>
 
@@ -2747,16 +2747,16 @@ Use ac-clear-variable-after-save to clear cache every time a buffer saved. Here 
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #a1db00;">defvar</span> <span style="color: #ff8700;">mysource3-cache</span> nil)&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-(ac-clear-variable-after-save 'mysource3-cache)&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-(<span style="color: #a1db00;">defun</span> <span style="color: #ffd700;">mysource3-candidates</span> ()&#57344;&#57345;&#57345;
-  (or mysource3-cache&#57344;&#57345;&#57345;
-      (setq mysource3-cache (list (format <span style="color: #ff4ea3;">"Time %s"</span> (current-time-string))))))&#57344;&#57345;
-&#57344;&#57345;&#57345;
-(<span style="color: #a1db00;">defvar</span> <span style="color: #ff8700;">ac-source-mysource3</span>&#57344;&#57345;&#57345;
-  '((candidates . mysource3-candidates)))&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(<span style="color: #a1db00;">defvar</span> <span style="color: #ff8700;">mysource3-cache</span> nil)
+
+(ac-clear-variable-after-save 'mysource3-cache)
+
+(<span style="color: #a1db00;">defun</span> <span style="color: #ffd700;">mysource3-candidates</span> ()
+  (or mysource3-cache
+      (setq mysource3-cache (list (format <span style="color: #ff4ea3;">"Time %s"</span> (current-time-string))))))
+
+(<span style="color: #a1db00;">defvar</span> <span style="color: #ff8700;">ac-source-mysource3</span>
+  '((candidates . mysource3-candidates)))
 </pre>
 </div>
 
@@ -2793,12 +2793,12 @@ Consider a source that completes mail addresses only after "To:". First of all, 
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #a1db00;">defvar</span> <span style="color: #ff8700;">ac-source-to-mailaddr</span>&#57344;&#57345;&#57345;
-  '((candidates . (list <span style="color: #ff4ea3;">"foo1@example.com"</span>&#57344;&#57345;&#57345;
-                        <span style="color: #ff4ea3;">"foo2@example.com"</span>&#57344;&#57345;&#57345;
-                        <span style="color: #ff4ea3;">"foo3@example.com"</span>))))&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-(setq ac-sources '(ac-source-to-mailaddr))&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(<span style="color: #a1db00;">defvar</span> <span style="color: #ff8700;">ac-source-to-mailaddr</span>
+  '((candidates . (list <span style="color: #ff4ea3;">"foo1@example.com"</span>
+                        <span style="color: #ff4ea3;">"foo2@example.com"</span>
+                        <span style="color: #ff4ea3;">"foo3@example.com"</span>))))
+
+(setq ac-sources '(ac-source-to-mailaddr))
 </pre>
 </div>
 
@@ -2824,11 +2824,11 @@ A reason why capturing group 1 is skipping "To:". By adding this into the source
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #a1db00;">defvar</span> <span style="color: #ff8700;">ac-source-to-mailaddr</span>&#57344;&#57345;&#57345;
-  '((candidates . (list <span style="color: #ff4ea3;">"foo1@example.com"</span>&#57344;&#57345;&#57345;
-                        <span style="color: #ff4ea3;">"foo2@example.com"</span>&#57344;&#57345;&#57345;
-                        <span style="color: #ff4ea3;">"foo3@example.com"</span>))&#57344;&#57345;&#57345;
-    (prefix . <span style="color: #ff4ea3;">"^To: </span><span style="color: #fce94f;">\\</span><span style="color: #d18aff;">(</span><span style="color: #ff4ea3;">.*</span><span style="color: #fce94f;">\\</span><span style="color: #d18aff;">)</span><span style="color: #ff4ea3;">"</span>)))&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(<span style="color: #a1db00;">defvar</span> <span style="color: #ff8700;">ac-source-to-mailaddr</span>
+  '((candidates . (list <span style="color: #ff4ea3;">"foo1@example.com"</span>
+                        <span style="color: #ff4ea3;">"foo2@example.com"</span>
+                        <span style="color: #ff4ea3;">"foo3@example.com"</span>))
+    (prefix . <span style="color: #ff4ea3;">"^To: </span><span style="color: #fce94f;">\\</span><span style="color: #d18aff;">(</span><span style="color: #ff4ea3;">.*</span><span style="color: #fce94f;">\\</span><span style="color: #d18aff;">)</span><span style="color: #ff4ea3;">"</span>)))
 </pre>
 </div>
 
@@ -2846,8 +2846,8 @@ You may use an utility macro called ac-define-source which defines a source and 
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(ac-define-source mysource3&#57344;&#57345;&#57345;
-  '((candidates . (list <span style="color: #ff4ea3;">"Foo"</span> <span style="color: #ff4ea3;">"Bar"</span> <span style="color: #ff4ea3;">"Baz"</span>))))&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(ac-define-source mysource3
+  '((candidates . (list <span style="color: #ff4ea3;">"Foo"</span> <span style="color: #ff4ea3;">"Bar"</span> <span style="color: #ff4ea3;">"Baz"</span>))))
 </pre>
 </div>
 
@@ -2857,12 +2857,12 @@ This expression will be expanded like:
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #a1db00;">defvar</span> <span style="color: #ff8700;">ac-source-mysource3</span>&#57344;&#57345;&#57345;
-  '((candidates . (list <span style="color: #ff4ea3;">"Foo"</span> <span style="color: #ff4ea3;">"Bar"</span> <span style="color: #ff4ea3;">"Baz"</span>))))&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-(<span style="color: #a1db00;">defun</span> <span style="color: #ffd700;">ac-complete-mysource3</span> ()&#57344;&#57345;&#57345;
-  (interactive)&#57344;&#57345;&#57345;
-  (auto-complete '(ac-source-mysource3)))&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(<span style="color: #a1db00;">defvar</span> <span style="color: #ff8700;">ac-source-mysource3</span>
+  '((candidates . (list <span style="color: #ff4ea3;">"Foo"</span> <span style="color: #ff4ea3;">"Bar"</span> <span style="color: #ff4ea3;">"Baz"</span>))))
+
+(<span style="color: #a1db00;">defun</span> <span style="color: #ffd700;">ac-complete-mysource3</span> ()
+  (interactive)
+  (auto-complete '(ac-source-mysource3)))
 </pre>
 </div>
 
@@ -3185,7 +3185,7 @@ auto-complete-mode tries to reduce a cost of computation of columns to show comp
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq popup-use-optimized-column-computation nil)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(setq popup-use-optimized-column-computation nil)
 </pre>
 </div>
 </div>
@@ -3203,8 +3203,8 @@ We don't good answers now, but you may shot the troubles by changing font size w
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(set-face-font 'ac-candidate-face <span style="color: #ff4ea3;">"MS Gothic 11"</span>)&#57344;&#57345;&#57345;
-(set-face-font 'ac-selection-face <span style="color: #ff4ea3;">"MS Gothic 11"</span>)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(set-face-font 'ac-candidate-face <span style="color: #ff4ea3;">"MS Gothic 11"</span>)
+(set-face-font 'ac-selection-face <span style="color: #ff4ea3;">"MS Gothic 11"</span>)
 </pre>
 </div>
 </div>
@@ -3224,7 +3224,7 @@ A way of delaying processes of flyspell-mode disables auto completion. You can a
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(ac-flyspell-workaround)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(ac-flyspell-workaround)
 </pre>
 </div>
 </div>
@@ -3239,7 +3239,7 @@ linum-mode tries to add the line numbers even for the comletion menu. To stop th
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(ac-linum-workaround)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(ac-linum-workaround)
 </pre>
 </div>
 </div>
@@ -3256,8 +3256,8 @@ Visit Auto-Complete Issue Tracker and create a new issue.
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: ubuntu-company</p>
-<p class="date">Created: 2016-02-19 Fri 17:00</p>
+<p class="author">Author: ubuntu</p>
+<p class="date">Created: 2016-03-20 »’ 02:25</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

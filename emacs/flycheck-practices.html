@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-02-19 Fri 17:00 -->
+<!-- 2016-03-20 日 02:25 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Flycheck practices</title>
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="ubuntu-company" />
+<meta  name="author" content="ubuntu" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -403,10 +403,10 @@ You need to enable them explicitly, by adding the following to your init file:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #a1db00;">require</span> '<span style="color: #5fafd7;">package</span>)&#57344;&#57345;&#57345;
-(add-to-list 'package-archives&#57344;&#57345;&#57345;
-             '(<span style="color: #ff4ea3;">"melpa"</span> . <span style="color: #ff4ea3;">"http://melpa.org/packages/"</span>) t)&#57344;&#57345;&#57345;
-(package-initialize)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(<span style="color: #a1db00;">require</span> '<span style="color: #5fafd7;">package</span>)
+(add-to-list 'package-archives
+             '(<span style="color: #ff4ea3;">"melpa"</span> . <span style="color: #ff4ea3;">"http://melpa.org/packages/"</span>) t)
+(package-initialize)
 </pre>
 </div>
 </div>
@@ -420,10 +420,10 @@ If you use Cask to manage your packages, add the following to your Cask file:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(source gnu)&#57344;&#57345;&#57345;
-(source melpa-stable)&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-(depends-on <span style="color: #ff4ea3;">"flycheck"</span>)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(source gnu)
+(source melpa-stable)
+
+(depends-on <span style="color: #ff4ea3;">"flycheck"</span>)
 </pre>
 </div>
 </div>
@@ -441,7 +441,7 @@ To get started with Flycheck, enable it by adding the following to your init fil
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(add-hook 'after-init-hook #'global-flycheck-mode)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(add-hook 'after-init-hook #'global-flycheck-mode)
 </pre>
 </div>
 
@@ -464,7 +464,7 @@ Next you need to install syntax checking tools for the major modes you are using
 
 <div class="org-src-container">
 
-<pre class="src src-sh">$ pip install pylint&#57344;&#57345;&#57345;
+<pre class="src src-sh">$ pip install pylint
 </pre>
 </div>
 
@@ -474,7 +474,7 @@ For Ruby, you might want to use Rubocop and ruby-lint:
 
 <div class="org-src-container">
 
-<pre class="src src-sh">gem install rubocop ruby-lint&#57344;&#57345;&#57345;
+<pre class="src src-sh">gem install rubocop ruby-lint
 </pre>
 </div>
 
@@ -592,7 +592,7 @@ Add the following code to your init file to enable syntax checking permanently:
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(add-hook 'after-init-hook #'global-flycheck-mode)&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(add-hook 'after-init-hook #'global-flycheck-mode)
 </pre>
 </div>
 
@@ -686,7 +686,7 @@ For instance, with the following code in your init file Flycheck will only check
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq flycheck-check-syntax-automatically '(mode-enabled save))&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(setq flycheck-check-syntax-automatically '(mode-enabled save))
 </pre>
 </div>
 
@@ -991,7 +991,7 @@ You can customise this variable with M-x customize-variable RET flycheck-disable
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq-default flycheck-disabled-checkers '(c/c++-clang))&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(setq-default flycheck-disabled-checkers '(c/c++-clang))
 </pre>
 </div>
 
@@ -1004,7 +1004,7 @@ You can also disable checkers via local variables. For instance, to disable emac
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">((emacs-lisp-mode (flycheck-disabled-checkers emacs-lisp-checkdoc)))&#57344;&#57345;&#57345;
+<pre class="src src-elisp">((emacs-lisp-mode (flycheck-disabled-checkers emacs-lisp-checkdoc)))
 </pre>
 </div>
 
@@ -1362,8 +1362,8 @@ Copy the IDs of the errors at point.
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: ubuntu-company</p>
-<p class="date">Created: 2016-02-19 Fri 17:00</p>
+<p class="author">Author: ubuntu</p>
+<p class="date">Created: 2016-03-20 日 02:25</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

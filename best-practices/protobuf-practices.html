@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-02-24 Wed 20:18 -->
+<!-- 2016-03-20 日 02:25 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Protocol buffers practices</title>
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="ubuntu-company" />
+<meta  name="author" content="ubuntu" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -264,12 +264,12 @@ Once you've defined your messages, you run the protocol buffer compiler for your
 
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #00d7af;">Person</span> <span style="color: #ff8700;">person</span>;&#57344;&#57345;&#57345;
-person.set_name(<span style="color: #ff4ea3;">"John Doe"</span>);&#57344;&#57345;&#57345;
-person.set_id(1234);&#57344;&#57345;&#57345;
-person.set_email(<span style="color: #ff4ea3;">"jdoe@example.com"</span>);&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">fstream</span> <span style="color: #ffd700;">output</span>(<span style="color: #ff4ea3;">"myfile"</span>, <span style="color: #5fafd7;">ios</span>::out | <span style="color: #5fafd7;">ios</span>::binary);&#57344;&#57345;&#57345;
-person.SerializeToOstream(&amp;output);&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #00d7af;">Person</span> <span style="color: #ff8700;">person</span>;
+person.set_name(<span style="color: #ff4ea3;">"John Doe"</span>);
+person.set_id(1234);
+person.set_email(<span style="color: #ff4ea3;">"jdoe@example.com"</span>);
+<span style="color: #00d7af;">fstream</span> <span style="color: #ffd700;">output</span>(<span style="color: #ff4ea3;">"myfile"</span>, <span style="color: #5fafd7;">ios</span>::out | <span style="color: #5fafd7;">ios</span>::binary);
+person.SerializeToOstream(&amp;output);
 </pre>
 </div>
 
@@ -279,11 +279,11 @@ Then, later on, you could read your message back in:
 
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #00d7af;">fstream</span> <span style="color: #ffd700;">input</span>(<span style="color: #ff4ea3;">"myfile"</span>, <span style="color: #5fafd7;">ios</span>::in | <span style="color: #5fafd7;">ios</span>::binary);&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">Person</span> <span style="color: #ff8700;">person</span>;&#57344;&#57345;&#57345;
-person.ParseFromIstream(&amp;input);&#57344;&#57345;&#57345;
-cout &lt;&lt; <span style="color: #ff4ea3;">"Name: "</span> &lt;&lt; person.name() &lt;&lt; endl;&#57344;&#57345;&#57345;
-cout &lt;&lt; <span style="color: #ff4ea3;">"E-mail: "</span> &lt;&lt; person.email() &lt;&lt; endl;&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #00d7af;">fstream</span> <span style="color: #ffd700;">input</span>(<span style="color: #ff4ea3;">"myfile"</span>, <span style="color: #5fafd7;">ios</span>::in | <span style="color: #5fafd7;">ios</span>::binary);
+<span style="color: #00d7af;">Person</span> <span style="color: #ff8700;">person</span>;
+person.ParseFromIstream(&amp;input);
+cout &lt;&lt; <span style="color: #ff4ea3;">"Name: "</span> &lt;&lt; person.name() &lt;&lt; endl;
+cout &lt;&lt; <span style="color: #ff4ea3;">"E-mail: "</span> &lt;&lt; person.email() &lt;&lt; endl;
 </pre>
 </div>
 
@@ -348,8 +348,8 @@ Also, manipulating a protocol buffer is much easier:
 
 <div class="org-src-container">
 
-<pre class="src src-c++">cout &lt;&lt; <span style="color: #ff4ea3;">"Name: "</span> &lt;&lt; person.name() &lt;&lt; endl;&#57344;&#57345;&#57345;
-cout &lt;&lt; <span style="color: #ff4ea3;">"E-mail: "</span> &lt;&lt; person.email() &lt;&lt; endl;&#57344;&#57345;&#57345;
+<pre class="src src-c++">cout &lt;&lt; <span style="color: #ff4ea3;">"Name: "</span> &lt;&lt; person.name() &lt;&lt; endl;
+cout &lt;&lt; <span style="color: #ff4ea3;">"E-mail: "</span> &lt;&lt; person.email() &lt;&lt; endl;
 </pre>
 </div>
 
@@ -359,12 +359,12 @@ Whereas with XML you would have to do something like:
 
 <div class="org-src-container">
 
-<pre class="src src-c++">cout &lt;&lt; <span style="color: #ff4ea3;">"Name: "</span>&#57344;&#57345;&#57345;
-&lt;&lt; person.getElementsByTagName(<span style="color: #ff4ea3;">"name"</span>)-&gt;item(0)-&gt;innerText()&#57344;&#57345;&#57345;
-&lt;&lt; endl;&#57344;&#57345;&#57345;
-cout &lt;&lt; <span style="color: #ff4ea3;">"E-mail: "</span>&#57344;&#57345;&#57345;
-&lt;&lt; person.getElementsByTagName(<span style="color: #ff4ea3;">"email"</span>)-&gt;item(0)-&gt;innerText()&#57344;&#57345;&#57345;
-&lt;&lt; endl;&#57344;&#57345;&#57345;
+<pre class="src src-c++">cout &lt;&lt; <span style="color: #ff4ea3;">"Name: "</span>
+&lt;&lt; person.getElementsByTagName(<span style="color: #ff4ea3;">"name"</span>)-&gt;item(0)-&gt;innerText()
+&lt;&lt; endl;
+cout &lt;&lt; <span style="color: #ff4ea3;">"E-mail: "</span>
+&lt;&lt; person.getElementsByTagName(<span style="color: #ff4ea3;">"email"</span>)-&gt;item(0)-&gt;innerText()
+&lt;&lt; endl;
 </pre>
 </div>
 
@@ -424,14 +424,14 @@ Protocol buffers were initially developed at Google to deal with an index server
 
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #a1db00;">if</span> (version == 3) {&#57344;&#57345;&#57345;
-    ...&#57344;&#57345;&#57345;
-} <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span> (version &gt; 4) {&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span> (version == 5) {&#57344;&#57345;&#57345;
-        ...&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    ...&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #a1db00;">if</span> (version == 3) {
+    ...
+} <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span> (version &gt; 4) {
+    <span style="color: #a1db00;">if</span> (version == 5) {
+        ...
+    }
+    ...
+        }
 </pre>
 </div>
 
@@ -776,7 +776,7 @@ Now run the compiler, specifying the source directory (where your application's 
 
 <div class="org-src-container">
 
-<pre class="src src-sh">protoc -I=$<span style="color: #ff8700;">SRC_DIR</span> --cpp_out=$<span style="color: #ff8700;">DST_DIR</span> $<span style="color: #ff8700;">SRC_DIR</span>/addressbook.proto&#57344;&#57345;&#57345;
+<pre class="src src-sh">protoc -I=$<span style="color: #ff8700;">SRC_DIR</span> --cpp_out=$<span style="color: #ff8700;">DST_DIR</span> $<span style="color: #ff8700;">SRC_DIR</span>/addressbook.proto
 </pre>
 </div>
 
@@ -830,36 +830,36 @@ Let's look at some of the generated code and see what classes and functions the 
 
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">name</span>&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">bool</span> <span style="color: #ffd700;">has_name</span>() <span style="color: #a1db00;">const</span>;&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">clear_name</span>();&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">inline</span> <span style="color: #a1db00;">const</span> ::<span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">string</span>&amp; <span style="color: #ffd700;">name</span>() <span style="color: #a1db00;">const</span>;&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">set_name</span>(<span style="color: #a1db00;">const</span> ::<span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">string</span>&amp; <span style="color: #ff8700;">value</span>);&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">set_name</span>(<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">value</span>);&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">inline</span> ::<span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">string</span>* <span style="color: #ffd700;">mutable_name</span>();&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">id</span>&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">bool</span> <span style="color: #ffd700;">has_id</span>() <span style="color: #a1db00;">const</span>;&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">clear_id</span>();&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">int32_t</span> <span style="color: #ffd700;">id</span>() <span style="color: #a1db00;">const</span>;&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">set_id</span>(<span style="color: #00d7af;">int32_t</span> <span style="color: #ff8700;">value</span>);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">email</span>&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">bool</span> <span style="color: #ffd700;">has_email</span>() <span style="color: #a1db00;">const</span>;&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">clear_email</span>();&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">inline</span> <span style="color: #a1db00;">const</span> ::<span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">string</span>&amp; <span style="color: #ffd700;">email</span>() <span style="color: #a1db00;">const</span>;&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">set_email</span>(<span style="color: #a1db00;">const</span> ::<span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">string</span>&amp; <span style="color: #ff8700;">value</span>);&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">set_email</span>(<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">value</span>);&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">inline</span> ::<span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">string</span>* <span style="color: #ffd700;">mutable_email</span>();&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">phone</span>&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">phone_size</span>() <span style="color: #a1db00;">const</span>;&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">clear_phone</span>();&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">inline</span> <span style="color: #a1db00;">const</span> ::<span style="color: #5fafd7;">google</span>::<span style="color: #5fafd7;">protobuf</span>::<span style="color: #00d7af;">RepeatedPtrField</span>&lt; ::<span style="color: #5fafd7;">tutorial</span>::Person_PhoneNumber &gt;&amp; <span style="color: #ffd700;">phone</span>() <span style="color: #a1db00;">const</span>;&#57344;&#57345;
-<span style="color: #a1db00;">inline</span> ::<span style="color: #5fafd7;">google</span>::<span style="color: #5fafd7;">protobuf</span>::<span style="color: #00d7af;">RepeatedPtrField</span>&lt; ::<span style="color: #5fafd7;">tutorial</span>::Person_PhoneNumber &gt;* <span style="color: #ffd700;">mutable_phone</span>();&#57344;&#57345;
-<span style="color: #a1db00;">inline</span> <span style="color: #a1db00;">const</span> ::<span style="color: #5fafd7;">tutorial</span>::<span style="color: #00d7af;">Person_PhoneNumber</span>&amp; <span style="color: #ffd700;">phone</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">index</span>) <span style="color: #a1db00;">const</span>;&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">inline</span> ::<span style="color: #5fafd7;">tutorial</span>::Person_PhoneNumber* mutable_phone(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">index</span>);&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">inline</span> ::<span style="color: #5fafd7;">tutorial</span>::Person_PhoneNumber* add_phone();&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">name</span>
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">bool</span> <span style="color: #ffd700;">has_name</span>() <span style="color: #a1db00;">const</span>;
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">clear_name</span>();
+<span style="color: #a1db00;">inline</span> <span style="color: #a1db00;">const</span> ::<span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">string</span>&amp; <span style="color: #ffd700;">name</span>() <span style="color: #a1db00;">const</span>;
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">set_name</span>(<span style="color: #a1db00;">const</span> ::<span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">string</span>&amp; <span style="color: #ff8700;">value</span>);
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">set_name</span>(<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">value</span>);
+<span style="color: #a1db00;">inline</span> ::<span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">string</span>* <span style="color: #ffd700;">mutable_name</span>();
+
+<span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">id</span>
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">bool</span> <span style="color: #ffd700;">has_id</span>() <span style="color: #a1db00;">const</span>;
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">clear_id</span>();
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">int32_t</span> <span style="color: #ffd700;">id</span>() <span style="color: #a1db00;">const</span>;
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">set_id</span>(<span style="color: #00d7af;">int32_t</span> <span style="color: #ff8700;">value</span>);
+
+<span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">email</span>
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">bool</span> <span style="color: #ffd700;">has_email</span>() <span style="color: #a1db00;">const</span>;
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">clear_email</span>();
+<span style="color: #a1db00;">inline</span> <span style="color: #a1db00;">const</span> ::<span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">string</span>&amp; <span style="color: #ffd700;">email</span>() <span style="color: #a1db00;">const</span>;
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">set_email</span>(<span style="color: #a1db00;">const</span> ::<span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">string</span>&amp; <span style="color: #ff8700;">value</span>);
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">set_email</span>(<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">value</span>);
+<span style="color: #a1db00;">inline</span> ::<span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">string</span>* <span style="color: #ffd700;">mutable_email</span>();
+
+<span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">phone</span>
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">phone_size</span>() <span style="color: #a1db00;">const</span>;
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">clear_phone</span>();
+<span style="color: #a1db00;">inline</span> <span style="color: #a1db00;">const</span> ::<span style="color: #5fafd7;">google</span>::<span style="color: #5fafd7;">protobuf</span>::<span style="color: #00d7af;">RepeatedPtrField</span>&lt; ::<span style="color: #5fafd7;">tutorial</span>::Person_PhoneNumber &gt;&amp; <span style="color: #ffd700;">phone</span>() <span style="color: #a1db00;">const</span>;
+<span style="color: #a1db00;">inline</span> ::<span style="color: #5fafd7;">google</span>::<span style="color: #5fafd7;">protobuf</span>::<span style="color: #00d7af;">RepeatedPtrField</span>&lt; ::<span style="color: #5fafd7;">tutorial</span>::Person_PhoneNumber &gt;* <span style="color: #ffd700;">mutable_phone</span>();
+<span style="color: #a1db00;">inline</span> <span style="color: #a1db00;">const</span> ::<span style="color: #5fafd7;">tutorial</span>::<span style="color: #00d7af;">Person_PhoneNumber</span>&amp; <span style="color: #ffd700;">phone</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">index</span>) <span style="color: #a1db00;">const</span>;
+<span style="color: #a1db00;">inline</span> ::<span style="color: #5fafd7;">tutorial</span>::Person_PhoneNumber* mutable_phone(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">index</span>);
+<span style="color: #a1db00;">inline</span> ::<span style="color: #5fafd7;">tutorial</span>::Person_PhoneNumber* add_phone();
 </pre>
 </div>
 
@@ -1091,99 +1091,99 @@ Here is a program which reads an AddressBook from a file, adds one new Person to
 
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;fstream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;string&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">"addressbook.pb.h"</span>&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">using</span> <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">std</span>;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">This function fills in a Person message based on user input.</span>&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">PromptForAddress</span>(<span style="color: #5fafd7;">tutorial</span>::<span style="color: #00d7af;">Person</span>* <span style="color: #ff8700;">person</span>) {&#57344;&#57345;&#57345;
-    cout &lt;&lt; <span style="color: #ff4ea3;">"Enter person ID number: "</span>;&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">id</span>;&#57344;&#57345;&#57345;
-    cin &gt;&gt; id;&#57344;&#57345;&#57345;
-    person-&gt;set_id(id);&#57344;&#57345;&#57345;
-    cin.ignore(256, <span style="color: #ff4ea3;">'\n'</span>);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    cout &lt;&lt; <span style="color: #ff4ea3;">"Enter name: "</span>;&#57344;&#57345;&#57345;
-    getline(cin, *person-&gt;mutable_name());&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    cout &lt;&lt; <span style="color: #ff4ea3;">"Enter email address (blank for none): "</span>;&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">string</span> <span style="color: #ff8700;">email</span>;&#57344;&#57345;&#57345;
-    getline(cin, email);&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>email.empty()) {&#57344;&#57345;&#57345;
-        person-&gt;set_email(email);&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">while</span> (<span style="color: #5fafd7;">true</span>) {&#57344;&#57345;&#57345;
-        cout &lt;&lt; <span style="color: #ff4ea3;">"Enter a phone number (or leave blank to finish): "</span>;&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">string</span> <span style="color: #ff8700;">number</span>;&#57344;&#57345;&#57345;
-        getline(cin, number);&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (number.empty()) {&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">break</span>;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">tutorial</span>::<span style="color: #5fafd7;">Person</span>::<span style="color: #00d7af;">PhoneNumber</span>* <span style="color: #ff8700;">phone_number</span> = person-&gt;add_phone();&#57344;&#57345;
-        phone_number-&gt;set_number(number);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        cout &lt;&lt; <span style="color: #ff4ea3;">"Is this a mobile, home, or work phone? "</span>;&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">string</span> <span style="color: #ff8700;">type</span>;&#57344;&#57345;&#57345;
-        getline(cin, type);&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (type == <span style="color: #ff4ea3;">"mobile"</span>) {&#57344;&#57345;&#57345;
-            phone_number-&gt;set_type(<span style="color: #5fafd7;">tutorial</span>::<span style="color: #5fafd7;">Person</span>::MOBILE);&#57344;&#57345;&#57345;
-        } <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span> (type == <span style="color: #ff4ea3;">"home"</span>) {&#57344;&#57345;&#57345;
-            phone_number-&gt;set_type(<span style="color: #5fafd7;">tutorial</span>::<span style="color: #5fafd7;">Person</span>::HOME);&#57344;&#57345;&#57345;
-        } <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span> (type == <span style="color: #ff4ea3;">"work"</span>) {&#57344;&#57345;&#57345;
-            phone_number-&gt;set_type(<span style="color: #5fafd7;">tutorial</span>::<span style="color: #5fafd7;">Person</span>::WORK);&#57344;&#57345;&#57345;
-        } <span style="color: #a1db00;">else</span> {&#57344;&#57345;&#57345;
-            cout &lt;&lt; <span style="color: #ff4ea3;">"Unknown phone type.  Using default."</span> &lt;&lt; endl;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Main function:  Reads the entire address book from a file,</span>&#57344;&#57345;&#57345;
-<span style="color: #6c6c6c; font-style: italic;">//   </span><span style="color: #6c6c6c; font-style: italic;">adds one person based on user input, then writes it back out to the same</span>&#57344;&#57345;
-<span style="color: #6c6c6c; font-style: italic;">//   </span><span style="color: #6c6c6c; font-style: italic;">file.</span>&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">argv</span>[]) {&#57344;&#57345;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Verify that the version of the library that we linked against is</span>&#57344;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">compatible with the version of the headers we compiled against.</span>&#57345;
-    GOOGLE_PROTOBUF_VERIFY_VERSION;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span> (argc != 2) {&#57344;&#57345;&#57345;
-        cerr &lt;&lt; <span style="color: #ff4ea3;">"Usage:  "</span> &lt;&lt; argv[0] &lt;&lt; <span style="color: #ff4ea3;">" ADDRESS_BOOK_FILE"</span> &lt;&lt; endl;&#57345;
-        <span style="color: #a1db00;">return</span> -1;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">tutorial</span>::<span style="color: #00d7af;">AddressBook</span> <span style="color: #ff8700;">address_book</span>;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Read the existing address book.</span>&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">fstream</span> <span style="color: #ff8700;">input</span>(<span style="color: #00d7af;">argv</span>[1], <span style="color: #5fafd7;">ios</span>::in | <span style="color: #5fafd7;">ios</span>::binary);&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>input) {&#57344;&#57345;&#57345;
-            cout &lt;&lt; argv[1] &lt;&lt; <span style="color: #ff4ea3;">": File not found.  Creating a new file."</span> &lt;&lt; endl;&#57344;&#57345;
-        } <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>address_book.ParseFromIstream(&amp;input)) {&#57344;&#57345;&#57345;
-            cerr &lt;&lt; <span style="color: #ff4ea3;">"Failed to parse address book."</span> &lt;&lt; endl;&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> -1;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Add an address.</span>&#57344;&#57345;&#57345;
-    PromptForAddress(address_book.add_person());&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Write the new address book back to disk.</span>&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">fstream</span> <span style="color: #ff8700;">output</span>(<span style="color: #00d7af;">argv</span>[1], <span style="color: #5fafd7;">ios</span>::out | <span style="color: #5fafd7;">ios</span>::trunc | <span style="color: #5fafd7;">ios</span>::binary);&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>address_book.SerializeToOstream(&amp;output)) {&#57344;&#57345;&#57345;
-            cerr &lt;&lt; <span style="color: #ff4ea3;">"Failed to write address book."</span> &lt;&lt; endl;&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> -1;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Optional:  Delete all global objects allocated by libprotobuf.</span>&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">google</span>::<span style="color: #5fafd7;">protobuf</span>::ShutdownProtobufLibrary();&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;fstream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;string&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">"addressbook.pb.h"</span>
+<span style="color: #a1db00;">using</span> <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">std</span>;
+
+<span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">This function fills in a Person message based on user input.</span>
+<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">PromptForAddress</span>(<span style="color: #5fafd7;">tutorial</span>::<span style="color: #00d7af;">Person</span>* <span style="color: #ff8700;">person</span>) {
+    cout &lt;&lt; <span style="color: #ff4ea3;">"Enter person ID number: "</span>;
+    <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">id</span>;
+    cin &gt;&gt; id;
+    person-&gt;set_id(id);
+    cin.ignore(256, <span style="color: #ff4ea3;">'\n'</span>);
+
+    cout &lt;&lt; <span style="color: #ff4ea3;">"Enter name: "</span>;
+    getline(cin, *person-&gt;mutable_name());
+
+    cout &lt;&lt; <span style="color: #ff4ea3;">"Enter email address (blank for none): "</span>;
+    <span style="color: #00d7af;">string</span> <span style="color: #ff8700;">email</span>;
+    getline(cin, email);
+    <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>email.empty()) {
+        person-&gt;set_email(email);
+    }
+
+    <span style="color: #a1db00;">while</span> (<span style="color: #5fafd7;">true</span>) {
+        cout &lt;&lt; <span style="color: #ff4ea3;">"Enter a phone number (or leave blank to finish): "</span>;
+        <span style="color: #00d7af;">string</span> <span style="color: #ff8700;">number</span>;
+        getline(cin, number);
+        <span style="color: #a1db00;">if</span> (number.empty()) {
+            <span style="color: #a1db00;">break</span>;
+        }
+
+        <span style="color: #5fafd7;">tutorial</span>::<span style="color: #5fafd7;">Person</span>::<span style="color: #00d7af;">PhoneNumber</span>* <span style="color: #ff8700;">phone_number</span> = person-&gt;add_phone();
+        phone_number-&gt;set_number(number);
+
+        cout &lt;&lt; <span style="color: #ff4ea3;">"Is this a mobile, home, or work phone? "</span>;
+        <span style="color: #00d7af;">string</span> <span style="color: #ff8700;">type</span>;
+        getline(cin, type);
+        <span style="color: #a1db00;">if</span> (type == <span style="color: #ff4ea3;">"mobile"</span>) {
+            phone_number-&gt;set_type(<span style="color: #5fafd7;">tutorial</span>::<span style="color: #5fafd7;">Person</span>::MOBILE);
+        } <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span> (type == <span style="color: #ff4ea3;">"home"</span>) {
+            phone_number-&gt;set_type(<span style="color: #5fafd7;">tutorial</span>::<span style="color: #5fafd7;">Person</span>::HOME);
+        } <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span> (type == <span style="color: #ff4ea3;">"work"</span>) {
+            phone_number-&gt;set_type(<span style="color: #5fafd7;">tutorial</span>::<span style="color: #5fafd7;">Person</span>::WORK);
+        } <span style="color: #a1db00;">else</span> {
+            cout &lt;&lt; <span style="color: #ff4ea3;">"Unknown phone type.  Using default."</span> &lt;&lt; endl;
+        }
+    }
+}
+
+<span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Main function:  Reads the entire address book from a file,</span>
+<span style="color: #6c6c6c; font-style: italic;">//   </span><span style="color: #6c6c6c; font-style: italic;">adds one person based on user input, then writes it back out to the same</span>
+<span style="color: #6c6c6c; font-style: italic;">//   </span><span style="color: #6c6c6c; font-style: italic;">file.</span>
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">argv</span>[]) {
+    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Verify that the version of the library that we linked against is</span>
+    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">compatible with the version of the headers we compiled against.</span>
+    GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+    <span style="color: #a1db00;">if</span> (argc != 2) {
+        cerr &lt;&lt; <span style="color: #ff4ea3;">"Usage:  "</span> &lt;&lt; argv[0] &lt;&lt; <span style="color: #ff4ea3;">" ADDRESS_BOOK_FILE"</span> &lt;&lt; endl;
+        <span style="color: #a1db00;">return</span> -1;
+    }
+
+    <span style="color: #5fafd7;">tutorial</span>::<span style="color: #00d7af;">AddressBook</span> <span style="color: #ff8700;">address_book</span>;
+
+    {
+        <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Read the existing address book.</span>
+        <span style="color: #00d7af;">fstream</span> <span style="color: #ff8700;">input</span>(<span style="color: #00d7af;">argv</span>[1], <span style="color: #5fafd7;">ios</span>::in | <span style="color: #5fafd7;">ios</span>::binary);
+        <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>input) {
+            cout &lt;&lt; argv[1] &lt;&lt; <span style="color: #ff4ea3;">": File not found.  Creating a new file."</span> &lt;&lt; endl;
+        } <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>address_book.ParseFromIstream(&amp;input)) {
+            cerr &lt;&lt; <span style="color: #ff4ea3;">"Failed to parse address book."</span> &lt;&lt; endl;
+            <span style="color: #a1db00;">return</span> -1;
+        }
+    }
+
+    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Add an address.</span>
+    PromptForAddress(address_book.add_person());
+
+    {
+        <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Write the new address book back to disk.</span>
+        <span style="color: #00d7af;">fstream</span> <span style="color: #ff8700;">output</span>(<span style="color: #00d7af;">argv</span>[1], <span style="color: #5fafd7;">ios</span>::out | <span style="color: #5fafd7;">ios</span>::trunc | <span style="color: #5fafd7;">ios</span>::binary);
+        <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>address_book.SerializeToOstream(&amp;output)) {
+            cerr &lt;&lt; <span style="color: #ff4ea3;">"Failed to write address book."</span> &lt;&lt; endl;
+            <span style="color: #a1db00;">return</span> -1;
+        }
+    }
+
+    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Optional:  Delete all global objects allocated by libprotobuf.</span>
+    <span style="color: #5fafd7;">google</span>::<span style="color: #5fafd7;">protobuf</span>::ShutdownProtobufLibrary();
+
+    <span style="color: #a1db00;">return</span> 0;
+}
 </pre>
 </div>
 
@@ -1218,72 +1218,72 @@ Of course, an address book wouldn't be much use if you couldn't get any informat
 
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;fstream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;string&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">"addressbook.pb.h"</span>&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">using</span> <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">std</span>;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Iterates though all people in the AddressBook and prints info about them.</span>&#57344;&#57345;
-<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">ListPeople</span>(<span style="color: #a1db00;">const</span> <span style="color: #5fafd7;">tutorial</span>::<span style="color: #00d7af;">AddressBook</span>&amp; <span style="color: #ff8700;">address_book</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span> = 0; i &lt; address_book.person_size(); i++) {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">const</span> <span style="color: #5fafd7;">tutorial</span>::<span style="color: #00d7af;">Person</span>&amp; <span style="color: #ff8700;">person</span> = address_book.person(i);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        cout &lt;&lt; <span style="color: #ff4ea3;">"Person ID: "</span> &lt;&lt; person.id() &lt;&lt; endl;&#57344;&#57345;&#57345;
-        cout &lt;&lt; <span style="color: #ff4ea3;">"  Name: "</span> &lt;&lt; person.name() &lt;&lt; endl;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (person.has_email()) {&#57344;&#57345;&#57345;
-            cout &lt;&lt; <span style="color: #ff4ea3;">"  E-mail address: "</span> &lt;&lt; person.email() &lt;&lt; endl;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">j</span> = 0; j &lt; person.phone_size(); j++) {&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">const</span> <span style="color: #5fafd7;">tutorial</span>::<span style="color: #5fafd7;">Person</span>::<span style="color: #00d7af;">PhoneNumber</span>&amp; <span style="color: #ff8700;">phone_number</span> = person.phone(j);&#57344;&#57345;
-&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">switch</span> (phone_number.type()) {&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">case</span> <span style="color: #5fafd7;">tutorial</span>::<span style="color: #5fafd7;">Person</span>::MOBILE:&#57344;&#57345;&#57345;
-                cout &lt;&lt; <span style="color: #ff4ea3;">"  Mobile phone #: "</span>;&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">break</span>;&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">case</span> <span style="color: #5fafd7;">tutorial</span>::<span style="color: #5fafd7;">Person</span>::HOME:&#57344;&#57345;&#57345;
-                cout &lt;&lt; <span style="color: #ff4ea3;">"  Home phone #: "</span>;&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">break</span>;&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">case</span> <span style="color: #5fafd7;">tutorial</span>::<span style="color: #5fafd7;">Person</span>::WORK:&#57344;&#57345;&#57345;
-                cout &lt;&lt; <span style="color: #ff4ea3;">"  Work phone #: "</span>;&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">break</span>;&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            cout &lt;&lt; phone_number.number() &lt;&lt; endl;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Main function:  Reads the entire address book from a file and prints all</span>&#57344;&#57345;
-<span style="color: #6c6c6c; font-style: italic;">//   </span><span style="color: #6c6c6c; font-style: italic;">the information inside.</span>&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">argv</span>[]) {&#57344;&#57345;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Verify that the version of the library that we linked against is</span>&#57344;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">compatible with the version of the headers we compiled against.</span>&#57345;
-    GOOGLE_PROTOBUF_VERIFY_VERSION;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span> (argc != 2) {&#57344;&#57345;&#57345;
-        cerr &lt;&lt; <span style="color: #ff4ea3;">"Usage:  "</span> &lt;&lt; argv[0] &lt;&lt; <span style="color: #ff4ea3;">" ADDRESS_BOOK_FILE"</span> &lt;&lt; endl;&#57345;
-        <span style="color: #a1db00;">return</span> -1;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">tutorial</span>::<span style="color: #00d7af;">AddressBook</span> <span style="color: #ff8700;">address_book</span>;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Read the existing address book.</span>&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">fstream</span> <span style="color: #ff8700;">input</span>(<span style="color: #00d7af;">argv</span>[1], <span style="color: #5fafd7;">ios</span>::in | <span style="color: #5fafd7;">ios</span>::binary);&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>address_book.ParseFromIstream(&amp;input)) {&#57344;&#57345;&#57345;
-            cerr &lt;&lt; <span style="color: #ff4ea3;">"Failed to parse address book."</span> &lt;&lt; endl;&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> -1;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    ListPeople(address_book);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Optional:  Delete all global objects allocated by libprotobuf.</span>&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">google</span>::<span style="color: #5fafd7;">protobuf</span>::ShutdownProtobufLibrary();&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;fstream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;string&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">"addressbook.pb.h"</span>
+<span style="color: #a1db00;">using</span> <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">std</span>;
+
+<span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Iterates though all people in the AddressBook and prints info about them.</span>
+<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">ListPeople</span>(<span style="color: #a1db00;">const</span> <span style="color: #5fafd7;">tutorial</span>::<span style="color: #00d7af;">AddressBook</span>&amp; <span style="color: #ff8700;">address_book</span>) {
+    <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span> = 0; i &lt; address_book.person_size(); i++) {
+        <span style="color: #a1db00;">const</span> <span style="color: #5fafd7;">tutorial</span>::<span style="color: #00d7af;">Person</span>&amp; <span style="color: #ff8700;">person</span> = address_book.person(i);
+
+        cout &lt;&lt; <span style="color: #ff4ea3;">"Person ID: "</span> &lt;&lt; person.id() &lt;&lt; endl;
+        cout &lt;&lt; <span style="color: #ff4ea3;">"  Name: "</span> &lt;&lt; person.name() &lt;&lt; endl;
+        <span style="color: #a1db00;">if</span> (person.has_email()) {
+            cout &lt;&lt; <span style="color: #ff4ea3;">"  E-mail address: "</span> &lt;&lt; person.email() &lt;&lt; endl;
+        }
+
+        <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">j</span> = 0; j &lt; person.phone_size(); j++) {
+            <span style="color: #a1db00;">const</span> <span style="color: #5fafd7;">tutorial</span>::<span style="color: #5fafd7;">Person</span>::<span style="color: #00d7af;">PhoneNumber</span>&amp; <span style="color: #ff8700;">phone_number</span> = person.phone(j);
+
+            <span style="color: #a1db00;">switch</span> (phone_number.type()) {
+            <span style="color: #a1db00;">case</span> <span style="color: #5fafd7;">tutorial</span>::<span style="color: #5fafd7;">Person</span>::MOBILE:
+                cout &lt;&lt; <span style="color: #ff4ea3;">"  Mobile phone #: "</span>;
+                <span style="color: #a1db00;">break</span>;
+            <span style="color: #a1db00;">case</span> <span style="color: #5fafd7;">tutorial</span>::<span style="color: #5fafd7;">Person</span>::HOME:
+                cout &lt;&lt; <span style="color: #ff4ea3;">"  Home phone #: "</span>;
+                <span style="color: #a1db00;">break</span>;
+            <span style="color: #a1db00;">case</span> <span style="color: #5fafd7;">tutorial</span>::<span style="color: #5fafd7;">Person</span>::WORK:
+                cout &lt;&lt; <span style="color: #ff4ea3;">"  Work phone #: "</span>;
+                <span style="color: #a1db00;">break</span>;
+            }
+            cout &lt;&lt; phone_number.number() &lt;&lt; endl;
+        }
+    }
+}
+
+<span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Main function:  Reads the entire address book from a file and prints all</span>
+<span style="color: #6c6c6c; font-style: italic;">//   </span><span style="color: #6c6c6c; font-style: italic;">the information inside.</span>
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">argv</span>[]) {
+    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Verify that the version of the library that we linked against is</span>
+    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">compatible with the version of the headers we compiled against.</span>
+    GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+    <span style="color: #a1db00;">if</span> (argc != 2) {
+        cerr &lt;&lt; <span style="color: #ff4ea3;">"Usage:  "</span> &lt;&lt; argv[0] &lt;&lt; <span style="color: #ff4ea3;">" ADDRESS_BOOK_FILE"</span> &lt;&lt; endl;
+        <span style="color: #a1db00;">return</span> -1;
+    }
+
+    <span style="color: #5fafd7;">tutorial</span>::<span style="color: #00d7af;">AddressBook</span> <span style="color: #ff8700;">address_book</span>;
+
+    {
+        <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Read the existing address book.</span>
+        <span style="color: #00d7af;">fstream</span> <span style="color: #ff8700;">input</span>(<span style="color: #00d7af;">argv</span>[1], <span style="color: #5fafd7;">ios</span>::in | <span style="color: #5fafd7;">ios</span>::binary);
+        <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>address_book.ParseFromIstream(&amp;input)) {
+            cerr &lt;&lt; <span style="color: #ff4ea3;">"Failed to parse address book."</span> &lt;&lt; endl;
+            <span style="color: #a1db00;">return</span> -1;
+        }
+    }
+
+    ListPeople(address_book);
+
+    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Optional:  Delete all global objects allocated by libprotobuf.</span>
+    <span style="color: #5fafd7;">google</span>::<span style="color: #5fafd7;">protobuf</span>::ShutdownProtobufLibrary();
+
+    <span style="color: #a1db00;">return</span> 0;
+}
 </pre>
 </div>
 </div>
@@ -1414,8 +1414,8 @@ Reflection is provided by the <a href=":Reflection">:Reflection</a> interface.
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: ubuntu-company</p>
-<p class="date">Created: 2016-02-24 Wed 20:18</p>
+<p class="author">Author: ubuntu</p>
+<p class="date">Created: 2016-03-20 日 02:25</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

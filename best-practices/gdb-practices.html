@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-02-24 Wed 20:18 -->
+<!-- 2016-03-20 日 02:25 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>使用 GDB 调试程序</title>
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="ubuntu-company" />
+<meta  name="author" content="ubuntu" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -161,19 +161,19 @@ for the JavaScript code in this tag.
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">div</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">b</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> a/b;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>=0; i&lt;10; ++i) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; div(10+i, 10-i) &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">div</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">b</span>) {
+    <span style="color: #a1db00;">return</span> a/b;
+}
+
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+{
+    <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>=0; i&lt;10; ++i) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; div(10+i, 10-i) &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    }
+    <span style="color: #a1db00;">return</span> 0;
+}
 </pre>
 </div>
 </div>
@@ -193,37 +193,37 @@ for the JavaScript code in this tag.
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">Arg</span> {&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">double</span> <span style="color: #ff8700;">a</span>;&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">double</span> <span style="color: #ff8700;">b</span>;&#57344;&#57345;&#57345;
-};&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">div</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">double</span> <span style="color: #ff8700;">a</span> = ((<span style="color: #00d7af;">Arg</span>*)arg)-&gt;a;&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">double</span> <span style="color: #ff8700;">b</span> = ((<span style="color: #00d7af;">Arg</span>*)arg)-&gt;b;&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">double</span> *<span style="color: #ff8700;">rval</span> = <span style="color: #a1db00;">new</span> <span style="color: #00d7af;">double</span>;&#57344;&#57345;&#57345;
-    *rval = a / b;&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> (<span style="color: #00d7af;">void</span>*)rval;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tid</span>;&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">Arg</span> <span style="color: #ff8700;">param</span> = {1,2};&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>pthread_create(&amp;tid, <span style="color: #5fafd7;">NULL</span>, div,&amp;param)) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"create thread errorr"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 1;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">double</span> *<span style="color: #ff8700;">ret</span> = <span style="color: #5fafd7;">NULL</span>;&#57344;&#57345;&#57345;
-    pthread_join(tid, (<span style="color: #00d7af;">void</span>**)&amp;ret);&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"return val is : "</span> &lt;&lt; *ret &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">delete</span> ret;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>
+
+<span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">Arg</span> {
+    <span style="color: #00d7af;">double</span> <span style="color: #ff8700;">a</span>;
+    <span style="color: #00d7af;">double</span> <span style="color: #ff8700;">b</span>;
+};
+
+<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">div</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {
+    <span style="color: #00d7af;">double</span> <span style="color: #ff8700;">a</span> = ((<span style="color: #00d7af;">Arg</span>*)arg)-&gt;a;
+    <span style="color: #00d7af;">double</span> <span style="color: #ff8700;">b</span> = ((<span style="color: #00d7af;">Arg</span>*)arg)-&gt;b;
+    <span style="color: #00d7af;">double</span> *<span style="color: #ff8700;">rval</span> = <span style="color: #a1db00;">new</span> <span style="color: #00d7af;">double</span>;
+    *rval = a / b;
+    <span style="color: #a1db00;">return</span> (<span style="color: #00d7af;">void</span>*)rval;
+}
+
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+{
+    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tid</span>;
+    <span style="color: #00d7af;">Arg</span> <span style="color: #ff8700;">param</span> = {1,2};
+    <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>pthread_create(&amp;tid, <span style="color: #5fafd7;">NULL</span>, div,&amp;param)) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"create thread errorr"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        <span style="color: #a1db00;">return</span> 1;
+    }
+    <span style="color: #00d7af;">double</span> *<span style="color: #ff8700;">ret</span> = <span style="color: #5fafd7;">NULL</span>;
+    pthread_join(tid, (<span style="color: #00d7af;">void</span>**)&amp;ret);
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"return val is : "</span> &lt;&lt; *ret &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    <span style="color: #a1db00;">delete</span> ret;
+
+    <span style="color: #a1db00;">return</span> 0;
+}
 </pre>
 </div>
 </div>
@@ -233,32 +233,32 @@ for the JavaScript code in this tag.
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;cstdio&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">dump_code</span>(){&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">p</span> = (<span style="color: #00d7af;">char</span>*)0;&#57344;&#57345;&#57345;
-        *p = <span style="color: #ff4ea3;">'a'</span>;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        dump_code();&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;cstdio&gt;</span>
+
+    <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">dump_code</span>(){
+        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">p</span> = (<span style="color: #00d7af;">char</span>*)0;
+        *p = <span style="color: #ff4ea3;">'a'</span>;
+    }
+
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+    {
+        dump_code();
+        <span style="color: #a1db00;">return</span> 0;
+    }
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-sh">    g++ -g -S -O0 -m32 gdb_test.cc -o-|c++filt &gt;gdb_test.format.s&#57344;&#57345;&#57345;
+<pre class="src src-sh">    g++ -g -S -O0 -m32 gdb_test.cc -o-|c++filt &gt;gdb_test.format.s
 </pre>
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: ubuntu-company</p>
-<p class="date">Created: 2016-02-24 Wed 20:18</p>
+<p class="author">Author: ubuntu</p>
+<p class="date">Created: 2016-03-20 日 02:25</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-02-19 Fri 17:00 -->
+<!-- 2016-03-20 日 02:25 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lua 笔记</title>
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="ubuntu-company" />
+<meta  name="author" content="ubuntu" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -180,10 +180,10 @@ for the JavaScript code in this tag.
 <li><a href="#orgheadline20">2.7.1. 闭包</a></li>
 <li><a href="#orgheadline21">2.7.2. 非全局的函数</a></li>
 <li><a href="#orgheadline22">2.7.3. 尾调用</a></li>
-<li><a href="#orgheadline23">2.7.4. <span class="todo nilTODO">TODO</span> 闭包（closure）</a></li>
+<li><a href="#orgheadline23">2.7.4. <span class="todo TODO">TODO</span> 闭包（closure）</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline25">2.8. <span class="todo nilTODO">TODO</span> 迭代器与泛型 for</a></li>
+<li><a href="#orgheadline25">2.8. <span class="todo TODO">TODO</span> 迭代器与泛型 for</a></li>
 <li><a href="#orgheadline26">2.9. 编译、执行与错误</a></li>
 <li><a href="#coroutine">2.10. 协同程序</a>
 <ul>
@@ -198,14 +198,14 @@ for the JavaScript code in this tag.
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline34">2.11. <span class="todo nilTODO">TODO</span> 数据类型</a></li>
-<li><a href="#orgheadline35">2.12. <span class="todo nilTODO">TODO</span> 数据文件与持久性</a></li>
-<li><a href="#orgheadline36">2.13. <span class="todo nilTODO">TODO</span> 元表与元方法</a></li>
-<li><a href="#orgheadline37">2.14. <span class="todo nilTODO">TODO</span> 环境</a></li>
-<li><a href="#orgheadline38">2.15. <span class="todo nilTODO">TODO</span> 模块与包</a></li>
-<li><a href="#orgheadline39">2.16. <span class="todo nilTODO">TODO</span> 面向对象编程</a></li>
-<li><a href="#orgheadline40">2.17. <span class="todo nilTODO">TODO</span> 弱引用 table</a></li>
-<li><a href="#embed">2.18. <span class="todo nilTODO">TODO</span> C API</a>
+<li><a href="#orgheadline34">2.11. <span class="todo TODO">TODO</span> 数据类型</a></li>
+<li><a href="#orgheadline35">2.12. <span class="todo TODO">TODO</span> 数据文件与持久性</a></li>
+<li><a href="#orgheadline36">2.13. <span class="todo TODO">TODO</span> 元表与元方法</a></li>
+<li><a href="#orgheadline37">2.14. <span class="todo TODO">TODO</span> 环境</a></li>
+<li><a href="#orgheadline38">2.15. <span class="todo TODO">TODO</span> 模块与包</a></li>
+<li><a href="#orgheadline39">2.16. <span class="todo TODO">TODO</span> 面向对象编程</a></li>
+<li><a href="#orgheadline40">2.17. <span class="todo TODO">TODO</span> 弱引用 table</a></li>
+<li><a href="#embed">2.18. <span class="todo TODO">TODO</span> C API</a>
 <ul>
 <li><a href="#orgheadline41">2.18.1. 读写 Lua 全局变量</a></li>
 <li><a href="#orgheadline42">2.18.2. 调用 Lua 函数</a></li>
@@ -218,7 +218,7 @@ for the JavaScript code in this tag.
 </li>
 </ul>
 </li>
-<li><a href="#userdata">2.19. <span class="todo nilTODO">TODO</span> 用户自定义类型（userdata）</a></li>
+<li><a href="#userdata">2.19. <span class="todo TODO">TODO</span> 用户自定义类型（userdata）</a></li>
 <li><a href="#orgheadline59">2.20. 管理资源</a></li>
 <li><a href="#orgheadline60">2.21. 线程和状态</a></li>
 <li><a href="#orgheadline63">2.22. 内存管理</a>
@@ -250,16 +250,16 @@ for the JavaScript code in this tag.
 </ul>
 </li>
 <li><a href="#orgheadline77">3.2. 内置库的实现</a></li>
-<li><a href="#orgheadline78">3.3. <span class="todo nilTODO">TODO</span> Lua API 具体实现</a></li>
-<li><a href="#orgheadline79">3.4. <span class="todo nilTODO">TODO</span> Lua VM 实现</a></li>
-<li><a href="#src-DS">3.5. <span class="todo nilTODO">TODO</span> 数据结构</a>
+<li><a href="#orgheadline78">3.3. <span class="todo TODO">TODO</span> Lua API 具体实现</a></li>
+<li><a href="#orgheadline79">3.4. <span class="todo TODO">TODO</span> Lua VM 实现</a></li>
+<li><a href="#src-DS">3.5. <span class="todo TODO">TODO</span> 数据结构</a>
 <ul>
 <li><a href="#orgheadline80">3.5.1. TValue</a></li>
-<li><a href="#orgheadline81">3.5.2. <span class="todo nilTODO">TODO</span> 字符串（string）</a></li>
+<li><a href="#orgheadline81">3.5.2. <span class="todo TODO">TODO</span> 字符串（string）</a></li>
 <li><a href="#orgheadline82">3.5.3. 表（table）</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline88">3.6. <span class="todo nilTODO">TODO</span> 函数调用实现</a>
+<li><a href="#orgheadline88">3.6. <span class="todo TODO">TODO</span> 函数调用实现</a>
 <ul>
 <li><a href="#multi-ret">3.6.1. 多返回值</a></li>
 <li><a href="#unpack">3.6.2. unpack</a></li>
@@ -267,8 +267,8 @@ for the JavaScript code in this tag.
 <li><a href="#closure">3.6.4. closure</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline89">3.7. <span class="todo nilTODO">TODO</span> Lua parser 实现</a></li>
-<li><a href="#GC">3.8. <span class="todo nilTODO">TODO</span> 垃圾收集(garbage-collect)</a></li>
+<li><a href="#orgheadline89">3.7. <span class="todo TODO">TODO</span> Lua parser 实现</a></li>
+<li><a href="#GC">3.8. <span class="todo TODO">TODO</span> 垃圾收集(garbage-collect)</a></li>
 </ul>
 </li>
 </ul>
@@ -303,7 +303,7 @@ Lua 是一个动态弱类型语言，支持增量式垃圾收集策略。有内�
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 
-<pre class="src src-sh">    sudo aptitude install lua5.3 liblua5.3-0&#57344;&#57345;&#57345;
+<pre class="src src-sh">    sudo aptitude install lua5.3 liblua5.3-0
 </pre>
 </div>
 </div>
@@ -316,7 +316,7 @@ Lua 是一个动态弱类型语言，支持增量式垃圾收集策略。有内�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua">    <span style="color: #d18aff;">print</span> <span style="color: #ff4ea3;">"hello,Lua"</span>&#57344;&#57345;&#57345;
+<pre class="src src-lua">    <span style="color: #d18aff;">print</span> <span style="color: #ff4ea3;">"hello,Lua"</span>
 </pre>
 </div>
 <p>
@@ -336,7 +336,7 @@ Lua 是一个动态弱类型语言，支持增量式垃圾收集策略。有内�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">    lua --help&#57344;&#57345;&#57345;
+<pre class="src src-sh">    lua --help
 </pre>
 </div>
 <p>
@@ -344,7 +344,7 @@ Lua 是一个动态弱类型语言，支持增量式垃圾收集策略。有内�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">    lua hello.lua&#57344;&#57345;&#57345;
+<pre class="src src-sh">    lua hello.lua
 </pre>
 </div>
 
@@ -357,44 +357,44 @@ TODO:插入运行图片
 </p>
 
 <p>
-lua.c 代码只有 =613=行，使用 gdb 调试或者看一下源码中基本上涉及到以下几行：
+lua.c 代码只有 =0=行，使用 gdb 调试或者看一下源码中基本上涉及到以下几行：
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c">    <span style="color: #a1db00;">static</span> <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">pmain</span> (<span style="color: #00d7af;">lua_State</span> *<span style="color: #ff8700;">L</span>) {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span> = (<span style="color: #00d7af;">int</span>)lua_tointeger(L, 1);&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span> **<span style="color: #ff8700;">argv</span> = (<span style="color: #00d7af;">char</span> **)lua_touserdata(L, 2);&#57344;&#57345;&#57345;
-        <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#30465;&#30053;&#12290;&#12290;&#12290;&#12290;&#12290; </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
-        luaL_openlibs(L);  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">open standard libraries </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
-        <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#30465;&#30053;&#12290;&#12290;&#12290;&#12290;&#12290; </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span> (script == argc &amp;&amp; <span style="color: #ff4b4b;">!</span>(args &amp; (has_e | has_v))) {  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">no arguments? </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;
-            <span style="color: #a1db00;">if</span> (lua_stdin_is_tty()) {  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">running in interactive mode? </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;
-                print_version();&#57344;&#57345;&#57345;
-                doREPL(L);  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">do read-eval-print loop </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">else</span> dofile(L, <span style="color: #5fafd7;">NULL</span>);  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">executes stdin as a file </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        lua_pushboolean(L, 1);  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">signal no errors </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 1;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> **<span style="color: #ff8700;">argv</span>) {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">status</span>, <span style="color: #ff8700;">result</span>;&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">lua_State</span> *<span style="color: #ff8700;">L</span> = luaL_newstate();  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">create state </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (L == <span style="color: #5fafd7;">NULL</span>) {&#57344;&#57345;&#57345;
-            l_message(argv[0], <span style="color: #ff4ea3;">"cannot create state: not enough memory"</span>);&#57344;&#57345;
-            <span style="color: #a1db00;">return</span> EXIT_FAILURE;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        lua_pushcfunction(L, &amp;pmain);  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">to call 'pmain' in protected mode </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;
-        lua_pushinteger(L, argc);  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">1st argument </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
-        lua_pushlightuserdata(L, argv); <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">2nd argument </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
-        status = lua_pcall(L, 2, 1, 0);  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">do the call </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
-        result = lua_toboolean(L, -1);  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">get result </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
-        report(L, status);&#57344;&#57345;&#57345;
-        lua_close(L);&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> (result &amp;&amp; status == LUA_OK) ? EXIT_SUCCESS : EXIT_FAILURE;&#57344;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c">    <span style="color: #a1db00;">static</span> <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">pmain</span> (<span style="color: #00d7af;">lua_State</span> *<span style="color: #ff8700;">L</span>) {
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span> = (<span style="color: #00d7af;">int</span>)lua_tointeger(L, 1);
+        <span style="color: #00d7af;">char</span> **<span style="color: #ff8700;">argv</span> = (<span style="color: #00d7af;">char</span> **)lua_touserdata(L, 2);
+        <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#30465;&#30053;&#12290;&#12290;&#12290;&#12290;&#12290; </span><span style="color: #6c6c6c; font-style: italic;">*/</span>
+        luaL_openlibs(L);  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">open standard libraries </span><span style="color: #6c6c6c; font-style: italic;">*/</span>
+        <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#30465;&#30053;&#12290;&#12290;&#12290;&#12290;&#12290; </span><span style="color: #6c6c6c; font-style: italic;">*/</span>
+        <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span> (script == argc &amp;&amp; <span style="color: #ff4b4b;">!</span>(args &amp; (has_e | has_v))) {  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">no arguments? </span><span style="color: #6c6c6c; font-style: italic;">*/</span>
+            <span style="color: #a1db00;">if</span> (lua_stdin_is_tty()) {  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">running in interactive mode? </span><span style="color: #6c6c6c; font-style: italic;">*/</span>
+                print_version();
+                doREPL(L);  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">do read-eval-print loop </span><span style="color: #6c6c6c; font-style: italic;">*/</span>
+            }
+            <span style="color: #a1db00;">else</span> dofile(L, <span style="color: #5fafd7;">NULL</span>);  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">executes stdin as a file </span><span style="color: #6c6c6c; font-style: italic;">*/</span>
+        }
+        lua_pushboolean(L, 1);  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">signal no errors </span><span style="color: #6c6c6c; font-style: italic;">*/</span>
+        <span style="color: #a1db00;">return</span> 1;
+    }
+
+
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> **<span style="color: #ff8700;">argv</span>) {
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">status</span>, <span style="color: #ff8700;">result</span>;
+        <span style="color: #00d7af;">lua_State</span> *<span style="color: #ff8700;">L</span> = luaL_newstate();  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">create state </span><span style="color: #6c6c6c; font-style: italic;">*/</span>
+        <span style="color: #a1db00;">if</span> (L == <span style="color: #5fafd7;">NULL</span>) {
+            l_message(argv[0], <span style="color: #ff4ea3;">"cannot create state: not enough memory"</span>);
+            <span style="color: #a1db00;">return</span> EXIT_FAILURE;
+        }
+        lua_pushcfunction(L, &amp;pmain);  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">to call 'pmain' in protected mode </span><span style="color: #6c6c6c; font-style: italic;">*/</span>
+        lua_pushinteger(L, argc);  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">1st argument </span><span style="color: #6c6c6c; font-style: italic;">*/</span>
+        lua_pushlightuserdata(L, argv); <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">2nd argument </span><span style="color: #6c6c6c; font-style: italic;">*/</span>
+        status = lua_pcall(L, 2, 1, 0);  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">do the call </span><span style="color: #6c6c6c; font-style: italic;">*/</span>
+        result = lua_toboolean(L, -1);  <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">get result </span><span style="color: #6c6c6c; font-style: italic;">*/</span>
+        report(L, status);
+        lua_close(L);
+        <span style="color: #a1db00;">return</span> (result &amp;&amp; status == LUA_OK) ? EXIT_SUCCESS : EXIT_FAILURE;
+    }
 </pre>
 </div>
 <p>
@@ -402,25 +402,25 @@ lua.c 代码只有 =613=行，使用 gdb 调试或者看一下源码中基本上
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua">    #include &lt;stdio.h&gt;&#57344;&#57345;&#57345;
-    #include &lt;<span style="color: #d18aff;">string</span>.h&gt;&#57344;&#57345;&#57345;
-    #include &lt;<span style="color: #d18aff;">assert</span>.h&gt;&#57344;&#57345;&#57345;
-    #include &lt;lua5.3/lua.h&gt;&#57344;&#57345;&#57345;
-    #include &lt;lua5.3/lauxlib.h&gt;&#57344;&#57345;&#57345;
-    #include &lt;lua5.3/lualib.h&gt;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    int main(int argc, char *argv[])&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        lua_State *luaEnv = luaL_newstate();&#57344;&#57345;&#57345;
-        luaL_openlibs(luaEnv);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        /* <span style="color: #d18aff;">load</span> lua file */&#57344;&#57345;&#57345;
-        ret = luaL_dofile(luaEnv, <span style="color: #ff4ea3;">"hello.lua"</span>);&#57344;&#57345;&#57345;
-        <span style="color: #d18aff;">assert</span>(ret == LUA_OK);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        lua_close(luaEnv);&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-lua">    #include &lt;stdio.h&gt;
+    #include &lt;<span style="color: #d18aff;">string</span>.h&gt;
+    #include &lt;<span style="color: #d18aff;">assert</span>.h&gt;
+    #include &lt;lua5.3/lua.h&gt;
+    #include &lt;lua5.3/lauxlib.h&gt;
+    #include &lt;lua5.3/lualib.h&gt;
+
+    int main(int argc, char *argv[])
+    {
+        lua_State *luaEnv = luaL_newstate();
+        luaL_openlibs(luaEnv);
+
+        /* <span style="color: #d18aff;">load</span> lua file */
+        ret = luaL_dofile(luaEnv, <span style="color: #ff4ea3;">"hello.lua"</span>);
+        <span style="color: #d18aff;">assert</span>(ret == LUA_OK);
+
+        lua_close(luaEnv);
+        <span style="color: #a1db00;">return</span> 0;
+    }
 </pre>
 </div>
 <p>
@@ -444,11 +444,11 @@ Lua 是一门动态类型语言。这意味着 <b>变量没有类型；只有值
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua">    <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">type</span>(<span style="color: #5fafd7;">nil</span>))                <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&gt;nil</span>&#57344;&#57345;&#57345;
-    <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">type</span>(<span style="color: #5fafd7;">true</span>))               <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&gt;boolean</span>&#57344;&#57345;&#57345;
-    <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">type</span>(10.4*3))             <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&gt;number</span>&#57344;&#57345;&#57345;
-    <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">type</span>(<span style="color: #ff4ea3;">"hello world"</span>))      <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&gt;string</span>&#57344;&#57345;&#57345;
-    <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">type</span>(<span style="color: #d18aff;">print</span>))              <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&gt;function</span>&#57344;&#57345;&#57345;
+<pre class="src src-lua">    <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">type</span>(<span style="color: #5fafd7;">nil</span>))                <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&gt;nil</span>
+    <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">type</span>(<span style="color: #5fafd7;">true</span>))               <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&gt;boolean</span>
+    <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">type</span>(10.4*3))             <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&gt;number</span>
+    <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">type</span>(<span style="color: #ff4ea3;">"hello world"</span>))      <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&gt;string</span>
+    <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">type</span>(<span style="color: #d18aff;">print</span>))              <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&gt;function</span>
 </pre>
 </div>
 </div>
@@ -484,10 +484,10 @@ Lua 中的字符串通常表示一个字符序列。 <b>Lua 完全采用 8 位�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua">    a = <span style="color: #ff4ea3;">"one string"</span>&#57344;&#57345;&#57345;
-    b = <span style="color: #d18aff;">string</span>.<span style="color: #d18aff;">gsub</span>(a,<span style="color: #ff4ea3;">"one"</span>,<span style="color: #ff4ea3;">"another"</span>) <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#20462;&#25913;&#23383;&#31526;&#20018;&#30340;&#19968;&#37096;&#20998;</span>&#57344;&#57345;&#57345;
-    <span style="color: #d18aff;">print</span>(a)                           <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">one string</span>&#57344;&#57345;&#57345;
-    <span style="color: #d18aff;">print</span>(b)                           <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">another string</span>&#57344;&#57345;&#57345;
+<pre class="src src-lua">    a = <span style="color: #ff4ea3;">"one string"</span>
+    b = <span style="color: #d18aff;">string</span>.<span style="color: #d18aff;">gsub</span>(a,<span style="color: #ff4ea3;">"one"</span>,<span style="color: #ff4ea3;">"another"</span>) <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#20462;&#25913;&#23383;&#31526;&#20018;&#30340;&#19968;&#37096;&#20998;</span>
+    <span style="color: #d18aff;">print</span>(a)                           <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">one string</span>
+    <span style="color: #d18aff;">print</span>(b)                           <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">another string</span>
 </pre>
 </div>
 <p>
@@ -503,16 +503,16 @@ Lua 的字符串与其它 Lua 对象（比如：table 或函数等）一样，�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua">    page = <span style="color: #ff4ea3;">[[</span>&#57344;&#57345;&#57345;
-<span style="color: #ff4ea3;">    &lt;html&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #ff4ea3;">    &lt;head&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #ff4ea3;">    &lt;title&gt;An HTML Page&lt;/title&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #ff4ea3;">    &lt;/head&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #ff4ea3;">    &lt;body&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #ff4ea3;">    &lt;a href="http://www.lua.org"&gt;lua&lt;/a&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #ff4ea3;">    &lt;/body&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #ff4ea3;">    &lt;/html&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #ff4ea3;">    ]]</span>&#57344;&#57345;&#57345;
+<pre class="src src-lua">    page = <span style="color: #ff4ea3;">[[</span>
+<span style="color: #ff4ea3;">    &lt;html&gt;</span>
+<span style="color: #ff4ea3;">    &lt;head&gt;</span>
+<span style="color: #ff4ea3;">    &lt;title&gt;An HTML Page&lt;/title&gt;</span>
+<span style="color: #ff4ea3;">    &lt;/head&gt;</span>
+<span style="color: #ff4ea3;">    &lt;body&gt;</span>
+<span style="color: #ff4ea3;">    &lt;a href="http://www.lua.org"&gt;lua&lt;/a&gt;</span>
+<span style="color: #ff4ea3;">    &lt;/body&gt;</span>
+<span style="color: #ff4ea3;">    &lt;/html&gt;</span>
+<span style="color: #ff4ea3;">    ]]</span>
 </pre>
 </div>
 <p>
@@ -524,8 +524,8 @@ Lua 提供了运行时的数字与字符串的自动转换，即在一个字符�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua">    <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"10"</span> + 1)                 <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&gt;11</span>&#57344;&#57345;&#57345;
-    <span style="color: #d18aff;">print</span>(10 .. 20)                 <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&gt;1020</span>&#57344;&#57345;&#57345;
+<pre class="src src-lua">    <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"10"</span> + 1)                 <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&gt;11</span>
+    <span style="color: #d18aff;">print</span>(10 .. 20)                 <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&gt;1020</span>
 </pre>
 </div>
 <p>
@@ -533,8 +533,8 @@ Lua 提供了运行时的数字与字符串的自动转换，即在一个字符�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua">    a = <span style="color: #ff4ea3;">"hello"</span>&#57344;&#57345;&#57345;
-    <span style="color: #d18aff;">print</span>(#a)        <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&gt;5</span>&#57344;&#57345;&#57345;
+<pre class="src src-lua">    a = <span style="color: #ff4ea3;">"hello"</span>
+    <span style="color: #d18aff;">print</span>(#a)        <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&gt;5</span>
 </pre>
 </div>
 </div>
@@ -551,7 +551,7 @@ table 类型实现了关联数组（associative array）。关联数组是一种
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua">    a = {}              <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#21019;&#24314;&#19968;&#20010; table&#65292;&#24182;&#23558;&#23427;&#30340;&#24341;&#29992;&#23384;&#20648;&#21040; a</span>&#57344;&#57345;&#57345;
+<pre class="src src-lua">    a = {}              <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#21019;&#24314;&#19968;&#20010; table&#65292;&#24182;&#23558;&#23427;&#30340;&#24341;&#29992;&#23384;&#20648;&#21040; a</span>
 </pre>
 </div>
 
@@ -560,11 +560,11 @@ table 类型实现了关联数组（associative array）。关联数组是一种
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua">    a[<span style="color: #ff4ea3;">"x"</span>] = 10        <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#26032;&#26465;&#30446;&#65292;key="x", value=10</span>&#57344;&#57345;&#57345;
-    a[20] = <span style="color: #ff4ea3;">"hello"</span>   <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#26032;&#26465;&#30446;&#65292;key=20, value="hello"</span>&#57344;&#57345;&#57345;
-    b = a                <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">b &#19982; a &#24341;&#29992;&#20102;&#21516;&#19968;&#20010; table</span>&#57344;&#57345;&#57345;
-    a = <span style="color: #5fafd7;">nil</span>               <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#29616;&#22312;&#21482;&#26377; b &#36824;&#22312;&#24341;&#29992; table</span>&#57344;&#57345;&#57345;
-    b = <span style="color: #5fafd7;">nil</span>               <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#20877;&#20063;&#27809;&#26377;&#23545; table &#30340;&#24341;&#29992;&#20102;&#65292;Lua &#20250;&#22238;&#25910;&#20854;&#20869;&#23384;</span>&#57344;&#57345;
+<pre class="src src-lua">    a[<span style="color: #ff4ea3;">"x"</span>] = 10        <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#26032;&#26465;&#30446;&#65292;key="x", value=10</span>
+    a[20] = <span style="color: #ff4ea3;">"hello"</span>   <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#26032;&#26465;&#30446;&#65292;key=20, value="hello"</span>
+    b = a                <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">b &#19982; a &#24341;&#29992;&#20102;&#21516;&#19968;&#20010; table</span>
+    a = <span style="color: #5fafd7;">nil</span>               <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#29616;&#22312;&#21482;&#26377; b &#36824;&#22312;&#24341;&#29992; table</span>
+    b = <span style="color: #5fafd7;">nil</span>               <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#20877;&#20063;&#27809;&#26377;&#23545; table &#30340;&#24341;&#29992;&#20102;&#65292;Lua &#20250;&#22238;&#25910;&#20854;&#20869;&#23384;</span>
 </pre>
 </div>
 <p>
@@ -576,11 +576,11 @@ Lua 对于诸如 <code>a["name"]</code> 的写法提供了一种更简便的语�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua">    a = {}&#57344;&#57345;&#57345;
-    x = <span style="color: #ff4ea3;">"y"</span>&#57344;&#57345;&#57345;
-    a[x] = 10        <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#23558; 10 &#25918;&#20837;&#23383;&#27573; &#8220;y&#8221;</span>&#57344;&#57345;&#57345;
-    <span style="color: #d18aff;">print</span>(a[x])       <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&gt;10</span>&#57344;&#57345;&#57345;
-    <span style="color: #d18aff;">print</span>(a.x)         <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&gt;nil</span>&#57344;&#57345;&#57345;
+<pre class="src src-lua">    a = {}
+    x = <span style="color: #ff4ea3;">"y"</span>
+    a[x] = 10        <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#23558; 10 &#25918;&#20837;&#23383;&#27573; &#8220;y&#8221;</span>
+    <span style="color: #d18aff;">print</span>(a[x])       <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&gt;10</span>
+    <span style="color: #d18aff;">print</span>(a.x)         <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&gt;nil</span>
 </pre>
 </div>
 <p>
@@ -592,14 +592,14 @@ Lua 对于诸如 <code>a["name"]</code> 的写法提供了一种更简便的语�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua">    <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#25171;&#21360; a &#20013;&#25152;&#26377;&#20803;&#32032;</span>&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">for</span> <span style="color: #ff8700;">i</span>=1, #a <span style="color: #a1db00;">do</span>&#57344;&#57345;&#57345;
-        <span style="color: #d18aff;">print</span>(a[i])&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-    &#23545;&#20110;&#38271;&#24230;&#25805;&#20316;&#31526; Lua &#20013;&#30340;&#20064;&#24815;&#29992;&#27861;&#65306;&#57344;&#57345;&#57345;
-    <span style="color: #d18aff;">print</span>(a[#a])        <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#25171;&#21360;&#21015;&#34920; a &#30340;&#26368;&#21518;&#19968;&#20010;&#20540;</span>&#57344;&#57345;&#57345;
-    a[#a] = <span style="color: #5fafd7;">nil</span>         <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#21024;&#38500;&#26368;&#21518;&#19968;&#20010;&#20540;</span>&#57344;&#57345;&#57345;
-    a[#a+!] = v       <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#23558; v &#28155;&#21152;&#21040;&#21015;&#34920;&#26411;&#23614;</span>&#57344;&#57345;&#57345;
+<pre class="src src-lua">    <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#25171;&#21360; a &#20013;&#25152;&#26377;&#20803;&#32032;</span>
+    <span style="color: #a1db00;">for</span> <span style="color: #ff8700;">i</span>=1, #a <span style="color: #a1db00;">do</span>
+        <span style="color: #d18aff;">print</span>(a[i])
+    <span style="color: #a1db00;">end</span>
+    &#23545;&#20110;&#38271;&#24230;&#25805;&#20316;&#31526; Lua &#20013;&#30340;&#20064;&#24815;&#29992;&#27861;&#65306;
+    <span style="color: #d18aff;">print</span>(a[#a])        <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#25171;&#21360;&#21015;&#34920; a &#30340;&#26368;&#21518;&#19968;&#20010;&#20540;</span>
+    a[#a] = <span style="color: #5fafd7;">nil</span>         <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#21024;&#38500;&#26368;&#21518;&#19968;&#20010;&#20540;</span>
+    a[#a+!] = v       <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#23558; v &#28155;&#21152;&#21040;&#21015;&#34920;&#26411;&#23614;</span>
 </pre>
 </div>
 <p>
@@ -607,8 +607,8 @@ Lua 对于诸如 <code>a["name"]</code> 的写法提供了一种更简便的语�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua">    a = {}&#57344;&#57345;&#57345;
-    a[10000] = 1&#57344;&#57345;&#57345;
+<pre class="src src-lua">    a = {}
+    a[10000] = 1
 </pre>
 </div>
 <p>
@@ -616,7 +616,7 @@ Lua 对于诸如 <code>a["name"]</code> 的写法提供了一种更简便的语�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua">    <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">table</span>.<span style="color: #d18aff;">maxn</span>[a])        <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&gt;10000</span>&#57344;&#57345;&#57345;
+<pre class="src src-lua">    <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">table</span>.<span style="color: #d18aff;">maxn</span>[a])        <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&gt;10000</span>
 </pre>
 </div>
 </div>
@@ -670,13 +670,13 @@ C 中 continue 用法如下：
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c">    <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span> = 10;&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">do</span> {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (i == 5) {&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">continue</span>;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        printf(<span style="color: #ff4ea3;">"%d\n"</span>, i);&#57344;&#57345;&#57345;
-    } <span style="color: #a1db00;">while</span>(i--);&#57344;&#57345;&#57345;
+<pre class="src src-c">    <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span> = 10;
+    <span style="color: #a1db00;">do</span> {
+        <span style="color: #a1db00;">if</span> (i == 5) {
+            <span style="color: #a1db00;">continue</span>;
+        }
+        printf(<span style="color: #ff4ea3;">"%d\n"</span>, i);
+    } <span style="color: #a1db00;">while</span>(i--);
 </pre>
 </div>
 <p>
@@ -700,14 +700,14 @@ In Lua 5.2, there is a goto statement which can be easily used to do the same jo
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua">    <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">a</span> = 1&#12288;&#12288;<span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">outer</span>&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">repeat</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> f() <span style="color: #a1db00;">then</span>&#57344;&#57345;&#57345;
-            continue&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">a</span> = 1&#12288;&#12288;<span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">inner</span>&#57344;&#57345;&#57345;
-        ...&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">until</span> a == 0&#57344;&#57345;&#57345;
+<pre class="src src-lua">    <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">a</span> = 1&#12288;&#12288;<span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">outer</span>
+    <span style="color: #a1db00;">repeat</span>
+        <span style="color: #a1db00;">if</span> f() <span style="color: #a1db00;">then</span>
+            continue
+        <span style="color: #a1db00;">end</span>
+        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">a</span> = 1&#12288;&#12288;<span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">inner</span>
+        ...
+    <span style="color: #a1db00;">until</span> a == 0
 </pre>
 </div>
 <p>
@@ -719,14 +719,14 @@ In Lua 5.2, there is a goto statement which can be easily used to do the same jo
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua">    <span style="color: #a1db00;">for</span> <span style="color: #ff8700;">i</span> = 1, 10 <span style="color: #a1db00;">do</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">repeat</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">if</span> i == 5 <span style="color: #a1db00;">then</span>&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">break</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-            <span style="color: #d18aff;">print</span>(i)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">until</span> <span style="color: #5fafd7;">true</span>&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
+<pre class="src src-lua">    <span style="color: #a1db00;">for</span> <span style="color: #ff8700;">i</span> = 1, 10 <span style="color: #a1db00;">do</span>
+        <span style="color: #a1db00;">repeat</span>
+            <span style="color: #a1db00;">if</span> i == 5 <span style="color: #a1db00;">then</span>
+                <span style="color: #a1db00;">break</span>
+            <span style="color: #a1db00;">end</span>
+            <span style="color: #d18aff;">print</span>(i)
+        <span style="color: #a1db00;">until</span> <span style="color: #5fafd7;">true</span>
+    <span style="color: #a1db00;">end</span>
 </pre>
 </div>
 </div>
@@ -752,10 +752,10 @@ unpack<a href="#unpack">3.6.2</a>函数是一个比较特殊的函数。它接�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua">    <span style="color: #a1db00;">for</span> <span style="color: #ff8700;">i</span> =1 ,<span style="color: #d18aff;">select</span>(<span style="color: #ff4ea3;">"#"</span>, ...) <span style="color: #a1db00;">do</span>&#57344;&#57345;&#57345;
-      <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">arg</span> = <span style="color: #d18aff;">select</span>(i, ...)  <span style="color: #6c6c6c; font-style: italic;">---</span><span style="color: #6c6c6c; font-style: italic;">&gt;&#24471;&#21040;&#31532; i &#20010;&#21464;&#38271;&#21442;&#25968;&#23545;&#24212;&#30340;&#21487;&#21464;&#23454;&#21442;&#12290;</span>&#57344;&#57345;
-        &lt;&#24490;&#29615;&#20307;&gt;&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
+<pre class="src src-lua">    <span style="color: #a1db00;">for</span> <span style="color: #ff8700;">i</span> =1 ,<span style="color: #d18aff;">select</span>(<span style="color: #ff4ea3;">"#"</span>, ...) <span style="color: #a1db00;">do</span>
+      <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">arg</span> = <span style="color: #d18aff;">select</span>(i, ...)  <span style="color: #6c6c6c; font-style: italic;">---</span><span style="color: #6c6c6c; font-style: italic;">&gt;&#24471;&#21040;&#31532; i &#20010;&#21464;&#38271;&#21442;&#25968;&#23545;&#24212;&#30340;&#21487;&#21464;&#23454;&#21442;&#12290;</span>
+        &lt;&#24490;&#29615;&#20307;&gt;
+    <span style="color: #a1db00;">end</span>
 </pre>
 </div>
 </div>
@@ -768,25 +768,25 @@ Lua 函数是不支持默认参数的，为了达到这样的效果，出现了�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua">    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Window</span>(option)&#57344;&#57345;&#57345;
-        <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#26816;&#26597;&#24517;&#35201;&#30340;&#21442;&#25968;</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> <span style="color: #d18aff;">type</span>(option.title) != <span style="color: #ff4ea3;">"string"</span> <span style="color: #a1db00;">then</span>&#57344;&#57345;&#57345;
-            <span style="color: #d18aff;">error</span>(<span style="color: #ff4ea3;">"no title"</span>)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">elseif</span> <span style="color: #d18aff;">type</span>(options.width) ~= <span style="color: #ff4ea3;">"number"</span> <span style="color: #a1db00;">then</span>&#57344;&#57345;&#57345;
-            <span style="color: #d18aff;">error</span>(<span style="color: #ff4ea3;">"no width"</span>)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">elseif</span> <span style="color: #d18aff;">type</span>(options.height) ~= <span style="color: #ff4ea3;">"number"</span> <span style="color: #a1db00;">then</span>&#57344;&#57345;&#57345;
-            <span style="color: #d18aff;">error</span>(<span style="color: #ff4ea3;">"no height"</span>)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-        <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#20854;&#23427;&#21442;&#25968;&#21487;&#36873;</span>&#57344;&#57345;&#57345;
-        _Window(options.title,&#57344;&#57345;&#57345;
-                options.x <span style="color: #a1db00;">or</span> 0        <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#40664;&#35748;&#20540;</span>&#57344;&#57345;&#57345;
-                options.y <span style="color: #a1db00;">or</span> 0        <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#40664;&#35748;&#20540;</span>&#57344;&#57345;&#57345;
-                options.width,&#57344;&#57345;&#57345;
-                options.height,&#57344;&#57345;&#57345;
-                options.background <span style="color: #a1db00;">or</span> <span style="color: #ff4ea3;">"white"</span>,        <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#40664;&#35748;&#20540;</span>&#57344;&#57345;&#57345;
-                options.border                               <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#40664;&#35748;&#26159;&#20026; false(nil)</span>&#57344;&#57345;
-        )&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
+<pre class="src src-lua">    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Window</span>(option)
+        <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#26816;&#26597;&#24517;&#35201;&#30340;&#21442;&#25968;</span>
+        <span style="color: #a1db00;">if</span> <span style="color: #d18aff;">type</span>(option.title) != <span style="color: #ff4ea3;">"string"</span> <span style="color: #a1db00;">then</span>
+            <span style="color: #d18aff;">error</span>(<span style="color: #ff4ea3;">"no title"</span>)
+        <span style="color: #a1db00;">elseif</span> <span style="color: #d18aff;">type</span>(options.width) ~= <span style="color: #ff4ea3;">"number"</span> <span style="color: #a1db00;">then</span>
+            <span style="color: #d18aff;">error</span>(<span style="color: #ff4ea3;">"no width"</span>)
+        <span style="color: #a1db00;">elseif</span> <span style="color: #d18aff;">type</span>(options.height) ~= <span style="color: #ff4ea3;">"number"</span> <span style="color: #a1db00;">then</span>
+            <span style="color: #d18aff;">error</span>(<span style="color: #ff4ea3;">"no height"</span>)
+        <span style="color: #a1db00;">end</span>
+        <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#20854;&#23427;&#21442;&#25968;&#21487;&#36873;</span>
+        _Window(options.title,
+                options.x <span style="color: #a1db00;">or</span> 0        <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#40664;&#35748;&#20540;</span>
+                options.y <span style="color: #a1db00;">or</span> 0        <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#40664;&#35748;&#20540;</span>
+                options.width,
+                options.height,
+                options.background <span style="color: #a1db00;">or</span> <span style="color: #ff4ea3;">"white"</span>,        <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#40664;&#35748;&#20540;</span>
+                options.border                               <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#40664;&#35748;&#26159;&#20026; false(nil)</span>
+        )
+    <span style="color: #a1db00;">end</span>
 </pre>
 </div>
 <p>
@@ -859,13 +859,13 @@ Lua 是将每个程序块（chunk）作为一个函数来处理的。
 <div class="outline-text-3" id="text-2-9">
 <div class="org-src-container">
 
-<pre class="src src-lua">    f = <span style="color: #d18aff;">loadstring</span>(<span style="color: #ff4ea3;">"i = i + 1"</span>)&#57344;&#57345;&#57345;
+<pre class="src src-lua">    f = <span style="color: #d18aff;">loadstring</span>(<span style="color: #ff4ea3;">"i = i + 1"</span>)
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-lua">    <span style="color: #ffd700;">f</span> = <span style="color: #a1db00;">function</span> () i = i + 1 <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
+<pre class="src src-lua">    <span style="color: #ffd700;">f</span> = <span style="color: #a1db00;">function</span> () i = i + 1 <span style="color: #a1db00;">end</span>
 </pre>
 </div>
 <p>
@@ -873,12 +873,12 @@ Lua 是将每个程序块（chunk）作为一个函数来处理的。
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua">    i = 32&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">i</span> = 0&#57344;&#57345;&#57345;
-    f = <span style="color: #d18aff;">loadstring</span>(<span style="color: #ff4ea3;">"print(i)"</span>)&#57344;&#57345;&#57345;
-    <span style="color: #ffd700;">g</span> = <span style="color: #a1db00;">function</span> () <span style="color: #d18aff;">print</span>(i) <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-    f() <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">32</span>&#57344;&#57345;&#57345;
-    g() <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">0</span>&#57344;&#57345;&#57345;
+<pre class="src src-lua">    i = 32
+    <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">i</span> = 0
+    f = <span style="color: #d18aff;">loadstring</span>(<span style="color: #ff4ea3;">"print(i)"</span>)
+    <span style="color: #ffd700;">g</span> = <span style="color: #a1db00;">function</span> () <span style="color: #d18aff;">print</span>(i) <span style="color: #a1db00;">end</span>
+    f() <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">32</span>
+    g() <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">0</span>
 </pre>
 </div>
 <p>
@@ -907,17 +907,17 @@ Lua 是将每个程序块（chunk）作为一个函数来处理的。
 <div class="outline-text-4" id="text-2-10-1">
 <div class="org-src-container">
 
-<pre class="src src-lua">    <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">co</span>  <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&#35797;&#35797;&#19981;&#21069;&#32622;&#22768;&#26126;&#20250;&#24590;&#20040;&#26679;</span>&#57344;&#57345;&#57345;
-    co = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">create</span>(  <span style="color: #a1db00;">function</span>()&#57344;&#57345;&#57345;
-            <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"before yield status: "</span> .. <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">status</span>(co))&#57344;&#57345;&#57345;
-            <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">yield</span>()&#57344;&#57345;&#57345;
-            <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"after yield: "</span> .. <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">status</span>(co))&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>)&#57344;&#57345;&#57345;
-    <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"before start status: "</span>,<span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">status</span>(co))&#57344;&#57345;&#57345;
-    <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">resume</span>(co)&#57344;&#57345;&#57345;
-    <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"after yeild status: "</span>,<span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">status</span>(co))&#57344;&#57345;&#57345;
-    <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">resume</span>(co)&#57344;&#57345;&#57345;
-    <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"after end status: "</span>,<span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">status</span>(co))&#57344;&#57345;&#57345;
+<pre class="src src-lua">    <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">co</span>  <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&#35797;&#35797;&#19981;&#21069;&#32622;&#22768;&#26126;&#20250;&#24590;&#20040;&#26679;</span>
+    co = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">create</span>(  <span style="color: #a1db00;">function</span>()
+            <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"before yield status: "</span> .. <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">status</span>(co))
+            <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">yield</span>()
+            <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"after yield: "</span> .. <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">status</span>(co))
+    <span style="color: #a1db00;">end</span>)
+    <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"before start status: "</span>,<span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">status</span>(co))
+    <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">resume</span>(co)
+    <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"after yeild status: "</span>,<span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">status</span>(co))
+    <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">resume</span>(co)
+    <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"after end status: "</span>,<span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">status</span>(co))
 </pre>
 </div>
 <p>
@@ -937,32 +937,32 @@ resume 实在保护模式中运行的。因此，如果一个协同程序的执�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua">    <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">co</span> = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">create</span>(<span style="color: #a1db00;">function</span> (val,n)&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">loop_count</span> = 0&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">repeat</span>&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">for</span> <span style="color: #ff8700;">i</span>=1,n <span style="color: #a1db00;">do</span>&#57344;&#57345;&#57345;
-                    <span style="color: #d18aff;">print</span>(val)&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-                loop_count = loop_count + 1&#57344;&#57345;&#57345;
-                <span style="color: #d18aff;">print</span>(loop_count .. <span style="color: #ff4ea3;">" loop_count"</span>)&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">until</span> (<span style="color: #a1db00;">not</span> <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">yield</span>(loop_count))&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-            <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"all finish"</span>)&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>)&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">test</span>()&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">ret</span>,<span style="color: #ff8700;">count</span> = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">resume</span>(co,<span style="color: #ff4ea3;">"hello,lua"</span>,5)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">while</span> ret <span style="color: #a1db00;">do</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">if</span> count &lt; 3 <span style="color: #a1db00;">then</span>&#57344;&#57345;&#57345;
-                ret,count = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">resume</span>(co,<span style="color: #5fafd7;">true</span>)&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">else</span>&#57344;&#57345;&#57345;
-                ret,count = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">resume</span>(co,<span style="color: #5fafd7;">false</span>)&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">break</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    test()&#57344;&#57345;&#57345;
+<pre class="src src-lua">    <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">co</span> = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">create</span>(<span style="color: #a1db00;">function</span> (val,n)
+            <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">loop_count</span> = 0
+            <span style="color: #a1db00;">repeat</span>
+                <span style="color: #a1db00;">for</span> <span style="color: #ff8700;">i</span>=1,n <span style="color: #a1db00;">do</span>
+                    <span style="color: #d18aff;">print</span>(val)
+                <span style="color: #a1db00;">end</span>
+                loop_count = loop_count + 1
+                <span style="color: #d18aff;">print</span>(loop_count .. <span style="color: #ff4ea3;">" loop_count"</span>)
+            <span style="color: #a1db00;">until</span> (<span style="color: #a1db00;">not</span> <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">yield</span>(loop_count))
+
+            <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"all finish"</span>)
+    <span style="color: #a1db00;">end</span>)
+
+    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">test</span>()
+        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">ret</span>,<span style="color: #ff8700;">count</span> = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">resume</span>(co,<span style="color: #ff4ea3;">"hello,lua"</span>,5)
+        <span style="color: #a1db00;">while</span> ret <span style="color: #a1db00;">do</span>
+            <span style="color: #a1db00;">if</span> count &lt; 3 <span style="color: #a1db00;">then</span>
+                ret,count = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">resume</span>(co,<span style="color: #5fafd7;">true</span>)
+            <span style="color: #a1db00;">else</span>
+                ret,count = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">resume</span>(co,<span style="color: #5fafd7;">false</span>)
+                <span style="color: #a1db00;">break</span>
+            <span style="color: #a1db00;">end</span>
+        <span style="color: #a1db00;">end</span>
+    <span style="color: #a1db00;">end</span>
+
+    test()
 </pre>
 </div>
 </div>
@@ -980,25 +980,25 @@ resume 实在保护模式中运行的。因此，如果一个协同程序的执�
 <div class="outline-text-5" id="text-orgheadline29">
 <div class="org-src-container">
 
-<pre class="src src-lua">    <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#28040;&#36153;&#32773;&#39537;&#21160; :tangle lua-analysis/producer-consumer.lua</span>&#57344;&#57345;&#57345;
-    producer = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">create</span>(<span style="color: #a1db00;">function</span>(status)&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">while</span> status <span style="color: #a1db00;">do</span>&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">product</span> = <span style="color: #d18aff;">io</span>.<span style="color: #d18aff;">read</span>()&#57344;&#57345;&#57345;
-                status = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">yield</span>(product)&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>)&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">consumer</span>()&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">while</span> <span style="color: #5fafd7;">true</span> <span style="color: #a1db00;">do</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">status</span>,<span style="color: #ff8700;">value</span> = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">resume</span>(producer,<span style="color: #5fafd7;">true</span>)&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">if</span> value ~= <span style="color: #ff4ea3;">"quit"</span> <span style="color: #a1db00;">then</span>  <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&#21028;&#26029;&#26159;&#21542;&#35201;&#36864;&#20986;&#31243;&#24207;</span>&#57344;&#57345;&#57345;
-                <span style="color: #d18aff;">print</span>(value)&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">else</span>&#57344;&#57345;&#57345;
-                <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">resume</span>(producer,<span style="color: #5fafd7;">false</span>)&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">break</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-    consumer()&#57344;&#57345;&#57345;
+<pre class="src src-lua">    <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#28040;&#36153;&#32773;&#39537;&#21160; :tangle lua-analysis/producer-consumer.lua</span>
+    producer = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">create</span>(<span style="color: #a1db00;">function</span>(status)
+            <span style="color: #a1db00;">while</span> status <span style="color: #a1db00;">do</span>
+                <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">product</span> = <span style="color: #d18aff;">io</span>.<span style="color: #d18aff;">read</span>()
+                status = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">yield</span>(product)
+            <span style="color: #a1db00;">end</span>
+    <span style="color: #a1db00;">end</span>)
+    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">consumer</span>()
+        <span style="color: #a1db00;">while</span> <span style="color: #5fafd7;">true</span> <span style="color: #a1db00;">do</span>
+            <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">status</span>,<span style="color: #ff8700;">value</span> = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">resume</span>(producer,<span style="color: #5fafd7;">true</span>)
+            <span style="color: #a1db00;">if</span> value ~= <span style="color: #ff4ea3;">"quit"</span> <span style="color: #a1db00;">then</span>  <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&#21028;&#26029;&#26159;&#21542;&#35201;&#36864;&#20986;&#31243;&#24207;</span>
+                <span style="color: #d18aff;">print</span>(value)
+            <span style="color: #a1db00;">else</span>
+                <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">resume</span>(producer,<span style="color: #5fafd7;">false</span>)
+                <span style="color: #a1db00;">break</span>
+            <span style="color: #a1db00;">end</span>
+        <span style="color: #a1db00;">end</span>
+    <span style="color: #a1db00;">end</span>
+    consumer()
 </pre>
 </div>
 </div>
@@ -1008,43 +1008,43 @@ resume 实在保护模式中运行的。因此，如果一个协同程序的执�
 <div class="outline-text-5" id="text-orgheadline30">
 <div class="org-src-container">
 
-<pre class="src src-lua">    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">prod</span>()&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">create</span>(<span style="color: #a1db00;">function</span> (is_run)&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">while</span> is_run <span style="color: #a1db00;">do</span>&#57344;&#57345;&#57345;
-                    <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">str</span> = <span style="color: #d18aff;">io</span>.<span style="color: #d18aff;">read</span>()&#57344;&#57345;&#57345;
-                    is_run = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">yield</span>(str)&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">end</span>)&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">filter</span>(p)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">create</span>(<span style="color: #a1db00;">function</span> (is_run)&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">i</span> = 0&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">while</span> is_run <span style="color: #a1db00;">do</span>&#57344;&#57345;&#57345;
-                    <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">status</span>,<span style="color: #ff8700;">str</span> = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">resume</span>(p,<span style="color: #5fafd7;">true</span>)&#57344;&#57345;&#57345;
-                    <span style="color: #a1db00;">if</span> str ~= <span style="color: #ff4ea3;">"quit"</span> <span style="color: #a1db00;">then</span>&#57344;&#57345;&#57345;
-                        i = i + 1&#57344;&#57345;&#57345;
-                        str = <span style="color: #d18aff;">string</span>.<span style="color: #d18aff;">format</span>(<span style="color: #ff4ea3;">"%d "</span>,i) .. str&#57344;&#57345;&#57345;
-                    <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-                    is_run = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">yield</span>(str)&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-                <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">resume</span>(prod,<span style="color: #5fafd7;">false</span>) <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">close producer</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">end</span>)&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">consumer</span>(f)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">while</span> <span style="color: #5fafd7;">true</span> <span style="color: #a1db00;">do</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">status</span>, <span style="color: #ff8700;">data</span> = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">resume</span>(f,<span style="color: #5fafd7;">true</span>)&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">if</span> data ~= <span style="color: #ff4ea3;">"quit"</span><span style="color: #a1db00;">then</span>&#57344;&#57345;&#57345;
-                <span style="color: #d18aff;">print</span>(data)&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">else</span>&#57344;&#57345;&#57345;
-                <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">resume</span>(f,<span style="color: #5fafd7;">false</span>) <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">close filter</span>&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">break</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    consumer(filter(prod()))&#57344;&#57345;&#57345;
+<pre class="src src-lua">    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">prod</span>()
+        <span style="color: #a1db00;">return</span> <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">create</span>(<span style="color: #a1db00;">function</span> (is_run)
+                <span style="color: #a1db00;">while</span> is_run <span style="color: #a1db00;">do</span>
+                    <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">str</span> = <span style="color: #d18aff;">io</span>.<span style="color: #d18aff;">read</span>()
+                    is_run = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">yield</span>(str)
+                <span style="color: #a1db00;">end</span>
+        <span style="color: #a1db00;">end</span>)
+    <span style="color: #a1db00;">end</span>
+
+    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">filter</span>(p)
+        <span style="color: #a1db00;">return</span> <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">create</span>(<span style="color: #a1db00;">function</span> (is_run)
+                <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">i</span> = 0
+                <span style="color: #a1db00;">while</span> is_run <span style="color: #a1db00;">do</span>
+                    <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">status</span>,<span style="color: #ff8700;">str</span> = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">resume</span>(p,<span style="color: #5fafd7;">true</span>)
+                    <span style="color: #a1db00;">if</span> str ~= <span style="color: #ff4ea3;">"quit"</span> <span style="color: #a1db00;">then</span>
+                        i = i + 1
+                        str = <span style="color: #d18aff;">string</span>.<span style="color: #d18aff;">format</span>(<span style="color: #ff4ea3;">"%d "</span>,i) .. str
+                    <span style="color: #a1db00;">end</span>
+                    is_run = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">yield</span>(str)
+                <span style="color: #a1db00;">end</span>
+                <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">resume</span>(prod,<span style="color: #5fafd7;">false</span>) <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">close producer</span>
+        <span style="color: #a1db00;">end</span>)
+    <span style="color: #a1db00;">end</span>
+
+    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">consumer</span>(f)
+        <span style="color: #a1db00;">while</span> <span style="color: #5fafd7;">true</span> <span style="color: #a1db00;">do</span>
+            <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">status</span>, <span style="color: #ff8700;">data</span> = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">resume</span>(f,<span style="color: #5fafd7;">true</span>)
+            <span style="color: #a1db00;">if</span> data ~= <span style="color: #ff4ea3;">"quit"</span><span style="color: #a1db00;">then</span>
+                <span style="color: #d18aff;">print</span>(data)
+            <span style="color: #a1db00;">else</span>
+                <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">resume</span>(f,<span style="color: #5fafd7;">false</span>) <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">close filter</span>
+                <span style="color: #a1db00;">break</span>
+            <span style="color: #a1db00;">end</span>
+        <span style="color: #a1db00;">end</span>
+    <span style="color: #a1db00;">end</span>
+
+    consumer(filter(prod()))
 </pre>
 </div>
 </div>
@@ -1057,64 +1057,64 @@ resume 实在保护模式中运行的。因此，如果一个协同程序的执�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua">    <span style="color: #d18aff;">require</span> <span style="color: #ff4ea3;">"socket"</span>&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Download</span>(host, file)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">c</span> = <span style="color: #d18aff;">assert</span>(sokcet.connect(host, 80))&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">count</span> = 0             <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#35760;&#24405;&#25509;&#21463;&#21040;&#30340;&#23383;&#33410;&#25968;</span>&#57344;&#57345;&#57345;
-        c:send(<span style="color: #ff4ea3;">"GET"</span> .. file .. <span style="color: #ff4ea3;">"HTTP/1.0\r\n\r\n"</span>)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">while</span> <span style="color: #5fafd7;">true</span> <span style="color: #a1db00;">do</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">s</span>, <span style="color: #ff8700;">status</span>, <span style="color: #ff8700;">partial</span> = Receive(c)&#57344;&#57345;&#57345;
-            count = count + #(s <span style="color: #a1db00;">or</span> partial)&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">if</span> status == <span style="color: #ff4ea3;">"closed"</span> <span style="color: #a1db00;">then</span>&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">break</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        c:close()&#57344;&#57345;&#57345;
-        <span style="color: #d18aff;">print</span>(file,count)&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Receive</span>(conncetion)&#57344;&#57345;&#57345;
-        connection::settimeout(0)   <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#27492;&#22788;&#19981;&#20250;&#38459;&#22622;&#65292;&#25152;&#20197;&#33410;&#30465;&#20102;&#26102;&#38388;</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">s</span>,<span style="color: #ff8700;">status</span>,<span style="color: #ff8700;">partial</span> = connection:receive(2^10)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> status == <span style="color: #ff4ea3;">"timeout"</span> <span style="color: #a1db00;">then</span>&#57344;&#57345;&#57345;
-            <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">yield</span>(connection)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> s <span style="color: #a1db00;">or</span> partial, status&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    threads = {}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Get</span>(host,file)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">co</span> = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">create</span>(<span style="color: #a1db00;">function</span> ()&#57344;&#57345;&#57345;
-                Download(host,file)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">end</span>)&#57344;&#57345;&#57345;
-        <span style="color: #d18aff;">table</span>.<span style="color: #d18aff;">insert</span>(threads, co)&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Dispatch</span>()&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">i</span> = 1&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">while</span> <span style="color: #5fafd7;">true</span> <span style="color: #a1db00;">do</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">if</span> threads[i] == <span style="color: #5fafd7;">nil</span> <span style="color: #a1db00;">then</span> <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#26159;&#21542;&#36824;&#26377;&#19979;&#36733;&#32447;&#31243;</span>&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">if</span> threads[1] ==  <span style="color: #5fafd7;">nil</span> <span style="color: #a1db00;">then</span> <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#19979;&#36733;&#21015;&#34920;&#26159;&#21542;&#20026;&#31354;</span>&#57344;&#57345;&#57345;
-                    <span style="color: #a1db00;">break</span>&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-                i = 1&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">status</span>, <span style="color: #ff8700;">res</span> = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">resume</span>(threads[i])&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">if</span> <span style="color: #a1db00;">not</span> res <span style="color: #a1db00;">then</span>&#57344;&#57345;&#57345;
-                <span style="color: #d18aff;">table</span>.<span style="color: #d18aff;">remove</span>(threads, i)&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">else</span>&#57344;&#57345;&#57345;
-                i = i + 1&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">host</span> = <span style="color: #ff4ea3;">"www.w3.org"</span>&#57344;&#57345;&#57345;
-    Get(host, <span style="color: #ff4ea3;">"TR/htlm1401/htlm40.txt"</span>)&#57344;&#57345;&#57345;
-    Get(host, <span style="color: #ff4ea3;">"TR/2002/REC-xhtml11-20020801/xhtlm1.pdf"</span>)&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    Dispatch()&#57344;&#57345;&#57345;
+<pre class="src src-lua">    <span style="color: #d18aff;">require</span> <span style="color: #ff4ea3;">"socket"</span>
+    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Download</span>(host, file)
+        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">c</span> = <span style="color: #d18aff;">assert</span>(sokcet.connect(host, 80))
+        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">count</span> = 0             <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#35760;&#24405;&#25509;&#21463;&#21040;&#30340;&#23383;&#33410;&#25968;</span>
+        c:send(<span style="color: #ff4ea3;">"GET"</span> .. file .. <span style="color: #ff4ea3;">"HTTP/1.0\r\n\r\n"</span>)
+        <span style="color: #a1db00;">while</span> <span style="color: #5fafd7;">true</span> <span style="color: #a1db00;">do</span>
+            <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">s</span>, <span style="color: #ff8700;">status</span>, <span style="color: #ff8700;">partial</span> = Receive(c)
+            count = count + #(s <span style="color: #a1db00;">or</span> partial)
+            <span style="color: #a1db00;">if</span> status == <span style="color: #ff4ea3;">"closed"</span> <span style="color: #a1db00;">then</span>
+                <span style="color: #a1db00;">break</span>
+            <span style="color: #a1db00;">end</span>
+        <span style="color: #a1db00;">end</span>
+
+        c:close()
+        <span style="color: #d18aff;">print</span>(file,count)
+    <span style="color: #a1db00;">end</span>
+
+    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Receive</span>(conncetion)
+        connection::settimeout(0)   <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#27492;&#22788;&#19981;&#20250;&#38459;&#22622;&#65292;&#25152;&#20197;&#33410;&#30465;&#20102;&#26102;&#38388;</span>
+        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">s</span>,<span style="color: #ff8700;">status</span>,<span style="color: #ff8700;">partial</span> = connection:receive(2^10)
+        <span style="color: #a1db00;">if</span> status == <span style="color: #ff4ea3;">"timeout"</span> <span style="color: #a1db00;">then</span>
+            <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">yield</span>(connection)
+        <span style="color: #a1db00;">end</span>
+        <span style="color: #a1db00;">return</span> s <span style="color: #a1db00;">or</span> partial, status
+    <span style="color: #a1db00;">end</span>
+
+    threads = {}
+
+    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Get</span>(host,file)
+        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">co</span> = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">create</span>(<span style="color: #a1db00;">function</span> ()
+                Download(host,file)
+        <span style="color: #a1db00;">end</span>)
+        <span style="color: #d18aff;">table</span>.<span style="color: #d18aff;">insert</span>(threads, co)
+    <span style="color: #a1db00;">end</span>
+
+    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Dispatch</span>()
+        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">i</span> = 1
+        <span style="color: #a1db00;">while</span> <span style="color: #5fafd7;">true</span> <span style="color: #a1db00;">do</span>
+            <span style="color: #a1db00;">if</span> threads[i] == <span style="color: #5fafd7;">nil</span> <span style="color: #a1db00;">then</span> <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#26159;&#21542;&#36824;&#26377;&#19979;&#36733;&#32447;&#31243;</span>
+                <span style="color: #a1db00;">if</span> threads[1] ==  <span style="color: #5fafd7;">nil</span> <span style="color: #a1db00;">then</span> <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#19979;&#36733;&#21015;&#34920;&#26159;&#21542;&#20026;&#31354;</span>
+                    <span style="color: #a1db00;">break</span>
+                <span style="color: #a1db00;">end</span>
+                i = 1
+            <span style="color: #a1db00;">end</span>
+            <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">status</span>, <span style="color: #ff8700;">res</span> = <span style="color: #d18aff;">coroutine</span>.<span style="color: #d18aff;">resume</span>(threads[i])
+            <span style="color: #a1db00;">if</span> <span style="color: #a1db00;">not</span> res <span style="color: #a1db00;">then</span>
+                <span style="color: #d18aff;">table</span>.<span style="color: #d18aff;">remove</span>(threads, i)
+            <span style="color: #a1db00;">else</span>
+                i = i + 1
+            <span style="color: #a1db00;">end</span>
+        <span style="color: #a1db00;">end</span>
+    <span style="color: #a1db00;">end</span>
+
+    <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">host</span> = <span style="color: #ff4ea3;">"www.w3.org"</span>
+    Get(host, <span style="color: #ff4ea3;">"TR/htlm1401/htlm40.txt"</span>)
+    Get(host, <span style="color: #ff4ea3;">"TR/2002/REC-xhtml11-20020801/xhtlm1.pdf"</span>)
+
+    Dispatch()
 </pre>
 </div>
 </div>
@@ -1150,11 +1150,11 @@ lua 是一门嵌入式语言，也就是说 lua 不能单独运行，而是一�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua">   gVar = <span style="color: #ff4ea3;">"old global value"</span>&#57344;&#57345;&#57345;
-   gTable = {r=2, g=3, b=4}&#57344;&#57345;&#57345;
-   <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">LuaFunc</span>(x,y)&#57344;&#57345;&#57345;
-       <span style="color: #a1db00;">return</span> x/y&#57344;&#57345;&#57345;
-   <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
+<pre class="src src-lua">   gVar = <span style="color: #ff4ea3;">"old global value"</span>
+   gTable = {r=2, g=3, b=4}
+   <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">LuaFunc</span>(x,y)
+       <span style="color: #a1db00;">return</span> x/y
+   <span style="color: #a1db00;">end</span>
 </pre>
 </div>
 </div>
@@ -1163,42 +1163,42 @@ lua 是一门嵌入式语言，也就是说 lua 不能单独运行，而是一�
 <div class="outline-text-4" id="text-2-18-1">
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;stdio.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;string.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;assert.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lua.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lauxlib.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lualib.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">lua_State</span> *<span style="color: #ff8700;">luaEnv</span> = luaL_newstate();&#57344;&#57345;&#57345;
-        luaL_openlibs(luaEnv);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">load lua file </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
-        ret = luaL_dofile(luaEnv, <span style="color: #ff4ea3;">"test.lua"</span>);&#57344;&#57345;&#57345;
-        assert(ret == LUA_OK);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">get lua global var  </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
-        ret = lua_getglobal(luaEnv, <span style="color: #ff4ea3;">"gVar"</span>);&#57344;&#57345;&#57345;
-        assert(ret == LUA_TSTRING);&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">luaStr</span> = lua_tostring(luaEnv, -1);&#57344;&#57345;&#57345;
-        assert(luaStr != <span style="color: #5fafd7;">NULL</span>);&#57344;&#57345;&#57345;
-        printf(<span style="color: #ff4ea3;">"%s\n"</span>,luaStr);&#57344;&#57345;&#57345;
-        lua_pop(luaEnv,1);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">set lua global var </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
-        lua_pushstring(luaEnv, <span style="color: #ff4ea3;">"new global value"</span>);&#57344;&#57345;&#57345;
-        lua_setglobal(luaEnv, <span style="color: #ff4ea3;">"gVar"</span>);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">check global var new value </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">luaCode</span> = <span style="color: #ff4ea3;">"print(gVar)"</span>;&#57344;&#57345;&#57345;
-        ret = luaL_dostring(luaEnv, luaCode);&#57344;&#57345;&#57345;
-        assert(ret == LUA_OK);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        lua_close(luaEnv);&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;stdio.h&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;string.h&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;assert.h&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lua.h&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lauxlib.h&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lualib.h&gt;</span>
+
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+    {
+        <span style="color: #00d7af;">lua_State</span> *<span style="color: #ff8700;">luaEnv</span> = luaL_newstate();
+        luaL_openlibs(luaEnv);
+
+        <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">load lua file </span><span style="color: #6c6c6c; font-style: italic;">*/</span>
+        ret = luaL_dofile(luaEnv, <span style="color: #ff4ea3;">"test.lua"</span>);
+        assert(ret == LUA_OK);
+
+        <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">get lua global var  </span><span style="color: #6c6c6c; font-style: italic;">*/</span>
+        ret = lua_getglobal(luaEnv, <span style="color: #ff4ea3;">"gVar"</span>);
+        assert(ret == LUA_TSTRING);
+        <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">luaStr</span> = lua_tostring(luaEnv, -1);
+        assert(luaStr != <span style="color: #5fafd7;">NULL</span>);
+        printf(<span style="color: #ff4ea3;">"%s\n"</span>,luaStr);
+        lua_pop(luaEnv,1);
+
+        <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">set lua global var </span><span style="color: #6c6c6c; font-style: italic;">*/</span>
+        lua_pushstring(luaEnv, <span style="color: #ff4ea3;">"new global value"</span>);
+        lua_setglobal(luaEnv, <span style="color: #ff4ea3;">"gVar"</span>);
+
+        <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">check global var new value </span><span style="color: #6c6c6c; font-style: italic;">*/</span>
+        <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">luaCode</span> = <span style="color: #ff4ea3;">"print(gVar)"</span>;
+        ret = luaL_dostring(luaEnv, luaCode);
+        assert(ret == LUA_OK);
+
+        lua_close(luaEnv);
+        <span style="color: #a1db00;">return</span> 0;
+    }
 </pre>
 </div>
 </div>
@@ -1208,35 +1208,35 @@ lua 是一门嵌入式语言，也就是说 lua 不能单独运行，而是一�
 <div class="outline-text-4" id="text-2-18-2">
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;stdio.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;string.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;assert.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lua.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lauxlib.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lualib.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-   <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-   {&#57344;&#57345;&#57345;
-       <span style="color: #00d7af;">lua_State</span> *<span style="color: #ff8700;">luaEnv</span> = luaL_newstate();&#57344;&#57345;&#57345;
-       luaL_openlibs(luaEnv);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-       <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">ret</span> = luaL_dofile(luaEnv,<span style="color: #ff4ea3;">"test.lua"</span>);&#57344;&#57345;&#57345;
-       assert(ret == LUA_OK);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-       ret = lua_getglobal(luaEnv, <span style="color: #ff4ea3;">"LuaFunc"</span>);&#57344;&#57345;&#57345;
-       assert(ret == LUA_TFUNCTION);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-       lua_pushnumber(luaEnv, 1);&#57344;&#57345;&#57345;
-       lua_pushnumber(luaEnv, 2);&#57344;&#57345;&#57345;
-       ret = lua_pcall(luaEnv,2,1,0);&#57344;&#57345;&#57345;
-       assert(ret == LUA_OK);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-       ret = lua_tonumber(luaEnv,-1);&#57344;&#57345;&#57345;
-       printf(<span style="color: #ff4ea3;">"lua func result: %d\n"</span>,ret);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-       lua_close(luaEnv);&#57344;&#57345;&#57345;
-       <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-   }&#57344;&#57345;&#57345;
+<pre class="src src-c"><span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;stdio.h&gt;</span>
+<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;string.h&gt;</span>
+<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;assert.h&gt;</span>
+<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lua.h&gt;</span>
+<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lauxlib.h&gt;</span>
+<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lualib.h&gt;</span>
+
+   <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+   {
+       <span style="color: #00d7af;">lua_State</span> *<span style="color: #ff8700;">luaEnv</span> = luaL_newstate();
+       luaL_openlibs(luaEnv);
+
+       <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">ret</span> = luaL_dofile(luaEnv,<span style="color: #ff4ea3;">"test.lua"</span>);
+       assert(ret == LUA_OK);
+
+       ret = lua_getglobal(luaEnv, <span style="color: #ff4ea3;">"LuaFunc"</span>);
+       assert(ret == LUA_TFUNCTION);
+
+       lua_pushnumber(luaEnv, 1);
+       lua_pushnumber(luaEnv, 2);
+       ret = lua_pcall(luaEnv,2,1,0);
+       assert(ret == LUA_OK);
+
+       ret = lua_tonumber(luaEnv,-1);
+       printf(<span style="color: #ff4ea3;">"lua func result: %d\n"</span>,ret);
+
+       lua_close(luaEnv);
+       <span style="color: #a1db00;">return</span> 0;
+   }
 </pre>
 </div>
 </div>
@@ -1253,36 +1253,36 @@ lua 是一门嵌入式语言，也就是说 lua 不能单独运行，而是一�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;stdio.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lua.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lauxlib.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lualib.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-   <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">MyDiv</span>(<span style="color: #00d7af;">lua_State</span>* <span style="color: #ff8700;">l</span>)&#57344;&#57345;&#57345;
-   {&#57344;&#57345;&#57345;
-       <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#26816;&#26597;&#26632;&#20013;&#30340;&#21442;&#25968;&#26159;&#21542;&#21512;&#27861;&#65292;1 &#34920;&#31034; Lua &#35843;&#29992;&#26102;&#30340;&#31532;&#19968;&#20010;&#21442;&#25968;(&#20174;&#24038;&#21040;&#21491;)&#65292;&#20381;&#27492;&#31867;&#25512;&#12290;</span>&#57344;&#57345;
-       <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#22914;&#26524; Lua &#20195;&#30721;&#22312;&#35843;&#29992;&#26102;&#20256;&#36882;&#30340;&#21442;&#25968;&#19981;&#20026; number&#65292;&#35813;&#20989;&#25968;&#23558;&#25253;&#38169;&#24182;&#32456;&#27490;&#31243;&#24207;&#30340;&#25191;&#34892;&#12290;</span>&#57344;&#57345;
-       <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">arg1</span> = luaL_checknumber(l, 1);&#57344;&#57345;&#57345;
-       <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">arg2</span> = luaL_checknumber(l, 2);&#57344;&#57345;&#57345;
-       <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#23558;&#20989;&#25968;&#30340;&#32467;&#26524;&#21387;&#20837;&#26632;&#20013;&#12290;&#22914;&#26524;&#26377;&#22810;&#20010;&#36820;&#22238;&#20540;&#65292;&#21487;&#20197;&#22312;&#36825;&#37324;&#22810;&#27425;&#21387;&#20837;&#26632;&#20013;&#12290;</span>&#57344;&#57345;
-       lua_pushnumber(l, arg1/arg2);&#57344;&#57345;&#57345;
-       <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#36820;&#22238;&#20540;&#29992;&#20110;&#25552;&#31034;&#35813; C &#20989;&#25968;&#30340;&#36820;&#22238;&#20540;&#25968;&#37327;&#65292;&#21363;&#21387;&#20837;&#26632;&#20013;&#30340;&#36820;&#22238;&#20540;&#25968;&#37327;&#12290;</span>&#57345;
-       <span style="color: #a1db00;">return</span> 1;&#57344;&#57345;&#57345;
-   }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-   <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">LuaCode</span> = <span style="color: #ff4ea3;">"print(Div(4, 2))"</span>;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-   <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> **<span style="color: #ff8700;">argv</span>)&#57344;&#57345;&#57345;
-   {&#57344;&#57345;&#57345;
-       <span style="color: #00d7af;">lua_State</span>* <span style="color: #ff8700;">luaEnv</span> = luaL_newstate();&#57344;&#57345;&#57345;
-       luaL_openlibs(luaEnv);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-       lua_register(luaEnv, <span style="color: #ff4ea3;">"Div"</span>, MyDiv);&#57344;&#57345;&#57345;
-       luaL_dostring(luaEnv, LuaCode);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-       lua_close(luaEnv);&#57344;&#57345;&#57345;
-       <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-   }&#57344;&#57345;&#57345;
+<pre class="src src-c"><span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;stdio.h&gt;</span>
+<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lua.h&gt;</span>
+<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lauxlib.h&gt;</span>
+<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lualib.h&gt;</span>
+
+   <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">MyDiv</span>(<span style="color: #00d7af;">lua_State</span>* <span style="color: #ff8700;">l</span>)
+   {
+       <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#26816;&#26597;&#26632;&#20013;&#30340;&#21442;&#25968;&#26159;&#21542;&#21512;&#27861;&#65292;1 &#34920;&#31034; Lua &#35843;&#29992;&#26102;&#30340;&#31532;&#19968;&#20010;&#21442;&#25968;(&#20174;&#24038;&#21040;&#21491;)&#65292;&#20381;&#27492;&#31867;&#25512;&#12290;</span>
+       <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#22914;&#26524; Lua &#20195;&#30721;&#22312;&#35843;&#29992;&#26102;&#20256;&#36882;&#30340;&#21442;&#25968;&#19981;&#20026; number&#65292;&#35813;&#20989;&#25968;&#23558;&#25253;&#38169;&#24182;&#32456;&#27490;&#31243;&#24207;&#30340;&#25191;&#34892;&#12290;</span>
+       <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">arg1</span> = luaL_checknumber(l, 1);
+       <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">arg2</span> = luaL_checknumber(l, 2);
+       <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#23558;&#20989;&#25968;&#30340;&#32467;&#26524;&#21387;&#20837;&#26632;&#20013;&#12290;&#22914;&#26524;&#26377;&#22810;&#20010;&#36820;&#22238;&#20540;&#65292;&#21487;&#20197;&#22312;&#36825;&#37324;&#22810;&#27425;&#21387;&#20837;&#26632;&#20013;&#12290;</span>
+       lua_pushnumber(l, arg1/arg2);
+       <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#36820;&#22238;&#20540;&#29992;&#20110;&#25552;&#31034;&#35813; C &#20989;&#25968;&#30340;&#36820;&#22238;&#20540;&#25968;&#37327;&#65292;&#21363;&#21387;&#20837;&#26632;&#20013;&#30340;&#36820;&#22238;&#20540;&#25968;&#37327;&#12290;</span>
+       <span style="color: #a1db00;">return</span> 1;
+   }
+
+   <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">LuaCode</span> = <span style="color: #ff4ea3;">"print(Div(4, 2))"</span>;
+
+   <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> **<span style="color: #ff8700;">argv</span>)
+   {
+       <span style="color: #00d7af;">lua_State</span>* <span style="color: #ff8700;">luaEnv</span> = luaL_newstate();
+       luaL_openlibs(luaEnv);
+
+       lua_register(luaEnv, <span style="color: #ff4ea3;">"Div"</span>, MyDiv);
+       luaL_dostring(luaEnv, LuaCode);
+
+       lua_close(luaEnv);
+       <span style="color: #a1db00;">return</span> 0;
+   }
 </pre>
 </div>
 
@@ -1291,7 +1291,7 @@ lua 是一门嵌入式语言，也就是说 lua 不能单独运行，而是一�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c">   <span style="color: #a1db00;">typedef</span> <span style="color: #00d7af;">int</span> (*<span style="color: #00d7af;">lua_CFunction</span>) (<span style="color: #00d7af;">lua_State</span> *<span style="color: #ff8700;">L</span>);&#57344;&#57345;&#57345;
+<pre class="src src-c">   <span style="color: #a1db00;">typedef</span> <span style="color: #00d7af;">int</span> (*<span style="color: #00d7af;">lua_CFunction</span>) (<span style="color: #00d7af;">lua_State</span> *<span style="color: #ff8700;">L</span>);
 </pre>
 </div>
 </div>
@@ -1304,28 +1304,28 @@ lua 是一门嵌入式语言，也就是说 lua 不能单独运行，而是一�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;stdio.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lua.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lauxlib.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lualib.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-   <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">MyDiv</span>(<span style="color: #00d7af;">lua_State</span>* <span style="color: #ff8700;">l</span>)&#57344;&#57345;&#57345;
-   {&#57344;&#57345;&#57345;
-       <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span> = lua_tonumber(l, 1);&#57344;&#57345;&#57345;
-       <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">b</span> = lua_tonumber(l, 2);&#57344;&#57345;&#57345;
-       lua_pushnumber(l, a/b);&#57344;&#57345;&#57345;
-       <span style="color: #a1db00;">return</span> 1;&#57344;&#57345;&#57345;
-   }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-   <span style="color: #a1db00;">static</span> <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">luaL_Reg</span> <span style="color: #ff8700;">funcs</span>[] = {&#57344;&#57345;&#57345;
-       {<span style="color: #ff4ea3;">"Div"</span>, MyDiv},&#57344;&#57345;&#57345;
-       {<span style="color: #5fafd7;">NULL</span>, <span style="color: #5fafd7;">NULL</span>}&#57344;&#57345;&#57345;
-   };&#57344;&#57345;&#57345;
-   <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">luaopen_mylib</span>(<span style="color: #00d7af;">lua_State</span>* <span style="color: #ff8700;">l</span>)&#57344;&#57345;&#57345;
-   {&#57344;&#57345;&#57345;
-       luaL_newlib(l, funcs);&#57344;&#57345;&#57345;
-       <span style="color: #a1db00;">return</span> 1;&#57344;&#57345;&#57345;
-   }&#57344;&#57345;&#57345;
+<pre class="src src-c"><span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;stdio.h&gt;</span>
+<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lua.h&gt;</span>
+<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lauxlib.h&gt;</span>
+<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lualib.h&gt;</span>
+
+   <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">MyDiv</span>(<span style="color: #00d7af;">lua_State</span>* <span style="color: #ff8700;">l</span>)
+   {
+       <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span> = lua_tonumber(l, 1);
+       <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">b</span> = lua_tonumber(l, 2);
+       lua_pushnumber(l, a/b);
+       <span style="color: #a1db00;">return</span> 1;
+   }
+
+   <span style="color: #a1db00;">static</span> <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">luaL_Reg</span> <span style="color: #ff8700;">funcs</span>[] = {
+       {<span style="color: #ff4ea3;">"Div"</span>, MyDiv},
+       {<span style="color: #5fafd7;">NULL</span>, <span style="color: #5fafd7;">NULL</span>}
+   };
+   <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">luaopen_mylib</span>(<span style="color: #00d7af;">lua_State</span>* <span style="color: #ff8700;">l</span>)
+   {
+       luaL_newlib(l, funcs);
+       <span style="color: #a1db00;">return</span> 1;
+   }
 </pre>
 </div>
 
@@ -1339,26 +1339,26 @@ lua 是一门嵌入式语言，也就是说 lua 不能单独运行，而是一�
 
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #d18aff;">          #include</span> <span style="color: #ff4ea3;">&lt;stdio.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">          #include</span> <span style="color: #ff4ea3;">&lt;stdlib.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">          #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lua.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">          #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lualib.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">          #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lauxlib.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-          <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">const char *luaCode = "local mylib = require \"mylib\" print(mylib.Div(4, 2))"; </span><span style="color: #6c6c6c; font-style: italic;">*/</span>&#57344;&#57345;
-          <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">luaCode</span> = <span style="color: #ff4ea3;">"print(package.path) package.loadlib('~/mylib.a','luaopen_mylib')  local mylib = require \"mylib\" print(mylib.Div(4, 2))"</span>;&#57344;&#57345;
-          <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> **<span style="color: #ff8700;">argv</span>)&#57344;&#57345;&#57345;
-          {&#57344;&#57345;&#57345;
-              <span style="color: #00d7af;">lua_State</span>* <span style="color: #ff8700;">luaEnv</span> = luaL_newstate();&#57344;&#57345;&#57345;
-              luaL_openlibs(luaEnv);&#57344;&#57345;&#57345;
-              <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">ret</span> = luaL_dostring(luaEnv, luaCode);&#57344;&#57345;&#57345;
-              <span style="color: #a1db00;">if</span> (ret != LUA_OK) {&#57344;&#57345;&#57345;
-                  printf(<span style="color: #ff4ea3;">"%s\n"</span>, lua_tostring(luaEnv,-1));&#57344;&#57345;&#57345;
-              }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-              lua_close(luaEnv);&#57344;&#57345;&#57345;
-              <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-          }&#57344;&#57345;&#57345;
+<pre class="src src-c"><span style="color: #d18aff;">          #include</span> <span style="color: #ff4ea3;">&lt;stdio.h&gt;</span>
+<span style="color: #d18aff;">          #include</span> <span style="color: #ff4ea3;">&lt;stdlib.h&gt;</span>
+<span style="color: #d18aff;">          #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lua.h&gt;</span>
+<span style="color: #d18aff;">          #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lualib.h&gt;</span>
+<span style="color: #d18aff;">          #include</span> <span style="color: #ff4ea3;">&lt;lua5.3/lauxlib.h&gt;</span>
+
+          <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">const char *luaCode = "local mylib = require \"mylib\" print(mylib.Div(4, 2))"; </span><span style="color: #6c6c6c; font-style: italic;">*/</span>
+          <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">luaCode</span> = <span style="color: #ff4ea3;">"print(package.path) package.loadlib('~/mylib.a','luaopen_mylib')  local mylib = require \"mylib\" print(mylib.Div(4, 2))"</span>;
+          <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> **<span style="color: #ff8700;">argv</span>)
+          {
+              <span style="color: #00d7af;">lua_State</span>* <span style="color: #ff8700;">luaEnv</span> = luaL_newstate();
+              luaL_openlibs(luaEnv);
+              <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">ret</span> = luaL_dostring(luaEnv, luaCode);
+              <span style="color: #a1db00;">if</span> (ret != LUA_OK) {
+                  printf(<span style="color: #ff4ea3;">"%s\n"</span>, lua_tostring(luaEnv,-1));
+              }
+
+              lua_close(luaEnv);
+              <span style="color: #a1db00;">return</span> 0;
+          }
 </pre>
 </div>
 <p>
@@ -1366,9 +1366,9 @@ lua 是一门嵌入式语言，也就是说 lua 不能单独运行，而是一�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">   gcc -g -c mylib.c -llua5.3&#57344;&#57345;&#57345;
-   ar -r mylilb.a mylib.o&#57344;&#57345;&#57345;
-   gcc -g lua-call-c-lib.c -llua5.3&#57344;&#57345;&#57345;
+<pre class="src src-sh">   gcc -g -c mylib.c -llua5.3
+   ar -r mylilb.a mylib.o
+   gcc -g lua-call-c-lib.c -llua5.3
 </pre>
 </div>
 <p>
@@ -1376,9 +1376,9 @@ lua 是一门嵌入式语言，也就是说 lua 不能单独运行，而是一�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">   gcc -fpic -c mylib.c&#57344;&#57345;&#57345;
-   gcc -shared -o mylib.so mylib.o&#57344;&#57345;&#57345;
-   gcc -g lua-call-c-lib.c -llua5.3&#57344;&#57345;&#57345;
+<pre class="src src-sh">   gcc -fpic -c mylib.c
+   gcc -shared -o mylib.so mylib.o
+   gcc -g lua-call-c-lib.c -llua5.3
 </pre>
 </div>
 
@@ -1397,182 +1397,182 @@ lua 和 c 语言通信的主要方式是一个无处不在的虚拟栈。几乎�
 <div class="outline-text-5" id="text-metatable">
 <div class="org-src-container">
 
-<pre class="src src-lua">   t = {sunday=7, monday=1}&#57344;&#57345;&#57345;
-   <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">getmetatable</span>(t))&#57344;&#57345;&#57345;
-   t1 = {}&#57344;&#57345;&#57345;
-   <span style="color: #d18aff;">setmetatable</span>(t,t1)&#57344;&#57345;&#57345;
-   <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">getmetatable</span>(t) == t1)&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-   <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">__index and __newindex</span>&#57344;&#57345;&#57345;
-   Window = {}&#57344;&#57345;&#57345;
-   Window.prototype = {x=10, y=20, width=100, height=200}&#57344;&#57345;&#57345;
-   Window.mt = {}&#57344;&#57345;&#57345;
-   <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Window.new</span>(o)&#57344;&#57345;&#57345;
-       <span style="color: #d18aff;">setmetatable</span>(o, Window.mt)&#57344;&#57345;&#57345;
-       <span style="color: #a1db00;">return</span> o&#57344;&#57345;&#57345;
-   <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-   <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">Window.mt.__index = function(t,key)</span>&#57344;&#57345;&#57345;
-   <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">return Window.prototype[key]</span>&#57344;&#57345;&#57345;
-   <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">end</span>&#57344;&#57345;&#57345;
-   Window.mt.__index = Window.prototype&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-   w = Window.new({x=30,y=30})&#57344;&#57345;&#57345;
-   <span style="color: #d18aff;">print</span>(w.x)  <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">30</span>&#57344;&#57345;&#57345;
-   <span style="color: #d18aff;">print</span>(w.width)  <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">100</span>&#57344;&#57345;&#57345;
-   w.width = 300&#57344;&#57345;&#57345;
-   <span style="color: #d18aff;">print</span>(Window.prototype.width) <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">100</span>&#57344;&#57345;&#57345;
-   Window.mt.__newindex = Window.prototype&#57344;&#57345;&#57345;
-   w.height = 300&#57344;&#57345;&#57345;
-   <span style="color: #d18aff;">print</span>(Window.prototype.height) <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">300</span>&#57344;&#57345;&#57345;
+<pre class="src src-lua">   t = {sunday=7, monday=1}
+   <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">getmetatable</span>(t))
+   t1 = {}
+   <span style="color: #d18aff;">setmetatable</span>(t,t1)
+   <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">getmetatable</span>(t) == t1)
+
+   <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">__index and __newindex</span>
+   Window = {}
+   Window.prototype = {x=10, y=20, width=100, height=200}
+   Window.mt = {}
+   <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Window.new</span>(o)
+       <span style="color: #d18aff;">setmetatable</span>(o, Window.mt)
+       <span style="color: #a1db00;">return</span> o
+   <span style="color: #a1db00;">end</span>
+   <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">Window.mt.__index = function(t,key)</span>
+   <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">return Window.prototype[key]</span>
+   <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">end</span>
+   Window.mt.__index = Window.prototype
+
+   w = Window.new({x=30,y=30})
+   <span style="color: #d18aff;">print</span>(w.x)  <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">30</span>
+   <span style="color: #d18aff;">print</span>(w.width)  <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">100</span>
+   w.width = 300
+   <span style="color: #d18aff;">print</span>(Window.prototype.width) <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">100</span>
+   Window.mt.__newindex = Window.prototype
+   w.height = 300
+   <span style="color: #d18aff;">print</span>(Window.prototype.height) <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">300</span>
 </pre>
 </div>
 </div>
 <ul class="org-ul"><li><a id="orgheadline54"></a>元表应用<br  /><ul class="org-ul"><li><a id="orgheadline45"></a>具有默认值的表<br  /><div class="outline-text-7" id="text-orgheadline45">
 <div class="org-src-container">
 
-<pre class="src src-lua">    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">set_default</span>(t,default)&#57344;&#57345;&#57345;
-        mt = {&#57344;&#57345;&#57345;
-            <span style="color: #ffd700;">__index</span> = <span style="color: #a1db00;">function</span>() <span style="color: #a1db00;">return</span> default <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #d18aff;">setmetatable</span>(t,mt)&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    set_default(t,0)&#57344;&#57345;&#57345;
-    <span style="color: #d18aff;">print</span>(t[wensday]) <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">0</span>&#57344;&#57345;&#57345;
+<pre class="src src-lua">    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">set_default</span>(t,default)
+        mt = {
+            <span style="color: #ffd700;">__index</span> = <span style="color: #a1db00;">function</span>() <span style="color: #a1db00;">return</span> default <span style="color: #a1db00;">end</span>
+        }
+        <span style="color: #d18aff;">setmetatable</span>(t,mt)
+    <span style="color: #a1db00;">end</span>
+
+    set_default(t,0)
+    <span style="color: #d18aff;">print</span>(t[wensday]) <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">0</span>
 </pre>
 </div>
 </div></li>
 <li><a id="orgheadline46"></a>跟踪表使用<br  /><div class="outline-text-7" id="text-orgheadline46">
 <div class="org-src-container">
 
-<pre class="src src-lua">    <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">_t</span> = t&#57344;&#57345;&#57345;
-    t = {}&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">mt</span> = {&#57344;&#57345;&#57345;
-        <span style="color: #ffd700;">__index</span> = <span style="color: #a1db00;">function</span>(t,k)&#57344;&#57345;&#57345;
-            <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"access to element "</span> .. <span style="color: #d18aff;">tostring</span>(k))&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> _t[k]&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">end</span>,&#57344;&#57345;&#57345;
-        <span style="color: #ffd700;">__newindex</span> = <span style="color: #a1db00;">function</span>(t,k,v)&#57344;&#57345;&#57345;
-            <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"update element "</span> .. <span style="color: #d18aff;">tostring</span>(k) .. <span style="color: #ff4ea3;">" to "</span> .. <span style="color: #d18aff;">tostring</span>(v))&#57344;&#57345;
-            _t[k] = v&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #d18aff;">setmetatable</span>(t,mt)&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #d18aff;">print</span>(t.sunday)&#57344;&#57345;&#57345;
-    t.wensday = 3&#57344;&#57345;&#57345;
+<pre class="src src-lua">    <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">_t</span> = t
+    t = {}
+    <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">mt</span> = {
+        <span style="color: #ffd700;">__index</span> = <span style="color: #a1db00;">function</span>(t,k)
+            <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"access to element "</span> .. <span style="color: #d18aff;">tostring</span>(k))
+            <span style="color: #a1db00;">return</span> _t[k]
+        <span style="color: #a1db00;">end</span>,
+        <span style="color: #ffd700;">__newindex</span> = <span style="color: #a1db00;">function</span>(t,k,v)
+            <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"update element "</span> .. <span style="color: #d18aff;">tostring</span>(k) .. <span style="color: #ff4ea3;">" to "</span> .. <span style="color: #d18aff;">tostring</span>(v))
+            _t[k] = v
+        <span style="color: #a1db00;">end</span>
+    }
+    <span style="color: #d18aff;">setmetatable</span>(t,mt)
+
+    <span style="color: #d18aff;">print</span>(t.sunday)
+    t.wensday = 3
 </pre>
 </div>
 </div></li>
 <li><a id="orgheadline47"></a>只读表<br  /><div class="outline-text-7" id="text-orgheadline47">
 <div class="org-src-container">
 
-<pre class="src src-lua">    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">read_only</span>(t)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">proxy</span> = {}&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">mt</span> = {&#57344;&#57345;&#57345;
-            __index = t,&#57344;&#57345;&#57345;
-            <span style="color: #ffd700;">__newindex</span> = <span style="color: #a1db00;">function</span>(t,k,v) <span style="color: #d18aff;">error</span>(<span style="color: #ff4ea3;">"attempt to update a read-only table"</span>,2) <span style="color: #a1db00;">end</span>&#57344;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #d18aff;">setmetatable</span>(proxy,mt)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> proxy&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-    r_t = read_only(t)&#57344;&#57345;&#57345;
-    <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"sunday = "</span> .. r_t.sunday)&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    r_t.saturday = 6&#57344;&#57345;&#57345;
+<pre class="src src-lua">    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">read_only</span>(t)
+        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">proxy</span> = {}
+        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">mt</span> = {
+            __index = t,
+            <span style="color: #ffd700;">__newindex</span> = <span style="color: #a1db00;">function</span>(t,k,v) <span style="color: #d18aff;">error</span>(<span style="color: #ff4ea3;">"attempt to update a read-only table"</span>,2) <span style="color: #a1db00;">end</span>
+        }
+        <span style="color: #d18aff;">setmetatable</span>(proxy,mt)
+        <span style="color: #a1db00;">return</span> proxy
+    <span style="color: #a1db00;">end</span>
+    r_t = read_only(t)
+    <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"sunday = "</span> .. r_t.sunday)
+
+    r_t.saturday = 6
 </pre>
 </div>
 </div></li>
 <li><a id="set"></a><a id="orgheadline48"></a>实现集合（set）<br  /><div class="outline-text-7" id="text-set">
 <div class="org-src-container">
 
-<pre class="src src-lua">    <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&#27979;&#35797;&#38598;&#21512;&#31867;</span>&#57344;&#57345;&#57345;
-    Set = {}&#57344;&#57345;&#57345;
-    mt = {}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">function</span>  <span style="color: #ffd700;">Set.new</span>(l)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">set</span> = {}&#57344;&#57345;&#57345;
-        <span style="color: #d18aff;">setmetatable</span>(set,mt)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">for</span> <span style="color: #ff8700;">i</span>,<span style="color: #ff8700;">v</span> <span style="color: #a1db00;">in</span> <span style="color: #d18aff;">ipairs</span>(l) <span style="color: #a1db00;">do</span>&#57344;&#57345;&#57345;
-            set[v] = <span style="color: #5fafd7;">true</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> set&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&#24182;&#38598;</span>&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Set.union</span>(a,b)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">res</span> = Set.new({})&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">for</span> <span style="color: #ff8700;">k</span> <span style="color: #a1db00;">in</span> <span style="color: #d18aff;">pairs</span>(a) <span style="color: #a1db00;">do</span>&#57344;&#57345;&#57345;
-            res[k] = <span style="color: #5fafd7;">true</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">for</span> <span style="color: #ff8700;">k</span> <span style="color: #a1db00;">in</span> <span style="color: #d18aff;">pairs</span>(b) <span style="color: #a1db00;">do</span>&#57344;&#57345;&#57345;
-            res[k] = <span style="color: #5fafd7;">true</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> res&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&#20132;&#38598;</span>&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Set.intersection</span>(a,b)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">res</span> = Set.new({})&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">for</span> <span style="color: #ff8700;">k</span> <span style="color: #a1db00;">in</span> <span style="color: #d18aff;">pairs</span>(a) <span style="color: #a1db00;">do</span>&#57344;&#57345;&#57345;
-            res[k] = b[k]&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> res&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&#34917;&#38598;</span>&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Set.complementation</span>(a,b)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">res</span> = Set.new({})&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">for</span> <span style="color: #ff8700;">k</span> <span style="color: #a1db00;">in</span> <span style="color: #d18aff;">pairs</span>(b) <span style="color: #a1db00;">do</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">if</span> <span style="color: #a1db00;">not</span> a[k] <span style="color: #a1db00;">then</span>&#57344;&#57345;&#57345;
-                res[k] = <span style="color: #5fafd7;">true</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> res&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&#38598;&#21512;&#30456;&#31561;</span>&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Set.equal</span>(a,b)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> Set.le(a,b) <span style="color: #a1db00;">and</span> Set.le(b,a)&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">a&lt;b</span>&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Set.lt</span>(a,b)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> Set.le(a,b) <span style="color: #a1db00;">and</span> <span style="color: #a1db00;">not</span> Set.le(b,a)&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">a&lt;=b</span>&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Set.le</span>(a,b)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">for</span> <span style="color: #ff8700;">k</span>,<span style="color: #ff8700;">_</span> <span style="color: #a1db00;">in</span> <span style="color: #d18aff;">pairs</span>(a) <span style="color: #a1db00;">do</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">if</span> <span style="color: #a1db00;">not</span> b[k] <span style="color: #a1db00;">then</span>&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">false</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">true</span>&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&#25171;&#21360;&#34920;</span>&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Set.tostring</span>(set)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">l</span> = {}&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">for</span> <span style="color: #ff8700;">k</span> <span style="color: #a1db00;">in</span> <span style="color: #d18aff;">pairs</span>(set) <span style="color: #a1db00;">do</span>&#57344;&#57345;&#57345;
-            l[#l + 1] = k&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> <span style="color: #ff4ea3;">"{"</span> .. <span style="color: #d18aff;">table</span>.<span style="color: #d18aff;">concat</span>(l,<span style="color: #ff4ea3;">","</span>) .. <span style="color: #ff4ea3;">"}"</span>&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&#38656;&#35201;&#27880;&#24847;&#30340;&#26159;&#65292;&#24517;&#39035;&#35201;&#22312; setmetatable &#20989;&#25968;&#25191;&#34892;&#21518;&#65292;&#20026; metatable &#35774;&#32622;&#20803;&#26041;&#27861;&#25165;&#21487;&#20197;&#12290;</span>&#57344;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&#22312; setmetatable &#20043;&#21069;&#20026; metatable &#36171;&#20540;&#37117;&#26159;&#26080;&#25928;&#30340;&#12290;</span>&#57344;&#57345;&#57345;
-    mt.__add = Set.union&#57344;&#57345;&#57345;
-    mt.__sub = Set.complementation&#57344;&#57345;&#57345;
-    mt.__mul = Set.intersection&#57344;&#57345;&#57345;
-    mt.__eq  = Set.equal&#57344;&#57345;&#57345;
-    mt.__lt  = Set.lt&#57344;&#57345;&#57345;
-    mt.__le  = Set.le&#57344;&#57345;&#57345;
-    mt.__tostring = Set.tostring&#57344;&#57345;&#57345;
-    mt.__metatable = <span style="color: #ff4ea3;">"do not change the set's metatable"</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    set1 = Set.new({10,20,30,50})&#57344;&#57345;&#57345;
-    set2 = Set.new({10,40})&#57344;&#57345;&#57345;
-    set3 = set1 - set2&#57344;&#57345;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">print(set3)</span>&#57344;&#57345;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">print(set1 &gt;= set2)</span>&#57344;&#57345;&#57345;
-    <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">getmetatable</span>(set3))&#57344;&#57345;&#57345;
+<pre class="src src-lua">    <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&#27979;&#35797;&#38598;&#21512;&#31867;</span>
+    Set = {}
+    mt = {}
+
+    <span style="color: #a1db00;">function</span>  <span style="color: #ffd700;">Set.new</span>(l)
+        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">set</span> = {}
+        <span style="color: #d18aff;">setmetatable</span>(set,mt)
+        <span style="color: #a1db00;">for</span> <span style="color: #ff8700;">i</span>,<span style="color: #ff8700;">v</span> <span style="color: #a1db00;">in</span> <span style="color: #d18aff;">ipairs</span>(l) <span style="color: #a1db00;">do</span>
+            set[v] = <span style="color: #5fafd7;">true</span>
+        <span style="color: #a1db00;">end</span>
+        <span style="color: #a1db00;">return</span> set
+    <span style="color: #a1db00;">end</span>
+    <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&#24182;&#38598;</span>
+    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Set.union</span>(a,b)
+        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">res</span> = Set.new({})
+        <span style="color: #a1db00;">for</span> <span style="color: #ff8700;">k</span> <span style="color: #a1db00;">in</span> <span style="color: #d18aff;">pairs</span>(a) <span style="color: #a1db00;">do</span>
+            res[k] = <span style="color: #5fafd7;">true</span>
+        <span style="color: #a1db00;">end</span>
+
+        <span style="color: #a1db00;">for</span> <span style="color: #ff8700;">k</span> <span style="color: #a1db00;">in</span> <span style="color: #d18aff;">pairs</span>(b) <span style="color: #a1db00;">do</span>
+            res[k] = <span style="color: #5fafd7;">true</span>
+        <span style="color: #a1db00;">end</span>
+        <span style="color: #a1db00;">return</span> res
+    <span style="color: #a1db00;">end</span>
+    <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&#20132;&#38598;</span>
+    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Set.intersection</span>(a,b)
+        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">res</span> = Set.new({})
+        <span style="color: #a1db00;">for</span> <span style="color: #ff8700;">k</span> <span style="color: #a1db00;">in</span> <span style="color: #d18aff;">pairs</span>(a) <span style="color: #a1db00;">do</span>
+            res[k] = b[k]
+        <span style="color: #a1db00;">end</span>
+        <span style="color: #a1db00;">return</span> res
+    <span style="color: #a1db00;">end</span>
+    <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&#34917;&#38598;</span>
+    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Set.complementation</span>(a,b)
+        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">res</span> = Set.new({})
+        <span style="color: #a1db00;">for</span> <span style="color: #ff8700;">k</span> <span style="color: #a1db00;">in</span> <span style="color: #d18aff;">pairs</span>(b) <span style="color: #a1db00;">do</span>
+            <span style="color: #a1db00;">if</span> <span style="color: #a1db00;">not</span> a[k] <span style="color: #a1db00;">then</span>
+                res[k] = <span style="color: #5fafd7;">true</span>
+            <span style="color: #a1db00;">end</span>
+        <span style="color: #a1db00;">end</span>
+        <span style="color: #a1db00;">return</span> res
+    <span style="color: #a1db00;">end</span>
+
+    <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&#38598;&#21512;&#30456;&#31561;</span>
+    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Set.equal</span>(a,b)
+        <span style="color: #a1db00;">return</span> Set.le(a,b) <span style="color: #a1db00;">and</span> Set.le(b,a)
+    <span style="color: #a1db00;">end</span>
+    <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">a&lt;b</span>
+    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Set.lt</span>(a,b)
+        <span style="color: #a1db00;">return</span> Set.le(a,b) <span style="color: #a1db00;">and</span> <span style="color: #a1db00;">not</span> Set.le(b,a)
+    <span style="color: #a1db00;">end</span>
+    <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">a&lt;=b</span>
+    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Set.le</span>(a,b)
+        <span style="color: #a1db00;">for</span> <span style="color: #ff8700;">k</span>,<span style="color: #ff8700;">_</span> <span style="color: #a1db00;">in</span> <span style="color: #d18aff;">pairs</span>(a) <span style="color: #a1db00;">do</span>
+            <span style="color: #a1db00;">if</span> <span style="color: #a1db00;">not</span> b[k] <span style="color: #a1db00;">then</span>
+                <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">false</span>
+            <span style="color: #a1db00;">end</span>
+        <span style="color: #a1db00;">end</span>
+        <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">true</span>
+    <span style="color: #a1db00;">end</span>
+
+    <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&#25171;&#21360;&#34920;</span>
+    <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">Set.tostring</span>(set)
+        <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">l</span> = {}
+        <span style="color: #a1db00;">for</span> <span style="color: #ff8700;">k</span> <span style="color: #a1db00;">in</span> <span style="color: #d18aff;">pairs</span>(set) <span style="color: #a1db00;">do</span>
+            l[#l + 1] = k
+        <span style="color: #a1db00;">end</span>
+        <span style="color: #a1db00;">return</span> <span style="color: #ff4ea3;">"{"</span> .. <span style="color: #d18aff;">table</span>.<span style="color: #d18aff;">concat</span>(l,<span style="color: #ff4ea3;">","</span>) .. <span style="color: #ff4ea3;">"}"</span>
+    <span style="color: #a1db00;">end</span>
+
+    <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&#38656;&#35201;&#27880;&#24847;&#30340;&#26159;&#65292;&#24517;&#39035;&#35201;&#22312; setmetatable &#20989;&#25968;&#25191;&#34892;&#21518;&#65292;&#20026; metatable &#35774;&#32622;&#20803;&#26041;&#27861;&#25165;&#21487;&#20197;&#12290;</span>
+    <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">&#22312; setmetatable &#20043;&#21069;&#20026; metatable &#36171;&#20540;&#37117;&#26159;&#26080;&#25928;&#30340;&#12290;</span>
+    mt.__add = Set.union
+    mt.__sub = Set.complementation
+    mt.__mul = Set.intersection
+    mt.__eq  = Set.equal
+    mt.__lt  = Set.lt
+    mt.__le  = Set.le
+    mt.__tostring = Set.tostring
+    mt.__metatable = <span style="color: #ff4ea3;">"do not change the set's metatable"</span>
+
+    set1 = Set.new({10,20,30,50})
+    set2 = Set.new({10,40})
+    set3 = set1 - set2
+    <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">print(set3)</span>
+    <span style="color: #6c6c6c; font-style: italic;">--</span><span style="color: #6c6c6c; font-style: italic;">print(set1 &gt;= set2)</span>
+    <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">getmetatable</span>(set3))
 </pre>
 </div>
 </div></li>
@@ -1581,65 +1581,65 @@ lua 和 c 语言通信的主要方式是一个无处不在的虚拟栈。几乎�
 <ul class="org-ul"><li><a id="orgheadline49"></a>PIL 实现方式一<br  /><div class="outline-text-8" id="text-orgheadline49">
 <div class="org-src-container">
 
-<pre class="src src-lua">  class_A = {&#57344;&#57345;&#57345;
-      value = 10,     <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#31867;&#21464;&#37327;</span>&#57344;&#57345;&#57345;
-      <span style="color: #ffd700;">func</span> = <span style="color: #a1db00;">function</span>()   <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#31867;&#26041;&#27861;</span>&#57344;&#57345;&#57345;
-          <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"function in base class A"</span>)&#57344;&#57345;&#57345;
-      <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-  }&#57344;&#57345;&#57345;
-  <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">class_A:new</span>(o) <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#31867;&#26500;&#36896;&#20989;&#25968;</span>&#57344;&#57345;&#57345;
-      <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">o</span> = o <span style="color: #a1db00;">or</span> {}&#57344;&#57345;&#57345;
-      <span style="color: #d18aff;">setmetatable</span>(o,class_A)&#57344;&#57345;&#57345;
-      <span style="color: #d18aff;">self</span>.__index = <span style="color: #d18aff;">self</span>     <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#20026;&#20160;&#20040;&#35201;&#36825;&#26679;&#35774;&#32622;&#21602;&#65311;</span>&#57344;&#57345;&#57345;
-      <span style="color: #a1db00;">return</span> o&#57344;&#57345;&#57345;
-  <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-  a1 = class_A:new({x=10})&#57344;&#57345;&#57345;
-  <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">string</span>.<span style="color: #d18aff;">format</span>(<span style="color: #ff4ea3;">"a1.x=%d"</span>,a1.x))&#57344;&#57345;&#57345;
-  <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">string</span>.<span style="color: #d18aff;">format</span>(<span style="color: #ff4ea3;">"a1.value=%d"</span>,a1.value))&#57344;&#57345;&#57345;
-  a1.func()&#57344;&#57345;&#57345;
+<pre class="src src-lua">  class_A = {
+      value = 10,     <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#31867;&#21464;&#37327;</span>
+      <span style="color: #ffd700;">func</span> = <span style="color: #a1db00;">function</span>()   <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#31867;&#26041;&#27861;</span>
+          <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"function in base class A"</span>)
+      <span style="color: #a1db00;">end</span>
+  }
+  <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">class_A:new</span>(o) <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#31867;&#26500;&#36896;&#20989;&#25968;</span>
+      <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">o</span> = o <span style="color: #a1db00;">or</span> {}
+      <span style="color: #d18aff;">setmetatable</span>(o,class_A)
+      <span style="color: #d18aff;">self</span>.__index = <span style="color: #d18aff;">self</span>     <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#20026;&#20160;&#20040;&#35201;&#36825;&#26679;&#35774;&#32622;&#21602;&#65311;</span>
+      <span style="color: #a1db00;">return</span> o
+  <span style="color: #a1db00;">end</span>
+
+  a1 = class_A:new({x=10})
+  <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">string</span>.<span style="color: #d18aff;">format</span>(<span style="color: #ff4ea3;">"a1.x=%d"</span>,a1.x))
+  <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">string</span>.<span style="color: #d18aff;">format</span>(<span style="color: #ff4ea3;">"a1.value=%d"</span>,a1.value))
+  a1.func()
 </pre>
 </div>
 </div></li>
 <li><a id="orgheadline50"></a>PIL 实现方式二<br  /><div class="outline-text-8" id="text-orgheadline50">
 <div class="org-src-container">
 
-<pre class="src src-lua"> class_B =&#57344;&#57345;&#57345;
-     {&#57344;&#57345;&#57345;
-         value = 10,&#57344;&#57345;&#57345;
-         <span style="color: #ffd700;">func</span> = <span style="color: #a1db00;">function</span> ()&#57344;&#57345;&#57345;
-             <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"function in base class B"</span>)&#57344;&#57345;&#57345;
-         <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-     }&#57344;&#57345;&#57345;
- <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">class_B:new</span>(o)&#57344;&#57345;&#57345;
-     <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">o</span> = o <span style="color: #a1db00;">or</span> {}&#57344;&#57345;&#57345;
-     <span style="color: #d18aff;">setmetatable</span>(o,{__index = class_B})   <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#36825;&#20063;&#23601;&#26159;&#21407;&#25991;&#20013;&#8220;&#21019;&#24314;&#19968;&#20010;&#39069;&#22806;&#30340; table &#20316;&#20026;&#36134;&#25143;&#23545;&#35937;&#30340;&#20803;&#34920;&#8221;&#65292;&#19982;&#19978;&#38754;&#30456;&#27604;&#36825;&#37324;&#22810;&#21019;&#24314;&#20102;&#19968;&#20010;&#34920;&#20316;&#20026;&#23545;&#35937;&#30340;&#20803;&#34920;</span>&#57344;&#57345;
-     <span style="color: #a1db00;">return</span> o&#57344;&#57345;&#57345;
- <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
- b1 = class_B:new({x=10})&#57344;&#57345;&#57345;
- <span style="color: #d18aff;">print</span>(b1.x)&#57344;&#57345;&#57345;
- <span style="color: #d18aff;">print</span>(b1.value_b)&#57344;&#57345;&#57345;
- b1.func()&#57344;&#57345;&#57345;
+<pre class="src src-lua"> class_B =
+     {
+         value = 10,
+         <span style="color: #ffd700;">func</span> = <span style="color: #a1db00;">function</span> ()
+             <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"function in base class B"</span>)
+         <span style="color: #a1db00;">end</span>
+     }
+ <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">class_B:new</span>(o)
+     <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">o</span> = o <span style="color: #a1db00;">or</span> {}
+     <span style="color: #d18aff;">setmetatable</span>(o,{__index = class_B})   <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#36825;&#20063;&#23601;&#26159;&#21407;&#25991;&#20013;&#8220;&#21019;&#24314;&#19968;&#20010;&#39069;&#22806;&#30340; table &#20316;&#20026;&#36134;&#25143;&#23545;&#35937;&#30340;&#20803;&#34920;&#8221;&#65292;&#19982;&#19978;&#38754;&#30456;&#27604;&#36825;&#37324;&#22810;&#21019;&#24314;&#20102;&#19968;&#20010;&#34920;&#20316;&#20026;&#23545;&#35937;&#30340;&#20803;&#34920;</span>
+     <span style="color: #a1db00;">return</span> o
+ <span style="color: #a1db00;">end</span>
+
+ b1 = class_B:new({x=10})
+ <span style="color: #d18aff;">print</span>(b1.x)
+ <span style="color: #d18aff;">print</span>(b1.value_b)
+ b1.func()
 </pre>
 </div>
 </div></li>
 <li><a id="orgheadline51"></a>PIL 继承<br  /><div class="outline-text-8" id="text-orgheadline51">
 <div class="org-src-container">
 
-<pre class="src src-lua"> class_C = class_A:new()&#57344;&#57345;&#57345;
- <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">class_C:new</span>(o)&#57344;&#57345;&#57345;
-     <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">o</span> =  o <span style="color: #a1db00;">or</span> {}&#57344;&#57345;&#57345;
-     <span style="color: #d18aff;">setmetatable</span>(o,class_C)&#57344;&#57345;&#57345;
-     <span style="color: #d18aff;">self</span>.__index = <span style="color: #d18aff;">self</span>&#57344;&#57345;&#57345;
-     <span style="color: #a1db00;">return</span> o&#57344;&#57345;&#57345;
- <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
- <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">c1 = class_C.new({x=30})  -- &#20250;&#25253;&#38169;</span>&#57344;&#57345;&#57345;
- c1 = class_C:new({x=30})&#57344;&#57345;&#57345;
- <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">string</span>.<span style="color: #d18aff;">format</span>(<span style="color: #ff4ea3;">"c1.x=%d"</span>,c1.x))&#57344;&#57345;&#57345;
- <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">string</span>.<span style="color: #d18aff;">format</span>(<span style="color: #ff4ea3;">"c1.value=%d"</span>,c1.value))&#57344;&#57345;&#57345;
- c1.func()&#57344;&#57345;&#57345;
+<pre class="src src-lua"> class_C = class_A:new()
+ <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">class_C:new</span>(o)
+     <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">o</span> =  o <span style="color: #a1db00;">or</span> {}
+     <span style="color: #d18aff;">setmetatable</span>(o,class_C)
+     <span style="color: #d18aff;">self</span>.__index = <span style="color: #d18aff;">self</span>
+     <span style="color: #a1db00;">return</span> o
+ <span style="color: #a1db00;">end</span>
+
+ <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">c1 = class_C.new({x=30})  -- &#20250;&#25253;&#38169;</span>
+ c1 = class_C:new({x=30})
+ <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">string</span>.<span style="color: #d18aff;">format</span>(<span style="color: #ff4ea3;">"c1.x=%d"</span>,c1.x))
+ <span style="color: #d18aff;">print</span>(<span style="color: #d18aff;">string</span>.<span style="color: #d18aff;">format</span>(<span style="color: #ff4ea3;">"c1.value=%d"</span>,c1.value))
+ c1.func()
 </pre>
 </div>
 <p>
@@ -1649,59 +1649,59 @@ lua 和 c 语言通信的主要方式是一个无处不在的虚拟栈。几乎�
 <li><a id="orgheadline52"></a><span class="done DONE">DONE</span> 云风的实现方式<sup><a id="fnr.8" class="footref" href="#fn.8">8</a></sup><br  /><div class="outline-text-8" id="text-orgheadline52">
 <div class="org-src-container">
 
-<pre class="src src-lua">  <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">_class</span> = {}&#57344;&#57345;&#57345;
-  <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">class</span>(super)&#57344;&#57345;&#57345;
-      <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">class_type</span> = {}&#57344;&#57345;&#57345;
-      class_type.ctor = <span style="color: #5fafd7;">false</span>&#57344;&#57345;&#57345;
-      class_type.super = super&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-      <span style="color: #ffd700;">class_type.new</span> = <span style="color: #a1db00;">function</span>(...)&#57344;&#57345;&#57345;
-          <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">obj</span> = {}&#57344;&#57345;&#57345;
-          <span style="color: #a1db00;">do</span>&#57344;&#57345;&#57345;
-              <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">create</span>&#57344;&#57345;&#57345;
-              <span style="color: #ffd700;">create</span> = <span style="color: #a1db00;">function</span>(c,...)&#57344;&#57345;&#57345;
-                  <span style="color: #a1db00;">if</span> c.super <span style="color: #a1db00;">then</span>&#57344;&#57345;&#57345;
-                      create(c.super,...)&#57344;&#57345;&#57345;
-                  <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-                  <span style="color: #a1db00;">if</span> c.ctor <span style="color: #a1db00;">then</span>&#57344;&#57345;&#57345;
-                      c.ctor(obj,...)&#57344;&#57345;&#57345;
-                  <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-              <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-              create(class_type,...)&#57344;&#57345;&#57345;
-          <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-          <span style="color: #d18aff;">setmetatable</span>(obj,{__index = _class[class_type]})&#57344;&#57345;&#57345;
-          <span style="color: #a1db00;">return</span> obj&#57344;&#57345;&#57345;
-      <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-      <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#27880;&#24847;&#35201;&#22312; setmetatable &#20989;&#25968;&#25191;&#34892;&#20043;&#21518;&#20877;&#28155;&#21152;&#20803;&#26041;&#27861;</span>&#57344;&#57345;&#57345;
-      <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">vtbl</span> = {}&#57344;&#57345;&#57345;
-      _class[class_type] = vtbl  <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#31867;&#20284;&#20110; C++&#30340;&#34394;&#34920;</span>&#57344;&#57345;&#57345;
-      <span style="color: #d18aff;">setmetatable</span>(class_type,{__newindex = <span style="color: #a1db00;">function</span>(t,k,v)&#57344;&#57345;&#57345;
-                                   vtbl[k] = v&#57344;&#57345;&#57345;
-      <span style="color: #a1db00;">end</span>})&#57344;&#57345;&#57345;
-      <span style="color: #a1db00;">if</span> super <span style="color: #a1db00;">then</span>&#57344;&#57345;&#57345;
-          <span style="color: #d18aff;">setmetatable</span>(class_type,{__index = <span style="color: #a1db00;">function</span>(k,v)&#57344;&#57345;&#57345;
-                                       <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">ret</span> = _class[super][k]&#57344;&#57345;&#57345;
-                                       vtbl[k]    = ret&#57344;&#57345;&#57345;
-                                       <span style="color: #a1db00;">return</span> ret&#57344;&#57345;&#57345;
-          <span style="color: #a1db00;">end</span>})&#57344;&#57345;&#57345;
-      <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-      <span style="color: #a1db00;">return</span> class_type&#57344;&#57345;&#57345;
-  <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-  base_type = class()&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-  <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">base_type:ctor</span>()&#57344;&#57345;&#57345;
-      <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"base_type ctor"</span>)&#57344;&#57345;&#57345;
-  <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-  <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">base_type:print_f</span>()&#57344;&#57345;&#57345;
-      <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"base_type print function"</span>)&#57344;&#57345;&#57345;
-  <span style="color: #a1db00;">end</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-  test = base_type:new()&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-  test.print_f()&#57344;&#57345;&#57345;
+<pre class="src src-lua">  <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">_class</span> = {}
+  <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">class</span>(super)
+      <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">class_type</span> = {}
+      class_type.ctor = <span style="color: #5fafd7;">false</span>
+      class_type.super = super
+
+      <span style="color: #ffd700;">class_type.new</span> = <span style="color: #a1db00;">function</span>(...)
+          <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">obj</span> = {}
+          <span style="color: #a1db00;">do</span>
+              <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">create</span>
+              <span style="color: #ffd700;">create</span> = <span style="color: #a1db00;">function</span>(c,...)
+                  <span style="color: #a1db00;">if</span> c.super <span style="color: #a1db00;">then</span>
+                      create(c.super,...)
+                  <span style="color: #a1db00;">end</span>
+                  <span style="color: #a1db00;">if</span> c.ctor <span style="color: #a1db00;">then</span>
+                      c.ctor(obj,...)
+                  <span style="color: #a1db00;">end</span>
+              <span style="color: #a1db00;">end</span>
+              create(class_type,...)
+          <span style="color: #a1db00;">end</span>
+          <span style="color: #d18aff;">setmetatable</span>(obj,{__index = _class[class_type]})
+          <span style="color: #a1db00;">return</span> obj
+      <span style="color: #a1db00;">end</span>
+      <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#27880;&#24847;&#35201;&#22312; setmetatable &#20989;&#25968;&#25191;&#34892;&#20043;&#21518;&#20877;&#28155;&#21152;&#20803;&#26041;&#27861;</span>
+      <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">vtbl</span> = {}
+      _class[class_type] = vtbl  <span style="color: #6c6c6c; font-style: italic;">-- </span><span style="color: #6c6c6c; font-style: italic;">&#31867;&#20284;&#20110; C++&#30340;&#34394;&#34920;</span>
+      <span style="color: #d18aff;">setmetatable</span>(class_type,{__newindex = <span style="color: #a1db00;">function</span>(t,k,v)
+                                   vtbl[k] = v
+      <span style="color: #a1db00;">end</span>})
+      <span style="color: #a1db00;">if</span> super <span style="color: #a1db00;">then</span>
+          <span style="color: #d18aff;">setmetatable</span>(class_type,{__index = <span style="color: #a1db00;">function</span>(k,v)
+                                       <span style="color: #a1db00;">local</span> <span style="color: #ff8700;">ret</span> = _class[super][k]
+                                       vtbl[k]    = ret
+                                       <span style="color: #a1db00;">return</span> ret
+          <span style="color: #a1db00;">end</span>})
+      <span style="color: #a1db00;">end</span>
+      <span style="color: #a1db00;">return</span> class_type
+  <span style="color: #a1db00;">end</span>
+
+  base_type = class()
+
+  <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">base_type:ctor</span>()
+      <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"base_type ctor"</span>)
+  <span style="color: #a1db00;">end</span>
+
+  <span style="color: #a1db00;">function</span> <span style="color: #ffd700;">base_type:print_f</span>()
+      <span style="color: #d18aff;">print</span>(<span style="color: #ff4ea3;">"base_type print function"</span>)
+  <span style="color: #a1db00;">end</span>
+
+
+  test = base_type:new()
+
+  test.print_f()
 </pre>
 </div>
 </div></li></ul></li></ul></li></ul>
@@ -1900,10 +1900,10 @@ In src/luaconf.h (5.1.1), <code>LUA_PATH_DEFAULT</code> 是指 <code>LUA_LDIR</c
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"> wget -P ~/Downloads/ http://www.lua.org/ftp/lua-5.3.1.tar.gz&#57344;&#57345;&#57345;
- tar zxf ~/Downloads/lua-5.3.1.gz&#57344;&#57345;&#57345;
- <span style="color: #d18aff;">cd</span> lua-5.3.1&#57344;&#57345;&#57345;
- make linux install&#57344;&#57345;&#57345;
+<pre class="src src-sh"> wget -P ~/Downloads/ http://www.lua.org/ftp/lua-5.3.1.tar.gz
+ tar zxf ~/Downloads/lua-5.3.1.gz
+ <span style="color: #d18aff;">cd</span> lua-5.3.1
+ make linux install
 </pre>
 </div>
 
@@ -1912,10 +1912,46 @@ In src/luaconf.h (5.1.1), <code>LUA_PATH_DEFAULT</code> 是指 <code>LUA_LDIR</c
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"> make <span style="color: #ff8700;">CFLAGS</span>+=-g linux&#57344;&#57345;&#57345;
- make local&#57344;&#57345;&#57345;
+<pre class="src src-sh"> make <span style="color: #ff8700;">CFLAGS</span>+=-g linux
+ make local
 </pre>
 </div>
+<table border="1" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" width="auto">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">./lua-5.3.1/</td>
+<td class="org-left">[error</td>
+<td class="org-left">opening</td>
+<td class="org-left">dir]</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">0</td>
+<td class="org-left">directories</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
 <p>
 所有生成的 bin、lib、include 文件都放在 include 文件中。
 </p>
@@ -2095,8 +2131,8 @@ Lua 5.2.2 版本的源代码分布在 58 个文件中，共 20220 行 C 代码�
 </div>
 </div></div>
 <div id="postamble" class="status">
-<p class="author">Author: ubuntu-company</p>
-<p class="date">Created: 2016-02-19 Fri 17:00</p>
+<p class="author">Author: ubuntu</p>
+<p class="date">Created: 2016-03-20 日 02:25</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

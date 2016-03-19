@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-02-19 Fri 16:59 -->
+<!-- 2016-03-20 日 02:24 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>面试中遇到的代码</title>
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="ubuntu-company" />
+<meta  name="author" content="ubuntu" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -426,88 +426,88 @@ for the JavaScript code in this tag.
 <div class="outline-text-3" id="text-2-4">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">using</span> <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">std</span>;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">Top</span> {&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">public</span>:&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">c</span> = <span style="color: #ff4ea3;">'T'</span>;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">f</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">" Top::f()"</span> &lt;&lt; endl; }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">g</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">" Top::g()"</span> &lt;&lt; endl; }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">h</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">" Top::h()"</span> &lt;&lt; endl; }&#57344;&#57345;&#57345;
-    };&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">Left</span> : <span style="color: #a1db00;">virtual</span> <span style="color: #a1db00;">public</span> <span style="color: #00d7af;">Top</span> {&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">public</span>:&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">c</span> = <span style="color: #ff4ea3;">'L'</span>;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">f</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Left::f()"</span> &lt;&lt; endl; }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">g_left</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Left::g_left()"</span> &lt;&lt; endl; }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">h_left</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Left::h_left()"</span> &lt;&lt; endl; }&#57344;&#57345;&#57345;
-    };&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">Right</span> :<span style="color: #a1db00;">virtual</span> <span style="color: #a1db00;">public</span> <span style="color: #00d7af;">Top</span> {&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">public</span>:&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">c</span> = <span style="color: #ff4ea3;">'R'</span>;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">f</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Right::f()"</span> &lt;&lt; endl; }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">g_right</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Right::g_right()"</span> &lt;&lt; endl; }&#57344;&#57345;
-        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">h_right</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Right::h_right()"</span> &lt;&lt; endl; }&#57344;&#57345;
-    };&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">Bottom</span> :<span style="color: #a1db00;">public</span> <span style="color: #00d7af;">Left</span>, <span style="color: #a1db00;">public</span> <span style="color: #00d7af;">Right</span> {&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">public</span>:&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">c</span> = <span style="color: #ff4ea3;">'B'</span>;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">f</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Bottom::f()"</span> &lt;&lt; endl; }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">g_left</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Bottom::g_left()"</span> &lt;&lt; endl; }&#57345;
-        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">g_right</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Bottom::g_right()"</span> &lt;&lt; endl; }&#57344;&#57345;
-        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">h_bottom</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"GrandChild::h_bottom()"</span> &lt;&lt; endl; }&#57344;&#57345;
-    };&#57344;&#57345;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#21333;&#19968;&#30340;&#19968;&#33324;&#32487;&#25215;&#65288;&#24102;&#25104;&#21592;&#21464;&#37327;&#12289;&#34394;&#20989;&#25968;&#12289;&#34394;&#20989;&#25968;&#35206;&#30422;&#65289;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#21333;&#19968;&#30340;&#34394;&#25311;&#32487;&#25215;&#65288;&#24102;&#25104;&#21592;&#21464;&#37327;&#12289;&#34394;&#20989;&#25968;&#12289;&#34394;&#20989;&#25968;&#35206;&#30422;&#65289;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#22810;&#37325;&#32487;&#25215;&#65288;&#24102;&#25104;&#21592;&#21464;&#37327;&#12289;&#34394;&#20989;&#25968;&#12289;&#34394;&#20989;&#25968;&#35206;&#30422;&#65289;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#37325;&#22797;&#22810;&#37325;&#32487;&#25215;&#65288;&#24102;&#25104;&#21592;&#21464;&#37327;&#12289;&#34394;&#20989;&#25968;&#12289;&#34394;&#20989;&#25968;&#35206;&#30422;&#65289;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#33777;&#24418;&#30340;&#34394;&#25311;&#22810;&#37325;&#32487;&#25215;&#65288;&#24102;&#25104;&#21592;&#21464;&#37327;&#12289;&#34394;&#20989;&#25968;&#12289;&#34394;&#20989;&#25968;&#35206;&#30422;&#65289;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">PrintCppInsideModel</span> ()&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">typedef</span> <span style="color: #00d7af;">void</span> (*<span style="color: #00d7af;">Fun</span>)(<span style="color: #00d7af;">void</span>);&#57344;&#57345;&#57345;
-        cout &lt;&lt; <span style="color: #ff4ea3;">"&#22810;&#37325;&#32487;&#25215;&#26102;&#30340;&#24773;&#20917;&#65288;&#26080;&#34394;&#20989;&#25968;&#35206;&#30422;&#65289;&#65306;"</span> &lt;&lt; endl;&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">Bottom</span> <span style="color: #ff8700;">bottom</span>;&#57344;&#57345;&#57345;
-        cout &lt;&lt; <span style="color: #ff4ea3;">"DerivedMulti &#31867;&#31532;&#19968;&#20010;&#34394;&#20989;&#25968;&#34920;&#22320;&#22336;&#65306;"</span> &lt;&lt; (<span style="color: #00d7af;">int</span>*)(&amp;bottom) &lt;&lt; endl;&#57344;&#57345;
-        cout &lt;&lt; <span style="color: #ff4ea3;">"&#20381;&#27425;&#35843;&#29992;&#19977;&#20010;&#34394;&#20989;&#25968;&#34920;&#20013;&#30340;&#34394;&#20989;&#25968;&#65306;"</span> &lt;&lt; endl;&#57344;&#57345;&#57345;
-        cout &lt;&lt; <span style="color: #ff4ea3;">"&#31532;&#19968;&#20010;&#34394;&#20989;&#25968;&#34920;&#20013;&#30340;&#34394;&#20989;&#25968;&#65306;"</span> &lt;&lt; endl;&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">Fun</span> <span style="color: #ff8700;">pFun</span> = <span style="color: #5fafd7;">NULL</span>;&#57344;&#57345;&#57345;
-        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom)));&#57344;&#57345;&#57345;
-        pFun ();&#57344;&#57345;&#57345;
-        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom)) + 1);&#57344;&#57345;&#57345;
-        pFun ();&#57344;&#57345;&#57345;
-        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom)) + 2);&#57344;&#57345;&#57345;
-        pFun ();&#57344;&#57345;&#57345;
-        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom)) + 3);&#57344;&#57345;&#57345;
-        pFun ();&#57344;&#57345;&#57345;
-        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom)) + 4);&#57344;&#57345;&#57345;
-        pFun ();&#57344;&#57345;&#57345;
-        cout &lt;&lt; <span style="color: #ff4ea3;">"&#31532;&#20108;&#20010;&#34394;&#20989;&#25968;&#34920;&#20013;&#30340;&#34394;&#20989;&#25968;&#65306;"</span> &lt;&lt; endl;&#57344;&#57345;&#57345;
-        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom) + 1));&#57344;&#57345;&#57345;
-        pFun ();&#57344;&#57345;&#57345;
-        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom) + 1) + 1);&#57344;&#57345;&#57345;
-        pFun ();&#57344;&#57345;&#57345;
-        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom) + 1) + 2);&#57344;&#57345;&#57345;
-        pFun ();&#57344;&#57345;&#57345;
-        cout &lt;&lt; <span style="color: #ff4ea3;">"&#31532;&#19977;&#20010;&#34394;&#20989;&#25968;&#34920;&#20013;&#30340;&#34394;&#20989;&#25968;&#65306;"</span> &lt;&lt; endl;&#57344;&#57345;&#57345;
-        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom) + 2));&#57344;&#57345;&#57345;
-        pFun ();&#57344;&#57345;&#57345;
-        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom) + 2) + 1);&#57344;&#57345;&#57345;
-        pFun ();&#57344;&#57345;&#57345;
-        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom) + 2) + 2);&#57344;&#57345;&#57345;
-        pFun ();&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+
+    <span style="color: #a1db00;">using</span> <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">std</span>;
+
+    <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">Top</span> {
+    <span style="color: #a1db00;">public</span>:
+        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">c</span> = <span style="color: #ff4ea3;">'T'</span>;
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">f</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">" Top::f()"</span> &lt;&lt; endl; }
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">g</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">" Top::g()"</span> &lt;&lt; endl; }
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">h</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">" Top::h()"</span> &lt;&lt; endl; }
+    };
+
+    <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">Left</span> : <span style="color: #a1db00;">virtual</span> <span style="color: #a1db00;">public</span> <span style="color: #00d7af;">Top</span> {
+    <span style="color: #a1db00;">public</span>:
+        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">c</span> = <span style="color: #ff4ea3;">'L'</span>;
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">f</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Left::f()"</span> &lt;&lt; endl; }
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">g_left</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Left::g_left()"</span> &lt;&lt; endl; }
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">h_left</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Left::h_left()"</span> &lt;&lt; endl; }
+    };
+
+    <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">Right</span> :<span style="color: #a1db00;">virtual</span> <span style="color: #a1db00;">public</span> <span style="color: #00d7af;">Top</span> {
+    <span style="color: #a1db00;">public</span>:
+        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">c</span> = <span style="color: #ff4ea3;">'R'</span>;
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">f</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Right::f()"</span> &lt;&lt; endl; }
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">g_right</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Right::g_right()"</span> &lt;&lt; endl; }
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">h_right</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Right::h_right()"</span> &lt;&lt; endl; }
+    };
+
+    <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">Bottom</span> :<span style="color: #a1db00;">public</span> <span style="color: #00d7af;">Left</span>, <span style="color: #a1db00;">public</span> <span style="color: #00d7af;">Right</span> {
+    <span style="color: #a1db00;">public</span>:
+        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">c</span> = <span style="color: #ff4ea3;">'B'</span>;
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">f</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Bottom::f()"</span> &lt;&lt; endl; }
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">g_left</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Bottom::g_left()"</span> &lt;&lt; endl; }
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">g_right</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Bottom::g_right()"</span> &lt;&lt; endl; }
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">h_bottom</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"GrandChild::h_bottom()"</span> &lt;&lt; endl; }
+    };
+    <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#21333;&#19968;&#30340;&#19968;&#33324;&#32487;&#25215;&#65288;&#24102;&#25104;&#21592;&#21464;&#37327;&#12289;&#34394;&#20989;&#25968;&#12289;&#34394;&#20989;&#25968;&#35206;&#30422;&#65289;</span>
+
+    <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#21333;&#19968;&#30340;&#34394;&#25311;&#32487;&#25215;&#65288;&#24102;&#25104;&#21592;&#21464;&#37327;&#12289;&#34394;&#20989;&#25968;&#12289;&#34394;&#20989;&#25968;&#35206;&#30422;&#65289;</span>
+
+    <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#22810;&#37325;&#32487;&#25215;&#65288;&#24102;&#25104;&#21592;&#21464;&#37327;&#12289;&#34394;&#20989;&#25968;&#12289;&#34394;&#20989;&#25968;&#35206;&#30422;&#65289;</span>
+
+    <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#37325;&#22797;&#22810;&#37325;&#32487;&#25215;&#65288;&#24102;&#25104;&#21592;&#21464;&#37327;&#12289;&#34394;&#20989;&#25968;&#12289;&#34394;&#20989;&#25968;&#35206;&#30422;&#65289;</span>
+
+    <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#33777;&#24418;&#30340;&#34394;&#25311;&#22810;&#37325;&#32487;&#25215;&#65288;&#24102;&#25104;&#21592;&#21464;&#37327;&#12289;&#34394;&#20989;&#25968;&#12289;&#34394;&#20989;&#25968;&#35206;&#30422;&#65289;</span>
+
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">PrintCppInsideModel</span> ()
+    {
+        <span style="color: #a1db00;">typedef</span> <span style="color: #00d7af;">void</span> (*<span style="color: #00d7af;">Fun</span>)(<span style="color: #00d7af;">void</span>);
+        cout &lt;&lt; <span style="color: #ff4ea3;">"&#22810;&#37325;&#32487;&#25215;&#26102;&#30340;&#24773;&#20917;&#65288;&#26080;&#34394;&#20989;&#25968;&#35206;&#30422;&#65289;&#65306;"</span> &lt;&lt; endl;
+        <span style="color: #00d7af;">Bottom</span> <span style="color: #ff8700;">bottom</span>;
+        cout &lt;&lt; <span style="color: #ff4ea3;">"DerivedMulti &#31867;&#31532;&#19968;&#20010;&#34394;&#20989;&#25968;&#34920;&#22320;&#22336;&#65306;"</span> &lt;&lt; (<span style="color: #00d7af;">int</span>*)(&amp;bottom) &lt;&lt; endl;
+        cout &lt;&lt; <span style="color: #ff4ea3;">"&#20381;&#27425;&#35843;&#29992;&#19977;&#20010;&#34394;&#20989;&#25968;&#34920;&#20013;&#30340;&#34394;&#20989;&#25968;&#65306;"</span> &lt;&lt; endl;
+        cout &lt;&lt; <span style="color: #ff4ea3;">"&#31532;&#19968;&#20010;&#34394;&#20989;&#25968;&#34920;&#20013;&#30340;&#34394;&#20989;&#25968;&#65306;"</span> &lt;&lt; endl;
+        <span style="color: #00d7af;">Fun</span> <span style="color: #ff8700;">pFun</span> = <span style="color: #5fafd7;">NULL</span>;
+        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom)));
+        pFun ();
+        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom)) + 1);
+        pFun ();
+        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom)) + 2);
+        pFun ();
+        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom)) + 3);
+        pFun ();
+        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom)) + 4);
+        pFun ();
+        cout &lt;&lt; <span style="color: #ff4ea3;">"&#31532;&#20108;&#20010;&#34394;&#20989;&#25968;&#34920;&#20013;&#30340;&#34394;&#20989;&#25968;&#65306;"</span> &lt;&lt; endl;
+        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom) + 1));
+        pFun ();
+        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom) + 1) + 1);
+        pFun ();
+        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom) + 1) + 2);
+        pFun ();
+        cout &lt;&lt; <span style="color: #ff4ea3;">"&#31532;&#19977;&#20010;&#34394;&#20989;&#25968;&#34920;&#20013;&#30340;&#34394;&#20989;&#25968;&#65306;"</span> &lt;&lt; endl;
+        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom) + 2));
+        pFun ();
+        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom) + 2) + 1);
+        pFun ();
+        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom) + 2) + 2);
+        pFun ();
+
+        <span style="color: #a1db00;">return</span> 0;
+    }
 </pre>
 </div>
 </div>
@@ -517,50 +517,50 @@ for the JavaScript code in this tag.
 <div class="outline-text-3" id="text-2-5">
 <div class="org-src-container">
 
-<pre class="src src-c++">    <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">MyString</span> {&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">private</span>:&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">m_data</span>;&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">public</span>:&#57344;&#57345;&#57345;
-        <span style="color: #ffd700;">MyString</span> () : m_data (<span style="color: #a1db00;">new</span> <span style="color: #00d7af;">char</span>[1]) { *m_data = <span style="color: #ff4ea3;">'\0'</span>; }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #ffd700;">MyString</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">str</span>) : m_data (<span style="color: #a1db00;">new</span> <span style="color: #00d7af;">char</span>[strlen (str) + 1]) {<span style="color: #6c6c6c; font-style: italic;">/*</span><span style="color: #6c6c6c; font-style: italic;">strcpy (m_data, str);*/</span> }&#57344;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #ffd700;">MyString</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">MyString</span>&amp; <span style="color: #ff8700;">rhs</span>) : m_data (<span style="color: #a1db00;">new</span> <span style="color: #00d7af;">char</span>[rhs.size () + 1]) {<span style="color: #6c6c6c; font-style: italic;">/*</span><span style="color: #6c6c6c; font-style: italic;">strcpy (m_data, rhs.c_str ());*/</span> }&#57344;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">Delegate constructor in C++11</span>&#57344;&#57345;&#57345;
-        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">MyString(const MyString&amp; rhs) : MyString(rhs.m_data)  {}</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">MyString</span>&amp; <span style="color: #a1db00;">operator</span><span style="color: #ffd700;">=</span>(<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">MyString</span>&amp; <span style="color: #ff8700;">rhs</span>) {&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">MyString</span> <span style="color: #ff8700;">tmp</span> (rhs);&#57344;&#57345;&#57345;
-            swap (tmp);&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> *<span style="color: #a1db00;">this</span>;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">in C++11</span>&#57344;&#57345;&#57345;
-        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">MyString&amp; operator=(MyString rhs) // yes, pass-by-value</span>&#57344;&#57345;&#57345;
-        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">{</span>&#57344;&#57345;&#57345;
-        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">swap (rhs);</span>&#57344;&#57345;&#57345;
-        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">return *this;</span>&#57344;&#57345;&#57345;
-        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">}</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">C++ 11 move</span>&#57344;&#57345;&#57345;
-        <span style="color: #ffd700;">MyString</span> (<span style="color: #00d7af;">MyString</span>&amp;&amp; <span style="color: #ff8700;">rhs</span>) : m_data (rhs.m_data) { rhs.m_data = nullptr; }&#57344;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">MyString</span>&amp; <span style="color: #a1db00;">operator</span><span style="color: #ffd700;">=</span>(<span style="color: #00d7af;">MyString</span>&amp;&amp; <span style="color: #ff8700;">rhs</span>) {&#57344;&#57345;&#57345;
-            swap (rhs);&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> *<span style="color: #a1db00;">this</span>;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">size_t</span> <span style="color: #ffd700;">size</span> () <span style="color: #a1db00;">const</span> { <span style="color: #a1db00;">return</span> strlen (m_data); }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ffd700;">c_str</span> () <span style="color: #a1db00;">const</span> { <span style="color: #a1db00;">return</span> m_data; }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">swap</span> (<span style="color: #00d7af;">MyString</span>&amp; <span style="color: #ff8700;">rhs</span>) { <span style="color: #5fafd7;">std</span>::swap (m_data, rhs.m_data); }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        ~<span style="color: #ffd700;">MyString</span> () { <span style="color: #a1db00;">delete</span>[] m_data; }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    };&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">    #endif</span>&#57344;&#57345;&#57345;
+<pre class="src src-c++">    <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">MyString</span> {
+    <span style="color: #a1db00;">private</span>:
+        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">m_data</span>;
+    <span style="color: #a1db00;">public</span>:
+        <span style="color: #ffd700;">MyString</span> () : m_data (<span style="color: #a1db00;">new</span> <span style="color: #00d7af;">char</span>[1]) { *m_data = <span style="color: #ff4ea3;">'\0'</span>; }
+
+        <span style="color: #ffd700;">MyString</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">str</span>) : m_data (<span style="color: #a1db00;">new</span> <span style="color: #00d7af;">char</span>[strlen (str) + 1]) {<span style="color: #6c6c6c; font-style: italic;">/*</span><span style="color: #6c6c6c; font-style: italic;">strcpy (m_data, str);*/</span> }
+
+        <span style="color: #ffd700;">MyString</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">MyString</span>&amp; <span style="color: #ff8700;">rhs</span>) : m_data (<span style="color: #a1db00;">new</span> <span style="color: #00d7af;">char</span>[rhs.size () + 1]) {<span style="color: #6c6c6c; font-style: italic;">/*</span><span style="color: #6c6c6c; font-style: italic;">strcpy (m_data, rhs.c_str ());*/</span> }
+
+        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">Delegate constructor in C++11</span>
+        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">MyString(const MyString&amp; rhs) : MyString(rhs.m_data)  {}</span>
+
+        <span style="color: #00d7af;">MyString</span>&amp; <span style="color: #a1db00;">operator</span><span style="color: #ffd700;">=</span>(<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">MyString</span>&amp; <span style="color: #ff8700;">rhs</span>) {
+            <span style="color: #00d7af;">MyString</span> <span style="color: #ff8700;">tmp</span> (rhs);
+            swap (tmp);
+            <span style="color: #a1db00;">return</span> *<span style="color: #a1db00;">this</span>;
+        }
+
+        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">in C++11</span>
+        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">MyString&amp; operator=(MyString rhs) // yes, pass-by-value</span>
+        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">{</span>
+        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">swap (rhs);</span>
+        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">return *this;</span>
+        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">}</span>
+
+        <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">C++ 11 move</span>
+        <span style="color: #ffd700;">MyString</span> (<span style="color: #00d7af;">MyString</span>&amp;&amp; <span style="color: #ff8700;">rhs</span>) : m_data (rhs.m_data) { rhs.m_data = nullptr; }
+
+        <span style="color: #00d7af;">MyString</span>&amp; <span style="color: #a1db00;">operator</span><span style="color: #ffd700;">=</span>(<span style="color: #00d7af;">MyString</span>&amp;&amp; <span style="color: #ff8700;">rhs</span>) {
+            swap (rhs);
+            <span style="color: #a1db00;">return</span> *<span style="color: #a1db00;">this</span>;
+        }
+
+        <span style="color: #00d7af;">size_t</span> <span style="color: #ffd700;">size</span> () <span style="color: #a1db00;">const</span> { <span style="color: #a1db00;">return</span> strlen (m_data); }
+
+        <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ffd700;">c_str</span> () <span style="color: #a1db00;">const</span> { <span style="color: #a1db00;">return</span> m_data; }
+
+        <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">swap</span> (<span style="color: #00d7af;">MyString</span>&amp; <span style="color: #ff8700;">rhs</span>) { <span style="color: #5fafd7;">std</span>::swap (m_data, rhs.m_data); }
+
+        ~<span style="color: #ffd700;">MyString</span> () { <span style="color: #a1db00;">delete</span>[] m_data; }
+
+    };
+<span style="color: #d18aff;">    #endif</span>
 </pre>
 </div>
 </div>
@@ -588,99 +588,99 @@ for the JavaScript code in this tag.
 <div class="outline-text-4" id="text-3-1-1">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;cstdio&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;cassert&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">my_atoi</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">str</span>)&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">sign</span> = 0, <span style="color: #ff8700;">num</span> = 0;&#57344;&#57345;&#57345;
-        assert (<span style="color: #5fafd7;">NULL</span> != str);&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">while</span> ( *str == <span style="color: #ff4ea3;">' '</span> )&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            str++;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> ( <span style="color: #ff4ea3;">'-'</span> == *str )&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            sign = 1; str++;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">while</span> ( (*str &gt;= <span style="color: #ff4ea3;">'0'</span>) &amp;&amp; (*str &lt;= <span style="color: #ff4ea3;">'9'</span>) )&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            num = num * 10 + (*str - <span style="color: #ff4ea3;">'0'</span>); <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#23601;&#26159;&#36825;&#19968;&#34892;&#65292;&#23558;&#23545;&#24212;&#23383;&#31526;&#36716;&#21270;&#20026;&#25968;&#23383;</span>&#57344;&#57345;
-&#57344;&#57345;&#57345;
-            str++;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> ( sign == 1 )&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> -num;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">else</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> num;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">double</span> <span style="color: #ffd700;">my_atof</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">str</span>)&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">double</span> <span style="color: #ff8700;">val</span> = 0.0, <span style="color: #ff8700;">power</span> = 0.0;&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">sign</span> = 0;&#57344;&#57345;&#57345;
-        assert (<span style="color: #5fafd7;">NULL</span> != str);&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">while</span> ( *str == <span style="color: #ff4ea3;">' '</span> )&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            str++;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        sign = (*str == <span style="color: #ff4ea3;">'-'</span>) ? -1 : 1;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> ( <span style="color: #ff4ea3;">'-'</span> == *str || <span style="color: #ff4ea3;">'+'</span> == *str )&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            str++;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">while</span> ( (*str &gt;= <span style="color: #ff4ea3;">'0'</span>) &amp;&amp; (*str &lt;= <span style="color: #ff4ea3;">'9'</span>) )&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            val = val* 10.0 + (*str - <span style="color: #ff4ea3;">'0'</span>); str++;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> ( <span style="color: #ff4ea3;">'.'</span> == *str )&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            str++;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        power = 1.0;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">while</span> ( (*str &gt;= <span style="color: #ff4ea3;">'0'</span>) &amp;&amp; (*str &lt;= <span style="color: #ff4ea3;">'9'</span>) )&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            val = val* 10.0 + (*str - <span style="color: #ff4ea3;">'0'</span>);&#57344;&#57345;&#57345;
-            power *= 10; str++;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> sign*val / power;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">char</span>* <span style="color: #ffd700;">my_itoa</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">val</span>, <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">buf</span>, <span style="color: #00d7af;">unsigned</span> <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">radix</span>)&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">bufptr</span>;&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">firstdig</span>;&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">temp</span>;&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">unsigned</span> <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">digval</span>;&#57344;&#57345;&#57345;
-        assert (buf != <span style="color: #5fafd7;">NULL</span>);&#57344;&#57345;&#57345;
-        bufptr = buf;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> ( val &lt; 0 )&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            *bufptr++ = <span style="color: #ff4ea3;">'-'</span>; val = (<span style="color: #00d7af;">unsigned</span> <span style="color: #00d7af;">int</span>)(-(<span style="color: #00d7af;">int</span>)val);&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        firstdig = bufptr;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">do</span>&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            digval = (<span style="color: #00d7af;">unsigned</span> <span style="color: #00d7af;">int</span>)val % radix;    val /= radix;&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">if</span> ( digval &gt; 9 )&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                *bufptr++ = (<span style="color: #00d7af;">char</span>)(digval - 10 + <span style="color: #ff4ea3;">'a'</span>);&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">else</span>&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                *bufptr++ = (<span style="color: #00d7af;">char</span>)(digval + <span style="color: #ff4ea3;">'0'</span>);&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-        } <span style="color: #a1db00;">while</span> ( val &gt; 0 );&#57344;&#57345;&#57345;
-        *bufptr-- = <span style="color: #ff4ea3;">'\0'</span>;<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#35774;&#32622;&#23383;&#31526;&#20018;&#26411;&#23614;&#65292;&#24182;&#23558;&#25351;&#38024;&#25351;&#21521;&#26368;&#21518;&#19968;&#20010;&#23383;&#31526;</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">do</span> <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#21453;&#36716;&#23383;&#31526;</span>&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            temp = *bufptr;     *bufptr = *firstdig;  *firstdig = temp;&#57344;&#57345;
-            --bufptr; ++firstdig;&#57344;&#57345;&#57345;
-        } <span style="color: #a1db00;">while</span> ( firstdig &lt; bufptr );&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> buf;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;cstdio&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;cassert&gt;</span>
+
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">my_atoi</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">str</span>)
+    {
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">sign</span> = 0, <span style="color: #ff8700;">num</span> = 0;
+        assert (<span style="color: #5fafd7;">NULL</span> != str);
+        <span style="color: #a1db00;">while</span> ( *str == <span style="color: #ff4ea3;">' '</span> )
+        {
+            str++;
+        }
+        <span style="color: #a1db00;">if</span> ( <span style="color: #ff4ea3;">'-'</span> == *str )
+        {
+            sign = 1; str++;
+        }
+        <span style="color: #a1db00;">while</span> ( (*str &gt;= <span style="color: #ff4ea3;">'0'</span>) &amp;&amp; (*str &lt;= <span style="color: #ff4ea3;">'9'</span>) )
+        {
+            num = num * 10 + (*str - <span style="color: #ff4ea3;">'0'</span>); <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#23601;&#26159;&#36825;&#19968;&#34892;&#65292;&#23558;&#23545;&#24212;&#23383;&#31526;&#36716;&#21270;&#20026;&#25968;&#23383;</span>
+
+            str++;
+        }
+        <span style="color: #a1db00;">if</span> ( sign == 1 )
+            <span style="color: #a1db00;">return</span> -num;
+        <span style="color: #a1db00;">else</span>
+            <span style="color: #a1db00;">return</span> num;
+    }
+
+
+    <span style="color: #00d7af;">double</span> <span style="color: #ffd700;">my_atof</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">str</span>)
+    {
+        <span style="color: #00d7af;">double</span> <span style="color: #ff8700;">val</span> = 0.0, <span style="color: #ff8700;">power</span> = 0.0;
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">sign</span> = 0;
+        assert (<span style="color: #5fafd7;">NULL</span> != str);
+        <span style="color: #a1db00;">while</span> ( *str == <span style="color: #ff4ea3;">' '</span> )
+        {
+            str++;
+        }
+        sign = (*str == <span style="color: #ff4ea3;">'-'</span>) ? -1 : 1;
+        <span style="color: #a1db00;">if</span> ( <span style="color: #ff4ea3;">'-'</span> == *str || <span style="color: #ff4ea3;">'+'</span> == *str )
+        {
+            str++;
+        }
+        <span style="color: #a1db00;">while</span> ( (*str &gt;= <span style="color: #ff4ea3;">'0'</span>) &amp;&amp; (*str &lt;= <span style="color: #ff4ea3;">'9'</span>) )
+        {
+            val = val* 10.0 + (*str - <span style="color: #ff4ea3;">'0'</span>); str++;
+        }
+        <span style="color: #a1db00;">if</span> ( <span style="color: #ff4ea3;">'.'</span> == *str )
+        {
+            str++;
+        }
+        power = 1.0;
+        <span style="color: #a1db00;">while</span> ( (*str &gt;= <span style="color: #ff4ea3;">'0'</span>) &amp;&amp; (*str &lt;= <span style="color: #ff4ea3;">'9'</span>) )
+        {
+            val = val* 10.0 + (*str - <span style="color: #ff4ea3;">'0'</span>);
+            power *= 10; str++;
+        }
+        <span style="color: #a1db00;">return</span> sign*val / power;
+    }
+
+
+    <span style="color: #00d7af;">char</span>* <span style="color: #ffd700;">my_itoa</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">val</span>, <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">buf</span>, <span style="color: #00d7af;">unsigned</span> <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">radix</span>)
+    {
+        <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">bufptr</span>;
+        <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">firstdig</span>;
+        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">temp</span>;
+        <span style="color: #00d7af;">unsigned</span> <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">digval</span>;
+        assert (buf != <span style="color: #5fafd7;">NULL</span>);
+        bufptr = buf;
+        <span style="color: #a1db00;">if</span> ( val &lt; 0 )
+        {
+            *bufptr++ = <span style="color: #ff4ea3;">'-'</span>; val = (<span style="color: #00d7af;">unsigned</span> <span style="color: #00d7af;">int</span>)(-(<span style="color: #00d7af;">int</span>)val);
+        }
+        firstdig = bufptr;
+        <span style="color: #a1db00;">do</span>
+        {
+            digval = (<span style="color: #00d7af;">unsigned</span> <span style="color: #00d7af;">int</span>)val % radix;    val /= radix;
+            <span style="color: #a1db00;">if</span> ( digval &gt; 9 )
+            {
+                *bufptr++ = (<span style="color: #00d7af;">char</span>)(digval - 10 + <span style="color: #ff4ea3;">'a'</span>);
+            }
+            <span style="color: #a1db00;">else</span>
+            {
+                *bufptr++ = (<span style="color: #00d7af;">char</span>)(digval + <span style="color: #ff4ea3;">'0'</span>);
+            }
+        } <span style="color: #a1db00;">while</span> ( val &gt; 0 );
+        *bufptr-- = <span style="color: #ff4ea3;">'\0'</span>;<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#35774;&#32622;&#23383;&#31526;&#20018;&#26411;&#23614;&#65292;&#24182;&#23558;&#25351;&#38024;&#25351;&#21521;&#26368;&#21518;&#19968;&#20010;&#23383;&#31526;</span>
+        <span style="color: #a1db00;">do</span> <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#21453;&#36716;&#23383;&#31526;</span>
+        {
+            temp = *bufptr;     *bufptr = *firstdig;  *firstdig = temp;
+            --bufptr; ++firstdig;
+        } <span style="color: #a1db00;">while</span> ( firstdig &lt; bufptr );
+        <span style="color: #a1db00;">return</span> buf;
+    }
 </pre>
 </div>
 </div>
@@ -690,36 +690,36 @@ for the JavaScript code in this tag.
 <div class="outline-text-4" id="text-3-1-2">
 <div class="org-src-container">
 
-<pre class="src src-c++">    <span style="color: #00d7af;">char</span>* <span style="color: #ffd700;">my_strcpy</span> (<span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">dst</span>, <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">src</span>)&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        assert (<span style="color: #5fafd7;">NULL</span> != dst &amp;&amp; <span style="color: #5fafd7;">NULL</span> != src);&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">p</span> = dst;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">while</span> ( *p++ = *src++ );&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> dst;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">char</span>* <span style="color: #ffd700;">my_strcat</span> (<span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">dst</span>, <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">src</span>)&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        assert (<span style="color: #5fafd7;">NULL</span> != dst &amp;&amp; <span style="color: #5fafd7;">NULL</span> != src);&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">p</span> = dst;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">while</span> ( *p != <span style="color: #ff4ea3;">'\n'</span> )&#57344;&#57345;&#57345;
-            ++p;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">while</span> ( *p++ = *src++ );&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> dst;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">my_strcmp</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">str1</span>, <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">str2</span>)&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        assert (<span style="color: #5fafd7;">NULL</span> != str1 &amp;&amp; <span style="color: #5fafd7;">NULL</span> != str2);&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">ret</span> = 0;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">while</span> ( <span style="color: #ff4b4b;">!</span>(ret = *(<span style="color: #00d7af;">unsigned</span> <span style="color: #00d7af;">char</span>*)str1 - *(<span style="color: #00d7af;">unsigned</span> <span style="color: #00d7af;">char</span>*)str2) &amp;&amp; *str2 ) {&#57344;&#57345;
-            ++str1;&#57344;&#57345;&#57345;
-            ++str2;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> ( ret &gt; 0 ) ret = 1;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> ( ret &lt; 0 ) ret = -1;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> ret;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++">    <span style="color: #00d7af;">char</span>* <span style="color: #ffd700;">my_strcpy</span> (<span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">dst</span>, <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">src</span>)
+    {
+        assert (<span style="color: #5fafd7;">NULL</span> != dst &amp;&amp; <span style="color: #5fafd7;">NULL</span> != src);
+        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">p</span> = dst;
+        <span style="color: #a1db00;">while</span> ( *p++ = *src++ );
+        <span style="color: #a1db00;">return</span> dst;
+    }
+    <span style="color: #00d7af;">char</span>* <span style="color: #ffd700;">my_strcat</span> (<span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">dst</span>, <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">src</span>)
+    {
+        assert (<span style="color: #5fafd7;">NULL</span> != dst &amp;&amp; <span style="color: #5fafd7;">NULL</span> != src);
+        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">p</span> = dst;
+        <span style="color: #a1db00;">while</span> ( *p != <span style="color: #ff4ea3;">'\n'</span> )
+            ++p;
+        <span style="color: #a1db00;">while</span> ( *p++ = *src++ );
+
+        <span style="color: #a1db00;">return</span> dst;
+    }
+
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">my_strcmp</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">str1</span>, <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">str2</span>)
+    {
+        assert (<span style="color: #5fafd7;">NULL</span> != str1 &amp;&amp; <span style="color: #5fafd7;">NULL</span> != str2);
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">ret</span> = 0;
+        <span style="color: #a1db00;">while</span> ( <span style="color: #ff4b4b;">!</span>(ret = *(<span style="color: #00d7af;">unsigned</span> <span style="color: #00d7af;">char</span>*)str1 - *(<span style="color: #00d7af;">unsigned</span> <span style="color: #00d7af;">char</span>*)str2) &amp;&amp; *str2 ) {
+            ++str1;
+            ++str2;
+        }
+        <span style="color: #a1db00;">if</span> ( ret &gt; 0 ) ret = 1;
+        <span style="color: #a1db00;">if</span> ( ret &lt; 0 ) ret = -1;
+        <span style="color: #a1db00;">return</span> ret;
+    }
 </pre>
 </div>
 </div>
@@ -729,55 +729,55 @@ for the JavaScript code in this tag.
 <div class="outline-text-4" id="text-3-1-3">
 <div class="org-src-container">
 
-<pre class="src src-c++">    <span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">my_memcpy</span> (<span style="color: #00d7af;">void</span>* <span style="color: #ff8700;">dst</span>, <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">void</span>* <span style="color: #ff8700;">src</span>, <span style="color: #00d7af;">size_t</span> <span style="color: #ff8700;">count</span>)&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">pbTo</span> = (<span style="color: #00d7af;">char</span>*)dst;&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">pbFrom</span> = (<span style="color: #00d7af;">char</span>*)src;&#57344;&#57345;&#57345;
-        assert (dst != <span style="color: #5fafd7;">NULL</span> &amp;&amp; src != <span style="color: #5fafd7;">NULL</span>);&#57344;&#57345;&#57345;
-        assert (pbTo &gt;= pbFrom + count || pbFrom &gt;= pbTo + count);<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#38450;&#27490;&#20869;&#23384;&#37325;&#21472;(overlap)</span>&#57344;&#57345;
-        <span style="color: #a1db00;">while</span> ( count-- &gt; 0 )&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            *pbTo++ = *pbFrom++;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> dst;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">my_memmove</span> (<span style="color: #00d7af;">void</span>* <span style="color: #ff8700;">dst</span>, <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">void</span>* <span style="color: #ff8700;">src</span>, <span style="color: #00d7af;">size_t</span> <span style="color: #ff8700;">count</span>)&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">pbTo</span> = (<span style="color: #00d7af;">char</span>*)dst;&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">pbFrom</span> = (<span style="color: #00d7af;">char</span>*)src;&#57344;&#57345;&#57345;
-        assert (dst != <span style="color: #5fafd7;">NULL</span> &amp;&amp; src != <span style="color: #5fafd7;">NULL</span>);&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> ( dst &lt;= src || pbTo &gt;= pbFrom + count )&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#27809;&#26377; overlap &#30340;&#24773;&#20917;&#65292;&#30452;&#25509;&#25335;&#36125;</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">while</span> ( count-- &gt; 0 )&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                *pbTo++ = *pbFrom++;&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">else</span>&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">overlap &#30340;&#24773;&#20917;&#65292;&#20174;&#39640;&#20301;&#22320;&#22336;&#21521;&#20302;&#20301;&#25335;&#36125;</span>&#57344;&#57345;&#57345;
-            pbTo = pbTo + count - 1;&#57344;&#57345;&#57345;
-            pbFrom = pbFrom + count - 1;&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">while</span> ( count-- &gt; 0 )&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                *pbTo-- = *pbFrom--;&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> dst;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">my_memset</span> (<span style="color: #00d7af;">void</span>* <span style="color: #ff8700;">buf</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">c</span>, <span style="color: #00d7af;">size_t</span> <span style="color: #ff8700;">count</span>)&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">pvTo</span> = (<span style="color: #00d7af;">char</span>*)buf;&#57344;&#57345;&#57345;
-        assert (buf != <span style="color: #5fafd7;">NULL</span>);&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">while</span> ( count-- &gt;0 )&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            *pvTo++ = (<span style="color: #00d7af;">char</span>)c;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> buf;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++">    <span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">my_memcpy</span> (<span style="color: #00d7af;">void</span>* <span style="color: #ff8700;">dst</span>, <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">void</span>* <span style="color: #ff8700;">src</span>, <span style="color: #00d7af;">size_t</span> <span style="color: #ff8700;">count</span>)
+    {
+        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">pbTo</span> = (<span style="color: #00d7af;">char</span>*)dst;
+        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">pbFrom</span> = (<span style="color: #00d7af;">char</span>*)src;
+        assert (dst != <span style="color: #5fafd7;">NULL</span> &amp;&amp; src != <span style="color: #5fafd7;">NULL</span>);
+        assert (pbTo &gt;= pbFrom + count || pbFrom &gt;= pbTo + count);<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#38450;&#27490;&#20869;&#23384;&#37325;&#21472;(overlap)</span>
+        <span style="color: #a1db00;">while</span> ( count-- &gt; 0 )
+        {
+            *pbTo++ = *pbFrom++;
+        }
+        <span style="color: #a1db00;">return</span> dst;
+    }
+
+    <span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">my_memmove</span> (<span style="color: #00d7af;">void</span>* <span style="color: #ff8700;">dst</span>, <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">void</span>* <span style="color: #ff8700;">src</span>, <span style="color: #00d7af;">size_t</span> <span style="color: #ff8700;">count</span>)
+    {
+        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">pbTo</span> = (<span style="color: #00d7af;">char</span>*)dst;
+        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">pbFrom</span> = (<span style="color: #00d7af;">char</span>*)src;
+        assert (dst != <span style="color: #5fafd7;">NULL</span> &amp;&amp; src != <span style="color: #5fafd7;">NULL</span>);
+        <span style="color: #a1db00;">if</span> ( dst &lt;= src || pbTo &gt;= pbFrom + count )
+        {
+            <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#27809;&#26377; overlap &#30340;&#24773;&#20917;&#65292;&#30452;&#25509;&#25335;&#36125;</span>
+            <span style="color: #a1db00;">while</span> ( count-- &gt; 0 )
+            {
+                *pbTo++ = *pbFrom++;
+            }
+        }
+        <span style="color: #a1db00;">else</span>
+        {
+            <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">overlap &#30340;&#24773;&#20917;&#65292;&#20174;&#39640;&#20301;&#22320;&#22336;&#21521;&#20302;&#20301;&#25335;&#36125;</span>
+            pbTo = pbTo + count - 1;
+            pbFrom = pbFrom + count - 1;
+            <span style="color: #a1db00;">while</span> ( count-- &gt; 0 )
+            {
+                *pbTo-- = *pbFrom--;
+            }
+        }
+        <span style="color: #a1db00;">return</span> dst;
+    }
+
+    <span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">my_memset</span> (<span style="color: #00d7af;">void</span>* <span style="color: #ff8700;">buf</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">c</span>, <span style="color: #00d7af;">size_t</span> <span style="color: #ff8700;">count</span>)
+    {
+        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">pvTo</span> = (<span style="color: #00d7af;">char</span>*)buf;
+        assert (buf != <span style="color: #5fafd7;">NULL</span>);
+        <span style="color: #a1db00;">while</span> ( count-- &gt;0 )
+        {
+            *pvTo++ = (<span style="color: #00d7af;">char</span>)c;
+        }
+        <span style="color: #a1db00;">return</span> buf;
+    }
 </pre>
 </div>
 </div>
@@ -803,37 +803,37 @@ for the JavaScript code in this tag.
 <div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;gtest\gtest.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">phenix3443</span> {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">enum</span> <span style="color: #00d7af;">kOrderType</span> { <span style="color: #ff8700;">unknown_error</span> = -1, <span style="color: #ff8700;">little_endian</span> = 0, <span style="color: #ff8700;">big_endian</span> = 1 };&#57344;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">ByteOrder</span> () {&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">union</span> {&#57344;&#57345;&#57345;
-                <span style="color: #00d7af;">short</span> <span style="color: #ff8700;">val</span>;&#57344;&#57345;&#57345;
-                <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">bytes</span>[<span style="color: #a1db00;">sizeof</span> (<span style="color: #00d7af;">short</span>)];&#57344;&#57345;&#57345;
-            } <span style="color: #ff8700;">test</span>;&#57344;&#57345;&#57345;
-            test.val = 0x0102;&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">if</span> ( (2 == test.bytes[0]) &amp;&amp; (1 == test.bytes[1]) ) {&#57344;&#57345;&#57345;
-                <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"Little Endian"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">return</span> little_endian;&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span> ( 1 == (test.bytes[0]) &amp;&amp; (2 == test.bytes[2]) ) {&#57345;
-                <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"Big Endian"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">return</span> big_endian;&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">else</span> {&#57344;&#57345;&#57345;
-                <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"Unknown Error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">return</span> unknown_error;&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #ffd700;">TEST</span> (TestByteOrder, LocalHostTest) {&#57344;&#57345;&#57345;
-            EXPECT_EQ (little_endian, ByteOrder ());&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;gtest\gtest.h&gt;</span>
+
+    <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">phenix3443</span> {
+        <span style="color: #a1db00;">enum</span> <span style="color: #00d7af;">kOrderType</span> { <span style="color: #ff8700;">unknown_error</span> = -1, <span style="color: #ff8700;">little_endian</span> = 0, <span style="color: #ff8700;">big_endian</span> = 1 };
+
+        <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">ByteOrder</span> () {
+            <span style="color: #a1db00;">union</span> {
+                <span style="color: #00d7af;">short</span> <span style="color: #ff8700;">val</span>;
+                <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">bytes</span>[<span style="color: #a1db00;">sizeof</span> (<span style="color: #00d7af;">short</span>)];
+            } <span style="color: #ff8700;">test</span>;
+            test.val = 0x0102;
+            <span style="color: #a1db00;">if</span> ( (2 == test.bytes[0]) &amp;&amp; (1 == test.bytes[1]) ) {
+                <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"Little Endian"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+                <span style="color: #a1db00;">return</span> little_endian;
+            }
+            <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span> ( 1 == (test.bytes[0]) &amp;&amp; (2 == test.bytes[2]) ) {
+                <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"Big Endian"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+                <span style="color: #a1db00;">return</span> big_endian;
+            }
+            <span style="color: #a1db00;">else</span> {
+                <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"Unknown Error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+                <span style="color: #a1db00;">return</span> unknown_error;
+            }
+        }
+
+
+        <span style="color: #ffd700;">TEST</span> (TestByteOrder, LocalHostTest) {
+            EXPECT_EQ (little_endian, ByteOrder ());
+        }
+    }
 </pre>
 </div>
 </div>
@@ -1084,17 +1084,17 @@ for the JavaScript code in this tag.
 <div class="outline-text-3" id="text-5-1">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;cstdio&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">DetectOSArchi</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">method 1</span>&#57344;&#57345;&#57345;
-        printf(<span style="color: #ff4ea3;">"os is %d\n"</span>,<span style="color: #a1db00;">sizeof</span>(<span style="color: #00d7af;">void</span>*));&#57344;&#57345;&#57345;
-        <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">method 2</span>&#57344;&#57345;&#57345;
-        printf(<span style="color: #ff4ea3;">"%d \n"</span>, __SIZEOF_POINTER__);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;cstdio&gt;</span>
+
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">DetectOSArchi</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+    {
+        <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">method 1</span>
+        printf(<span style="color: #ff4ea3;">"os is %d\n"</span>,<span style="color: #a1db00;">sizeof</span>(<span style="color: #00d7af;">void</span>*));
+        <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">method 2</span>
+        printf(<span style="color: #ff4ea3;">"%d \n"</span>, __SIZEOF_POINTER__);
+
+        <span style="color: #a1db00;">return</span> 0;
+    }
 </pre>
 </div>
 </div>
@@ -1209,32 +1209,32 @@ for the JavaScript code in this tag.
 <div class="outline-text-3" id="text-7-2">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;gtest\gtest.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#32447;&#31243;&#23433;&#20840;&#30340;&#21333;&#20363;&#27169;&#24335;</span>&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">phenix3443</span> {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">Singleton</span> {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">public</span>:&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">static</span> <span style="color: #00d7af;">Singleton</span>&amp; <span style="color: #ffd700;">GetInstance</span> () {&#57344;&#57345;&#57345;
-                <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">Lock(); //C++11 &#35201;&#27714;&#32534;&#35793;&#22120;&#20445;&#35777;&#23616;&#37096;&#38745;&#24577;&#21464;&#37327;&#30340;&#32447;&#31243;&#23433;&#20840;&#24615;&#65292;&#25152;&#20197; 11 &#20043;&#21069;&#30340;&#29256;&#26412;&#27492;&#22788;&#38656;&#35201;&#21152;&#38145;</span>&#57344;&#57345;
-                <span style="color: #a1db00;">static</span> <span style="color: #00d7af;">Singleton</span> <span style="color: #ff8700;">instance_</span>;&#57344;&#57345;&#57345;
-                <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">Unlock() //&#21516;&#19978;</span>&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">return</span> instance_;&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">private</span>:&#57344;&#57345;&#57345;
-            <span style="color: #ffd700;">Singleton</span> () { }&#57344;&#57345;&#57345;
-            <span style="color: #ffd700;">Singleton</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">Singleton</span>&amp;) = <span style="color: #a1db00;">delete</span>;&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">Singleton</span>&amp; <span style="color: #a1db00;">operator</span><span style="color: #ffd700;">=</span>(<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">Singleton</span>&amp;) = <span style="color: #a1db00;">delete</span>;&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">virtual</span> ~<span style="color: #ffd700;">Singleton</span> () { }&#57344;&#57345;&#57345;
-        };&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #ffd700;">TEST</span> (TestSingleton, SameAddr) {&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">Singleton</span>&amp; <span style="color: #ff8700;">a</span> = <span style="color: #5fafd7;">Singleton</span>::GetInstance ();&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">Singleton</span>&amp; <span style="color: #ff8700;">b</span> = <span style="color: #5fafd7;">Singleton</span>::GetInstance ();&#57344;&#57345;&#57345;
-            EXPECT_EQ (&amp;a, &amp;b);&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;gtest\gtest.h&gt;</span>
+
+    <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#32447;&#31243;&#23433;&#20840;&#30340;&#21333;&#20363;&#27169;&#24335;</span>
+    <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">phenix3443</span> {
+        <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">Singleton</span> {
+        <span style="color: #a1db00;">public</span>:
+            <span style="color: #a1db00;">static</span> <span style="color: #00d7af;">Singleton</span>&amp; <span style="color: #ffd700;">GetInstance</span> () {
+                <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">Lock(); //C++11 &#35201;&#27714;&#32534;&#35793;&#22120;&#20445;&#35777;&#23616;&#37096;&#38745;&#24577;&#21464;&#37327;&#30340;&#32447;&#31243;&#23433;&#20840;&#24615;&#65292;&#25152;&#20197; 11 &#20043;&#21069;&#30340;&#29256;&#26412;&#27492;&#22788;&#38656;&#35201;&#21152;&#38145;</span>
+                <span style="color: #a1db00;">static</span> <span style="color: #00d7af;">Singleton</span> <span style="color: #ff8700;">instance_</span>;
+                <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">Unlock() //&#21516;&#19978;</span>
+                <span style="color: #a1db00;">return</span> instance_;
+            }
+        <span style="color: #a1db00;">private</span>:
+            <span style="color: #ffd700;">Singleton</span> () { }
+            <span style="color: #ffd700;">Singleton</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">Singleton</span>&amp;) = <span style="color: #a1db00;">delete</span>;
+            <span style="color: #00d7af;">Singleton</span>&amp; <span style="color: #a1db00;">operator</span><span style="color: #ffd700;">=</span>(<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">Singleton</span>&amp;) = <span style="color: #a1db00;">delete</span>;
+            <span style="color: #a1db00;">virtual</span> ~<span style="color: #ffd700;">Singleton</span> () { }
+        };
+
+        <span style="color: #ffd700;">TEST</span> (TestSingleton, SameAddr) {
+            <span style="color: #00d7af;">Singleton</span>&amp; <span style="color: #ff8700;">a</span> = <span style="color: #5fafd7;">Singleton</span>::GetInstance ();
+            <span style="color: #00d7af;">Singleton</span>&amp; <span style="color: #ff8700;">b</span> = <span style="color: #5fafd7;">Singleton</span>::GetInstance ();
+            EXPECT_EQ (&amp;a, &amp;b);
+        }
+    }
 </pre>
 </div>
 </div>
@@ -1266,10 +1266,10 @@ void scan(const char* pszText, const char* pszName);
 <div class="outline-text-4" id="text-8-2-1">
 <div class="org-src-container">
 
-<pre class="src src-c++">    <span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">Node</span> {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">next</span>;&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">val</span>;&#57344;&#57345;&#57345;
-    };&#57344;&#57345;&#57345;
+<pre class="src src-c++">    <span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">Node</span> {
+        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">next</span>;
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">val</span>;
+    };
 </pre>
 </div>
 </div>
@@ -1283,21 +1283,21 @@ void scan(const char* pszText, const char* pszName);
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">"forwart_list.h"</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;gtest\gtest.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">DeleteRandomNode</span>(<span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">head</span>, <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">del</span>) {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>head || <span style="color: #ff4b4b;">!</span>del) <span style="color: #a1db00;">return</span> -1;&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">nextNode</span> = del-&gt;next;&#57344;&#57345;&#57345;
-        del-&gt;data = nextNode-&gt;data;&#57344;&#57345;&#57345;
-        del-&gt;next = nextNode-&gt;next;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">delete</span> nextNode;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #ffd700;">TEST</span>(ListTest,DeleteRandomNode) {&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">"forwart_list.h"</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;gtest\gtest.h&gt;</span>
+
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">DeleteRandomNode</span>(<span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">head</span>, <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">del</span>) {
+        <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>head || <span style="color: #ff4b4b;">!</span>del) <span style="color: #a1db00;">return</span> -1;
+        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">nextNode</span> = del-&gt;next;
+        del-&gt;data = nextNode-&gt;data;
+        del-&gt;next = nextNode-&gt;next;
+        <span style="color: #a1db00;">delete</span> nextNode;
+        <span style="color: #a1db00;">return</span> 0;
+    }
+
+    <span style="color: #ffd700;">TEST</span>(ListTest,DeleteRandomNode) {
+
+    }
 </pre>
 </div>
 </div>
@@ -1307,17 +1307,17 @@ void scan(const char* pszText, const char* pszName);
 <div class="outline-text-4" id="text-8-2-3">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">"forward_list.h"</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">Node</span> *<span style="color: #ffd700;">DeleteNode</span>(<span style="color: #00d7af;">Node</span> **<span style="color: #ff8700;">head</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">e</span>) {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">Node</span> **<span style="color: #ff8700;">curr</span> = head; <span style="color: #5fafd7;">NULL</span> != *curr; curr = &amp;((*curr)-&gt;next)) {&#57344;&#57345;
-            <span style="color: #a1db00;">if</span> ((*curr)-&gt;val == e) {&#57344;&#57345;&#57345;
-                <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">del</span> = *curr;&#57344;&#57345;&#57345;
-                *curr = (*curr)-&gt;next;&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">delete</span> del;&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">"forward_list.h"</span>
+
+    <span style="color: #00d7af;">Node</span> *<span style="color: #ffd700;">DeleteNode</span>(<span style="color: #00d7af;">Node</span> **<span style="color: #ff8700;">head</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">e</span>) {
+        <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">Node</span> **<span style="color: #ff8700;">curr</span> = head; <span style="color: #5fafd7;">NULL</span> != *curr; curr = &amp;((*curr)-&gt;next)) {
+            <span style="color: #a1db00;">if</span> ((*curr)-&gt;val == e) {
+                <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">del</span> = *curr;
+                *curr = (*curr)-&gt;next;
+                <span style="color: #a1db00;">delete</span> del;
+            }
+        }
+    }
 </pre>
 </div>
 </div>
@@ -1333,17 +1333,17 @@ void scan(const char* pszText, const char* pszName);
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">"forward_list.h"</span>&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">Node</span> *<span style="color: #ffd700;">RReverse</span>(<span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">head</span>) {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (<span style="color: #5fafd7;">NULL</span> == head-&gt;next) {&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> head;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">preNode</span> = Reverse(head-&gt;next);&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">nextNode</span> = head-&gt;next;&#57344;&#57345;&#57345;
-        head-&gt;next = <span style="color: #5fafd7;">NULL</span>;&#57344;&#57345;&#57345;
-        nextNode-&gt;next = head;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> preNode;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">"forward_list.h"</span>
+    <span style="color: #00d7af;">Node</span> *<span style="color: #ffd700;">RReverse</span>(<span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">head</span>) {
+        <span style="color: #a1db00;">if</span> (<span style="color: #5fafd7;">NULL</span> == head-&gt;next) {
+            <span style="color: #a1db00;">return</span> head;
+        }
+        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">preNode</span> = Reverse(head-&gt;next);
+        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">nextNode</span> = head-&gt;next;
+        head-&gt;next = <span style="color: #5fafd7;">NULL</span>;
+        nextNode-&gt;next = head;
+        <span style="color: #a1db00;">return</span> preNode;
+    }
 </pre>
 </div>
 </div>
@@ -1356,17 +1356,17 @@ void scan(const char* pszText, const char* pszName);
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">"forward_list.h"</span>&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">Node</span> *<span style="color: #ffd700;">Reverse</span>(<span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">head</span>) {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">preNode</span> = <span style="color: #5fafd7;">NULL</span>, *<span style="color: #ff8700;">nextNode</span> = <span style="color: #5fafd7;">NULL</span>;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">while</span>(<span style="color: #5fafd7;">NULL</span> != head) {&#57344;&#57345;&#57345;
-            nextNode = head-&gt;next;&#57344;&#57345;&#57345;
-            head-next = preNode;&#57344;&#57345;&#57345;
-            preNode = head;&#57344;&#57345;&#57345;
-            head = nextNode;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> preNode;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">"forward_list.h"</span>
+    <span style="color: #00d7af;">Node</span> *<span style="color: #ffd700;">Reverse</span>(<span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">head</span>) {
+        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">preNode</span> = <span style="color: #5fafd7;">NULL</span>, *<span style="color: #ff8700;">nextNode</span> = <span style="color: #5fafd7;">NULL</span>;
+        <span style="color: #a1db00;">while</span>(<span style="color: #5fafd7;">NULL</span> != head) {
+            nextNode = head-&gt;next;
+            head-next = preNode;
+            preNode = head;
+            head = nextNode;
+        }
+        <span style="color: #a1db00;">return</span> preNode;
+    }
 </pre>
 </div>
 </div>
@@ -1377,30 +1377,30 @@ void scan(const char* pszText, const char* pszName);
 <div class="outline-text-4" id="text-8-2-5">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">"forward_list.h"</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">Node</span> *<span style="color: #ffd700;">FindLoop</span>(<span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">head</span>) {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">bool</span> <span style="color: #ff8700;">loop</span> = <span style="color: #5fafd7;">false</span>;&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">fast</span> = head, *<span style="color: #ff8700;">slow</span> = head;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">while</span>(fast &amp;&amp; fast-&gt;next) {&#57344;&#57345;&#57345;
-            fast = fast-&gt;next-&gt;next;&#57344;&#57345;&#57345;
-            slow = slow-&gt;next;&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">if</span> (fast == slow) {&#57344;&#57345;&#57345;
-                loop = <span style="color: #5fafd7;">true</span>;&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">break</span>;&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#26597;&#25214;&#29615;&#20837;&#21475;</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (loop) {&#57344;&#57345;&#57345;
-            slow = head;&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">while</span> (slow != fast) {&#57344;&#57345;&#57345;
-                slow = slow-&gt;next;&#57344;&#57345;&#57345;
-                fast = fast-&gt;next;&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> slow;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">NULL</span>;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">"forward_list.h"</span>
+
+    <span style="color: #00d7af;">Node</span> *<span style="color: #ffd700;">FindLoop</span>(<span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">head</span>) {
+        <span style="color: #00d7af;">bool</span> <span style="color: #ff8700;">loop</span> = <span style="color: #5fafd7;">false</span>;
+        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">fast</span> = head, *<span style="color: #ff8700;">slow</span> = head;
+        <span style="color: #a1db00;">while</span>(fast &amp;&amp; fast-&gt;next) {
+            fast = fast-&gt;next-&gt;next;
+            slow = slow-&gt;next;
+            <span style="color: #a1db00;">if</span> (fast == slow) {
+                loop = <span style="color: #5fafd7;">true</span>;
+                <span style="color: #a1db00;">break</span>;
+            }
+        }
+        <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#26597;&#25214;&#29615;&#20837;&#21475;</span>
+        <span style="color: #a1db00;">if</span> (loop) {
+            slow = head;
+            <span style="color: #a1db00;">while</span> (slow != fast) {
+                slow = slow-&gt;next;
+                fast = fast-&gt;next;
+            }
+            <span style="color: #a1db00;">return</span> slow;
+        }
+        <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">NULL</span>;
+    }
 </pre>
 </div>
 </div>
@@ -1410,46 +1410,46 @@ void scan(const char* pszText, const char* pszName);
 <div class="outline-text-4" id="text-8-2-6">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">"forward_list.h"</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;cassert&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">split</span>(<span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">head</span>, <span style="color: #00d7af;">Node</span> **<span style="color: #ff8700;">l</span>, <span style="color: #00d7af;">Node</span> **<span style="color: #ff8700;">r</span>) {&#57344;&#57345;&#57345;
-        assert(head != <span style="color: #5fafd7;">NULL</span>);&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">slow</span> = head, *<span style="color: #ff8700;">fast</span> = head;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">while</span>(fast &amp;&amp; fast-&gt;next) {&#57344;&#57345;&#57345;
-            slow = slow-&gt;next;&#57344;&#57345;&#57345;
-            fast = fast-&gt;next-&gt;next;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        l = head;&#57344;&#57345;&#57345;
-        r = slow-&gt;next;&#57344;&#57345;&#57345;
-        slow-&gt;next = <span style="color: #5fafd7;">NULL</span>;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">Node</span> *<span style="color: #ffd700;">Merge</span>(<span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">l</span>, <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">r</span>) {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">h</span> = <span style="color: #a1db00;">new</span> <span style="color: #00d7af;">Node</span>, *<span style="color: #ff8700;">p</span> = h;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">while</span> (l &amp;&amp; r) {&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">if</span> (l-&gt;val &lt; r-&gt;val) {&#57344;&#57345;&#57345;
-                p-&gt;next = l; p = l; l = l-&gt;next;&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">else</span> {&#57344;&#57345;&#57345;
-                p-&gt;next = r; p = r; r = r-&gt;next;&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span>(l) p-&gt;next = l;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span>(r) p-&gt;next = r;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        p = h-&gt;next;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">delete</span> h;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> p;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">MergeSort</span>(<span style="color: #00d7af;">Node</span> **<span style="color: #ff8700;">head</span>) {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">l</span>, *<span style="color: #ff8700;">r</span>;&#57344;&#57345;&#57345;
-        split(head, &amp;l, &amp;r);&#57344;&#57345;&#57345;
-        MergeSort(&amp;l);&#57344;&#57345;&#57345;
-        MergeSort(&amp;r);&#57344;&#57345;&#57345;
-        *head = Merge(l,r)&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">"forward_list.h"</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;cassert&gt;</span>
+
+    <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">split</span>(<span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">head</span>, <span style="color: #00d7af;">Node</span> **<span style="color: #ff8700;">l</span>, <span style="color: #00d7af;">Node</span> **<span style="color: #ff8700;">r</span>) {
+        assert(head != <span style="color: #5fafd7;">NULL</span>);
+        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">slow</span> = head, *<span style="color: #ff8700;">fast</span> = head;
+        <span style="color: #a1db00;">while</span>(fast &amp;&amp; fast-&gt;next) {
+            slow = slow-&gt;next;
+            fast = fast-&gt;next-&gt;next;
+        }
+        l = head;
+        r = slow-&gt;next;
+        slow-&gt;next = <span style="color: #5fafd7;">NULL</span>;
+    }
+
+    <span style="color: #00d7af;">Node</span> *<span style="color: #ffd700;">Merge</span>(<span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">l</span>, <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">r</span>) {
+        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">h</span> = <span style="color: #a1db00;">new</span> <span style="color: #00d7af;">Node</span>, *<span style="color: #ff8700;">p</span> = h;
+        <span style="color: #a1db00;">while</span> (l &amp;&amp; r) {
+            <span style="color: #a1db00;">if</span> (l-&gt;val &lt; r-&gt;val) {
+                p-&gt;next = l; p = l; l = l-&gt;next;
+            }
+            <span style="color: #a1db00;">else</span> {
+                p-&gt;next = r; p = r; r = r-&gt;next;
+            }
+        }
+        <span style="color: #a1db00;">if</span>(l) p-&gt;next = l;
+        <span style="color: #a1db00;">if</span>(r) p-&gt;next = r;
+
+        p = h-&gt;next;
+        <span style="color: #a1db00;">delete</span> h;
+        <span style="color: #a1db00;">return</span> p;
+    }
+
+    <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">MergeSort</span>(<span style="color: #00d7af;">Node</span> **<span style="color: #ff8700;">head</span>) {
+        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">l</span>, *<span style="color: #ff8700;">r</span>;
+        split(head, &amp;l, &amp;r);
+        MergeSort(&amp;l);
+        MergeSort(&amp;r);
+        *head = Merge(l,r)
+    }
 </pre>
 </div>
 </div>
@@ -1527,94 +1527,94 @@ void scan(const char* pszText, const char* pszName);
 </div><ul class="org-ul"><li><a id="orgheadline106"></a>基本<br  /><div class="outline-text-6" id="text-orgheadline106">
 <div class="org-src-container">
 
-<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">bubbleSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span>  <span style="color: #ff8700;">end</span>)&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> -1;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">else</span>&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start; idx &lt; end; idx++)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">j</span> = start; j &lt; end - idx; j++)&#57344;&#57345;&#57345;
-                {&#57344;&#57345;&#57345;
-                    <span style="color: #a1db00;">if</span> (data[j]&gt;data[j + 1])&#57344;&#57345;&#57345;
-                    {&#57344;&#57345;&#57345;
-                        swapTwoNumValue (&amp;data[j], &amp;data[j + 1]);&#57344;&#57345;&#57345;
-                    }&#57344;&#57345;&#57345;
-                }&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">bubbleSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span>  <span style="color: #ff8700;">end</span>)
+    {
+        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)
+        {
+            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
+        }
+        <span style="color: #a1db00;">else</span>
+        {
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start; idx &lt; end; idx++)
+            {
+                <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">j</span> = start; j &lt; end - idx; j++)
+                {
+                    <span style="color: #a1db00;">if</span> (data[j]&gt;data[j + 1])
+                    {
+                        swapTwoNumValue (&amp;data[j], &amp;data[j + 1]);
+                    }
+                }
+            }
+            <span style="color: #a1db00;">return</span> 0;
+        }
+    }
 </pre>
 </div>
 </div></li>
 <li><a id="orgheadline107"></a>优化 1<br  /><div class="outline-text-6" id="text-orgheadline107">
 <div class="org-src-container">
 
-<pre class="src src-c++">    <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#20882;&#27873;&#25490;&#24207;&#20248;&#21270;, &#35774;&#32622;&#20132;&#25442;&#26631;&#24535; */</span>&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">bubbleSortWithSwapFlag</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span>  <span style="color: #ff8700;">end</span>)&#57344;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> -1;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">else</span>&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>, <span style="color: #ff8700;">j</span>;&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">swapFlag</span> = 1; <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#19978;&#27425;&#26159;&#21542;&#26377;&#20132;&#25442; */</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">for</span> (i = start + 1; (swapFlag) &amp;&amp; (i &lt;= end - start); i++)&#57345;
-            {&#57344;&#57345;&#57345;
-                swapFlag = 0;&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">for</span> (j = start; j &lt;= end - i; j++)&#57344;&#57345;&#57345;
-                {&#57344;&#57345;&#57345;
-                    <span style="color: #a1db00;">if</span> (data[j] &gt; data[j + 1])&#57344;&#57345;&#57345;
-                    {&#57344;&#57345;&#57345;
-                        swapTwoNumValue (&amp;data[j], &amp;data[j + 1]);&#57344;&#57345;&#57345;
-                        swapFlag = 1;&#57344;&#57345;&#57345;
-                    }&#57344;&#57345;&#57345;
-                }&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++">    <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#20882;&#27873;&#25490;&#24207;&#20248;&#21270;, &#35774;&#32622;&#20132;&#25442;&#26631;&#24535; */</span>
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">bubbleSortWithSwapFlag</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span>  <span style="color: #ff8700;">end</span>)
+    {
+        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)
+        {
+            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
+        }
+        <span style="color: #a1db00;">else</span>
+        {
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>, <span style="color: #ff8700;">j</span>;
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">swapFlag</span> = 1; <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#19978;&#27425;&#26159;&#21542;&#26377;&#20132;&#25442; */</span>
+            <span style="color: #a1db00;">for</span> (i = start + 1; (swapFlag) &amp;&amp; (i &lt;= end - start); i++)
+            {
+                swapFlag = 0;
+                <span style="color: #a1db00;">for</span> (j = start; j &lt;= end - i; j++)
+                {
+                    <span style="color: #a1db00;">if</span> (data[j] &gt; data[j + 1])
+                    {
+                        swapTwoNumValue (&amp;data[j], &amp;data[j + 1]);
+                        swapFlag = 1;
+                    }
+                }
+            }
+            <span style="color: #a1db00;">return</span> 0;
+        }
+    }
 </pre>
 </div>
 </div></li>
 <li><a id="orgheadline108"></a>优化 2<br  /><div class="outline-text-6" id="text-orgheadline108">
 <div class="org-src-container">
 
-<pre class="src src-c++">    <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#20882;&#27873;&#25490;&#24207;&#20248;&#21270; 2 */</span>&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">bubbleSortWithSwapPosition</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span>  <span style="color: #ff8700;">end</span>)&#57344;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> -1;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">else</span>&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">swapPos</span> = end -1; <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#26368;&#21518;&#19968;&#27425;&#20132;&#25442;&#20301;&#32622; */</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">while</span> (swapPos)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">swapFlag</span> = swapPos;&#57344;&#57345;&#57345;
-                swapPos = 0;&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">j</span> = start; j &lt;= swapFlag; j++)&#57344;&#57345;&#57345;
-                {&#57344;&#57345;&#57345;
-                    <span style="color: #a1db00;">if</span> (data[j] &gt; data[j + 1])&#57344;&#57345;&#57345;
-                    {&#57344;&#57345;&#57345;
-                        swapTwoNumValue (&amp;data[j], &amp;data[j + 1]);&#57344;&#57345;&#57345;
-                        swapPos = j;&#57344;&#57345;&#57345;
-                    }&#57344;&#57345;&#57345;
-                }&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++">    <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#20882;&#27873;&#25490;&#24207;&#20248;&#21270; 2 */</span>
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">bubbleSortWithSwapPosition</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span>  <span style="color: #ff8700;">end</span>)
+    {
+        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)
+        {
+            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
+        }
+        <span style="color: #a1db00;">else</span>
+        {
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">swapPos</span> = end -1; <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#26368;&#21518;&#19968;&#27425;&#20132;&#25442;&#20301;&#32622; */</span>
+            <span style="color: #a1db00;">while</span> (swapPos)
+            {
+                <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">swapFlag</span> = swapPos;
+                swapPos = 0;
+                <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">j</span> = start; j &lt;= swapFlag; j++)
+                {
+                    <span style="color: #a1db00;">if</span> (data[j] &gt; data[j + 1])
+                    {
+                        swapTwoNumValue (&amp;data[j], &amp;data[j + 1]);
+                        swapPos = j;
+                    }
+                }
+            }
+            <span style="color: #a1db00;">return</span> 0;
+        }
+    }
 </pre>
 </div>
 </div></li></ul>
@@ -1627,33 +1627,33 @@ void scan(const char* pszText, const char* pszName);
 <div class="outline-text-5" id="text-orgheadline110">
 <div class="org-src-container">
 
-<pre class="src src-c++">    <span style="color: #a1db00;">extern</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">swap</span>(<span style="color: #00d7af;">int</span>*, <span style="color: #00d7af;">int</span>*);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">partion</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">left</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">right</span>) {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = right;&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">small</span> = left - 1, <span style="color: #ff8700;">big</span> = left;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">while</span>(big &lt; right) {&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">if</span> (a[big] &lt; a[idx]) {&#57344;&#57345;&#57345;
-                ++ small;&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">if</span> (small != big) {&#57344;&#57345;&#57345;
-                    swap(&amp;a[small],&amp;a[big]);&#57344;&#57345;&#57345;
-                }&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            ++ big;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        ++ small;&#57344;&#57345;&#57345;
-        swap(&amp;a[small], &amp;a[idx]);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> small;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">QuickSort</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">left</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">right</span>) {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (left &lt; right) {&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">povit</span> = partion(a, left, right);&#57344;&#57345;&#57345;
-            QuickSort(a, left, povit -1);&#57344;&#57345;&#57345;
-            QuickSort(a, povit + 1, right);&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++">    <span style="color: #a1db00;">extern</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">swap</span>(<span style="color: #00d7af;">int</span>*, <span style="color: #00d7af;">int</span>*);
+
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">partion</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">left</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">right</span>) {
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = right;
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">small</span> = left - 1, <span style="color: #ff8700;">big</span> = left;
+        <span style="color: #a1db00;">while</span>(big &lt; right) {
+            <span style="color: #a1db00;">if</span> (a[big] &lt; a[idx]) {
+                ++ small;
+                <span style="color: #a1db00;">if</span> (small != big) {
+                    swap(&amp;a[small],&amp;a[big]);
+                }
+            }
+            ++ big;
+        }
+        ++ small;
+        swap(&amp;a[small], &amp;a[idx]);
+
+        <span style="color: #a1db00;">return</span> small;
+    }
+
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">QuickSort</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">left</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">right</span>) {
+        <span style="color: #a1db00;">if</span> (left &lt; right) {
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">povit</span> = partion(a, left, right);
+            QuickSort(a, left, povit -1);
+            QuickSort(a, povit + 1, right);
+        }
+    }
 </pre>
 </div>
 </div>
@@ -1663,32 +1663,32 @@ void scan(const char* pszText, const char* pszName);
 <div class="outline-text-5" id="text-orgheadline111">
 <div class="org-src-container">
 
-<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">QuickSortWithStack</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span>  <span style="color: #ff8700;">end</span>)&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">mystack</span>[32] = { 0 };&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">top</span> = -1;&#57344;&#57345;&#57345;
-        mystack[++top] = start;&#57344;&#57345;&#57345;
-        mystack[++top] = end;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">while</span> (top &gt; 0)&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">large</span> = mystack[top--];&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">small</span> = mystack[top--];&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">povit</span> = partition (data, len, small, large);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">if</span> (small &lt; povit - 1)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                mystack[++top] = small;&#57344;&#57345;&#57345;
-                mystack[++top] = povit - 1;&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">if</span> (large &gt; povit + 1)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                mystack[++top] = povit + 1;&#57344;&#57345;&#57345;
-                mystack[++top] = large;&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">QuickSortWithStack</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span>  <span style="color: #ff8700;">end</span>)
+    {
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">mystack</span>[32] = { 0 };
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">top</span> = -1;
+        mystack[++top] = start;
+        mystack[++top] = end;
+
+        <span style="color: #a1db00;">while</span> (top &gt; 0)
+        {
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">large</span> = mystack[top--];
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">small</span> = mystack[top--];
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">povit</span> = partition (data, len, small, large);
+
+            <span style="color: #a1db00;">if</span> (small &lt; povit - 1)
+            {
+                mystack[++top] = small;
+                mystack[++top] = povit - 1;
+            }
+            <span style="color: #a1db00;">if</span> (large &gt; povit + 1)
+            {
+                mystack[++top] = povit + 1;
+                mystack[++top] = large;
+            }
+        }
+        <span style="color: #a1db00;">return</span> 0;
+    }
 </pre>
 </div>
 </div>
@@ -1700,28 +1700,28 @@ void scan(const char* pszText, const char* pszName);
 <div class="outline-text-4" id="text-9-1-3">
 <div class="org-src-container">
 
-<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">insertSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span>  <span style="color: #ff8700;">end</span>)&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> -1;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">else</span>&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">insert</span> = start + 1; insert &lt;= end; insert++)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">key</span> = data[insert];&#57344;&#57345;&#57345;
-                <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = insert - 1;&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">for</span> (; idx &gt; start - 1 &amp;&amp; data[idx] &gt; key; idx--)&#57344;&#57345;&#57345;
-                {&#57344;&#57345;&#57345;
-                    data[idx + 1] = data[idx];&#57344;&#57345;&#57345;
-                }&#57344;&#57345;&#57345;
-                data[idx + 1] = key;&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">insertSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span>  <span style="color: #ff8700;">end</span>)
+    {
+        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)
+        {
+            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
+        }
+        <span style="color: #a1db00;">else</span>
+        {
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">insert</span> = start + 1; insert &lt;= end; insert++)
+            {
+                <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">key</span> = data[insert];
+                <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = insert - 1;
+                <span style="color: #a1db00;">for</span> (; idx &gt; start - 1 &amp;&amp; data[idx] &gt; key; idx--)
+                {
+                    data[idx + 1] = data[idx];
+                }
+                data[idx + 1] = key;
+            }
+            <span style="color: #a1db00;">return</span> 0;
+        }
+    }
 </pre>
 </div>
 </div>
@@ -1730,25 +1730,25 @@ void scan(const char* pszText, const char* pszName);
 <div class="outline-text-5" id="text-orgheadline113">
 <div class="org-src-container">
 
-<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">insertSortSwapPos</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span>  <span style="color: #ff8700;">end</span>)&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> -1;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">else</span>&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">insert</span>, <span style="color: #ff8700;">idx</span>, <span style="color: #ff8700;">tmp</span>;&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">for</span> (insert = start + 1; insert &lt;= end; insert++)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">for</span> (idx = insert; idx &gt; start &amp;&amp; data[idx] &lt; data[idx - 1]; idx--)&#57344;&#57345;
-                {&#57344;&#57345;&#57345;
-                    swapTwoNumValue (&amp;data[idx], &amp;data[idx - 1]);&#57344;&#57345;&#57345;
-                }&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">insertSortSwapPos</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span>  <span style="color: #ff8700;">end</span>)
+    {
+        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)
+        {
+            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
+        }
+        <span style="color: #a1db00;">else</span>
+        {
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">insert</span>, <span style="color: #ff8700;">idx</span>, <span style="color: #ff8700;">tmp</span>;
+            <span style="color: #a1db00;">for</span> (insert = start + 1; insert &lt;= end; insert++)
+            {
+                <span style="color: #a1db00;">for</span> (idx = insert; idx &gt; start &amp;&amp; data[idx] &lt; data[idx - 1]; idx--)
+                {
+                    swapTwoNumValue (&amp;data[idx], &amp;data[idx - 1]);
+                }
+            }
+        }
+    }
 </pre>
 </div>
 </div>
@@ -1758,23 +1758,23 @@ void scan(const char* pszText, const char* pszName);
 <div class="outline-text-5" id="text-orgheadline114">
 <div class="org-src-container">
 
-<pre class="src src-c++">    <span style="color: #a1db00;">extern</span> <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">BinSearch</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">n</span>);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">InsertSortWithBinSearch</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>)&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">insert</span> = start + 1; insert &lt;= end; insert++)&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">key</span> = data[insert];&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">pos</span> = binarySearch (data, start, insert - 1, key);&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = insert;&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">for</span> (; idx &gt; pos; idx--)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                data[idx] = data[idx - 1];&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            data[idx] = key;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++">    <span style="color: #a1db00;">extern</span> <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">BinSearch</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">n</span>);
+
+    <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">InsertSortWithBinSearch</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>)
+    {
+        <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">insert</span> = start + 1; insert &lt;= end; insert++)
+        {
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">key</span> = data[insert];
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">pos</span> = binarySearch (data, start, insert - 1, key);
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = insert;
+            <span style="color: #a1db00;">for</span> (; idx &gt; pos; idx--)
+            {
+                data[idx] = data[idx - 1];
+            }
+            data[idx] = key;
+        }
+
+    }
 </pre>
 </div>
 </div>
@@ -1785,28 +1785,28 @@ void scan(const char* pszText, const char* pszName);
 <div class="outline-text-4" id="text-9-1-4">
 <div class="org-src-container">
 
-<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">shellSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">end</span>)&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> -1;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">else</span>&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">gap</span> = len / 2; gap &gt; 0; gap /= 2)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span> = gap; i &lt;= end; i++)&#57344;&#57345;&#57345;
-                {&#57344;&#57345;&#57345;
-                    <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">j</span> = i - gap; j &gt;= start &amp;&amp; data[j] &gt; data[j + gap]; j -= gap)&#57344;&#57345;
-                    {&#57344;&#57345;&#57345;
-                        swapTwoNumValue (&amp;data[j], &amp;data[j + gap]);&#57344;&#57345;&#57345;
-                    }&#57344;&#57345;&#57345;
-                }&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">shellSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">end</span>)
+    {
+        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)
+        {
+            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
+        }
+        <span style="color: #a1db00;">else</span>
+        {
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">gap</span> = len / 2; gap &gt; 0; gap /= 2)
+            {
+                <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span> = gap; i &lt;= end; i++)
+                {
+                    <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">j</span> = i - gap; j &gt;= start &amp;&amp; data[j] &gt; data[j + gap]; j -= gap)
+                    {
+                        swapTwoNumValue (&amp;data[j], &amp;data[j + gap]);
+                    }
+                }
+            }
+            <span style="color: #a1db00;">return</span> 0;
+        }
+    }
 </pre>
 </div>
 </div>
@@ -1820,27 +1820,27 @@ void scan(const char* pszText, const char* pszName);
 <div class="outline-text-5" id="text-orgheadline117">
 <div class="org-src-container">
 
-<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">simpleSelectionSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span>  <span style="color: #ff8700;">end</span>)&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> -1;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">else</span>&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start; idx &lt; end; idx++)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">min</span> = idx;&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">j</span> = idx + 1; j &lt;= end; j++)&#57344;&#57345;&#57345;
-                {&#57344;&#57345;&#57345;
-                    min = (data[j] &lt; data[min]) ? j : min;&#57344;&#57345;&#57345;
-                }&#57344;&#57345;&#57345;
-                swapTwoNumValue (&amp;data[idx], &amp;data[min]);&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">simpleSelectionSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span>  <span style="color: #ff8700;">end</span>)
+    {
+        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)
+        {
+            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
+        }
+        <span style="color: #a1db00;">else</span>
+        {
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start; idx &lt; end; idx++)
+            {
+                <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">min</span> = idx;
+                <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">j</span> = idx + 1; j &lt;= end; j++)
+                {
+                    min = (data[j] &lt; data[min]) ? j : min;
+                }
+                swapTwoNumValue (&amp;data[idx], &amp;data[min]);
+            }
+            <span style="color: #a1db00;">return</span> 0;
+        }
+    }
 </pre>
 </div>
 </div>
@@ -1850,31 +1850,31 @@ void scan(const char* pszText, const char* pszName);
 <div class="outline-text-5" id="text-orgheadline118">
 <div class="org-src-container">
 
-<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">RecurSimpleSelectionSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span>  <span style="color: #ff8700;">end</span>)&#57344;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> -1;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">else</span>&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">max</span> = start;&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start; idx &lt; end; ++idx)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                max = (data[idx] &gt; data[idx + 1]) ? idx : idx + 1;&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">if</span> (max != end)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                swapTwoNumValue (&amp;data[max], &amp;data[end]);&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">if</span> (start &lt; end - 1)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                recurSimpleSelectionSort (data, len, start, end - 1);&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">RecurSimpleSelectionSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span>  <span style="color: #ff8700;">end</span>)
+    {
+        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)
+        {
+            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
+        }
+        <span style="color: #a1db00;">else</span>
+        {
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">max</span> = start;
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start; idx &lt; end; ++idx)
+            {
+                max = (data[idx] &gt; data[idx + 1]) ? idx : idx + 1;
+            }
+            <span style="color: #a1db00;">if</span> (max != end)
+            {
+                swapTwoNumValue (&amp;data[max], &amp;data[end]);
+            }
+            <span style="color: #a1db00;">if</span> (start &lt; end - 1)
+            {
+                recurSimpleSelectionSort (data, len, start, end - 1);
+            }
+            <span style="color: #a1db00;">return</span> 0;
+        }
+    }
 </pre>
 </div>
 </div>
@@ -1886,49 +1886,49 @@ void scan(const char* pszText, const char* pszName);
 <div class="outline-text-4" id="text-9-1-6">
 <div class="org-src-container">
 
-<pre class="src src-c++">    <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">adjustMaxHeap</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">end</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">pos</span>)&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">left</span> = pos * 2 + 1;&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">right</span> = 2 * (pos + 1);&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">largest</span> = pos;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> ((left &lt;= end) &amp;&amp; (data[left] &gt; data[largest]))&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            largest = left;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> ((right &lt;= end) &amp;&amp; (data[right] &gt; data[largest]))&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            largest = right;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (largest != pos)&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            swapTwoNumValue (&amp;data[pos], &amp;data[largest]);&#57344;&#57345;&#57345;
-            adjustMaxHeap (data, start, end, largest);&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">heapSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">end</span>)&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> -1;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">else</span>&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">build max root heap */</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = (start + end) / 2; idx &gt;= start; idx--)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                adjustMaxHeap (data, start, end, idx);&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">heap sort */</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = end; idx &gt;= start + 1; idx--)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                swapTwoNumValue (&amp;data[start], &amp;data[idx]);&#57344;&#57345;&#57345;
-                adjustMaxHeap (data, start, idx - 1, start);&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++">    <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">adjustMaxHeap</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">end</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">pos</span>)
+    {
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">left</span> = pos * 2 + 1;
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">right</span> = 2 * (pos + 1);
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">largest</span> = pos;
+        <span style="color: #a1db00;">if</span> ((left &lt;= end) &amp;&amp; (data[left] &gt; data[largest]))
+        {
+            largest = left;
+        }
+        <span style="color: #a1db00;">if</span> ((right &lt;= end) &amp;&amp; (data[right] &gt; data[largest]))
+        {
+            largest = right;
+        }
+        <span style="color: #a1db00;">if</span> (largest != pos)
+        {
+            swapTwoNumValue (&amp;data[pos], &amp;data[largest]);
+            adjustMaxHeap (data, start, end, largest);
+        }
+    }
+
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">heapSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">end</span>)
+    {
+        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)
+        {
+            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
+        }
+        <span style="color: #a1db00;">else</span>
+        {
+            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">build max root heap */</span>
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = (start + end) / 2; idx &gt;= start; idx--)
+            {
+                adjustMaxHeap (data, start, end, idx);
+            }
+            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">heap sort */</span>
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = end; idx &gt;= start + 1; idx--)
+            {
+                swapTwoNumValue (&amp;data[start], &amp;data[idx]);
+                adjustMaxHeap (data, start, idx - 1, start);
+            }
+            <span style="color: #a1db00;">return</span> 0;
+        }
+    }
 </pre>
 </div>
 </div>
@@ -1942,60 +1942,60 @@ void scan(const char* pszText, const char* pszName);
 <div class="outline-text-5" id="text-orgheadline121">
 <div class="org-src-container">
 
-<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">Merge</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">longArray</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len1</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">shortArray</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len2</span>)&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (longArray == <span style="color: #5fafd7;">NULL</span> || shortArray == <span style="color: #5fafd7;">NULL</span> || longArray == shortArray || len1 &lt; 0 || len2 &lt; 0)&#57344;&#57345;
-        {&#57344;&#57345;&#57345;
-            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> -1;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">else</span>&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">copy shortArray to tmp array */</span>&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">int</span> *<span style="color: #ff8700;">tmpArray</span> = (<span style="color: #00d7af;">int</span> *) malloc (<span style="color: #00d7af;">len2</span> * <span style="color: #a1db00;">sizeof</span>(<span style="color: #00d7af;">int</span>));&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = 0; idx &lt; len2; idx++)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                tmpArray[idx] = shortArray[idx];&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span> = len1 - 1;&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">j</span> = len2 - 1;&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">k</span> = len1 + len2 - 1;&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">while</span> (i &gt; -1 &amp;&amp; j &gt; -1)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                longArray[k--] = (longArray[i] &gt; tmpArray[j]) ? longArray[i--] : tmpArray[j--];&#57344;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">if</span> (i &lt; 0 &amp;&amp; j &gt; -1)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">while</span> (k &gt; -1)&#57344;&#57345;&#57345;
-                {&#57344;&#57345;&#57345;
-                    longArray[k--] = tmpArray[j--];&#57344;&#57345;&#57345;
-                }&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            free (tmpArray);&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">RMergeSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">end</span>)&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            printf (<span style="color: #ff4ea3;">"[%s, %s] Invalid input\n"</span>, __FILE__, __LINE__);&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> -1;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">else</span>&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">if</span> (start &lt; end)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">mid</span> = (start + end) / 2;&#57344;&#57345;&#57345;
-                RMergeSort (data, len, start, mid);&#57344;&#57345;&#57345;
-                RMergeSort (data, len, mid + 1, end);&#57344;&#57345;&#57345;
-                Merge (&amp;data[start], mid - start + 1, &amp;data[mid + 1], end - mid);&#57344;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">Merge</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">longArray</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len1</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">shortArray</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len2</span>)
+    {
+        <span style="color: #a1db00;">if</span> (longArray == <span style="color: #5fafd7;">NULL</span> || shortArray == <span style="color: #5fafd7;">NULL</span> || longArray == shortArray || len1 &lt; 0 || len2 &lt; 0)
+        {
+            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
+        }
+        <span style="color: #a1db00;">else</span>
+        {
+            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">copy shortArray to tmp array */</span>
+            <span style="color: #00d7af;">int</span> *<span style="color: #ff8700;">tmpArray</span> = (<span style="color: #00d7af;">int</span> *) malloc (<span style="color: #00d7af;">len2</span> * <span style="color: #a1db00;">sizeof</span>(<span style="color: #00d7af;">int</span>));
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = 0; idx &lt; len2; idx++)
+            {
+                tmpArray[idx] = shortArray[idx];
+            }
+
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span> = len1 - 1;
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">j</span> = len2 - 1;
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">k</span> = len1 + len2 - 1;
+            <span style="color: #a1db00;">while</span> (i &gt; -1 &amp;&amp; j &gt; -1)
+            {
+                longArray[k--] = (longArray[i] &gt; tmpArray[j]) ? longArray[i--] : tmpArray[j--];
+            }
+            <span style="color: #a1db00;">if</span> (i &lt; 0 &amp;&amp; j &gt; -1)
+            {
+                <span style="color: #a1db00;">while</span> (k &gt; -1)
+                {
+                    longArray[k--] = tmpArray[j--];
+                }
+            }
+            free (tmpArray);
+            <span style="color: #a1db00;">return</span> 0;
+        }
+    }
+
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">RMergeSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">end</span>)
+    {
+        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)
+        {
+            printf (<span style="color: #ff4ea3;">"[%s, %s] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
+        }
+        <span style="color: #a1db00;">else</span>
+        {
+            <span style="color: #a1db00;">if</span> (start &lt; end)
+            {
+                <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">mid</span> = (start + end) / 2;
+                RMergeSort (data, len, start, mid);
+                RMergeSort (data, len, mid + 1, end);
+                Merge (&amp;data[start], mid - start + 1, &amp;data[mid + 1], end - mid);
+            }
+            <span style="color: #a1db00;">return</span> 0;
+        }
+    }
 </pre>
 </div>
 </div>
@@ -2005,27 +2005,27 @@ void scan(const char* pszText, const char* pszName);
 <div class="outline-text-5" id="text-orgheadline122">
 <div class="org-src-container">
 
-<pre class="src src-c++">    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#38750;&#36882;&#24402;&#23454;&#29616; --&#36845;&#20195;</span>&#57344;&#57345;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#38750;&#36882;&#24402;&#24605;&#24819;: &#23558;&#25968;&#32452;&#20013;&#30340;&#30456;&#37051;&#20803;&#32032;&#20004;&#20004;&#37197;&#23545;&#12290;&#29992; merge &#20989;&#25968;&#23558;&#20182;&#20204;&#25490;&#24207;&#65292;</span>&#57344;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#26500;&#25104; n/2 &#32452;&#38271;&#24230;&#20026; 2 &#30340;&#25490;&#24207;&#22909;&#30340;&#23376;&#25968;&#32452;&#27573;&#65292;&#28982;&#21518;&#20877;&#23558;&#20182;&#20204;&#25490;&#24207;&#25104;&#38271;&#24230;&#20026; 4 &#30340;&#23376;&#25968;&#32452;&#27573;&#65292;</span>&#57344;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#22914;&#27492;&#32487;&#32493;&#19979;&#21435;&#65292;&#30452;&#33267;&#25972;&#20010;&#25968;&#32452;&#25490;&#22909;&#24207;&#12290;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">MergeSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">end</span>)&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">step</span>, <span style="color: #ff8700;">idx</span>;    <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#27493;&#38271;,&#24320;&#22987; */</span>&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">for</span> (step = 2; start + step - 1 &lt;= end; step *= 2)&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">for</span> (idx = start; idx + step - 1 &lt;= end; idx += step)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                mergeTwoSortedArray (&amp;data[idx], step / 2, &amp;data[idx + step / 2], step / 2);&#57344;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#22788;&#29702;&#26411;&#23614;&#22855;&#25968;&#21097;&#20313; */</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">if</span> (idx &lt;= end &amp;&amp; idx + step - 1 &gt; end)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                mergeTwoSortedArray (&amp;data[idx - step], step, &amp;data[idx], end - idx + 1);&#57344;&#57345;
-            }&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++">    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#38750;&#36882;&#24402;&#23454;&#29616; --&#36845;&#20195;</span>
+    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#38750;&#36882;&#24402;&#24605;&#24819;: &#23558;&#25968;&#32452;&#20013;&#30340;&#30456;&#37051;&#20803;&#32032;&#20004;&#20004;&#37197;&#23545;&#12290;&#29992; merge &#20989;&#25968;&#23558;&#20182;&#20204;&#25490;&#24207;&#65292;</span>
+    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#26500;&#25104; n/2 &#32452;&#38271;&#24230;&#20026; 2 &#30340;&#25490;&#24207;&#22909;&#30340;&#23376;&#25968;&#32452;&#27573;&#65292;&#28982;&#21518;&#20877;&#23558;&#20182;&#20204;&#25490;&#24207;&#25104;&#38271;&#24230;&#20026; 4 &#30340;&#23376;&#25968;&#32452;&#27573;&#65292;</span>
+    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#22914;&#27492;&#32487;&#32493;&#19979;&#21435;&#65292;&#30452;&#33267;&#25972;&#20010;&#25968;&#32452;&#25490;&#22909;&#24207;&#12290;</span>
+
+    <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">MergeSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">end</span>)
+    {
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">step</span>, <span style="color: #ff8700;">idx</span>;    <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#27493;&#38271;,&#24320;&#22987; */</span>
+        <span style="color: #a1db00;">for</span> (step = 2; start + step - 1 &lt;= end; step *= 2)
+        {
+            <span style="color: #a1db00;">for</span> (idx = start; idx + step - 1 &lt;= end; idx += step)
+            {
+                mergeTwoSortedArray (&amp;data[idx], step / 2, &amp;data[idx + step / 2], step / 2);
+            }
+            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#22788;&#29702;&#26411;&#23614;&#22855;&#25968;&#21097;&#20313; */</span>
+            <span style="color: #a1db00;">if</span> (idx &lt;= end &amp;&amp; idx + step - 1 &gt; end)
+            {
+                mergeTwoSortedArray (&amp;data[idx - step], step, &amp;data[idx], end - idx + 1);
+            }
+        }
+    }
 </pre>
 </div>
 </div>
@@ -2037,62 +2037,62 @@ void scan(const char* pszText, const char* pszName);
 <div class="outline-text-4" id="text-9-1-8">
 <div class="org-src-container">
 
-<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">getDigitOfNum</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">end</span>)&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">digit</span> = 1;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start; idx &lt;= end; idx++)&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">c</span> = 1;&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">num</span> = data[idx]; num / 10; ++c, num /= 10)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            digit = (digit &lt; c) ? c : digit;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> digit;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">radixSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">end</span>)&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> -1;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">else</span>&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">digit</span> = getDigitOfNum (data, start, end);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#21033;&#29992;&#35745;&#25968;&#25490;&#24207;&#23545;&#27599;&#19968;&#20301;&#36827;&#34892;&#25490;&#24207; */</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span> = 1; i &lt;= digit; ++i)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                <span style="color: #00d7af;">int</span> *<span style="color: #ff8700;">sortedArray</span> = (<span style="color: #00d7af;">int</span>*) malloc (<span style="color: #00d7af;">len</span> * <span style="color: #a1db00;">sizeof</span>(<span style="color: #00d7af;">int</span>));&#57344;&#57345;&#57345;
-                <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">countArray</span>[10] = { 0 };&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start; idx &lt;= end; ++idx)&#57344;&#57345;&#57345;
-                {&#57344;&#57345;&#57345;
-                    <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">dataInCountArray</span> = (data[idx] / ((<span style="color: #00d7af;">int</span>) pow (10, i - 1))) % 10;&#57344;&#57345;
-                    countArray[dataInCountArray]++;&#57344;&#57345;&#57345;
-                }&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">j</span> = 1; j &lt; 10; ++j)&#57344;&#57345;&#57345;
-                {&#57344;&#57345;&#57345;
-                    countArray[j] += countArray[j - 1];&#57344;&#57345;&#57345;
-                }&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = end; idx &gt;= start; idx--)&#57344;&#57345;&#57345;
-                {&#57344;&#57345;&#57345;
-                    <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">dataInCountArray</span> = (data[idx] / ((<span style="color: #00d7af;">int</span>) pow (10, i - 1))) % 10;&#57344;&#57345;
-                    sortedArray[countArray[dataInCountArray] - 1] = data[idx];&#57344;&#57345;
-                    countArray[dataInCountArray]--;&#57344;&#57345;&#57345;
-                }&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start; idx &lt;= end; idx++)&#57344;&#57345;&#57345;
-                {&#57344;&#57345;&#57345;
-                    data[idx] = sortedArray[idx];&#57344;&#57345;&#57345;
-                }&#57344;&#57345;&#57345;
-                free (sortedArray);&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">getDigitOfNum</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">end</span>)
+    {
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">digit</span> = 1;
+        <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start; idx &lt;= end; idx++)
+        {
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">c</span> = 1;
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">num</span> = data[idx]; num / 10; ++c, num /= 10)
+            {
+            }
+            digit = (digit &lt; c) ? c : digit;
+        }
+        <span style="color: #a1db00;">return</span> digit;
+    }
+
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">radixSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">end</span>)
+    {
+        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)
+        {
+            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
+        }
+        <span style="color: #a1db00;">else</span>
+        {
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">digit</span> = getDigitOfNum (data, start, end);
+
+            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#21033;&#29992;&#35745;&#25968;&#25490;&#24207;&#23545;&#27599;&#19968;&#20301;&#36827;&#34892;&#25490;&#24207; */</span>
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span> = 1; i &lt;= digit; ++i)
+            {
+                <span style="color: #00d7af;">int</span> *<span style="color: #ff8700;">sortedArray</span> = (<span style="color: #00d7af;">int</span>*) malloc (<span style="color: #00d7af;">len</span> * <span style="color: #a1db00;">sizeof</span>(<span style="color: #00d7af;">int</span>));
+                <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">countArray</span>[10] = { 0 };
+
+                <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start; idx &lt;= end; ++idx)
+                {
+                    <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">dataInCountArray</span> = (data[idx] / ((<span style="color: #00d7af;">int</span>) pow (10, i - 1))) % 10;
+                    countArray[dataInCountArray]++;
+                }
+                <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">j</span> = 1; j &lt; 10; ++j)
+                {
+                    countArray[j] += countArray[j - 1];
+                }
+                <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = end; idx &gt;= start; idx--)
+                {
+                    <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">dataInCountArray</span> = (data[idx] / ((<span style="color: #00d7af;">int</span>) pow (10, i - 1))) % 10;
+                    sortedArray[countArray[dataInCountArray] - 1] = data[idx];
+                    countArray[dataInCountArray]--;
+                }
+                <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start; idx &lt;= end; idx++)
+                {
+                    data[idx] = sortedArray[idx];
+                }
+                free (sortedArray);
+            }
+            <span style="color: #a1db00;">return</span> 0;
+        }
+
+    }
 </pre>
 </div>
 </div>
@@ -2102,59 +2102,59 @@ void scan(const char* pszText, const char* pszName);
 <div class="outline-text-4" id="text-9-1-9">
 <div class="org-src-container">
 
-<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">coutingSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">end</span>)&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> -1;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">else</span>&#57344;&#57345;&#57345;
-        {&#57344;&#57345;&#57345;
-            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">step 1 */</span>&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">min</span> = data[start];&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">max</span> = data[start];&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start + 1; idx &lt;= end; ++idx)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                min = (data[idx] &lt; min) ? data[idx] : min;&#57344;&#57345;&#57345;
-                max = (data[idx] &gt; max) ? data[idx] : max;&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">step 2 */</span>&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">int</span> *<span style="color: #ff8700;">countArray</span> = (<span style="color: #00d7af;">int</span>*) malloc ((max - min + 1) *<span style="color: #a1db00;">sizeof</span>(<span style="color: #00d7af;">int</span>));&#57344;&#57345;
-            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = 0; idx &lt;= max - min; ++idx)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">when init count array, do not use memset */</span>&#57344;&#57345;&#57345;
-                countArray[idx] = 0;&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start; idx &lt;= end; idx++)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">dataInCountArray</span> = data[idx] - min;&#57344;&#57345;&#57345;
-                countArray[dataInCountArray]++;&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">step 3 */</span>&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = 1; idx &lt;= max - min; idx++)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                countArray[idx] += countArray[idx - 1];&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">step 4 */</span>&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">int</span> *<span style="color: #ff8700;">sortedArray</span> = (<span style="color: #00d7af;">int</span> *) malloc (<span style="color: #00d7af;">len</span>*<span style="color: #a1db00;">sizeof</span>(<span style="color: #00d7af;">int</span>));&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = end; idx &gt;= start; idx--)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">dataInCountArray</span> = data[idx] - min;&#57344;&#57345;&#57345;
-                <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#27880;&#24847;&#25968;&#32452;&#26159;&#20174; 0 &#24320;&#22987;&#30340;&#65292;&#25152;&#20197; countArray[data[idx-1]]&#24517;&#39035;&#35201;&#20943; 1 */</span>&#57344;&#57345;
-                sortedArray[countArray[dataInCountArray] - 1] = data[idx];&#57344;&#57345;
-                --countArray[dataInCountArray];&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start; idx &lt;= end; idx++)&#57344;&#57345;&#57345;
-            {&#57344;&#57345;&#57345;
-                data[idx] = sortedArray[idx];&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            free (sortedArray);&#57344;&#57345;&#57345;
-            free (countArray);&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">coutingSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">end</span>)
+    {
+        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)
+        {
+            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
+        }
+        <span style="color: #a1db00;">else</span>
+        {
+            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">step 1 */</span>
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">min</span> = data[start];
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">max</span> = data[start];
+
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start + 1; idx &lt;= end; ++idx)
+            {
+                min = (data[idx] &lt; min) ? data[idx] : min;
+                max = (data[idx] &gt; max) ? data[idx] : max;
+            }
+            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">step 2 */</span>
+            <span style="color: #00d7af;">int</span> *<span style="color: #ff8700;">countArray</span> = (<span style="color: #00d7af;">int</span>*) malloc ((max - min + 1) *<span style="color: #a1db00;">sizeof</span>(<span style="color: #00d7af;">int</span>));
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = 0; idx &lt;= max - min; ++idx)
+            {
+                <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">when init count array, do not use memset */</span>
+                countArray[idx] = 0;
+            }
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start; idx &lt;= end; idx++)
+            {
+                <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">dataInCountArray</span> = data[idx] - min;
+                countArray[dataInCountArray]++;
+            }
+            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">step 3 */</span>
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = 1; idx &lt;= max - min; idx++)
+            {
+                countArray[idx] += countArray[idx - 1];
+            }
+            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">step 4 */</span>
+            <span style="color: #00d7af;">int</span> *<span style="color: #ff8700;">sortedArray</span> = (<span style="color: #00d7af;">int</span> *) malloc (<span style="color: #00d7af;">len</span>*<span style="color: #a1db00;">sizeof</span>(<span style="color: #00d7af;">int</span>));
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = end; idx &gt;= start; idx--)
+            {
+                <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">dataInCountArray</span> = data[idx] - min;
+                <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#27880;&#24847;&#25968;&#32452;&#26159;&#20174; 0 &#24320;&#22987;&#30340;&#65292;&#25152;&#20197; countArray[data[idx-1]]&#24517;&#39035;&#35201;&#20943; 1 */</span>
+                sortedArray[countArray[dataInCountArray] - 1] = data[idx];
+                --countArray[dataInCountArray];
+            }
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start; idx &lt;= end; idx++)
+            {
+                data[idx] = sortedArray[idx];
+            }
+            free (sortedArray);
+            free (countArray);
+        }
+        <span style="color: #a1db00;">return</span> 0;
+    }
 </pre>
 </div>
 </div>
@@ -2164,9 +2164,9 @@ void scan(const char* pszText, const char* pszName);
 <div class="outline-text-4" id="text-9-1-10">
 <div class="org-src-container">
 
-<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">BucketSort</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>) {&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">BucketSort</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>) {
+
+    }
 </pre>
 </div>
 </div>
@@ -2322,22 +2322,22 @@ void scan(const char* pszText, const char* pszName);
 <div class="outline-text-4" id="text-9-2-1">
 <div class="org-src-container">
 
-<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">BinSearch</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">n</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">val</span>) {&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">left</span> = 0, <span style="color: #ff8700;">right</span> = n-1;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">while</span> (left &lt;= right) {&#57344;&#57345;&#57345;
-            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">mid</span> = left + ((right - left) &gt;&gt; 2);&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">if</span> (a[mid] &gt; val) {&#57344;&#57345;&#57345;
-                right = mid - 1;&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span> (a[mid] &lt; val) {&#57344;&#57345;&#57345;
-                left = mid + 1;&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">else</span> {&#57344;&#57345;&#57345;
-                <span style="color: #a1db00;">return</span> mid;&#57344;&#57345;&#57345;
-            }&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> -1;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">BinSearch</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">n</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">val</span>) {
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">left</span> = 0, <span style="color: #ff8700;">right</span> = n-1;
+        <span style="color: #a1db00;">while</span> (left &lt;= right) {
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">mid</span> = left + ((right - left) &gt;&gt; 2);
+            <span style="color: #a1db00;">if</span> (a[mid] &gt; val) {
+                right = mid - 1;
+            }
+            <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span> (a[mid] &lt; val) {
+                left = mid + 1;
+            }
+            <span style="color: #a1db00;">else</span> {
+                <span style="color: #a1db00;">return</span> mid;
+            }
+        }
+        <span style="color: #a1db00;">return</span> -1;
+    }
 </pre>
 </div>
 </div>
@@ -2410,27 +2410,27 @@ void scan(const char* pszText, const char* pszName);
 <div class="outline-text-2" id="text-12">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;vector&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;list&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;forward_list&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;deque&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;array&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;string&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;map&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;set&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;gtest/gtest.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span>** <span style="color: #ff8700;">argv</span>)&#57344;&#57345;&#57345;
-    {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">testing</span>::FLAGS_gtest_filter = <span style="color: #ff4ea3;">"TestConst*"</span>;&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">testing</span>::InitGoogleTest (&amp;argc, argv);&#57344;&#57345;&#57345;
-        RUN_ALL_TESTS ();&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        system (<span style="color: #ff4ea3;">"pause"</span>);&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;vector&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;list&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;forward_list&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;deque&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;array&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;string&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;map&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;set&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;gtest/gtest.h&gt;</span>
+
+
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span>** <span style="color: #ff8700;">argv</span>)
+    {
+        <span style="color: #5fafd7;">testing</span>::FLAGS_gtest_filter = <span style="color: #ff4ea3;">"TestConst*"</span>;
+        <span style="color: #5fafd7;">testing</span>::InitGoogleTest (&amp;argc, argv);
+        RUN_ALL_TESTS ();
+
+        system (<span style="color: #ff4ea3;">"pause"</span>);
+        <span style="color: #a1db00;">return</span> 0;
+    }
 </pre>
 </div>
 </div>
@@ -2447,8 +2447,8 @@ void scan(const char* pszText, const char* pszName);
 </div>
 </div></div>
 <div id="postamble" class="status">
-<p class="author">Author: ubuntu-company</p>
-<p class="date">Created: 2016-02-19 Fri 16:59</p>
+<p class="author">Author: ubuntu</p>
+<p class="date">Created: 2016-03-20 日 02:24</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

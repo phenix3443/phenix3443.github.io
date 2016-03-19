@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-02-24 Wed 20:18 -->
+<!-- 2016-03-20 日 02:25 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>latex practices</title>
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="ubuntu-company" />
+<meta  name="author" content="ubuntu" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -401,7 +401,7 @@ LaTeX 源文件是普通的文本文件格式，其中不仅包括所要排版�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">    latex hello.tex&#57344;&#57345;&#57345;
+<pre class="src src-sh">    latex hello.tex
 </pre>
 </div>
 <p>
@@ -417,7 +417,7 @@ LaTeX 源文件是普通的文本文件格式，其中不仅包括所要排版�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">    xdvi hello.dvi&#57344;&#57345;&#57345;
+<pre class="src src-sh">    xdvi hello.dvi
 </pre>
 </div>
 <p>
@@ -433,7 +433,7 @@ DVI 元文件中的信息最终要被转化成可以在特定打印机上输出�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">  dvihp hello.dvi&#57344;&#57345;&#57345;
+<pre class="src src-sh">  dvihp hello.dvi
 </pre>
 </div>
 </div>
@@ -446,8 +446,8 @@ DVI 元文件中的信息最终要被转化成可以在特定打印机上输出�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">    dvipdf hello.dvi&#57344;&#57345;&#57345;
-    dvips hello.dvi -o&#57344;&#57345;&#57345;
+<pre class="src src-sh">    dvipdf hello.dvi
+    dvips hello.dvi -o
 </pre>
 </div>
 </div>
@@ -485,8 +485,8 @@ TeXLive 是以光盘镜像（ISO）的形式发布的，在 <a href="http://www.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">     mount -t iso9660 -o ro,loop texlive2015-20150523.iso&#57344;&#57345;&#57345;
-     <span style="color: #d18aff;">cd</span> /mnt/texlive&#57344;&#57345;&#57345;
+<pre class="src src-sh">     mount -t iso9660 -o ro,loop texlive2015-20150523.iso
+     <span style="color: #d18aff;">cd</span> /mnt/texlive
 </pre>
 </div>
 
@@ -495,9 +495,9 @@ TeXLive 的安装比较容易，首先是将光盘根目录下的 bin 和 texmf 
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">     mkdir /usr/local/texlive&#57344;&#57345;&#57345;
-     cp /mnt/texlive/bin/ /usr/local/texlive/ -R&#57344;&#57345;&#57345;
-     cp /mnt/texlive/texmf/ /usr/local/texlive/ -R&#57344;&#57345;&#57345;
+<pre class="src src-sh">     mkdir /usr/local/texlive
+     cp /mnt/texlive/bin/ /usr/local/texlive/ -R
+     cp /mnt/texlive/texmf/ /usr/local/texlive/ -R
 </pre>
 </div>
 
@@ -506,7 +506,7 @@ TeXLive 的安装比较容易，首先是将光盘根目录下的 bin 和 texmf 
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">     <span style="color: #d18aff;">export</span> <span style="color: #ff8700;">PATH</span>=/usr/local/texlive/bin/i386-linux/:$<span style="color: #ff8700;">PATH</span>&#57344;&#57345;&#57345;
+<pre class="src src-sh">     <span style="color: #d18aff;">export</span> <span style="color: #ff8700;">PATH</span>=/usr/local/texlive/bin/i386-linux/:$<span style="color: #ff8700;">PATH</span>
 </pre>
 </div>
 <p>
@@ -515,7 +515,7 @@ TeXLive 的安装比较容易，首先是将光盘根目录下的 bin 和 texmf 
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"> tex&#57344;&#57345;&#57345;
+<pre class="src src-sh"> tex
 </pre>
 </div>
 
@@ -524,7 +524,7 @@ TeXLive 的安装比较容易，首先是将光盘根目录下的 bin 和 texmf 
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">     \relax\bye&#57344;&#57345;&#57345;
+<pre class="src src-sh">     \relax\bye
 </pre>
 </div>
 <p>
@@ -563,7 +563,7 @@ ubuntu 下安装程序依赖 perl-tk。
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">   sudo apt-get install perl-tk&#57344;&#57345;&#57345;
+<pre class="src src-sh">   sudo apt-get install perl-tk
 </pre>
 </div></li>
 <li>安装过程中出一些 tar 不完整的错误重新安装可以解决，之前下载的安装包也不会重复下载。</li>
@@ -580,7 +580,7 @@ XeTEX 和 LuaTEX 可以使用任何系统安装的字体，而不只是 TEX 目�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">    sudo tlmgr install collection-xetex&#57344;&#57345;&#57345;
+<pre class="src src-sh">    sudo tlmgr install collection-xetex
 </pre>
 </div>
 <p>
@@ -588,8 +588,8 @@ XeTEX 和 LuaTEX 可以使用任何系统安装的字体，而不只是 TEX 目�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">      sudo cp /usr/local/texlive/2015/texmf-var/fonts/conf/texlive-fontconfig.conf /etc/fonts/conf.d/09-texlive.conf&#57344;&#57345;
-      sudo fc-cache -fsv&#57344;&#57345;&#57345;
+<pre class="src src-sh">      sudo cp /usr/local/texlive/2015/texmf-var/fonts/conf/texlive-fontconfig.conf /etc/fonts/conf.d/09-texlive.conf
+      sudo fc-cache -fsv
 </pre>
 </div>
 
@@ -598,8 +598,8 @@ XeTEX 和 LuaTEX 可以使用任何系统安装的字体，而不只是 TEX 目�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">      cp /usr/local/texlive/2015/texmf-var/fonts/conf/texlive-fontconfig.conf ~/.fonts.conf&#57344;&#57345;
-      fc-cache -fv&#57344;&#57345;&#57345;
+<pre class="src src-sh">      cp /usr/local/texlive/2015/texmf-var/fonts/conf/texlive-fontconfig.conf ~/.fonts.conf
+      fc-cache -fv
 </pre>
 </div></li>
 </ul>
@@ -959,7 +959,7 @@ MacTeX<sup><a id="fnr.18" class="footref" href="#fn.18">18</a></sup>实际上是
 <div class="outline-text-3" id="text-4-6">
 <div class="org-src-container">
 
-<pre class="src src-sh">    fc-list :<span style="color: #ff8700;">lang</span>=zh family style file spacing | awk -F: <span style="color: #ff4ea3;">'BEGIN {OFS=" : "} {print $2 , $1 , $3 }'</span> | sort &gt; chinesefontname&#57344;&#57345;
+<pre class="src src-sh">    fc-list :<span style="color: #ff8700;">lang</span>=zh family style file spacing | awk -F: <span style="color: #ff4ea3;">'BEGIN {OFS=" : "} {print $2 , $1 , $3 }'</span> | sort &gt; chinesefontname
 </pre>
 </div>
 <p>
@@ -967,7 +967,7 @@ MacTeX<sup><a id="fnr.18" class="footref" href="#fn.18">18</a></sup>实际上是
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">    fc-list :<span style="color: #ff8700;">lang</span>=en family style file spacing | awk -F: <span style="color: #ff4ea3;">'BEGIN {OFS=" : "} {print $2 , $1 , $3 }'</span> | sort &gt; englishfontname&#57344;&#57345;
+<pre class="src src-sh">    fc-list :<span style="color: #ff8700;">lang</span>=en family style file spacing | awk -F: <span style="color: #ff4ea3;">'BEGIN {OFS=" : "} {print $2 , $1 , $3 }'</span> | sort &gt; englishfontname
 </pre>
 </div>
 </div>
@@ -977,7 +977,7 @@ MacTeX<sup><a id="fnr.18" class="footref" href="#fn.18">18</a></sup>实际上是
 <div class="outline-text-3" id="text-4-7">
 <div class="org-src-container">
 
-<pre class="src src-sh">    sudo apt-get install ttf-wqy-zenhei ttf-wqy-microhei xfonts-wqy fonts-arphic-ukai fonts-arphic-uming&#57344;&#57345;
+<pre class="src src-sh">    sudo apt-get install ttf-wqy-zenhei ttf-wqy-microhei xfonts-wqy fonts-arphic-ukai fonts-arphic-uming
 </pre>
 </div>
 
@@ -986,9 +986,9 @@ MacTeX<sup><a id="fnr.18" class="footref" href="#fn.18">18</a></sup>实际上是
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">    fc-cache -fv <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">&#23433;&#35013;&#22312;~/.fonts.conf</span>&#57344;&#57345;&#57345;
-    <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">&#25110;&#32773;</span>&#57344;&#57345;&#57345;
-    fc-cache -fsv <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">&#23433;&#35013;&#22312;/etc/fonts/</span>&#57344;&#57345;&#57345;
+<pre class="src src-sh">    fc-cache -fv <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">&#23433;&#35013;&#22312;~/.fonts.conf</span>
+    <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">&#25110;&#32773;</span>
+    fc-cache -fsv <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">&#23433;&#35013;&#22312;/etc/fonts/</span>
 </pre>
 </div>
 </div>
@@ -1074,8 +1074,8 @@ MacTeX<sup><a id="fnr.18" class="footref" href="#fn.18">18</a></sup>实际上是
 </div>
 </div></div>
 <div id="postamble" class="status">
-<p class="author">Author: ubuntu-company</p>
-<p class="date">Created: 2016-02-24 Wed 20:18</p>
+<p class="author">Author: ubuntu</p>
+<p class="date">Created: 2016-03-20 日 02:25</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

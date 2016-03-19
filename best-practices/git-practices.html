@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-02-24 Wed 20:18 -->
+<!-- 2016-03-20 日 02:25 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>GIT practices</title>
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="ubuntu-company" />
+<meta  name="author" content="ubuntu" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -203,22 +203,27 @@ for the JavaScript code in this tag.
 </ul>
 </li>
 <li><a href="#orgheadline31">8. 自定义 Git</a></li>
-<li><a href="#orgheadline40">9. Git 与其他系统</a>
+<li><a href="#orgheadline42">9. Git 与其他系统</a>
 <ul>
-<li><a href="#orgheadline32">9.1. 作为客户端的 Git</a></li>
-<li><a href="#orgheadline39">9.2. 迁移到 Git</a>
+<li><a href="#orgheadline34">9.1. 作为客户端的 Git</a>
 <ul>
-<li><a href="#orgheadline33">9.2.1. 准备环境</a></li>
-<li><a href="#orgheadline34">9.2.2. 规范 Subversion</a></li>
-<li><a href="#orgheadline35">9.2.3. 生成提交者 ID 和邮箱</a></li>
-<li><a href="#orgheadline36">9.2.4. 转化成 Git 仓库格式</a></li>
-<li><a href="#orgheadline37">9.2.5. 添加远程仓库</a></li>
-<li><a href="#orgheadline38">9.2.6. 传所有分支与标签</a></li>
+<li><a href="#orgheadline32">9.1.1. 设置 git commit log 编码</a></li>
+<li><a href="#orgheadline33">9.1.2. windwos 下文件路径编码</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline41">9.2. 迁移到 Git</a>
+<ul>
+<li><a href="#orgheadline35">9.2.1. 准备环境</a></li>
+<li><a href="#orgheadline36">9.2.2. 规范 Subversion</a></li>
+<li><a href="#orgheadline37">9.2.3. 生成提交者 ID 和邮箱</a></li>
+<li><a href="#orgheadline38">9.2.4. 转化成 Git 仓库格式</a></li>
+<li><a href="#orgheadline39">9.2.5. 添加远程仓库</a></li>
+<li><a href="#orgheadline40">9.2.6. 传所有分支与标签</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline41">10. Git 内部原理</a></li>
+<li><a href="#orgheadline43">10. Git 内部原理</a></li>
 </ul>
 </div>
 </div>
@@ -313,7 +318,7 @@ for the JavaScript code in this tag.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">git init --bare private-projects.git&#57344;&#57345;&#57345;
+<pre class="src src-sh">git init --bare private-projects.git
 </pre>
 </div>
 
@@ -323,9 +328,9 @@ for the JavaScript code in this tag.
 
 <div class="org-src-container">
 
-<pre class="src src-sh">mkdir ~/.ssh&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">cd</span> ~/.ssh&#57344;&#57345;&#57345;
-touch authorized_keys&#57344;&#57345;&#57345;
+<pre class="src src-sh">mkdir ~/.ssh
+<span style="color: #d18aff;">cd</span> ~/.ssh
+touch authorized_keys
 </pre>
 </div></li>
 </ul>
@@ -341,9 +346,9 @@ GitLab 支持私人仓库，可以直接使用。</li>
 </ul>
 <div class="org-src-container">
 
-<pre class="src src-sh">mkdr private-projects&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">cd</span> private-projects&#57344;&#57345;&#57345;
-git --bare init&#57344;&#57345;&#57345;
+<pre class="src src-sh">mkdr private-projects
+<span style="color: #d18aff;">cd</span> private-projects
+git --bare init
 </pre>
 </div>
 </div>
@@ -393,35 +398,42 @@ git --bare init&#57344;&#57345;&#57345;
 <h2 id="orgheadline31"><span class="section-number-2">8</span> 自定义 Git</h2>
 </div>
 
-<div id="outline-container-orgheadline40" class="outline-2">
-<h2 id="orgheadline40"><span class="section-number-2">9</span> Git 与其他系统</h2>
+<div id="outline-container-orgheadline42" class="outline-2">
+<h2 id="orgheadline42"><span class="section-number-2">9</span> Git 与其他系统</h2>
 <div class="outline-text-2" id="text-9">
-</div><div id="outline-container-orgheadline32" class="outline-3">
-<h3 id="orgheadline32"><span class="section-number-3">9.1</span> 作为客户端的 Git</h3>
+</div><div id="outline-container-orgheadline34" class="outline-3">
+<h3 id="orgheadline34"><span class="section-number-3">9.1</span> 作为客户端的 Git</h3>
+<div class="outline-text-3" id="text-9-1">
+</div><div id="outline-container-orgheadline32" class="outline-4">
+<h4 id="orgheadline32"><span class="section-number-4">9.1.1</span> 设置 git commit log 编码</h4>
 </div>
-<div id="outline-container-orgheadline39" class="outline-3">
-<h3 id="orgheadline39"><span class="section-number-3">9.2</span> 迁移到 Git</h3>
+<div id="outline-container-orgheadline33" class="outline-4">
+<h4 id="orgheadline33"><span class="section-number-4">9.1.2</span> windwos 下文件路径编码</h4>
+</div>
+</div>
+<div id="outline-container-orgheadline41" class="outline-3">
+<h3 id="orgheadline41"><span class="section-number-3">9.2</span> 迁移到 Git</h3>
 <div class="outline-text-3" id="text-9-2">
 <p>
 这小节主要描述在公司如何代码库从 SVN 迁移到 Git，并保留原有的 commit log 信息，以及迁移过程中要注意的事情。迁移步骤：<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>
 </p>
 </div>
 
-<div id="outline-container-orgheadline33" class="outline-4">
-<h4 id="orgheadline33"><span class="section-number-4">9.2.1</span> 准备环境</h4>
+<div id="outline-container-orgheadline35" class="outline-4">
+<h4 id="orgheadline35"><span class="section-number-4">9.2.1</span> 准备环境</h4>
 <div class="outline-text-4" id="text-9-2-1">
 <p>
 需要安装对应的软件：
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">sudo aptitude install -y git Subversion git-svn&#57344;&#57345;&#57345;
+<pre class="src src-sh">sudo aptitude install -y git Subversion git-svn
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline34" class="outline-4">
-<h4 id="orgheadline34"><span class="section-number-4">9.2.2</span> 规范 Subversion<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup></h4>
+<div id="outline-container-orgheadline36" class="outline-4">
+<h4 id="orgheadline36"><span class="section-number-4">9.2.2</span> 规范 Subversion<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup></h4>
 <div class="outline-text-4" id="text-9-2-2">
 <p>
 确认项目的 Subversion 地址：<a href="https://scms.example.com/svn/projects/west/">https://scms.example.com/svn/projects/west/</a>
@@ -448,7 +460,7 @@ git --bare init&#57344;&#57345;&#57345;
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"> svn mv $<span style="color: #ff8700;">PROJECT</span>/tags/1.x/v1.0.0 $<span style="color: #ff8700;">PROJECT</span>/tags/v1.0.0&#57344;&#57345;&#57345;
+<pre class="src src-sh"> svn mv $<span style="color: #ff8700;">PROJECT</span>/tags/1.x/v1.0.0 $<span style="color: #ff8700;">PROJECT</span>/tags/v1.0.0
 </pre>
 </div></li>
 
@@ -457,9 +469,9 @@ git --bare init&#57344;&#57345;&#57345;
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"> svn co $<span style="color: #ff8700;">PROJECT</span> west_subversion&#57344;&#57345;&#57345;
- <span style="color: #d18aff;">cd</span> west_subversion&#57344;&#57345;&#57345;
- svn mv tags/1.x/v1.0.0 tags/v1.0.0&#57344;&#57345;&#57345;
+<pre class="src src-sh"> svn co $<span style="color: #ff8700;">PROJECT</span> west_subversion
+ <span style="color: #d18aff;">cd</span> west_subversion
+ svn mv tags/1.x/v1.0.0 tags/v1.0.0
 </pre>
 </div></li>
 </ul></li>
@@ -488,8 +500,8 @@ west
 </pre>
 </div>
 </div>
-<div id="outline-container-orgheadline35" class="outline-4">
-<h4 id="orgheadline35"><span class="section-number-4">9.2.3</span> 生成提交者 ID 和邮箱</h4>
+<div id="outline-container-orgheadline37" class="outline-4">
+<h4 id="orgheadline37"><span class="section-number-4">9.2.3</span> 生成提交者 ID 和邮箱</h4>
 <div class="outline-text-4" id="text-9-2-3">
 <p>
 在 Subversion 中，每一个人提交时都需要在系统中有一个用户，它会被记录在提交信息内。 如果想要将 Subversion 用户映射到一个更好的 Git 作者数据中，需要一个 Subversion 用户到 Git 用户的映射。 创建一个 users.txt 的文件包含像下面这种格式的映射：
@@ -503,7 +515,7 @@ west
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">   svn log --xml | grep author | sort -u |  perl -pe <span style="color: #ff4ea3;">'s/.*&gt;(.*?)&lt;.*/$1 = /'</span> &gt; user.txt&#57344;&#57345;
+<pre class="src src-sh">   svn log --xml | grep author | sort -u |  perl -pe <span style="color: #ff4ea3;">'s/.*&gt;(.*?)&lt;.*/$1 = /'</span> &gt; user.txt
 </pre>
 </div>
 
@@ -537,7 +549,7 @@ remote: ERROR: http://10.10.164.250:8080/#/settings/contact
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">   git svn clone --authors-file=users.txt --no-metadata --stdlayout http://10.10.16.252/code_svn/xl_vip/vip_lixian/trunk/downloader/ris/  des-dir&#57344;&#57345;
+<pre class="src src-sh">   git svn clone --authors-file=users.txt --no-metadata --stdlayout http://10.10.16.252/code_svn/xl_vip/vip_lixian/trunk/downloader/ris/  des-dir
 </pre>
 </div>
 <ul class="org-ul">
@@ -549,8 +561,8 @@ remote: ERROR: http://10.10.164.250:8080/#/settings/contact
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #d18aff;">cd</span> des-dir&#57344;&#57345;&#57345;
-git svn fetch&#57344;&#57345;&#57345;
+<pre class="src src-sh"><span style="color: #d18aff;">cd</span> des-dir
+git svn fetch
 </pre>
 </div>
 
@@ -565,8 +577,8 @@ svn tags 也会当做 branch 导入。
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline36" class="outline-4">
-<h4 id="orgheadline36"><span class="section-number-4">9.2.4</span> 转化成 Git 仓库格式</h4>
+<div id="outline-container-orgheadline38" class="outline-4">
+<h4 id="orgheadline38"><span class="section-number-4">9.2.4</span> 转化成 Git 仓库格式</h4>
 <div class="outline-text-4" id="text-9-2-4">
 <p>
 应当做一些导入后的清理工作。 第一步，你应当清理 git svn 设置的奇怪的引用。 首先移动标签，这样它们就是标签而不是奇怪的远程引用，然后你会移动剩余的分支这样它们就是本地的了。
@@ -574,8 +586,8 @@ svn tags 也会当做 branch 导入。
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">  cp -Rf .git/refs/remotes/tags/* .git/refs/tags/&#57344;&#57345;&#57345;
-  rm -Rf .git/refs/remotes/tags/&#57344;&#57345;&#57345;
+<pre class="src src-sh">  cp -Rf .git/refs/remotes/tags/* .git/refs/tags/
+  rm -Rf .git/refs/remotes/tags/
 </pre>
 </div>
 
@@ -589,8 +601,8 @@ svn tags 也会当做 branch 导入。
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">  cp -Rf .git/refs/remotes/* .git/refs/heads/&#57344;&#57345;&#57345;
-  rm -Rf .git/refs/remotes/&#57344;&#57345;&#57345;
+<pre class="src src-sh">  cp -Rf .git/refs/remotes/* .git/refs/heads/
+  rm -Rf .git/refs/remotes/
 </pre>
 </div>
 
@@ -599,23 +611,23 @@ svn tags 也会当做 branch 导入。
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline37" class="outline-4">
-<h4 id="orgheadline37"><span class="section-number-4">9.2.5</span> 添加远程仓库</h4>
+<div id="outline-container-orgheadline39" class="outline-4">
+<h4 id="orgheadline39"><span class="section-number-4">9.2.5</span> 添加远程仓库</h4>
 <div class="outline-text-4" id="text-9-2-5">
 <div class="org-src-container">
 
-<pre class="src src-sh">git remote add gerrit gerrit:xl_lixian_ris.git&#57344;&#57345;&#57345;
+<pre class="src src-sh">git remote add gerrit gerrit:xl_lixian_ris.git
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline38" class="outline-4">
-<h4 id="orgheadline38"><span class="section-number-4">9.2.6</span> 传所有分支与标签<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup></h4>
+<div id="outline-container-orgheadline40" class="outline-4">
+<h4 id="orgheadline40"><span class="section-number-4">9.2.6</span> 传所有分支与标签<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup></h4>
 <div class="outline-text-4" id="text-9-2-6">
 <div class="org-src-container">
 
-<pre class="src src-sh">git push gerrit --all&#57344;&#57345;&#57345;
-git push gerrit --tags&#57344;&#57345;&#57345;
+<pre class="src src-sh">git push gerrit --all
+git push gerrit --tags
 </pre>
 </div>
 <p>
@@ -626,8 +638,8 @@ git push gerrit --tags&#57344;&#57345;&#57345;
 </div>
 </div>
 
-<div id="outline-container-orgheadline41" class="outline-2">
-<h2 id="orgheadline41"><span class="section-number-2">10</span> Git 内部原理</h2>
+<div id="outline-container-orgheadline43" class="outline-2">
+<h2 id="orgheadline43"><span class="section-number-2">10</span> Git 内部原理</h2>
 </div>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>
@@ -657,8 +669,8 @@ git push gerrit --tags&#57344;&#57345;&#57345;
 </div>
 </div></div>
 <div id="postamble" class="status">
-<p class="author">Author: ubuntu-company</p>
-<p class="date">Created: 2016-02-24 Wed 20:18</p>
+<p class="author">Author: ubuntu</p>
+<p class="date">Created: 2016-03-20 日 02:25</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

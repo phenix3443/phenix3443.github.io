@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-02-24 Wed 20:18 -->
+<!-- 2016-03-20 日 02:25 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>VPN practices</title>
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="ubuntu-company" />
+<meta  name="author" content="ubuntu" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -274,8 +274,8 @@ SSL 独立于应用，因此任何一个应用程序都可以享受它的安全�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">sudo apt-get update&#57344;&#57345;&#57345;
-sudo apt-get install pptpd&#57344;&#57345;&#57345;
+<pre class="src src-sh">sudo apt-get update
+sudo apt-get install pptpd
 </pre>
 </div></li>
 
@@ -330,7 +330,7 @@ sudo apt-get install pptpd&#57344;&#57345;&#57345;
 </ul>
 <div class="org-src-container">
 
-<pre class="src src-sh"> sudo service pptpd restart&#57344;&#57345;&#57345;
+<pre class="src src-sh"> sudo service pptpd restart
 </pre>
 </div>
 
@@ -339,8 +339,8 @@ sudo apt-get install pptpd&#57344;&#57345;&#57345;
 </ul>
 <div class="org-src-container">
 
-<pre class="src src-sh"> sudo sed -i <span style="color: #ff4ea3;">'s/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g'</span> /etc/sysctl.conf&#57344;&#57345;
- sudo sysctl -p&#57344;&#57345;&#57345;
+<pre class="src src-sh"> sudo sed -i <span style="color: #ff4ea3;">'s/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g'</span> /etc/sysctl.conf
+ sudo sysctl -p
 </pre>
 </div>
 
@@ -349,7 +349,7 @@ sudo apt-get install pptpd&#57344;&#57345;&#57345;
 </ul>
 <div class="org-src-container">
 
-<pre class="src src-sh"> sudo iptables -t nat -A POSTROUTING -s 192.168.0.0/24 -o eth0 -j MASQUERADE&#57344;&#57345;
+<pre class="src src-sh"> sudo iptables -t nat -A POSTROUTING -s 192.168.0.0/24 -o eth0 -j MASQUERADE
 </pre>
 </div>
 
@@ -358,7 +358,7 @@ sudo apt-get install pptpd&#57344;&#57345;&#57345;
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"> sudo iptables -t nat -A POSTROUTING -s 192.168.0.0/24 -o eth0 -j SNAT --to-source xxx.xxx.xxx.xxx&#57344;&#57345;
+<pre class="src src-sh"> sudo iptables -t nat -A POSTROUTING -s 192.168.0.0/24 -o eth0 -j SNAT --to-source xxx.xxx.xxx.xxx
 </pre>
 </div>
 
@@ -367,7 +367,7 @@ sudo apt-get install pptpd&#57344;&#57345;&#57345;
 </ul>
 <div class="org-src-container">
 
-<pre class="src src-sh"> sudo iptables -I FORWARD -s 192.168.0.0/24 -p tcp --syn -i ppp+ -j TCPMSS --set-mss 1300&#57344;&#57345;
+<pre class="src src-sh"> sudo iptables -I FORWARD -s 192.168.0.0/24 -p tcp --syn -i ppp+ -j TCPMSS --set-mss 1300
 </pre>
 </div>
 
@@ -380,9 +380,9 @@ iptables 的设置重启之后会取消，所以可以将上面的命令加入�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"> wget -c http://small-script.googlecode.com/files/debian-pptpd.tar.gz&#57344;&#57345;&#57345;
- tar -zxf debian-pptpd.tar.gz&#57344;&#57345;&#57345;
- sudo sh pptpd.sh&#57344;&#57345;&#57345;
+<pre class="src src-sh"> wget -c http://small-script.googlecode.com/files/debian-pptpd.tar.gz
+ tar -zxf debian-pptpd.tar.gz
+ sudo sh pptpd.sh
 </pre>
 </div></li>
 </ul>
@@ -467,8 +467,8 @@ OpenVPN 与生俱来便具备了许多安全特性：它在用户空间运行，
 </div>
 </div></div>
 <div id="postamble" class="status">
-<p class="author">Author: ubuntu-company</p>
-<p class="date">Created: 2016-02-24 Wed 20:18</p>
+<p class="author">Author: ubuntu</p>
+<p class="date">Created: 2016-03-20 日 02:25</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

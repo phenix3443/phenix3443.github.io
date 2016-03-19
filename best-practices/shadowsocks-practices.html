@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-02-24 Wed 20:18 -->
+<!-- 2016-03-20 日 02:25 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>ShadowSocks 实践</title>
+<title>ShadowSocks Practices</title>
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="ubuntu-company" />
+<meta  name="author" content="ubuntu" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -143,7 +143,7 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">ShadowSocks 实践</h1>
+<h1 class="title">ShadowSocks Practices</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
@@ -205,18 +205,21 @@ ShadowSocks 主要由三个模块组成:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">First, add the GPG public key to your system:</span>&#57344;&#57345;&#57345;
-wget -O- http://ShadowSocks.org/debian/1D27208A.gpg | sudo apt-key add -&#57344;&#57345;
-<span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">Install the binaries by adding each of the following repositories to your system.</span>&#57344;&#57345;
-su root&#57344;&#57345;&#57345;
-<span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">On Debian Wheezy, Ubuntu 12.04 or any distribution with libssl &gt; 1.0.0</span>&#57344;&#57345;
-<span style="color: #d18aff;">echo</span> <span style="color: #ff4ea3;">"deb http://ShadowSocks.org/debian wheezy main"</span> &gt;&gt; /etc/apt/sources.list&#57344;&#57345;
-<span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">On Debian Squeeze, Ubuntu 11.04, or any distribution with libssl &gt; 0.9.8, but &lt; 1.0.0</span>&#57344;&#57345;
-<span style="color: #d18aff;">echo</span> <span style="color: #ff4ea3;">"deb http://ShadowSocks.org/debian squeeze main"</span> &gt;&gt; /etc/apt/sources.list&#57344;&#57345;
-&#57344;&#57345;&#57345;
-apt-get update&#57344;&#57345;&#57345;
-apt-get install ShadowSocks-libev&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">exit</span>&#57344;&#57345;&#57345;
+<pre class="src src-sh"><span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">First, add the GPG public key to your system:</span>
+wget -O- http://ShadowSocks.org/debian/1D27208A.gpg | sudo apt-key add -
+
+<span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">Install the binaries by adding each of the following repositories to your system.</span>
+su root
+
+<span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">On Debian Wheezy, Ubuntu 12.04 or any distribution with libssl &gt; 1.0.0</span>
+<span style="color: #d18aff;">echo</span> <span style="color: #ff4ea3;">"deb http://ShadowSocks.org/debian wheezy main"</span> &gt;&gt; /etc/apt/sources.list
+
+<span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">On Debian Squeeze, Ubuntu 11.04, or any distribution with libssl &gt; 0.9.8, but &lt; 1.0.0</span>
+<span style="color: #d18aff;">echo</span> <span style="color: #ff4ea3;">"deb http://ShadowSocks.org/debian squeeze main"</span> &gt;&gt; /etc/apt/sources.list
+
+apt-get update
+apt-get install ShadowSocks-libev
+<span style="color: #a1db00;">exit</span>
 </pre>
 </div>
 </div>
@@ -237,9 +240,9 @@ ss-qt5 是 linux 下面的图形界面客户端。
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh" id="orgsrcblock1">sudo add-apt-repository ppa:hzwhuang/ss-qt5&#57344;&#57345;&#57345;
-sudo apt-get update&#57344;&#57345;&#57345;
-sudo apt-get install ShadowSocks-qt5&#57344;&#57345;&#57345;
+<pre class="src src-sh" id="orgsrcblock1">sudo add-apt-repository ppa:hzwhuang/ss-qt5
+sudo apt-get update
+sudo apt-get install ShadowSocks-qt5
 </pre>
 </div>
 </div>
@@ -393,7 +396,7 @@ net.ipv4.tcp_congestion_control = hybla
 
 <div class="org-src-container">
 
-<pre class="src src-sh">sysctl --system&#57344;&#57345;&#57345;
+<pre class="src src-sh">sysctl --system
 </pre>
 </div>
 
@@ -437,9 +440,9 @@ WantedBy=multi-user.target
 
 <div class="org-src-container">
 
-<pre class="src src-sh">     systemctl start ss-server.service&#57344;&#57345;&#57345;
-     systemctl enable ss-server.service&#57344;&#57345;&#57345;
-     systemctl status ss-server.service&#57344;&#57345;&#57345;
+<pre class="src src-sh">     systemctl start ss-server.service
+     systemctl enable ss-server.service
+     systemctl status ss-server.service
 </pre>
 </div>
 </div>
@@ -467,9 +470,9 @@ WantedBy=multi-user.target
 
 <div class="org-src-container">
 
-<pre class="src src-sh">     systemctl start ss-local.service&#57344;&#57345;&#57345;
-     systemctl enable ss-local.service&#57344;&#57345;&#57345;
-     systemctl status ss-local.service&#57344;&#57345;&#57345;
+<pre class="src src-sh">     systemctl start ss-local.service
+     systemctl enable ss-local.service
+     systemctl status ss-local.service
 </pre>
 </div>
 </div>
@@ -511,8 +514,8 @@ WantedBy=multi-user.target
 </div>
 </div></div>
 <div id="postamble" class="status">
-<p class="author">Author: ubuntu-company</p>
-<p class="date">Created: 2016-02-24 Wed 20:18</p>
+<p class="author">Author: ubuntu</p>
+<p class="date">Created: 2016-03-20 日 02:25</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

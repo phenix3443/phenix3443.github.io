@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-02-24 Wed 20:18 -->
+<!-- 2016-03-20 日 02:25 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>【MySQL】sysbench 基准测试</title>
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="ubuntu-company" />
+<meta  name="author" content="ubuntu" />
 <meta  name="description" content="sysbench 基准测试"
  />
 <style type="text/css">
@@ -241,9 +241,9 @@ Linu 自带版本大多为 0.4.12，最新版本可以从 <a href="https://launc
 
 <div class="org-src-container">
 
-<pre class="src src-bash" id="orgsrcblock1">  ./autogen.sh&#57344;&#57345;&#57345;
-  ./configure&#57344;&#57345;&#57345;
-  make &amp;&amp; sudo make install&#57344;&#57345;&#57345;
+<pre class="src src-bash" id="orgsrcblock1">  ./autogen.sh
+  ./configure
+  make &amp;&amp; sudo make install
 </pre>
 </div>
 
@@ -256,7 +256,7 @@ sysbench 依赖 mysql-dev 包的支持，如果 mysql 没有安装在默认位�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-bash" id="orgsrcblock2">  sysbench --version&#57344;&#57345;&#57345;
+<pre class="src src-bash" id="orgsrcblock2">  sysbench --version
 </pre>
 </div>
 </div>
@@ -347,7 +347,7 @@ sysbench 采用寻找最大素数的方式来测试 CPU 的性能。
 </p>
 <div class="org-src-container">
 
-<pre class="src src-bash" id="orgsrcblock3">  sysbench --test=cpu  --cpu-max-prime=1000 run&#57344;&#57345;&#57345;
+<pre class="src src-bash" id="orgsrcblock3">  sysbench --test=cpu  --cpu-max-prime=1000 run
 </pre>
 </div>
 </div>
@@ -361,9 +361,9 @@ Sysbench 的 I/O 测试和 InnoDB 的 I/O 模式非常类似。
 </p>
 <div class="org-src-container">
 
-<pre class="src src-bash" id="orgsrcblock4">  sysbench --test=fileio &#8211;<span style="color: #ff8700;">file_num</span>=40 &#8211;-file-total-size=80G --file-test-mode=rndrw prepare&#57344;&#57345;
-  sysbench --test=fileio &#8211;<span style="color: #ff8700;">file_num</span>=40 &#8211;-file-total-size=80G --file-test-mode=rndrw run&#57344;&#57345;
-  sysbench --test=fileio &#8211;<span style="color: #ff8700;">file_num</span>=40 &#8211;-file-total-size=80G --file-test-mode=rndrw cleanup&#57344;&#57345;
+<pre class="src src-bash" id="orgsrcblock4">  sysbench --test=fileio &#8211;<span style="color: #ff8700;">file_num</span>=40 &#8211;-file-total-size=80G --file-test-mode=rndrw prepare
+  sysbench --test=fileio &#8211;<span style="color: #ff8700;">file_num</span>=40 &#8211;-file-total-size=80G --file-test-mode=rndrw run
+  sysbench --test=fileio &#8211;<span style="color: #ff8700;">file_num</span>=40 &#8211;-file-total-size=80G --file-test-mode=rndrw cleanup
 </pre>
 </div>
 </div>
@@ -617,13 +617,13 @@ oltp.lua 中提供的 &#x2013;oltp-tables-count  指明了表的数量。默认�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql">  <span style="color: #a1db00;">CREATE</span> <span style="color: #a1db00;">TABLE</span> `sbtest101` (&#57344;&#57345;&#57345;
-       `id` <span style="color: #00d7af;">int</span>(10) unsigned <span style="color: #a1db00;">NOT</span> <span style="color: #a1db00;">NULL</span> auto_increment,&#57344;&#57345;&#57345;
-       `k` <span style="color: #00d7af;">int</span>(10) unsigned <span style="color: #a1db00;">NOT</span> <span style="color: #a1db00;">NULL</span> <span style="color: #a1db00;">default</span> <span style="color: #ff4ea3;">'0'</span>,&#57344;&#57345;&#57345;
-       `c` <span style="color: #00d7af;">char</span>(120) <span style="color: #a1db00;">NOT</span> <span style="color: #a1db00;">NULL</span> <span style="color: #a1db00;">default</span> <span style="color: #ff4ea3;">''</span>,&#57344;&#57345;&#57345;
-       `<span style="color: #a1db00;">pad</span>` <span style="color: #00d7af;">char</span>(60) <span style="color: #a1db00;">NOT</span> <span style="color: #a1db00;">NULL</span> <span style="color: #a1db00;">default</span> <span style="color: #ff4ea3;">''</span>,&#57344;&#57345;&#57345;
-       <span style="color: #a1db00;">PRIMARY</span> <span style="color: #a1db00;">KEY</span>  (`id`),&#57344;&#57345;&#57345;
-       <span style="color: #a1db00;">KEY</span> `k` (`k`));&#57344;&#57345;&#57345;
+<pre class="src src-sql">  <span style="color: #a1db00;">CREATE</span> <span style="color: #a1db00;">TABLE</span> `sbtest101` (
+       `id` <span style="color: #00d7af;">int</span>(10) unsigned <span style="color: #a1db00;">NOT</span> <span style="color: #a1db00;">NULL</span> auto_increment,
+       `k` <span style="color: #00d7af;">int</span>(10) unsigned <span style="color: #a1db00;">NOT</span> <span style="color: #a1db00;">NULL</span> <span style="color: #a1db00;">default</span> <span style="color: #ff4ea3;">'0'</span>,
+       `c` <span style="color: #00d7af;">char</span>(120) <span style="color: #a1db00;">NOT</span> <span style="color: #a1db00;">NULL</span> <span style="color: #a1db00;">default</span> <span style="color: #ff4ea3;">''</span>,
+       `<span style="color: #a1db00;">pad</span>` <span style="color: #00d7af;">char</span>(60) <span style="color: #a1db00;">NOT</span> <span style="color: #a1db00;">NULL</span> <span style="color: #a1db00;">default</span> <span style="color: #ff4ea3;">''</span>,
+       <span style="color: #a1db00;">PRIMARY</span> <span style="color: #a1db00;">KEY</span>  (`id`),
+       <span style="color: #a1db00;">KEY</span> `k` (`k`));
 </pre>
 </div>
 
@@ -632,7 +632,7 @@ Parallel.lua（并行） 创建：
 </p>
 <div class="org-src-container">
 
-<pre class="src src-bash">  ./sysbench --test=tests/db/parallel_prepare.lua --mysql-user=USER --mysql-password=SECRET --oltp-tables-count=64 --num-threads=8 run&#57344;&#57345;
+<pre class="src src-bash">  ./sysbench --test=tests/db/parallel_prepare.lua --mysql-user=USER --mysql-password=SECRET --oltp-tables-count=64 --num-threads=8 run
 </pre>
 </div>
 <p>
@@ -644,7 +644,7 @@ oltp.lua（串行）创建：
 </p>
 <div class="org-src-container">
 
-<pre class="src src-bash">  ./sysbench --test=tests/db/oltp.lua --mysql-user=USER --mysql-password=SECRET --mysql-table-engine=myisam --oltp-table-size=1000000 --oltp-tables-count=64 --mysql-socket=/tmp/mysql.sock prepare&#57344;&#57345;
+<pre class="src src-bash">  ./sysbench --test=tests/db/oltp.lua --mysql-user=USER --mysql-password=SECRET --mysql-table-engine=myisam --oltp-table-size=1000000 --oltp-tables-count=64 --mysql-socket=/tmp/mysql.sock prepare
 </pre>
 </div>
 </div>
@@ -920,7 +920,7 @@ INSERT INTO sbtest (id, k, c, pad) VALUES N, K, C, PAD
 </p>
 <div class="org-src-container">
 
-<pre class="src src-bash">  ./sysbench --mysql-user=USER --mysql-password=SECRET --test=tests/db/oltp.lua --oltp-tables-count=25 --num-threads=5 run&#57344;&#57345;
+<pre class="src src-bash">  ./sysbench --mysql-user=USER --mysql-password=SECRET --test=tests/db/oltp.lua --oltp-tables-count=25 --num-threads=5 run
 </pre>
 </div>
 
@@ -929,8 +929,8 @@ INSERT INTO sbtest (id, k, c, pad) VALUES N, K, C, PAD
 </p>
 <div class="org-src-container">
 
-<pre class="src src-bash">  ./sysbench --mysql-user=USER --mysql-password=SECRET --test=tests/db/select.lua --oltp-tables-count=100 --num-threads=10&#57344;&#57345;
-  --oltp-point-selects=100 --oltp-range-size=1000 run&#57344;&#57345;&#57345;
+<pre class="src src-bash">  ./sysbench --mysql-user=USER --mysql-password=SECRET --test=tests/db/select.lua --oltp-tables-count=100 --num-threads=10
+  --oltp-point-selects=100 --oltp-range-size=1000 run
 </pre>
 </div>
 </div></li></ul>
@@ -944,7 +944,7 @@ INSERT INTO sbtest (id, k, c, pad) VALUES N, K, C, PAD
 </p>
 <div class="org-src-container">
 
-<pre class="src src-bash">  ./sysbench --test=tests/db/oltp.lua --mysql-user=USER --mysql-password=SECRET --oltp-tables-count=64 cleanup&#57344;&#57345;
+<pre class="src src-bash">  ./sysbench --test=tests/db/oltp.lua --mysql-user=USER --mysql-password=SECRET --oltp-tables-count=64 cleanup
 </pre>
 </div>
 </div>
@@ -963,9 +963,9 @@ INSERT INTO sbtest (id, k, c, pad) VALUES N, K, C, PAD
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">[2014-10-21 Tue 14:09]</span></span></p>
-<p class="author">Author: ubuntu-company</p>
-<p class="date">Created: 2016-02-24 Wed 20:18</p>
+<p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">[2014-10-21 二 14:09]</span></span></p>
+<p class="author">Author: ubuntu</p>
+<p class="date">Created: 2016-03-20 日 02:25</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-02-19 Fri 17:00 -->
+<!-- 2016-03-20 日 02:25 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>GNU Global Practices</title>
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="ubuntu-company" />
+<meta  name="author" content="ubuntu" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -467,7 +467,7 @@ Before beginning, please read the FAQ (Frequently Asked Questions) file.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">more /usr/local/share/gtags/FAQ&#57344;&#57345;&#57345;
+<pre class="src src-sh">more /usr/local/share/gtags/FAQ
 </pre>
 </div>
 
@@ -480,8 +480,8 @@ First of all, you must execute gtags(1) (see section gtags - create tag files fo
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #d18aff;">cd</span> /usr/src/usr.bin/vi&#57344;&#57345;&#57345;
-gtags&#57344;&#57345;&#57345;
+<pre class="src src-sh"><span style="color: #d18aff;">cd</span> /usr/src/usr.bin/vi
+gtags
 </pre>
 </div>
 
@@ -494,7 +494,7 @@ gtags 遍历子目录，从源文件中提取符号，在当前目录生成三�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">ls G*&#57344;&#57345;&#57345;
+<pre class="src src-sh">ls G*
 </pre>
 </div>
 
@@ -545,9 +545,9 @@ You can customize a set of candidate files to be tagged.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">find . -type f -print &gt;/tmp/list     <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">make a file set</span>&#57344;&#57345;&#57345;
-vi /tmp/list                         <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">customize the file set</span>&#57344;&#57345;&#57345;
-gtags -f /tmp/list&#57344;&#57345;&#57345;
+<pre class="src src-sh">find . -type f -print &gt;/tmp/list     <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">make a file set</span>
+vi /tmp/list                         <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">customize the file set</span>
+gtags -f /tmp/list
 </pre>
 </div></li>
 
@@ -561,12 +561,12 @@ If your source files are on a read-only device, such as CDROM, then you cannot m
 
 <div class="org-src-container">
 
-<pre class="src src-sh">mkdir /var/dbpath&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">cd</span> /cdrom/src                 <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">the root of source tree</span>&#57344;&#57345;&#57345;
-gtags /var/dbpath             <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">make tag files in /var/dbpath</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">export</span> <span style="color: #ff8700;">GTAGSROOT</span>=<span style="color: #fa8072;">`pwd`</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">export</span> <span style="color: #ff8700;">GTAGSDBPATH</span>=/var/dbpath&#57344;&#57345;&#57345;
-global func&#57344;&#57345;&#57345;
+<pre class="src src-sh">mkdir /var/dbpath
+<span style="color: #d18aff;">cd</span> /cdrom/src                 <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">the root of source tree</span>
+gtags /var/dbpath             <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">make tag files in /var/dbpath</span>
+<span style="color: #d18aff;">export</span> <span style="color: #ff8700;">GTAGSROOT</span>=<span style="color: #fa8072;">`pwd`</span>
+<span style="color: #d18aff;">export</span> <span style="color: #ff8700;">GTAGSDBPATH</span>=/var/dbpath
+global func
 </pre>
 </div>
 
@@ -580,10 +580,10 @@ There is another method for it. Since global(1) locates tag files also in ‘/us
 
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #d18aff;">cd</span> /cdrom/src                 <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">the root of source tree</span>&#57344;&#57345;&#57345;
-mkdir -p /usr/obj/cdrom/src&#57344;&#57345;&#57345;
-gtags /usr/obj/cdrom/src      <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">make tag files in /usr/obj/cdrom/src</span>&#57344;&#57345;&#57345;
-global func&#57344;&#57345;&#57345;
+<pre class="src src-sh"><span style="color: #d18aff;">cd</span> /cdrom/src                 <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">the root of source tree</span>
+mkdir -p /usr/obj/cdrom/src
+gtags /usr/obj/cdrom/src      <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">make tag files in /usr/obj/cdrom/src</span>
+global func
 </pre>
 </div>
 
@@ -865,10 +865,10 @@ If you want to get into gtags-mode whenever you get into c-mode then you can app
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq c-mode-hook&#57344;&#57345;&#57345;
-      '(<span style="color: #a1db00;">lambda</span> ()&#57344;&#57345;&#57345;
-         (gtags-mode 1)&#57344;&#57345;&#57345;
-         ))&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(setq c-mode-hook
+      '(<span style="color: #a1db00;">lambda</span> ()
+         (gtags-mode 1)
+         ))
 </pre>
 </div>
 
@@ -963,9 +963,9 @@ You can change it when Emacs is loaded using ‘.emacs’ file like this:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq gtags-mode-hook&#57344;&#57345;&#57345;
-      '(<span style="color: #a1db00;">lambda</span> ()&#57344;&#57345;&#57345;
-         (setq gtags-path-style 'relative)))&#57344;&#57345;&#57345;
+<pre class="src src-elisp">(setq gtags-mode-hook
+      '(<span style="color: #a1db00;">lambda</span> ()
+         (setq gtags-path-style 'relative)))
 </pre>
 </div></li>
 </ul></li>
@@ -1152,8 +1152,8 @@ Global databases are up to date.       # do nothing
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: ubuntu-company</p>
-<p class="date">Created: 2016-02-19 Fri 17:00</p>
+<p class="author">Author: ubuntu</p>
+<p class="date">Created: 2016-03-20 日 02:25</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

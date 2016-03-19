@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-02-19 Fri 17:00 -->
+<!-- 2016-03-20 日 02:25 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>APUE 笔记</title>
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="ubuntu-company" />
+<meta  name="author" content="ubuntu" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -267,22 +267,22 @@ makefile 文件
 </p>
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span style="color: #ff8700;">SOURCE</span> := $(<span style="color: #ff8700;">wildcard</span> *.cc)&#57344;&#57345;&#57345;
-<span style="color: #ff8700;">TARGET</span> := $(<span style="color: #ff8700;">SOURCE</span>:<span style="color: #ff8700;">%.cc</span>=%.out)&#57344;&#57345;&#57345;
-<span style="color: #ff8700;">CFLAGS</span> := -g&#57344;&#57345;&#57345;
-<span style="color: #ff8700;">CXXFLAGS</span> :=&#57344;&#57345;&#57345;
-<span style="color: #ff8700;">INCLUDE_DIR</span> :=&#57344;&#57345;&#57345;
-<span style="color: #ff8700;">LIB_DIR</span> :=&#57344;&#57345;&#57345;
-<span style="color: #ff8700;">LIBS</span> := -lpthread&#57344;&#57345;&#57345;
-<span style="color: #ff8700;">CC</span> := g++&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #ffd700;">all</span>:$(<span style="color: #ff8700;">TARGET</span>)&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #ffd700;">$(</span><span style="color: #ffd700;">TARGET</span><span style="color: #ffd700;">)</span>:%.out:%.cc&#57344;&#57345;&#57345;
-    $(<span style="color: #ff8700;">CC</span>) $(<span style="color: #ff8700;">CFLAGS</span>)  $(<span style="color: #ff8700;">INCLUDE_DIR</span>) $(<span style="color: #ff8700;">LIB_DIR</span>) $<span style="color: #5fafd7;">&lt;</span> -o <span style="color: #ffd700;">$</span><span style="color: #5fafd7;">@</span> $(<span style="color: #ff8700;">LIBS</span>)&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #ffd700;">clean</span>:&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">-</span>rm $(<span style="color: #ff8700;">TARGET</span>)&#57344;&#57345;&#57345;
+<pre class="src src-makefile"><span style="color: #ff8700;">SOURCE</span> := $(<span style="color: #ff8700;">wildcard</span> *.cc)
+<span style="color: #ff8700;">TARGET</span> := $(<span style="color: #ff8700;">SOURCE</span>:<span style="color: #ff8700;">%.cc</span>=%.out)
+<span style="color: #ff8700;">CFLAGS</span> := -g
+<span style="color: #ff8700;">CXXFLAGS</span> :=
+<span style="color: #ff8700;">INCLUDE_DIR</span> :=
+<span style="color: #ff8700;">LIB_DIR</span> :=
+<span style="color: #ff8700;">LIBS</span> := -lpthread
+<span style="color: #ff8700;">CC</span> := g++
+
+<span style="color: #ffd700;">all</span>:$(<span style="color: #ff8700;">TARGET</span>)
+
+<span style="color: #ffd700;">$(</span><span style="color: #ffd700;">TARGET</span><span style="color: #ffd700;">)</span>:%.out:%.cc
+    $(<span style="color: #ff8700;">CC</span>) $(<span style="color: #ff8700;">CFLAGS</span>)  $(<span style="color: #ff8700;">INCLUDE_DIR</span>) $(<span style="color: #ff8700;">LIB_DIR</span>) $<span style="color: #5fafd7;">&lt;</span> -o <span style="color: #ffd700;">$</span><span style="color: #5fafd7;">@</span> $(<span style="color: #ff8700;">LIBS</span>)
+
+<span style="color: #ffd700;">clean</span>:
+    <span style="color: #00d7af;">-</span>rm $(<span style="color: #ff8700;">TARGET</span>)
 </pre>
 </div>
 <div id="outline-container-orgheadline1" class="outline-2">
@@ -330,37 +330,37 @@ L250:SIGKILL 和 SIGSTOP 是不能被忽略和捕捉的。
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;cstdio&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;signal.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">static</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">HandleUsr</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">sig</span>) {&#57344;&#57345;&#57345;
-    printf(<span style="color: #ff4ea3;">"received signal %d\n"</span>, sig);&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span>(sig == SIGUSR1) {&#57344;&#57345;&#57345;
-        printf(<span style="color: #ff4ea3;">"received usr1 signal\n"</span>);&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span>(sig == SIGUSR2) {&#57344;&#57345;&#57345;
-        printf(<span style="color: #ff4ea3;">"received usr2 signal\n"</span>);&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    printf(<span style="color: #ff4ea3;">"pid: %d\n"</span>, getpid());&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span>(signal(SIGUSR1, HandleUsr) == SIG_ERR) {&#57344;&#57345;&#57345;
-        printf(<span style="color: #ff4ea3;">"can not catch SIGUSR1\n"</span>);&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 1;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span>(signal(SIGUSR2,HandleUsr) == SIG_ERR) {&#57344;&#57345;&#57345;
-        printf(<span style="color: #ff4ea3;">"can not catch SIGUSR2\n"</span>);&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 1;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">while</span>(1) {&#57344;&#57345;&#57345;
-        pause();&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;cstdio&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;signal.h&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>
+
+<span style="color: #a1db00;">static</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">HandleUsr</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">sig</span>) {
+    printf(<span style="color: #ff4ea3;">"received signal %d\n"</span>, sig);
+    <span style="color: #a1db00;">if</span>(sig == SIGUSR1) {
+        printf(<span style="color: #ff4ea3;">"received usr1 signal\n"</span>);
+    }
+    <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span>(sig == SIGUSR2) {
+        printf(<span style="color: #ff4ea3;">"received usr2 signal\n"</span>);
+    }
+}
+
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+{
+    printf(<span style="color: #ff4ea3;">"pid: %d\n"</span>, getpid());
+
+    <span style="color: #a1db00;">if</span>(signal(SIGUSR1, HandleUsr) == SIG_ERR) {
+        printf(<span style="color: #ff4ea3;">"can not catch SIGUSR1\n"</span>);
+        <span style="color: #a1db00;">return</span> 1;
+    }
+    <span style="color: #a1db00;">if</span>(signal(SIGUSR2,HandleUsr) == SIG_ERR) {
+        printf(<span style="color: #ff4ea3;">"can not catch SIGUSR2\n"</span>);
+        <span style="color: #a1db00;">return</span> 1;
+    }
+    <span style="color: #a1db00;">while</span>(1) {
+        pause();
+    }
+    <span style="color: #a1db00;">return</span> 0;
+}
 </pre>
 </div>
 <p>
@@ -508,50 +508,50 @@ L273:在信号处理函数中使用 longjump 要预防它可能和其他信号�
 <div class="outline-text-3" id="text-3-13">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;signal.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">HandleQuit</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">sig</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"get quit signal"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span>(signal(SIGQUIT, SIG_DFL) == SIG_ERR) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"reset quit signal to default error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;
-    }&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span>(signal(SIGQUIT, HandleQuit) == SIG_ERR) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"set quit signal error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 1;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">sigset_t</span> <span style="color: #ff8700;">newmask</span>, <span style="color: #ff8700;">oldmask</span>;&#57344;&#57345;&#57345;
-    sigemptyset(&amp;newmask);&#57344;&#57345;&#57345;
-    sigaddset(&amp;newmask, SIGQUIT);&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span>(sigprocmask(SIG_BLOCK, &amp;newmask, &amp;oldmask)) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"set process signal mask error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 1;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    sleep(5);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">sigset_t</span> <span style="color: #ff8700;">pendingmask</span>;&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span>(sigpending(&amp;pendingmask)) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"get pending mask error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 1;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span>(sigismember(&amp;pendingmask, SIGQUIT)){&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"quit signal has been blocked"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    sigprocmask(SIG_SETMASK, &amp;oldmask, <span style="color: #5fafd7;">NULL</span>);&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"quit signal has unblocked"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    sleep(5);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;signal.h&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>
+
+<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">HandleQuit</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">sig</span>) {
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"get quit signal"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    <span style="color: #a1db00;">if</span>(signal(SIGQUIT, SIG_DFL) == SIG_ERR) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"reset quit signal to default error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    }
+}
+
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+{
+    <span style="color: #a1db00;">if</span>(signal(SIGQUIT, HandleQuit) == SIG_ERR) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"set quit signal error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        <span style="color: #a1db00;">return</span> 1;
+    }
+
+    <span style="color: #00d7af;">sigset_t</span> <span style="color: #ff8700;">newmask</span>, <span style="color: #ff8700;">oldmask</span>;
+    sigemptyset(&amp;newmask);
+    sigaddset(&amp;newmask, SIGQUIT);
+    <span style="color: #a1db00;">if</span>(sigprocmask(SIG_BLOCK, &amp;newmask, &amp;oldmask)) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"set process signal mask error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        <span style="color: #a1db00;">return</span> 1;
+    }
+
+    sleep(5);
+
+    <span style="color: #00d7af;">sigset_t</span> <span style="color: #ff8700;">pendingmask</span>;
+    <span style="color: #a1db00;">if</span>(sigpending(&amp;pendingmask)) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"get pending mask error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        <span style="color: #a1db00;">return</span> 1;
+    }
+    <span style="color: #a1db00;">if</span>(sigismember(&amp;pendingmask, SIGQUIT)){
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"quit signal has been blocked"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    }
+
+    sigprocmask(SIG_SETMASK, &amp;oldmask, <span style="color: #5fafd7;">NULL</span>);
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"quit signal has unblocked"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+
+    sleep(5);
+
+    <span style="color: #a1db00;">return</span> 0;
+}
 </pre>
 </div>
 <p>
@@ -567,30 +567,30 @@ L273:在信号处理函数中使用 longjump 要预防它可能和其他信号�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;signal.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">HandleUsr</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">sig</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"get usr1 signal"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"pid: "</span> &lt;&lt; getpid() &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">sigaction</span> <span style="color: #ff8700;">act</span>;&#57344;&#57345;&#57345;
-    act.sa_handler = HandleUsr;&#57344;&#57345;&#57345;
-    sigemptyset(&amp;act.sa_mask);&#57344;&#57345;&#57345;
-    act.sa_flags = 0;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span>(<span style="color: #ff8700;">sigaction</span>(SIGUSR1, &amp;act, <span style="color: #5fafd7;">NULL</span>)) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"change signal handle error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    pause();&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;signal.h&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>
+
+<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">HandleUsr</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">sig</span>) {
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"get usr1 signal"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+}
+
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+{
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"pid: "</span> &lt;&lt; getpid() &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    <span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">sigaction</span> <span style="color: #ff8700;">act</span>;
+    act.sa_handler = HandleUsr;
+    sigemptyset(&amp;act.sa_mask);
+    act.sa_flags = 0;
+
+    <span style="color: #a1db00;">if</span>(<span style="color: #ff8700;">sigaction</span>(SIGUSR1, &amp;act, <span style="color: #5fafd7;">NULL</span>)) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"change signal handle error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    }
+
+    pause();
+
+    <span style="color: #a1db00;">return</span> 0;
+}
 </pre>
 </div>
 </div>
@@ -661,32 +661,32 @@ L309 线程创建时并不能保证哪个线程先运行：是先创建的线程
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">PrintTids</span>(<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">str</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pid_t</span> <span style="color: #ff8700;">pid</span> = getpid();&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tid</span> = pthread_self(); <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#20026;&#20160;&#20040;&#19981;&#33021;&#36890;&#36807;&#35843;&#29992;&#32773;&#20256;&#36882;tid&#36827;&#26469;</span>&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; str &lt;&lt; <span style="color: #ff4ea3;">" pid: "</span> &lt;&lt; pid &lt;&lt; <span style="color: #ff4ea3;">" tid:"</span> &lt;&lt; tid &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span> *<span style="color: #ffd700;">WorkFn</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {&#57344;&#57345;&#57345;
-    PrintTids(<span style="color: #ff4ea3;">"new thread:"</span>);&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> ((<span style="color: #00d7af;">void</span> *)0);&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tid</span>;&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">ret</span> = pthread_create(&amp;tid, <span style="color: #5fafd7;">NULL</span>, WorkFn, <span style="color: #5fafd7;">NULL</span>);&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span> (ret) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"thread create error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    PrintTids(<span style="color: #ff4ea3;">"Main Thread:"</span>);&#57344;&#57345;&#57345;
-    sleep(1);&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>
+
+<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">PrintTids</span>(<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">str</span>) {
+    <span style="color: #00d7af;">pid_t</span> <span style="color: #ff8700;">pid</span> = getpid();
+    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tid</span> = pthread_self(); <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#20026;&#20160;&#20040;&#19981;&#33021;&#36890;&#36807;&#35843;&#29992;&#32773;&#20256;&#36882;tid&#36827;&#26469;</span>
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; str &lt;&lt; <span style="color: #ff4ea3;">" pid: "</span> &lt;&lt; pid &lt;&lt; <span style="color: #ff4ea3;">" tid:"</span> &lt;&lt; tid &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+}
+
+<span style="color: #00d7af;">void</span> *<span style="color: #ffd700;">WorkFn</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {
+    PrintTids(<span style="color: #ff4ea3;">"new thread:"</span>);
+    <span style="color: #a1db00;">return</span> ((<span style="color: #00d7af;">void</span> *)0);
+}
+
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+{
+    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tid</span>;
+    <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">ret</span> = pthread_create(&amp;tid, <span style="color: #5fafd7;">NULL</span>, WorkFn, <span style="color: #5fafd7;">NULL</span>);
+    <span style="color: #a1db00;">if</span> (ret) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"thread create error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    }
+    PrintTids(<span style="color: #ff4ea3;">"Main Thread:"</span>);
+    sleep(1);
+    <span style="color: #a1db00;">return</span> 0;
+}
 </pre>
 </div>
 
@@ -755,15 +755,6 @@ L309 线程创建时并不能保证哪个线程先运行：是先创建的线程
 <tr>
 <td class="org-left">g++</td>
 <td class="org-left">-g</td>
-<td class="org-left">thread-stack-layout.cc</td>
-<td class="org-left">-o</td>
-<td class="org-left">thread-stack-layout.out</td>
-<td class="org-left">-lpthread</td>
-</tr>
-
-<tr>
-<td class="org-left">g++</td>
-<td class="org-left">-g</td>
 <td class="org-left">get-return.cc</td>
 <td class="org-left">-o</td>
 <td class="org-left">get-return.out</td>
@@ -818,9 +809,9 @@ L309 线程创建时并不能保证哪个线程先运行：是先创建的线程
 <tr>
 <td class="org-left">g++</td>
 <td class="org-left">-g</td>
-<td class="org-left">thread-property.cc</td>
+<td class="org-left">thread-stack-layout.cc</td>
 <td class="org-left">-o</td>
-<td class="org-left">thread-property.out</td>
+<td class="org-left">thread-stack-layout.out</td>
 <td class="org-left">-lpthread</td>
 </tr>
 
@@ -872,6 +863,15 @@ L309 线程创建时并不能保证哪个线程先运行：是先创建的线程
 <tr>
 <td class="org-left">g++</td>
 <td class="org-left">-g</td>
+<td class="org-left">thread-property.cc</td>
+<td class="org-left">-o</td>
+<td class="org-left">thread-property.out</td>
+<td class="org-left">-lpthread</td>
+</tr>
+
+<tr>
+<td class="org-left">g++</td>
+<td class="org-left">-g</td>
 <td class="org-left">mutex-test.cc</td>
 <td class="org-left">-o</td>
 <td class="org-left">mutex-test.out</td>
@@ -882,8 +882,8 @@ L309 线程创建时并不能保证哪个线程先运行：是先创建的线程
 <td class="org-left">Main</td>
 <td class="org-left">Thread:</td>
 <td class="org-left">pid:</td>
-<td class="org-left">8763</td>
-<td class="org-left">tid:139849211475776</td>
+<td class="org-left">6896</td>
+<td class="org-left">tid:140028091471680</td>
 <td class="org-left">&#xa0;</td>
 </tr>
 
@@ -891,8 +891,8 @@ L309 线程创建时并不能保证哪个线程先运行：是先创建的线程
 <td class="org-left">new</td>
 <td class="org-left">thread:</td>
 <td class="org-left">pid:</td>
-<td class="org-left">8763</td>
-<td class="org-left">tid:139849194116864</td>
+<td class="org-left">6896</td>
+<td class="org-left">tid:140028074170112</td>
 <td class="org-left">&#xa0;</td>
 </tr>
 </tbody>
@@ -908,42 +908,42 @@ L309 线程创建时并不能保证哪个线程先运行：是先创建的线程
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span> *<span style="color: #ffd700;">ThrFn1</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> ((<span style="color: #00d7af;">void</span>*)1);&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span> *<span style="color: #ffd700;">ThrFn2</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> ((<span style="color: #00d7af;">void</span>*)2);&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tid1</span>, <span style="color: #ff8700;">tid2</span>;&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">ret1</span>, *<span style="color: #ff8700;">ret2</span>;&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span> (pthread_create(&amp;tid1, <span style="color: #5fafd7;">NULL</span>, ThrFn1, <span style="color: #5fafd7;">NULL</span>)) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"thread 1 create errror"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 1;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span> (pthread_join(tid1, &amp;ret1)) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"join 1 error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 1;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span> (pthread_create(&amp;tid2, <span style="color: #5fafd7;">NULL</span>, ThrFn2, <span style="color: #5fafd7;">NULL</span>)) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"thread 2 create error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 2;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span> (pthread_join(tid2, &amp;ret2)) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"join 2 error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 1;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"ret1 = "</span> &lt;&lt; (<span style="color: #00d7af;">long</span>)ret1 &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"ret2 = "</span> &lt;&lt; (<span style="color: #00d7af;">long</span>)ret2 &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>
+
+<span style="color: #00d7af;">void</span> *<span style="color: #ffd700;">ThrFn1</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {
+    <span style="color: #a1db00;">return</span> ((<span style="color: #00d7af;">void</span>*)1);
+}
+
+<span style="color: #00d7af;">void</span> *<span style="color: #ffd700;">ThrFn2</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {
+    <span style="color: #a1db00;">return</span> ((<span style="color: #00d7af;">void</span>*)2);
+}
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+{
+    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tid1</span>, <span style="color: #ff8700;">tid2</span>;
+    <span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">ret1</span>, *<span style="color: #ff8700;">ret2</span>;
+    <span style="color: #a1db00;">if</span> (pthread_create(&amp;tid1, <span style="color: #5fafd7;">NULL</span>, ThrFn1, <span style="color: #5fafd7;">NULL</span>)) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"thread 1 create errror"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        <span style="color: #a1db00;">return</span> 1;
+    }
+    <span style="color: #a1db00;">if</span> (pthread_join(tid1, &amp;ret1)) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"join 1 error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        <span style="color: #a1db00;">return</span> 1;
+    }
+    <span style="color: #a1db00;">if</span> (pthread_create(&amp;tid2, <span style="color: #5fafd7;">NULL</span>, ThrFn2, <span style="color: #5fafd7;">NULL</span>)) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"thread 2 create error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        <span style="color: #a1db00;">return</span> 2;
+    }
+    <span style="color: #a1db00;">if</span> (pthread_join(tid2, &amp;ret2)) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"join 2 error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        <span style="color: #a1db00;">return</span> 1;
+    }
+
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"ret1 = "</span> &lt;&lt; (<span style="color: #00d7af;">long</span>)ret1 &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"ret2 = "</span> &lt;&lt; (<span style="color: #00d7af;">long</span>)ret2 &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    <span style="color: #a1db00;">return</span> 0;
+}
 </pre>
 </div>
 <table border="1" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" width="auto">
@@ -1002,53 +1002,53 @@ L313 注意 pthread_create 与 pthread_exit 传递的参数内存地址在调用
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">Foo</span>&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>,<span style="color: #ff8700;">b</span>,<span style="color: #ff8700;">c</span>,<span style="color: #ff8700;">d</span>;&#57344;&#57345;&#57345;
-};&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">DisplayFoo</span>(<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">msg</span>, <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">Foo</span> *<span style="color: #ff8700;">fp</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; msg &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"foo addr is:"</span> &lt;&lt; fp &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"foo.a: "</span> &lt;&lt; fp-&gt;a &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"foo.b: "</span> &lt;&lt; fp-&gt;b &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"foo.c: "</span> &lt;&lt; fp-&gt;c &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"foo.d: "</span> &lt;&lt; fp-&gt;d &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">ThreadFunc1</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">Foo</span> <span style="color: #ff8700;">tmp</span> = {1,2,3,4};&#57344;&#57345;&#57345;
-    DisplayFoo(<span style="color: #ff4ea3;">"thread 1 running"</span>, &amp;tmp);&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> ((<span style="color: #00d7af;">void</span>*)&amp;tmp);&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">ThreadFunc2</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"thread 2 running"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> ((<span style="color: #00d7af;">void</span>*)2);&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tid1</span>, <span style="color: #ff8700;">tid2</span>;&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span>(pthread_create(&amp;tid1, <span style="color: #5fafd7;">NULL</span>, ThreadFunc1, <span style="color: #5fafd7;">NULL</span>)) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"create error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 1;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">Foo</span> *<span style="color: #ff8700;">rval</span>;&#57344;&#57345;&#57345;
-    pthread_join(tid1, (<span style="color: #00d7af;">void</span>**)&amp;rval);&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span>(pthread_create(&amp;tid2, <span style="color: #5fafd7;">NULL</span>, ThreadFunc2, <span style="color: #5fafd7;">NULL</span>)) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"create error2"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 2;;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    pthread_join(tid2, <span style="color: #5fafd7;">NULL</span>);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    DisplayFoo(<span style="color: #ff4ea3;">"main thread running"</span>, rval);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>
+
+<span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">Foo</span>
+{
+    <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>,<span style="color: #ff8700;">b</span>,<span style="color: #ff8700;">c</span>,<span style="color: #ff8700;">d</span>;
+};
+
+<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">DisplayFoo</span>(<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">msg</span>, <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">Foo</span> *<span style="color: #ff8700;">fp</span>) {
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; msg &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"foo addr is:"</span> &lt;&lt; fp &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"foo.a: "</span> &lt;&lt; fp-&gt;a &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"foo.b: "</span> &lt;&lt; fp-&gt;b &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"foo.c: "</span> &lt;&lt; fp-&gt;c &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"foo.d: "</span> &lt;&lt; fp-&gt;d &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+}
+
+<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">ThreadFunc1</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {
+    <span style="color: #00d7af;">Foo</span> <span style="color: #ff8700;">tmp</span> = {1,2,3,4};
+    DisplayFoo(<span style="color: #ff4ea3;">"thread 1 running"</span>, &amp;tmp);
+    <span style="color: #a1db00;">return</span> ((<span style="color: #00d7af;">void</span>*)&amp;tmp);
+}
+
+<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">ThreadFunc2</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"thread 2 running"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    <span style="color: #a1db00;">return</span> ((<span style="color: #00d7af;">void</span>*)2);
+}
+
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+{
+    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tid1</span>, <span style="color: #ff8700;">tid2</span>;
+    <span style="color: #a1db00;">if</span>(pthread_create(&amp;tid1, <span style="color: #5fafd7;">NULL</span>, ThreadFunc1, <span style="color: #5fafd7;">NULL</span>)) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"create error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        <span style="color: #a1db00;">return</span> 1;
+    }
+    <span style="color: #00d7af;">Foo</span> *<span style="color: #ff8700;">rval</span>;
+    pthread_join(tid1, (<span style="color: #00d7af;">void</span>**)&amp;rval);
+    <span style="color: #a1db00;">if</span>(pthread_create(&amp;tid2, <span style="color: #5fafd7;">NULL</span>, ThreadFunc2, <span style="color: #5fafd7;">NULL</span>)) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"create error2"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        <span style="color: #a1db00;">return</span> 2;;
+    }
+    pthread_join(tid2, <span style="color: #5fafd7;">NULL</span>);
+
+    DisplayFoo(<span style="color: #ff4ea3;">"main thread running"</span>, rval);
+
+    <span style="color: #a1db00;">return</span> 0;
+}
 </pre>
 </div>
 <p>
@@ -1056,29 +1056,29 @@ L313 注意 pthread_create 与 pthread_exit 传递的参数内存地址在调用
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span> *<span style="color: #ffd700;">ThreadFunc</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">while</span>(1){}&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> (<span style="color: #00d7af;">void</span>*)0;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">tnum</span> = 3;&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tids</span>[tnum];&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"pid: "</span> &lt;&lt; getpid() &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">for</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>=0; i&lt;tnum; ++i) {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span>(pthread_create(&amp;tids[i], <span style="color: #5fafd7;">NULL</span>, ThreadFunc, <span style="color: #5fafd7;">NULL</span>)) {&#57344;&#57345;&#57345;
-            <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"error: create"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> -1;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">while</span>(1) {}&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>
+
+<span style="color: #00d7af;">void</span> *<span style="color: #ffd700;">ThreadFunc</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {
+    <span style="color: #a1db00;">while</span>(1){}
+    <span style="color: #a1db00;">return</span> (<span style="color: #00d7af;">void</span>*)0;
+}
+
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+{
+    <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">tnum</span> = 3;
+    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tids</span>[tnum];
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"pid: "</span> &lt;&lt; getpid() &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    <span style="color: #a1db00;">for</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>=0; i&lt;tnum; ++i) {
+        <span style="color: #a1db00;">if</span>(pthread_create(&amp;tids[i], <span style="color: #5fafd7;">NULL</span>, ThreadFunc, <span style="color: #5fafd7;">NULL</span>)) {
+            <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"error: create"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+            <span style="color: #a1db00;">return</span> -1;
+        }
+    }
+    <span style="color: #a1db00;">while</span>(1) {}
+    <span style="color: #a1db00;">return</span> 0;
+}
 </pre>
 </div>
 <p>
@@ -1086,7 +1086,7 @@ L313 注意 pthread_create 与 pthread_exit 传递的参数内存地址在调用
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">ls /proc/6885/task/&#57344;&#57345;&#57345;
+<pre class="src src-sh">ls /proc/6885/task/
 </pre>
 </div>
 
@@ -1100,7 +1100,7 @@ L313 注意 pthread_create 与 pthread_exit 传递的参数内存地址在调用
 
 <div class="org-src-container">
 
-<pre class="src src-sh">cat /proc/6885/maps&#57344;&#57345;&#57345;
+<pre class="src src-sh">cat /proc/6885/maps
 </pre>
 </div>
 
@@ -1158,7 +1158,7 @@ ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsysca
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #d18aff;">ulimit</span> -a&#57344;&#57345;&#57345;
+<pre class="src src-sh"><span style="color: #d18aff;">ulimit</span> -a
 </pre>
 </div>
 
@@ -1201,8 +1201,8 @@ L316 线程也可以安排退出时需要调用的函数，类似进程的 atexi
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #00d7af;">void</span> <span style="color: #ffd700;">pthread_cleanup_push</span>(<span style="color: #00d7af;">void</span> (*<span style="color: #ff8700;">rtn</span>)(<span style="color: #00d7af;">void</span>*), <span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>)&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">pthread_cleanup_pop</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">execute</span>)&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #00d7af;">void</span> <span style="color: #ffd700;">pthread_cleanup_push</span>(<span style="color: #00d7af;">void</span> (*<span style="color: #ff8700;">rtn</span>)(<span style="color: #00d7af;">void</span>*), <span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>)
+<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">pthread_cleanup_pop</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">execute</span>)
 </pre>
 </div>
 <p>
@@ -1219,57 +1219,57 @@ L318 在 push 和 pop 之间返回的行为是未定以的，在 ubutnu 中，�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">Cleanup</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"cleanup&#65306;"</span> &lt;&lt; (<span style="color: #00d7af;">char</span> *)arg &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">ThreadFunc1</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"thread 1 start"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    pthread_cleanup_push(Cleanup, <span style="color: #a1db00;">const_cast</span>&lt;<span style="color: #00d7af;">char</span>*&gt;(<span style="color: #ff4ea3;">"thread 1 first handle"</span>));&#57344;&#57345;
-&#57344;&#57345;&#57345;
-    pthread_cleanup_push(Cleanup, <span style="color: #a1db00;">const_cast</span>&lt;<span style="color: #00d7af;">char</span>*&gt;(<span style="color: #ff4ea3;">"thread 1 second handle"</span>));&#57344;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"thread 1 push complete"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span> (arg)&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> ((<span style="color: #00d7af;">void</span>*)1);&#57344;&#57345;&#57345;
-    pthread_cleanup_pop(0);&#57344;&#57345;&#57345;
-    pthread_cleanup_pop(1);&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span>  ((<span style="color: #00d7af;">void</span>*)1);&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">ThreadFunc2</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"thread 2 start"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    pthread_cleanup_push(Cleanup, <span style="color: #a1db00;">const_cast</span>&lt;<span style="color: #00d7af;">char</span>*&gt;(<span style="color: #ff4ea3;">"thread 2 first handle"</span>));&#57344;&#57345;
-    pthread_cleanup_push(Cleanup, <span style="color: #a1db00;">const_cast</span>&lt;<span style="color: #00d7af;">char</span>*&gt;(<span style="color: #ff4ea3;">"thread 2 second handle"</span>));&#57344;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"thread 2 push complete"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span> (arg)&#57344;&#57345;&#57345;
-        pthread_exit((<span style="color: #00d7af;">void</span>*)2);&#57344;&#57345;&#57345;
-    pthread_cleanup_pop(0);&#57344;&#57345;&#57345;
-    pthread_cleanup_pop(0);&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> ((<span style="color: #00d7af;">void</span>*)2);&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tid1</span>, <span style="color: #ff8700;">tid2</span>;&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">arg</span> = 1;&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span>(pthread_create(&amp;tid1, <span style="color: #5fafd7;">NULL</span>, ThreadFunc1, (<span style="color: #00d7af;">void</span>*)&amp;arg)) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"create thread 1 error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 1;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    pthread_join(tid1, <span style="color: #5fafd7;">NULL</span>);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span>(pthread_create(&amp;tid2, <span style="color: #5fafd7;">NULL</span>, ThreadFunc2, (<span style="color: #00d7af;">void</span>*)&amp;arg)) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"create thread 2 error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 2;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    pthread_join(tid2, <span style="color: #5fafd7;">NULL</span>);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>
+
+<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">Cleanup</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"cleanup&#65306;"</span> &lt;&lt; (<span style="color: #00d7af;">char</span> *)arg &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+}
+
+<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">ThreadFunc1</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"thread 1 start"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+
+    pthread_cleanup_push(Cleanup, <span style="color: #a1db00;">const_cast</span>&lt;<span style="color: #00d7af;">char</span>*&gt;(<span style="color: #ff4ea3;">"thread 1 first handle"</span>));
+
+    pthread_cleanup_push(Cleanup, <span style="color: #a1db00;">const_cast</span>&lt;<span style="color: #00d7af;">char</span>*&gt;(<span style="color: #ff4ea3;">"thread 1 second handle"</span>));
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"thread 1 push complete"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    <span style="color: #a1db00;">if</span> (arg)
+        <span style="color: #a1db00;">return</span> ((<span style="color: #00d7af;">void</span>*)1);
+    pthread_cleanup_pop(0);
+    pthread_cleanup_pop(1);
+    <span style="color: #a1db00;">return</span>  ((<span style="color: #00d7af;">void</span>*)1);
+}
+
+<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">ThreadFunc2</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"thread 2 start"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    pthread_cleanup_push(Cleanup, <span style="color: #a1db00;">const_cast</span>&lt;<span style="color: #00d7af;">char</span>*&gt;(<span style="color: #ff4ea3;">"thread 2 first handle"</span>));
+    pthread_cleanup_push(Cleanup, <span style="color: #a1db00;">const_cast</span>&lt;<span style="color: #00d7af;">char</span>*&gt;(<span style="color: #ff4ea3;">"thread 2 second handle"</span>));
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"thread 2 push complete"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    <span style="color: #a1db00;">if</span> (arg)
+        pthread_exit((<span style="color: #00d7af;">void</span>*)2);
+    pthread_cleanup_pop(0);
+    pthread_cleanup_pop(0);
+    <span style="color: #a1db00;">return</span> ((<span style="color: #00d7af;">void</span>*)2);
+}
+
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+{
+    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tid1</span>, <span style="color: #ff8700;">tid2</span>;
+    <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">arg</span> = 1;
+    <span style="color: #a1db00;">if</span>(pthread_create(&amp;tid1, <span style="color: #5fafd7;">NULL</span>, ThreadFunc1, (<span style="color: #00d7af;">void</span>*)&amp;arg)) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"create thread 1 error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        <span style="color: #a1db00;">return</span> 1;
+    }
+    pthread_join(tid1, <span style="color: #5fafd7;">NULL</span>);
+
+    <span style="color: #a1db00;">if</span>(pthread_create(&amp;tid2, <span style="color: #5fafd7;">NULL</span>, ThreadFunc2, (<span style="color: #00d7af;">void</span>*)&amp;arg)) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"create thread 2 error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        <span style="color: #a1db00;">return</span> 2;
+    }
+    pthread_join(tid2, <span style="color: #5fafd7;">NULL</span>);
+
+    <span style="color: #a1db00;">return</span> 0;
+}
 </pre>
 </div>
 
@@ -1397,30 +1397,30 @@ L318 在 push 和 pop 之间返回的行为是未定以的，在 ubutnu 中，�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">ThreadFunc</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">while</span>(<span style="color: #5fafd7;">true</span>) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"child thread alive"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        sleep(1);&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">NULL</span>;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tid</span>;&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span>(pthread_create(&amp;tid, <span style="color: #5fafd7;">NULL</span>, ThreadFunc, <span style="color: #5fafd7;">NULL</span>)) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"create thread error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 1;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    pthread_detach(tid);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"main exit"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>
+
+<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">ThreadFunc</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {
+    <span style="color: #a1db00;">while</span>(<span style="color: #5fafd7;">true</span>) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"child thread alive"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        sleep(1);
+    }
+    <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">NULL</span>;
+}
+
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+{
+    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tid</span>;
+    <span style="color: #a1db00;">if</span>(pthread_create(&amp;tid, <span style="color: #5fafd7;">NULL</span>, ThreadFunc, <span style="color: #5fafd7;">NULL</span>)) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"create thread error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        <span style="color: #a1db00;">return</span> 1;
+    }
+    pthread_detach(tid);
+
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"main exit"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    <span style="color: #a1db00;">return</span> 0;
+}
 </pre>
 </div>
 
@@ -1458,7 +1458,17 @@ L318 在 push 和 pop 之间返回的行为是未定以的，在 ubutnu 中，�
 
 <tr>
 <td class="org-left">main</td>
-<td class="org-left">exit</td>
+<td class="org-left">exitchild</td>
+<td class="org-left">thread</td>
+<td class="org-left">alive</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">&#xa0;</td>
 <td class="org-left">&#xa0;</td>
 <td class="org-left">&#xa0;</td>
@@ -1475,43 +1485,43 @@ L318 在 push 和 pop 之间返回的行为是未定以的，在 ubutnu 中，�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">ThreadFunc</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">main_tid</span> = *<span style="color: #a1db00;">static_cast</span>&lt;pthread_t*&gt;(arg);&#57344;&#57345;&#57345;
-    pthread_cancel(main_tid);&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">while</span>(<span style="color: #5fafd7;">true</span>) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"child thread alive"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        sleep(1);&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">NULL</span>;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tid</span>;&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">main_tid</span> = pthread_self();&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span>(pthread_create(&amp;tid, <span style="color: #5fafd7;">NULL</span>, ThreadFunc, <span style="color: #a1db00;">static_cast</span>&lt;<span style="color: #00d7af;">void</span>*&gt;(&amp;main_tid))) {&#57344;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"thread create error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> -1;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    pthread_detach(tid);&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">while</span>(1) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"main thread alive"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"main exit"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>
+
+<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">ThreadFunc</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {
+    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">main_tid</span> = *<span style="color: #a1db00;">static_cast</span>&lt;pthread_t*&gt;(arg);
+    pthread_cancel(main_tid);
+    <span style="color: #a1db00;">while</span>(<span style="color: #5fafd7;">true</span>) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"child thread alive"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        sleep(1);
+    }
+    <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">NULL</span>;
+}
+
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+{
+    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tid</span>;
+    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">main_tid</span> = pthread_self();
+
+    <span style="color: #a1db00;">if</span>(pthread_create(&amp;tid, <span style="color: #5fafd7;">NULL</span>, ThreadFunc, <span style="color: #a1db00;">static_cast</span>&lt;<span style="color: #00d7af;">void</span>*&gt;(&amp;main_tid))) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"thread create error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        <span style="color: #a1db00;">return</span> -1;
+    }
+    pthread_detach(tid);
+    <span style="color: #a1db00;">while</span>(1) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"main thread alive"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    }
+
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"main exit"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    <span style="color: #a1db00;">return</span> 0;
+}
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #d18aff;">cd</span> apue-notes &amp;&amp; make &amp;&amp; ./main-thread-dead.out&#57344;&#57345;&#57345;
+<pre class="src src-sh"><span style="color: #d18aff;">cd</span> apue-notes &amp;&amp; make &amp;&amp; ./main-thread-dead.out
 </pre>
 </div>
 
@@ -1622,47 +1632,47 @@ L320 <b>操作系统不会为我们做数据访问的串行化</b> 。所以才�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">Foo</span>&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">count</span>;&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pthread_mutex_t</span> <span style="color: #ff8700;">lock</span>;&#57344;&#57345;&#57345;
-};&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">ThreadFunc</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">Foo</span> *<span style="color: #ff8700;">tmp</span> = (<span style="color: #00d7af;">Foo</span>*)arg;&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">for</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>=0; i&lt;5; ++i) {&#57344;&#57345;&#57345;
-        pthread_mutex_lock(&amp;(tmp-&gt;lock));&#57344;&#57345;&#57345;
-        ++(tmp-&gt;count);&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; tmp-&gt;count &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        pthread_mutex_unlock(&amp;(tmp-&gt;lock));&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> ((<span style="color: #00d7af;">void</span>*)0);&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">Foo</span> <span style="color: #ff8700;">f</span>;&#57344;&#57345;&#57345;
-    f.count = 0;&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span>(pthread_mutex_init(&amp;(f.lock), <span style="color: #5fafd7;">NULL</span>)) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"mutex init error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 1;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tids</span>[2];&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">for</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>=0; i&lt;2; ++i) {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span>(pthread_create(&amp;tids[i], <span style="color: #5fafd7;">NULL</span>, ThreadFunc, (<span style="color: #00d7af;">void</span>*)&amp;f)) {&#57344;&#57345;&#57345;
-            <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"thread create error "</span> &lt;&lt; i &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> 2;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        pthread_join(tids[i], <span style="color: #5fafd7;">NULL</span>);&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    pthread_mutex_destroy(&amp;(f.lock));&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>
+
+<span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">Foo</span>
+{
+    <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">count</span>;
+    <span style="color: #00d7af;">pthread_mutex_t</span> <span style="color: #ff8700;">lock</span>;
+};
+
+<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">ThreadFunc</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {
+    <span style="color: #00d7af;">Foo</span> *<span style="color: #ff8700;">tmp</span> = (<span style="color: #00d7af;">Foo</span>*)arg;
+    <span style="color: #a1db00;">for</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>=0; i&lt;5; ++i) {
+        pthread_mutex_lock(&amp;(tmp-&gt;lock));
+        ++(tmp-&gt;count);
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; tmp-&gt;count &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        pthread_mutex_unlock(&amp;(tmp-&gt;lock));
+    }
+    <span style="color: #a1db00;">return</span> ((<span style="color: #00d7af;">void</span>*)0);
+}
+
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+{
+    <span style="color: #00d7af;">Foo</span> <span style="color: #ff8700;">f</span>;
+    f.count = 0;
+    <span style="color: #a1db00;">if</span>(pthread_mutex_init(&amp;(f.lock), <span style="color: #5fafd7;">NULL</span>)) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"mutex init error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        <span style="color: #a1db00;">return</span> 1;
+    }
+    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tids</span>[2];
+    <span style="color: #a1db00;">for</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>=0; i&lt;2; ++i) {
+        <span style="color: #a1db00;">if</span>(pthread_create(&amp;tids[i], <span style="color: #5fafd7;">NULL</span>, ThreadFunc, (<span style="color: #00d7af;">void</span>*)&amp;f)) {
+            <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"thread create error "</span> &lt;&lt; i &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+            <span style="color: #a1db00;">return</span> 2;
+        }
+        pthread_join(tids[i], <span style="color: #5fafd7;">NULL</span>);
+    }
+
+    pthread_mutex_destroy(&amp;(f.lock));
+    <span style="color: #a1db00;">return</span> 0;
+}
 </pre>
 </div>
 
@@ -1830,59 +1840,59 @@ L322：程序中使用多个互斥量，可以通过仔细控制互斥量加锁�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">Foo</span>&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">count</span>;&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pthread_rwlock_t</span> <span style="color: #ff8700;">rwLock</span>;&#57344;&#57345;&#57345;
-};&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">ReadFunc</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {&#57344;&#57345;&#57345;
-    sleep(2);&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">Foo</span> *<span style="color: #ff8700;">tmp</span> = <span style="color: #a1db00;">static_cast</span>&lt;Foo*&gt;(arg);&#57344;&#57345;&#57345;
-    pthread_rwlock_rdlock(&amp;tmp-&gt;rwLock);&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; tmp-&gt;count &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    pthread_rwlock_unlock(&amp;tmp-&gt;rwLock);&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">NULL</span>;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">WriteFunc</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {&#57344;&#57345;&#57345;
-    sleep(10);&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">Foo</span> *<span style="color: #ff8700;">tmp</span> = <span style="color: #a1db00;">static_cast</span>&lt;Foo*&gt;(arg);&#57344;&#57345;&#57345;
-    pthread_rwlock_wrlock(&amp;tmp-&gt;rwLock);&#57344;&#57345;&#57345;
-    ++tmp-&gt;count;&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; tmp-&gt;count &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    pthread_rwlock_unlock(&amp;tmp-&gt;rwLock);&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">NULL</span>;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">Foo</span> <span style="color: #ff8700;">f</span>;&#57344;&#57345;&#57345;
-    f.count = 0;&#57344;&#57345;&#57345;
-    pthread_rwlock_init(&amp;(f.rwLock), <span style="color: #5fafd7;">NULL</span>);&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tids</span>[8];&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">for</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>=0; i&lt;8; ++i) {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span>(i==5) {&#57344;&#57345;&#57345;
-            pthread_create(&amp;tids[i], <span style="color: #5fafd7;">NULL</span>, WriteFunc, (<span style="color: #00d7af;">void</span>*)&amp;f);&#57344;&#57345;&#57345;
-            pthread_detach(tids[i]);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">else</span> {&#57344;&#57345;&#57345;
-            pthread_create(&amp;tids[i], <span style="color: #5fafd7;">NULL</span>,ReadFunc, (<span style="color: #00d7af;">void</span>*)&amp;f);&#57344;&#57345;&#57345;
-            pthread_detach(tids[i]);&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-        sleep(1);&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">while</span>(<span style="color: #5fafd7;">true</span>) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"main thread"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        sleep(1);&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>
+
+<span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">Foo</span>
+{
+    <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">count</span>;
+    <span style="color: #00d7af;">pthread_rwlock_t</span> <span style="color: #ff8700;">rwLock</span>;
+};
+
+<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">ReadFunc</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {
+    sleep(2);
+    <span style="color: #00d7af;">Foo</span> *<span style="color: #ff8700;">tmp</span> = <span style="color: #a1db00;">static_cast</span>&lt;Foo*&gt;(arg);
+    pthread_rwlock_rdlock(&amp;tmp-&gt;rwLock);
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; tmp-&gt;count &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    pthread_rwlock_unlock(&amp;tmp-&gt;rwLock);
+    <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">NULL</span>;
+}
+
+<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">WriteFunc</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {
+    sleep(10);
+    <span style="color: #00d7af;">Foo</span> *<span style="color: #ff8700;">tmp</span> = <span style="color: #a1db00;">static_cast</span>&lt;Foo*&gt;(arg);
+    pthread_rwlock_wrlock(&amp;tmp-&gt;rwLock);
+    ++tmp-&gt;count;
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; tmp-&gt;count &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    pthread_rwlock_unlock(&amp;tmp-&gt;rwLock);
+    <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">NULL</span>;
+}
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+{
+    <span style="color: #00d7af;">Foo</span> <span style="color: #ff8700;">f</span>;
+    f.count = 0;
+    pthread_rwlock_init(&amp;(f.rwLock), <span style="color: #5fafd7;">NULL</span>);
+    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tids</span>[8];
+    <span style="color: #a1db00;">for</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>=0; i&lt;8; ++i) {
+        <span style="color: #a1db00;">if</span>(i==5) {
+            pthread_create(&amp;tids[i], <span style="color: #5fafd7;">NULL</span>, WriteFunc, (<span style="color: #00d7af;">void</span>*)&amp;f);
+            pthread_detach(tids[i]);
+
+        }
+        <span style="color: #a1db00;">else</span> {
+            pthread_create(&amp;tids[i], <span style="color: #5fafd7;">NULL</span>,ReadFunc, (<span style="color: #00d7af;">void</span>*)&amp;f);
+            pthread_detach(tids[i]);
+        }
+        sleep(1);
+    }
+    <span style="color: #a1db00;">while</span>(<span style="color: #5fafd7;">true</span>) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"main thread"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        sleep(1);
+    }
+
+    <span style="color: #a1db00;">return</span> 0;
+}
 </pre>
 </div>
 </div>
@@ -1902,61 +1912,61 @@ L332：条件变量是线程可用的另一种 <b>同步机制</b> （不是互�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">Foo</span> {&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">long</span> <span style="color: #ff8700;">count</span>;&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pthread_mutex_t</span> <span style="color: #ff8700;">mutex</span>;&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pthread_cond_t</span> <span style="color: #ff8700;">cond</span>;&#57344;&#57345;&#57345;
-};&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">ThreadFunc</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">Foo</span> *<span style="color: #ff8700;">tmp</span> = <span style="color: #a1db00;">static_cast</span>&lt;Foo*&gt;(arg);&#57344;&#57345;&#57345;
-    pthread_mutex_lock(&amp;tmp-&gt;mutex); <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#24517;&#39035;&#20808;&#38145;&#20303;&#26465;&#20214;&#65292;&#28982;&#21518;&#25165;&#33021;&#21028;&#26029;</span>&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">while</span>(tmp-&gt;count != 0) {<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#19981;&#20351;&#29992;if&#21028;&#26029;&#65292;&#38450;&#27490;&#34394;&#20551;&#21796;&#37266;</span>&#57344;&#57345;&#57345;
-        pthread_cond_wait(&amp;tmp-&gt;cond, &amp;tmp-&gt;mutex);&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"cond finish"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    pthread_mutex_unlock(&amp;tmp-&gt;mutex);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">NULL</span>;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">Foo</span> <span style="color: #ff8700;">f</span>;&#57344;&#57345;&#57345;
-    f.count = 10000000;&#57344;&#57345;&#57345;
-    pthread_mutex_init(&amp;f.mutex, <span style="color: #5fafd7;">NULL</span>);&#57344;&#57345;&#57345;
-    pthread_cond_init(&amp;f.cond, <span style="color: #5fafd7;">NULL</span>);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tids</span>[5];&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">for</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>=0; i&lt;5; ++i) {&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span>(pthread_create(&amp;tids[i], <span style="color: #5fafd7;">NULL</span>, ThreadFunc, <span style="color: #a1db00;">static_cast</span>&lt;<span style="color: #00d7af;">void</span>*&gt;(&amp;f))) {&#57344;&#57345;
-            <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"create thread error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">return</span> 1;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">while</span>(<span style="color: #5fafd7;">true</span>) {&#57344;&#57345;&#57345;
-        pthread_mutex_lock(&amp;f.mutex);<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#23545;&#25968;&#25454;&#35775;&#38382;&#35268;&#21017;&#30340;&#19968;&#33268;&#24615;</span>&#57344;&#57345;&#57345;
-        f.count--;&#57344;&#57345;&#57345;
-        pthread_mutex_unlock(&amp;f.mutex);&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">if</span>(f.count == 0) {&#57344;&#57345;&#57345;
-            pthread_cond_broadcast(&amp;f.cond);&#57344;&#57345;&#57345;
-            <span style="color: #a1db00;">break</span>;&#57344;&#57345;&#57345;
-        }&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">for</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>=0; i&lt;5; ++i) {&#57344;&#57345;&#57345;
-        pthread_join(tids[i], <span style="color: #5fafd7;">NULL</span>);&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    pthread_cond_destroy(&amp;f.cond);&#57344;&#57345;&#57345;
-    pthread_mutex_destroy(&amp;f.mutex);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>
+
+<span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">Foo</span> {
+    <span style="color: #00d7af;">long</span> <span style="color: #ff8700;">count</span>;
+    <span style="color: #00d7af;">pthread_mutex_t</span> <span style="color: #ff8700;">mutex</span>;
+    <span style="color: #00d7af;">pthread_cond_t</span> <span style="color: #ff8700;">cond</span>;
+};
+
+<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">ThreadFunc</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {
+    <span style="color: #00d7af;">Foo</span> *<span style="color: #ff8700;">tmp</span> = <span style="color: #a1db00;">static_cast</span>&lt;Foo*&gt;(arg);
+    pthread_mutex_lock(&amp;tmp-&gt;mutex); <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#24517;&#39035;&#20808;&#38145;&#20303;&#26465;&#20214;&#65292;&#28982;&#21518;&#25165;&#33021;&#21028;&#26029;</span>
+    <span style="color: #a1db00;">while</span>(tmp-&gt;count != 0) {<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#19981;&#20351;&#29992;if&#21028;&#26029;&#65292;&#38450;&#27490;&#34394;&#20551;&#21796;&#37266;</span>
+        pthread_cond_wait(&amp;tmp-&gt;cond, &amp;tmp-&gt;mutex);
+    }
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"cond finish"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    pthread_mutex_unlock(&amp;tmp-&gt;mutex);
+
+    <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">NULL</span>;
+}
+
+
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+{
+    <span style="color: #00d7af;">Foo</span> <span style="color: #ff8700;">f</span>;
+    f.count = 10000000;
+    pthread_mutex_init(&amp;f.mutex, <span style="color: #5fafd7;">NULL</span>);
+    pthread_cond_init(&amp;f.cond, <span style="color: #5fafd7;">NULL</span>);
+
+    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tids</span>[5];
+    <span style="color: #a1db00;">for</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>=0; i&lt;5; ++i) {
+        <span style="color: #a1db00;">if</span>(pthread_create(&amp;tids[i], <span style="color: #5fafd7;">NULL</span>, ThreadFunc, <span style="color: #a1db00;">static_cast</span>&lt;<span style="color: #00d7af;">void</span>*&gt;(&amp;f))) {
+            <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"create thread error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+            <span style="color: #a1db00;">return</span> 1;
+        }
+    }
+
+    <span style="color: #a1db00;">while</span>(<span style="color: #5fafd7;">true</span>) {
+        pthread_mutex_lock(&amp;f.mutex);<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#23545;&#25968;&#25454;&#35775;&#38382;&#35268;&#21017;&#30340;&#19968;&#33268;&#24615;</span>
+        f.count--;
+        pthread_mutex_unlock(&amp;f.mutex);
+        <span style="color: #a1db00;">if</span>(f.count == 0) {
+            pthread_cond_broadcast(&amp;f.cond);
+            <span style="color: #a1db00;">break</span>;
+        }
+    }
+
+    <span style="color: #a1db00;">for</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>=0; i&lt;5; ++i) {
+        pthread_join(tids[i], <span style="color: #5fafd7;">NULL</span>);
+    }
+    pthread_cond_destroy(&amp;f.cond);
+    pthread_mutex_destroy(&amp;f.mutex);
+
+    <span style="color: #a1db00;">return</span> 0;
+}
 </pre>
 </div>
 
@@ -2028,30 +2038,30 @@ L336:屏障是用户协调多个进程并行工作的同步机制。
 <div class="outline-text-3" id="text-5-3">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span> *<span style="color: #ffd700;">func</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">NULL</span>;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tid</span>;&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pthread_attr_t</span> <span style="color: #ff8700;">attr</span>;&#57344;&#57345;&#57345;
-    pthread_attr_init(&amp;attr);&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span>(pthread_create(&amp;tid, &amp;attr, func, <span style="color: #5fafd7;">NULL</span>)) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"pthread create error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 1;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">size_t</span> <span style="color: #ff8700;">stack_size</span>;&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">stackaddr</span>;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    pthread_attr_getstack(&amp;attr, &amp;stackaddr, &amp;stack_size);&#57344;&#57345;&#57345;
-    pthread_attr_destroy(&amp;attr);&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; stackaddr &lt;&lt; <span style="color: #ff4ea3;">" "</span> &lt;&lt; stack_size &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>
+
+<span style="color: #00d7af;">void</span> *<span style="color: #ffd700;">func</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {
+    <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">NULL</span>;
+}
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+{
+    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tid</span>;
+    <span style="color: #00d7af;">pthread_attr_t</span> <span style="color: #ff8700;">attr</span>;
+    pthread_attr_init(&amp;attr);
+    <span style="color: #a1db00;">if</span>(pthread_create(&amp;tid, &amp;attr, func, <span style="color: #5fafd7;">NULL</span>)) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"pthread create error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        <span style="color: #a1db00;">return</span> 1;
+    }
+    <span style="color: #00d7af;">size_t</span> <span style="color: #ff8700;">stack_size</span>;
+    <span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">stackaddr</span>;
+
+    pthread_attr_getstack(&amp;attr, &amp;stackaddr, &amp;stack_size);
+    pthread_attr_destroy(&amp;attr);
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; stackaddr &lt;&lt; <span style="color: #ff4ea3;">" "</span> &lt;&lt; stack_size &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+
+    <span style="color: #a1db00;">return</span> 0;
+}
 </pre>
 </div>
 <p>
@@ -2063,19 +2073,19 @@ L336:屏障是用户协调多个进程并行工作的同步机制。
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#32447;&#31243;&#23646;&#24615;&#32467;&#26500;&#22914;&#19979;&#65306;</span>&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">typedef</span> <span style="color: #a1db00;">struct</span>&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span>                   <span style="color: #ff8700;">detachstate</span>;      <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#32447;&#31243;&#30340;&#20998;&#31163;&#29366;&#24577;</span>&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span>                   <span style="color: #ff8700;">schedpolicy</span>;     <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#32447;&#31243;&#35843;&#24230;&#31574;&#30053;</span>&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">sched_param</span>     <span style="color: #ff8700;">schedparam</span>;      <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#32447;&#31243;&#30340;&#35843;&#24230;&#21442;&#25968;</span>&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span>                   <span style="color: #ff8700;">inheritsched</span>;    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#32447;&#31243;&#30340;&#32487;&#25215;&#24615;</span>&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span>                   <span style="color: #ff8700;">scope</span>;           <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#32447;&#31243;&#30340;&#20316;&#29992;&#22495;</span>&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">size_t</span>                <span style="color: #ff8700;">guardsize</span>;       <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#32447;&#31243;&#26632;&#26411;&#23614;&#30340;&#35686;&#25106;&#32531;&#20914;&#21306;&#22823;&#23567;</span>&#57344;&#57345;
-    <span style="color: #00d7af;">int</span>                   <span style="color: #ff8700;">stackaddr_set</span>;   <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#32447;&#31243;&#30340;&#26632;&#35774;&#32622;</span>&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">void</span>*                 <span style="color: #ff8700;">stackaddr</span>;       <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#32447;&#31243;&#26632;&#30340;&#20301;&#32622;</span>&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">size_t</span>                <span style="color: #ff8700;">stacksize</span>;       <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#32447;&#31243;&#26632;&#30340;&#22823;&#23567;</span>&#57344;&#57345;&#57345;
-}<span style="color: #00d7af;">pthread_attr_t</span>;&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#32447;&#31243;&#23646;&#24615;&#32467;&#26500;&#22914;&#19979;&#65306;</span>
+<span style="color: #a1db00;">typedef</span> <span style="color: #a1db00;">struct</span>
+{
+    <span style="color: #00d7af;">int</span>                   <span style="color: #ff8700;">detachstate</span>;      <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#32447;&#31243;&#30340;&#20998;&#31163;&#29366;&#24577;</span>
+    <span style="color: #00d7af;">int</span>                   <span style="color: #ff8700;">schedpolicy</span>;     <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#32447;&#31243;&#35843;&#24230;&#31574;&#30053;</span>
+    <span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">sched_param</span>     <span style="color: #ff8700;">schedparam</span>;      <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#32447;&#31243;&#30340;&#35843;&#24230;&#21442;&#25968;</span>
+    <span style="color: #00d7af;">int</span>                   <span style="color: #ff8700;">inheritsched</span>;    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#32447;&#31243;&#30340;&#32487;&#25215;&#24615;</span>
+    <span style="color: #00d7af;">int</span>                   <span style="color: #ff8700;">scope</span>;           <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#32447;&#31243;&#30340;&#20316;&#29992;&#22495;</span>
+    <span style="color: #00d7af;">size_t</span>                <span style="color: #ff8700;">guardsize</span>;       <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#32447;&#31243;&#26632;&#26411;&#23614;&#30340;&#35686;&#25106;&#32531;&#20914;&#21306;&#22823;&#23567;</span>
+    <span style="color: #00d7af;">int</span>                   <span style="color: #ff8700;">stackaddr_set</span>;   <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#32447;&#31243;&#30340;&#26632;&#35774;&#32622;</span>
+    <span style="color: #00d7af;">void</span>*                 <span style="color: #ff8700;">stackaddr</span>;       <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#32447;&#31243;&#26632;&#30340;&#20301;&#32622;</span>
+    <span style="color: #00d7af;">size_t</span>                <span style="color: #ff8700;">stacksize</span>;       <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#32447;&#31243;&#26632;&#30340;&#22823;&#23567;</span>
+}<span style="color: #00d7af;">pthread_attr_t</span>;
 </pre>
 </div>
 
@@ -2238,13 +2248,13 @@ POSIX 标准指定了三种调度策略：先入先出策略 (<code>SCHED_FIFO</
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #00d7af;">pthread_mutexattr_t</span> <span style="color: #ff8700;">ma</span>;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-pthread_mutexattr_init(&amp;ma);&#57344;&#57345;&#57345;
-pthread_mutexattr_setpshared(&amp;ma, PTHREAD_PROCESS_SHARED);&#57344;&#57345;&#57345;
-pthread_mutexattr_setrobust(&amp;ma, PTHREAD_MUTEX_ROBUST);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-pthread_mutex_init(&amp;c-&gt;lock, &amp;ma);&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #00d7af;">pthread_mutexattr_t</span> <span style="color: #ff8700;">ma</span>;
+
+pthread_mutexattr_init(&amp;ma);
+pthread_mutexattr_setpshared(&amp;ma, PTHREAD_PROCESS_SHARED);
+pthread_mutexattr_setrobust(&amp;ma, PTHREAD_MUTEX_ROBUST);
+
+pthread_mutex_init(&amp;c-&gt;lock, &amp;ma);
 </pre>
 </div>
 
@@ -2257,9 +2267,9 @@ pthread_mutex_init(&amp;c-&gt;lock, &amp;ma);&#57344;&#57345;&#57345;
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #00d7af;">int</span> <span style="color: #ff8700;">r</span> = pthread_mutex_lock(lock);&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">if</span> (r == EOWNERDEAD)&#57344;&#57345;&#57345;
-    pthread_mutex_consistent(lock);&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #00d7af;">int</span> <span style="color: #ff8700;">r</span> = pthread_mutex_lock(lock);
+<span style="color: #a1db00;">if</span> (r == EOWNERDEAD)
+    pthread_mutex_consistent(lock);
 </pre>
 </div>
 </div>
@@ -2339,20 +2349,20 @@ L358:使用递归互斥量在异步信号中断的情况下阻止其他线程改
 
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;cstdio&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;cstring&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">str</span>[] = <span style="color: #ff4ea3;">"hello,this is a test string"</span>;&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">p</span> = strtok(str,<span style="color: #ff4ea3;">", "</span>);&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">while</span>(p) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; p &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        p = strtok(<span style="color: #5fafd7;">NULL</span>, <span style="color: #ff4ea3;">" "</span>);&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;cstdio&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;cstring&gt;</span>
+
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+{
+    <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">str</span>[] = <span style="color: #ff4ea3;">"hello,this is a test string"</span>;
+    <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">p</span> = strtok(str,<span style="color: #ff4ea3;">", "</span>);
+    <span style="color: #a1db00;">while</span>(p) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; p &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        p = strtok(<span style="color: #5fafd7;">NULL</span>, <span style="color: #ff4ea3;">" "</span>);
+    }
+    <span style="color: #a1db00;">return</span> 0;
+}
 </pre>
 </div>
 
@@ -2365,37 +2375,37 @@ L358:使用递归互斥量在异步信号中断的情况下阻止其他线程改
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">data</span>;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">char</span> <span style="color: #ffd700;">RetChar</span>(<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">str</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span>(str) {&#57344;&#57345;&#57345;
-        data = str;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> *data++;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">ThreadFunc</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">c</span> = RetChar(<span style="color: #a1db00;">static_cast</span>&lt;<span style="color: #00d7af;">char</span>*&gt;(arg));&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">while</span>(c) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; c &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        sleep(1);&#57344;&#57345;&#57345;
-        c = RetChar(<span style="color: #5fafd7;">NULL</span>);&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">NULL</span>;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tid1</span>, <span style="color: #ff8700;">tid2</span>;&#57344;&#57345;&#57345;
-    pthread_create(&amp;tid1, <span style="color: #5fafd7;">NULL</span>, ThreadFunc, <span style="color: #a1db00;">const_cast</span>&lt;<span style="color: #00d7af;">char</span>*&gt;(<span style="color: #ff4ea3;">"hello"</span>));&#57344;&#57345;
-    pthread_create(&amp;tid2, <span style="color: #5fafd7;">NULL</span>, ThreadFunc, <span style="color: #a1db00;">const_cast</span>&lt;<span style="color: #00d7af;">char</span>*&gt;(<span style="color: #ff4ea3;">"world"</span>));&#57344;&#57345;
-    pthread_join(tid1, <span style="color: #5fafd7;">NULL</span>);&#57344;&#57345;&#57345;
-    pthread_join(tid2, <span style="color: #5fafd7;">NULL</span>);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>
+<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">data</span>;
+
+<span style="color: #00d7af;">char</span> <span style="color: #ffd700;">RetChar</span>(<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">str</span>) {
+    <span style="color: #a1db00;">if</span>(str) {
+        data = str;
+    }
+    <span style="color: #a1db00;">return</span> *data++;
+}
+
+<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">ThreadFunc</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {
+    <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">c</span> = RetChar(<span style="color: #a1db00;">static_cast</span>&lt;<span style="color: #00d7af;">char</span>*&gt;(arg));
+    <span style="color: #a1db00;">while</span>(c) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; c &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        sleep(1);
+        c = RetChar(<span style="color: #5fafd7;">NULL</span>);
+    }
+    <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">NULL</span>;
+}
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+{
+    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tid1</span>, <span style="color: #ff8700;">tid2</span>;
+    pthread_create(&amp;tid1, <span style="color: #5fafd7;">NULL</span>, ThreadFunc, <span style="color: #a1db00;">const_cast</span>&lt;<span style="color: #00d7af;">char</span>*&gt;(<span style="color: #ff4ea3;">"hello"</span>));
+    pthread_create(&amp;tid2, <span style="color: #5fafd7;">NULL</span>, ThreadFunc, <span style="color: #a1db00;">const_cast</span>&lt;<span style="color: #00d7af;">char</span>*&gt;(<span style="color: #ff4ea3;">"world"</span>));
+    pthread_join(tid1, <span style="color: #5fafd7;">NULL</span>);
+    pthread_join(tid2, <span style="color: #5fafd7;">NULL</span>);
+
+    <span style="color: #a1db00;">return</span> 0;
+}
 </pre>
 </div>
 <p>
@@ -2403,49 +2413,49 @@ L358:使用递归互斥量在异步信号中断的情况下阻止其他线程改
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">static</span> <span style="color: #00d7af;">pthread_key_t</span> <span style="color: #ff8700;">key</span>;&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">static</span> <span style="color: #00d7af;">pthread_once_t</span> <span style="color: #ff8700;">initflag</span> = PTHREAD_ONCE_INIT;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #a1db00;">static</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">KeyInit</span>(<span style="color: #00d7af;">void</span>) {&#57344;&#57345;&#57345;
-    pthread_key_create(&amp;key, <span style="color: #5fafd7;">NULL</span>);&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">char</span> <span style="color: #ffd700;">RetChar</span>(<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">str</span>) {&#57344;&#57345;&#57345;
-    pthread_once(&amp;initflag, KeyInit);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span>(<span style="color: #ff4b4b;">!</span>pthread_getspecific(key)) {&#57344;&#57345;&#57345;
-        pthread_setspecific(key, str);&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">c</span> = <span style="color: #a1db00;">static_cast</span>&lt;<span style="color: #00d7af;">char</span>*&gt;(pthread_getspecific(key));&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">rval</span> = *c;&#57344;&#57345;&#57345;
-    pthread_setspecific(key, ++c);&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> rval;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">ThreadFunc</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">c</span> = RetChar(<span style="color: #a1db00;">static_cast</span>&lt;<span style="color: #00d7af;">char</span>*&gt;(arg));&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">while</span>(c) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; c &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        sleep(1);&#57344;&#57345;&#57345;
-        c = RetChar(<span style="color: #5fafd7;">NULL</span>);&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">NULL</span>;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tid1</span>, <span style="color: #ff8700;">tid2</span>;&#57344;&#57345;&#57345;
-    pthread_create(&amp;tid1, <span style="color: #5fafd7;">NULL</span>, ThreadFunc, <span style="color: #a1db00;">const_cast</span>&lt;<span style="color: #00d7af;">char</span>*&gt;(<span style="color: #ff4ea3;">"hello"</span>));&#57344;&#57345;
-    pthread_create(&amp;tid2, <span style="color: #5fafd7;">NULL</span>, ThreadFunc, <span style="color: #a1db00;">const_cast</span>&lt;<span style="color: #00d7af;">char</span>*&gt;(<span style="color: #ff4ea3;">"world"</span>));&#57344;&#57345;
-    pthread_join(tid1, <span style="color: #5fafd7;">NULL</span>);&#57344;&#57345;&#57345;
-    pthread_join(tid2, <span style="color: #5fafd7;">NULL</span>);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>
+
+<span style="color: #a1db00;">static</span> <span style="color: #00d7af;">pthread_key_t</span> <span style="color: #ff8700;">key</span>;
+<span style="color: #a1db00;">static</span> <span style="color: #00d7af;">pthread_once_t</span> <span style="color: #ff8700;">initflag</span> = PTHREAD_ONCE_INIT;
+
+<span style="color: #a1db00;">static</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">KeyInit</span>(<span style="color: #00d7af;">void</span>) {
+    pthread_key_create(&amp;key, <span style="color: #5fafd7;">NULL</span>);
+}
+
+<span style="color: #00d7af;">char</span> <span style="color: #ffd700;">RetChar</span>(<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">str</span>) {
+    pthread_once(&amp;initflag, KeyInit);
+
+    <span style="color: #a1db00;">if</span>(<span style="color: #ff4b4b;">!</span>pthread_getspecific(key)) {
+        pthread_setspecific(key, str);
+    }
+
+    <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">c</span> = <span style="color: #a1db00;">static_cast</span>&lt;<span style="color: #00d7af;">char</span>*&gt;(pthread_getspecific(key));
+    <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">rval</span> = *c;
+    pthread_setspecific(key, ++c);
+    <span style="color: #a1db00;">return</span> rval;
+}
+
+<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">ThreadFunc</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {
+    <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">c</span> = RetChar(<span style="color: #a1db00;">static_cast</span>&lt;<span style="color: #00d7af;">char</span>*&gt;(arg));
+    <span style="color: #a1db00;">while</span>(c) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; c &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        sleep(1);
+        c = RetChar(<span style="color: #5fafd7;">NULL</span>);
+    }
+    <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">NULL</span>;
+}
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+{
+    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tid1</span>, <span style="color: #ff8700;">tid2</span>;
+    pthread_create(&amp;tid1, <span style="color: #5fafd7;">NULL</span>, ThreadFunc, <span style="color: #a1db00;">const_cast</span>&lt;<span style="color: #00d7af;">char</span>*&gt;(<span style="color: #ff4ea3;">"hello"</span>));
+    pthread_create(&amp;tid2, <span style="color: #5fafd7;">NULL</span>, ThreadFunc, <span style="color: #a1db00;">const_cast</span>&lt;<span style="color: #00d7af;">char</span>*&gt;(<span style="color: #ff4ea3;">"world"</span>));
+    pthread_join(tid1, <span style="color: #5fafd7;">NULL</span>);
+    pthread_join(tid2, <span style="color: #5fafd7;">NULL</span>);
+
+    <span style="color: #a1db00;">return</span> 0;
+}
 </pre>
 </div>
 </div>
@@ -2491,70 +2501,70 @@ L368:可以多次调用 <code>pthread_atfork</code> 来设置多套 fork 处理�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;sys/wait.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">pthread_mutex_t</span> <span style="color: #ff8700;">lock1</span> = PTHREAD_MUTEX_INITIALIZER;&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">pthread_mutex_t</span> <span style="color: #ff8700;">lock2</span> = PTHREAD_MUTEX_INITIALIZER;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">prepare</span>(<span style="color: #00d7af;">void</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"preparing locking...."</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span>(pthread_mutex_lock(&amp;lock1) || pthread_mutex_lock(&amp;lock2)) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"prepare error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">parent</span>(<span style="color: #00d7af;">void</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"parent unlocking ....."</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span>(pthread_mutex_unlock(&amp;lock1) || pthread_mutex_unlock(&amp;lock2)) {&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"parent error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">child</span>(<span style="color: #00d7af;">void</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"child unlocking..."</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span>(pthread_mutex_unlock(&amp;lock1) || pthread_mutex_unlock(&amp;lock2)) {&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"child error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">ThreadFunc</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"thread running"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    pause();&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">NULL</span>;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span>(pthread_atfork(prepare, parent, child)) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"pthread_atfork error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 1;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tid</span>;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span>(pthread_create(&amp;tid, <span style="color: #5fafd7;">NULL</span>, ThreadFunc, <span style="color: #5fafd7;">NULL</span>)) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"pthread_create error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 2;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    sleep(2);                   <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#35753;&#23376;&#32447;&#31243;&#20808;&#25191;&#34892;</span>&#57344;&#57345;&#57345;
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"parent about to forking..."</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pid_t</span> <span style="color: #ff8700;">pid</span> = fork();&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span> (pid == 0) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"child process return"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span>(pid &gt; 0) {&#57344;&#57345;&#57345;
-        waitpid(pid, <span style="color: #5fafd7;">NULL</span>, 0);&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"parent process return"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">else</span> {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"fork error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 1;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;pthread.h&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;sys/wait.h&gt;</span>
+
+<span style="color: #00d7af;">pthread_mutex_t</span> <span style="color: #ff8700;">lock1</span> = PTHREAD_MUTEX_INITIALIZER;
+<span style="color: #00d7af;">pthread_mutex_t</span> <span style="color: #ff8700;">lock2</span> = PTHREAD_MUTEX_INITIALIZER;
+
+<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">prepare</span>(<span style="color: #00d7af;">void</span>) {
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"preparing locking...."</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    <span style="color: #a1db00;">if</span>(pthread_mutex_lock(&amp;lock1) || pthread_mutex_lock(&amp;lock2)) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"prepare error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    }
+}
+
+<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">parent</span>(<span style="color: #00d7af;">void</span>) {
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"parent unlocking ....."</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    <span style="color: #a1db00;">if</span>(pthread_mutex_unlock(&amp;lock1) || pthread_mutex_unlock(&amp;lock2)) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"parent error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    }
+}
+
+<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">child</span>(<span style="color: #00d7af;">void</span>) {
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"child unlocking..."</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    <span style="color: #a1db00;">if</span>(pthread_mutex_unlock(&amp;lock1) || pthread_mutex_unlock(&amp;lock2)) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"child error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    }
+}
+
+<span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">ThreadFunc</span>(<span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">arg</span>) {
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"thread running"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    pause();
+    <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">NULL</span>;
+}
+
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+{
+    <span style="color: #a1db00;">if</span>(pthread_atfork(prepare, parent, child)) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"pthread_atfork error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        <span style="color: #a1db00;">return</span> 1;
+    }
+    <span style="color: #00d7af;">pthread_t</span> <span style="color: #ff8700;">tid</span>;
+
+    <span style="color: #a1db00;">if</span>(pthread_create(&amp;tid, <span style="color: #5fafd7;">NULL</span>, ThreadFunc, <span style="color: #5fafd7;">NULL</span>)) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"pthread_create error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        <span style="color: #a1db00;">return</span> 2;
+    }
+    sleep(2);                   <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#35753;&#23376;&#32447;&#31243;&#20808;&#25191;&#34892;</span>
+    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"parent about to forking..."</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    <span style="color: #00d7af;">pid_t</span> <span style="color: #ff8700;">pid</span> = fork();
+    <span style="color: #a1db00;">if</span> (pid == 0) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"child process return"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    }
+    <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span>(pid &gt; 0) {
+        waitpid(pid, <span style="color: #5fafd7;">NULL</span>, 0);
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"parent process return"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    }
+    <span style="color: #a1db00;">else</span> {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"fork error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        <span style="color: #a1db00;">return</span> 1;
+    }
+
+    <span style="color: #a1db00;">return</span> 0;
+}
 </pre>
 </div>
 <p>
@@ -2631,35 +2641,35 @@ L425:修改的页并不会立即写回到文件中。何时写回由内核的守
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>&#57344;&#57345;&#57345;
-<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])&#57344;&#57345;&#57345;
-{&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">fd</span>[2];&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span> (pipe(fd)) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"create pipe error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 1;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #00d7af;">pid_t</span> <span style="color: #ff8700;">pid</span> = fork();&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">if</span> (pid &lt; 0) {&#57344;&#57345;&#57345;
-        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"fork error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;&#57344;&#57345;&#57345;
-        <span style="color: #a1db00;">return</span> 1;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span> (pid &gt; 0) {&#57344;&#57345;&#57345;
-        close(fd[0]);&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">msg</span>[] = <span style="color: #ff4ea3;">"hello,pipe!\n"</span>;&#57344;&#57345;&#57345;
-        write(fd[1], msg, <span style="color: #a1db00;">sizeof</span>(msg));&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">else</span> {&#57344;&#57345;&#57345;
-        close(fd[1]);&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">msg</span>[128] = {0};&#57344;&#57345;&#57345;
-        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">n</span> = read(fd[0], msg, <span style="color: #a1db00;">sizeof</span>(msg));&#57344;&#57345;&#57345;
-        write(STDOUT_FILENO, msg, n);&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-    <span style="color: #a1db00;">return</span> 0;&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-L434: &#26080;&#35770;&#20309;&#26102;&#35843;&#29992;dup2&#21644;close&#23558;&#19968;&#20010;&#25551;&#36848;&#31526;&#22797;&#21046;&#21040;&#21478;&#19968;&#20010;&#19978;&#65292;&#20316;&#20026;&#19968;&#31181;&#20445;&#25252;&#24615;&#30340;&#32534;&#31243;&#25514;&#26045;&#65292;&#37117;&#35201;&#29616;&#23558;&#20004;&#20010;&#25551;&#36848;&#31526;&#36827;&#34892;&#27604;&#36739;&#12290;&#57344;&#57345;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;unistd.h&gt;</span>
+
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+{
+    <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">fd</span>[2];
+    <span style="color: #a1db00;">if</span> (pipe(fd)) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"create pipe error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        <span style="color: #a1db00;">return</span> 1;
+    }
+    <span style="color: #00d7af;">pid_t</span> <span style="color: #ff8700;">pid</span> = fork();
+    <span style="color: #a1db00;">if</span> (pid &lt; 0) {
+        <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"fork error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+        <span style="color: #a1db00;">return</span> 1;
+    }
+    <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span> (pid &gt; 0) {
+        close(fd[0]);
+        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">msg</span>[] = <span style="color: #ff4ea3;">"hello,pipe!\n"</span>;
+        write(fd[1], msg, <span style="color: #a1db00;">sizeof</span>(msg));
+    }
+    <span style="color: #a1db00;">else</span> {
+        close(fd[1]);
+        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">msg</span>[128] = {0};
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">n</span> = read(fd[0], msg, <span style="color: #a1db00;">sizeof</span>(msg));
+        write(STDOUT_FILENO, msg, n);
+    }
+    <span style="color: #a1db00;">return</span> 0;
+}
+L434: &#26080;&#35770;&#20309;&#26102;&#35843;&#29992;dup2&#21644;close&#23558;&#19968;&#20010;&#25551;&#36848;&#31526;&#22797;&#21046;&#21040;&#21478;&#19968;&#20010;&#19978;&#65292;&#20316;&#20026;&#19968;&#31181;&#20445;&#25252;&#24615;&#30340;&#32534;&#31243;&#25514;&#26045;&#65292;&#37117;&#35201;&#29616;&#23558;&#20004;&#20010;&#25551;&#36848;&#31526;&#36827;&#34892;&#27604;&#36739;&#12290;
 </pre>
 </div>
 </div>
@@ -2756,8 +2766,8 @@ L455:信号量是一个计数器，用于为多个进程提供对共享数据的
 </div>
 </div></div>
 <div id="postamble" class="status">
-<p class="author">Author: ubuntu-company</p>
-<p class="date">Created: 2016-02-19 Fri 17:00</p>
+<p class="author">Author: ubuntu</p>
+<p class="date">Created: 2016-03-20 日 02:25</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
