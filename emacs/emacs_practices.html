@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Emacs Practices</title>
+<!-- 2016-07-06 三 14:31 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="lsl" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Emacs Practices</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. 简介</a></li>
+<li><a href="#sec-2">2. 安装</a>
+<ul>
+<li><a href="#sec-2-1">2.1. Window</a></li>
+<li><a href="#sec-2-2">2.2. Linux</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. 配置</a>
+<ul>
+<li><a href="#sec-3-1">3.1. 配置为强大的 IDE</a>
+<ul>
+<li><a href="#sec-3-1-1">3.1.1. 项目管理（Project Management）</a></li>
+<li><a href="#sec-3-1-2">3.1.2. 文件操作（File in Project）</a></li>
+<li><a href="#sec-3-1-3">3.1.3. 代码导航（Code Navigation）</a></li>
+<li><a href="#sec-3-1-4">3.1.4. 编辑代码（Source Code Editor）</a></li>
+<li><a href="#sec-3-1-5">3.1.5. 语法检查</a></li>
+<li><a href="#sec-3-1-6">3.1.6. 编译代码（Compiler）</a></li>
+<li><a href="#sec-3-1-7">3.1.7. 调试代码（Debug）</a></li>
+<li><a href="#sec-3-1-8">3.1.8. 工程文档（Document）</a></li>
+<li><a href="#sec-3-1-9">3.1.9. 版本控制（Version Control）</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 简介</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+可能你已经听过 Emacs  被称为“神的编译器”，也有可能见过许多关于它和 “编译器之神” vim   之间的争论，我们不去管那些争论。我自己是一个实用主义者，什么东西好，我就直接拿来用，其实哪有什么东西是万能的，只有适合或者不适合。使用 Emacs 目的只有一个：效率！！
+</p>
+
+<p>
+这篇文章主要根据<a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/index.html">GNU Emacs Manuals Online</a> 以及所用到的插件的 manual 来介绍 Emacs 的安装和配置过程，可以说是.emacs.d 对应的一份说明书，配置中内容出现的顺序与各其在对应 manual 中出现的顺序基本保持相同，主要原因是为了以后方便对应 manual 进行查找，插件除非在逻辑关系上存在前后关系，配置文件中一般按照插件英文名字。当然查看这些 manual 更方便的方式是使用 Emacs 自带的 info 功能，而不是打开浏览器查看对应的 web 页面。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 安装</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Window</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+可以从官网下载编译的好的二进制 Emacs 包，但是官网是 32 位的，而且没有图片和 Gnutls 的 DLL 库，所以更推荐使用 ChrisZheng 编译的 64 位版本 emacs-w64<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>，该版本进行自带了一切 windows 下一些要使用的 DLL，并且做了一些优化。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Linux</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+除了通过 apt 或者 yum 等包管理器安装外，还可以通过源码进行编译。
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">git clone git://git.savannah.gnu.org/emacs.git
+cd emacs
+# on ubuntu
+sudo apt-get build-dep emacs24
+# on centos
+
+./autogen.sh
+./configure						# 此处注意查看还缺少什么库
+make &amp;&amp; sudo make install &amp;&amp; make clean
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 配置</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+包含配置文件的.emacs.d 托管在 Github 上面，使用 git 进行版本控制，配置文件中私有、不方便的公开的部分放在私有的仓库里，通过 git 的子模块功能进行管理，具体参看《<a href="d:../best-practices/git-practices.html">GIT 实践</a>》 中的子模块部分。
+</p>
+
+<p>
+当测试一个新功能或者新的插件的时候，使用 git 的分支功能，具体参看《<a href="file:///home/lsl/github/org-notes/org/best-practices/git-practices.html">GIT 实践</a>》中的分支部分。
+</p>
+</div>
+
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 配置为强大的 IDE</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+这一小节主要讲解如何将 Emacs 配置成为一个强大的 IDE，内容包括项目工程管理、文件查找、代码补全等等。
+</p>
+</div>
+
+<div id="outline-container-sec-3-1-1" class="outline-4">
+<h4 id="sec-3-1-1"><span class="section-number-4">3.1.1</span> 项目管理（Project Management）</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+项目管理有很多工具，包括 ede，projectile 等工具，在尝试了几款插件之后，最合适我的还是 projectile。 正如 projectile 所言，它提供了一系列特性来支持工程管理，这些特性不依赖第三方，当然，有些情况下结合第三方工具能提供更好的性能。
+</p>
+
+<p>
+projectile 中的工程概念十分简单：包含特殊文件的文件夹。目前 git, mercurial, darcs 和 bazaar 的容器都会默认为一个工程目录，lein, maven, sbt, scons, rebar and bundler 也同样如此。如果想手动指定文件夹为工程目录，只需要在其中新建一个名字为 .projectile 的空文件即可。
+</p>
+
+<p>
+prjectile 通过和 helm 整合在一起（helm-projectile），可以在工程切换、文件路径补全方面得到更好的支持，如可以指定更多切换工程后的要执行的动作，补全可以为渐进补全等。helm-projectile 提供了一些 helm 版本的 projectile 命令，这些命令更加好用。参考 《Exploring large projects with Projectile and Helm Projectile》
+</p>
+
+<p>
+下面将一步步介绍如何使用 projectile 来实现工程管理的一些需求，当然中间也会适当的引入其他插件作为补充。
+</p>
+
+<ul class="org-ul">
+<li>切换项目
+
+<p>
+helm-projectile-switch-project
+</p>
+</li>
+
+<li>保存当前工程所有打开文件
+
+<p>
+projectile-save-project-buffers
+</p>
+</li>
+
+<li>关闭当前工程所有打开文件
+
+<p>
+projectile-kill-buffers
+</p>
+</li>
+
+<li>浏览当前工程目录
+
+<ul class="org-ul">
+<li>helm-projectile-find-dire
+</li>
+
+<li>speedbar
+
+<p>
+使用 cedet 包中的 speedbar 可以单独分出一个侧边栏，用来浏览整个工程，包括文件变量等。
+</p>
+</li>
+</ul>
+</li>
+
+<li>清除当前工程文件缓存
+
+<p>
+projectile-invalidate-cache
+</p>
+</li>
+
+<li>定义工程项项目相关的变量
+<ul class="org-ul">
+<li>目录变量
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-1-2" class="outline-4">
+<h4 id="sec-3-1-2"><span class="section-number-4">3.1.2</span> 文件操作（File in Project）</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<ul class="org-ul">
+<li>显示工程文件目录树
+
+<ul class="org-ul">
+<li>windows tree . /f
+</li>
+
+<li>ubuntu
+</li>
+</ul>
+</li>
+
+<li>在所有已知工程中查找文件
+
+<p>
+helm-projectile-find-file-in-known-project(C-c p F)
+</p>
+</li>
+
+<li>切换当前工程已打开文件
+
+<p>
+helm-projectile-switch-to-buffer (C-c p b)
+</p>
+</li>
+
+<li>当前工程中查找文件
+
+<p>
+helm-projectile-find-file (C-c p f)
+</p>
+</li>
+
+<li>当前工程指定目录中查找文件
+
+<p>
+projectile-find-file-in-directory (C-c p l)
+</p>
+</li>
+
+<li>打开当前光标下文件
+
+<p>
+projectile-find-file-dwim（C-c p g）
+</p>
+</li>
+
+<li>同名但不同类型文件切换，例如 .h &lt;-&gt; .c/.cpp, Gemfile &lt;-&gt; Gemfile.lock…
+
+<p>
+helm-projectile-find-other-file (C-c p a)
+</p>
+</li>
+
+<li>跳转到当前工程最近浏览文件（jump to recently visited files in the project）
+
+<p>
+helm-projectile-recentf (C-c p e)
+</p>
+</li>
+
+<li>添加文件到工程
+
+<p>
+projectile-cache-current-file (C-c p z)
+</p>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-1-3" class="outline-4">
+<h4 id="sec-3-1-3"><span class="section-number-4">3.1.3</span> 代码导航（Code Navigation）</h4>
+<div class="outline-text-4" id="text-3-1-3">
+<p>
+这部分是指根据代码中的变量和函数的定义进行跳转。
+</p>
+
+<ul class="org-ul">
+<li>全局代码搜索（grep in project）
+<ul class="org-ul">
+<li>helm-projectile-grep (C-c p s g)
+</li>
+<li>helm-projectile-ag (C-c p s s)
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+搜索速度 ag&gt;ack&gt;grep，所以推荐使用搭配 ag（the silver search）进行工程内符号 (symbol) 和单词 (word) 的全局搜索。
+</p>
+
+<ul class="org-ul">
+<li>查找函数变量定义及引用
+<ul class="org-ul">
+<li>查找 tag 定义（find tag defination）
+
+<ul class="org-ul">
+<li>semantic-complete-jump-local(C-c j)
+
+<p>
+跳转到定义在当前文档中的符号。
+</p>
+</li>
+
+<li>semantic-complete-jump
+
+<p>
+只要符号定义的文件被 semantic 分析过，都能进行跳转（C-c J）。
+</p>
+</li>
+
+<li>helm-semantic-or-imenu(C-c h i)
+</li>
+
+<li>helm-gtags-select(C-c g A)
+
+<p>
+与 helm-semantic-or-imenu 功能差不多。
+</p>
+</li>
+
+<li>helm-gtags-find-tag(C-c g t)
+
+<p>
+查找 tag 引用 (find tag reference)
+</p>
+</li>
+
+<li>helm-gtags-find-rtags(C-c g r)
+
+<p>
+跳回上次查看的地方
+</p>
+</li>
+
+<li>helm-gtags-pop-stack(C-c g p)
+</li>
+</ul>
+</li>
+</ul>
+</li>
+
+<li>代码折叠
+<ul class="org-ul">
+<li>hide-show-mode
+</li>
+
+<li>semantic-tag-folding
+</li>
+</ul>
+</li>
+
+<li>代码高亮
+
+<ul class="org-ul">
+<li>auto-highlight-symbol
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-1-4" class="outline-4">
+<h4 id="sec-3-1-4"><span class="section-number-4">3.1.4</span> 编辑代码（Source Code Editor）</h4>
+<div class="outline-text-4" id="text-3-1-4">
+<ul class="org-ul">
+<li>全局替换（replace in project）
+
+<p>
+projctile-replace (C-c p r)
+</p>
+</li>
+
+<li>高亮文件内同名符号（highlight symbol in file）
+
+<p>
+helm-occur(C-c h o)
+</p>
+</li>
+
+<li>高亮作用域内同名符号（highlight symbol in function）
+
+<p>
+multi-occur
+</p>
+</li>
+
+<li>自动补全（auto complete）
+
+<ul class="org-ul">
+<li>completion-at-point(C-M-i)
+</li>
+
+<li>semantic-complete-analyze-inline（C-c，SPC）
+
+<p>
+显示当前 point 处符号可能的补全列表。
+</p>
+</li>
+
+<li>yasnippet
+
+<p>
+使用 yasnippet 补全数据结构（class）、条件控制（if 等）、循环（for 等）、文件头（file head）、函数（类）注释。可以地带 doxymacs 和 header2 使用。
+</p>
+</li>
+
+<li>company
+</li>
+
+<li>auto-complete
+</li>
+
+<li>python
+
+<ul class="org-ul">
+<li>pymacs
+</li>
+
+<li>ropemacs
+</li>
+
+<li>jedi
+</li>
+</ul>
+</li>
+</ul>
+</li>
+
+<li>格式化（format）
+<ul class="org-ul">
+<li>符号命名法
+<ul class="org-ul">
+<li>subword-mode
+
+<p>
+可以处理驼峰命名法的单词。
+</p>
+</li>
+
+<li>superword-mode
+
+<p>
+可以将下划线‘_’连起来的单词当做一个符号。
+</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+
+<li>自动换行
+
+<ul class="org-ul">
+<li>electric-layout-mode
+
+<p>
+可以在编程模式中 {，}，；等符号之后自动换行。
+</p>
+</li>
+
+<li>缩进（indentation）
+
+<p>
+自带的缩进效果已经很好，但是要注意的一点是： 如果想要改变缩进时 TAB 键插入的空白符，需要修改 TabStopList，tab-width 只对已经存在的制表符的显示效果起作用 6
+</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-1-5" class="outline-4">
+<h4 id="sec-3-1-5"><span class="section-number-4">3.1.5</span> 语法检查</h4>
+<div class="outline-text-4" id="text-3-1-5">
+<ul class="org-ul">
+<li>flycheck
+</li>
+<li>pylint
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-1-6" class="outline-4">
+<h4 id="sec-3-1-6"><span class="section-number-4">3.1.6</span> 编译代码（Compiler）</h4>
+<div class="outline-text-4" id="text-3-1-6">
+<ul class="org-ul">
+<li>helm-projectile-compile-project
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-1-7" class="outline-4">
+<h4 id="sec-3-1-7"><span class="section-number-4">3.1.7</span> 调试代码（Debug）</h4>
+<div class="outline-text-4" id="text-3-1-7">
+<ul class="org-ul">
+<li>jump to a test in project
+<ul class="org-ul">
+<li>projectile
+</li>
+</ul>
+</li>
+<li>toggle between code and its test
+<ul class="org-ul">
+<li>projectile
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-1-8" class="outline-4">
+<h4 id="sec-3-1-8"><span class="section-number-4">3.1.8</span> 工程文档（Document）</h4>
+<div class="outline-text-4" id="text-3-1-8">
+<ul class="org-ul">
+<li>manual
+<ul class="org-ul">
+<li>info-lookup-symbol（C-h S）
+</li>
+<li>M-x man
+
+<p>
+在 man mode buffer 中还可以使用 C-h m 跳转到其他 man page。
+</p>
+</li>
+<li>M-x woman
+
+<p>
+不支持 man 程序的操作系统（如 windows）上可以使用该命令显示 man page。
+</p>
+</li>
+</ul>
+</li>
+<li>Doxygen
+</li>
+<li>yasnippet
+</li>
+<li>GraphViz
+</li>
+<li>UML
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-1-9" class="outline-4">
+<h4 id="sec-3-1-9"><span class="section-number-4">3.1.9</span> 版本控制（Version Control）</h4>
+<div class="outline-text-4" id="text-3-1-9">
+<ul class="org-ul">
+<li>projectile helm-projectile-vc (C-c p v)
+</li>
+<li>magit
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
+<a href="http://emacsbinw64.sourceforge.net/">emacs-w64-64-Bit GNU Emacs for MS Windows with optimization</a>
+</p></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: lsl</p>
+<p class="date">Created: 2016-07-06 三 14:31</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

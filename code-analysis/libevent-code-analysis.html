@@ -3,30 +3,23 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-03-20 日 02:25 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>libevent 源码分析</title>
+<!-- 2016-07-06 三 14:31 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="ubuntu" />
+<meta  name="author" content="lsl" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center;
-             margin-bottom: .2em; }
-  .subtitle { text-align: center;
-              font-size: medium;
-              font-weight: bold;
-              margin-top:0; }
+  .title  { text-align: center; }
   .todo   { font-family: monospace; color: red; }
-  .done   { font-family: monospace; color: green; }
-  .priority { font-family: monospace; color: orange; }
+  .done   { color: green; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -65,14 +58,15 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.org-right  { text-align: center;  }
-  th.org-left   { text-align: center;   }
-  th.org-center { text-align: center; }
-  td.org-right  { text-align: right;  }
-  td.org-left   { text-align: left;   }
-  td.org-center { text-align: center; }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara { display: inline; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -148,27 +142,27 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. 高性能 IO 框架库概述</a></li>
-<li><a href="#orgheadline2">2. libevent 简介</a></li>
-<li><a href="#orgheadline3">3. 安装</a></li>
-<li><a href="#orgheadline4">4. 库文件</a></li>
-<li><a href="#orgheadline5">5. 源代码组织结构</a></li>
-<li><a href="#orgheadline8">6. sample</a>
+<li><a href="#sec-1">1. 高性能 IO 框架库概述</a></li>
+<li><a href="#sec-2">2. libevent 简介</a></li>
+<li><a href="#sec-3">3. 安装</a></li>
+<li><a href="#sec-4">4. 库文件</a></li>
+<li><a href="#sec-5">5. 源代码组织结构</a></li>
+<li><a href="#sec-6">6. sample</a>
 <ul>
-<li><a href="#orgheadline6">6.1. hello-world.c</a></li>
-<li><a href="#orgheadline7">6.2. 多线程使用</a></li>
+<li><a href="#sec-6-1">6.1. hello-world.c</a></li>
+<li><a href="#sec-6-2">6.2. 多线程使用</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> 高性能 IO 框架库概述</h2>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 高性能 IO 框架库概述</h2>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">2</span> libevent 简介</h2>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> libevent 简介</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Libevent is a library for writing fast portable nonblocking IO. Its design goals are:
@@ -179,9 +173,7 @@ Libevent 是一个用来编写快速、跨平台、非阻塞 IO 的库。它的�
 </p>
 
 <ul class="org-ul">
-<li><p>
-Portability(跨平台性)
-</p>
+<li>Portability(跨平台性)
 
 <p>
 A program written using Libevent should work across all the platforms Libevent supports. Even when there is no really good way to do nonblocking IO, Libevent should support the so-so ways, so that your program can run in restricted environments.
@@ -189,11 +181,10 @@ A program written using Libevent should work across all the platforms Libevent s
 
 <p>
 使用 libevent 编写的程序应该可以在所有 libevent 支持的平台工作。即使没有真的很好的方法来做非阻塞 IO,Libevent 应该支持一般方法,这样你的程序在受限制的环境中也可以运行。
-</p></li>
-
-<li><p>
-Speed (速度)
 </p>
+</li>
+
+<li>Speed (速度)
 
 <p>
 Libevent tries to use the fastest available nonblocking IO implementations on each platform, and not to introduce much overhead as it does so.
@@ -201,11 +192,10 @@ Libevent tries to use the fastest available nonblocking IO implementations on ea
 
 <p>
 libevent 在每个平台上尝试使用可用的的最快非阻塞 IO 实现，同时不引入过多的开销。
-</p></li>
-
-<li><p>
-Scalability（可扩展性）
 </p>
+</li>
+
+<li>Scalability（可扩展性）
 
 <p>
 Libevent is designed to work well even with programs that need to have tens of thousands of active sockets.
@@ -213,11 +203,10 @@ Libevent is designed to work well even with programs that need to have tens of t
 
 <p>
 libevent 被设计成即使同需要成千上万套接字的程序也能很好的功能工作。
-</p></li>
-
-<li><p>
-Convenience（方便性）
 </p>
+</li>
+
+<li>Convenience（方便性）
 
 <p>
 Whenever possible, the most natural way to write a program with Libevent should be the stable, portable way.
@@ -225,12 +214,13 @@ Whenever possible, the most natural way to write a program with Libevent should 
 
 <p>
 只要有可能,使用 libevent 编写程序最自然的方式应该是稳定的、可移植的。
-</p></li>
+</p>
+</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3"><span class="section-number-2">3</span> 安装</h2>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 安装</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 标准 GNU 软件安装过程：
@@ -251,9 +241,7 @@ lilbevent 分为以下几个组件：
 </p>
 
 <ul class="org-ul">
-<li><p>
-evutil
-</p>
+<li>evutil
 
 <p>
 Generic functionality to abstract out the differences between different platforms' networking implementations.
@@ -261,11 +249,10 @@ Generic functionality to abstract out the differences between different platform
 
 <p>
 用来抽象不同平台网络实现差异的通用功能。
-</p></li>
-
-<li><p>
-event and event_base
 </p>
+</li>
+
+<li>event and event_base
 
 <p>
 This is the heart of Libevent. It provides an abstract API to the various platform-specific, event-based nonblocking IO backends. It can let you know when sockets are ready to read or write, do basic timeout functionality, and detect OS signals.
@@ -273,11 +260,10 @@ This is the heart of Libevent. It provides an abstract API to the various platfo
 
 <p>
 这是 libevent 的核心。针对各种平台特定的、基于事件的非阻塞 IO 后端，它提供了一个抽象的 API。它可以让你知道 socket 何时可读写，实现基本的超时功能，检测系统信号。
-</p></li>
-
-<li><p>
-bufferevent
 </p>
+</li>
+
+<li>bufferevent
 
 <p>
 These functions provide a more convenient wrapper around Libevent’s event-based core. They let your application request buffered reads and writes, and rather than informing you when sockets are ready to do, they let you know when IO has actually occurred.
@@ -293,11 +279,10 @@ The bufferevent interface also has multiple backends, so that it can take advant
 
 <p>
 bufferevent 接口也有多个后端，这样它可以利用系统来提供最快的方式来做非阻塞 IO，比如 windows IOCP API。
-</p></li>
-
-<li><p>
-evbuffer
 </p>
+</li>
+
+<li>evbuffer
 
 <p>
 This module implements the buffers underlying bufferevents, and provides functions for efficient and/or convenient access.
@@ -305,11 +290,10 @@ This module implements the buffers underlying bufferevents, and provides functio
 
 <p>
 这个模块实现了 bufferevent 底层的缓冲区，并提供函数来高效方便的访问。
-</p></li>
-
-<li><p>
-evhttp
 </p>
+</li>
+
+<li>evhttp
 
 <p>
 A simple HTTP client/server implementation.
@@ -317,11 +301,10 @@ A simple HTTP client/server implementation.
 
 <p>
 一个简单的 HTTP 客户端/服务器实现。
-</p></li>
-
-<li><p>
-evdns
 </p>
+</li>
+
+<li>evdns
 
 <p>
 A simple DNS client/server implementation.
@@ -329,11 +312,10 @@ A simple DNS client/server implementation.
 
 <p>
 一个简单的 DNS 客户端/服务器实现。
-</p></li>
-
-<li><p>
-evrpc
 </p>
+</li>
+
+<li>evrpc
 
 <p>
 A simple RPC implementation.
@@ -341,13 +323,14 @@ A simple RPC implementation.
 
 <p>
 一个简单的 RPC 实现。
-</p></li>
+</p>
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4"><span class="section-number-2">4</span> 库文件</h2>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 库文件</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 When Libevent is built, by default it installs the following libraries:
@@ -358,9 +341,7 @@ libevent 编译之后，默认安装以下库：
 </p>
 
 <ul class="org-ul">
-<li><p>
-libevent_core
-</p>
+<li>libevent_core
 
 <p>
 All core event and buffer functionality. This library contains all the event_base, evbuffer, bufferevent, and utility functions.
@@ -368,11 +349,10 @@ All core event and buffer functionality. This library contains all the event_bas
 
 <p>
 所有的核心事件和缓冲功能。
-</p></li>
-
-<li><p>
-libevent_extra
 </p>
+</li>
+
+<li>libevent_extra
 
 <p>
 This library defines protocol-specific functionality that you may or may not want for your application, including HTTP, DNS, and RPC.
@@ -380,11 +360,10 @@ This library defines protocol-specific functionality that you may or may not wan
 
 <p>
 该库定义了程序中可以用到的协议相关的功能。
-</p></li>
-
-<li><p>
-libevent
 </p>
+</li>
+
+<li>libevent
 
 <p>
 This library exists for historical reasons; it contains the contents of both libevent_core and libevent_extra. You shouldn’t use it; it may go away in a future version of Libevent.
@@ -392,7 +371,8 @@ This library exists for historical reasons; it contains the contents of both lib
 
 <p>
 该库由于历史原因继续存在，不应该继续使用它。
-</p></li>
+</p>
+</li>
 </ul>
 
 <p>
@@ -404,9 +384,7 @@ The following libraries are installed only on some platforms:
 </p>
 
 <ul class="org-ul">
-<li><p>
-libevent_pthreads
-</p>
+<li>libevent_pthreads
 
 <p>
 This library adds threading and locking implementations based on the pthreads portable threading library. It is separated from libevent_core so that you don’t need to link against pthreads to use Libevent unless you are actually using Libevent in a multithreaded way.
@@ -414,22 +392,22 @@ This library adds threading and locking implementations based on the pthreads po
 
 <p>
 该库基于 phtread 可移植线程库添加了线程和锁实现。它和 libevent_core 分开，所以你不必再去链接 pthread 来使用 libenent，除非你想用多线程的方式来使用 libevent。
-</p></li>
-
-<li><p>
-libevent_openssl
 </p>
+</li>
+
+<li>libevent_openssl
 
 <p>
 This library provides support for encrypted communications using bufferevents and the OpenSSL library. It is separated from libevent_core so that you don’t need to link against OpenSSL to use Libevent unless you are actually using encrypted connections.
-</p></li>
+</p>
+</li>
 </ul>
 </div>
 </div>
 
 
-<div id="outline-container-orgheadline5" class="outline-2">
-<h2 id="orgheadline5"><span class="section-number-2">5</span> 源代码组织结构</h2>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> 源代码组织结构</h2>
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
 
@@ -441,7 +419,7 @@ libevent 源代码中的目录和文件分为如下部分：
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">    <span style="color: #d18aff;">cd</span> ~/projects/libevent-2.0.22-stable/
+<pre class="src src-sh">    cd ~/projects/libevent-2.0.22-stable/
     tree -d
 </pre>
 </div>
@@ -450,97 +428,82 @@ libevent 源代码中的目录和文件分为如下部分：
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="left" />
 
-<col  class="org-left" />
+<col  class="left" />
 
-<col  class="org-left" />
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left">phenix@ubuntu:~/projects/libevent-2.0.22-stable$</td>
-<td class="org-left">.</td>
-<td class="org-left">&#xa0;</td>
+<td class="left">bash:</td>
+<td class="left">cd:</td>
+<td class="left"><i>home/lsl/projects/libevent-2.0.22-stable</i>:</td>
+<td class="left">No</td>
+<td class="left">such</td>
+<td class="left">file</td>
+<td class="left">or</td>
+<td class="left">directory</td>
 </tr>
 
 <tr>
-<td class="org-left">├──</td>
-<td class="org-left">compat</td>
-<td class="org-left">&#xa0;</td>
+<td class="left">.</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left">│  </td>
-<td class="org-left">└──</td>
-<td class="org-left">sys</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left">├──</td>
-<td class="org-left">include</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">└──</td>
-<td class="org-left">event2</td>
-</tr>
-
-<tr>
-<td class="org-left">├──</td>
-<td class="org-left">m4</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">├──</td>
-<td class="org-left">sample</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">├──</td>
-<td class="org-left">test</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">└──</td>
-<td class="org-left">WIN32-Code</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">└──</td>
-<td class="org-left">event2</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">9</td>
-<td class="org-left">directories</td>
-<td class="org-left">&#xa0;</td>
+<td class="left">0</td>
+<td class="left">directories</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 </tbody>
 </table>
 
 <ul class="org-ul">
-<li><p>
-通用数据结构目录 compat/sys
-</p>
+<li>通用数据结构目录 compat/sys
 <div class="org-src-container">
 
 <pre class="src src-sh">    tree compat
@@ -551,57 +514,32 @@ libevent 源代码中的目录和文件分为如下部分：
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="left" />
 
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
+<col  class="left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="org-left">compat</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="left">compat [error opening dir]</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left">└──</td>
-<td class="org-left">sys</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left">└──</td>
-<td class="org-left">queue.h</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">1</td>
-<td class="org-left">directory,</td>
-<td class="org-left">1</td>
-<td class="org-left">file</td>
+<td class="left">0 directories</td>
+<td class="left">0 files</td>
 </tr>
 </tbody>
 </table>
 <p>
 该目录下面只有一个文件&#x2013;queue.h。它封装了跨平台的基础数据结构，包括单向链表、双向链表、队列、尾队列和循环队列。
-</p></li>
-<li><p>
-include/event2/ 头文件目录
 </p>
+</li>
+<li>include/event2/ 头文件目录
 <div class="org-src-container">
 
 <pre class="src src-sh">    tree include
@@ -612,258 +550,24 @@ include/event2/ 头文件目录
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="left" />
 
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
+<col  class="left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="org-left">include</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="left">include [error opening dir]</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left">├──</td>
-<td class="org-left">event2</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left">│  </td>
-<td class="org-left">├──</td>
-<td class="org-left">buffer_compat.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">├──</td>
-<td class="org-left">bufferevent_compat.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">├──</td>
-<td class="org-left">bufferevent.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">├──</td>
-<td class="org-left">bufferevent_ssl.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">├──</td>
-<td class="org-left">bufferevent_struct.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">├──</td>
-<td class="org-left">buffer.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">├──</td>
-<td class="org-left">dns_compat.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">├──</td>
-<td class="org-left">dns.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">├──</td>
-<td class="org-left">dns_struct.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">├──</td>
-<td class="org-left">event_compat.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">├──</td>
-<td class="org-left">event-config.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">├──</td>
-<td class="org-left">event.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">├──</td>
-<td class="org-left">event_struct.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">├──</td>
-<td class="org-left">http_compat.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">├──</td>
-<td class="org-left">http.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">├──</td>
-<td class="org-left">http_struct.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">├──</td>
-<td class="org-left">keyvalq_struct.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">├──</td>
-<td class="org-left">listener.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">├──</td>
-<td class="org-left">rpc_compat.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">├──</td>
-<td class="org-left">rpc.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">├──</td>
-<td class="org-left">rpc_struct.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">├──</td>
-<td class="org-left">tag_compat.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">├──</td>
-<td class="org-left">tag.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">├──</td>
-<td class="org-left">thread.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">│  </td>
-<td class="org-left">└──</td>
-<td class="org-left">util.h</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">├──</td>
-<td class="org-left">GPATH</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">├──</td>
-<td class="org-left">GRTAGS</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">├──</td>
-<td class="org-left">GTAGS</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">├──</td>
-<td class="org-left">Makefile</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">├──</td>
-<td class="org-left">Makefile.am</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">└──</td>
-<td class="org-left">Makefile.in</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">1</td>
-<td class="org-left">directory,</td>
-<td class="org-left">31</td>
-<td class="org-left">files</td>
+<td class="left">0 directories</td>
+<td class="left">0 files</td>
 </tr>
 </tbody>
 </table>
@@ -876,130 +580,162 @@ include/event2/ 头文件目录
 定义了 libevent 当前对外的公共接口，这些文件没有特别的后缀。
 各文件作用如下：
 <ul class="org-ul">
-<li>bufferevent_ssl.h</li>
-<li>buffer.h 网络读写的缓冲区管理</li>
-<li>dns.h 异步 DNS 解析</li>
-<li>event-config.h 编译 libevent 过程中 autoconf 产生的头文件。不要编辑该文件。</li>
-<li>event.h libevent 主要的头文件</li>
-<li>http.h 文件提供 http 协议相关服务</li>
-<li>listener.h</li>
-<li>rpc.h 头文件提供远程过程调用支持。</li>
-<li>tag.h</li>
-<li>thread.h 多线程编程的函数</li>
-<li>util.h 可移植非阻塞网络代码的工具函数</li>
-</ul></li>
+<li>bufferevent_ssl.h
+</li>
+<li>buffer.h 网络读写的缓冲区管理
+</li>
+<li>dns.h 异步 DNS 解析
+</li>
+<li>event-config.h 编译 libevent 过程中 autoconf 产生的头文件。不要编辑该文件。
+</li>
+<li>event.h libevent 主要的头文件
+</li>
+<li>http.h 文件提供 http 协议相关服务
+</li>
+<li>listener.h
+</li>
+<li>rpc.h 头文件提供远程过程调用支持。
+</li>
+<li>tag.h
+</li>
+<li>thread.h 多线程编程的函数
+</li>
+<li>util.h 可移植非阻塞网络代码的工具函数
+</li>
+</ul>
+</li>
 <li>兼容性头文件
-定义弃用的函数，除非从旧版本的 libevent 移植程序，否则不应该使用这些文件。这些文件后缀是“_compat.h”。</li>
+定义弃用的函数，除非从旧版本的 libevent 移植程序，否则不应该使用这些文件。这些文件后缀是“_compat.h”。
+</li>
 <li>结构头文件
-这些头文件定义了相对不稳定布局的结构。有些是因为逆序要快速访问结构元素而暴露，有些因为历史原因暴露。直接依赖头文件中的结构会破坏你程序同其他版本的二进制兼容性，有哦写时候很难调试。这些头文件后缀是“_struct.h”。</li>
-</ul></li>
+这些头文件定义了相对不稳定布局的结构。有些是因为逆序要快速访问结构元素而暴露，有些因为历史原因暴露。直接依赖头文件中的结构会破坏你程序同其他版本的二进制兼容性，有哦写时候很难调试。这些头文件后缀是“_struct.h”。
+</li>
+</ul>
+</li>
 
-<li>sample 目录，提供一些示例程序。</li>
-<li>test 目录。提供一下测试代码。</li>
-<li>WIN32-Code 目录。提供 windows 平台上一些专用代码。</li>
-<li>源码根目录下头文件。这些头文件分为两类：一类是 include/event2 目录下的部分文件的包装，另外一类是提供 libevent 内 ibushiyongde 辅助性头文件，他们的文件名都具有*-internal.h 的形式。</li>
-<li>event.c 文件。该文件实现 libevent 整体框架，主要是 event 和 event_base 两个结构体的相关操作。</li>
-<li>devpool.c、kqueue.c、evport.c、select.c、win32select.c、poll.c 和 epoll.c 文件。他们分别封装了了如下 I/O 复用机制：/dev/poll、kqueue、event ports、POSIX select、windows select、poll 和 epoll。这些文件的主要内容相似，都是针对结构体 eventop 所定义的具体是 ixan。</li>
-<li>minheap-internal.h 文件。该文件实现了一个时间堆，一提供对定时事件的支持。</li>
-<li>signal.c 文件。它提供对信号的支持，其内容也是针对结构体 eventop 所定义的接口函数的具体实现。</li>
-<li>evmap.c 文件。它维护句柄（文件描述符或信号）与事件处理器的映射关系。</li>
-<li>event_tagging.c 文件。它提供往缓冲区中天极标记数据（比如一个整数），以及从缓冲区读取标记数据的函数。</li>
-<li>event_iocp.c 文件。它提 Windows IOCP 的支持。</li>
-<li>buffer*.c 文件。它提供对网络 I/O 缓冲的控制，包括：输入输出数据过滤，传输速率限制，使用 SSL 协议对应用数据进行保护，以及零拷贝文件传输等。</li>
-<li>evthread*.c 文件。它提供对多线程的支持。</li>
-<li>listener.c 文件。他是 libevent 的日志系统。</li>
-<li>evutil.c、evutil_rand.c、strlcpy.c 和 arc4random.c 文件。他们提供一些基本操作，比如生成随机数、获取 socket 地址信息、读取文件 设置 socket 属性等。</li>
-<li>evdns.c、http.c 和 evrpc.c 文件。他们分别提供了对 DNS 协议，HTTP 协议和 RPC 协议的支持。</li>
-<li>epoll_sub.c 文件。该文件未见使用。</li>
+<li>sample 目录，提供一些示例程序。
+</li>
+<li>test 目录。提供一下测试代码。
+</li>
+<li>WIN32-Code 目录。提供 windows 平台上一些专用代码。
+</li>
+<li>源码根目录下头文件。这些头文件分为两类：一类是 include/event2 目录下的部分文件的包装，另外一类是提供 libevent 内 ibushiyongde 辅助性头文件，他们的文件名都具有*-internal.h 的形式。
+</li>
+<li>event.c 文件。该文件实现 libevent 整体框架，主要是 event 和 event_base 两个结构体的相关操作。
+</li>
+<li>devpool.c、kqueue.c、evport.c、select.c、win32select.c、poll.c 和 epoll.c 文件。他们分别封装了了如下 I/O 复用机制：/dev/poll、kqueue、event ports、POSIX select、windows select、poll 和 epoll。这些文件的主要内容相似，都是针对结构体 eventop 所定义的具体是 ixan。
+</li>
+<li>minheap-internal.h 文件。该文件实现了一个时间堆，一提供对定时事件的支持。
+</li>
+<li>signal.c 文件。它提供对信号的支持，其内容也是针对结构体 eventop 所定义的接口函数的具体实现。
+</li>
+<li>evmap.c 文件。它维护句柄（文件描述符或信号）与事件处理器的映射关系。
+</li>
+<li>event_tagging.c 文件。它提供往缓冲区中天极标记数据（比如一个整数），以及从缓冲区读取标记数据的函数。
+</li>
+<li>event_iocp.c 文件。它提 Windows IOCP 的支持。
+</li>
+<li>buffer*.c 文件。它提供对网络 I/O 缓冲的控制，包括：输入输出数据过滤，传输速率限制，使用 SSL 协议对应用数据进行保护，以及零拷贝文件传输等。
+</li>
+<li>evthread*.c 文件。它提供对多线程的支持。
+</li>
+<li>listener.c 文件。他是 libevent 的日志系统。
+</li>
+<li>evutil.c、evutil_rand.c、strlcpy.c 和 arc4random.c 文件。他们提供一些基本操作，比如生成随机数、获取 socket 地址信息、读取文件 设置 socket 属性等。
+</li>
+<li>evdns.c、http.c 和 evrpc.c 文件。他们分别提供了对 DNS 协议，HTTP 协议和 RPC 协议的支持。
+</li>
+<li>epoll_sub.c 文件。该文件未见使用。
+</li>
 </ul>
 <p>
 整个源码中，event_internal.h、include/event2/event_struct.h、event.c、evmap.c 等 4 个文件最为重要。它们定义了 event 和 event_base 结构体，并实现了这两个结构体的相关操作。
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-2">
-<h2 id="orgheadline8"><span class="section-number-2">6</span> sample</h2>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> sample</h2>
 <div class="outline-text-2" id="text-6">
-</div><div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6"><span class="section-number-3">6.1</span> hello-world.c</h3>
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> hello-world.c</h3>
 <div class="outline-text-3" id="text-6-1">
 <div class="org-src-container">
 
-<pre class="src src-c">    <span style="color: #6c6c6c; font-style: italic;">/*</span>
-<span style="color: #6c6c6c; font-style: italic;">      This exmple program provides a trivial server program that listens for TCP</span>
-<span style="color: #6c6c6c; font-style: italic;">      connections on port 9995.  When they arrive, it writes a short message to</span>
-<span style="color: #6c6c6c; font-style: italic;">      each client connection, and closes each connection once it is flushed.</span>
+<pre class="src src-c">    /*
+      This exmple program provides a trivial server program that listens for TCP
+      connections on port 9995.  When they arrive, it writes a short message to
+      each client connection, and closes each connection once it is flushed.
 
-<span style="color: #6c6c6c; font-style: italic;">      Where possible, it exits cleanly in response to a SIGINT (ctrl-c).</span>
-<span style="color: #6c6c6c; font-style: italic;">    </span><span style="color: #6c6c6c; font-style: italic;">*/</span>
+      Where possible, it exits cleanly in response to a SIGINT (ctrl-c).
+    */
 
 
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;string.h&gt;</span>
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;errno.h&gt;</span>
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;stdio.h&gt;</span>
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;signal.h&gt;</span>
-<span style="color: #d18aff;">    #if</span><span style="color: #d18aff;">n</span><span style="color: #d18aff;">def</span> WIN32
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;netinet/in.h&gt;</span>
-<span style="color: #d18aff;">    # ifdef</span> _XOPEN_SOURCE_EXTENDED
-<span style="color: #d18aff;">    #  include</span> <span style="color: #ff4ea3;">&lt;arpa/inet.h&gt;</span>
-<span style="color: #d18aff;">    # endif</span>
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;sys/socket.h&gt;</span>
-<span style="color: #d18aff;">    #endif</span>
+    #include &lt;string.h&gt;
+    #include &lt;errno.h&gt;
+    #include &lt;stdio.h&gt;
+    #include &lt;signal.h&gt;
+    #ifndef WIN32
+    #include &lt;netinet/in.h&gt;
+    # ifdef _XOPEN_SOURCE_EXTENDED
+    #  include &lt;arpa/inet.h&gt;
+    # endif
+    #include &lt;sys/socket.h&gt;
+    #endif
 
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;event2/bufferevent.h&gt;</span>
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;event2/buffer.h&gt;</span>
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;event2/listener.h&gt;</span>
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;event2/util.h&gt;</span>
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;event2/event.h&gt;</span>
+    #include &lt;event2/bufferevent.h&gt;
+    #include &lt;event2/buffer.h&gt;
+    #include &lt;event2/listener.h&gt;
+    #include &lt;event2/util.h&gt;
+    #include &lt;event2/event.h&gt;
 
-    <span style="color: #a1db00;">static</span> <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">MESSAGE</span>[] = <span style="color: #ff4ea3;">"Hello, World!\n"</span>;
+    static const char MESSAGE[] = "Hello, World!\n";
 
-    <span style="color: #a1db00;">static</span> <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">PORT</span> = 9995;
+    static const int PORT = 9995;
 
-    <span style="color: #a1db00;">static</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">listener_cb</span>(<span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">evconnlistener</span> *, <span style="color: #00d7af;">evutil_socket_t</span>,
-        <span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">sockaddr</span> *, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">socklen</span>, <span style="color: #00d7af;">void</span> *);
-    <span style="color: #a1db00;">static</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">conn_writecb</span>(<span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">bufferevent</span> *, <span style="color: #00d7af;">void</span> *);
-    <span style="color: #a1db00;">static</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">conn_eventcb</span>(<span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">bufferevent</span> *, <span style="color: #00d7af;">short</span>, <span style="color: #00d7af;">void</span> *);
-    <span style="color: #a1db00;">static</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">signal_cb</span>(<span style="color: #00d7af;">evutil_socket_t</span>, <span style="color: #00d7af;">short</span>, <span style="color: #00d7af;">void</span> *);
+    static void listener_cb(struct evconnlistener *, evutil_socket_t,
+        struct sockaddr *, int socklen, void *);
+    static void conn_writecb(struct bufferevent *, void *);
+    static void conn_eventcb(struct bufferevent *, short, void *);
+    static void signal_cb(evutil_socket_t, short, void *);
 
-    <span style="color: #00d7af;">int</span>
-    <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> **<span style="color: #ff8700;">argv</span>)
+    int
+    main(int argc, char **argv)
     {
-        <span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">event_base</span> *<span style="color: #ff8700;">base</span>;
-        <span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">evconnlistener</span> *<span style="color: #ff8700;">listener</span>;
-        <span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">event</span> *<span style="color: #ff8700;">signal_event</span>;
+        struct event_base *base;
+        struct evconnlistener *listener;
+        struct event *signal_event;
 
-        <span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">sockaddr_in</span> <span style="color: #ff8700;">sin</span>;
-<span style="color: #d18aff;">    #ifdef</span> WIN32
-        <span style="color: #00d7af;">WSADATA</span> <span style="color: #ff8700;">wsa_data</span>;
+        struct sockaddr_in sin;
+    #ifdef WIN32
+        WSADATA wsa_data;
         WSAStartup(0x0201, &amp;wsa_data);
-<span style="color: #d18aff;">    #endif</span>
+    #endif
 
         base = event_base_new();
-        <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>base) {
-            fprintf(stderr, <span style="color: #ff4ea3;">"Could not initialize libevent!\n"</span>);
-            <span style="color: #a1db00;">return</span> 1;
+        if (!base) {
+            fprintf(stderr, "Could not initialize libevent!\n");
+            return 1;
         }
 
-        memset(&amp;sin, 0, <span style="color: #a1db00;">sizeof</span>(sin));
+        memset(&amp;sin, 0, sizeof(sin));
         sin.sin_family = AF_INET;
         sin.sin_port = htons(PORT);
 
-        listener = evconnlistener_new_bind(base, listener_cb, (<span style="color: #00d7af;">void</span> *)base,
+        listener = evconnlistener_new_bind(base, listener_cb, (void *)base,
             LEV_OPT_REUSEABLE|LEV_OPT_CLOSE_ON_FREE, -1,
-            (<span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">sockaddr</span>*)&amp;sin,
-            <span style="color: #a1db00;">sizeof</span>(sin));
+            (struct sockaddr*)&amp;sin,
+            sizeof(sin));
 
-        <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>listener) {
-            fprintf(stderr, <span style="color: #ff4ea3;">"Could not create a listener!\n"</span>);
-            <span style="color: #a1db00;">return</span> 1;
+        if (!listener) {
+            fprintf(stderr, "Could not create a listener!\n");
+            return 1;
         }
 
-        signal_event = evsignal_new(base, SIGINT, signal_cb, (<span style="color: #00d7af;">void</span> *)base);
+        signal_event = evsignal_new(base, SIGINT, signal_cb, (void *)base);
 
-        <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>signal_event || event_add(signal_event, <span style="color: #5fafd7;">NULL</span>)&lt;0) {
-            fprintf(stderr, <span style="color: #ff4ea3;">"Could not create/add a signal event!\n"</span>);
-            <span style="color: #a1db00;">return</span> 1;
+        if (!signal_event || event_add(signal_event, NULL)&lt;0) {
+            fprintf(stderr, "Could not create/add a signal event!\n");
+            return 1;
         }
 
         event_base_dispatch(base);
@@ -1008,61 +744,61 @@ include/event2/ 头文件目录
         event_free(signal_event);
         event_base_free(base);
 
-        printf(<span style="color: #ff4ea3;">"done\n"</span>);
-        <span style="color: #a1db00;">return</span> 0;
+        printf("done\n");
+        return 0;
     }
 
-    <span style="color: #a1db00;">static</span> <span style="color: #00d7af;">void</span>
-    <span style="color: #ffd700;">listener_cb</span>(<span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">evconnlistener</span> *<span style="color: #ff8700;">listener</span>, <span style="color: #00d7af;">evutil_socket_t</span> <span style="color: #ff8700;">fd</span>,
-        <span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">sockaddr</span> *<span style="color: #ff8700;">sa</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">socklen</span>, <span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">user_data</span>)
+    static void
+    listener_cb(struct evconnlistener *listener, evutil_socket_t fd,
+        struct sockaddr *sa, int socklen, void *user_data)
     {
-        <span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">event_base</span> *<span style="color: #ff8700;">base</span> = user_data;
-        <span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">bufferevent</span> *<span style="color: #ff8700;">bev</span>;
+        struct event_base *base = user_data;
+        struct bufferevent *bev;
 
         bev = bufferevent_socket_new(base, fd, BEV_OPT_CLOSE_ON_FREE);
-        <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>bev) {
-            fprintf(stderr, <span style="color: #ff4ea3;">"Error constructing bufferevent!"</span>);
+        if (!bev) {
+            fprintf(stderr, "Error constructing bufferevent!");
             event_base_loopbreak(base);
-            <span style="color: #a1db00;">return</span>;
+            return;
         }
-        bufferevent_setcb(bev, <span style="color: #5fafd7;">NULL</span>, conn_writecb, conn_eventcb, <span style="color: #5fafd7;">NULL</span>);
+        bufferevent_setcb(bev, NULL, conn_writecb, conn_eventcb, NULL);
         bufferevent_enable(bev, EV_WRITE);
         bufferevent_disable(bev, EV_READ);
 
         bufferevent_write(bev, MESSAGE, strlen(MESSAGE));
     }
 
-    <span style="color: #a1db00;">static</span> <span style="color: #00d7af;">void</span>
-    <span style="color: #ffd700;">conn_writecb</span>(<span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">bufferevent</span> *<span style="color: #ff8700;">bev</span>, <span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">user_data</span>)
+    static void
+    conn_writecb(struct bufferevent *bev, void *user_data)
     {
-        <span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">evbuffer</span> *<span style="color: #ff8700;">output</span> = bufferevent_get_output(bev);
-        <span style="color: #a1db00;">if</span> (evbuffer_get_length(output) == 0) {
-            printf(<span style="color: #ff4ea3;">"flushed answer\n"</span>);
+        struct evbuffer *output = bufferevent_get_output(bev);
+        if (evbuffer_get_length(output) == 0) {
+            printf("flushed answer\n");
             bufferevent_free(bev);
         }
     }
 
-    <span style="color: #a1db00;">static</span> <span style="color: #00d7af;">void</span>
-    <span style="color: #ffd700;">conn_eventcb</span>(<span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">bufferevent</span> *<span style="color: #ff8700;">bev</span>, <span style="color: #00d7af;">short</span> <span style="color: #ff8700;">events</span>, <span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">user_data</span>)
+    static void
+    conn_eventcb(struct bufferevent *bev, short events, void *user_data)
     {
-        <span style="color: #a1db00;">if</span> (events &amp; BEV_EVENT_EOF) {
-            printf(<span style="color: #ff4ea3;">"Connection closed.\n"</span>);
-        } <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span> (events &amp; BEV_EVENT_ERROR) {
-            printf(<span style="color: #ff4ea3;">"Got an error on the connection: %s\n"</span>,
-                strerror(errno));<span style="color: #6c6c6c; font-style: italic;">/*</span><span style="color: #6c6c6c; font-style: italic;">XXX win32</span><span style="color: #6c6c6c; font-style: italic;">*/</span>
+        if (events &amp; BEV_EVENT_EOF) {
+            printf("Connection closed.\n");
+        } else if (events &amp; BEV_EVENT_ERROR) {
+            printf("Got an error on the connection: %s\n",
+                strerror(errno));/*XXX win32*/
         }
-        <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">None of the other events can happen here, since we haven't enabled</span>
-<span style="color: #6c6c6c; font-style: italic;">         * timeouts </span><span style="color: #6c6c6c; font-style: italic;">*/</span>
+        /* None of the other events can happen here, since we haven't enabled
+         * timeouts */
         bufferevent_free(bev);
     }
 
-    <span style="color: #a1db00;">static</span> <span style="color: #00d7af;">void</span>
-    <span style="color: #ffd700;">signal_cb</span>(<span style="color: #00d7af;">evutil_socket_t</span> <span style="color: #ff8700;">sig</span>, <span style="color: #00d7af;">short</span> <span style="color: #ff8700;">events</span>, <span style="color: #00d7af;">void</span> *<span style="color: #ff8700;">user_data</span>)
+    static void
+    signal_cb(evutil_socket_t sig, short events, void *user_data)
     {
-        <span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">event_base</span> *<span style="color: #ff8700;">base</span> = user_data;
-        <span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">timeval</span> <span style="color: #ff8700;">delay</span> = { 2, 0 };
+        struct event_base *base = user_data;
+        struct timeval delay = { 2, 0 };
 
-        printf(<span style="color: #ff4ea3;">"Caught an interrupt signal; exiting cleanly in two seconds.\n"</span>);
+        printf("Caught an interrupt signal; exiting cleanly in two seconds.\n");
 
         event_base_loopexit(base, &amp;delay);
     }
@@ -1082,16 +818,21 @@ include/event2/ 头文件目录
 sample-1.c 代码简单，但是基本上描述了 libevent 库的主要逻辑：
 </p>
 <ul class="org-ul">
-<li>调用 event_base_new 函数创建 event_base 对象。一个 event_base 对象相当于一个 Reactor 实例。</li>
-<li>创建具体的事件处理器，并设置他们从属的 Reactor 实例。evsignal_new 和 evtimer_new 分别用于创建信号处理时间处理器和定时时间处理器，他们是定义在 inclulde/event2/event.h 中的宏，最终的入口 event_new 函数。</li>
-<li>调用 event_add 函数将时间处理器添加到注册时间堆劣种，并将该事件处理器对应的事件添加到事件多路分发器中。</li>
-<li>调用 event_base_dispatch 函数来执行事件循环。</li>
-<li>事件循环结束后，使用*_free 系列函数释放系统资源。</li>
+<li>调用 event_base_new 函数创建 event_base 对象。一个 event_base 对象相当于一个 Reactor 实例。
+</li>
+<li>创建具体的事件处理器，并设置他们从属的 Reactor 实例。evsignal_new 和 evtimer_new 分别用于创建信号处理时间处理器和定时时间处理器，他们是定义在 inclulde/event2/event.h 中的宏，最终的入口 event_new 函数。
+</li>
+<li>调用 event_add 函数将时间处理器添加到注册时间堆劣种，并将该事件处理器对应的事件添加到事件多路分发器中。
+</li>
+<li>调用 event_base_dispatch 函数来执行事件循环。
+</li>
+<li>事件循环结束后，使用*_free 系列函数释放系统资源。
+</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7"><span class="section-number-3">6.2</span> 多线程使用</h3>
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> 多线程使用</h3>
 <div class="outline-text-3" id="text-6-2">
 <div class="org-src-container">
 
@@ -1102,8 +843,9 @@ sample-1.c 代码简单，但是基本上描述了 libevent 库的主要逻辑�
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: ubuntu</p>
-<p class="date">Created: 2016-03-20 日 02:25</p>
+<p class="author">Author: lsl</p>
+<p class="date">Created: 2016-07-06 三 14:31</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

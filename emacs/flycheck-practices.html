@@ -3,30 +3,23 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-03-20 日 02:25 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Flycheck practices</title>
+<!-- 2016-07-06 三 14:31 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="ubuntu" />
+<meta  name="author" content="lsl" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center;
-             margin-bottom: .2em; }
-  .subtitle { text-align: center;
-              font-size: medium;
-              font-weight: bold;
-              margin-top:0; }
+  .title  { text-align: center; }
   .todo   { font-family: monospace; color: red; }
-  .done   { font-family: monospace; color: green; }
-  .priority { font-family: monospace; color: orange; }
+  .done   { color: green; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -65,14 +58,15 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.org-right  { text-align: center;  }
-  th.org-left   { text-align: center;   }
-  th.org-center { text-align: center; }
-  td.org-right  { text-align: right;  }
-  td.org-left   { text-align: left;   }
-  td.org-center { text-align: center; }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara { display: inline; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -148,44 +142,44 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. Introduction</a></li>
-<li><a href="#orgheadline6">2. Installation</a>
+<li><a href="#sec-1">1. Introduction</a></li>
+<li><a href="#sec-2">2. Installation</a>
 <ul>
-<li><a href="#orgheadline2">2.1. Prerequisites</a></li>
-<li><a href="#orgheadline3">2.2. Syntax checking tools</a></li>
-<li><a href="#orgheadline4">2.3. Installation</a></li>
-<li><a href="#orgheadline5">2.4. Cask</a></li>
+<li><a href="#sec-2-1">2.1. Prerequisites</a></li>
+<li><a href="#sec-2-2">2.2. Syntax checking tools</a></li>
+<li><a href="#sec-2-3">2.3. Installation</a></li>
+<li><a href="#sec-2-4">2.4. Cask</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline12">3. Quickstart</a>
+<li><a href="#sec-3">3. Quickstart</a>
 <ul>
-<li><a href="#orgheadline7">3.1. Install and enable Flycheck</a></li>
-<li><a href="#orgheadline8">3.2. Install syntax checker tools</a></li>
-<li><a href="#orgheadline9">3.3. Check syntax in a buffer</a></li>
-<li><a href="#orgheadline11">3.4. Navigate and list errors</a>
+<li><a href="#sec-3-1">3.1. Install and enable Flycheck</a></li>
+<li><a href="#sec-3-2">3.2. Install syntax checker tools</a></li>
+<li><a href="#sec-3-3">3.3. Check syntax in a buffer</a></li>
+<li><a href="#sec-3-4">3.4. Navigate and list errors</a>
 <ul>
-<li><a href="#orgheadline10">3.4.1. More features</a></li>
+<li><a href="#sec-3-4-1">3.4.1. More features</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline22">4. Usage</a>
+<li><a href="#sec-4">4. Usage</a>
 <ul>
-<li><a href="#orgheadline13">4.1. Checking buffers</a></li>
-<li><a href="#orgheadline14">4.2. Syntax checkers</a></li>
-<li><a href="#orgheadline15">4.3. Reporting results</a></li>
-<li><a href="#orgheadline16">4.4. Navigating errors</a></li>
-<li><a href="#orgheadline17">4.5. Displaying errors</a></li>
-<li><a href="#orgheadline18">4.6. Killing errors</a></li>
-<li><a href="#orgheadline19">4.7. Listing errors</a></li>
-<li><a href="#orgheadline20">4.8. Mode line display</a></li>
-<li><a href="#orgheadline21">4.9. Configuring checkers</a></li>
+<li><a href="#sec-4-1">4.1. Checking buffers</a></li>
+<li><a href="#sec-4-2">4.2. Syntax checkers</a></li>
+<li><a href="#sec-4-3">4.3. Reporting results</a></li>
+<li><a href="#sec-4-4">4.4. Navigating errors</a></li>
+<li><a href="#sec-4-5">4.5. Displaying errors</a></li>
+<li><a href="#sec-4-6">4.6. Killing errors</a></li>
+<li><a href="#sec-4-7">4.7. Listing errors</a></li>
+<li><a href="#sec-4-8">4.8. Mode line display</a></li>
+<li><a href="#sec-4-9">4.9. Configuring checkers</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline23">5. Syntax checker definitions</a></li>
-<li><a href="#orgheadline24">6. Flycheck hooks</a></li>
-<li><a href="#orgheadline25">7. Flycheck API:</a></li>
-<li><a href="#orgheadline26">8. Supported languages</a></li>
+<li><a href="#sec-5">5. Syntax checker definitions</a></li>
+<li><a href="#sec-6">6. Flycheck hooks</a></li>
+<li><a href="#sec-7">7. Flycheck API:</a></li>
+<li><a href="#sec-8">8. Supported languages</a></li>
 </ul>
 </div>
 </div>
@@ -222,8 +216,8 @@ Many <a href="http://www.flycheck.org/extensions.html">3rd party extensions</a> 
 </p>
 
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> Introduction</h2>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Flycheck provides modern on-the-fly syntax checking extension for GNU Emacs 24, intended as replacement for the older Flymake extension which is part of GNU Emacs.
@@ -243,86 +237,77 @@ Flycheck 运行各种 linting 工具和服务自动检查输入到 buffer 中的
 </p>
 
 <ul class="org-ul">
-<li><p>
-Over 40 languages with more than 70 checkers. See <a href="http://www.flycheck.org/manual/latest/Supported-languages.html#Supported-languages">Supported languages</a>.
-</p>
+<li>Over 40 languages with more than 70 checkers. See <a href="http://www.flycheck.org/manual/latest/Supported-languages.html#Supported-languages">Supported languages</a>.
 
 <p>
 超过 40 种语言和 70 款检查器。
-</p></li>
-
-<li><p>
-Fully automatic, fail-safe, on-the-fly syntax checking in buffers
 </p>
+</li>
+
+<li>Fully automatic, fail-safe, on-the-fly syntax checking in buffers
 
 <p>
 全自动、防故障、动态检查 buffer。
-</p></li>
-
-<li><p>
-In-buffer error highlighting, with fringe indicators
 </p>
+</li>
+
+<li>In-buffer error highlighting, with fringe indicators
 
 <p>
 buffer 中使用边缘标识高亮错误
-</p></li>
-
-<li><p>
-Error navigation
 </p>
+</li>
+
+<li>Error navigation
 
 <p>
 浏览错误
-</p></li>
-
-<li><p>
-Auto-updating error list
 </p>
+</li>
+
+<li>Auto-updating error list
 
 <p>
 自动更新错误列表
-</p></li>
-
-<li><p>
-Many customisation options
 </p>
+</li>
+
+<li>Many customisation options
 
 <p>
 许多定制选项。
-</p></li>
-
-<li><p>
-A comprehensive manual
 </p>
+</li>
+
+<li>A comprehensive manual
 
 <p>
 全面的手册。
-</p></li>
-
-<li><p>
-A simple API to add support for new languages and tools
 </p>
+</li>
+
+<li>A simple API to add support for new languages and tools
 
 <p>
 使用简单的 API 就可以添加新语言和工具。
-</p></li>
-
-<li><p>
-A “doesn’t get in your way guarantee”
 </p>
+</li>
+
+<li>A “doesn’t get in your way guarantee”
 
 <p>
 不以你的方式得到保证。（啥意思）
-</p></li>
+</p>
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="orgheadline6"><span class="section-number-2">2</span> Installation</h2>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Installation</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="section-number-3">2.1</span> Prerequisites</h3>
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Prerequisites</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Flycheck needs GNU Emacs 24. Older releases of GNU Emacs or other flavours of Emacs (e.g. XEmacs, Aquamacs, etc.) are not supported.
@@ -350,8 +335,8 @@ Flycheck 没有明确支持 windows，但试图维护 windows 兼容性，在 wi
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3"><span class="section-number-3">2.2</span> Syntax checking tools</h3>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Syntax checking tools</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Flycheck does not check buffers itself. It relies on external programs to check buffers, which need to be installed separately. See Supported languages, for a list of required programs for each language supported by Flycheck.
@@ -371,8 +356,8 @@ Most of these programs are available in the package repositories of Linux distri
 </div>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4"><span class="section-number-3">2.3</span> Installation</h3>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Installation</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Install Flycheck via Emacs’ built-in package manager, from the MELPA Stable repository:
@@ -403,17 +388,17 @@ You need to enable them explicitly, by adding the following to your init file:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #a1db00;">require</span> '<span style="color: #5fafd7;">package</span>)
+<pre class="src src-elisp">(require 'package)
 (add-to-list 'package-archives
-             '(<span style="color: #ff4ea3;">"melpa"</span> . <span style="color: #ff4ea3;">"http://melpa.org/packages/"</span>) t)
+			 '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5"><span class="section-number-3">2.4</span> Cask</h3>
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> Cask</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 If you use Cask to manage your packages, add the following to your Cask file:
@@ -423,18 +408,18 @@ If you use Cask to manage your packages, add the following to your Cask file:
 <pre class="src src-elisp">(source gnu)
 (source melpa-stable)
 
-(depends-on <span style="color: #ff4ea3;">"flycheck"</span>)
+(depends-on "flycheck")
 </pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline12" class="outline-2">
-<h2 id="orgheadline12"><span class="section-number-2">3</span> Quickstart</h2>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Quickstart</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7"><span class="section-number-3">3.1</span> Install and enable Flycheck</h3>
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Install and enable Flycheck</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 To get started with Flycheck, enable it by adding the following to your init file:
@@ -451,8 +436,8 @@ If you don’t know where your init file is take a look at the value of the vari
 </div>
 </div>
 
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8"><span class="section-number-3">3.2</span> Install syntax checker tools</h3>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Install syntax checker tools</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Next you need to install syntax checking tools for the major modes you are using. For instance, for Python you may want to install Pylint:
@@ -484,8 +469,8 @@ See Supported languages, for a complete list of all languages that Flycheck supp
 </div>
 </div>
 
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9"><span class="section-number-3">3.3</span> Check syntax in a buffer</h3>
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Check syntax in a buffer</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 Now switch to a Python or Ruby Mode buffer and run M-x flycheck-verify-setup to check whether Flycheck is correctly setup.
@@ -510,8 +495,8 @@ You can also manually check a buffer with C-c ! c (flycheck-buffer).
 </div>
 </div>
 
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11"><span class="section-number-3">3.4</span> Navigate and list errors</h3>
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> Navigate and list errors</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 Use C-c ! n (flycheck-next-error) and C-c ! p (flycheck-previous-error) to navigate between error locations. If you keep the point at an error location, Flycheck will show the error message in the echo area after a short delay. You can also hover error locations with the mouse and see the error message in a tooltip.
@@ -529,8 +514,8 @@ To get an overview of all errors and warnings in the current buffer, type C-c ! 
 为了得到当前 buffer 中所有错误和警告的概述，使用 C-c ! l(flycheck-list-error)来弹出当前 buffer 中所有错误的列表。当修正错误、引入新错误、或切换到新的 buff 时列表会自动更新。
 </p>
 </div>
-<div id="outline-container-orgheadline10" class="outline-4">
-<h4 id="orgheadline10"><span class="section-number-4">3.4.1</span> More features</h4>
+<div id="outline-container-sec-3-4-1" class="outline-4">
+<h4 id="sec-3-4-1"><span class="section-number-4">3.4.1</span> More features</h4>
 <div class="outline-text-4" id="text-3-4-1">
 <p>
 All Flycheck commands are available in the Emacs menu at ‘Syntax checking’ in the ‘Tools’ menu.
@@ -543,8 +528,8 @@ All Flycheck commands are available in the Emacs menu at ‘Syntax checking’ i
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline22" class="outline-2">
-<h2 id="orgheadline22"><span class="section-number-2">4</span> Usage</h2>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Usage</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 This chapter explains the usage of Flycheck in-depth.
@@ -563,8 +548,8 @@ Note: All commands in this chapter are documented with their default key prefix 
 </p>
 </div>
 
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13"><span class="section-number-3">4.1</span> Checking buffers</h3>
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Checking buffers</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 The minor mode flycheck-mode enables syntax checking in a single buffer. global-flycheck-mode automatically enables flycheck-mode all buffers whenever possible. You can exclude specific major modes from global-flycheck-mode with flycheck-global-modes.
@@ -602,9 +587,12 @@ When flycheck-mode is enabled, Flycheck automatically checks a buffer whenever
 </p>
 
 <ul class="org-ul">
-<li>the buffer is saved,</li>
-<li>new lines are inserted,</li>
-<li>or a short time after you stopped to make changes to the buffer.</li>
+<li>the buffer is saved,
+</li>
+<li>new lines are inserted,
+</li>
+<li>or a short time after you stopped to make changes to the buffer.
+</li>
 </ul>
 
 <p>
@@ -628,9 +616,7 @@ A list of events that trigger a new syntax check in the current buffer:
 </p>
 
 <ul class="org-ul">
-<li><p>
-save
-</p>
+<li>save
 
 <p>
 Check the buffer immediately after it was saved.
@@ -638,11 +624,10 @@ Check the buffer immediately after it was saved.
 
 <p>
 保存 buffer 后立即检查。
-</p></li>
-
-<li><p>
-idle-change
 </p>
+</li>
+
+<li>idle-change
 
 <p>
 Check the buffer a short time after the last change to the buffer. The delay is customisable with flycheck-idle-change-delay.
@@ -650,11 +635,10 @@ Check the buffer a short time after the last change to the buffer. The delay is 
 
 <p>
 buffer 最后更改一段时间后检查。通过 flycheck-idle-change-delay 定制延迟时间。
-</p></li>
-
-<li><p>
-new-line
 </p>
+</li>
+
+<li>new-line
 
 <p>
 Check the buffer immediately after a new line was inserted.
@@ -662,11 +646,10 @@ Check the buffer immediately after a new line was inserted.
 
 <p>
 插入新行后立刻检查缓冲区。
-</p></li>
-
-<li><p>
-mode-enabled
 </p>
+</li>
+
+<li>mode-enabled
 
 <p>
 Check the buffer immediately after Flycheck Mode was enabled.
@@ -674,7 +657,8 @@ Check the buffer immediately after Flycheck Mode was enabled.
 
 <p>
 Flycheck mode 启用后立即检查。
-</p></li>
+</p>
+</li>
 </ul>
 
 <p>
@@ -698,14 +682,14 @@ In addition to automatic syntax checking you can always check the current buffer
 除了自动语法检查，还可以手动检查当前 buffer：
 </p>
 <ul class="org-ul">
-<li>C-c ! c</li>
-<li><p>
-M-x flycheck-buffer
-</p>
+<li>C-c ! c
+</li>
+<li>M-x flycheck-buffer
 
 <p>
 Check syntax in the current buffer.
-</p></li>
+</p>
+</li>
 </ul>
 
 <p>
@@ -717,10 +701,9 @@ Note: If syntax checking does not work, please check your setup:
 </p>
 
 <ul class="org-ul">
-<li>C-c ! v</li>
-<li><p>
-M-x flycheck-verify-setup
-</p>
+<li>C-c ! v
+</li>
+<li>M-x flycheck-verify-setup
 
 <p>
 Popup a buffer with information about the Flycheck setup for the current buffer.
@@ -736,7 +719,8 @@ Lists the syntax checkers available for the current buffer, together with potent
 
 <p>
 显示可用于当前 buffer 的语法检查器，以及它们设置中可能存在的问题。
-</p></li>
+</p>
+</li>
 </ul>
 
 <p>
@@ -749,8 +733,8 @@ During syntax checks Flycheck creates temporary files to feed to contents of the
 </div>
 </div>
 
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14"><span class="section-number-3">4.2</span> Syntax checkers</h3>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> Syntax checkers</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 Flycheck does not check buffers by itself, but relies on external syntax checkers. When checking a buffer Flycheck automatically selects the best syntax checker from flycheck-checkers:
@@ -800,10 +784,9 @@ Like everything else in GNU Emacs, syntax checkers have online documentation as 
 像 GNU Emacs 所有其他东西一样，语法检查器也有在线文档，如果有兴趣了解 flycheck-checkers 中的特定语法检查器支持哪种主模式，或者它使用什么工具，键入 C-c！ ？：
 </p>
 <ul class="org-ul">
-<li>C-c ! ?</li>
-<li><p>
-M-x flycheck-describe-checker
-</p>
+<li>C-c ! ?
+</li>
+<li>M-x flycheck-describe-checker
 
 <p>
 Prompt for a syntax checker and show its documentation.
@@ -819,7 +802,8 @@ The documentation includes the name of the program or service used by the syntax
 
 <p>
 文档包括语法检查器使用的程序或服务的名字，检查器适用的主模式列表以及它的选项。
-</p></li>
+</p>
+</li>
 </ul>
 
 <p>
@@ -830,10 +814,9 @@ Instead of letting Flycheck select a syntax checker automatically you can also e
 除了让 Flycheck 自动选择语法检查器，还可以为当前 buffer 手动选择 Flycheck 使用的检查器：
 </p>
 <ul class="org-ul">
-<li>C-c ! s</li>
-<li><p>
-M-x flycheck-select-checker
-</p>
+<li>C-c ! s
+</li>
+<li>M-x flycheck-select-checker
 
 <p>
 Prompt for a syntax checker and select this syntax checker for the current buffer.
@@ -841,12 +824,12 @@ Prompt for a syntax checker and select this syntax checker for the current buffe
 
 <p>
 输入检查器名字，为当前 buffer 选择该检查器。
-</p></li>
-
-<li>C-u C-c ! s</li>
-<li><p>
-C-u M-x flycheck-select-checker Remove any manual
 </p>
+</li>
+
+<li>C-u C-c ! s
+</li>
+<li>C-u M-x flycheck-select-checker Remove any manual
 
 <p>
 syntax checker selection for the current buffer, and let Flycheck automatically select a syntax checker from flycheck-checkers again.
@@ -854,7 +837,8 @@ syntax checker selection for the current buffer, and let Flycheck automatically 
 
 <p>
 当前 buffer 语法检查器选项，再次让 Flycheck 从 flycheck-checkers 中自动选择语法检查器。
-</p></li>
+</p>
+</li>
 </ul>
 
 <p>
@@ -866,9 +850,7 @@ You can also select a syntax checker via the variable flycheck-checker. In fact,
 </p>
 
 <ul class="org-ul">
-<li><p>
-Variable: flycheck-checker
-</p>
+<li>Variable: flycheck-checker
 
 <p>
 A syntax checker to use for the current buffer.
@@ -914,7 +896,8 @@ M-x add-dir-local-variable RET python-mode RET flycheck-checker RET python-flake
 </pre>
 <p>
 将 flycheck-checker 设置为局部目录变量。
-</p></li>
+</p>
+</li>
 </ul>
 
 <p>
@@ -926,10 +909,9 @@ Occasionally you may want to disable specific syntax checkers completely, so tha
 </p>
 
 <ul class="org-ul">
-<li>C-c ! x</li>
-<li><p>
-M-x flycheck-disable-checker
-</p>
+<li>C-c ! x
+</li>
+<li>M-x flycheck-disable-checker
 
 <p>
 Prompt for a syntax checker to disable in the current buffer.
@@ -937,12 +919,12 @@ Prompt for a syntax checker to disable in the current buffer.
 
 <p>
 提示要在当前 buffer 中关闭的语法选择器。
-</p></li>
-
-<li>C-u C-c ! x</li>
-<li><p>
-C-u M-x flycheck-disable-checker
 </p>
+</li>
+
+<li>C-u C-c ! x
+</li>
+<li>C-u M-x flycheck-disable-checker
 
 <p>
 Prompt for a syntax checker to re-enable in the current buffer.
@@ -950,7 +932,8 @@ Prompt for a syntax checker to re-enable in the current buffer.
 
 <p>
 提示要在当前 buffer 中重新启用的语法选择器。
-</p></li>
+</p>
+</li>
 </ul>
 
 <p>
@@ -970,9 +953,7 @@ flycheck-disable-checker 实际上是设置了 buff-local 值 flycheck-disabled-
 </p>
 
 <ul class="org-ul">
-<li><p>
-User Option: flycheck-disabled-checkers
-</p>
+<li>User Option: flycheck-disabled-checkers
 
 <p>
 A list of disabled syntax checkers. Flycheck will never use disabled syntax checkers to check a buffer.
@@ -1010,7 +991,8 @@ You can also disable checkers via local variables. For instance, to disable emac
 
 <p>
 See (emacs)Directory Variables, for more information about directory variables.
-</p></li>
+</p>
+</li>
 </ul>
 
 <p>
@@ -1023,17 +1005,19 @@ You can change the completion system used by the commands of this section with f
 </div>
 </div>
 
-<div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15"><span class="section-number-3">4.3</span> Reporting results</h3>
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> Reporting results</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 When a syntax check in the current buffer has finished, Flycheck reports the results of the syntax checkers used by the check in the current buffer:
 </p>
 
 <ul class="org-ul">
-<li>It highlights errors and warnings reported by a syntax checking in the buffer according to flycheck-highlighting-mode,</li>
+<li>It highlights errors and warnings reported by a syntax checking in the buffer according to flycheck-highlighting-mode,
+</li>
 
-<li>and indicates these locations in the fringe according to flycheck-indication-mode.</li>
+<li>and indicates these locations in the fringe according to flycheck-indication-mode.
+</li>
 </ul>
 
 <p>
@@ -1045,45 +1029,40 @@ How Flycheck highlights errors and warnings in the buffer:
 </p>
 
 <ul class="org-ul">
-<li><p>
-lines
-</p>
+<li>lines
 
 <p>
 Highlight the whole line, ignoring any column information.
-</p></li>
-
-<li><p>
-columns
 </p>
+</li>
+
+<li>columns
 
 <p>
 Highlight the column of the error, if the error has a column, otherwise behave as lines.
-</p></li>
-
-<li><p>
-symbols
 </p>
+</li>
+
+<li>symbols
 
 <p>
 Highlight the symbol at the error column, if any, otherwise behave like columns. This is default
-</p></li>
-
-<li><p>
-sexps
 </p>
+</li>
+
+<li>sexps
 
 <p>
 Highlight the expression at the error column, if any, otherwise behave like columns. Warning: sexps can be very slow in some major modes, notably the built-in python-mode.
-</p></li>
-
-<li><p>
-nil
 </p>
+</li>
+
+<li>nil
 
 <p>
 Do not highlight errors at all.
-</p></li>
+</p>
+</li>
 </ul>
 
 <p>
@@ -1099,10 +1078,9 @@ How Flycheck indicates errors and warnings:
 </p>
 
 <ul class="org-ul">
-<li>left-fringe</li>
-<li><p>
-right-fringe
-</p>
+<li>left-fringe
+</li>
+<li>right-fringe
 
 <p>
 Indicate errors in the left or right fringe respectively. See (emacs)Fringes, for more information about fringes.
@@ -1110,14 +1088,14 @@ Indicate errors in the left or right fringe respectively. See (emacs)Fringes, fo
 
 <p>
 Flycheck uses the flycheck-fringe-error, flycheck-fringe-warning, and flycheck-fringe-info faces for the indicators for the corresponding error levels.
-</p></li>
-<li><p>
-nil
 </p>
+</li>
+<li>nil
 
 <p>
 Do not indicate errors and warnings.
-</p></li>
+</p>
+</li>
 </ul>
 
 <p>
@@ -1129,8 +1107,8 @@ You can explicitly clear with the flycheck-clear command.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16"><span class="section-number-3">4.4</span> Navigating errors</h3>
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> Navigating errors</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 By default, Flycheck integrates into standard error navigation commands of Emacs: M-g n (next-error) and M-g p (previous-error) will navigate between Flycheck warnings and errors in the current buffer. See (emacs)Compilation Mode, for more information about these commands. You can disable this integration by setting flycheck-standard-error-navigation to nil, and re-enabling flycheck-mode afterwards.
@@ -1145,10 +1123,9 @@ Flycheck provides an independent set of navigation commands which will always na
 </p>
 
 <ul class="org-ul">
-<li>C-c ! n</li>
-<li><p>
-M-x flycheck-next-error
-</p>
+<li>C-c ! n
+</li>
+<li>M-x flycheck-next-error
 
 <p>
 Jump to the next error.
@@ -1156,11 +1133,11 @@ Jump to the next error.
 
 <p>
 With prefix argument, jump forwards by as many errors as specified by the prefix argument, e.g. M-3 C-c ! n will move to the 3rd error from the current point. With negative prefix argument, move to previous errors instead. Signal an error, if there are no more Flycheck errors.
-</p></li>
-<li>C-c ! p</li>
-<li><p>
-M-x flycheck-previous-error
 </p>
+</li>
+<li>C-c ! p
+</li>
+<li>M-x flycheck-previous-error
 
 <p>
 Jump to the previous Flycheck error.
@@ -1171,9 +1148,7 @@ With prefix argument, jump backwards by as many errors as specified by the prefi
 </p>
 
 <ul class="org-ul">
-<li><p>
-M-x flycheck-first-error
-</p>
+<li>M-x flycheck-first-error
 
 <p>
 Jump to the first Flycheck error.
@@ -1181,8 +1156,10 @@ Jump to the first Flycheck error.
 
 <p>
 With prefix argument, jump forwards to by as many errors as specified by the prefix argument, e.g. M-3 M-x flycheck-first-error moves to the 3rd error from the beginning of the buffer. With negative prefix argument, move to the last error instead.
-</p></li>
-</ul></li>
+</p>
+</li>
+</ul>
+</li>
 </ul>
 
 <p>
@@ -1204,8 +1181,8 @@ If set to an error level, only navigate to errors whose level is as least as sev
 </div>
 
 
-<div id="outline-container-orgheadline17" class="outline-3">
-<h3 id="orgheadline17"><span class="section-number-3">4.5</span> Displaying errors</h3>
+<div id="outline-container-sec-4-5" class="outline-3">
+<h3 id="sec-4-5"><span class="section-number-3">4.5</span> Displaying errors</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 When the point moves to an error location Flycheck automatically displays the error at point after a short delay:
@@ -1220,14 +1197,14 @@ The number of seconds to wait before displaying the error at point. Floating poi
 You can also display errors at point explicitly with C-c ! h:
 </p>
 <ul class="org-ul">
-<li>C-c ! h</li>
-<li><p>
-M-x flycheck-display-error-at-point
-</p>
+<li>C-c ! h
+</li>
+<li>M-x flycheck-display-error-at-point
 
 <p>
 Show the error(s) at point.
-</p></li>
+</p>
+</li>
 </ul>
 
 <p>
@@ -1235,13 +1212,12 @@ By default Flycheck shows the error message and the error ID in the echo area, b
 </p>
 
 <ul class="org-ul">
-<li><p>
-User Option: flycheck-display-errors-function
-</p>
+<li>User Option: flycheck-display-errors-function
 
 <p>
 A function to display errors. The function is called with a list of Flycheck error objects to display. See Errors, for more information about these objects.
-</p></li>
+</p>
+</li>
 </ul>
 
 <p>
@@ -1249,21 +1225,19 @@ Flycheck provides some built-in display functions:
 </p>
 
 <ul class="org-ul">
-<li><p>
-Function: flycheck-display-error-messages
-</p>
+<li>Function: flycheck-display-error-messages
 
 <p>
 Show error messages and IDs in the echo area.
-</p></li>
-
-<li><p>
-Function: flycheck-display-error-messages-unless-error-list
 </p>
+</li>
+
+<li>Function: flycheck-display-error-messages-unless-error-list
 
 <p>
 Like flycheck-display-error-messages, but does not show anything if the error list is visible. See Listing errors, for more information about the error list.
-</p></li>
+</p>
+</li>
 </ul>
 
 <p>
@@ -1279,9 +1253,7 @@ The contents of this tooltip are created with flycheck-help-echo-function:
 </p>
 
 <ul class="org-ul">
-<li><p>
-User Option: flycheck-help-echo-function
-</p>
+<li>User Option: flycheck-help-echo-function
 
 <p>
 A function to compute the contents of the error tooltips.
@@ -1289,23 +1261,23 @@ A function to compute the contents of the error tooltips.
 
 <p>
 By default Flycheck adds the error message and the error ID of all errors at point to the tooltip contents.
-</p></li>
+</p>
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline18" class="outline-3">
-<h3 id="orgheadline18"><span class="section-number-3">4.6</span> Killing errors</h3>
+<div id="outline-container-sec-4-6" class="outline-3">
+<h3 id="sec-4-6"><span class="section-number-3">4.6</span> Killing errors</h3>
 <div class="outline-text-3" id="text-4-6">
 <p>
 You can also put error messages into the kill ring:
 </p>
 
 <ul class="org-ul">
-<li>C-c ! C-w</li>
-<li><p>
-M-x flycheck-copy-errors-as-kill
-</p>
+<li>C-c ! C-w
+</li>
+<li>M-x flycheck-copy-errors-as-kill
 
 <p>
 Copy all Flycheck error messages at point into the kill ring.
@@ -1313,57 +1285,59 @@ Copy all Flycheck error messages at point into the kill ring.
 
 <p>
 Each error message is killed separately, so C-y (yank) only yanks a single error message. You can use M-y (yank-pop) to cycle between the killed messages after yanking the first one.
-</p></li>
-<li>C-u C-c ! C-w</li>
-<li><p>
-C-u M-x flycheck-copy-errors-as-kill
 </p>
+</li>
+<li>C-u C-c ! C-w
+</li>
+<li>C-u M-x flycheck-copy-errors-as-kill
 
 <p>
 Copy all Flycheck error messages at point, including their IDs.
-</p></li>
-
-<li>M-0 C-c ! C-w</li>
-<li><p>
-M-0 M-x flycheck-copy-errors-as-kill
 </p>
+</li>
+
+<li>M-0 C-c ! C-w
+</li>
+<li>M-0 M-x flycheck-copy-errors-as-kill
 
 <p>
 Copy the IDs of the errors at point.
-</p></li>
+</p>
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline19" class="outline-3">
-<h3 id="orgheadline19"><span class="section-number-3">4.7</span> Listing errors</h3>
+<div id="outline-container-sec-4-7" class="outline-3">
+<h3 id="sec-4-7"><span class="section-number-3">4.7</span> Listing errors</h3>
 </div>
-<div id="outline-container-orgheadline20" class="outline-3">
-<h3 id="orgheadline20"><span class="section-number-3">4.8</span> Mode line display</h3>
+<div id="outline-container-sec-4-8" class="outline-3">
+<h3 id="sec-4-8"><span class="section-number-3">4.8</span> Mode line display</h3>
 </div>
-<div id="outline-container-orgheadline21" class="outline-3">
-<h3 id="orgheadline21"><span class="section-number-3">4.9</span> Configuring checkers</h3>
+<div id="outline-container-sec-4-9" class="outline-3">
+<h3 id="sec-4-9"><span class="section-number-3">4.9</span> Configuring checkers</h3>
 </div>
 </div>
-<div id="outline-container-orgheadline23" class="outline-2">
-<h2 id="orgheadline23"><span class="section-number-2">5</span> Syntax checker definitions</h2>
-</div>
-
-<div id="outline-container-orgheadline24" class="outline-2">
-<h2 id="orgheadline24"><span class="section-number-2">6</span> Flycheck hooks</h2>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Syntax checker definitions</h2>
 </div>
 
-<div id="outline-container-orgheadline25" class="outline-2">
-<h2 id="orgheadline25"><span class="section-number-2">7</span> Flycheck API:</h2>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Flycheck hooks</h2>
 </div>
 
-<div id="outline-container-orgheadline26" class="outline-2">
-<h2 id="orgheadline26"><span class="section-number-2">8</span> Supported languages</h2>
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Flycheck API:</h2>
+</div>
+
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> Supported languages</h2>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: ubuntu</p>
-<p class="date">Created: 2016-03-20 日 02:25</p>
+<p class="author">Author: lsl</p>
+<p class="date">Created: 2016-07-06 三 14:31</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Makefile 实践</title>
+<!-- 2016-07-06 三 14:32 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="lsl" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Makefile 实践</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. 递归编译子文件夹</a>
+<ul>
+<li><a href="#sec-1-1">1.1. 使用搜索路径</a></li>
+<li><a href="#sec-1-2">1.2. 递归式</a></li>
+<li><a href="#sec-1-3">1.3. 使用纯粹的 makefile 语法</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 递归编译子文件夹</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 使用搜索路径<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup></h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+该方法使用了 VPATH 变量，路径以英文冒号分割：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">    VPATH=path1:path2:...
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-makefile">    CFLAGS = -Iadd -Isub
+    OBJSDIR = .objs
+    VPATH = subdir1:subdir2:.
+    OBJS = add_int.o add_float.o sub_int.o sub_float.o main.o
+
+    $(OBJSDIR):
+        mkdir -p ./$@
+    $(TARGET):$(OBJSDIR) $(OBJS)
+        $(CC) -o $(TARGET) $(OBJSDIR)/*.o $(CFLAGS)
+    $(OBJS):%.o:%.c
+        $(CC) -c $(CFLAGS) $&lt; -o $(OBJSDIR)/$@
+    clean:
+        -$(RM) $(TARGET)
+        -$(RM) $(OBJSDIR)/*.o
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> 递归式</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+为了实现每个目录下的代码具有独立的 makefile，且根目录下的 makefile 可以一次执行子目录下的 makefile，就有了递归式的方法来写父目录下的 makefile 了，该方法的实现是使用的 $(MAKE) 变量，使用格式如下：
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-makefile">    subdir:
+        $(MAKE)  -C subdir
+</pre>
+</div>
+
+<p>
+subdir1 makefile
+</p>
+<div class="org-src-container">
+
+<pre class="src src-makefile">    OBJS = app1
+    CFLAGS = -O2
+    all:$(OBJS)
+    $(OBJS):%:%.c
+        $(CC) $(CFLAGS) $&lt; -o $(OBJSDIR)/$@
+    clean:
+        $(RM) $(OBJS)
+</pre>
+</div>
+
+<p>
+subdir2 makefile
+</p>
+<div class="org-src-container">
+
+<pre class="src src-makefile">    OBJS = app2
+    CFLAGS = -O2
+    all: $(OBJS)
+    $(OBJS):%:%.c
+        $(CC) $(CFLAGS) $&lt; -o $(OBJSDIR)/$@
+    clean:
+        $(RM) $(OBJS)
+</pre>
+</div>
+
+<p>
+接下来就是写主目录下面的 makefile 文件了，使用前面递归调用格式，makefile 文件如下：
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-makefile">    CC = gcc
+    CFLAGS = -O2
+    TARGET = main
+    export OBJSDIR = ${shell pwd}/.objs
+    $(TARGET):$(OBJSDIR) main.o
+        $(MAKE) -C add
+        $(MAKE) -C sub
+        $(CC) -o $(TARGET) $(OBJSDIR)/*.o
+    main.o:%.o:%.c
+        $(CC) -c $&lt; -o $(OBJSDIR)/$@ $(CFLAGS) -Iadd -Isub
+    $(OBJSDIR):
+        mkdir -p $(OBJSDIR)
+    clean:
+        -$(RM) $(TARGET)
+        -$(RM) $(OBJSDIR)/*.o
+</pre>
+</div>
+
+<p>
+　　“$(MAKE) -C add” “$(MAKE) -C sub”这两句实现的就是在执行下面的命令前先执行子目录下的 makefile 文件
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> 使用纯粹的 makefile 语法<sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup></h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+此种方法子目录层数多时遍历很慢。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-makefile">    .PHONY : all
+
+    # arg1 dir
+    define EXPAND_temp
+    FILES := $(wildcard $(1)*)
+    DIRS :=
+    $$(foreach e, $$(FILES), $$(if $$(wildcard $$(e)/*), $$(eval DIRS := $$(DIRS) $$(e))))
+    FILES := $$(filter-out $$(DIRS),$$(FILES))
+
+    ALLDIRS := $$(ALLDIRS) $$(DIRS)
+    ALLFILES := $$(ALLFILES) $$(FILES)
+    $$(foreach e,$$(DIRS),$$(eval $$(call EXPAND_temp,$$(e)/)))
+    endef
+
+    $(eval $(call EXPAND_temp))
+
+    all :
+        @for subdir in $(ALLDIRS); do \
+            echo $$subdir; \
+        done
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
+<a href="http://www.cnblogs.com/hanxi/archive/2012/06/03/2533025.html">makefile 文件的两种常用书写格式（搜索路径式 + 递归式）</a>
+</p></div>
+
+<div class="footdef"><sup><a id="fn.2" name="fn.2" class="footnum" href="#fnr.2">2</a></sup> <p class="footpara">
+<a href="http://blog.codingnow.com/2009/06/make_recursion_directory.html">让 Make 递归所有子目录</a>
+</p></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: lsl</p>
+<p class="date">Created: 2016-07-06 三 14:32</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
