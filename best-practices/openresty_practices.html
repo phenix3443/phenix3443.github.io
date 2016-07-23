@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>OpenResty Practices</title>
-<!-- 2016-07-06 三 14:32 -->
+<!-- 2016-07-23 六 12:30 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>OpenResty Practices</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="lsl" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -58,15 +65,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -142,36 +148,36 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. 安装</a></li>
-<li><a href="#sec-2">2. 设计 REST API server</a>
+<li><a href="#orgheadline1">1. 安装</a></li>
+<li><a href="#orgheadline6">2. 设计 REST API server</a>
 <ul>
-<li><a href="#sec-2-1">2.1. nginx</a></li>
-<li><a href="#sec-2-2">2.2. ngx_lua</a></li>
-<li><a href="#sec-2-3">2.3. 认证 sessionid</a></li>
-<li><a href="#sec-2-4">2.4. 使用 curl 测试</a></li>
+<li><a href="#orgheadline2">2.1. nginx</a></li>
+<li><a href="#orgheadline3">2.2. ngx_lua</a></li>
+<li><a href="#orgheadline4">2.3. 认证 sessionid</a></li>
+<li><a href="#orgheadline5">2.4. 使用 curl 测试</a></li>
 </ul>
 </li>
-<li><a href="#sec-3">3. 与数据库交互</a>
+<li><a href="#orgheadline9">3. 与数据库交互</a>
 <ul>
-<li><a href="#sec-3-1">3.1. mysql</a></li>
-<li><a href="#sec-3-2">3.2. redis</a></li>
+<li><a href="#orgheadline7">3.1. mysql</a></li>
+<li><a href="#orgheadline8">3.2. redis</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> 安装<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup></h2>
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> 安装<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 
-<pre class="src src-sh"># requires
+<pre class="src src-sh"><span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">requires</span>
 sudo apt-get install libreadline-dev libncurses5-dev libpcre3-dev libssl-dev perl make build-essential
 
 tar xvf ngx_openresty-VERSION.tar.gz
-cd ngx_openresty-VERSION/
-# 单机开发启用 debug 方便调试
+<span style="color: #d18aff;">cd</span> ngx_openresty-VERSION/
+<span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">&#21333;&#26426;&#24320;&#21457;&#21551;&#29992; debug &#26041;&#20415;&#35843;&#35797;</span>
 ./configure --with-debug
 make
 sudo make install
@@ -180,116 +186,98 @@ sudo make install
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> 设计 REST API server</h2>
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">2</span> 设计 REST API server</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 使用 openresty 设计 RESTful 风格 API 服务器。
 </p>
 </div>
-<div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1"><span class="section-number-3">2.1</span> nginx</h3>
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">2.1</span> nginx</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
-<li>ngx.conf 文件中的相对路径如何控制？
+<li><p>
+ngx.conf 文件中的相对路径如何控制？
+</p>
 
 <p>
 通过 nginx 启动时的命令行参数 -p
-</p>
-</li>
+</p></li>
 
-<li>由哪些内置变量，变量如何获取（arg_XXX）
-</li>
-<li>location 中正则表达式语法（为什么没有%d %s 之类的匹配）
-</li>
-<li>location 匹配规则（先最长匹配，然后正则）
-</li>
-<li>location 中正则表达的路径获取（$1）
-</li>
-<li>请求执行阶段，执行顺序（11 个阶段）
-</li>
+<li>由哪些内置变量，变量如何获取（arg_XXX）</li>
+<li>location 中正则表达式语法（为什么没有%d %s 之类的匹配）</li>
+<li>location 匹配规则（先最长匹配，然后正则）</li>
+<li>location 中正则表达的路径获取（$1）</li>
+<li>请求执行阶段，执行顺序（11 个阶段）</li>
 <li></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2"><span class="section-number-3">2.2</span> ngx_lua</h3>
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">2.2</span> ngx_lua</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
-<li>或者 nginx 内置变量 ngx.var.XXX 和 ngx.req.get_var
-</li>
-<li>获取请求方法 ngx.req.get_method
-</li>
-<li>获取 URL 参数
-</li>
-<li>获取 body 内容
-</li>
-<li>使用 cjson 解析 json 格式
-</li>
-<li>使用 lua 正则表达式解析 HTTP header，使用 string.match，而不是 string.find
-</li>
-<li>返回状态码 ngx.exit ngx.say
-</li>
-<li>验证完数据后转发请求到内部服务器
-</li>
-<li>lua table 的序列化和发序列化
-</li>
-<li>cbinmsg.lua 代码阅读
-</li>
+<li>或者 nginx 内置变量 ngx.var.XXX 和 ngx.req.get_var</li>
+<li>获取请求方法 ngx.req.get_method</li>
+<li>获取 URL 参数</li>
+<li>获取 body 内容</li>
+<li>使用 cjson 解析 json 格式</li>
+<li>使用 lua 正则表达式解析 HTTP header，使用 string.match，而不是 string.find</li>
+<li>返回状态码 ngx.exit ngx.say</li>
+<li>验证完数据后转发请求到内部服务器</li>
+<li>lua table 的序列化和发序列化</li>
+<li>cbinmsg.lua 代码阅读</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3"><span class="section-number-3">2.3</span> 认证 sessionid</h3>
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">2.3</span> 认证 sessionid</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
-<li>web 认证协议和客户端认证协议有何不同？为什么要两份协议？将来准备兼容？
-</li>
-<li>开发阶段如何获取测试的 uid 和 sessionid 进行测试？
-</li>
+<li>web 认证协议和客户端认证协议有何不同？为什么要两份协议？将来准备兼容？</li>
+<li>开发阶段如何获取测试的 uid 和 sessionid 进行测试？</li>
 </ul>
 </div>
 </div>
 
 
-<div id="outline-container-sec-2-4" class="outline-3">
-<h3 id="sec-2-4"><span class="section-number-3">2.4</span> 使用 curl 测试</h3>
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">2.4</span> 使用 curl 测试</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
-<li><a href="http://blog.51yip.com/linux/1049.html">linux curl 命令详解，以及实例</a>
-</li>
+<li><a href="http://blog.51yip.com/linux/1049.html">linux curl 命令详解，以及实例</a></li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> 与数据库交互</h2>
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9"><span class="section-number-2">3</span> 与数据库交互</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1"><span class="section-number-3">3.1</span> mysql</h3>
+</div><div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">3.1</span> mysql</h3>
 </div>
 
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2"><span class="section-number-3">3.2</span> redis</h3>
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">3.2</span> redis</h3>
 </div>
 </div>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
 <a href="https://openresty.org/cn/installation.html">install openresty</a>
-</p></div>
+</p></div></div>
 
 
 </div>
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: lsl</p>
-<p class="date">Created: 2016-07-06 三 14:32</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2016-07-23 六 12:30</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

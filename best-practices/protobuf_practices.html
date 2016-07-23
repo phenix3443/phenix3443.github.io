@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Protocol buffers practices</title>
-<!-- 2016-07-06 三 14:32 -->
+<!-- 2016-07-23 六 12:30 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Protocol buffers practices</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="lsl" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -58,15 +65,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -142,42 +148,42 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. Overview</a></li>
-<li><a href="#sec-2">2. Developer Guide</a>
+<li><a href="#orgheadline1">1. Overview</a></li>
+<li><a href="#orgheadline8">2. Developer Guide</a>
 <ul>
-<li><a href="#sec-2-1">2.1. What are protocol buffers?</a></li>
-<li><a href="#sec-2-2">2.2. How do they work?</a></li>
-<li><a href="#sec-2-3">2.3. Why not just use XML?</a></li>
-<li><a href="#sec-2-4">2.4. Introducing proto3</a></li>
-<li><a href="#sec-2-5">2.5. A bit of history</a></li>
-<li><a href="#sec-2-6">2.6. What are protocol buffers?</a></li>
+<li><a href="#orgheadline2">2.1. What are protocol buffers?</a></li>
+<li><a href="#orgheadline3">2.2. How do they work?</a></li>
+<li><a href="#orgheadline4">2.3. Why not just use XML?</a></li>
+<li><a href="#orgheadline5">2.4. Introducing proto3</a></li>
+<li><a href="#orgheadline6">2.5. A bit of history</a></li>
+<li><a href="#orgheadline7">2.6. What are protocol buffers?</a></li>
 </ul>
 </li>
-<li><a href="#sec-3">3. Tutorials</a>
+<li><a href="#orgheadline24">3. Tutorials</a>
 <ul>
-<li><a href="#sec-3-1">3.1. Tutorials Overview</a></li>
-<li><a href="#sec-3-2">3.2. Basics: C++</a></li>
-<li><a href="#sec-3-3">3.3. Why Use Protocol Buffers?</a></li>
-<li><a href="#sec-3-4">3.4. Where to Find the Example Code</a></li>
-<li><a href="#sec-3-5">3.5. Defining Your Protocol Format</a></li>
-<li><a href="#sec-3-6">3.6. Compiling Your Protocol Buffers</a></li>
-<li><a href="#sec-3-7">3.7. The Protocol Buffer API</a></li>
-<li><a href="#sec-3-8">3.8. Enums and Nested Classes</a></li>
-<li><a href="#sec-3-9">3.9. Standard Message Methods</a></li>
-<li><a href="#sec-3-10">3.10. Parsing and Serialization</a></li>
-<li><a href="#sec-3-11">3.11. Writing A Message</a></li>
-<li><a href="#sec-3-12">3.12. Reading A Message</a></li>
-<li><a href="#sec-3-13">3.13. Extending a Protocol Buffer</a></li>
-<li><a href="#sec-3-14">3.14. Optimization Tips</a></li>
-<li><a href="#sec-3-15">3.15. Advanced Usage</a></li>
+<li><a href="#orgheadline9">3.1. Tutorials Overview</a></li>
+<li><a href="#orgheadline10">3.2. Basics: C++</a></li>
+<li><a href="#orgheadline11">3.3. Why Use Protocol Buffers?</a></li>
+<li><a href="#orgheadline12">3.4. Where to Find the Example Code</a></li>
+<li><a href="#orgheadline13">3.5. Defining Your Protocol Format</a></li>
+<li><a href="#orgheadline14">3.6. Compiling Your Protocol Buffers</a></li>
+<li><a href="#orgheadline15">3.7. The Protocol Buffer API</a></li>
+<li><a href="#orgheadline16">3.8. Enums and Nested Classes</a></li>
+<li><a href="#orgheadline17">3.9. Standard Message Methods</a></li>
+<li><a href="#orgheadline18">3.10. Parsing and Serialization</a></li>
+<li><a href="#orgheadline19">3.11. Writing A Message</a></li>
+<li><a href="#orgheadline20">3.12. Reading A Message</a></li>
+<li><a href="#orgheadline21">3.13. Extending a Protocol Buffer</a></li>
+<li><a href="#orgheadline22">3.14. Optimization Tips</a></li>
+<li><a href="#orgheadline23">3.15. Advanced Usage</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> Overview</h2>
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Overview</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <a href="https://developers.google.com/protocol-buffers/">Protocol buffers</a>  are Google's language-neutral, platform-neutral, extensible mechanism for serializing structured data – think XML, but smaller, faster, and simpler. You define how you want your data to be structured once, then you can use special generated source code to easily write and read your structured data to and from a variety of data streams and using a variety of languages.
@@ -197,8 +203,8 @@ Protocol buffers 目前支持 Java、Python 和 C++。新的 proto3 还支持 Go
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> Developer Guide</h2>
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8"><span class="section-number-2">2</span> Developer Guide</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Welcome to the developer documentation for protocol buffers – a language-neutral, platform-neutral, extensible way of serializing structured data for use in communications protocols, data storage, and more.
@@ -209,8 +215,8 @@ This documentation is aimed at Java, C++, or Python developers who want to use p
 </p>
 </div>
 
-<div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1"><span class="section-number-3">2.1</span> What are protocol buffers?</h3>
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">2.1</span> What are protocol buffers?</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Protocol buffers are a flexible, efficient, automated mechanism for serializing structured data – think XML, but smaller, faster, and simpler. You define how you want your data to be structured once, then you can use special generated source code to easily write and read your structured data to and from a variety of data streams and using a variety of languages. You can even update your data structure without breaking deployed programs that are compiled against the "old" format.
@@ -218,8 +224,8 @@ Protocol buffers are a flexible, efficient, automated mechanism for serializing 
 </div>
 </div>
 
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2"><span class="section-number-3">2.2</span> How do they work?</h3>
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">2.2</span> How do they work?</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 You specify how you want the information you're serializing to be structured by defining protocol buffer message types in .proto files. Each protocol buffer message is a small logical record of information, containing a series of name-value pairs. Here's a very basic example of a .proto file that defines a message containing information about a person:
@@ -227,23 +233,23 @@ You specify how you want the information you're serializing to be structured by 
 
 <div class="org-src-container">
 
-<pre class="src src-protobuf">message Person {
-	required string name = 1;
-	required int32 id = 2;
-	optional string email = 3;
+<pre class="src src-protobuf"><span style="color: #a1db00;">message</span> <span style="color: #00d7af;">Person</span> {
+    <span style="color: #a1db00;">required</span> <span style="color: #00d7af;">string</span> <span style="color: #ff8700;">name</span> = 1;
+    <span style="color: #a1db00;">required</span> <span style="color: #00d7af;">int32</span> <span style="color: #ff8700;">id</span> = 2;
+    <span style="color: #a1db00;">optional</span> <span style="color: #00d7af;">string</span> <span style="color: #ff8700;">email</span> = 3;
 
-	enum PhoneType {
-		MOBILE = 0;
-		HOME = 1;
-		WORK = 2;
-	}
+    <span style="color: #a1db00;">enum</span> <span style="color: #00d7af;">PhoneType</span> {
+        MOBILE = 0;
+        HOME = 1;
+        WORK = 2;
+    }
 
-	message PhoneNumber {
-		required string number = 1;
-		optional PhoneType type = 2 [default = HOME];
-	}
+    <span style="color: #a1db00;">message</span> <span style="color: #00d7af;">PhoneNumber</span> {
+        <span style="color: #a1db00;">required</span> <span style="color: #00d7af;">string</span> <span style="color: #ff8700;">number</span> = 1;
+        <span style="color: #a1db00;">optional</span> <span style="color: #00d7af;">PhoneType</span> <span style="color: #ff8700;">type</span> = 2 [<span style="color: #a1db00;">default</span> = HOME];
+    }
 
-	repeated PhoneNumber phone = 4;
+    <span style="color: #a1db00;">repeated</span> <span style="color: #00d7af;">PhoneNumber</span> <span style="color: #ff8700;">phone</span> = 4;
 }
 </pre>
 </div>
@@ -258,11 +264,11 @@ Once you've defined your messages, you run the protocol buffer compiler for your
 
 <div class="org-src-container">
 
-<pre class="src src-c++">Person person;
-person.set_name("John Doe");
+<pre class="src src-c++"><span style="color: #00d7af;">Person</span> <span style="color: #ff8700;">person</span>;
+person.set_name(<span style="color: #ff4ea3;">"John Doe"</span>);
 person.set_id(1234);
-person.set_email("jdoe@example.com");
-fstream output("myfile", ios::out | ios::binary);
+person.set_email(<span style="color: #ff4ea3;">"jdoe@example.com"</span>);
+<span style="color: #00d7af;">fstream</span> <span style="color: #ffd700;">output</span>(<span style="color: #ff4ea3;">"myfile"</span>, <span style="color: #5fafd7;">ios</span>::out | <span style="color: #5fafd7;">ios</span>::binary);
 person.SerializeToOstream(&amp;output);
 </pre>
 </div>
@@ -273,11 +279,11 @@ Then, later on, you could read your message back in:
 
 <div class="org-src-container">
 
-<pre class="src src-c++">fstream input("myfile", ios::in | ios::binary);
-Person person;
+<pre class="src src-c++"><span style="color: #00d7af;">fstream</span> <span style="color: #ffd700;">input</span>(<span style="color: #ff4ea3;">"myfile"</span>, <span style="color: #5fafd7;">ios</span>::in | <span style="color: #5fafd7;">ios</span>::binary);
+<span style="color: #00d7af;">Person</span> <span style="color: #ff8700;">person</span>;
 person.ParseFromIstream(&amp;input);
-cout &lt;&lt; "Name: " &lt;&lt; person.name() &lt;&lt; endl;
-cout &lt;&lt; "E-mail: " &lt;&lt; person.email() &lt;&lt; endl;
+cout &lt;&lt; <span style="color: #ff4ea3;">"Name: "</span> &lt;&lt; person.name() &lt;&lt; endl;
+cout &lt;&lt; <span style="color: #ff4ea3;">"E-mail: "</span> &lt;&lt; person.email() &lt;&lt; endl;
 </pre>
 </div>
 
@@ -291,24 +297,19 @@ You'll find a complete reference for using generated protocol buffer code in the
 </div>
 </div>
 
-<div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Why not just use XML?</h3>
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">2.3</span> Why not just use XML?</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Protocol buffers have many advantages over XML for serializing structured data. Protocol buffers:
 </p>
 
 <ul class="org-ul">
-<li>are simpler
-</li>
-<li>are 3 to 10 times smaller
-</li>
-<li>are 20 to 100 times faster
-</li>
-<li>are less ambiguous
-</li>
-<li>generate data access classes that are easier to use programmatically
-</li>
+<li>are simpler</li>
+<li>are 3 to 10 times smaller</li>
+<li>are 20 to 100 times faster</li>
+<li>are less ambiguous</li>
+<li>generate data access classes that are easier to use programmatically</li>
 </ul>
 <p>
 For example, let's say you want to model a person with a name and an email. In XML, you need to do:
@@ -316,10 +317,10 @@ For example, let's say you want to model a person with a name and an email. In X
 
 <div class="org-src-container">
 
-<pre class="src src-xml">&lt;person&gt;
-  &lt;name&gt;John Doe&lt;/name&gt;
-  &lt;email&gt;jdoe@example.com&lt;/email&gt;
-&lt;/person&gt;
+<pre class="src src-xml">&lt;<span style="color: #ffd700;">person</span>&gt;
+  &lt;<span style="color: #ffd700;">name</span>&gt;John Doe&lt;/<span style="color: #ffd700;">name</span>&gt;
+  &lt;<span style="color: #ffd700;">email</span>&gt;jdoe@example.com&lt;/<span style="color: #ffd700;">email</span>&gt;
+&lt;/<span style="color: #ffd700;">person</span>&gt;
 </pre>
 </div>
 
@@ -329,11 +330,11 @@ while the corresponding protocol buffer message (in protocol buffer text format)
 <div class="org-src-container">
 
 <pre class="src src-protobuf"># Textual representation of a protocol buffer.
-# This is *not* the binary format used on the wire.
+# This is *not* the binary format used on the <span style="color: #5fafd7;">wire</span>.
 person {
-	name: "John Doe"
-		email: "jdoe@example.com"
-		}
+    name: <span style="color: #ff4ea3;">"John Doe"</span>
+        email: <span style="color: #ff4ea3;">"jdoe@example.com"</span>
+        }
 </pre>
 </div>
 
@@ -347,8 +348,8 @@ Also, manipulating a protocol buffer is much easier:
 
 <div class="org-src-container">
 
-<pre class="src src-c++">cout &lt;&lt; "Name: " &lt;&lt; person.name() &lt;&lt; endl;
-cout &lt;&lt; "E-mail: " &lt;&lt; person.email() &lt;&lt; endl;
+<pre class="src src-c++">cout &lt;&lt; <span style="color: #ff4ea3;">"Name: "</span> &lt;&lt; person.name() &lt;&lt; endl;
+cout &lt;&lt; <span style="color: #ff4ea3;">"E-mail: "</span> &lt;&lt; person.email() &lt;&lt; endl;
 </pre>
 </div>
 
@@ -358,11 +359,11 @@ Whereas with XML you would have to do something like:
 
 <div class="org-src-container">
 
-<pre class="src src-c++">cout &lt;&lt; "Name: "
-&lt;&lt; person.getElementsByTagName("name")-&gt;item(0)-&gt;innerText()
+<pre class="src src-c++">cout &lt;&lt; <span style="color: #ff4ea3;">"Name: "</span>
+&lt;&lt; person.getElementsByTagName(<span style="color: #ff4ea3;">"name"</span>)-&gt;item(0)-&gt;innerText()
 &lt;&lt; endl;
-cout &lt;&lt; "E-mail: "
-&lt;&lt; person.getElementsByTagName("email")-&gt;item(0)-&gt;innerText()
+cout &lt;&lt; <span style="color: #ff4ea3;">"E-mail: "</span>
+&lt;&lt; person.getElementsByTagName(<span style="color: #ff4ea3;">"email"</span>)-&gt;item(0)-&gt;innerText()
 &lt;&lt; endl;
 </pre>
 </div>
@@ -385,8 +386,8 @@ Once you're all set, try following the tutorial for your chosen language – thi
 </div>
 </div>
 
-<div id="outline-container-sec-2-4" class="outline-3">
-<h3 id="sec-2-4"><span class="section-number-3">2.4</span> Introducing proto3</h3>
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">2.4</span> Introducing proto3</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Our most recent version 3 alpha release introduces a new language version - Protocol Buffers language version 3 (aka proto3), as well as some new features in our existing language version (aka proto2). Proto3 simplifies the protocol buffer language, both for ease of use and to make it available in a wider range of programming languages: our current alpha release lets you generate protocol buffer code in Java, C++, Python, JavaNano, and Ruby, with some limitations. In addition you can generate proto3 code for Go using the latest Go protoc plugin, available from the golang/protobuf Github repository. More languages are in the pipeline.
@@ -396,10 +397,8 @@ Our most recent version 3 alpha release introduces a new language version - Prot
 We currently recommend trying proto3 only:
 </p>
 <ul class="org-ul">
-<li>if you want try using protocol buffers in one of our newly-supported languages.
-</li>
-<li>If you you want to try our new open-source RPC implementation gRPC (currently also in alpha release) – we recommend using proto3 for all new gRPC servers and clients as it avoids compatibility issues.
-</li>
+<li>if you want try using protocol buffers in one of our newly-supported languages.</li>
+<li>If you you want to try our new open-source RPC implementation gRPC (currently also in alpha release) – we recommend using proto3 for all new gRPC servers and clients as it avoids compatibility issues.</li>
 </ul>
 
 <p>
@@ -416,8 +415,8 @@ You can see the major differences from the current default version in the releas
 </div>
 </div>
 
-<div id="outline-container-sec-2-5" class="outline-3">
-<h3 id="sec-2-5"><span class="section-number-3">2.5</span> A bit of history</h3>
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">2.5</span> A bit of history</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 Protocol buffers were initially developed at Google to deal with an index server request/response protocol. Prior to protocol buffers, there was a format for requests and responses that used hand marshalling/unmarshalling of requests and responses, and that supported a number of versions of the protocol. This resulted in some very ugly code, like:
@@ -425,14 +424,14 @@ Protocol buffers were initially developed at Google to deal with an index server
 
 <div class="org-src-container">
 
-<pre class="src src-c++">if (version == 3) {
-	...
-} else if (version &gt; 4) {
-	if (version == 5) {
-		...
-	}
-	...
-		}
+<pre class="src src-c++"><span style="color: #a1db00;">if</span> (version == 3) {
+    ...
+} <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span> (version &gt; 4) {
+    <span style="color: #a1db00;">if</span> (version == 5) {
+        ...
+    }
+    ...
+        }
 </pre>
 </div>
 
@@ -469,15 +468,15 @@ Protocol buffers are now Google's lingua franca for data – at time of writing,
 </div>
 </div>
 
-<div id="outline-container-sec-2-6" class="outline-3">
-<h3 id="sec-2-6"><span class="section-number-3">2.6</span> What are protocol buffers?</h3>
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">2.6</span> What are protocol buffers?</h3>
 </div>
 </div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> Tutorials</h2>
+<div id="outline-container-orgheadline24" class="outline-2">
+<h2 id="orgheadline24"><span class="section-number-2">3</span> Tutorials</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Tutorials Overview</h3>
+</div><div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">3.1</span> Tutorials Overview</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Each tutorial in this section shows you how to implement a simple application using protocol buffers in your favourite language, introducing you to the language's protocol buffer API as well as showing you the basics of creating and using .proto files. The complete sample code for each application is also provided.
@@ -487,22 +486,17 @@ Each tutorial in this section shows you how to implement a simple application us
 The tutorials don't assume that you know anything about protocol buffers, but do assume that you are comfortable writing code in your chosen language, including using file I/O.
 </p>
 <ul class="org-ul">
-<li>C++ Tutorial
-</li>
-<li>C# Tutorial
-</li>
-<li>Go Tutorial
-</li>
-<li>Java Tutorial
-</li>
-<li>Python Tutorial
-</li>
+<li>C++ Tutorial</li>
+<li>C# Tutorial</li>
+<li>Go Tutorial</li>
+<li>Java Tutorial</li>
+<li>Python Tutorial</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Basics: C++</h3>
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">3.2</span> Basics: C++</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 This tutorial provides a basic C++ programmer's introduction to working with protocol buffers. By walking through creating a simple example application, it shows you how to
@@ -513,26 +507,29 @@ This tutorial provides a basic C++ programmer's introduction to working with pro
 </p>
 
 <ul class="org-ul">
-<li>Define message formats in a .proto file.
+<li><p>
+Define message formats in a .proto file.
+</p>
 
 <p>
 在.proto 文件中定义消息格式。
-</p>
-</li>
+</p></li>
 
-<li>Use the protocol buffer compiler.
+<li><p>
+Use the protocol buffer compiler.
+</p>
 
 <p>
 使用 protocol buffer 编译器。
-</p>
-</li>
+</p></li>
 
-<li>Use the C++ protocol buffer API to write and read messages.
+<li><p>
+Use the C++ protocol buffer API to write and read messages.
+</p>
 
 <p>
 使用 C++ protocol buffer API 读写消息。
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -545,8 +542,8 @@ This isn't a comprehensive guide to using protocol buffers in C++. For more deta
 </div>
 </div>
 
-<div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Why Use Protocol Buffers?</h3>
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">3.3</span> Why Use Protocol Buffers?</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 为什么使用 Protocol Buffers？
@@ -569,26 +566,29 @@ How do you serialize and retrieve structured data like this? There are a few way
 </p>
 
 <ul class="org-ul">
-<li>The raw in-memory data structures can be sent/saved in binary form. Over time, this is a fragile approach, as the receiving/reading code must be compiled with exactly the same memory layout, endianness, etc. Also, as files accumulate data in the raw format and copies of software that are wired for that format are spread around, it's very hard to extend the format.
+<li><p>
+The raw in-memory data structures can be sent/saved in binary form. Over time, this is a fragile approach, as the receiving/reading code must be compiled with exactly the same memory layout, endianness, etc. Also, as files accumulate data in the raw format and copies of software that are wired for that format are spread around, it's very hard to extend the format.
+</p>
 
 <p>
 原始的内存中的数据结构可以通过二进制形式进行发送/保存。随着时间的推移，这变成脆弱的方法，因为接收/读取的代码必须使用相同的内存布局、字节顺序等进行编译。同时，随着文件以原始格式积累数据和专门针对这种格式软件的发散，扩展格式变得非常难。
-</p>
-</li>
+</p></li>
 
-<li>You can invent an ad-hoc way to encode the data items into a single string – such as encoding 4 ints as "12:3:-23:67". This is a simple and flexible approach, although it does require writing one-off encoding and parsing code, and the parsing imposes a small run-time cost. This works best for encoding very simple data.
+<li><p>
+You can invent an ad-hoc way to encode the data items into a single string – such as encoding 4 ints as "12:3:-23:67". This is a simple and flexible approach, although it does require writing one-off encoding and parsing code, and the parsing imposes a small run-time cost. This works best for encoding very simple data.
+</p>
 
 <p>
 可以发明一种专门格式将数据项编码为一个字符串&#x2014;比如将四个整形数编码为"12:3:-23:67"。这种方法简单灵活，尽管它要求编写一次性的编码和解码程序，解码还会增加小的运行成本。这最合适编码非常简单的数据。
-</p>
-</li>
+</p></li>
 
-<li>Serialize the data to XML. This approach can be very attractive since XML is (sort of) human readable and there are binding libraries for lots of languages. This can be a good choice if you want to share data with other applications/projects. However, XML is notoriously space intensive, and encoding/decoding it can impose a huge performance penalty on applications. Also, navigating an XML DOM tree is considerably more complicated than navigating simple fields in a class normally would be.
+<li><p>
+Serialize the data to XML. This approach can be very attractive since XML is (sort of) human readable and there are binding libraries for lots of languages. This can be a good choice if you want to share data with other applications/projects. However, XML is notoriously space intensive, and encoding/decoding it can impose a huge performance penalty on applications. Also, navigating an XML DOM tree is considerably more complicated than navigating simple fields in a class normally would be.
+</p>
 
 <p>
 将数据序列化为 XML。这种方法非常有吸引力，因为 XML 是一种人类可读的语言，并且很多语言都有相对应的库。如果想和其他程序/项目共享数据的话，这可能是非常不错的选择。然而，XML 是出了名的占用空间大，并且编解码都会使应用程序性能损失巨大。同时，操作 XML DOM 树通常也比操作类的简单字段更加复杂。
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -601,8 +601,8 @@ protocol bffers 可以灵活、高效、自动化的解决这个问题。使用 
 </div>
 </div>
 
-<div id="outline-container-sec-3-4" class="outline-3">
-<h3 id="sec-3-4"><span class="section-number-3">3.4</span> Where to Find the Example Code</h3>
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12"><span class="section-number-3">3.4</span> Where to Find the Example Code</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 哪里去找示例代码？
@@ -618,8 +618,8 @@ The example code is included in the source code package, under the "examples" di
 </div>
 </div>
 
-<div id="outline-container-sec-3-5" class="outline-3">
-<h3 id="sec-3-5"><span class="section-number-3">3.5</span> Defining Your Protocol Format</h3>
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13"><span class="section-number-3">3.5</span> Defining Your Protocol Format</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 定义自己的协议格式。
@@ -635,29 +635,29 @@ To create your address book application, you'll need to start with a .proto file
 
 <div class="org-src-container">
 
-<pre class="src src-protobuf">package tutorial;
+<pre class="src src-protobuf"><span style="color: #a1db00;">package</span> <span style="color: #00d7af;">tutorial</span>;
 
-message Person {
-	required string name = 1;
-	required int32 id = 2;
-	optional string email = 3;
+<span style="color: #a1db00;">message</span> <span style="color: #00d7af;">Person</span> {
+    <span style="color: #a1db00;">required</span> <span style="color: #00d7af;">string</span> <span style="color: #ff8700;">name</span> = 1;
+    <span style="color: #a1db00;">required</span> <span style="color: #00d7af;">int32</span> <span style="color: #ff8700;">id</span> = 2;
+    <span style="color: #a1db00;">optional</span> <span style="color: #00d7af;">string</span> <span style="color: #ff8700;">email</span> = 3;
 
-	enum PhoneType {
-		MOBILE = 0;
-		HOME = 1;
-		WORK = 2;
-	}
+    <span style="color: #a1db00;">enum</span> <span style="color: #00d7af;">PhoneType</span> {
+        MOBILE = 0;
+        HOME = 1;
+        WORK = 2;
+    }
 
-	message PhoneNumber {
-		required string number = 1;
-		optional PhoneType type = 2 [default = HOME];
-	}
+    <span style="color: #a1db00;">message</span> <span style="color: #00d7af;">PhoneNumber</span> {
+        <span style="color: #a1db00;">required</span> <span style="color: #00d7af;">string</span> <span style="color: #ff8700;">number</span> = 1;
+        <span style="color: #a1db00;">optional</span> <span style="color: #00d7af;">PhoneType</span> <span style="color: #ff8700;">type</span> = 2 [<span style="color: #a1db00;">default</span> = HOME];
+    }
 
-	repeated PhoneNumber phone = 4;
+    <span style="color: #a1db00;">repeated</span> <span style="color: #00d7af;">PhoneNumber</span> <span style="color: #ff8700;">phone</span> = 4;
 }
 
-message AddressBook {
-	repeated Person person = 1;
+<span style="color: #a1db00;">message</span> <span style="color: #00d7af;">AddressBook</span> {
+    <span style="color: #a1db00;">repeated</span> <span style="color: #00d7af;">Person</span> <span style="color: #ff8700;">person</span> = 1;
 }
 </pre>
 </div>
@@ -703,26 +703,29 @@ Each field must be annotated with one of the following modifiers:
 </p>
 
 <ul class="org-ul">
-<li>required: a value for the field must be provided, otherwise the message will be considered "uninitialized". If libprotobuf is compiled in debug mode, serializing an uninitialized message will cause an assertion failure. In optimized builds, the check is skipped and the message will be written anyway. However, parsing an uninitialized message will always fail (by returning false from the parse method). Other than this, a required field behaves exactly like an optional field.
+<li><p>
+required: a value for the field must be provided, otherwise the message will be considered "uninitialized". If libprotobuf is compiled in debug mode, serializing an uninitialized message will cause an assertion failure. In optimized builds, the check is skipped and the message will be written anyway. However, parsing an uninitialized message will always fail (by returning false from the parse method). Other than this, a required field behaves exactly like an optional field.
+</p>
 
 <p>
 required：必须提供字段的值，否则消息将被认为是“为初始化”的。如果 libprotobuf 是在调试模式下编译的，序列化未初始化的信息将会导致一个断言失败。在优化过构建中，将会跳过检查，可以任意写消息。然而，解析为初始化的消息将总是失败（通过解析方法返回 false）。除此之外，required 的字段行为类似 optional 字段。
-</p>
-</li>
+</p></li>
 
-<li>optional: the field may or may not be set. If an optional field value isn't set, a default value is used. For simple types, you can specify your own default value, as we've done for the phone number type in the example. Otherwise, a system default is used: zero for numeric types, the empty string for strings, false for bools. For embedded messages, the default value is always the "default instance" or "prototype" of the message, which has none of its fields set. Calling the accessor to get the value of an optional (or required) field which has not been explicitly set always returns that field's default value.
+<li><p>
+optional: the field may or may not be set. If an optional field value isn't set, a default value is used. For simple types, you can specify your own default value, as we've done for the phone number type in the example. Otherwise, a system default is used: zero for numeric types, the empty string for strings, false for bools. For embedded messages, the default value is always the "default instance" or "prototype" of the message, which has none of its fields set. Calling the accessor to get the value of an optional (or required) field which has not been explicitly set always returns that field's default value.
+</p>
 
 <p>
 optional：字段设置与否都可。如果可选字段没有设置就使用默认值。对于简单类型，可以指定自己的默认值，就像例子中电话号码类型那样做的。否则，使用系统默认值：数字类型是 0，字符串是空串。布尔是 false。嵌入消息的默认值总是消息没有设置字段的“default instance”或“prototype”。对没有明确设置的可选或必选字段调用访问器总是返回字段的默认值。
-</p>
-</li>
+</p></li>
 
-<li>repeated: the field may be repeated any number of times (including zero). The order of the repeated values will be preserved in the protocol buffer. Think of repeated fields as dynamically sized arrays.
+<li><p>
+repeated: the field may be repeated any number of times (including zero). The order of the repeated values will be preserved in the protocol buffer. Think of repeated fields as dynamically sized arrays.
+</p>
 
 <p>
 repeated：字段可能被重复任意次数（包括 0）。重复值的顺序将会保存在 protocol buffer 中。把重复字段想成动态大小的数组。
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -743,8 +746,8 @@ You'll find a complete guide to writing .proto files – including all the possi
 </div>
 </div>
 
-<div id="outline-container-sec-3-6" class="outline-3">
-<h3 id="sec-3-6"><span class="section-number-3">3.6</span> Compiling Your Protocol Buffers</h3>
+<div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14"><span class="section-number-3">3.6</span> Compiling Your Protocol Buffers</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 Now that you have a .proto, the next thing you need to do is generate the classes you'll need to read and write AddressBook (and hence Person and PhoneNumber) messages. To do this, you need to run the protocol buffer compiler protoc on your .proto:
@@ -755,14 +758,17 @@ Now that you have a .proto, the next thing you need to do is generate the classe
 </p>
 
 <ol class="org-ol">
-<li>If you haven't installed the compiler, <a href="https://developers.google.com/protocol-buffers/docs/downloads.html?hl=zh-CN">download the package</a> and follow the instructions in the README.
+<li><p>
+If you haven't installed the compiler, <a href="https://developers.google.com/protocol-buffers/docs/downloads.html?hl=zh-CN">download the package</a> and follow the instructions in the README.
+</p>
 
 <p>
 如果还没有安装编译器，下载并按照 README 中的说明进行安装。
-</p>
-</li>
+</p></li>
 
-<li>Now run the compiler, specifying the source directory (where your application's source code lives – the current directory is used if you don't provide a value), the destination directory (where you want the generated code to go; often the same as $SRC_DIR), and the path to your .proto. In this case, you&#x2026;:
+<li><p>
+Now run the compiler, specifying the source directory (where your application's source code lives – the current directory is used if you don't provide a value), the destination directory (where you want the generated code to go; often the same as $SRC_DIR), and the path to your .proto. In this case, you&#x2026;:
+</p>
 
 <p>
 现在运行编译器，指定源码目录（程序源代码所放目录&#x2013;如果不指定是默认是当前目录），目标目录（希望生成的代码存放的目录，经常和$SRC_DIR 一样），.proto 文件路径。这种情况下：
@@ -770,7 +776,7 @@ Now that you have a .proto, the next thing you need to do is generate the classe
 
 <div class="org-src-container">
 
-<pre class="src src-sh">protoc -I=$SRC_DIR --cpp_out=$DST_DIR $SRC_DIR/addressbook.proto
+<pre class="src src-sh">protoc -I=$<span style="color: #ff8700;">SRC_DIR</span> --cpp_out=$<span style="color: #ff8700;">DST_DIR</span> $<span style="color: #ff8700;">SRC_DIR</span>/addressbook.proto
 </pre>
 </div>
 
@@ -780,8 +786,7 @@ Because you want C++ classes, you use the <code>--cpp_out</code> option – simi
 
 <p>
 如果想要 c++类，可以使用 <code>--cpp_out</code> 选项，其他语言也有类似的选项。
-</p>
-</li>
+</p></li>
 </ol>
 
 <p>
@@ -793,25 +798,27 @@ This generates the following files in your specified destination directory:
 </p>
 
 <ul class="org-ul">
-<li>addressbook.pb.h, the header which declares your generated classes.
+<li><p>
+addressbook.pb.h, the header which declares your generated classes.
+</p>
 
 <p>
 addressbook.pb.h，声明生成类的头文件。
-</p>
-</li>
+</p></li>
 
-<li>addressbook.pb.cc, which contains the implementation of your classes.
+<li><p>
+addressbook.pb.cc, which contains the implementation of your classes.
+</p>
 
 <p>
 addressbook.pb.cc，类文件的实现。
-</p>
-</li>
+</p></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-3-7" class="outline-3">
-<h3 id="sec-3-7"><span class="section-number-3">3.7</span> The Protocol Buffer API</h3>
+<div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15"><span class="section-number-3">3.7</span> The Protocol Buffer API</h3>
 <div class="outline-text-3" id="text-3-7">
 <p>
 Let's look at some of the generated code and see what classes and functions the compiler has created for you. If you look in tutorial.pb.h, you can see that you have a class for each message you specified in tutorial.proto. Looking closer at the Person class, you can see that the complier has generated accessors for each field. For example, for the name, id, email, and phone fields, you have these methods:
@@ -823,36 +830,36 @@ Let's look at some of the generated code and see what classes and functions the 
 
 <div class="org-src-container">
 
-<pre class="src src-c++">// name
-inline bool has_name() const;
-inline void clear_name();
-inline const ::std::string&amp; name() const;
-inline void set_name(const ::std::string&amp; value);
-inline void set_name(const char* value);
-inline ::std::string* mutable_name();
+<pre class="src src-c++"><span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">name</span>
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">bool</span> <span style="color: #ffd700;">has_name</span>() <span style="color: #a1db00;">const</span>;
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">clear_name</span>();
+<span style="color: #a1db00;">inline</span> <span style="color: #a1db00;">const</span> ::<span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">string</span>&amp; <span style="color: #ffd700;">name</span>() <span style="color: #a1db00;">const</span>;
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">set_name</span>(<span style="color: #a1db00;">const</span> ::<span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">string</span>&amp; <span style="color: #ff8700;">value</span>);
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">set_name</span>(<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">value</span>);
+<span style="color: #a1db00;">inline</span> ::<span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">string</span>* <span style="color: #ffd700;">mutable_name</span>();
 
-// id
-inline bool has_id() const;
-inline void clear_id();
-inline int32_t id() const;
-inline void set_id(int32_t value);
+<span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">id</span>
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">bool</span> <span style="color: #ffd700;">has_id</span>() <span style="color: #a1db00;">const</span>;
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">clear_id</span>();
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">int32_t</span> <span style="color: #ffd700;">id</span>() <span style="color: #a1db00;">const</span>;
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">set_id</span>(<span style="color: #00d7af;">int32_t</span> <span style="color: #ff8700;">value</span>);
 
-// email
-inline bool has_email() const;
-inline void clear_email();
-inline const ::std::string&amp; email() const;
-inline void set_email(const ::std::string&amp; value);
-inline void set_email(const char* value);
-inline ::std::string* mutable_email();
+<span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">email</span>
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">bool</span> <span style="color: #ffd700;">has_email</span>() <span style="color: #a1db00;">const</span>;
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">clear_email</span>();
+<span style="color: #a1db00;">inline</span> <span style="color: #a1db00;">const</span> ::<span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">string</span>&amp; <span style="color: #ffd700;">email</span>() <span style="color: #a1db00;">const</span>;
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">set_email</span>(<span style="color: #a1db00;">const</span> ::<span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">string</span>&amp; <span style="color: #ff8700;">value</span>);
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">set_email</span>(<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">value</span>);
+<span style="color: #a1db00;">inline</span> ::<span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">string</span>* <span style="color: #ffd700;">mutable_email</span>();
 
-// phone
-inline int phone_size() const;
-inline void clear_phone();
-inline const ::google::protobuf::RepeatedPtrField&lt; ::tutorial::Person_PhoneNumber &gt;&amp; phone() const;
-inline ::google::protobuf::RepeatedPtrField&lt; ::tutorial::Person_PhoneNumber &gt;* mutable_phone();
-inline const ::tutorial::Person_PhoneNumber&amp; phone(int index) const;
-inline ::tutorial::Person_PhoneNumber* mutable_phone(int index);
-inline ::tutorial::Person_PhoneNumber* add_phone();
+<span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">phone</span>
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">phone_size</span>() <span style="color: #a1db00;">const</span>;
+<span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">clear_phone</span>();
+<span style="color: #a1db00;">inline</span> <span style="color: #a1db00;">const</span> ::<span style="color: #5fafd7;">google</span>::<span style="color: #5fafd7;">protobuf</span>::<span style="color: #00d7af;">RepeatedPtrField</span>&lt; ::<span style="color: #5fafd7;">tutorial</span>::Person_PhoneNumber &gt;&amp; <span style="color: #ffd700;">phone</span>() <span style="color: #a1db00;">const</span>;
+<span style="color: #a1db00;">inline</span> ::<span style="color: #5fafd7;">google</span>::<span style="color: #5fafd7;">protobuf</span>::<span style="color: #00d7af;">RepeatedPtrField</span>&lt; ::<span style="color: #5fafd7;">tutorial</span>::Person_PhoneNumber &gt;* <span style="color: #ffd700;">mutable_phone</span>();
+<span style="color: #a1db00;">inline</span> <span style="color: #a1db00;">const</span> ::<span style="color: #5fafd7;">tutorial</span>::<span style="color: #00d7af;">Person_PhoneNumber</span>&amp; <span style="color: #ffd700;">phone</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">index</span>) <span style="color: #a1db00;">const</span>;
+<span style="color: #a1db00;">inline</span> ::<span style="color: #5fafd7;">tutorial</span>::Person_PhoneNumber* mutable_phone(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">index</span>);
+<span style="color: #a1db00;">inline</span> ::<span style="color: #5fafd7;">tutorial</span>::Person_PhoneNumber* add_phone();
 </pre>
 </div>
 
@@ -881,33 +888,37 @@ Repeated fields also have some special methods – if you look at the methods fo
 </p>
 
 <ul class="org-ul">
-<li>check the repeated field's <code>_size</code> (in other words, how many phone numbers are associated with this Person).
+<li><p>
+check the repeated field's <code>_size</code> (in other words, how many phone numbers are associated with this Person).
+</p>
 
 <p>
 检查重复字段的 ~_size~（换句话说，这个人关联多少电话号码）
-</p>
-</li>
+</p></li>
 
-<li>get a specified phone number using its index.
+<li><p>
+get a specified phone number using its index.
+</p>
 
 <p>
 通过索引获得指定的电话号码。
-</p>
-</li>
+</p></li>
 
-<li>update an existing phone number at the specified index.
+<li><p>
+update an existing phone number at the specified index.
+</p>
 
 <p>
 根据指定索引更新存在的电话号码。
-</p>
-</li>
+</p></li>
 
-<li>add another phone number to the message which you can then edit (repeated scalar types have an <code>add_</code> that just lets you pass in the new value).
+<li><p>
+add another phone number to the message which you can then edit (repeated scalar types have an <code>add_</code> that just lets you pass in the new value).
+</p>
 
 <p>
 向可以编辑的消息添加另一个电话号码（重复的标量类型有 <code>add_</code> 可以传递新值）。
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -920,8 +931,8 @@ protocol bufffers 编译器为任何特定字段定义生成的确切成员信�
 </div>
 </div>
 
-<div id="outline-container-sec-3-8" class="outline-3">
-<h3 id="sec-3-8"><span class="section-number-3">3.8</span> Enums and Nested Classes</h3>
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16"><span class="section-number-3">3.8</span> Enums and Nested Classes</h3>
 <div class="outline-text-3" id="text-3-8">
 <p>
 The generated code includes a PhoneType enum that corresponds to your .proto enum. You can refer to this type as Person::PhoneType and its values as Person::MOBILE, Person::HOME, and Person::WORK (the implementation details are a little more complicated, but you don't need to understand them to use the enum).
@@ -941,8 +952,8 @@ The compiler has also generated a nested class for you called Person::PhoneNumbe
 </div>
 </div>
 
-<div id="outline-container-sec-3-9" class="outline-3">
-<h3 id="sec-3-9"><span class="section-number-3">3.9</span> Standard Message Methods</h3>
+<div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17"><span class="section-number-3">3.9</span> Standard Message Methods</h3>
 <div class="outline-text-3" id="text-3-9">
 <p>
 Each message class also contains a number of other methods that let you check or manipulate the entire message, including:
@@ -953,33 +964,37 @@ Each message class also contains a number of other methods that let you check or
 </p>
 
 <ul class="org-ul">
-<li>bool IsInitialized() const;: checks if all the required fields have been set.
+<li><p>
+bool IsInitialized() const;: checks if all the required fields have been set.
+</p>
 
 <p>
 bool IsInitialized() const;检查所有 required 字段是否被设置了。
-</p>
-</li>
+</p></li>
 
-<li>string DebugString() const;: returns a human-readable representation of the message, particularly useful for debugging.
+<li><p>
+string DebugString() const;: returns a human-readable representation of the message, particularly useful for debugging.
+</p>
 
 <p>
 string DebugString() const;：返回可读的消息表示，这对调试特别有用。
-</p>
-</li>
+</p></li>
 
-<li>void CopyFrom(const Person&amp; from);: overwrites the message with the given message's values.
+<li><p>
+void CopyFrom(const Person&amp; from);: overwrites the message with the given message's values.
+</p>
 
 <p>
 void CopyFrom(const Person&amp; from);:使用给定消息的值重写消息。
-</p>
-</li>
+</p></li>
 
-<li>void Clear();: clears all the elements back to the empty state.
+<li><p>
+void Clear();: clears all the elements back to the empty state.
+</p>
 
 <p>
 清除所有元素回到空状态。
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -992,8 +1007,8 @@ These and the I/O methods described in the following section implement the Messa
 </div>
 </div>
 
-<div id="outline-container-sec-3-10" class="outline-3">
-<h3 id="sec-3-10"><span class="section-number-3">3.10</span> Parsing and Serialization</h3>
+<div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18"><span class="section-number-3">3.10</span> Parsing and Serialization</h3>
 <div class="outline-text-3" id="text-3-10">
 <p>
 Finally, each protocol buffer class has methods for writing and reading messages of your chosen type using the protocol buffer binary format. These include:
@@ -1004,33 +1019,37 @@ Finally, each protocol buffer class has methods for writing and reading messages
 </p>
 
 <ul class="org-ul">
-<li>bool SerializeToString(string* output) const;: serializes the message and stores the bytes in the given string. Note that the bytes are binary, not text; we only use the string class as a convenient container.
+<li><p>
+bool SerializeToString(string* output) const;: serializes the message and stores the bytes in the given string. Note that the bytes are binary, not text; we only use the string class as a convenient container.
+</p>
 
 <p>
 bool SerializeToString(string* output) const;:序列化消息，并将字节存储在指定字符串中。注意字节是二进制的，不是文本格式；string 类只是作为方便的容器。
-</p>
-</li>
+</p></li>
 
-<li>bool ParseFromString(const string&amp; data);: parses a message from the given string.
+<li><p>
+bool ParseFromString(const string&amp; data);: parses a message from the given string.
+</p>
 
 <p>
 bool ParseFromString(const string&amp; data);: 从指定字符串中解析消息。
-</p>
-</li>
+</p></li>
 
-<li>bool SerializeToOstream(ostream* output) const;: writes the message to the given C++ ostream.
+<li><p>
+bool SerializeToOstream(ostream* output) const;: writes the message to the given C++ ostream.
+</p>
 
 <p>
 bool SerializeToOstream(ostream* output) const;:向指定 C++ ostream 写消息。
-</p>
-</li>
+</p></li>
 
-<li>bool ParseFromIstream(istream* input);: parses a message from the given C++ istream.
+<li><p>
+bool ParseFromIstream(istream* input);: parses a message from the given C++ istream.
+</p>
 
 <p>
 bool ParseFromIstream(istream* input);:从指定 C++ istream 中解析消息。
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -1051,8 +1070,8 @@ Protocol Buffers 和面向对象设计的 Protocol buffer 类基本上是哑数�
 </div>
 </div>
 
-<div id="outline-container-sec-3-11" class="outline-3">
-<h3 id="sec-3-11"><span class="section-number-3">3.11</span> Writing A Message</h3>
+<div id="outline-container-orgheadline19" class="outline-3">
+<h3 id="orgheadline19"><span class="section-number-3">3.11</span> Writing A Message</h3>
 <div class="outline-text-3" id="text-3-11">
 <p>
 Now let's try using your protocol buffer classes. The first thing you want your address book application to be able to do is write personal details to your address book file. To do this, you need to create and populate instances of your protocol buffer classes and then write them to an output stream.
@@ -1072,98 +1091,98 @@ Here is a program which reads an AddressBook from a file, adds one new Person to
 
 <div class="org-src-container">
 
-<pre class="src src-c++">#include &lt;iostream&gt;
-#include &lt;fstream&gt;
-#include &lt;string&gt;
-#include "addressbook.pb.h"
-using namespace std;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;fstream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;string&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">"addressbook.pb.h"</span>
+<span style="color: #a1db00;">using</span> <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">std</span>;
 
-// This function fills in a Person message based on user input.
-void PromptForAddress(tutorial::Person* person) {
-	cout &lt;&lt; "Enter person ID number: ";
-	int id;
-	cin &gt;&gt; id;
-	person-&gt;set_id(id);
-	cin.ignore(256, '\n');
+<span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">This function fills in a Person message based on user input.</span>
+<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">PromptForAddress</span>(<span style="color: #5fafd7;">tutorial</span>::<span style="color: #00d7af;">Person</span>* <span style="color: #ff8700;">person</span>) {
+    cout &lt;&lt; <span style="color: #ff4ea3;">"Enter person ID number: "</span>;
+    <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">id</span>;
+    cin &gt;&gt; id;
+    person-&gt;set_id(id);
+    cin.ignore(256, <span style="color: #ff4ea3;">'\n'</span>);
 
-	cout &lt;&lt; "Enter name: ";
-	getline(cin, *person-&gt;mutable_name());
+    cout &lt;&lt; <span style="color: #ff4ea3;">"Enter name: "</span>;
+    getline(cin, *person-&gt;mutable_name());
 
-	cout &lt;&lt; "Enter email address (blank for none): ";
-	string email;
-	getline(cin, email);
-	if (!email.empty()) {
-		person-&gt;set_email(email);
-	}
+    cout &lt;&lt; <span style="color: #ff4ea3;">"Enter email address (blank for none): "</span>;
+    <span style="color: #00d7af;">string</span> <span style="color: #ff8700;">email</span>;
+    getline(cin, email);
+    <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>email.empty()) {
+        person-&gt;set_email(email);
+    }
 
-	while (true) {
-		cout &lt;&lt; "Enter a phone number (or leave blank to finish): ";
-		string number;
-		getline(cin, number);
-		if (number.empty()) {
-			break;
-		}
+    <span style="color: #a1db00;">while</span> (<span style="color: #5fafd7;">true</span>) {
+        cout &lt;&lt; <span style="color: #ff4ea3;">"Enter a phone number (or leave blank to finish): "</span>;
+        <span style="color: #00d7af;">string</span> <span style="color: #ff8700;">number</span>;
+        getline(cin, number);
+        <span style="color: #a1db00;">if</span> (number.empty()) {
+            <span style="color: #a1db00;">break</span>;
+        }
 
-		tutorial::Person::PhoneNumber* phone_number = person-&gt;add_phone();
-		phone_number-&gt;set_number(number);
+        <span style="color: #5fafd7;">tutorial</span>::<span style="color: #5fafd7;">Person</span>::<span style="color: #00d7af;">PhoneNumber</span>* <span style="color: #ff8700;">phone_number</span> = person-&gt;add_phone();
+        phone_number-&gt;set_number(number);
 
-		cout &lt;&lt; "Is this a mobile, home, or work phone? ";
-		string type;
-		getline(cin, type);
-		if (type == "mobile") {
-			phone_number-&gt;set_type(tutorial::Person::MOBILE);
-		} else if (type == "home") {
-			phone_number-&gt;set_type(tutorial::Person::HOME);
-		} else if (type == "work") {
-			phone_number-&gt;set_type(tutorial::Person::WORK);
-		} else {
-			cout &lt;&lt; "Unknown phone type.  Using default." &lt;&lt; endl;
-		}
-	}
+        cout &lt;&lt; <span style="color: #ff4ea3;">"Is this a mobile, home, or work phone? "</span>;
+        <span style="color: #00d7af;">string</span> <span style="color: #ff8700;">type</span>;
+        getline(cin, type);
+        <span style="color: #a1db00;">if</span> (type == <span style="color: #ff4ea3;">"mobile"</span>) {
+            phone_number-&gt;set_type(<span style="color: #5fafd7;">tutorial</span>::<span style="color: #5fafd7;">Person</span>::MOBILE);
+        } <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span> (type == <span style="color: #ff4ea3;">"home"</span>) {
+            phone_number-&gt;set_type(<span style="color: #5fafd7;">tutorial</span>::<span style="color: #5fafd7;">Person</span>::HOME);
+        } <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span> (type == <span style="color: #ff4ea3;">"work"</span>) {
+            phone_number-&gt;set_type(<span style="color: #5fafd7;">tutorial</span>::<span style="color: #5fafd7;">Person</span>::WORK);
+        } <span style="color: #a1db00;">else</span> {
+            cout &lt;&lt; <span style="color: #ff4ea3;">"Unknown phone type.  Using default."</span> &lt;&lt; endl;
+        }
+    }
 }
 
-// Main function:  Reads the entire address book from a file,
-//   adds one person based on user input, then writes it back out to the same
-//   file.
-int main(int argc, char* argv[]) {
-	// Verify that the version of the library that we linked against is
-	// compatible with the version of the headers we compiled against.
-	GOOGLE_PROTOBUF_VERIFY_VERSION;
+<span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Main function:  Reads the entire address book from a file,</span>
+<span style="color: #6c6c6c; font-style: italic;">//   </span><span style="color: #6c6c6c; font-style: italic;">adds one person based on user input, then writes it back out to the same</span>
+<span style="color: #6c6c6c; font-style: italic;">//   </span><span style="color: #6c6c6c; font-style: italic;">file.</span>
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">argv</span>[]) {
+    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Verify that the version of the library that we linked against is</span>
+    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">compatible with the version of the headers we compiled against.</span>
+    GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-	if (argc != 2) {
-		cerr &lt;&lt; "Usage:  " &lt;&lt; argv[0] &lt;&lt; " ADDRESS_BOOK_FILE" &lt;&lt; endl;
-		return -1;
-	}
+    <span style="color: #a1db00;">if</span> (argc != 2) {
+        cerr &lt;&lt; <span style="color: #ff4ea3;">"Usage:  "</span> &lt;&lt; argv[0] &lt;&lt; <span style="color: #ff4ea3;">" ADDRESS_BOOK_FILE"</span> &lt;&lt; endl;
+        <span style="color: #a1db00;">return</span> -1;
+    }
 
-	tutorial::AddressBook address_book;
+    <span style="color: #5fafd7;">tutorial</span>::<span style="color: #00d7af;">AddressBook</span> <span style="color: #ff8700;">address_book</span>;
 
-	{
-		// Read the existing address book.
-		fstream input(argv[1], ios::in | ios::binary);
-		if (!input) {
-			cout &lt;&lt; argv[1] &lt;&lt; ": File not found.  Creating a new file." &lt;&lt; endl;
-		} else if (!address_book.ParseFromIstream(&amp;input)) {
-			cerr &lt;&lt; "Failed to parse address book." &lt;&lt; endl;
-			return -1;
-		}
-	}
+    {
+        <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Read the existing address book.</span>
+        <span style="color: #00d7af;">fstream</span> <span style="color: #ff8700;">input</span>(<span style="color: #00d7af;">argv</span>[1], <span style="color: #5fafd7;">ios</span>::in | <span style="color: #5fafd7;">ios</span>::binary);
+        <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>input) {
+            cout &lt;&lt; argv[1] &lt;&lt; <span style="color: #ff4ea3;">": File not found.  Creating a new file."</span> &lt;&lt; endl;
+        } <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>address_book.ParseFromIstream(&amp;input)) {
+            cerr &lt;&lt; <span style="color: #ff4ea3;">"Failed to parse address book."</span> &lt;&lt; endl;
+            <span style="color: #a1db00;">return</span> -1;
+        }
+    }
 
-	// Add an address.
-	PromptForAddress(address_book.add_person());
+    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Add an address.</span>
+    PromptForAddress(address_book.add_person());
 
-	{
-		// Write the new address book back to disk.
-		fstream output(argv[1], ios::out | ios::trunc | ios::binary);
-		if (!address_book.SerializeToOstream(&amp;output)) {
-			cerr &lt;&lt; "Failed to write address book." &lt;&lt; endl;
-			return -1;
-		}
-	}
+    {
+        <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Write the new address book back to disk.</span>
+        <span style="color: #00d7af;">fstream</span> <span style="color: #ff8700;">output</span>(<span style="color: #00d7af;">argv</span>[1], <span style="color: #5fafd7;">ios</span>::out | <span style="color: #5fafd7;">ios</span>::trunc | <span style="color: #5fafd7;">ios</span>::binary);
+        <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>address_book.SerializeToOstream(&amp;output)) {
+            cerr &lt;&lt; <span style="color: #ff4ea3;">"Failed to write address book."</span> &lt;&lt; endl;
+            <span style="color: #a1db00;">return</span> -1;
+        }
+    }
 
-	// Optional:  Delete all global objects allocated by libprotobuf.
-	google::protobuf::ShutdownProtobufLibrary();
+    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Optional:  Delete all global objects allocated by libprotobuf.</span>
+    <span style="color: #5fafd7;">google</span>::<span style="color: #5fafd7;">protobuf</span>::ShutdownProtobufLibrary();
 
-	return 0;
+    <span style="color: #a1db00;">return</span> 0;
 }
 </pre>
 </div>
@@ -1186,8 +1205,8 @@ Also notice the call to ShutdownProtobufLibrary() at the end of the program. All
 </div>
 </div>
 
-<div id="outline-container-sec-3-12" class="outline-3">
-<h3 id="sec-3-12"><span class="section-number-3">3.12</span> Reading A Message</h3>
+<div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20"><span class="section-number-3">3.12</span> Reading A Message</h3>
 <div class="outline-text-3" id="text-3-12">
 <p>
 Of course, an address book wouldn't be much use if you couldn't get any information out of it! This example reads the file created by the above example and prints all the information in it.
@@ -1199,79 +1218,79 @@ Of course, an address book wouldn't be much use if you couldn't get any informat
 
 <div class="org-src-container">
 
-<pre class="src src-c++">#include &lt;iostream&gt;
-#include &lt;fstream&gt;
-#include &lt;string&gt;
-#include "addressbook.pb.h"
-using namespace std;
+<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;fstream&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;string&gt;</span>
+<span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">"addressbook.pb.h"</span>
+<span style="color: #a1db00;">using</span> <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">std</span>;
 
-// Iterates though all people in the AddressBook and prints info about them.
-void ListPeople(const tutorial::AddressBook&amp; address_book) {
-	for (int i = 0; i &lt; address_book.person_size(); i++) {
-		const tutorial::Person&amp; person = address_book.person(i);
+<span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Iterates though all people in the AddressBook and prints info about them.</span>
+<span style="color: #00d7af;">void</span> <span style="color: #ffd700;">ListPeople</span>(<span style="color: #a1db00;">const</span> <span style="color: #5fafd7;">tutorial</span>::<span style="color: #00d7af;">AddressBook</span>&amp; <span style="color: #ff8700;">address_book</span>) {
+    <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span> = 0; i &lt; address_book.person_size(); i++) {
+        <span style="color: #a1db00;">const</span> <span style="color: #5fafd7;">tutorial</span>::<span style="color: #00d7af;">Person</span>&amp; <span style="color: #ff8700;">person</span> = address_book.person(i);
 
-		cout &lt;&lt; "Person ID: " &lt;&lt; person.id() &lt;&lt; endl;
-		cout &lt;&lt; "  Name: " &lt;&lt; person.name() &lt;&lt; endl;
-		if (person.has_email()) {
-			cout &lt;&lt; "  E-mail address: " &lt;&lt; person.email() &lt;&lt; endl;
-		}
+        cout &lt;&lt; <span style="color: #ff4ea3;">"Person ID: "</span> &lt;&lt; person.id() &lt;&lt; endl;
+        cout &lt;&lt; <span style="color: #ff4ea3;">"  Name: "</span> &lt;&lt; person.name() &lt;&lt; endl;
+        <span style="color: #a1db00;">if</span> (person.has_email()) {
+            cout &lt;&lt; <span style="color: #ff4ea3;">"  E-mail address: "</span> &lt;&lt; person.email() &lt;&lt; endl;
+        }
 
-		for (int j = 0; j &lt; person.phone_size(); j++) {
-			const tutorial::Person::PhoneNumber&amp; phone_number = person.phone(j);
+        <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">j</span> = 0; j &lt; person.phone_size(); j++) {
+            <span style="color: #a1db00;">const</span> <span style="color: #5fafd7;">tutorial</span>::<span style="color: #5fafd7;">Person</span>::<span style="color: #00d7af;">PhoneNumber</span>&amp; <span style="color: #ff8700;">phone_number</span> = person.phone(j);
 
-			switch (phone_number.type()) {
-			case tutorial::Person::MOBILE:
-				cout &lt;&lt; "  Mobile phone #: ";
-				break;
-			case tutorial::Person::HOME:
-				cout &lt;&lt; "  Home phone #: ";
-				break;
-			case tutorial::Person::WORK:
-				cout &lt;&lt; "  Work phone #: ";
-				break;
-			}
-			cout &lt;&lt; phone_number.number() &lt;&lt; endl;
-		}
-	}
+            <span style="color: #a1db00;">switch</span> (phone_number.type()) {
+            <span style="color: #a1db00;">case</span> <span style="color: #5fafd7;">tutorial</span>::<span style="color: #5fafd7;">Person</span>::MOBILE:
+                cout &lt;&lt; <span style="color: #ff4ea3;">"  Mobile phone #: "</span>;
+                <span style="color: #a1db00;">break</span>;
+            <span style="color: #a1db00;">case</span> <span style="color: #5fafd7;">tutorial</span>::<span style="color: #5fafd7;">Person</span>::HOME:
+                cout &lt;&lt; <span style="color: #ff4ea3;">"  Home phone #: "</span>;
+                <span style="color: #a1db00;">break</span>;
+            <span style="color: #a1db00;">case</span> <span style="color: #5fafd7;">tutorial</span>::<span style="color: #5fafd7;">Person</span>::WORK:
+                cout &lt;&lt; <span style="color: #ff4ea3;">"  Work phone #: "</span>;
+                <span style="color: #a1db00;">break</span>;
+            }
+            cout &lt;&lt; phone_number.number() &lt;&lt; endl;
+        }
+    }
 }
 
-// Main function:  Reads the entire address book from a file and prints all
-//   the information inside.
-int main(int argc, char* argv[]) {
-	// Verify that the version of the library that we linked against is
-	// compatible with the version of the headers we compiled against.
-	GOOGLE_PROTOBUF_VERIFY_VERSION;
+<span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Main function:  Reads the entire address book from a file and prints all</span>
+<span style="color: #6c6c6c; font-style: italic;">//   </span><span style="color: #6c6c6c; font-style: italic;">the information inside.</span>
+<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">argv</span>[]) {
+    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Verify that the version of the library that we linked against is</span>
+    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">compatible with the version of the headers we compiled against.</span>
+    GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-	if (argc != 2) {
-		cerr &lt;&lt; "Usage:  " &lt;&lt; argv[0] &lt;&lt; " ADDRESS_BOOK_FILE" &lt;&lt; endl;
-		return -1;
-	}
+    <span style="color: #a1db00;">if</span> (argc != 2) {
+        cerr &lt;&lt; <span style="color: #ff4ea3;">"Usage:  "</span> &lt;&lt; argv[0] &lt;&lt; <span style="color: #ff4ea3;">" ADDRESS_BOOK_FILE"</span> &lt;&lt; endl;
+        <span style="color: #a1db00;">return</span> -1;
+    }
 
-	tutorial::AddressBook address_book;
+    <span style="color: #5fafd7;">tutorial</span>::<span style="color: #00d7af;">AddressBook</span> <span style="color: #ff8700;">address_book</span>;
 
-	{
-		// Read the existing address book.
-		fstream input(argv[1], ios::in | ios::binary);
-		if (!address_book.ParseFromIstream(&amp;input)) {
-			cerr &lt;&lt; "Failed to parse address book." &lt;&lt; endl;
-			return -1;
-		}
-	}
+    {
+        <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Read the existing address book.</span>
+        <span style="color: #00d7af;">fstream</span> <span style="color: #ff8700;">input</span>(<span style="color: #00d7af;">argv</span>[1], <span style="color: #5fafd7;">ios</span>::in | <span style="color: #5fafd7;">ios</span>::binary);
+        <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>address_book.ParseFromIstream(&amp;input)) {
+            cerr &lt;&lt; <span style="color: #ff4ea3;">"Failed to parse address book."</span> &lt;&lt; endl;
+            <span style="color: #a1db00;">return</span> -1;
+        }
+    }
 
-	ListPeople(address_book);
+    ListPeople(address_book);
 
-	// Optional:  Delete all global objects allocated by libprotobuf.
-	google::protobuf::ShutdownProtobufLibrary();
+    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">Optional:  Delete all global objects allocated by libprotobuf.</span>
+    <span style="color: #5fafd7;">google</span>::<span style="color: #5fafd7;">protobuf</span>::ShutdownProtobufLibrary();
 
-	return 0;
+    <span style="color: #a1db00;">return</span> 0;
 }
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-3-13" class="outline-3">
-<h3 id="sec-3-13"><span class="section-number-3">3.13</span> Extending a Protocol Buffer</h3>
+<div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21"><span class="section-number-3">3.13</span> Extending a Protocol Buffer</h3>
 <div class="outline-text-3" id="text-3-13">
 <p>
 Sooner or later after you release the code that uses your protocol buffer, you will undoubtedly want to "improve" the protocol buffer's definition. If you want your new buffers to be backwards-compatible, and your old buffers to be forward-compatible – and you almost certainly do want this – then there are some rules you need to follow. In the new version of the protocol buffer:
@@ -1282,33 +1301,37 @@ Sooner or later after you release the code that uses your protocol buffer, you w
 </p>
 
 <ul class="org-ul">
-<li>you must not change the tag numbers of any existing fields.
+<li><p>
+you must not change the tag numbers of any existing fields.
+</p>
 
 <p>
 一定不要改变已有字段的 tag 编号。
-</p>
-</li>
+</p></li>
 
-<li>you must not add or delete any required fields.
+<li><p>
+you must not add or delete any required fields.
+</p>
 
 <p>
 一定不要添加或删除任何 required 字段。
-</p>
-</li>
+</p></li>
 
-<li>you may delete optional or repeated fields.
+<li><p>
+you may delete optional or repeated fields.
+</p>
 
 <p>
 可以删除 optional 或 repeated 字段。
-</p>
-</li>
+</p></li>
 
-<li>you may add new optional or repeated fields but you must use fresh tag numbers (i.e. tag numbers that were never used in this protocol buffer, not even by deleted fields).
+<li><p>
+you may add new optional or repeated fields but you must use fresh tag numbers (i.e. tag numbers that were never used in this protocol buffer, not even by deleted fields).
+</p>
 
 <p>
 可以添加新的 optional 或 repeated 字段，但是必须使用新的 tag 编号（例如，该 protobuf 中从来没有使用过的 tag 编号，包括已删除的字段）。
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -1329,8 +1352,8 @@ If you follow these rules, old code will happily read new messages and simply ig
 </div>
 </div>
 
-<div id="outline-container-sec-3-14" class="outline-3">
-<h3 id="sec-3-14"><span class="section-number-3">3.14</span> Optimization Tips</h3>
+<div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22"><span class="section-number-3">3.14</span> Optimization Tips</h3>
 <div class="outline-text-3" id="text-3-14">
 <p>
 The C++ Protocol Buffers library is extremely heavily optimized. However, proper usage can improve performance even more. Here are some tips for squeezing every last drop of speed out of the library:
@@ -1341,25 +1364,27 @@ C++ Protocol Buffers 库进行了大量优化。然而，正确的使用还可�
 </p>
 
 <ul class="org-ul">
-<li>Reuse message objects when possible. Messages try to keep around any memory they allocate for reuse, even when they are cleared. Thus, if you are handling many messages with the same type and similar structure in succession, it is a good idea to reuse the same message object each time to take load off the memory allocator. However, objects can become bloated over time, especially if your messages vary in "shape" or if you occasionally construct a message that is much larger than usual. You should monitor the sizes of your message objects by calling the SpaceUsed method and delete them once they get too big.
+<li><p>
+Reuse message objects when possible. Messages try to keep around any memory they allocate for reuse, even when they are cleared. Thus, if you are handling many messages with the same type and similar structure in succession, it is a good idea to reuse the same message object each time to take load off the memory allocator. However, objects can become bloated over time, especially if your messages vary in "shape" or if you occasionally construct a message that is much larger than usual. You should monitor the sizes of your message objects by calling the SpaceUsed method and delete them once they get too big.
+</p>
 
 <p>
 尽可能重用消息对象。即使消息被清除了，它们也会为了重用尽量保持它们分配的所有内存。因此，如果处理许多继承上有相同类型和类似结构的消息，每次重用相同的消息对象是个好主意，这可以减轻内存分配器的负载。然而，经过多次对象可能会变臃肿，特别是消息外形不同或经常构造比平时大的多的消息。应该通过调用 SpaceUsed 方法来监视消息对象的大小，一旦它们太大了旧删掉。
-</p>
-</li>
+</p></li>
 
-<li>Your system's memory allocator may not be well-optimized for allocating lots of small objects from multiple threads. Try using Google's tcmalloc instead.
+<li><p>
+Your system's memory allocator may not be well-optimized for allocating lots of small objects from multiple threads. Try using Google's tcmalloc instead.
+</p>
 
 <p>
 系统内存分配器可能没有针对多线程分配大量小对象的情况进行优化。可以尝试使用 Google 的 tcmalloc 代替。
-</p>
-</li>
+</p></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-3-15" class="outline-3">
-<h3 id="sec-3-15"><span class="section-number-3">3.15</span> Advanced Usage</h3>
+<div id="outline-container-orgheadline23" class="outline-3">
+<h3 id="orgheadline23"><span class="section-number-3">3.15</span> Advanced Usage</h3>
 <div class="outline-text-3" id="text-3-15">
 <p>
 Protocol buffers have uses that go beyond simple accessors and serialization. Be sure to explore the <a href="https://developers.google.com/protocol-buffers/docs/reference/cpp/index.html?hl=zh-CN">C++ API reference</a> to see what else you can do with them.
@@ -1390,8 +1415,7 @@ Reflection is provided by the <a href=":Reflection">:Reflection</a> interface.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: lsl</p>
-<p class="date">Created: 2016-07-06 三 14:32</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2016-07-23 六 12:30</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

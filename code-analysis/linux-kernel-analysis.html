@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>linux kernel analysis</title>
-<!-- 2016-07-06 三 14:31 -->
+<!-- 2016-07-23 六 12:30 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>linux kernel analysis</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="lsl" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -58,15 +65,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -142,135 +148,125 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. 序</a></li>
-<li><a href="#sec-2">2. 第一章 概述</a></li>
-<li><a href="#sec-3">3. 第二章 微型计算机组成结构</a></li>
-<li><a href="#sec-4">4. 第三章 内核编程语言和环境</a></li>
-<li><a href="#sec-5">5. 第四章 80x86 保护模式及其编程</a></li>
-<li><a href="#sec-6">6. 第五章 Linux 内核体系结构</a></li>
-<li><a href="#sec-7">7. 第六章 引导启动程序</a></li>
-<li><a href="#sec-8">8. 第七章 初始化程序</a></li>
-<li><a href="#sec-9">9. 第八章 内核代码</a></li>
-<li><a href="#sec-10">10. 第九章 块设备驱动程序</a></li>
-<li><a href="#sec-11">11. 第十章 字符设备驱动程序</a></li>
-<li><a href="#sec-12">12. 第十一章 数字协处理器</a></li>
-<li><a href="#sec-13">13. 第十二章 文件系统</a></li>
-<li><a href="#sec-14">14. 第十三章 内存管理</a></li>
-<li><a href="#sec-15">15. 第十四章 头文件</a></li>
-<li><a href="#sec-16">16. 第十五章 库文件</a></li>
-<li><a href="#sec-17">17. 第十六章 构建工具</a></li>
-<li><a href="#sec-18">18. 第十七章 实验环境设置与使用方法</a></li>
+<li><a href="#orgheadline1">1. 序</a></li>
+<li><a href="#orgheadline2">2. 第一章 概述</a></li>
+<li><a href="#orgheadline3">3. 第二章 微型计算机组成结构</a></li>
+<li><a href="#orgheadline4">4. 第三章 内核编程语言和环境</a></li>
+<li><a href="#orgheadline5">5. 第四章 80x86 保护模式及其编程</a></li>
+<li><a href="#orgheadline6">6. 第五章 Linux 内核体系结构</a></li>
+<li><a href="#orgheadline7">7. 第六章 引导启动程序</a></li>
+<li><a href="#orgheadline8">8. 第七章 初始化程序</a></li>
+<li><a href="#orgheadline9">9. 第八章 内核代码</a></li>
+<li><a href="#orgheadline10">10. 第九章 块设备驱动程序</a></li>
+<li><a href="#orgheadline11">11. 第十章 字符设备驱动程序</a></li>
+<li><a href="#orgheadline12">12. 第十一章 数字协处理器</a></li>
+<li><a href="#orgheadline13">13. 第十二章 文件系统</a></li>
+<li><a href="#orgheadline14">14. 第十三章 内存管理</a></li>
+<li><a href="#orgheadline15">15. 第十四章 头文件</a></li>
+<li><a href="#orgheadline16">16. 第十五章 库文件</a></li>
+<li><a href="#orgheadline17">17. 第十六章 构建工具</a></li>
+<li><a href="#orgheadline18">18. 第十七章 实验环境设置与使用方法</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> 序</h2>
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> 序</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 本章中涉及到的书籍和文章：
 </p>
 <ul class="org-ul">
-<li>《Linux 内核源码分析》
-</li>
-<li>《莱昂氏 Unix 源代码分析》
-</li>
-<li>《操作系统：设计与实现》
-</li>
-<li>《Linux&#x2013;a Free unix-386 Kernel》
-</li>
-<li>《系统软件：系统编程导论》
-</li>
-<li>《UNIX 操作系统设计》
-</li>
-<li>《80386 Programer's Reference Manual》
-</li>
+<li>《Linux 内核源码分析》</li>
+<li>《莱昂氏 Unix 源代码分析》</li>
+<li>《操作系统：设计与实现》</li>
+<li>《Linux&#x2013;a Free unix-386 Kernel》</li>
+<li>《系统软件：系统编程导论》</li>
+<li>《UNIX 操作系统设计》</li>
+<li>《80386 Programer's Reference Manual》</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> 第一章 概述</h2>
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> 第一章 概述</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 本章涉及到的书籍和文章：
 </p>
 <ul class="org-ul">
-<li>《内核黑客手册》
-</li>
-<li>《Programming the 80386》
-</li>
+<li>《内核黑客手册》</li>
+<li>《Programming the 80386》</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> 第二章 微型计算机组成结构</h2>
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">3</span> 第二章 微型计算机组成结构</h2>
 </div>
 
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> 第三章 内核编程语言和环境</h2>
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">4</span> 第三章 内核编程语言和环境</h2>
 </div>
 
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> 第四章 80x86 保护模式及其编程</h2>
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5"><span class="section-number-2">5</span> 第四章 80x86 保护模式及其编程</h2>
 </div>
 
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> 第五章 Linux 内核体系结构</h2>
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">6</span> 第五章 Linux 内核体系结构</h2>
 </div>
 
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7"><span class="section-number-2">7</span> 第六章 引导启动程序</h2>
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7"><span class="section-number-2">7</span> 第六章 引导启动程序</h2>
 </div>
 
-<div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8"><span class="section-number-2">8</span> 第七章 初始化程序</h2>
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8"><span class="section-number-2">8</span> 第七章 初始化程序</h2>
 </div>
 
-<div id="outline-container-sec-9" class="outline-2">
-<h2 id="sec-9"><span class="section-number-2">9</span> 第八章 内核代码</h2>
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9"><span class="section-number-2">9</span> 第八章 内核代码</h2>
 </div>
 
-<div id="outline-container-sec-10" class="outline-2">
-<h2 id="sec-10"><span class="section-number-2">10</span> 第九章 块设备驱动程序</h2>
+<div id="outline-container-orgheadline10" class="outline-2">
+<h2 id="orgheadline10"><span class="section-number-2">10</span> 第九章 块设备驱动程序</h2>
 </div>
 
-<div id="outline-container-sec-11" class="outline-2">
-<h2 id="sec-11"><span class="section-number-2">11</span> 第十章 字符设备驱动程序</h2>
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11"><span class="section-number-2">11</span> 第十章 字符设备驱动程序</h2>
 </div>
 
-<div id="outline-container-sec-12" class="outline-2">
-<h2 id="sec-12"><span class="section-number-2">12</span> 第十一章 数字协处理器</h2>
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12"><span class="section-number-2">12</span> 第十一章 数字协处理器</h2>
 </div>
 
-<div id="outline-container-sec-13" class="outline-2">
-<h2 id="sec-13"><span class="section-number-2">13</span> 第十二章 文件系统</h2>
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13"><span class="section-number-2">13</span> 第十二章 文件系统</h2>
 </div>
 
-<div id="outline-container-sec-14" class="outline-2">
-<h2 id="sec-14"><span class="section-number-2">14</span> 第十三章 内存管理</h2>
+<div id="outline-container-orgheadline14" class="outline-2">
+<h2 id="orgheadline14"><span class="section-number-2">14</span> 第十三章 内存管理</h2>
 </div>
 
-<div id="outline-container-sec-15" class="outline-2">
-<h2 id="sec-15"><span class="section-number-2">15</span> 第十四章 头文件</h2>
+<div id="outline-container-orgheadline15" class="outline-2">
+<h2 id="orgheadline15"><span class="section-number-2">15</span> 第十四章 头文件</h2>
 </div>
 
-<div id="outline-container-sec-16" class="outline-2">
-<h2 id="sec-16"><span class="section-number-2">16</span> 第十五章 库文件</h2>
+<div id="outline-container-orgheadline16" class="outline-2">
+<h2 id="orgheadline16"><span class="section-number-2">16</span> 第十五章 库文件</h2>
 </div>
 
-<div id="outline-container-sec-17" class="outline-2">
-<h2 id="sec-17"><span class="section-number-2">17</span> 第十六章 构建工具</h2>
+<div id="outline-container-orgheadline17" class="outline-2">
+<h2 id="orgheadline17"><span class="section-number-2">17</span> 第十六章 构建工具</h2>
 </div>
 
-<div id="outline-container-sec-18" class="outline-2">
-<h2 id="sec-18"><span class="section-number-2">18</span> 第十七章 实验环境设置与使用方法</h2>
+<div id="outline-container-orgheadline18" class="outline-2">
+<h2 id="orgheadline18"><span class="section-number-2">18</span> 第十七章 实验环境设置与使用方法</h2>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: lsl</p>
-<p class="date">Created: 2016-07-06 三 14:31</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2016-07-23 六 12:30</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

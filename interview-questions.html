@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>面试中遇到的代码</title>
-<!-- 2016-07-06 三 14:31 -->
+<!-- 2016-07-23 六 12:29 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>面试中遇到的代码</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="lsl" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -58,15 +65,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -142,635 +148,635 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. C</a>
+<li><a href="#orgheadline2">1. C</a>
 <ul>
-<li><a href="#sec-1-1">1.1. 定义一个宏，比较两个数 a、b 的大小，不能使用大于、小于、if 语句</a></li>
+<li><a href="#orgheadline1">1.1. 定义一个宏，比较两个数 a、b 的大小，不能使用大于、小于、if 语句</a></li>
 </ul>
 </li>
-<li><a href="#sec-2">2. C++</a>
+<li><a href="#orgheadline11">2. C++</a>
 <ul>
-<li><a href="#sec-2-1">2.1. 函数重载中 name mangle 具体过程</a></li>
-<li><a href="#sec-2-2">2.2. auto_ptr 为什么不能作为容器的元素？</a></li>
-<li><a href="#sec-2-3">2.3. 重载、覆盖、重写区别</a></li>
-<li><a href="#sec-2-4">2.4. C++内存模型</a></li>
-<li><a href="#sec-2-5">2.5. 实现字符串类</a></li>
-<li><a href="#sec-2-6">2.6. C++ 如何实现热加载？</a>
+<li><a href="#orgheadline3">2.1. 函数重载中 name mangle 具体过程</a></li>
+<li><a href="#orgheadline4">2.2. auto_ptr 为什么不能作为容器的元素？</a></li>
+<li><a href="#orgheadline5">2.3. 重载、覆盖、重写区别</a></li>
+<li><a href="#orgheadline6">2.4. C++内存模型</a></li>
+<li><a href="#orgheadline7">2.5. 实现字符串类</a></li>
+<li><a href="#orgheadline10">2.6. C++ 如何实现热加载？</a>
 <ul>
-<li><a href="#sec-2-6-1">2.6.1. Windows</a></li>
-<li><a href="#sec-2-6-2">2.6.2. Linux</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#sec-3">3. 库</a>
-<ul>
-<li><a href="#sec-3-1">3.1. Clib</a>
-<ul>
-<li><a href="#sec-3-1-1">3.1.1. 数字字符串转换函数</a></li>
-<li><a href="#sec-3-1-2">3.1.2. 字符串函数</a></li>
-<li><a href="#sec-3-1-3">3.1.3. 内存拷贝函数</a></li>
-</ul>
-</li>
-<li><a href="#sec-3-2">3.2. STL</a>
-<ul>
-<li><a href="#sec-3-2-1">3.2.1. 容器底层实现方式</a></li>
-<li><a href="#sec-3-2-2">3.2.2. 为什么 auto_ptr 不能放在容器中。</a></li>
+<li><a href="#orgheadline8">2.6.1. Windows</a></li>
+<li><a href="#orgheadline9">2.6.2. Linux</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#sec-4">4. 网络</a>
+<li><a href="#orgheadline19">3. 库</a>
 <ul>
-<li><a href="#sec-4-1">4.1. 判断大小端</a></li>
-<li><a href="#sec-4-2">4.2. TCP 和 UDP 区别，适用场景</a></li>
-<li><a href="#sec-4-3">4.3. TCP</a>
+<li><a href="#orgheadline15">3.1. Clib</a>
 <ul>
-<li><a href="#sec-4-3-1">4.3.1. 连接状态图</a></li>
-<li><a href="#sec-4-3-2">4.3.2. 为什么建立连接需要三次，而不是两次？</a></li>
-<li><a href="#sec-4-3-3">4.3.3. 为什么断开连接需要四次？</a></li>
-<li><a href="#sec-4-3-4">4.3.4. TIME_WAIT 作用：</a></li>
-<li><a href="#sec-4-3-5">4.3.5. 粘包问题</a>
-<ul>
-<li><a href="#sec-4-3-5-1">现象模拟</a></li>
-<li><a href="#sec-4-3-5-2">解决方法</a></li>
+<li><a href="#orgheadline12">3.1.1. 数字字符串转换函数</a></li>
+<li><a href="#orgheadline13">3.1.2. 字符串函数</a></li>
+<li><a href="#orgheadline14">3.1.3. 内存拷贝函数</a></li>
 </ul>
 </li>
-<li><a href="#sec-4-3-6">4.3.6. 字符串编码问题</a>
+<li><a href="#orgheadline18">3.2. STL</a>
 <ul>
-<li><a href="#sec-4-3-6-1">现象模拟</a></li>
-<li><a href="#sec-4-3-6-2">解决方法</a></li>
-</ul>
-</li>
-<li><a href="#sec-4-3-7">4.3.7. 长连接的保活问题</a>
-<ul>
-<li><a href="#sec-4-3-7-1">现象模拟</a></li>
-<li><a href="#sec-4-3-7-2">解决方法</a></li>
-</ul>
-</li>
-<li><a href="#sec-4-3-8">4.3.8. 缓冲区脏数据问题</a>
-<ul>
-<li><a href="#sec-4-3-8-1">现象模拟</a></li>
-<li><a href="#sec-4-3-8-2">解决方法</a></li>
-</ul>
-</li>
-<li><a href="#sec-4-3-9">4.3.9. 内存碎片问题</a>
-<ul>
-<li><a href="#sec-4-3-9-1">现象模拟</a></li>
-<li><a href="#sec-4-3-9-2">解决方法</a></li>
-</ul>
-</li>
-<li><a href="#sec-4-3-10">4.3.10. 乱序问题</a>
-<ul>
-<li><a href="#sec-4-3-10-1">现象模拟</a></li>
-<li><a href="#sec-4-3-10-2">解决方法</a></li>
+<li><a href="#orgheadline16">3.2.1. 容器底层实现方式</a></li>
+<li><a href="#orgheadline17">3.2.2. 为什么 auto_ptr 不能放在容器中。</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#sec-4-4">4.4. UDP</a></li>
-<li><a href="#sec-4-5">4.5. 弱网络环境下如何保证数据传输？</a></li>
-<li><a href="#sec-4-6">4.6. 描述一下浏览器输入网址之后发生了什么。</a></li>
+<li><a href="#orgheadline48">4. 网络</a>
+<ul>
+<li><a href="#orgheadline20">4.1. 判断大小端</a></li>
+<li><a href="#orgheadline21">4.2. TCP 和 UDP 区别，适用场景</a></li>
+<li><a href="#orgheadline44">4.3. TCP</a>
+<ul>
+<li><a href="#orgheadline22">4.3.1. 连接状态图</a></li>
+<li><a href="#orgheadline23">4.3.2. 为什么建立连接需要三次，而不是两次？</a></li>
+<li><a href="#orgheadline24">4.3.3. 为什么断开连接需要四次？</a></li>
+<li><a href="#orgheadline25">4.3.4. TIME_WAIT 作用：</a></li>
+<li><a href="#orgheadline28">4.3.5. 粘包问题</a>
+<ul>
+<li><a href="#orgheadline26">现象模拟</a></li>
+<li><a href="#orgheadline27">解决方法</a></li>
 </ul>
 </li>
-<li><a href="#sec-5">5. 操作系统</a>
+<li><a href="#orgheadline31">4.3.6. 字符串编码问题</a>
 <ul>
-<li><a href="#sec-5-1">5.1. 判断操作系统是 32 位还是 64 位</a></li>
-<li><a href="#sec-5-2">5.2. 线程和进程的区别联系：</a></li>
-<li><a href="#sec-5-3">5.3. 如何系统调优</a></li>
-<li><a href="#sec-5-4">5.4. 进程间通信方式</a></li>
-<li><a href="#sec-5-5">5.5. 常用命令</a>
-<ul>
-<li><a href="#sec-5-5-1">5.5.1. 管道</a></li>
-<li><a href="#sec-5-5-2">5.5.2. 信号</a></li>
-<li><a href="#sec-5-5-3">5.5.3. 信号量</a></li>
-<li><a href="#sec-5-5-4">5.5.4. 消息队列</a></li>
-<li><a href="#sec-5-5-5">5.5.5. 共享内存</a></li>
-<li><a href="#sec-5-5-6">5.5.6. socket</a></li>
+<li><a href="#orgheadline29">现象模拟</a></li>
+<li><a href="#orgheadline30">解决方法</a></li>
 </ul>
 </li>
-<li><a href="#sec-5-6">5.6. 线程间通信方式</a>
+<li><a href="#orgheadline34">4.3.7. 长连接的保活问题</a>
 <ul>
-<li><a href="#sec-5-6-1">5.6.1. 信号量</a></li>
-<li><a href="#sec-5-6-2">5.6.2. 锁</a>
-<ul>
-<li><a href="#sec-5-6-2-1">自旋锁</a></li>
-<li><a href="#sec-5-6-2-2">读写自旋锁</a></li>
-<li><a href="#sec-5-6-2-3">顺序自旋锁</a></li>
+<li><a href="#orgheadline32">现象模拟</a></li>
+<li><a href="#orgheadline33">解决方法</a></li>
 </ul>
 </li>
+<li><a href="#orgheadline37">4.3.8. 缓冲区脏数据问题</a>
+<ul>
+<li><a href="#orgheadline35">现象模拟</a></li>
+<li><a href="#orgheadline36">解决方法</a></li>
 </ul>
 </li>
-<li><a href="#sec-5-7">5.7. malloc 的底层实现。</a></li>
-<li><a href="#sec-5-8">5.8. deamon 进程如何实现。</a></li>
+<li><a href="#orgheadline40">4.3.9. 内存碎片问题</a>
+<ul>
+<li><a href="#orgheadline38">现象模拟</a></li>
+<li><a href="#orgheadline39">解决方法</a></li>
 </ul>
 </li>
-<li><a href="#sec-6">6. 数据库</a>
+<li><a href="#orgheadline43">4.3.10. 乱序问题</a>
 <ul>
-<li><a href="#sec-6-1">6.1. MySQL</a>
-<ul>
-<li><a href="#sec-6-1-1">6.1.1. 查询语句如何调优</a></li>
-<li><a href="#sec-6-1-2">6.1.2. 索引的用途、类型、建立方法</a></li>
-<li><a href="#sec-6-1-3">6.1.3. 如何分表</a></li>
-<li><a href="#sec-6-1-4">6.1.4. 如何调优</a></li>
-<li><a href="#sec-6-1-5">6.1.5. 数据库应该先做记录还是先写日志？</a></li>
-</ul>
-</li>
-<li><a href="#sec-6-2">6.2. NOSQL</a></li>
-</ul>
-</li>
-<li><a href="#sec-7">7. 设计模式</a>
-<ul>
-<li><a href="#sec-7-1">7.1. 单例模式</a></li>
-<li><a href="#sec-7-2">7.2. 线程安全的单例模式</a></li>
-</ul>
-</li>
-<li><a href="#sec-8">8. 数据结构</a>
-<ul>
-<li><a href="#sec-8-1">8.1. 字符串</a></li>
-<li><a href="#sec-8-2">8.2. 链表</a>
-<ul>
-<li><a href="#sec-8-2-1">8.2.1. 节点</a></li>
-<li><a href="#sec-8-2-2">8.2.2. 在 O(1)时间删除链表节点</a></li>
-<li><a href="#sec-8-2-3">8.2.3. 二级指针删除单链表</a></li>
-<li><a href="#sec-8-2-4">8.2.4. 单链表反转</a>
-<ul>
-<li><a href="#sec-8-2-4-1">递归</a></li>
-<li><a href="#sec-8-2-4-2">非递归</a></li>
-</ul>
-</li>
-<li><a href="#sec-8-2-5">8.2.5. 判断单链表有环并找到环入口</a></li>
-<li><a href="#sec-8-2-6">8.2.6. 单链表排序</a></li>
-<li><a href="#sec-8-2-7">8.2.7. 判断单链表相交</a></li>
-</ul>
-</li>
-<li><a href="#sec-8-3">8.3. 队列</a>
-<ul>
-<li><a href="#sec-8-3-1">8.3.1. 用两个栈实现队列</a></li>
-</ul>
-</li>
-<li><a href="#sec-8-4">8.4. 哈希表</a>
-<ul>
-<li><a href="#sec-8-4-1">8.4.1. 解决 hash 冲突</a>
-<ul>
-<li><a href="#sec-8-4-1-1">开放地址法</a></li>
-<li><a href="#sec-8-4-1-2">再 hash</a></li>
-<li><a href="#sec-8-4-1-3">链地址法</a></li>
+<li><a href="#orgheadline41">现象模拟</a></li>
+<li><a href="#orgheadline42">解决方法</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#sec-8-5">8.5. 树</a>
+<li><a href="#orgheadline45">4.4. UDP</a></li>
+<li><a href="#orgheadline46">4.5. 弱网络环境下如何保证数据传输？</a></li>
+<li><a href="#orgheadline47">4.6. 描述一下浏览器输入网址之后发生了什么。</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline68">5. 操作系统</a>
 <ul>
-<li><a href="#sec-8-5-1">8.5.1. 二叉树</a></li>
-<li><a href="#sec-8-5-2">8.5.2. B 树</a></li>
-<li><a href="#sec-8-5-3">8.5.3. AVL 树</a></li>
-<li><a href="#sec-8-5-4">8.5.4. 红黑树</a></li>
-<li><a href="#sec-8-5-5">8.5.5. tri 树</a></li>
-<li><a href="#sec-8-5-6">8.5.6. 字典数</a></li>
+<li><a href="#orgheadline49">5.1. 判断操作系统是 32 位还是 64 位</a></li>
+<li><a href="#orgheadline50">5.2. 线程和进程的区别联系：</a></li>
+<li><a href="#orgheadline51">5.3. 如何系统调优</a></li>
+<li><a href="#orgheadline52">5.4. 进程间通信方式</a></li>
+<li><a href="#orgheadline59">5.5. 常用命令</a>
+<ul>
+<li><a href="#orgheadline53">5.5.1. 管道</a></li>
+<li><a href="#orgheadline54">5.5.2. 信号</a></li>
+<li><a href="#orgheadline55">5.5.3. 信号量</a></li>
+<li><a href="#orgheadline56">5.5.4. 消息队列</a></li>
+<li><a href="#orgheadline57">5.5.5. 共享内存</a></li>
+<li><a href="#orgheadline58">5.5.6. socket</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline65">5.6. 线程间通信方式</a>
+<ul>
+<li><a href="#orgheadline60">5.6.1. 信号量</a></li>
+<li><a href="#orgheadline64">5.6.2. 锁</a>
+<ul>
+<li><a href="#orgheadline61">自旋锁</a></li>
+<li><a href="#orgheadline62">读写自旋锁</a></li>
+<li><a href="#orgheadline63">顺序自旋锁</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#sec-9">9. 算法</a>
-<ul>
-<li><a href="#sec-9-1">9.1. 排序</a>
-<ul>
-<li><a href="#sec-9-1-1">9.1.1. 冒泡排序</a></li>
-<li><a href="#sec-9-1-2">9.1.2. 快速排序</a>
-<ul>
-<li><a href="#sec-9-1-2-1">递归实现</a></li>
-<li><a href="#sec-9-1-2-2">栈非递归</a></li>
+<li><a href="#orgheadline66">5.7. malloc 的底层实现。</a></li>
+<li><a href="#orgheadline67">5.8. deamon 进程如何实现。</a></li>
 </ul>
 </li>
-<li><a href="#sec-9-1-3">9.1.3. 插入排序</a>
+<li><a href="#orgheadline76">6. 数据库</a>
 <ul>
-<li><a href="#sec-9-1-3-1">交换位置的插入排序</a></li>
-<li><a href="#sec-9-1-3-2">带二分查找的插入排序</a></li>
-</ul>
-</li>
-<li><a href="#sec-9-1-4">9.1.4. 希尔排序</a></li>
-<li><a href="#sec-9-1-5">9.1.5. 选择排序</a>
+<li><a href="#orgheadline74">6.1. MySQL</a>
 <ul>
-<li><a href="#sec-9-1-5-1">简单选择排序</a></li>
-<li><a href="#sec-9-1-5-2">递归简单选择排序</a></li>
+<li><a href="#orgheadline69">6.1.1. 查询语句如何调优</a></li>
+<li><a href="#orgheadline70">6.1.2. 索引的用途、类型、建立方法</a></li>
+<li><a href="#orgheadline71">6.1.3. 如何分表</a></li>
+<li><a href="#orgheadline72">6.1.4. 如何调优</a></li>
+<li><a href="#orgheadline73">6.1.5. 数据库应该先做记录还是先写日志？</a></li>
 </ul>
 </li>
-<li><a href="#sec-9-1-6">9.1.6. 堆排序</a></li>
-<li><a href="#sec-9-1-7">9.1.7. 归并排序</a>
+<li><a href="#orgheadline75">6.2. NOSQL</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline79">7. 设计模式</a>
 <ul>
-<li><a href="#sec-9-1-7-1">递归实现</a></li>
-<li><a href="#sec-9-1-7-2">非递归实现</a></li>
+<li><a href="#orgheadline77">7.1. 单例模式</a></li>
+<li><a href="#orgheadline78">7.2. 线程安全的单例模式</a></li>
 </ul>
 </li>
-<li><a href="#sec-9-1-8">9.1.8. 基数排序</a></li>
-<li><a href="#sec-9-1-9">9.1.9. 计数排序</a></li>
-<li><a href="#sec-9-1-10">9.1.10. 桶排序</a></li>
-<li><a href="#sec-9-1-11">9.1.11. 排序总结</a></li>
-</ul>
-</li>
-<li><a href="#sec-9-2">9.2. 查找</a>
+<li><a href="#orgheadline105">8. 数据结构</a>
 <ul>
-<li><a href="#sec-9-2-1">9.2.1. 二分查找</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#sec-10">10. 智力题</a>
+<li><a href="#orgheadline80">8.1. 字符串</a></li>
+<li><a href="#orgheadline90">8.2. 链表</a>
 <ul>
-<li><a href="#sec-10-1">10.1. 过桥问题</a></li>
-<li><a href="#sec-10-2">10.2. 天平称重</a></li>
-<li><a href="#sec-10-3">10.3. 小白鼠与毒药</a>
+<li><a href="#orgheadline81">8.2.1. 节点</a></li>
+<li><a href="#orgheadline82">8.2.2. 在 O(1)时间删除链表节点</a></li>
+<li><a href="#orgheadline83">8.2.3. 二级指针删除单链表</a></li>
+<li><a href="#orgheadline86">8.2.4. 单链表反转</a>
+<ul>
+<li><a href="#orgheadline84">递归</a></li>
+<li><a href="#orgheadline85">非递归</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline87">8.2.5. 判断单链表有环并找到环入口</a></li>
+<li><a href="#orgheadline88">8.2.6. 单链表排序</a></li>
+<li><a href="#orgheadline89">8.2.7. 判断单链表相交</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline92">8.3. 队列</a>
+<ul>
+<li><a href="#orgheadline91">8.3.1. 用两个栈实现队列</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline97">8.4. 哈希表</a>
+<ul>
+<li><a href="#orgheadline96">8.4.1. 解决 hash 冲突</a>
+<ul>
+<li><a href="#orgheadline93">开放地址法</a></li>
+<li><a href="#orgheadline94">再 hash</a></li>
+<li><a href="#orgheadline95">链地址法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline104">8.5. 树</a>
+<ul>
+<li><a href="#orgheadline98">8.5.1. 二叉树</a></li>
+<li><a href="#orgheadline99">8.5.2. B 树</a></li>
+<li><a href="#orgheadline100">8.5.3. AVL 树</a></li>
+<li><a href="#orgheadline101">8.5.4. 红黑树</a></li>
+<li><a href="#orgheadline102">8.5.5. tri 树</a></li>
+<li><a href="#orgheadline103">8.5.6. 字典数</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline131">9. 算法</a>
+<ul>
+<li><a href="#orgheadline128">9.1. 排序</a>
+<ul>
+<li><a href="#orgheadline109">9.1.1. 冒泡排序</a></li>
+<li><a href="#orgheadline112">9.1.2. 快速排序</a>
+<ul>
+<li><a href="#orgheadline110">递归实现</a></li>
+<li><a href="#orgheadline111">栈非递归</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline115">9.1.3. 插入排序</a>
+<ul>
+<li><a href="#orgheadline113">交换位置的插入排序</a></li>
+<li><a href="#orgheadline114">带二分查找的插入排序</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline116">9.1.4. 希尔排序</a></li>
+<li><a href="#orgheadline119">9.1.5. 选择排序</a>
+<ul>
+<li><a href="#orgheadline117">简单选择排序</a></li>
+<li><a href="#orgheadline118">递归简单选择排序</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline120">9.1.6. 堆排序</a></li>
+<li><a href="#orgheadline123">9.1.7. 归并排序</a>
+<ul>
+<li><a href="#orgheadline121">递归实现</a></li>
+<li><a href="#orgheadline122">非递归实现</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline124">9.1.8. 基数排序</a></li>
+<li><a href="#orgheadline125">9.1.9. 计数排序</a></li>
+<li><a href="#orgheadline126">9.1.10. 桶排序</a></li>
+<li><a href="#orgheadline127">9.1.11. 排序总结</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline130">9.2. 查找</a>
+<ul>
+<li><a href="#orgheadline129">9.2.1. 二分查找</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline137">10. 智力题</a>
+<ul>
+<li><a href="#orgheadline132">10.1. 过桥问题</a></li>
+<li><a href="#orgheadline133">10.2. 天平称重</a></li>
+<li><a href="#orgheadline136">10.3. 小白鼠与毒药</a>
 <ul>
 <li>
 <ul>
-<li><a href="#sec-10-3-0-1">推广 1</a></li>
-<li><a href="#sec-10-3-0-2">推广 2</a></li>
+<li><a href="#orgheadline134">推广 1</a></li>
+<li><a href="#orgheadline135">推广 2</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#sec-11">11. Makefile 文件</a></li>
-<li><a href="#sec-12">12. 测试上面代码的 main 函数</a></li>
+<li><a href="#orgheadline138">11. Makefile 文件</a></li>
+<li><a href="#orgheadline139">12. 测试上面代码的 main 函数</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> C</h2>
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">1</span> C</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 定义一个宏，比较两个数 a、b 的大小，不能使用大于、小于、if 语句</h3>
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> 定义一个宏，比较两个数 a、b 的大小，不能使用大于、小于、if 语句</h3>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> C++</h2>
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11"><span class="section-number-2">2</span> C++</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 函数重载中 name mangle 具体过程</h3>
+</div><div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">2.1</span> 函数重载中 name mangle 具体过程</h3>
 </div>
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2"><span class="section-number-3">2.2</span> auto_ptr 为什么不能作为容器的元素？</h3>
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">2.2</span> auto_ptr 为什么不能作为容器的元素？</h3>
 </div>
-<div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3"><span class="section-number-3">2.3</span> 重载、覆盖、重写区别</h3>
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">2.3</span> 重载、覆盖、重写区别</h3>
 </div>
-<div id="outline-container-sec-2-4" class="outline-3">
-<h3 id="sec-2-4"><span class="section-number-3">2.4</span> C++内存模型</h3>
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">2.4</span> C++内存模型</h3>
 <div class="outline-text-3" id="text-2-4">
 <div class="org-src-container">
 
-<pre class="src src-c++">    #include &lt;iostream&gt;
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
 
-    using namespace std;
+    <span style="color: #a1db00;">using</span> <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">std</span>;
 
-    class Top {
-    public:
-        char c = 'T';
-        virtual void f () { cout &lt;&lt; " Top::f()" &lt;&lt; endl; }
-        virtual void g () { cout &lt;&lt; " Top::g()" &lt;&lt; endl; }
-        virtual void h () { cout &lt;&lt; " Top::h()" &lt;&lt; endl; }
+    <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">Top</span> {
+    <span style="color: #a1db00;">public</span>:
+        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">c</span> = <span style="color: #ff4ea3;">'T'</span>;
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">f</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">" Top::f()"</span> &lt;&lt; endl; }
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">g</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">" Top::g()"</span> &lt;&lt; endl; }
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">h</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">" Top::h()"</span> &lt;&lt; endl; }
     };
 
-    class Left : virtual public Top {
-    public:
-        char c = 'L';
-        virtual void f () { cout &lt;&lt; "Left::f()" &lt;&lt; endl; }
-        virtual void g_left () { cout &lt;&lt; "Left::g_left()" &lt;&lt; endl; }
-        virtual void h_left () { cout &lt;&lt; "Left::h_left()" &lt;&lt; endl; }
+    <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">Left</span> : <span style="color: #a1db00;">virtual</span> <span style="color: #a1db00;">public</span> <span style="color: #00d7af;">Top</span> {
+    <span style="color: #a1db00;">public</span>:
+        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">c</span> = <span style="color: #ff4ea3;">'L'</span>;
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">f</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Left::f()"</span> &lt;&lt; endl; }
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">g_left</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Left::g_left()"</span> &lt;&lt; endl; }
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">h_left</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Left::h_left()"</span> &lt;&lt; endl; }
     };
 
-    class Right :virtual public Top {
-    public:
-        char c = 'R';
-        virtual void f () { cout &lt;&lt; "Right::f()" &lt;&lt; endl; }
-        virtual void g_right () { cout &lt;&lt; "Right::g_right()" &lt;&lt; endl; }
-        virtual void h_right () { cout &lt;&lt; "Right::h_right()" &lt;&lt; endl; }
+    <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">Right</span> :<span style="color: #a1db00;">virtual</span> <span style="color: #a1db00;">public</span> <span style="color: #00d7af;">Top</span> {
+    <span style="color: #a1db00;">public</span>:
+        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">c</span> = <span style="color: #ff4ea3;">'R'</span>;
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">f</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Right::f()"</span> &lt;&lt; endl; }
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">g_right</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Right::g_right()"</span> &lt;&lt; endl; }
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">h_right</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Right::h_right()"</span> &lt;&lt; endl; }
     };
 
-    class Bottom :public Left, public Right {
-    public:
-        char c = 'B';
-        virtual void f () { cout &lt;&lt; "Bottom::f()" &lt;&lt; endl; }
-        virtual void g_left () { cout &lt;&lt; "Bottom::g_left()" &lt;&lt; endl; }
-        virtual void g_right () { cout &lt;&lt; "Bottom::g_right()" &lt;&lt; endl; }
-        virtual void h_bottom () { cout &lt;&lt; "GrandChild::h_bottom()" &lt;&lt; endl; }
+    <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">Bottom</span> :<span style="color: #a1db00;">public</span> <span style="color: #00d7af;">Left</span>, <span style="color: #a1db00;">public</span> <span style="color: #00d7af;">Right</span> {
+    <span style="color: #a1db00;">public</span>:
+        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">c</span> = <span style="color: #ff4ea3;">'B'</span>;
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">f</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Bottom::f()"</span> &lt;&lt; endl; }
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">g_left</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Bottom::g_left()"</span> &lt;&lt; endl; }
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">g_right</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"Bottom::g_right()"</span> &lt;&lt; endl; }
+        <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">h_bottom</span> () { cout &lt;&lt; <span style="color: #ff4ea3;">"GrandChild::h_bottom()"</span> &lt;&lt; endl; }
     };
-    //单一的一般继承（带成员变量、虚函数、虚函数覆盖）
+    <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#21333;&#19968;&#30340;&#19968;&#33324;&#32487;&#25215;&#65288;&#24102;&#25104;&#21592;&#21464;&#37327;&#12289;&#34394;&#20989;&#25968;&#12289;&#34394;&#20989;&#25968;&#35206;&#30422;&#65289;</span>
 
-    //单一的虚拟继承（带成员变量、虚函数、虚函数覆盖）
+    <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#21333;&#19968;&#30340;&#34394;&#25311;&#32487;&#25215;&#65288;&#24102;&#25104;&#21592;&#21464;&#37327;&#12289;&#34394;&#20989;&#25968;&#12289;&#34394;&#20989;&#25968;&#35206;&#30422;&#65289;</span>
 
-    //多重继承（带成员变量、虚函数、虚函数覆盖）
+    <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#22810;&#37325;&#32487;&#25215;&#65288;&#24102;&#25104;&#21592;&#21464;&#37327;&#12289;&#34394;&#20989;&#25968;&#12289;&#34394;&#20989;&#25968;&#35206;&#30422;&#65289;</span>
 
-    //重复多重继承（带成员变量、虚函数、虚函数覆盖）
+    <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#37325;&#22797;&#22810;&#37325;&#32487;&#25215;&#65288;&#24102;&#25104;&#21592;&#21464;&#37327;&#12289;&#34394;&#20989;&#25968;&#12289;&#34394;&#20989;&#25968;&#35206;&#30422;&#65289;</span>
 
-    //菱形的虚拟多重继承（带成员变量、虚函数、虚函数覆盖）
+    <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#33777;&#24418;&#30340;&#34394;&#25311;&#22810;&#37325;&#32487;&#25215;&#65288;&#24102;&#25104;&#21592;&#21464;&#37327;&#12289;&#34394;&#20989;&#25968;&#12289;&#34394;&#20989;&#25968;&#35206;&#30422;&#65289;</span>
 
-    int PrintCppInsideModel ()
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">PrintCppInsideModel</span> ()
     {
-        typedef void (*Fun)(void);
-        cout &lt;&lt; "多重继承时的情况（无虚函数覆盖）：" &lt;&lt; endl;
-        Bottom bottom;
-        cout &lt;&lt; "DerivedMulti 类第一个虚函数表地址：" &lt;&lt; (int*)(&amp;bottom) &lt;&lt; endl;
-        cout &lt;&lt; "依次调用三个虚函数表中的虚函数：" &lt;&lt; endl;
-        cout &lt;&lt; "第一个虚函数表中的虚函数：" &lt;&lt; endl;
-        Fun pFun = NULL;
-        pFun = (Fun)*((int *)*((int*)(&amp;bottom)));
+        <span style="color: #a1db00;">typedef</span> <span style="color: #00d7af;">void</span> (*<span style="color: #00d7af;">Fun</span>)(<span style="color: #00d7af;">void</span>);
+        cout &lt;&lt; <span style="color: #ff4ea3;">"&#22810;&#37325;&#32487;&#25215;&#26102;&#30340;&#24773;&#20917;&#65288;&#26080;&#34394;&#20989;&#25968;&#35206;&#30422;&#65289;&#65306;"</span> &lt;&lt; endl;
+        <span style="color: #00d7af;">Bottom</span> <span style="color: #ff8700;">bottom</span>;
+        cout &lt;&lt; <span style="color: #ff4ea3;">"DerivedMulti &#31867;&#31532;&#19968;&#20010;&#34394;&#20989;&#25968;&#34920;&#22320;&#22336;&#65306;"</span> &lt;&lt; (<span style="color: #00d7af;">int</span>*)(&amp;bottom) &lt;&lt; endl;
+        cout &lt;&lt; <span style="color: #ff4ea3;">"&#20381;&#27425;&#35843;&#29992;&#19977;&#20010;&#34394;&#20989;&#25968;&#34920;&#20013;&#30340;&#34394;&#20989;&#25968;&#65306;"</span> &lt;&lt; endl;
+        cout &lt;&lt; <span style="color: #ff4ea3;">"&#31532;&#19968;&#20010;&#34394;&#20989;&#25968;&#34920;&#20013;&#30340;&#34394;&#20989;&#25968;&#65306;"</span> &lt;&lt; endl;
+        <span style="color: #00d7af;">Fun</span> <span style="color: #ff8700;">pFun</span> = <span style="color: #5fafd7;">NULL</span>;
+        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom)));
         pFun ();
-        pFun = (Fun)*((int *)*((int*)(&amp;bottom)) + 1);
+        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom)) + 1);
         pFun ();
-        pFun = (Fun)*((int *)*((int*)(&amp;bottom)) + 2);
+        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom)) + 2);
         pFun ();
-        pFun = (Fun)*((int *)*((int*)(&amp;bottom)) + 3);
+        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom)) + 3);
         pFun ();
-        pFun = (Fun)*((int *)*((int*)(&amp;bottom)) + 4);
+        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom)) + 4);
         pFun ();
-        cout &lt;&lt; "第二个虚函数表中的虚函数：" &lt;&lt; endl;
-        pFun = (Fun)*((int *)*((int*)(&amp;bottom) + 1));
+        cout &lt;&lt; <span style="color: #ff4ea3;">"&#31532;&#20108;&#20010;&#34394;&#20989;&#25968;&#34920;&#20013;&#30340;&#34394;&#20989;&#25968;&#65306;"</span> &lt;&lt; endl;
+        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom) + 1));
         pFun ();
-        pFun = (Fun)*((int *)*((int*)(&amp;bottom) + 1) + 1);
+        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom) + 1) + 1);
         pFun ();
-        pFun = (Fun)*((int *)*((int*)(&amp;bottom) + 1) + 2);
+        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom) + 1) + 2);
         pFun ();
-        cout &lt;&lt; "第三个虚函数表中的虚函数：" &lt;&lt; endl;
-        pFun = (Fun)*((int *)*((int*)(&amp;bottom) + 2));
+        cout &lt;&lt; <span style="color: #ff4ea3;">"&#31532;&#19977;&#20010;&#34394;&#20989;&#25968;&#34920;&#20013;&#30340;&#34394;&#20989;&#25968;&#65306;"</span> &lt;&lt; endl;
+        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom) + 2));
         pFun ();
-        pFun = (Fun)*((int *)*((int*)(&amp;bottom) + 2) + 1);
+        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom) + 2) + 1);
         pFun ();
-        pFun = (Fun)*((int *)*((int*)(&amp;bottom) + 2) + 2);
+        pFun = (<span style="color: #00d7af;">Fun</span>)*((<span style="color: #00d7af;">int</span> *)*((<span style="color: #00d7af;">int</span>*)(&amp;bottom) + 2) + 2);
         pFun ();
 
-        return 0;
+        <span style="color: #a1db00;">return</span> 0;
     }
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-2-5" class="outline-3">
-<h3 id="sec-2-5"><span class="section-number-3">2.5</span> 实现字符串类</h3>
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">2.5</span> 实现字符串类</h3>
 <div class="outline-text-3" id="text-2-5">
 <div class="org-src-container">
 
-<pre class="src src-c++">    class MyString {
-    private:
-        char* m_data;
-    public:
-        MyString () : m_data (new char[1]) { *m_data = '\0'; }
+<pre class="src src-c++">    <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">MyString</span> {
+    <span style="color: #a1db00;">private</span>:
+        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">m_data</span>;
+    <span style="color: #a1db00;">public</span>:
+        <span style="color: #ffd700;">MyString</span> () : m_data (<span style="color: #a1db00;">new</span> <span style="color: #00d7af;">char</span>[1]) { *m_data = <span style="color: #ff4ea3;">'\0'</span>; }
 
-        MyString (const char* str) : m_data (new char[strlen (str) + 1]) {/*strcpy (m_data, str);*/ }
+        <span style="color: #ffd700;">MyString</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">str</span>) : m_data (<span style="color: #a1db00;">new</span> <span style="color: #00d7af;">char</span>[strlen (str) + 1]) {<span style="color: #6c6c6c; font-style: italic;">/*</span><span style="color: #6c6c6c; font-style: italic;">strcpy (m_data, str);*/</span> }
 
-        MyString (const MyString&amp; rhs) : m_data (new char[rhs.size () + 1]) {/*strcpy (m_data, rhs.c_str ());*/ }
+        <span style="color: #ffd700;">MyString</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">MyString</span>&amp; <span style="color: #ff8700;">rhs</span>) : m_data (<span style="color: #a1db00;">new</span> <span style="color: #00d7af;">char</span>[rhs.size () + 1]) {<span style="color: #6c6c6c; font-style: italic;">/*</span><span style="color: #6c6c6c; font-style: italic;">strcpy (m_data, rhs.c_str ());*/</span> }
 
-        //Delegate constructor in C++11
-        //MyString(const MyString&amp; rhs) : MyString(rhs.m_data)  {}
+        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">Delegate constructor in C++11</span>
+        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">MyString(const MyString&amp; rhs) : MyString(rhs.m_data)  {}</span>
 
-        MyString&amp; operator=(const MyString&amp; rhs) {
-            MyString tmp (rhs);
+        <span style="color: #00d7af;">MyString</span>&amp; <span style="color: #a1db00;">operator</span><span style="color: #ffd700;">=</span>(<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">MyString</span>&amp; <span style="color: #ff8700;">rhs</span>) {
+            <span style="color: #00d7af;">MyString</span> <span style="color: #ff8700;">tmp</span> (rhs);
             swap (tmp);
-            return *this;
+            <span style="color: #a1db00;">return</span> *<span style="color: #a1db00;">this</span>;
         }
 
-        //in C++11
-        //MyString&amp; operator=(MyString rhs) // yes, pass-by-value
-        //{
-        //swap (rhs);
-        //return *this;
-        //}
+        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">in C++11</span>
+        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">MyString&amp; operator=(MyString rhs) // yes, pass-by-value</span>
+        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">{</span>
+        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">swap (rhs);</span>
+        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">return *this;</span>
+        <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">}</span>
 
-        // C++ 11 move
-        MyString (MyString&amp;&amp; rhs) : m_data (rhs.m_data) { rhs.m_data = nullptr; }
+        <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">C++ 11 move</span>
+        <span style="color: #ffd700;">MyString</span> (<span style="color: #00d7af;">MyString</span>&amp;&amp; <span style="color: #ff8700;">rhs</span>) : m_data (rhs.m_data) { rhs.m_data = nullptr; }
 
-        MyString&amp; operator=(MyString&amp;&amp; rhs) {
+        <span style="color: #00d7af;">MyString</span>&amp; <span style="color: #a1db00;">operator</span><span style="color: #ffd700;">=</span>(<span style="color: #00d7af;">MyString</span>&amp;&amp; <span style="color: #ff8700;">rhs</span>) {
             swap (rhs);
-            return *this;
+            <span style="color: #a1db00;">return</span> *<span style="color: #a1db00;">this</span>;
         }
 
-        size_t size () const { return strlen (m_data); }
+        <span style="color: #00d7af;">size_t</span> <span style="color: #ffd700;">size</span> () <span style="color: #a1db00;">const</span> { <span style="color: #a1db00;">return</span> strlen (m_data); }
 
-        const char* c_str () const { return m_data; }
+        <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ffd700;">c_str</span> () <span style="color: #a1db00;">const</span> { <span style="color: #a1db00;">return</span> m_data; }
 
-        void swap (MyString&amp; rhs) { std::swap (m_data, rhs.m_data); }
+        <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">swap</span> (<span style="color: #00d7af;">MyString</span>&amp; <span style="color: #ff8700;">rhs</span>) { <span style="color: #5fafd7;">std</span>::swap (m_data, rhs.m_data); }
 
-        ~MyString () { delete[] m_data; }
+        ~<span style="color: #ffd700;">MyString</span> () { <span style="color: #a1db00;">delete</span>[] m_data; }
 
     };
-    #endif
+<span style="color: #d18aff;">    #endif</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-2-6" class="outline-3">
-<h3 id="sec-2-6"><span class="section-number-3">2.6</span> C++ 如何实现热加载？</h3>
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">2.6</span> C++ 如何实现热加载？</h3>
 <div class="outline-text-3" id="text-2-6">
-</div><div id="outline-container-sec-2-6-1" class="outline-4">
-<h4 id="sec-2-6-1"><span class="section-number-4">2.6.1</span> Windows</h4>
+</div><div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8"><span class="section-number-4">2.6.1</span> Windows</h4>
 </div>
-<div id="outline-container-sec-2-6-2" class="outline-4">
-<h4 id="sec-2-6-2"><span class="section-number-4">2.6.2</span> Linux</h4>
+<div id="outline-container-orgheadline9" class="outline-4">
+<h4 id="orgheadline9"><span class="section-number-4">2.6.2</span> Linux</h4>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> 库</h2>
+<div id="outline-container-orgheadline19" class="outline-2">
+<h2 id="orgheadline19"><span class="section-number-2">3</span> 库</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Clib</h3>
+</div><div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15"><span class="section-number-3">3.1</span> Clib</h3>
 <div class="outline-text-3" id="text-3-1">
-</div><div id="outline-container-sec-3-1-1" class="outline-4">
-<h4 id="sec-3-1-1"><span class="section-number-4">3.1.1</span> 数字字符串转换函数</h4>
+</div><div id="outline-container-orgheadline12" class="outline-4">
+<h4 id="orgheadline12"><span class="section-number-4">3.1.1</span> 数字字符串转换函数</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <div class="org-src-container">
 
-<pre class="src src-c++">    #include &lt;cstdio&gt;
-    #include &lt;cassert&gt;
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;cstdio&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;cassert&gt;</span>
 
-    int my_atoi (const char* str)
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">my_atoi</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">str</span>)
     {
-        int sign = 0, num = 0;
-        assert (NULL != str);
-        while ( *str == ' ' )
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">sign</span> = 0, <span style="color: #ff8700;">num</span> = 0;
+        assert (<span style="color: #5fafd7;">NULL</span> != str);
+        <span style="color: #a1db00;">while</span> ( *str == <span style="color: #ff4ea3;">' '</span> )
         {
             str++;
         }
-        if ( '-' == *str )
+        <span style="color: #a1db00;">if</span> ( <span style="color: #ff4ea3;">'-'</span> == *str )
         {
             sign = 1; str++;
         }
-        while ( (*str &gt;= '0') &amp;&amp; (*str &lt;= '9') )
+        <span style="color: #a1db00;">while</span> ( (*str &gt;= <span style="color: #ff4ea3;">'0'</span>) &amp;&amp; (*str &lt;= <span style="color: #ff4ea3;">'9'</span>) )
         {
-            num = num * 10 + (*str - '0'); //就是这一行，将对应字符转化为数字
+            num = num * 10 + (*str - <span style="color: #ff4ea3;">'0'</span>); <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#23601;&#26159;&#36825;&#19968;&#34892;&#65292;&#23558;&#23545;&#24212;&#23383;&#31526;&#36716;&#21270;&#20026;&#25968;&#23383;</span>
 
             str++;
         }
-        if ( sign == 1 )
-            return -num;
-        else
-            return num;
+        <span style="color: #a1db00;">if</span> ( sign == 1 )
+            <span style="color: #a1db00;">return</span> -num;
+        <span style="color: #a1db00;">else</span>
+            <span style="color: #a1db00;">return</span> num;
     }
 
 
-    double my_atof (const char* str)
+    <span style="color: #00d7af;">double</span> <span style="color: #ffd700;">my_atof</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">str</span>)
     {
-        double val = 0.0, power = 0.0;
-        int sign = 0;
-        assert (NULL != str);
-        while ( *str == ' ' )
+        <span style="color: #00d7af;">double</span> <span style="color: #ff8700;">val</span> = 0.0, <span style="color: #ff8700;">power</span> = 0.0;
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">sign</span> = 0;
+        assert (<span style="color: #5fafd7;">NULL</span> != str);
+        <span style="color: #a1db00;">while</span> ( *str == <span style="color: #ff4ea3;">' '</span> )
         {
             str++;
         }
-        sign = (*str == '-') ? -1 : 1;
-        if ( '-' == *str || '+' == *str )
+        sign = (*str == <span style="color: #ff4ea3;">'-'</span>) ? -1 : 1;
+        <span style="color: #a1db00;">if</span> ( <span style="color: #ff4ea3;">'-'</span> == *str || <span style="color: #ff4ea3;">'+'</span> == *str )
         {
             str++;
         }
-        while ( (*str &gt;= '0') &amp;&amp; (*str &lt;= '9') )
+        <span style="color: #a1db00;">while</span> ( (*str &gt;= <span style="color: #ff4ea3;">'0'</span>) &amp;&amp; (*str &lt;= <span style="color: #ff4ea3;">'9'</span>) )
         {
-            val = val* 10.0 + (*str - '0'); str++;
+            val = val* 10.0 + (*str - <span style="color: #ff4ea3;">'0'</span>); str++;
         }
-        if ( '.' == *str )
+        <span style="color: #a1db00;">if</span> ( <span style="color: #ff4ea3;">'.'</span> == *str )
         {
             str++;
         }
         power = 1.0;
-        while ( (*str &gt;= '0') &amp;&amp; (*str &lt;= '9') )
+        <span style="color: #a1db00;">while</span> ( (*str &gt;= <span style="color: #ff4ea3;">'0'</span>) &amp;&amp; (*str &lt;= <span style="color: #ff4ea3;">'9'</span>) )
         {
-            val = val* 10.0 + (*str - '0');
+            val = val* 10.0 + (*str - <span style="color: #ff4ea3;">'0'</span>);
             power *= 10; str++;
         }
-        return sign*val / power;
+        <span style="color: #a1db00;">return</span> sign*val / power;
     }
 
 
-    char* my_itoa (int val, char* buf, unsigned int radix)
+    <span style="color: #00d7af;">char</span>* <span style="color: #ffd700;">my_itoa</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">val</span>, <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">buf</span>, <span style="color: #00d7af;">unsigned</span> <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">radix</span>)
     {
-        char *bufptr;
-        char *firstdig;
-        char temp;
-        unsigned int digval;
-        assert (buf != NULL);
+        <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">bufptr</span>;
+        <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">firstdig</span>;
+        <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">temp</span>;
+        <span style="color: #00d7af;">unsigned</span> <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">digval</span>;
+        assert (buf != <span style="color: #5fafd7;">NULL</span>);
         bufptr = buf;
-        if ( val &lt; 0 )
+        <span style="color: #a1db00;">if</span> ( val &lt; 0 )
         {
-            *bufptr++ = '-'; val = (unsigned int)(-(int)val);
+            *bufptr++ = <span style="color: #ff4ea3;">'-'</span>; val = (<span style="color: #00d7af;">unsigned</span> <span style="color: #00d7af;">int</span>)(-(<span style="color: #00d7af;">int</span>)val);
         }
         firstdig = bufptr;
-        do
+        <span style="color: #a1db00;">do</span>
         {
-            digval = (unsigned int)val % radix;    val /= radix;
-            if ( digval &gt; 9 )
+            digval = (<span style="color: #00d7af;">unsigned</span> <span style="color: #00d7af;">int</span>)val % radix;    val /= radix;
+            <span style="color: #a1db00;">if</span> ( digval &gt; 9 )
             {
-                *bufptr++ = (char)(digval - 10 + 'a');
+                *bufptr++ = (<span style="color: #00d7af;">char</span>)(digval - 10 + <span style="color: #ff4ea3;">'a'</span>);
             }
-            else
+            <span style="color: #a1db00;">else</span>
             {
-                *bufptr++ = (char)(digval + '0');
+                *bufptr++ = (<span style="color: #00d7af;">char</span>)(digval + <span style="color: #ff4ea3;">'0'</span>);
             }
-        } while ( val &gt; 0 );
-        *bufptr-- = '\0';//设置字符串末尾，并将指针指向最后一个字符
-        do //反转字符
+        } <span style="color: #a1db00;">while</span> ( val &gt; 0 );
+        *bufptr-- = <span style="color: #ff4ea3;">'\0'</span>;<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#35774;&#32622;&#23383;&#31526;&#20018;&#26411;&#23614;&#65292;&#24182;&#23558;&#25351;&#38024;&#25351;&#21521;&#26368;&#21518;&#19968;&#20010;&#23383;&#31526;</span>
+        <span style="color: #a1db00;">do</span> <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#21453;&#36716;&#23383;&#31526;</span>
         {
             temp = *bufptr;     *bufptr = *firstdig;  *firstdig = temp;
             --bufptr; ++firstdig;
-        } while ( firstdig &lt; bufptr );
-        return buf;
+        } <span style="color: #a1db00;">while</span> ( firstdig &lt; bufptr );
+        <span style="color: #a1db00;">return</span> buf;
     }
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3-1-2" class="outline-4">
-<h4 id="sec-3-1-2"><span class="section-number-4">3.1.2</span> 字符串函数</h4>
+<div id="outline-container-orgheadline13" class="outline-4">
+<h4 id="orgheadline13"><span class="section-number-4">3.1.2</span> 字符串函数</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <div class="org-src-container">
 
-<pre class="src src-c++">    char* my_strcpy (char* dst, const char* src)
+<pre class="src src-c++">    <span style="color: #00d7af;">char</span>* <span style="color: #ffd700;">my_strcpy</span> (<span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">dst</span>, <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">src</span>)
     {
-        assert (NULL != dst &amp;&amp; NULL != src);
-        char* p = dst;
-        while ( *p++ = *src++ );
-        return dst;
+        assert (<span style="color: #5fafd7;">NULL</span> != dst &amp;&amp; <span style="color: #5fafd7;">NULL</span> != src);
+        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">p</span> = dst;
+        <span style="color: #a1db00;">while</span> ( *p++ = *src++ );
+        <span style="color: #a1db00;">return</span> dst;
     }
-    char* my_strcat (char* dst, const char* src)
+    <span style="color: #00d7af;">char</span>* <span style="color: #ffd700;">my_strcat</span> (<span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">dst</span>, <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">src</span>)
     {
-        assert (NULL != dst &amp;&amp; NULL != src);
-        char* p = dst;
-        while ( *p != '\n' )
+        assert (<span style="color: #5fafd7;">NULL</span> != dst &amp;&amp; <span style="color: #5fafd7;">NULL</span> != src);
+        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">p</span> = dst;
+        <span style="color: #a1db00;">while</span> ( *p != <span style="color: #ff4ea3;">'\n'</span> )
             ++p;
-        while ( *p++ = *src++ );
+        <span style="color: #a1db00;">while</span> ( *p++ = *src++ );
 
-        return dst;
+        <span style="color: #a1db00;">return</span> dst;
     }
 
-    int my_strcmp (const char* str1, const char* str2)
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">my_strcmp</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">str1</span>, <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">str2</span>)
     {
-        assert (NULL != str1 &amp;&amp; NULL != str2);
-        int ret = 0;
-        while ( !(ret = *(unsigned char*)str1 - *(unsigned char*)str2) &amp;&amp; *str2 ) {
+        assert (<span style="color: #5fafd7;">NULL</span> != str1 &amp;&amp; <span style="color: #5fafd7;">NULL</span> != str2);
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">ret</span> = 0;
+        <span style="color: #a1db00;">while</span> ( <span style="color: #ff4b4b;">!</span>(ret = *(<span style="color: #00d7af;">unsigned</span> <span style="color: #00d7af;">char</span>*)str1 - *(<span style="color: #00d7af;">unsigned</span> <span style="color: #00d7af;">char</span>*)str2) &amp;&amp; *str2 ) {
             ++str1;
             ++str2;
         }
-        if ( ret &gt; 0 ) ret = 1;
-        if ( ret &lt; 0 ) ret = -1;
-        return ret;
+        <span style="color: #a1db00;">if</span> ( ret &gt; 0 ) ret = 1;
+        <span style="color: #a1db00;">if</span> ( ret &lt; 0 ) ret = -1;
+        <span style="color: #a1db00;">return</span> ret;
     }
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3-1-3" class="outline-4">
-<h4 id="sec-3-1-3"><span class="section-number-4">3.1.3</span> 内存拷贝函数</h4>
+<div id="outline-container-orgheadline14" class="outline-4">
+<h4 id="orgheadline14"><span class="section-number-4">3.1.3</span> 内存拷贝函数</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <div class="org-src-container">
 
-<pre class="src src-c++">    void* my_memcpy (void* dst, const void* src, size_t count)
+<pre class="src src-c++">    <span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">my_memcpy</span> (<span style="color: #00d7af;">void</span>* <span style="color: #ff8700;">dst</span>, <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">void</span>* <span style="color: #ff8700;">src</span>, <span style="color: #00d7af;">size_t</span> <span style="color: #ff8700;">count</span>)
     {
-        char* pbTo = (char*)dst;
-        char* pbFrom = (char*)src;
-        assert (dst != NULL &amp;&amp; src != NULL);
-        assert (pbTo &gt;= pbFrom + count || pbFrom &gt;= pbTo + count);//防止内存重叠(overlap)
-        while ( count-- &gt; 0 )
+        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">pbTo</span> = (<span style="color: #00d7af;">char</span>*)dst;
+        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">pbFrom</span> = (<span style="color: #00d7af;">char</span>*)src;
+        assert (dst != <span style="color: #5fafd7;">NULL</span> &amp;&amp; src != <span style="color: #5fafd7;">NULL</span>);
+        assert (pbTo &gt;= pbFrom + count || pbFrom &gt;= pbTo + count);<span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#38450;&#27490;&#20869;&#23384;&#37325;&#21472;(overlap)</span>
+        <span style="color: #a1db00;">while</span> ( count-- &gt; 0 )
         {
             *pbTo++ = *pbFrom++;
         }
-        return dst;
+        <span style="color: #a1db00;">return</span> dst;
     }
 
-    void* my_memmove (void* dst, const void* src, size_t count)
+    <span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">my_memmove</span> (<span style="color: #00d7af;">void</span>* <span style="color: #ff8700;">dst</span>, <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">void</span>* <span style="color: #ff8700;">src</span>, <span style="color: #00d7af;">size_t</span> <span style="color: #ff8700;">count</span>)
     {
-        char* pbTo = (char*)dst;
-        char* pbFrom = (char*)src;
-        assert (dst != NULL &amp;&amp; src != NULL);
-        if ( dst &lt;= src || pbTo &gt;= pbFrom + count )
+        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">pbTo</span> = (<span style="color: #00d7af;">char</span>*)dst;
+        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">pbFrom</span> = (<span style="color: #00d7af;">char</span>*)src;
+        assert (dst != <span style="color: #5fafd7;">NULL</span> &amp;&amp; src != <span style="color: #5fafd7;">NULL</span>);
+        <span style="color: #a1db00;">if</span> ( dst &lt;= src || pbTo &gt;= pbFrom + count )
         {
-            //没有 overlap 的情况，直接拷贝
-            while ( count-- &gt; 0 )
+            <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#27809;&#26377; overlap &#30340;&#24773;&#20917;&#65292;&#30452;&#25509;&#25335;&#36125;</span>
+            <span style="color: #a1db00;">while</span> ( count-- &gt; 0 )
             {
                 *pbTo++ = *pbFrom++;
             }
         }
-        else
+        <span style="color: #a1db00;">else</span>
         {
-            //overlap 的情况，从高位地址向低位拷贝
+            <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">overlap &#30340;&#24773;&#20917;&#65292;&#20174;&#39640;&#20301;&#22320;&#22336;&#21521;&#20302;&#20301;&#25335;&#36125;</span>
             pbTo = pbTo + count - 1;
             pbFrom = pbFrom + count - 1;
-            while ( count-- &gt; 0 )
+            <span style="color: #a1db00;">while</span> ( count-- &gt; 0 )
             {
                 *pbTo-- = *pbFrom--;
             }
         }
-        return dst;
+        <span style="color: #a1db00;">return</span> dst;
     }
 
-    void* my_memset (void* buf, int c, size_t count)
+    <span style="color: #00d7af;">void</span>* <span style="color: #ffd700;">my_memset</span> (<span style="color: #00d7af;">void</span>* <span style="color: #ff8700;">buf</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">c</span>, <span style="color: #00d7af;">size_t</span> <span style="color: #ff8700;">count</span>)
     {
-        char* pvTo = (char*)buf;
-        assert (buf != NULL);
-        while ( count-- &gt;0 )
+        <span style="color: #00d7af;">char</span>* <span style="color: #ff8700;">pvTo</span> = (<span style="color: #00d7af;">char</span>*)buf;
+        assert (buf != <span style="color: #5fafd7;">NULL</span>);
+        <span style="color: #a1db00;">while</span> ( count-- &gt;0 )
         {
-            *pvTo++ = (char)c;
+            *pvTo++ = (<span style="color: #00d7af;">char</span>)c;
         }
-        return buf;
+        <span style="color: #a1db00;">return</span> buf;
     }
 </pre>
 </div>
@@ -778,53 +784,53 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2"><span class="section-number-3">3.2</span> STL</h3>
+<div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18"><span class="section-number-3">3.2</span> STL</h3>
 <div class="outline-text-3" id="text-3-2">
-</div><div id="outline-container-sec-3-2-1" class="outline-4">
-<h4 id="sec-3-2-1"><span class="section-number-4">3.2.1</span> 容器底层实现方式</h4>
+</div><div id="outline-container-orgheadline16" class="outline-4">
+<h4 id="orgheadline16"><span class="section-number-4">3.2.1</span> 容器底层实现方式</h4>
 </div>
-<div id="outline-container-sec-3-2-2" class="outline-4">
-<h4 id="sec-3-2-2"><span class="section-number-4">3.2.2</span> 为什么 auto_ptr 不能放在容器中。</h4>
+<div id="outline-container-orgheadline17" class="outline-4">
+<h4 id="orgheadline17"><span class="section-number-4">3.2.2</span> 为什么 auto_ptr 不能放在容器中。</h4>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> 网络</h2>
+<div id="outline-container-orgheadline48" class="outline-2">
+<h2 id="orgheadline48"><span class="section-number-2">4</span> 网络</h2>
 <div class="outline-text-2" id="text-4">
-</div><div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1"><span class="section-number-3">4.1</span> 判断大小端</h3>
+</div><div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20"><span class="section-number-3">4.1</span> 判断大小端</h3>
 <div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
 
-<pre class="src src-c++">    #include &lt;iostream&gt;
-    #include &lt;gtest\gtest.h&gt;
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;gtest\gtest.h&gt;</span>
 
-    namespace phenix3443 {
-        enum kOrderType { unknown_error = -1, little_endian = 0, big_endian = 1 };
+    <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">phenix3443</span> {
+        <span style="color: #a1db00;">enum</span> <span style="color: #00d7af;">kOrderType</span> { <span style="color: #ff8700;">unknown_error</span> = -1, <span style="color: #ff8700;">little_endian</span> = 0, <span style="color: #ff8700;">big_endian</span> = 1 };
 
-        int ByteOrder () {
-            union {
-                short val;
-                char bytes[sizeof (short)];
-            } test;
+        <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">ByteOrder</span> () {
+            <span style="color: #a1db00;">union</span> {
+                <span style="color: #00d7af;">short</span> <span style="color: #ff8700;">val</span>;
+                <span style="color: #00d7af;">char</span> <span style="color: #ff8700;">bytes</span>[<span style="color: #a1db00;">sizeof</span> (<span style="color: #00d7af;">short</span>)];
+            } <span style="color: #ff8700;">test</span>;
             test.val = 0x0102;
-            if ( (2 == test.bytes[0]) &amp;&amp; (1 == test.bytes[1]) ) {
-                std::cout &lt;&lt; "Little Endian" &lt;&lt; std::endl;
-                return little_endian;
+            <span style="color: #a1db00;">if</span> ( (2 == test.bytes[0]) &amp;&amp; (1 == test.bytes[1]) ) {
+                <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"Little Endian"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+                <span style="color: #a1db00;">return</span> little_endian;
             }
-            else if ( 1 == (test.bytes[0]) &amp;&amp; (2 == test.bytes[2]) ) {
-                std::cout &lt;&lt; "Big Endian" &lt;&lt; std::endl;
-                return big_endian;
+            <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span> ( 1 == (test.bytes[0]) &amp;&amp; (2 == test.bytes[2]) ) {
+                <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"Big Endian"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+                <span style="color: #a1db00;">return</span> big_endian;
             }
-            else {
-                std::cout &lt;&lt; "Unknown Error" &lt;&lt; std::endl;
-                return unknown_error;
+            <span style="color: #a1db00;">else</span> {
+                <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"Unknown Error"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+                <span style="color: #a1db00;">return</span> unknown_error;
             }
         }
 
 
-        TEST (TestByteOrder, LocalHostTest) {
+        <span style="color: #ffd700;">TEST</span> (TestByteOrder, LocalHostTest) {
             EXPECT_EQ (little_endian, ByteOrder ());
         }
     }
@@ -833,41 +839,33 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-sec-4-2" class="outline-3">
-<h3 id="sec-4-2"><span class="section-number-3">4.2</span> TCP 和 UDP 区别，适用场景</h3>
+<div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21"><span class="section-number-3">4.2</span> TCP 和 UDP 区别，适用场景</h3>
 <div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li>TCP 提供面向连接、可靠的字节流服务。
 <ul class="org-ul">
-<li>面向连接是指：使用 TCP 协议通信的双方必须先建立连接，然后才能开始数据的读写。双方必须为该连接分配必要的内核资源，以管理连接的状态和连接上的数据传输。TCP 连接是全双工的，即双方的数据读写可以通过一个连接进行。完成数据交换后，通信双方都必须断开连接以释放系统资源。TCP 协议的这种连接是一对一的，所以基于广播和多播的应用程序不能使用 TCP 服务，而无连接协议 UDP 则非常适合广播和多播。
-</li>
-<li>TCP 通过发送应答、超时重传、报文重组等方法保证数据的可靠传输。
-</li>
-<li>字节流服务体现在实际编程上表现为通信双方各自的读写操作次数没有固定的数量关系，双方应用程序对数据的发送和接收是没有边界的。另外 TCP 模块发送 TCP 报文段的个数和应用程序执行的读写操作的次数之间没有固定的数量关系。
-</li>
-</ul>
-</li>
+<li>面向连接是指：使用 TCP 协议通信的双方必须先建立连接，然后才能开始数据的读写。双方必须为该连接分配必要的内核资源，以管理连接的状态和连接上的数据传输。TCP 连接是全双工的，即双方的数据读写可以通过一个连接进行。完成数据交换后，通信双方都必须断开连接以释放系统资源。TCP 协议的这种连接是一对一的，所以基于广播和多播的应用程序不能使用 TCP 服务，而无连接协议 UDP 则非常适合广播和多播。</li>
+<li>TCP 通过发送应答、超时重传、报文重组等方法保证数据的可靠传输。</li>
+<li>字节流服务体现在实际编程上表现为通信双方各自的读写操作次数没有固定的数量关系，双方应用程序对数据的发送和接收是没有边界的。另外 TCP 模块发送 TCP 报文段的个数和应用程序执行的读写操作的次数之间没有固定的数量关系。</li>
+</ul></li>
 <li>UDP 数据报协议。
 <ul class="org-ul">
-<li>UDP 不需要建立连接，所以发送速度较快。
-</li>
-<li>UDP 协议和 IP 协议一样，它们都需要上层协议来处理数据确认和超时重传。
-</li>
-<li>发送端应用程序每执行一次写操作，UDP 模块就将其封装为一个 UDP 数据报并发送。接受端必须及时针对每一个 UDP 数据报执行读操作，否则就会发生丢包。并且，如果用户没有指定足够的应程序缓冲区来读取 UDP 数据，则 UDP 数据将被截断。
-</li>
-</ul>
-</li>
+<li>UDP 不需要建立连接，所以发送速度较快。</li>
+<li>UDP 协议和 IP 协议一样，它们都需要上层协议来处理数据确认和超时重传。</li>
+<li>发送端应用程序每执行一次写操作，UDP 模块就将其封装为一个 UDP 数据报并发送。接受端必须及时针对每一个 UDP 数据报执行读操作，否则就会发生丢包。并且，如果用户没有指定足够的应程序缓冲区来读取 UDP 数据，则 UDP 数据将被截断。</li>
+</ul></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-4-3" class="outline-3">
-<h3 id="sec-4-3"><span class="section-number-3">4.3</span> TCP</h3>
+<div id="outline-container-orgheadline44" class="outline-3">
+<h3 id="orgheadline44"><span class="section-number-3">4.3</span> TCP</h3>
 <div class="outline-text-3" id="text-4-3">
-</div><div id="outline-container-sec-4-3-1" class="outline-4">
-<h4 id="sec-4-3-1"><span class="section-number-4">4.3.1</span> 连接状态图</h4>
+</div><div id="outline-container-orgheadline22" class="outline-4">
+<h4 id="orgheadline22"><span class="section-number-4">4.3.1</span> 连接状态图</h4>
 </div>
-<div id="outline-container-sec-4-3-2" class="outline-4">
-<h4 id="sec-4-3-2"><span class="section-number-4">4.3.2</span> 为什么建立连接需要三次，而不是两次？</h4>
+<div id="outline-container-orgheadline23" class="outline-4">
+<h4 id="orgheadline23"><span class="section-number-4">4.3.2</span> 为什么建立连接需要三次，而不是两次？</h4>
 <div class="outline-text-4" id="text-4-3-2">
 <p>
 三次是最少的握手次数，因为只有两次握手的话，客户端和服务端都不能确信连接是否建立，只有收到客户端的响应后，双方才能确认连接已经建立。如果只有两次握手，有可能发生死锁：假如服务端应答分组在传输过程中丢失，服务端以为已经成功建立连接，可以开始发送数据。而客户端不知道连接已经建立，甚至怀疑服务端是否收到自己的连接请求分组，此时将忽略服务端发来的任何数据，只等待连接确认应答分组。这样就形成了死锁。
@@ -878,82 +876,74 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-sec-4-3-3" class="outline-4">
-<h4 id="sec-4-3-3"><span class="section-number-4">4.3.3</span> 为什么断开连接需要四次？</h4>
+<div id="outline-container-orgheadline24" class="outline-4">
+<h4 id="orgheadline24"><span class="section-number-4">4.3.3</span> 为什么断开连接需要四次？</h4>
 <div class="outline-text-4" id="text-4-3-3">
 <p>
 因为 TCP 是全双工的，每个方向上都可以单独进行关闭，这种单方向的关闭叫半关闭，表示发送 FIN 这一端不再发送数据，但是还可以接收数据。
 </p>
 </div>
 </div>
-<div id="outline-container-sec-4-3-4" class="outline-4">
-<h4 id="sec-4-3-4"><span class="section-number-4">4.3.4</span> TIME_WAIT 作用：</h4>
+<div id="outline-container-orgheadline25" class="outline-4">
+<h4 id="orgheadline25"><span class="section-number-4">4.3.4</span> TIME_WAIT 作用：</h4>
 <div class="outline-text-4" id="text-4-3-4">
 <p>
 ****　TIME_WAIT 状态过多如何解决
 </p>
 </div>
 </div>
-<div id="outline-container-sec-4-3-5" class="outline-4">
-<h4 id="sec-4-3-5"><span class="section-number-4">4.3.5</span> 粘包问题</h4>
+<div id="outline-container-orgheadline28" class="outline-4">
+<h4 id="orgheadline28"><span class="section-number-4">4.3.5</span> 粘包问题</h4>
 <div class="outline-text-4" id="text-4-3-5">
-</div><div id="outline-container-sec-4-3-5-1" class="outline-5">
-<h5 id="sec-4-3-5-1">现象模拟</h5>
+</div><div id="outline-container-orgheadline26" class="outline-5">
+<h5 id="orgheadline26">现象模拟</h5>
 </div>
-<div id="outline-container-sec-4-3-5-2" class="outline-5">
-<h5 id="sec-4-3-5-2">解决方法</h5>
-<div class="outline-text-5" id="text-4-3-5-2">
+<div id="outline-container-orgheadline27" class="outline-5">
+<h5 id="orgheadline27">解决方法</h5>
+<div class="outline-text-5" id="text-orgheadline27">
 <ul class="org-ul">
-<li>TCP 提供了强制数据立即传送的操作指令 push，TCP 软件收到该操作指令后，就立即将本段数据发送出去，而不必等待发送缓冲区满；
-</li>
-<li>发送固定长度的消息
-</li>
-<li>把消息的尺寸与消息一块发送
-</li>
-<li>双方约定每次传送的大小
-</li>
-<li>双方约定使用特殊标记来区分消息间隔
-</li>
-<li>标准协议按协议规则处理，如 Sip 协议
-</li>
+<li>TCP 提供了强制数据立即传送的操作指令 push，TCP 软件收到该操作指令后，就立即将本段数据发送出去，而不必等待发送缓冲区满；</li>
+<li>发送固定长度的消息</li>
+<li>把消息的尺寸与消息一块发送</li>
+<li>双方约定每次传送的大小</li>
+<li>双方约定使用特殊标记来区分消息间隔</li>
+<li>标准协议按协议规则处理，如 Sip 协议</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-4-3-6" class="outline-4">
-<h4 id="sec-4-3-6"><span class="section-number-4">4.3.6</span> 字符串编码问题</h4>
+<div id="outline-container-orgheadline31" class="outline-4">
+<h4 id="orgheadline31"><span class="section-number-4">4.3.6</span> 字符串编码问题</h4>
 <div class="outline-text-4" id="text-4-3-6">
-</div><div id="outline-container-sec-4-3-6-1" class="outline-5">
-<h5 id="sec-4-3-6-1">现象模拟</h5>
-<div class="outline-text-5" id="text-4-3-6-1">
+</div><div id="outline-container-orgheadline29" class="outline-5">
+<h5 id="orgheadline29">现象模拟</h5>
+<div class="outline-text-5" id="text-orgheadline29">
 <p>
 将中文字符串用 utf8 编码格式转换为字节数组发送时，一个中文字符可能会占用 2～4 个字节（假设为 3 个字节），这 3 个字节可能分 3 次接收，接收端每次接收完后用 utf8 编码格式转换为字符串，就会出现乱码，并导致接收长度计算错误的情况。
 </p>
 </div>
 </div>
-<div id="outline-container-sec-4-3-6-2" class="outline-5">
-<h5 id="sec-4-3-6-2">解决方法</h5>
-<div class="outline-text-5" id="text-4-3-6-2">
+<div id="outline-container-orgheadline30" class="outline-5">
+<h5 id="orgheadline30">解决方法</h5>
+<div class="outline-text-5" id="text-orgheadline30">
 <ul class="org-ul">
-<li>以字节数做为消息长度的计算单位，而不是字符个数。
-</li>
-<li>发送方和接收方都采用 unicode 编码格式。
-</li>
+<li>以字节数做为消息长度的计算单位，而不是字符个数。</li>
+<li>发送方和接收方都采用 unicode 编码格式。</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-4-3-7" class="outline-4">
-<h4 id="sec-4-3-7"><span class="section-number-4">4.3.7</span> 长连接的保活问题</h4>
+<div id="outline-container-orgheadline34" class="outline-4">
+<h4 id="orgheadline34"><span class="section-number-4">4.3.7</span> 长连接的保活问题</h4>
 <div class="outline-text-4" id="text-4-3-7">
-</div><div id="outline-container-sec-4-3-7-1" class="outline-5">
-<h5 id="sec-4-3-7-1">现象模拟</h5>
+</div><div id="outline-container-orgheadline32" class="outline-5">
+<h5 id="orgheadline32">现象模拟</h5>
 </div>
-<div id="outline-container-sec-4-3-7-2" class="outline-5">
-<h5 id="sec-4-3-7-2">解决方法</h5>
-<div class="outline-text-5" id="text-4-3-7-2">
+<div id="outline-container-orgheadline33" class="outline-5">
+<h5 id="orgheadline33">解决方法</h5>
+<div class="outline-text-5" id="text-orgheadline33">
 <p>
 标准 TCP 层协议里把对方超时设为 2 小时，若服务器端超过了 2 小时还没收到客户的信息，它就发送探测报文段，若发送了 10 个探测报文段（每一个相隔 75S）还没有收到响应，就假定客户出了故障，并终止这个连接。因此应对 tcp 长连接进行保活。
 </p>
@@ -965,12 +955,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-sec-4-3-8" class="outline-4">
-<h4 id="sec-4-3-8"><span class="section-number-4">4.3.8</span> 缓冲区脏数据问题</h4>
+<div id="outline-container-orgheadline37" class="outline-4">
+<h4 id="orgheadline37"><span class="section-number-4">4.3.8</span> 缓冲区脏数据问题</h4>
 <div class="outline-text-4" id="text-4-3-8">
-</div><div id="outline-container-sec-4-3-8-1" class="outline-5">
-<h5 id="sec-4-3-8-1">现象模拟</h5>
-<div class="outline-text-5" id="text-4-3-8-1">
+</div><div id="outline-container-orgheadline35" class="outline-5">
+<h5 id="orgheadline35">现象模拟</h5>
+<div class="outline-text-5" id="text-orgheadline35">
 <p>
 同步发送的拷贝，是直接拷贝数据到基础系统缓冲区，拷贝完成后返回；
 </p>
@@ -1001,45 +991,43 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-sec-4-3-8-2" class="outline-5">
-<h5 id="sec-4-3-8-2">解决方法</h5>
-<div class="outline-text-5" id="text-4-3-8-2">
+<div id="outline-container-orgheadline36" class="outline-5">
+<h5 id="orgheadline36">解决方法</h5>
+<div class="outline-text-5" id="text-orgheadline36">
 <ul class="org-ul">
-<li>将缓冲区的大小设置为实际发送数据的大小。
-</li>
+<li>将缓冲区的大小设置为实际发送数据的大小。</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-4-3-9" class="outline-4">
-<h4 id="sec-4-3-9"><span class="section-number-4">4.3.9</span> 内存碎片问题</h4>
+<div id="outline-container-orgheadline40" class="outline-4">
+<h4 id="orgheadline40"><span class="section-number-4">4.3.9</span> 内存碎片问题</h4>
 <div class="outline-text-4" id="text-4-3-9">
-</div><div id="outline-container-sec-4-3-9-1" class="outline-5">
-<h5 id="sec-4-3-9-1">现象模拟</h5>
-<div class="outline-text-5" id="text-4-3-9-1">
+</div><div id="outline-container-orgheadline38" class="outline-5">
+<h5 id="orgheadline38">现象模拟</h5>
+<div class="outline-text-5" id="text-orgheadline38">
 <p>
 频繁的申请缓冲区会导致内存碎片的问题。
 </p>
 </div>
 </div>
-<div id="outline-container-sec-4-3-9-2" class="outline-5">
-<h5 id="sec-4-3-9-2">解决方法</h5>
-<div class="outline-text-5" id="text-4-3-9-2">
+<div id="outline-container-orgheadline39" class="outline-5">
+<h5 id="orgheadline39">解决方法</h5>
+<div class="outline-text-5" id="text-orgheadline39">
 <ul class="org-ul">
-<li>使用对象池和内存池。
-</li>
+<li>使用对象池和内存池。</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-4-3-10" class="outline-4">
-<h4 id="sec-4-3-10"><span class="section-number-4">4.3.10</span> 乱序问题</h4>
+<div id="outline-container-orgheadline43" class="outline-4">
+<h4 id="orgheadline43"><span class="section-number-4">4.3.10</span> 乱序问题</h4>
 <div class="outline-text-4" id="text-4-3-10">
-</div><div id="outline-container-sec-4-3-10-1" class="outline-5">
-<h5 id="sec-4-3-10-1">现象模拟</h5>
-<div class="outline-text-5" id="text-4-3-10-1">
+</div><div id="outline-container-orgheadline41" class="outline-5">
+<h5 id="orgheadline41">现象模拟</h5>
+<div class="outline-text-5" id="text-orgheadline41">
 <p>
 多个线程使用异步通信方式向同一个接收端(socket)同时发送数据，会导致接收端接收的数据混乱。如下所示：
 </p>
@@ -1066,190 +1054,184 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-sec-4-3-10-2" class="outline-5">
-<h5 id="sec-4-3-10-2">解决方法</h5>
-<div class="outline-text-5" id="text-4-3-10-2">
+<div id="outline-container-orgheadline42" class="outline-5">
+<h5 id="orgheadline42">解决方法</h5>
+<div class="outline-text-5" id="text-orgheadline42">
 <ul class="org-ul">
-<li>一个连接的发送端线程排队发送数据。
-</li>
+<li>一个连接的发送端线程排队发送数据。</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-4-4" class="outline-3">
-<h3 id="sec-4-4"><span class="section-number-3">4.4</span> UDP</h3>
+<div id="outline-container-orgheadline45" class="outline-3">
+<h3 id="orgheadline45"><span class="section-number-3">4.4</span> UDP</h3>
 </div>
-<div id="outline-container-sec-4-5" class="outline-3">
-<h3 id="sec-4-5"><span class="section-number-3">4.5</span> 弱网络环境下如何保证数据传输？</h3>
+<div id="outline-container-orgheadline46" class="outline-3">
+<h3 id="orgheadline46"><span class="section-number-3">4.5</span> 弱网络环境下如何保证数据传输？</h3>
 </div>
-<div id="outline-container-sec-4-6" class="outline-3">
-<h3 id="sec-4-6"><span class="section-number-3">4.6</span> 描述一下浏览器输入网址之后发生了什么。</h3>
+<div id="outline-container-orgheadline47" class="outline-3">
+<h3 id="orgheadline47"><span class="section-number-3">4.6</span> 描述一下浏览器输入网址之后发生了什么。</h3>
 </div>
 </div>
 
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> 操作系统</h2>
+<div id="outline-container-orgheadline68" class="outline-2">
+<h2 id="orgheadline68"><span class="section-number-2">5</span> 操作系统</h2>
 <div class="outline-text-2" id="text-5">
-</div><div id="outline-container-sec-5-1" class="outline-3">
-<h3 id="sec-5-1"><span class="section-number-3">5.1</span> 判断操作系统是 32 位还是 64 位</h3>
+</div><div id="outline-container-orgheadline49" class="outline-3">
+<h3 id="orgheadline49"><span class="section-number-3">5.1</span> 判断操作系统是 32 位还是 64 位</h3>
 <div class="outline-text-3" id="text-5-1">
 <div class="org-src-container">
 
-<pre class="src src-c++">    #include &lt;cstdio&gt;
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;cstdio&gt;</span>
 
-    int DetectOSArchi(int argc, char *argv[])
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">DetectOSArchi</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
     {
-        // method 1
-        printf("os is %d\n",sizeof(void*));
-        // method 2
-        printf("%d \n", __SIZEOF_POINTER__);
+        <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">method 1</span>
+        printf(<span style="color: #ff4ea3;">"os is %d\n"</span>,<span style="color: #a1db00;">sizeof</span>(<span style="color: #00d7af;">void</span>*));
+        <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">method 2</span>
+        printf(<span style="color: #ff4ea3;">"%d \n"</span>, __SIZEOF_POINTER__);
 
-        return 0;
+        <span style="color: #a1db00;">return</span> 0;
     }
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5-2" class="outline-3">
-<h3 id="sec-5-2"><span class="section-number-3">5.2</span> 线程和进程的区别联系：</h3>
+<div id="outline-container-orgheadline50" class="outline-3">
+<h3 id="orgheadline50"><span class="section-number-3">5.2</span> 线程和进程的区别联系：</h3>
 <div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
-<li>进程：子进程是父进程的复制品。子进程获得父进程数据空间、堆和栈的复制品。
-</li>
-<li>线程：相对与进程而言，线程是一个更加接近与执行体的概念，它可以与同进程的其他线程共享数据，但拥有自己的栈空间，拥有独立的执行序列。
-</li>
+<li>进程：子进程是父进程的复制品。子进程获得父进程数据空间、堆和栈的复制品。</li>
+<li>线程：相对与进程而言，线程是一个更加接近与执行体的概念，它可以与同进程的其他线程共享数据，但拥有自己的栈空间，拥有独立的执行序列。</li>
 </ul>
 
 <p>
 根本区别就一点：用多进程每个进程有自己的地址空间 (address space)，线程则共享地址空间。所有其它区别都是由此而来的：
 </p>
 <ul class="org-ul">
-<li>速度：线程产生的速度快，线程间的通讯快、切换快等，因为他们在同一个地址空间内。
-</li>
-<li>资源利用率：线程的资源利用率比较好也是因为他们在同一个地址空间内。
-</li>
-<li>同步问题：线程使用公共变量 / 内存时需要使用同步机制还是因为他们在同一个地址空间内。
-</li>
+<li>速度：线程产生的速度快，线程间的通讯快、切换快等，因为他们在同一个地址空间内。</li>
+<li>资源利用率：线程的资源利用率比较好也是因为他们在同一个地址空间内。</li>
+<li>同步问题：线程使用公共变量 / 内存时需要使用同步机制还是因为他们在同一个地址空间内。</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-5-3" class="outline-3">
-<h3 id="sec-5-3"><span class="section-number-3">5.3</span> 如何系统调优</h3>
+<div id="outline-container-orgheadline51" class="outline-3">
+<h3 id="orgheadline51"><span class="section-number-3">5.3</span> 如何系统调优</h3>
 </div>
-<div id="outline-container-sec-5-4" class="outline-3">
-<h3 id="sec-5-4"><span class="section-number-3">5.4</span> 进程间通信方式</h3>
+<div id="outline-container-orgheadline52" class="outline-3">
+<h3 id="orgheadline52"><span class="section-number-3">5.4</span> 进程间通信方式</h3>
 </div>
-<div id="outline-container-sec-5-5" class="outline-3">
-<h3 id="sec-5-5"><span class="section-number-3">5.5</span> 常用命令</h3>
+<div id="outline-container-orgheadline59" class="outline-3">
+<h3 id="orgheadline59"><span class="section-number-3">5.5</span> 常用命令</h3>
 <div class="outline-text-3" id="text-5-5">
-</div><div id="outline-container-sec-5-5-1" class="outline-4">
-<h4 id="sec-5-5-1"><span class="section-number-4">5.5.1</span> 管道</h4>
+</div><div id="outline-container-orgheadline53" class="outline-4">
+<h4 id="orgheadline53"><span class="section-number-4">5.5.1</span> 管道</h4>
 </div>
-<div id="outline-container-sec-5-5-2" class="outline-4">
-<h4 id="sec-5-5-2"><span class="section-number-4">5.5.2</span> 信号</h4>
+<div id="outline-container-orgheadline54" class="outline-4">
+<h4 id="orgheadline54"><span class="section-number-4">5.5.2</span> 信号</h4>
 </div>
-<div id="outline-container-sec-5-5-3" class="outline-4">
-<h4 id="sec-5-5-3"><span class="section-number-4">5.5.3</span> 信号量</h4>
+<div id="outline-container-orgheadline55" class="outline-4">
+<h4 id="orgheadline55"><span class="section-number-4">5.5.3</span> 信号量</h4>
 </div>
-<div id="outline-container-sec-5-5-4" class="outline-4">
-<h4 id="sec-5-5-4"><span class="section-number-4">5.5.4</span> 消息队列</h4>
+<div id="outline-container-orgheadline56" class="outline-4">
+<h4 id="orgheadline56"><span class="section-number-4">5.5.4</span> 消息队列</h4>
 </div>
-<div id="outline-container-sec-5-5-5" class="outline-4">
-<h4 id="sec-5-5-5"><span class="section-number-4">5.5.5</span> 共享内存</h4>
+<div id="outline-container-orgheadline57" class="outline-4">
+<h4 id="orgheadline57"><span class="section-number-4">5.5.5</span> 共享内存</h4>
 </div>
-<div id="outline-container-sec-5-5-6" class="outline-4">
-<h4 id="sec-5-5-6"><span class="section-number-4">5.5.6</span> socket</h4>
+<div id="outline-container-orgheadline58" class="outline-4">
+<h4 id="orgheadline58"><span class="section-number-4">5.5.6</span> socket</h4>
 </div>
 </div>
-<div id="outline-container-sec-5-6" class="outline-3">
-<h3 id="sec-5-6"><span class="section-number-3">5.6</span> 线程间通信方式</h3>
+<div id="outline-container-orgheadline65" class="outline-3">
+<h3 id="orgheadline65"><span class="section-number-3">5.6</span> 线程间通信方式</h3>
 <div class="outline-text-3" id="text-5-6">
-</div><div id="outline-container-sec-5-6-1" class="outline-4">
-<h4 id="sec-5-6-1"><span class="section-number-4">5.6.1</span> 信号量</h4>
+</div><div id="outline-container-orgheadline60" class="outline-4">
+<h4 id="orgheadline60"><span class="section-number-4">5.6.1</span> 信号量</h4>
 </div>
-<div id="outline-container-sec-5-6-2" class="outline-4">
-<h4 id="sec-5-6-2"><span class="section-number-4">5.6.2</span> 锁</h4>
+<div id="outline-container-orgheadline64" class="outline-4">
+<h4 id="orgheadline64"><span class="section-number-4">5.6.2</span> 锁</h4>
 <div class="outline-text-4" id="text-5-6-2">
-</div><div id="outline-container-sec-5-6-2-1" class="outline-5">
-<h5 id="sec-5-6-2-1">自旋锁</h5>
+</div><div id="outline-container-orgheadline61" class="outline-5">
+<h5 id="orgheadline61">自旋锁</h5>
 </div>
-<div id="outline-container-sec-5-6-2-2" class="outline-5">
-<h5 id="sec-5-6-2-2">读写自旋锁</h5>
+<div id="outline-container-orgheadline62" class="outline-5">
+<h5 id="orgheadline62">读写自旋锁</h5>
 </div>
-<div id="outline-container-sec-5-6-2-3" class="outline-5">
-<h5 id="sec-5-6-2-3">顺序自旋锁</h5>
-</div>
-</div>
-</div>
-<div id="outline-container-sec-5-7" class="outline-3">
-<h3 id="sec-5-7"><span class="section-number-3">5.7</span> malloc 的底层实现。</h3>
-</div>
-<div id="outline-container-sec-5-8" class="outline-3">
-<h3 id="sec-5-8"><span class="section-number-3">5.8</span> deamon 进程如何实现。</h3>
+<div id="outline-container-orgheadline63" class="outline-5">
+<h5 id="orgheadline63">顺序自旋锁</h5>
 </div>
 </div>
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> 数据库</h2>
+</div>
+<div id="outline-container-orgheadline66" class="outline-3">
+<h3 id="orgheadline66"><span class="section-number-3">5.7</span> malloc 的底层实现。</h3>
+</div>
+<div id="outline-container-orgheadline67" class="outline-3">
+<h3 id="orgheadline67"><span class="section-number-3">5.8</span> deamon 进程如何实现。</h3>
+</div>
+</div>
+<div id="outline-container-orgheadline76" class="outline-2">
+<h2 id="orgheadline76"><span class="section-number-2">6</span> 数据库</h2>
 <div class="outline-text-2" id="text-6">
-</div><div id="outline-container-sec-6-1" class="outline-3">
-<h3 id="sec-6-1"><span class="section-number-3">6.1</span> MySQL</h3>
+</div><div id="outline-container-orgheadline74" class="outline-3">
+<h3 id="orgheadline74"><span class="section-number-3">6.1</span> MySQL</h3>
 <div class="outline-text-3" id="text-6-1">
-</div><div id="outline-container-sec-6-1-1" class="outline-4">
-<h4 id="sec-6-1-1"><span class="section-number-4">6.1.1</span> 查询语句如何调优</h4>
+</div><div id="outline-container-orgheadline69" class="outline-4">
+<h4 id="orgheadline69"><span class="section-number-4">6.1.1</span> 查询语句如何调优</h4>
 </div>
-<div id="outline-container-sec-6-1-2" class="outline-4">
-<h4 id="sec-6-1-2"><span class="section-number-4">6.1.2</span> 索引的用途、类型、建立方法</h4>
+<div id="outline-container-orgheadline70" class="outline-4">
+<h4 id="orgheadline70"><span class="section-number-4">6.1.2</span> 索引的用途、类型、建立方法</h4>
 </div>
-<div id="outline-container-sec-6-1-3" class="outline-4">
-<h4 id="sec-6-1-3"><span class="section-number-4">6.1.3</span> 如何分表</h4>
+<div id="outline-container-orgheadline71" class="outline-4">
+<h4 id="orgheadline71"><span class="section-number-4">6.1.3</span> 如何分表</h4>
 </div>
-<div id="outline-container-sec-6-1-4" class="outline-4">
-<h4 id="sec-6-1-4"><span class="section-number-4">6.1.4</span> 如何调优</h4>
+<div id="outline-container-orgheadline72" class="outline-4">
+<h4 id="orgheadline72"><span class="section-number-4">6.1.4</span> 如何调优</h4>
 </div>
-<div id="outline-container-sec-6-1-5" class="outline-4">
-<h4 id="sec-6-1-5"><span class="section-number-4">6.1.5</span> 数据库应该先做记录还是先写日志？</h4>
-</div>
-</div>
-<div id="outline-container-sec-6-2" class="outline-3">
-<h3 id="sec-6-2"><span class="section-number-3">6.2</span> NOSQL</h3>
+<div id="outline-container-orgheadline73" class="outline-4">
+<h4 id="orgheadline73"><span class="section-number-4">6.1.5</span> 数据库应该先做记录还是先写日志？</h4>
 </div>
 </div>
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7"><span class="section-number-2">7</span> 设计模式</h2>
+<div id="outline-container-orgheadline75" class="outline-3">
+<h3 id="orgheadline75"><span class="section-number-3">6.2</span> NOSQL</h3>
+</div>
+</div>
+<div id="outline-container-orgheadline79" class="outline-2">
+<h2 id="orgheadline79"><span class="section-number-2">7</span> 设计模式</h2>
 <div class="outline-text-2" id="text-7">
-</div><div id="outline-container-sec-7-1" class="outline-3">
-<h3 id="sec-7-1"><span class="section-number-3">7.1</span> 单例模式</h3>
+</div><div id="outline-container-orgheadline77" class="outline-3">
+<h3 id="orgheadline77"><span class="section-number-3">7.1</span> 单例模式</h3>
 </div>
-<div id="outline-container-sec-7-2" class="outline-3">
-<h3 id="sec-7-2"><span class="section-number-3">7.2</span> 线程安全的单例模式</h3>
+<div id="outline-container-orgheadline78" class="outline-3">
+<h3 id="orgheadline78"><span class="section-number-3">7.2</span> 线程安全的单例模式</h3>
 <div class="outline-text-3" id="text-7-2">
 <div class="org-src-container">
 
-<pre class="src src-c++">    #include &lt;iostream&gt;
-    #include &lt;gtest\gtest.h&gt;
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;gtest\gtest.h&gt;</span>
 
-    //线程安全的单例模式
-    namespace phenix3443 {
-        class Singleton {
-        public:
-            static Singleton&amp; GetInstance () {
-                //Lock(); //C++11 要求编译器保证局部静态变量的线程安全性，所以 11 之前的版本此处需要加锁
-                static Singleton instance_;
-                //Unlock() //同上
-                return instance_;
+    <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#32447;&#31243;&#23433;&#20840;&#30340;&#21333;&#20363;&#27169;&#24335;</span>
+    <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">phenix3443</span> {
+        <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">Singleton</span> {
+        <span style="color: #a1db00;">public</span>:
+            <span style="color: #a1db00;">static</span> <span style="color: #00d7af;">Singleton</span>&amp; <span style="color: #ffd700;">GetInstance</span> () {
+                <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">Lock(); //C++11 &#35201;&#27714;&#32534;&#35793;&#22120;&#20445;&#35777;&#23616;&#37096;&#38745;&#24577;&#21464;&#37327;&#30340;&#32447;&#31243;&#23433;&#20840;&#24615;&#65292;&#25152;&#20197; 11 &#20043;&#21069;&#30340;&#29256;&#26412;&#27492;&#22788;&#38656;&#35201;&#21152;&#38145;</span>
+                <span style="color: #a1db00;">static</span> <span style="color: #00d7af;">Singleton</span> <span style="color: #ff8700;">instance_</span>;
+                <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">Unlock() //&#21516;&#19978;</span>
+                <span style="color: #a1db00;">return</span> instance_;
             }
-        private:
-            Singleton () { }
-            Singleton (const Singleton&amp;) = delete;
-            Singleton&amp; operator=(const Singleton&amp;) = delete;
-            virtual ~Singleton () { }
+        <span style="color: #a1db00;">private</span>:
+            <span style="color: #ffd700;">Singleton</span> () { }
+            <span style="color: #ffd700;">Singleton</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">Singleton</span>&amp;) = <span style="color: #a1db00;">delete</span>;
+            <span style="color: #00d7af;">Singleton</span>&amp; <span style="color: #a1db00;">operator</span><span style="color: #ffd700;">=</span>(<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">Singleton</span>&amp;) = <span style="color: #a1db00;">delete</span>;
+            <span style="color: #a1db00;">virtual</span> ~<span style="color: #ffd700;">Singleton</span> () { }
         };
 
-        TEST (TestSingleton, SameAddr) {
-            Singleton&amp; a = Singleton::GetInstance ();
-            Singleton&amp; b = Singleton::GetInstance ();
+        <span style="color: #ffd700;">TEST</span> (TestSingleton, SameAddr) {
+            <span style="color: #00d7af;">Singleton</span>&amp; <span style="color: #ff8700;">a</span> = <span style="color: #5fafd7;">Singleton</span>::GetInstance ();
+            <span style="color: #00d7af;">Singleton</span>&amp; <span style="color: #ff8700;">b</span> = <span style="color: #5fafd7;">Singleton</span>::GetInstance ();
             EXPECT_EQ (&amp;a, &amp;b);
         }
     }
@@ -1259,11 +1241,11 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8"><span class="section-number-2">8</span> 数据结构</h2>
+<div id="outline-container-orgheadline105" class="outline-2">
+<h2 id="orgheadline105"><span class="section-number-2">8</span> 数据结构</h2>
 <div class="outline-text-2" id="text-8">
-</div><div id="outline-container-sec-8-1" class="outline-3">
-<h3 id="sec-8-1"><span class="section-number-3">8.1</span> 字符串</h3>
+</div><div id="outline-container-orgheadline80" class="outline-3">
+<h3 id="orgheadline80"><span class="section-number-3">8.1</span> 字符串</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 在一篇英文文章中查找指定的人名，人名使用二十六个英文字母（可以是大写或小写）、空格以及两个通配符组成（*、?），通配符 “*” 表示零个或多个任意字母，通配符 “?” 表示一个任意字母。
@@ -1276,63 +1258,63 @@ void scan(const char* pszText, const char* pszName);
 </div>
 </div>
 
-<div id="outline-container-sec-8-2" class="outline-3">
-<h3 id="sec-8-2"><span class="section-number-3">8.2</span> 链表</h3>
+<div id="outline-container-orgheadline90" class="outline-3">
+<h3 id="orgheadline90"><span class="section-number-3">8.2</span> 链表</h3>
 <div class="outline-text-3" id="text-8-2">
-</div><div id="outline-container-sec-8-2-1" class="outline-4">
-<h4 id="sec-8-2-1"><span class="section-number-4">8.2.1</span> 节点</h4>
+</div><div id="outline-container-orgheadline81" class="outline-4">
+<h4 id="orgheadline81"><span class="section-number-4">8.2.1</span> 节点</h4>
 <div class="outline-text-4" id="text-8-2-1">
 <div class="org-src-container">
 
-<pre class="src src-c++">    struct Node {
-        Node *next;
-        int val;
+<pre class="src src-c++">    <span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">Node</span> {
+        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">next</span>;
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">val</span>;
     };
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-8-2-2" class="outline-4">
-<h4 id="sec-8-2-2"><span class="section-number-4">8.2.2</span> 在 O(1)时间删除链表节点</h4>
+<div id="outline-container-orgheadline82" class="outline-4">
+<h4 id="orgheadline82"><span class="section-number-4">8.2.2</span> 在 O(1)时间删除链表节点</h4>
 <div class="outline-text-4" id="text-8-2-2">
 <p>
 题目描述：给定链表的头指针和一个节点指针，在 O(1)时间删除该节点。
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++">    #include "forwart_list.h"
-    #include &lt;gtest\gtest.h&gt;
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">"forwart_list.h"</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;gtest\gtest.h&gt;</span>
 
-    int DeleteRandomNode(Node *head, Node *del) {
-        if (!head || !del) return -1;
-        Node *nextNode = del-&gt;next;
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">DeleteRandomNode</span>(<span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">head</span>, <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">del</span>) {
+        <span style="color: #a1db00;">if</span> (<span style="color: #ff4b4b;">!</span>head || <span style="color: #ff4b4b;">!</span>del) <span style="color: #a1db00;">return</span> -1;
+        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">nextNode</span> = del-&gt;next;
         del-&gt;data = nextNode-&gt;data;
         del-&gt;next = nextNode-&gt;next;
-        delete nextNode;
-        return 0;
+        <span style="color: #a1db00;">delete</span> nextNode;
+        <span style="color: #a1db00;">return</span> 0;
     }
 
-    TEST(ListTest,DeleteRandomNode) {
+    <span style="color: #ffd700;">TEST</span>(ListTest,DeleteRandomNode) {
 
     }
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-2-3" class="outline-4">
-<h4 id="sec-8-2-3"><span class="section-number-4">8.2.3</span> 二级指针删除单链表</h4>
+<div id="outline-container-orgheadline83" class="outline-4">
+<h4 id="orgheadline83"><span class="section-number-4">8.2.3</span> 二级指针删除单链表</h4>
 <div class="outline-text-4" id="text-8-2-3">
 <div class="org-src-container">
 
-<pre class="src src-c++">    #include "forward_list.h"
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">"forward_list.h"</span>
 
-    Node *DeleteNode(Node **head, int e) {
-        for (Node **curr = head; NULL != *curr; curr = &amp;((*curr)-&gt;next)) {
-            if ((*curr)-&gt;val == e) {
-                Node *del = *curr;
+    <span style="color: #00d7af;">Node</span> *<span style="color: #ffd700;">DeleteNode</span>(<span style="color: #00d7af;">Node</span> **<span style="color: #ff8700;">head</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">e</span>) {
+        <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">Node</span> **<span style="color: #ff8700;">curr</span> = head; <span style="color: #5fafd7;">NULL</span> != *curr; curr = &amp;((*curr)-&gt;next)) {
+            <span style="color: #a1db00;">if</span> ((*curr)-&gt;val == e) {
+                <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">del</span> = *curr;
                 *curr = (*curr)-&gt;next;
-                delete del;
+                <span style="color: #a1db00;">delete</span> del;
             }
         }
     }
@@ -1340,129 +1322,129 @@ void scan(const char* pszText, const char* pszName);
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-2-4" class="outline-4">
-<h4 id="sec-8-2-4"><span class="section-number-4">8.2.4</span> 单链表反转</h4>
+<div id="outline-container-orgheadline86" class="outline-4">
+<h4 id="orgheadline86"><span class="section-number-4">8.2.4</span> 单链表反转</h4>
 <div class="outline-text-4" id="text-8-2-4">
-</div><div id="outline-container-sec-8-2-4-1" class="outline-5">
-<h5 id="sec-8-2-4-1">递归</h5>
-<div class="outline-text-5" id="text-8-2-4-1">
+</div><div id="outline-container-orgheadline84" class="outline-5">
+<h5 id="orgheadline84">递归</h5>
+<div class="outline-text-5" id="text-orgheadline84">
 <p>
 此种方法还可用来解决“逆序打印链表”的问题。
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++">    #include "forward_list.h"
-    Node *RReverse(Node *head) {
-        if (NULL == head-&gt;next) {
-            return head;
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">"forward_list.h"</span>
+    <span style="color: #00d7af;">Node</span> *<span style="color: #ffd700;">RReverse</span>(<span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">head</span>) {
+        <span style="color: #a1db00;">if</span> (<span style="color: #5fafd7;">NULL</span> == head-&gt;next) {
+            <span style="color: #a1db00;">return</span> head;
         }
-        Node *preNode = Reverse(head-&gt;next);
-        Node *nextNode = head-&gt;next;
-        head-&gt;next = NULL;
+        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">preNode</span> = Reverse(head-&gt;next);
+        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">nextNode</span> = head-&gt;next;
+        head-&gt;next = <span style="color: #5fafd7;">NULL</span>;
         nextNode-&gt;next = head;
-        return preNode;
+        <span style="color: #a1db00;">return</span> preNode;
     }
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-2-4-2" class="outline-5">
-<h5 id="sec-8-2-4-2">非递归</h5>
-<div class="outline-text-5" id="text-8-2-4-2">
+<div id="outline-container-orgheadline85" class="outline-5">
+<h5 id="orgheadline85">非递归</h5>
+<div class="outline-text-5" id="text-orgheadline85">
 <p>
 也就是所谓的插头法：从头到尾遍历原链表，每遍历一个结点，将其摘下放在新链表的最前端。时间复杂度为 O（n）
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++">    #include "forward_list.h"
-    Node *Reverse(Node *head) {
-        Node *preNode = NULL, *nextNode = NULL;
-        while(NULL != head) {
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">"forward_list.h"</span>
+    <span style="color: #00d7af;">Node</span> *<span style="color: #ffd700;">Reverse</span>(<span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">head</span>) {
+        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">preNode</span> = <span style="color: #5fafd7;">NULL</span>, *<span style="color: #ff8700;">nextNode</span> = <span style="color: #5fafd7;">NULL</span>;
+        <span style="color: #a1db00;">while</span>(<span style="color: #5fafd7;">NULL</span> != head) {
             nextNode = head-&gt;next;
             head-next = preNode;
             preNode = head;
             head = nextNode;
         }
-        return preNode;
+        <span style="color: #a1db00;">return</span> preNode;
     }
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-2-5" class="outline-4">
-<h4 id="sec-8-2-5"><span class="section-number-4">8.2.5</span> 判断单链表有环并找到环入口</h4>
+<div id="outline-container-orgheadline87" class="outline-4">
+<h4 id="orgheadline87"><span class="section-number-4">8.2.5</span> 判断单链表有环并找到环入口</h4>
 <div class="outline-text-4" id="text-8-2-5">
 <div class="org-src-container">
 
-<pre class="src src-c++">    #include "forward_list.h"
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">"forward_list.h"</span>
 
-    Node *FindLoop(Node *head) {
-        bool loop = false;
-        Node *fast = head, *slow = head;
-        while(fast &amp;&amp; fast-&gt;next) {
+    <span style="color: #00d7af;">Node</span> *<span style="color: #ffd700;">FindLoop</span>(<span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">head</span>) {
+        <span style="color: #00d7af;">bool</span> <span style="color: #ff8700;">loop</span> = <span style="color: #5fafd7;">false</span>;
+        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">fast</span> = head, *<span style="color: #ff8700;">slow</span> = head;
+        <span style="color: #a1db00;">while</span>(fast &amp;&amp; fast-&gt;next) {
             fast = fast-&gt;next-&gt;next;
             slow = slow-&gt;next;
-            if (fast == slow) {
-                loop = true;
-                break;
+            <span style="color: #a1db00;">if</span> (fast == slow) {
+                loop = <span style="color: #5fafd7;">true</span>;
+                <span style="color: #a1db00;">break</span>;
             }
         }
-        // 查找环入口
-        if (loop) {
+        <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#26597;&#25214;&#29615;&#20837;&#21475;</span>
+        <span style="color: #a1db00;">if</span> (loop) {
             slow = head;
-            while (slow != fast) {
+            <span style="color: #a1db00;">while</span> (slow != fast) {
                 slow = slow-&gt;next;
                 fast = fast-&gt;next;
             }
-            return slow;
+            <span style="color: #a1db00;">return</span> slow;
         }
-        return NULL;
+        <span style="color: #a1db00;">return</span> <span style="color: #5fafd7;">NULL</span>;
     }
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-2-6" class="outline-4">
-<h4 id="sec-8-2-6"><span class="section-number-4">8.2.6</span> 单链表排序</h4>
+<div id="outline-container-orgheadline88" class="outline-4">
+<h4 id="orgheadline88"><span class="section-number-4">8.2.6</span> 单链表排序</h4>
 <div class="outline-text-4" id="text-8-2-6">
 <div class="org-src-container">
 
-<pre class="src src-c++">    #include "forward_list.h"
-    #include &lt;cassert&gt;
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">"forward_list.h"</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;cassert&gt;</span>
 
-    void split(Node *head, Node **l, Node **r) {
-        assert(head != NULL);
-        Node *slow = head, *fast = head;
-        while(fast &amp;&amp; fast-&gt;next) {
+    <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">split</span>(<span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">head</span>, <span style="color: #00d7af;">Node</span> **<span style="color: #ff8700;">l</span>, <span style="color: #00d7af;">Node</span> **<span style="color: #ff8700;">r</span>) {
+        assert(head != <span style="color: #5fafd7;">NULL</span>);
+        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">slow</span> = head, *<span style="color: #ff8700;">fast</span> = head;
+        <span style="color: #a1db00;">while</span>(fast &amp;&amp; fast-&gt;next) {
             slow = slow-&gt;next;
             fast = fast-&gt;next-&gt;next;
         }
         l = head;
         r = slow-&gt;next;
-        slow-&gt;next = NULL;
+        slow-&gt;next = <span style="color: #5fafd7;">NULL</span>;
     }
 
-    Node *Merge(Node *l, Node *r) {
-        Node *h = new Node, *p = h;
-        while (l &amp;&amp; r) {
-            if (l-&gt;val &lt; r-&gt;val) {
+    <span style="color: #00d7af;">Node</span> *<span style="color: #ffd700;">Merge</span>(<span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">l</span>, <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">r</span>) {
+        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">h</span> = <span style="color: #a1db00;">new</span> <span style="color: #00d7af;">Node</span>, *<span style="color: #ff8700;">p</span> = h;
+        <span style="color: #a1db00;">while</span> (l &amp;&amp; r) {
+            <span style="color: #a1db00;">if</span> (l-&gt;val &lt; r-&gt;val) {
                 p-&gt;next = l; p = l; l = l-&gt;next;
             }
-            else {
+            <span style="color: #a1db00;">else</span> {
                 p-&gt;next = r; p = r; r = r-&gt;next;
             }
         }
-        if(l) p-&gt;next = l;
-        if(r) p-&gt;next = r;
+        <span style="color: #a1db00;">if</span>(l) p-&gt;next = l;
+        <span style="color: #a1db00;">if</span>(r) p-&gt;next = r;
 
         p = h-&gt;next;
-        delete h;
-        return p;
+        <span style="color: #a1db00;">delete</span> h;
+        <span style="color: #a1db00;">return</span> p;
     }
 
-    void MergeSort(Node **head) {
-        Node *l, *r;
+    <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">MergeSort</span>(<span style="color: #00d7af;">Node</span> **<span style="color: #ff8700;">head</span>) {
+        <span style="color: #00d7af;">Node</span> *<span style="color: #ff8700;">l</span>, *<span style="color: #ff8700;">r</span>;
         split(head, &amp;l, &amp;r);
         MergeSort(&amp;l);
         MergeSort(&amp;r);
@@ -1472,193 +1454,188 @@ void scan(const char* pszText, const char* pszName);
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-2-7" class="outline-4">
-<h4 id="sec-8-2-7"><span class="section-number-4">8.2.7</span> 判断单链表相交</h4>
+<div id="outline-container-orgheadline89" class="outline-4">
+<h4 id="orgheadline89"><span class="section-number-4">8.2.7</span> 判断单链表相交</h4>
 <div class="outline-text-4" id="text-8-2-7">
 <p>
 有两种解法：
 </p>
 <ul class="org-ul">
-<li>将一个链表首尾相连，然后判断另一个链表是否存在环。
-</li>
-<li>假设 len(a)-len(b)= k，那么让链表 a 先走 k 布，然后两个链表一起遍历，查看是否有相同的节点。
-</li>
+<li>将一个链表首尾相连，然后判断另一个链表是否存在环。</li>
+<li>假设 len(a)-len(b)= k，那么让链表 a 先走 k 布，然后两个链表一起遍历，查看是否有相同的节点。</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-8-3" class="outline-3">
-<h3 id="sec-8-3"><span class="section-number-3">8.3</span> 队列</h3>
+<div id="outline-container-orgheadline92" class="outline-3">
+<h3 id="orgheadline92"><span class="section-number-3">8.3</span> 队列</h3>
 <div class="outline-text-3" id="text-8-3">
-</div><div id="outline-container-sec-8-3-1" class="outline-4">
-<h4 id="sec-8-3-1"><span class="section-number-4">8.3.1</span> 用两个栈实现队列</h4>
+</div><div id="outline-container-orgheadline91" class="outline-4">
+<h4 id="orgheadline91"><span class="section-number-4">8.3.1</span> 用两个栈实现队列</h4>
 </div>
 </div>
-<div id="outline-container-sec-8-4" class="outline-3">
-<h3 id="sec-8-4"><span class="section-number-3">8.4</span> 哈希表</h3>
+<div id="outline-container-orgheadline97" class="outline-3">
+<h3 id="orgheadline97"><span class="section-number-3">8.4</span> 哈希表</h3>
 <div class="outline-text-3" id="text-8-4">
-</div><div id="outline-container-sec-8-4-1" class="outline-4">
-<h4 id="sec-8-4-1"><span class="section-number-4">8.4.1</span> 解决 hash 冲突</h4>
+</div><div id="outline-container-orgheadline96" class="outline-4">
+<h4 id="orgheadline96"><span class="section-number-4">8.4.1</span> 解决 hash 冲突</h4>
 <div class="outline-text-4" id="text-8-4-1">
-</div><div id="outline-container-sec-8-4-1-1" class="outline-5">
-<h5 id="sec-8-4-1-1">开放地址法</h5>
+</div><div id="outline-container-orgheadline93" class="outline-5">
+<h5 id="orgheadline93">开放地址法</h5>
 </div>
-<div id="outline-container-sec-8-4-1-2" class="outline-5">
-<h5 id="sec-8-4-1-2">再 hash</h5>
+<div id="outline-container-orgheadline94" class="outline-5">
+<h5 id="orgheadline94">再 hash</h5>
 </div>
-<div id="outline-container-sec-8-4-1-3" class="outline-5">
-<h5 id="sec-8-4-1-3">链地址法</h5>
+<div id="outline-container-orgheadline95" class="outline-5">
+<h5 id="orgheadline95">链地址法</h5>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-5" class="outline-3">
-<h3 id="sec-8-5"><span class="section-number-3">8.5</span> 树</h3>
+<div id="outline-container-orgheadline104" class="outline-3">
+<h3 id="orgheadline104"><span class="section-number-3">8.5</span> 树</h3>
 <div class="outline-text-3" id="text-8-5">
-</div><div id="outline-container-sec-8-5-1" class="outline-4">
-<h4 id="sec-8-5-1"><span class="section-number-4">8.5.1</span> 二叉树</h4>
+</div><div id="outline-container-orgheadline98" class="outline-4">
+<h4 id="orgheadline98"><span class="section-number-4">8.5.1</span> 二叉树</h4>
 </div>
-<div id="outline-container-sec-8-5-2" class="outline-4">
-<h4 id="sec-8-5-2"><span class="section-number-4">8.5.2</span> B 树</h4>
+<div id="outline-container-orgheadline99" class="outline-4">
+<h4 id="orgheadline99"><span class="section-number-4">8.5.2</span> B 树</h4>
 </div>
-<div id="outline-container-sec-8-5-3" class="outline-4">
-<h4 id="sec-8-5-3"><span class="section-number-4">8.5.3</span> AVL 树</h4>
+<div id="outline-container-orgheadline100" class="outline-4">
+<h4 id="orgheadline100"><span class="section-number-4">8.5.3</span> AVL 树</h4>
 </div>
-<div id="outline-container-sec-8-5-4" class="outline-4">
-<h4 id="sec-8-5-4"><span class="section-number-4">8.5.4</span> 红黑树</h4>
+<div id="outline-container-orgheadline101" class="outline-4">
+<h4 id="orgheadline101"><span class="section-number-4">8.5.4</span> 红黑树</h4>
 </div>
-<div id="outline-container-sec-8-5-5" class="outline-4">
-<h4 id="sec-8-5-5"><span class="section-number-4">8.5.5</span> tri 树</h4>
+<div id="outline-container-orgheadline102" class="outline-4">
+<h4 id="orgheadline102"><span class="section-number-4">8.5.5</span> tri 树</h4>
 </div>
-<div id="outline-container-sec-8-5-6" class="outline-4">
-<h4 id="sec-8-5-6"><span class="section-number-4">8.5.6</span> 字典数</h4>
+<div id="outline-container-orgheadline103" class="outline-4">
+<h4 id="orgheadline103"><span class="section-number-4">8.5.6</span> 字典数</h4>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-9" class="outline-2">
-<h2 id="sec-9"><span class="section-number-2">9</span> 算法</h2>
+<div id="outline-container-orgheadline131" class="outline-2">
+<h2 id="orgheadline131"><span class="section-number-2">9</span> 算法</h2>
 <div class="outline-text-2" id="text-9">
-</div><div id="outline-container-sec-9-1" class="outline-3">
-<h3 id="sec-9-1"><span class="section-number-3">9.1</span> 排序</h3>
+</div><div id="outline-container-orgheadline128" class="outline-3">
+<h3 id="orgheadline128"><span class="section-number-3">9.1</span> 排序</h3>
 <div class="outline-text-3" id="text-9-1">
-</div><div id="outline-container-sec-9-1-1" class="outline-4">
-<h4 id="sec-9-1-1"><span class="section-number-4">9.1.1</span> 冒泡排序</h4>
+</div><div id="outline-container-orgheadline109" class="outline-4">
+<h4 id="orgheadline109"><span class="section-number-4">9.1.1</span> 冒泡排序</h4>
 <div class="outline-text-4" id="text-9-1-1">
-</div><ul class="org-ul"><li><a id="sec-9-1-1-0-1" name="sec-9-1-1-0-1"></a>基本<br  /><div class="outline-text-6" id="text-9-1-1-0-1">
+</div><ul class="org-ul"><li><a id="orgheadline106"></a>基本<br  /><div class="outline-text-6" id="text-orgheadline106">
 <div class="org-src-container">
 
-<pre class="src src-c++">    int bubbleSort (int data[], int len, int start, int  end)
+<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">bubbleSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span>  <span style="color: #ff8700;">end</span>)
     {
-        if (data == NULL || len &lt;= 0 || start &lt; 0 || end &gt;= len)
+        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)
         {
-            printf ("[%s, %d] Invalid input\n", __FILE__, __LINE__);
-            return -1;
+            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
         }
-        else
+        <span style="color: #a1db00;">else</span>
         {
-            for (int idx = start; idx &lt; end; idx++)
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start; idx &lt; end; idx++)
             {
-                for (int j = start; j &lt; end - idx; j++)
+                <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">j</span> = start; j &lt; end - idx; j++)
                 {
-                    if (data[j]&gt;data[j + 1])
+                    <span style="color: #a1db00;">if</span> (data[j]&gt;data[j + 1])
                     {
                         swapTwoNumValue (&amp;data[j], &amp;data[j + 1]);
                     }
                 }
             }
-            return 0;
+            <span style="color: #a1db00;">return</span> 0;
         }
     }
 </pre>
 </div>
-</div>
-</li>
-<li><a id="sec-9-1-1-0-2" name="sec-9-1-1-0-2"></a>优化 1<br  /><div class="outline-text-6" id="text-9-1-1-0-2">
+</div></li>
+<li><a id="orgheadline107"></a>优化 1<br  /><div class="outline-text-6" id="text-orgheadline107">
 <div class="org-src-container">
 
-<pre class="src src-c++">    /* 冒泡排序优化, 设置交换标志 */
-    int bubbleSortWithSwapFlag (int data[], int len, int start, int  end)
+<pre class="src src-c++">    <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#20882;&#27873;&#25490;&#24207;&#20248;&#21270;, &#35774;&#32622;&#20132;&#25442;&#26631;&#24535; */</span>
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">bubbleSortWithSwapFlag</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span>  <span style="color: #ff8700;">end</span>)
     {
-        if (data == NULL || len &lt;= 0 || start &lt; 0 || end &gt;= len)
+        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)
         {
-            printf ("[%s, %d] Invalid input\n", __FILE__, __LINE__);
-            return -1;
+            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
         }
-        else
+        <span style="color: #a1db00;">else</span>
         {
-            int i, j;
-            int swapFlag = 1; /* 上次是否有交换 */
-            for (i = start + 1; (swapFlag) &amp;&amp; (i &lt;= end - start); i++)
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span>, <span style="color: #ff8700;">j</span>;
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">swapFlag</span> = 1; <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#19978;&#27425;&#26159;&#21542;&#26377;&#20132;&#25442; */</span>
+            <span style="color: #a1db00;">for</span> (i = start + 1; (swapFlag) &amp;&amp; (i &lt;= end - start); i++)
             {
                 swapFlag = 0;
-                for (j = start; j &lt;= end - i; j++)
+                <span style="color: #a1db00;">for</span> (j = start; j &lt;= end - i; j++)
                 {
-                    if (data[j] &gt; data[j + 1])
+                    <span style="color: #a1db00;">if</span> (data[j] &gt; data[j + 1])
                     {
                         swapTwoNumValue (&amp;data[j], &amp;data[j + 1]);
                         swapFlag = 1;
                     }
                 }
             }
-            return 0;
+            <span style="color: #a1db00;">return</span> 0;
         }
     }
 </pre>
 </div>
-</div>
-</li>
-<li><a id="sec-9-1-1-0-3" name="sec-9-1-1-0-3"></a>优化 2<br  /><div class="outline-text-6" id="text-9-1-1-0-3">
+</div></li>
+<li><a id="orgheadline108"></a>优化 2<br  /><div class="outline-text-6" id="text-orgheadline108">
 <div class="org-src-container">
 
-<pre class="src src-c++">    /* 冒泡排序优化 2 */
-    int bubbleSortWithSwapPosition (int data[], int len, int start, int  end)
+<pre class="src src-c++">    <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#20882;&#27873;&#25490;&#24207;&#20248;&#21270; 2 */</span>
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">bubbleSortWithSwapPosition</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span>  <span style="color: #ff8700;">end</span>)
     {
-        if (data == NULL || len &lt;= 0 || start &lt; 0 || end &gt;= len)
+        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)
         {
-            printf ("[%s, %d] Invalid input\n", __FILE__, __LINE__);
-            return -1;
+            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
         }
-        else
+        <span style="color: #a1db00;">else</span>
         {
-            int swapPos = end -1; /* 最后一次交换位置 */
-            while (swapPos)
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">swapPos</span> = end -1; <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#26368;&#21518;&#19968;&#27425;&#20132;&#25442;&#20301;&#32622; */</span>
+            <span style="color: #a1db00;">while</span> (swapPos)
             {
-                int swapFlag = swapPos;
+                <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">swapFlag</span> = swapPos;
                 swapPos = 0;
-                for (int j = start; j &lt;= swapFlag; j++)
+                <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">j</span> = start; j &lt;= swapFlag; j++)
                 {
-                    if (data[j] &gt; data[j + 1])
+                    <span style="color: #a1db00;">if</span> (data[j] &gt; data[j + 1])
                     {
                         swapTwoNumValue (&amp;data[j], &amp;data[j + 1]);
                         swapPos = j;
                     }
                 }
             }
-            return 0;
+            <span style="color: #a1db00;">return</span> 0;
         }
     }
 </pre>
 </div>
+</div></li></ul>
 </div>
-</li></ul>
-</div>
-<div id="outline-container-sec-9-1-2" class="outline-4">
-<h4 id="sec-9-1-2"><span class="section-number-4">9.1.2</span> 快速排序</h4>
+<div id="outline-container-orgheadline112" class="outline-4">
+<h4 id="orgheadline112"><span class="section-number-4">9.1.2</span> 快速排序</h4>
 <div class="outline-text-4" id="text-9-1-2">
-</div><div id="outline-container-sec-9-1-2-1" class="outline-5">
-<h5 id="sec-9-1-2-1">递归实现</h5>
-<div class="outline-text-5" id="text-9-1-2-1">
+</div><div id="outline-container-orgheadline110" class="outline-5">
+<h5 id="orgheadline110">递归实现</h5>
+<div class="outline-text-5" id="text-orgheadline110">
 <div class="org-src-container">
 
-<pre class="src src-c++">    extern void swap(int*, int*);
+<pre class="src src-c++">    <span style="color: #a1db00;">extern</span> <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">swap</span>(<span style="color: #00d7af;">int</span>*, <span style="color: #00d7af;">int</span>*);
 
-    int partion(int a[], int left, int right) {
-        int idx = right;
-        int small = left - 1, big = left;
-        while(big &lt; right) {
-            if (a[big] &lt; a[idx]) {
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">partion</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">left</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">right</span>) {
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = right;
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">small</span> = left - 1, <span style="color: #ff8700;">big</span> = left;
+        <span style="color: #a1db00;">while</span>(big &lt; right) {
+            <span style="color: #a1db00;">if</span> (a[big] &lt; a[idx]) {
                 ++ small;
-                if (small != big) {
+                <span style="color: #a1db00;">if</span> (small != big) {
                     swap(&amp;a[small],&amp;a[big]);
                 }
             }
@@ -1667,12 +1644,12 @@ void scan(const char* pszText, const char* pszName);
         ++ small;
         swap(&amp;a[small], &amp;a[idx]);
 
-        return small;
+        <span style="color: #a1db00;">return</span> small;
     }
 
-    int QuickSort(int a[], int left, int right) {
-        if (left &lt; right) {
-            int povit = partion(a, left, right);
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">QuickSort</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">left</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">right</span>) {
+        <span style="color: #a1db00;">if</span> (left &lt; right) {
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">povit</span> = partion(a, left, right);
             QuickSort(a, left, povit -1);
             QuickSort(a, povit + 1, right);
         }
@@ -1681,36 +1658,36 @@ void scan(const char* pszText, const char* pszName);
 </div>
 </div>
 </div>
-<div id="outline-container-sec-9-1-2-2" class="outline-5">
-<h5 id="sec-9-1-2-2">栈非递归</h5>
-<div class="outline-text-5" id="text-9-1-2-2">
+<div id="outline-container-orgheadline111" class="outline-5">
+<h5 id="orgheadline111">栈非递归</h5>
+<div class="outline-text-5" id="text-orgheadline111">
 <div class="org-src-container">
 
-<pre class="src src-c++">    int QuickSortWithStack (int data[], int len, int start, int  end)
+<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">QuickSortWithStack</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span>  <span style="color: #ff8700;">end</span>)
     {
-        int mystack[32] = { 0 };
-        int top = -1;
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">mystack</span>[32] = { 0 };
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">top</span> = -1;
         mystack[++top] = start;
         mystack[++top] = end;
 
-        while (top &gt; 0)
+        <span style="color: #a1db00;">while</span> (top &gt; 0)
         {
-            int large = mystack[top--];
-            int small = mystack[top--];
-            int povit = partition (data, len, small, large);
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">large</span> = mystack[top--];
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">small</span> = mystack[top--];
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">povit</span> = partition (data, len, small, large);
 
-            if (small &lt; povit - 1)
+            <span style="color: #a1db00;">if</span> (small &lt; povit - 1)
             {
                 mystack[++top] = small;
                 mystack[++top] = povit - 1;
             }
-            if (large &gt; povit + 1)
+            <span style="color: #a1db00;">if</span> (large &gt; povit + 1)
             {
                 mystack[++top] = povit + 1;
                 mystack[++top] = large;
             }
         }
-        return 0;
+        <span style="color: #a1db00;">return</span> 0;
     }
 </pre>
 </div>
@@ -1718,54 +1695,54 @@ void scan(const char* pszText, const char* pszName);
 </div>
 </div>
 
-<div id="outline-container-sec-9-1-3" class="outline-4">
-<h4 id="sec-9-1-3"><span class="section-number-4">9.1.3</span> 插入排序</h4>
+<div id="outline-container-orgheadline115" class="outline-4">
+<h4 id="orgheadline115"><span class="section-number-4">9.1.3</span> 插入排序</h4>
 <div class="outline-text-4" id="text-9-1-3">
 <div class="org-src-container">
 
-<pre class="src src-c++">    int insertSort (int data[], int len, int start, int  end)
+<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">insertSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span>  <span style="color: #ff8700;">end</span>)
     {
-        if (data == NULL || len &lt;= 0 || start &lt; 0 || end &gt;= len)
+        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)
         {
-            printf ("[%s, %d] Invalid input\n", __FILE__, __LINE__);
-            return -1;
+            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
         }
-        else
+        <span style="color: #a1db00;">else</span>
         {
-            for (int insert = start + 1; insert &lt;= end; insert++)
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">insert</span> = start + 1; insert &lt;= end; insert++)
             {
-                int key = data[insert];
-                int idx = insert - 1;
-                for (; idx &gt; start - 1 &amp;&amp; data[idx] &gt; key; idx--)
+                <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">key</span> = data[insert];
+                <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = insert - 1;
+                <span style="color: #a1db00;">for</span> (; idx &gt; start - 1 &amp;&amp; data[idx] &gt; key; idx--)
                 {
                     data[idx + 1] = data[idx];
                 }
                 data[idx + 1] = key;
             }
-            return 0;
+            <span style="color: #a1db00;">return</span> 0;
         }
     }
 </pre>
 </div>
 </div>
-<div id="outline-container-sec-9-1-3-1" class="outline-5">
-<h5 id="sec-9-1-3-1">交换位置的插入排序</h5>
-<div class="outline-text-5" id="text-9-1-3-1">
+<div id="outline-container-orgheadline113" class="outline-5">
+<h5 id="orgheadline113">交换位置的插入排序</h5>
+<div class="outline-text-5" id="text-orgheadline113">
 <div class="org-src-container">
 
-<pre class="src src-c++">    int insertSortSwapPos (int data[], int len, int start, int  end)
+<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">insertSortSwapPos</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span>  <span style="color: #ff8700;">end</span>)
     {
-        if (data == NULL || len &lt;= 0 || start &lt; 0 || end &gt;= len)
+        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)
         {
-            printf ("[%s, %d] Invalid input\n", __FILE__, __LINE__);
-            return -1;
+            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
         }
-        else
+        <span style="color: #a1db00;">else</span>
         {
-            int insert, idx, tmp;
-            for (insert = start + 1; insert &lt;= end; insert++)
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">insert</span>, <span style="color: #ff8700;">idx</span>, <span style="color: #ff8700;">tmp</span>;
+            <span style="color: #a1db00;">for</span> (insert = start + 1; insert &lt;= end; insert++)
             {
-                for (idx = insert; idx &gt; start &amp;&amp; data[idx] &lt; data[idx - 1]; idx--)
+                <span style="color: #a1db00;">for</span> (idx = insert; idx &gt; start &amp;&amp; data[idx] &lt; data[idx - 1]; idx--)
                 {
                     swapTwoNumValue (&amp;data[idx], &amp;data[idx - 1]);
                 }
@@ -1776,21 +1753,21 @@ void scan(const char* pszText, const char* pszName);
 </div>
 </div>
 </div>
-<div id="outline-container-sec-9-1-3-2" class="outline-5">
-<h5 id="sec-9-1-3-2">带二分查找的插入排序</h5>
-<div class="outline-text-5" id="text-9-1-3-2">
+<div id="outline-container-orgheadline114" class="outline-5">
+<h5 id="orgheadline114">带二分查找的插入排序</h5>
+<div class="outline-text-5" id="text-orgheadline114">
 <div class="org-src-container">
 
-<pre class="src src-c++">    extern int BinSearch (int data[], int n);
+<pre class="src src-c++">    <span style="color: #a1db00;">extern</span> <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">BinSearch</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">n</span>);
 
-    void InsertSortWithBinSearch (int data[], int len)
+    <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">InsertSortWithBinSearch</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>)
     {
-        for (int insert = start + 1; insert &lt;= end; insert++)
+        <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">insert</span> = start + 1; insert &lt;= end; insert++)
         {
-            int key = data[insert];
-            int pos = binarySearch (data, start, insert - 1, key);
-            int idx = insert;
-            for (; idx &gt; pos; idx--)
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">key</span> = data[insert];
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">pos</span> = binarySearch (data, start, insert - 1, key);
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = insert;
+            <span style="color: #a1db00;">for</span> (; idx &gt; pos; idx--)
             {
                 data[idx] = data[idx - 1];
             }
@@ -1803,31 +1780,31 @@ void scan(const char* pszText, const char* pszName);
 </div>
 </div>
 </div>
-<div id="outline-container-sec-9-1-4" class="outline-4">
-<h4 id="sec-9-1-4"><span class="section-number-4">9.1.4</span> 希尔排序</h4>
+<div id="outline-container-orgheadline116" class="outline-4">
+<h4 id="orgheadline116"><span class="section-number-4">9.1.4</span> 希尔排序</h4>
 <div class="outline-text-4" id="text-9-1-4">
 <div class="org-src-container">
 
-<pre class="src src-c++">    int shellSort (int data[], int len, int start, int end)
+<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">shellSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">end</span>)
     {
-        if (data == NULL || len &lt;= 0 || start &lt; 0 || end &gt;= len)
+        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)
         {
-            printf ("[%s, %d] Invalid input\n", __FILE__, __LINE__);
-            return -1;
+            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
         }
-        else
+        <span style="color: #a1db00;">else</span>
         {
-            for (int gap = len / 2; gap &gt; 0; gap /= 2)
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">gap</span> = len / 2; gap &gt; 0; gap /= 2)
             {
-                for (int i = gap; i &lt;= end; i++)
+                <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span> = gap; i &lt;= end; i++)
                 {
-                    for (int j = i - gap; j &gt;= start &amp;&amp; data[j] &gt; data[j + gap]; j -= gap)
+                    <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">j</span> = i - gap; j &gt;= start &amp;&amp; data[j] &gt; data[j + gap]; j -= gap)
                     {
                         swapTwoNumValue (&amp;data[j], &amp;data[j + gap]);
                     }
                 }
             }
-            return 0;
+            <span style="color: #a1db00;">return</span> 0;
         }
     }
 </pre>
@@ -1835,67 +1812,67 @@ void scan(const char* pszText, const char* pszName);
 </div>
 </div>
 
-<div id="outline-container-sec-9-1-5" class="outline-4">
-<h4 id="sec-9-1-5"><span class="section-number-4">9.1.5</span> 选择排序</h4>
+<div id="outline-container-orgheadline119" class="outline-4">
+<h4 id="orgheadline119"><span class="section-number-4">9.1.5</span> 选择排序</h4>
 <div class="outline-text-4" id="text-9-1-5">
-</div><div id="outline-container-sec-9-1-5-1" class="outline-5">
-<h5 id="sec-9-1-5-1">简单选择排序</h5>
-<div class="outline-text-5" id="text-9-1-5-1">
+</div><div id="outline-container-orgheadline117" class="outline-5">
+<h5 id="orgheadline117">简单选择排序</h5>
+<div class="outline-text-5" id="text-orgheadline117">
 <div class="org-src-container">
 
-<pre class="src src-c++">    int simpleSelectionSort (int data[], int len, int start, int  end)
+<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">simpleSelectionSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span>  <span style="color: #ff8700;">end</span>)
     {
-        if (data == NULL || len &lt;= 0 || start &lt; 0 || end &gt;= len)
+        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)
         {
-            printf ("[%s, %d] Invalid input\n", __FILE__, __LINE__);
-            return -1;
+            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
         }
-        else
+        <span style="color: #a1db00;">else</span>
         {
-            for (int idx = start; idx &lt; end; idx++)
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start; idx &lt; end; idx++)
             {
-                int min = idx;
-                for (int j = idx + 1; j &lt;= end; j++)
+                <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">min</span> = idx;
+                <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">j</span> = idx + 1; j &lt;= end; j++)
                 {
                     min = (data[j] &lt; data[min]) ? j : min;
                 }
                 swapTwoNumValue (&amp;data[idx], &amp;data[min]);
             }
-            return 0;
+            <span style="color: #a1db00;">return</span> 0;
         }
     }
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-9-1-5-2" class="outline-5">
-<h5 id="sec-9-1-5-2">递归简单选择排序</h5>
-<div class="outline-text-5" id="text-9-1-5-2">
+<div id="outline-container-orgheadline118" class="outline-5">
+<h5 id="orgheadline118">递归简单选择排序</h5>
+<div class="outline-text-5" id="text-orgheadline118">
 <div class="org-src-container">
 
-<pre class="src src-c++">    int RecurSimpleSelectionSort (int data[], int len, int start, int  end)
+<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">RecurSimpleSelectionSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span>  <span style="color: #ff8700;">end</span>)
     {
-        if (data == NULL || len &lt;= 0 || start &lt; 0 || end &gt;= len)
+        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)
         {
-            printf ("[%s, %d] Invalid input\n", __FILE__, __LINE__);
-            return -1;
+            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
         }
-        else
+        <span style="color: #a1db00;">else</span>
         {
-            int max = start;
-            for (int idx = start; idx &lt; end; ++idx)
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">max</span> = start;
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start; idx &lt; end; ++idx)
             {
                 max = (data[idx] &gt; data[idx + 1]) ? idx : idx + 1;
             }
-            if (max != end)
+            <span style="color: #a1db00;">if</span> (max != end)
             {
                 swapTwoNumValue (&amp;data[max], &amp;data[end]);
             }
-            if (start &lt; end - 1)
+            <span style="color: #a1db00;">if</span> (start &lt; end - 1)
             {
                 recurSimpleSelectionSort (data, len, start, end - 1);
             }
-            return 0;
+            <span style="color: #a1db00;">return</span> 0;
         }
     }
 </pre>
@@ -1904,52 +1881,52 @@ void scan(const char* pszText, const char* pszName);
 </div>
 </div>
 
-<div id="outline-container-sec-9-1-6" class="outline-4">
-<h4 id="sec-9-1-6"><span class="section-number-4">9.1.6</span> 堆排序</h4>
+<div id="outline-container-orgheadline120" class="outline-4">
+<h4 id="orgheadline120"><span class="section-number-4">9.1.6</span> 堆排序</h4>
 <div class="outline-text-4" id="text-9-1-6">
 <div class="org-src-container">
 
-<pre class="src src-c++">    void adjustMaxHeap (int data[], int start, int end, int pos)
+<pre class="src src-c++">    <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">adjustMaxHeap</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">end</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">pos</span>)
     {
-        int left = pos * 2 + 1;
-        int right = 2 * (pos + 1);
-        int largest = pos;
-        if ((left &lt;= end) &amp;&amp; (data[left] &gt; data[largest]))
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">left</span> = pos * 2 + 1;
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">right</span> = 2 * (pos + 1);
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">largest</span> = pos;
+        <span style="color: #a1db00;">if</span> ((left &lt;= end) &amp;&amp; (data[left] &gt; data[largest]))
         {
             largest = left;
         }
-        if ((right &lt;= end) &amp;&amp; (data[right] &gt; data[largest]))
+        <span style="color: #a1db00;">if</span> ((right &lt;= end) &amp;&amp; (data[right] &gt; data[largest]))
         {
             largest = right;
         }
-        if (largest != pos)
+        <span style="color: #a1db00;">if</span> (largest != pos)
         {
             swapTwoNumValue (&amp;data[pos], &amp;data[largest]);
             adjustMaxHeap (data, start, end, largest);
         }
     }
 
-    int heapSort (int data[], int len, int start, int end)
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">heapSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">end</span>)
     {
-        if (data == NULL || len &lt;= 0 || start &lt; 0 || end &gt;= len)
+        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)
         {
-            printf ("[%s, %d] Invalid input\n", __FILE__, __LINE__);
-            return -1;
+            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
         }
-        else
+        <span style="color: #a1db00;">else</span>
         {
-            /* build max root heap */
-            for (int idx = (start + end) / 2; idx &gt;= start; idx--)
+            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">build max root heap */</span>
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = (start + end) / 2; idx &gt;= start; idx--)
             {
                 adjustMaxHeap (data, start, end, idx);
             }
-            /* heap sort */
-            for (int idx = end; idx &gt;= start + 1; idx--)
+            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">heap sort */</span>
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = end; idx &gt;= start + 1; idx--)
             {
                 swapTwoNumValue (&amp;data[start], &amp;data[idx]);
                 adjustMaxHeap (data, start, idx - 1, start);
             }
-            return 0;
+            <span style="color: #a1db00;">return</span> 0;
         }
     }
 </pre>
@@ -1957,93 +1934,93 @@ void scan(const char* pszText, const char* pszName);
 </div>
 </div>
 
-<div id="outline-container-sec-9-1-7" class="outline-4">
-<h4 id="sec-9-1-7"><span class="section-number-4">9.1.7</span> 归并排序</h4>
+<div id="outline-container-orgheadline123" class="outline-4">
+<h4 id="orgheadline123"><span class="section-number-4">9.1.7</span> 归并排序</h4>
 <div class="outline-text-4" id="text-9-1-7">
-</div><div id="outline-container-sec-9-1-7-1" class="outline-5">
-<h5 id="sec-9-1-7-1">递归实现</h5>
-<div class="outline-text-5" id="text-9-1-7-1">
+</div><div id="outline-container-orgheadline121" class="outline-5">
+<h5 id="orgheadline121">递归实现</h5>
+<div class="outline-text-5" id="text-orgheadline121">
 <div class="org-src-container">
 
-<pre class="src src-c++">    int Merge (int longArray[], int len1, int shortArray[], int len2)
+<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">Merge</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">longArray</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len1</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">shortArray</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len2</span>)
     {
-        if (longArray == NULL || shortArray == NULL || longArray == shortArray || len1 &lt; 0 || len2 &lt; 0)
+        <span style="color: #a1db00;">if</span> (longArray == <span style="color: #5fafd7;">NULL</span> || shortArray == <span style="color: #5fafd7;">NULL</span> || longArray == shortArray || len1 &lt; 0 || len2 &lt; 0)
         {
-            printf ("[%s, %d] Invalid input\n", __FILE__, __LINE__);
-            return -1;
+            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
         }
-        else
+        <span style="color: #a1db00;">else</span>
         {
-            /* copy shortArray to tmp array */
-            int *tmpArray = (int *) malloc (len2 * sizeof(int));
-            for (int idx = 0; idx &lt; len2; idx++)
+            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">copy shortArray to tmp array */</span>
+            <span style="color: #00d7af;">int</span> *<span style="color: #ff8700;">tmpArray</span> = (<span style="color: #00d7af;">int</span> *) malloc (<span style="color: #00d7af;">len2</span> * <span style="color: #a1db00;">sizeof</span>(<span style="color: #00d7af;">int</span>));
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = 0; idx &lt; len2; idx++)
             {
                 tmpArray[idx] = shortArray[idx];
             }
 
-            int i = len1 - 1;
-            int j = len2 - 1;
-            int k = len1 + len2 - 1;
-            while (i &gt; -1 &amp;&amp; j &gt; -1)
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span> = len1 - 1;
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">j</span> = len2 - 1;
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">k</span> = len1 + len2 - 1;
+            <span style="color: #a1db00;">while</span> (i &gt; -1 &amp;&amp; j &gt; -1)
             {
                 longArray[k--] = (longArray[i] &gt; tmpArray[j]) ? longArray[i--] : tmpArray[j--];
             }
-            if (i &lt; 0 &amp;&amp; j &gt; -1)
+            <span style="color: #a1db00;">if</span> (i &lt; 0 &amp;&amp; j &gt; -1)
             {
-                while (k &gt; -1)
+                <span style="color: #a1db00;">while</span> (k &gt; -1)
                 {
                     longArray[k--] = tmpArray[j--];
                 }
             }
             free (tmpArray);
-            return 0;
+            <span style="color: #a1db00;">return</span> 0;
         }
     }
 
-    int RMergeSort (int data[], int len, int start, int end)
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">RMergeSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">end</span>)
     {
-        if (data == NULL || len &lt;= 0 || start &lt; 0 || end &gt;= len)
+        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)
         {
-            printf ("[%s, %s] Invalid input\n", __FILE__, __LINE__);
-            return -1;
+            printf (<span style="color: #ff4ea3;">"[%s, %s] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
         }
-        else
+        <span style="color: #a1db00;">else</span>
         {
-            if (start &lt; end)
+            <span style="color: #a1db00;">if</span> (start &lt; end)
             {
-                int mid = (start + end) / 2;
+                <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">mid</span> = (start + end) / 2;
                 RMergeSort (data, len, start, mid);
                 RMergeSort (data, len, mid + 1, end);
                 Merge (&amp;data[start], mid - start + 1, &amp;data[mid + 1], end - mid);
             }
-            return 0;
+            <span style="color: #a1db00;">return</span> 0;
         }
     }
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-9-1-7-2" class="outline-5">
-<h5 id="sec-9-1-7-2">非递归实现</h5>
-<div class="outline-text-5" id="text-9-1-7-2">
+<div id="outline-container-orgheadline122" class="outline-5">
+<h5 id="orgheadline122">非递归实现</h5>
+<div class="outline-text-5" id="text-orgheadline122">
 <div class="org-src-container">
 
-<pre class="src src-c++">    // 非递归实现 --迭代
-    // 非递归思想: 将数组中的相邻元素两两配对。用 merge 函数将他们排序，
-    // 构成 n/2 组长度为 2 的排序好的子数组段，然后再将他们排序成长度为 4 的子数组段，
-    // 如此继续下去，直至整个数组排好序。
+<pre class="src src-c++">    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#38750;&#36882;&#24402;&#23454;&#29616; --&#36845;&#20195;</span>
+    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#38750;&#36882;&#24402;&#24605;&#24819;: &#23558;&#25968;&#32452;&#20013;&#30340;&#30456;&#37051;&#20803;&#32032;&#20004;&#20004;&#37197;&#23545;&#12290;&#29992; merge &#20989;&#25968;&#23558;&#20182;&#20204;&#25490;&#24207;&#65292;</span>
+    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#26500;&#25104; n/2 &#32452;&#38271;&#24230;&#20026; 2 &#30340;&#25490;&#24207;&#22909;&#30340;&#23376;&#25968;&#32452;&#27573;&#65292;&#28982;&#21518;&#20877;&#23558;&#20182;&#20204;&#25490;&#24207;&#25104;&#38271;&#24230;&#20026; 4 &#30340;&#23376;&#25968;&#32452;&#27573;&#65292;</span>
+    <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#22914;&#27492;&#32487;&#32493;&#19979;&#21435;&#65292;&#30452;&#33267;&#25972;&#20010;&#25968;&#32452;&#25490;&#22909;&#24207;&#12290;</span>
 
-    void MergeSort (int data[], int len, int start, int end)
+    <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">MergeSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">end</span>)
     {
-        int step, idx;    /* 步长,开始 */
-        for (step = 2; start + step - 1 &lt;= end; step *= 2)
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">step</span>, <span style="color: #ff8700;">idx</span>;    <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#27493;&#38271;,&#24320;&#22987; */</span>
+        <span style="color: #a1db00;">for</span> (step = 2; start + step - 1 &lt;= end; step *= 2)
         {
-            for (idx = start; idx + step - 1 &lt;= end; idx += step)
+            <span style="color: #a1db00;">for</span> (idx = start; idx + step - 1 &lt;= end; idx += step)
             {
                 mergeTwoSortedArray (&amp;data[idx], step / 2, &amp;data[idx + step / 2], step / 2);
             }
-            /* 处理末尾奇数剩余 */
-            if (idx &lt;= end &amp;&amp; idx + step - 1 &gt; end)
+            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#22788;&#29702;&#26411;&#23614;&#22855;&#25968;&#21097;&#20313; */</span>
+            <span style="color: #a1db00;">if</span> (idx &lt;= end &amp;&amp; idx + step - 1 &gt; end)
             {
                 mergeTwoSortedArray (&amp;data[idx - step], step, &amp;data[idx], end - idx + 1);
             }
@@ -2055,64 +2032,64 @@ void scan(const char* pszText, const char* pszName);
 </div>
 </div>
 
-<div id="outline-container-sec-9-1-8" class="outline-4">
-<h4 id="sec-9-1-8"><span class="section-number-4">9.1.8</span> 基数排序</h4>
+<div id="outline-container-orgheadline124" class="outline-4">
+<h4 id="orgheadline124"><span class="section-number-4">9.1.8</span> 基数排序</h4>
 <div class="outline-text-4" id="text-9-1-8">
 <div class="org-src-container">
 
-<pre class="src src-c++">    int getDigitOfNum (const int data[], int start, int end)
+<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">getDigitOfNum</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">end</span>)
     {
-        int digit = 1;
-        for (int idx = start; idx &lt;= end; idx++)
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">digit</span> = 1;
+        <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start; idx &lt;= end; idx++)
         {
-            int c = 1;
-            for (int num = data[idx]; num / 10; ++c, num /= 10)
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">c</span> = 1;
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">num</span> = data[idx]; num / 10; ++c, num /= 10)
             {
             }
             digit = (digit &lt; c) ? c : digit;
         }
-        return digit;
+        <span style="color: #a1db00;">return</span> digit;
     }
 
-    int radixSort (int data[], int len, int start, int end)
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">radixSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">end</span>)
     {
-        if (data == NULL || len &lt;= 0 || start &lt; 0 || end &gt;= len)
+        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)
         {
-            printf ("[%s, %d] Invalid input\n", __FILE__, __LINE__);
-            return -1;
+            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
         }
-        else
+        <span style="color: #a1db00;">else</span>
         {
-            int digit = getDigitOfNum (data, start, end);
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">digit</span> = getDigitOfNum (data, start, end);
 
-            /* 利用计数排序对每一位进行排序 */
-            for (int i = 1; i &lt;= digit; ++i)
+            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#21033;&#29992;&#35745;&#25968;&#25490;&#24207;&#23545;&#27599;&#19968;&#20301;&#36827;&#34892;&#25490;&#24207; */</span>
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span> = 1; i &lt;= digit; ++i)
             {
-                int *sortedArray = (int*) malloc (len * sizeof(int));
-                int countArray[10] = { 0 };
+                <span style="color: #00d7af;">int</span> *<span style="color: #ff8700;">sortedArray</span> = (<span style="color: #00d7af;">int</span>*) malloc (<span style="color: #00d7af;">len</span> * <span style="color: #a1db00;">sizeof</span>(<span style="color: #00d7af;">int</span>));
+                <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">countArray</span>[10] = { 0 };
 
-                for (int idx = start; idx &lt;= end; ++idx)
+                <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start; idx &lt;= end; ++idx)
                 {
-                    int dataInCountArray = (data[idx] / ((int) pow (10, i - 1))) % 10;
+                    <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">dataInCountArray</span> = (data[idx] / ((<span style="color: #00d7af;">int</span>) pow (10, i - 1))) % 10;
                     countArray[dataInCountArray]++;
                 }
-                for (int j = 1; j &lt; 10; ++j)
+                <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">j</span> = 1; j &lt; 10; ++j)
                 {
                     countArray[j] += countArray[j - 1];
                 }
-                for (int idx = end; idx &gt;= start; idx--)
+                <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = end; idx &gt;= start; idx--)
                 {
-                    int dataInCountArray = (data[idx] / ((int) pow (10, i - 1))) % 10;
+                    <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">dataInCountArray</span> = (data[idx] / ((<span style="color: #00d7af;">int</span>) pow (10, i - 1))) % 10;
                     sortedArray[countArray[dataInCountArray] - 1] = data[idx];
                     countArray[dataInCountArray]--;
                 }
-                for (int idx = start; idx &lt;= end; idx++)
+                <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start; idx &lt;= end; idx++)
                 {
                     data[idx] = sortedArray[idx];
                 }
                 free (sortedArray);
             }
-            return 0;
+            <span style="color: #a1db00;">return</span> 0;
         }
 
     }
@@ -2120,74 +2097,74 @@ void scan(const char* pszText, const char* pszName);
 </div>
 </div>
 </div>
-<div id="outline-container-sec-9-1-9" class="outline-4">
-<h4 id="sec-9-1-9"><span class="section-number-4">9.1.9</span> 计数排序</h4>
+<div id="outline-container-orgheadline125" class="outline-4">
+<h4 id="orgheadline125"><span class="section-number-4">9.1.9</span> 计数排序</h4>
 <div class="outline-text-4" id="text-9-1-9">
 <div class="org-src-container">
 
-<pre class="src src-c++">    int coutingSort (int data[], int len, int start, int end)
+<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">coutingSort</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">data</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">start</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">end</span>)
     {
-        if (data == NULL || len &lt;= 0 || start &lt; 0 || end &gt;= len)
+        <span style="color: #a1db00;">if</span> (data == <span style="color: #5fafd7;">NULL</span> || len &lt;= 0 || start &lt; 0 || end &gt;= len)
         {
-            printf ("[%s, %d] Invalid input\n", __FILE__, __LINE__);
-            return -1;
+            printf (<span style="color: #ff4ea3;">"[%s, %d] Invalid input\n"</span>, __FILE__, __LINE__);
+            <span style="color: #a1db00;">return</span> -1;
         }
-        else
+        <span style="color: #a1db00;">else</span>
         {
-            /* step 1 */
-            int min = data[start];
-            int max = data[start];
+            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">step 1 */</span>
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">min</span> = data[start];
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">max</span> = data[start];
 
-            for (int idx = start + 1; idx &lt;= end; ++idx)
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start + 1; idx &lt;= end; ++idx)
             {
                 min = (data[idx] &lt; min) ? data[idx] : min;
                 max = (data[idx] &gt; max) ? data[idx] : max;
             }
-            /* step 2 */
-            int *countArray = (int*) malloc ((max - min + 1) *sizeof(int));
-            for (int idx = 0; idx &lt;= max - min; ++idx)
+            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">step 2 */</span>
+            <span style="color: #00d7af;">int</span> *<span style="color: #ff8700;">countArray</span> = (<span style="color: #00d7af;">int</span>*) malloc ((max - min + 1) *<span style="color: #a1db00;">sizeof</span>(<span style="color: #00d7af;">int</span>));
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = 0; idx &lt;= max - min; ++idx)
             {
-                /* when init count array, do not use memset */
+                <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">when init count array, do not use memset */</span>
                 countArray[idx] = 0;
             }
-            for (int idx = start; idx &lt;= end; idx++)
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start; idx &lt;= end; idx++)
             {
-                int dataInCountArray = data[idx] - min;
+                <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">dataInCountArray</span> = data[idx] - min;
                 countArray[dataInCountArray]++;
             }
-            /* step 3 */
-            for (int idx = 1; idx &lt;= max - min; idx++)
+            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">step 3 */</span>
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = 1; idx &lt;= max - min; idx++)
             {
                 countArray[idx] += countArray[idx - 1];
             }
-            /* step 4 */
-            int *sortedArray = (int *) malloc (len*sizeof(int));
-            for (int idx = end; idx &gt;= start; idx--)
+            <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">step 4 */</span>
+            <span style="color: #00d7af;">int</span> *<span style="color: #ff8700;">sortedArray</span> = (<span style="color: #00d7af;">int</span> *) malloc (<span style="color: #00d7af;">len</span>*<span style="color: #a1db00;">sizeof</span>(<span style="color: #00d7af;">int</span>));
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = end; idx &gt;= start; idx--)
             {
-                int dataInCountArray = data[idx] - min;
-                /* 注意数组是从 0 开始的，所以 countArray[data[idx-1]]必须要减 1 */
+                <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">dataInCountArray</span> = data[idx] - min;
+                <span style="color: #6c6c6c; font-style: italic;">/* </span><span style="color: #6c6c6c; font-style: italic;">&#27880;&#24847;&#25968;&#32452;&#26159;&#20174; 0 &#24320;&#22987;&#30340;&#65292;&#25152;&#20197; countArray[data[idx-1]]&#24517;&#39035;&#35201;&#20943; 1 */</span>
                 sortedArray[countArray[dataInCountArray] - 1] = data[idx];
                 --countArray[dataInCountArray];
             }
-            for (int idx = start; idx &lt;= end; idx++)
+            <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">idx</span> = start; idx &lt;= end; idx++)
             {
                 data[idx] = sortedArray[idx];
             }
             free (sortedArray);
             free (countArray);
         }
-        return 0;
+        <span style="color: #a1db00;">return</span> 0;
     }
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-9-1-10" class="outline-4">
-<h4 id="sec-9-1-10"><span class="section-number-4">9.1.10</span> 桶排序</h4>
+<div id="outline-container-orgheadline126" class="outline-4">
+<h4 id="orgheadline126"><span class="section-number-4">9.1.10</span> 桶排序</h4>
 <div class="outline-text-4" id="text-9-1-10">
 <div class="org-src-container">
 
-<pre class="src src-c++">    int BucketSort(int a[], int len) {
+<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">BucketSort</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">len</span>) {
 
     }
 </pre>
@@ -2195,141 +2172,141 @@ void scan(const char* pszText, const char* pszName);
 </div>
 </div>
 
-<div id="outline-container-sec-9-1-11" class="outline-4">
-<h4 id="sec-9-1-11"><span class="section-number-4">9.1.11</span> 排序总结</h4>
+<div id="outline-container-orgheadline127" class="outline-4">
+<h4 id="orgheadline127"><span class="section-number-4">9.1.11</span> 排序总结</h4>
 <div class="outline-text-4" id="text-9-1-11">
 <table border="1" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" width="auto">
-
+<caption class="t-above"><span class="table-number">Table 1:</span> 排序总结</caption>
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="left">类别</th>
-<th scope="col" class="left">名称</th>
-<th scope="col" class="left">最差</th>
-<th scope="col" class="left">最好</th>
-<th scope="col" class="left">平均</th>
-<th scope="col" class="left">空间</th>
-<th scope="col" class="left">稳定性</th>
+<th scope="col" class="org-left">类别</th>
+<th scope="col" class="org-left">名称</th>
+<th scope="col" class="org-left">最差</th>
+<th scope="col" class="org-left">最好</th>
+<th scope="col" class="org-left">平均</th>
+<th scope="col" class="org-left">空间</th>
+<th scope="col" class="org-left">稳定性</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="left">交换</td>
-<td class="left">冒泡排序</td>
-<td class="left">O(N2)</td>
-<td class="left">O(N2)</td>
-<td class="left">O(N)</td>
-<td class="left">O(1)</td>
-<td class="left">稳定</td>
+<td class="org-left">交换</td>
+<td class="org-left">冒泡排序</td>
+<td class="org-left">O(N2)</td>
+<td class="org-left">O(N2)</td>
+<td class="org-left">O(N)</td>
+<td class="org-left">O(1)</td>
+<td class="org-left">稳定</td>
 </tr>
 
 <tr>
-<td class="left">&#xa0;</td>
-<td class="left">快速排序</td>
-<td class="left">O(N2)</td>
-<td class="left">O(N*lgN)</td>
-<td class="left">O(N*lgN)</td>
-<td class="left">O(1)</td>
-<td class="left">不稳定</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">快速排序</td>
+<td class="org-left">O(N2)</td>
+<td class="org-left">O(N*lgN)</td>
+<td class="org-left">O(N*lgN)</td>
+<td class="org-left">O(1)</td>
+<td class="org-left">不稳定</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="left">插入</td>
-<td class="left">插入排序</td>
-<td class="left">O(N2)</td>
-<td class="left">O(N)</td>
-<td class="left">O(N)</td>
-<td class="left">O(1)</td>
-<td class="left">稳定</td>
+<td class="org-left">插入</td>
+<td class="org-left">插入排序</td>
+<td class="org-left">O(N2)</td>
+<td class="org-left">O(N)</td>
+<td class="org-left">O(N)</td>
+<td class="org-left">O(1)</td>
+<td class="org-left">稳定</td>
 </tr>
 
 <tr>
-<td class="left">&#xa0;</td>
-<td class="left">希尔排序</td>
-<td class="left">O(N2)</td>
-<td class="left">O(N1.3)</td>
-<td class="left">O(N*lgN)-O(N2)</td>
-<td class="left">O(K)</td>
-<td class="left">不稳定</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">希尔排序</td>
+<td class="org-left">O(N2)</td>
+<td class="org-left">O(N1.3)</td>
+<td class="org-left">O(N*lgN)-O(N2)</td>
+<td class="org-left">O(K)</td>
+<td class="org-left">不稳定</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="left">选择</td>
-<td class="left">选择排序</td>
-<td class="left">O(N2)</td>
-<td class="left">O(N2)</td>
-<td class="left">O(N2)</td>
-<td class="left">O(1)</td>
-<td class="left">稳定</td>
+<td class="org-left">选择</td>
+<td class="org-left">选择排序</td>
+<td class="org-left">O(N2)</td>
+<td class="org-left">O(N2)</td>
+<td class="org-left">O(N2)</td>
+<td class="org-left">O(1)</td>
+<td class="org-left">稳定</td>
 </tr>
 
 <tr>
-<td class="left">&#xa0;</td>
-<td class="left">堆排序</td>
-<td class="left">O(N*lgN)</td>
-<td class="left">O(N*lgN)</td>
-<td class="left">O(N*lgN)</td>
-<td class="left">O(1)</td>
-<td class="left">不稳定</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">堆排序</td>
+<td class="org-left">O(N*lgN)</td>
+<td class="org-left">O(N*lgN)</td>
+<td class="org-left">O(N*lgN)</td>
+<td class="org-left">O(1)</td>
+<td class="org-left">不稳定</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="left">合并</td>
-<td class="left">归并排序</td>
-<td class="left">O(N*lgN)</td>
-<td class="left">O(N*lgN)</td>
-<td class="left">O(N*lgN)</td>
-<td class="left">O(N)</td>
-<td class="left">稳定</td>
+<td class="org-left">合并</td>
+<td class="org-left">归并排序</td>
+<td class="org-left">O(N*lgN)</td>
+<td class="org-left">O(N*lgN)</td>
+<td class="org-left">O(N*lgN)</td>
+<td class="org-left">O(N)</td>
+<td class="org-left">稳定</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="left">其他</td>
-<td class="left">基数排序</td>
-<td class="left">O(K*N)</td>
-<td class="left">O(K*N)</td>
-<td class="left">O(K*N)</td>
-<td class="left">O(K*N)</td>
-<td class="left">稳定</td>
+<td class="org-left">其他</td>
+<td class="org-left">基数排序</td>
+<td class="org-left">O(K*N)</td>
+<td class="org-left">O(K*N)</td>
+<td class="org-left">O(K*N)</td>
+<td class="org-left">O(K*N)</td>
+<td class="org-left">稳定</td>
 </tr>
 
 <tr>
-<td class="left">&#xa0;</td>
-<td class="left">计数排序</td>
-<td class="left">O(K+N)</td>
-<td class="left">O(K+N)</td>
-<td class="left">O(K+N)</td>
-<td class="left">O(K+N)</td>
-<td class="left">稳定</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">计数排序</td>
+<td class="org-left">O(K+N)</td>
+<td class="org-left">O(K+N)</td>
+<td class="org-left">O(K+N)</td>
+<td class="org-left">O(K+N)</td>
+<td class="org-left">稳定</td>
 </tr>
 
 <tr>
-<td class="left">&#xa0;</td>
-<td class="left">桶排序</td>
-<td class="left">O(N+C)</td>
-<td class="left">O(N+C)</td>
-<td class="left">O(N)</td>
-<td class="left">O(N)</td>
-<td class="left">稳定</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">桶排序</td>
+<td class="org-left">O(N+C)</td>
+<td class="org-left">O(N+C)</td>
+<td class="org-left">O(N)</td>
+<td class="org-left">O(N)</td>
+<td class="org-left">稳定</td>
 </tr>
 </tbody>
 </table>
@@ -2337,29 +2314,29 @@ void scan(const char* pszText, const char* pszName);
 </div>
 </div>
 
-<div id="outline-container-sec-9-2" class="outline-3">
-<h3 id="sec-9-2"><span class="section-number-3">9.2</span> 查找</h3>
+<div id="outline-container-orgheadline130" class="outline-3">
+<h3 id="orgheadline130"><span class="section-number-3">9.2</span> 查找</h3>
 <div class="outline-text-3" id="text-9-2">
-</div><div id="outline-container-sec-9-2-1" class="outline-4">
-<h4 id="sec-9-2-1"><span class="section-number-4">9.2.1</span> 二分查找</h4>
+</div><div id="outline-container-orgheadline129" class="outline-4">
+<h4 id="orgheadline129"><span class="section-number-4">9.2.1</span> 二分查找</h4>
 <div class="outline-text-4" id="text-9-2-1">
 <div class="org-src-container">
 
-<pre class="src src-c++">    int BinSearch(int a[], int n, int val) {
-        int left = 0, right = n-1;
-        while (left &lt;= right) {
-            int mid = left + ((right - left) &gt;&gt; 2);
-            if (a[mid] &gt; val) {
+<pre class="src src-c++">    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">BinSearch</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>[], <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">n</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">val</span>) {
+        <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">left</span> = 0, <span style="color: #ff8700;">right</span> = n-1;
+        <span style="color: #a1db00;">while</span> (left &lt;= right) {
+            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">mid</span> = left + ((right - left) &gt;&gt; 2);
+            <span style="color: #a1db00;">if</span> (a[mid] &gt; val) {
                 right = mid - 1;
             }
-            else if (a[mid] &lt; val) {
+            <span style="color: #a1db00;">else</span> <span style="color: #a1db00;">if</span> (a[mid] &lt; val) {
                 left = mid + 1;
             }
-            else {
-                return mid;
+            <span style="color: #a1db00;">else</span> {
+                <span style="color: #a1db00;">return</span> mid;
             }
         }
-        return -1;
+        <span style="color: #a1db00;">return</span> -1;
     }
 </pre>
 </div>
@@ -2368,19 +2345,19 @@ void scan(const char* pszText, const char* pszName);
 </div>
 </div>
 
-<div id="outline-container-sec-10" class="outline-2">
-<h2 id="sec-10"><span class="section-number-2">10</span> 智力题</h2>
+<div id="outline-container-orgheadline137" class="outline-2">
+<h2 id="orgheadline137"><span class="section-number-2">10</span> 智力题</h2>
 <div class="outline-text-2" id="text-10">
-</div><div id="outline-container-sec-10-1" class="outline-3">
-<h3 id="sec-10-1"><span class="section-number-3">10.1</span> 过桥问题</h3>
+</div><div id="outline-container-orgheadline132" class="outline-3">
+<h3 id="orgheadline132"><span class="section-number-3">10.1</span> 过桥问题</h3>
 <div class="outline-text-3" id="text-10-1">
 <p>
 有 A、B、C、D 四个人，要在夜里过一座桥。他们通过这座桥分别需要耗时 1、2、5、10 分钟，只有一支手电，并且同时最多只能两个人一起过桥。请问，如何安排，能够在 17 分钟内这四个人都过桥？
 </p>
 </div>
 </div>
-<div id="outline-container-sec-10-2" class="outline-3">
-<h3 id="sec-10-2"><span class="section-number-3">10.2</span> 天平称重</h3>
+<div id="outline-container-orgheadline133" class="outline-3">
+<h3 id="orgheadline133"><span class="section-number-3">10.2</span> 天平称重</h3>
 <div class="outline-text-3" id="text-10-2">
 <p>
 有 12 个小球, 外形相同, 其中一个小球的质量与其他 11 个不同，给一个天平, 问如何用 3 次把这个小球找出来，并且求出这个小球是比其他的轻还是重。
@@ -2388,8 +2365,8 @@ void scan(const char* pszText, const char* pszName);
 </div>
 </div>
 
-<div id="outline-container-sec-10-3" class="outline-3">
-<h3 id="sec-10-3"><span class="section-number-3">10.3</span> 小白鼠与毒药<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup></h3>
+<div id="outline-container-orgheadline136" class="outline-3">
+<h3 id="orgheadline136"><span class="section-number-3">10.3</span> 小白鼠与毒药<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></h3>
 <div class="outline-text-3" id="text-10-3">
 <p>
 大家应该都听说过这个老题目：有 1000 个一模一样的瓶子，其中有 999 瓶是普通的水，有一瓶是毒药。任何喝下毒药的生物都会在一星期之后死亡。现在，你只有 10 只小白鼠和一星期的时间，如何检验出哪个瓶子里有毒药？
@@ -2399,9 +2376,9 @@ void scan(const char* pszText, const char* pszName);
 这个问题的答案也堪称经典：把瓶子从 0 到 999 依次编号，然后全部转换为 10 位二进制数。让第一只老鼠喝掉所有二进制数右起第一位是 1 的瓶子，让第二只老鼠喝掉所有二进制数右起第二位是 1 的瓶子，等等。一星期后，如果第一只老鼠死了，就知道毒药瓶子的二进制编号中，右起第一位是 1；如果第二只老鼠没死，就知道毒药瓶子的二进制编号中，右起第二位是 0 ⋯⋯ <b>每只老鼠的死活都能确定出 10 位二进制数的其中一位</b> ，由此便可知道毒药瓶子的编号了。
 </p>
 </div>
-<div id="outline-container-sec-10-3-0-1" class="outline-5">
-<h5 id="sec-10-3-0-1">推广 1</h5>
-<div class="outline-text-5" id="text-10-3-0-1">
+<div id="outline-container-orgheadline134" class="outline-5">
+<h5 id="orgheadline134">推广 1</h5>
+<div class="outline-text-5" id="text-orgheadline134">
 <p>
 现在，有意思的问题来了：如果你有两个星期的时间（换句话说你可以做两轮实验），为了从 1000 个瓶子中找出毒药，你最少需要几只老鼠？注意，在第一轮实验中死掉的老鼠，就无法继续参与第二次实验了。
 </p>
@@ -2415,9 +2392,9 @@ void scan(const char* pszText, const char* pszName);
 </p>
 </div>
 </div>
-<div id="outline-container-sec-10-3-0-2" class="outline-5">
-<h5 id="sec-10-3-0-2">推广 2</h5>
-<div class="outline-text-5" id="text-10-3-0-2">
+<div id="outline-container-orgheadline135" class="outline-5">
+<h5 id="orgheadline135">推广 2</h5>
+<div class="outline-text-5" id="text-orgheadline135">
 <p>
 还是 1000 个瓶，但是 2 瓶有毒，10 个老鼠，一周时间，最多可以确定多少瓶没有毒？据说是高盛的面试题。
 </p>
@@ -2425,34 +2402,34 @@ void scan(const char* pszText, const char* pszName);
 </div>
 </div>
 </div>
-<div id="outline-container-sec-11" class="outline-2">
-<h2 id="sec-11"><span class="section-number-2">11</span> Makefile 文件</h2>
+<div id="outline-container-orgheadline138" class="outline-2">
+<h2 id="orgheadline138"><span class="section-number-2">11</span> Makefile 文件</h2>
 </div>
-<div id="outline-container-sec-12" class="outline-2">
-<h2 id="sec-12"><span class="section-number-2">12</span> 测试上面代码的 main 函数</h2>
+<div id="outline-container-orgheadline139" class="outline-2">
+<h2 id="orgheadline139"><span class="section-number-2">12</span> 测试上面代码的 main 函数</h2>
 <div class="outline-text-2" id="text-12">
 <div class="org-src-container">
 
-<pre class="src src-c++">    #include &lt;iostream&gt;
-    #include &lt;vector&gt;
-    #include &lt;list&gt;
-    #include &lt;forward_list&gt;
-    #include &lt;deque&gt;
-    #include &lt;array&gt;
-    #include &lt;string&gt;
-    #include &lt;map&gt;
-    #include &lt;set&gt;
-    #include &lt;gtest/gtest.h&gt;
+<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;vector&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;list&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;forward_list&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;deque&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;array&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;string&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;map&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;set&gt;</span>
+<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;gtest/gtest.h&gt;</span>
 
 
-    int main (int argc, char** argv)
+    <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span>** <span style="color: #ff8700;">argv</span>)
     {
-        testing::FLAGS_gtest_filter = "TestConst*";
-        testing::InitGoogleTest (&amp;argc, argv);
+        <span style="color: #5fafd7;">testing</span>::FLAGS_gtest_filter = <span style="color: #ff4ea3;">"TestConst*"</span>;
+        <span style="color: #5fafd7;">testing</span>::InitGoogleTest (&amp;argc, argv);
         RUN_ALL_TESTS ();
 
-        system ("pause");
-        return 0;
+        system (<span style="color: #ff4ea3;">"pause"</span>);
+        <span style="color: #a1db00;">return</span> 0;
     }
 </pre>
 </div>
@@ -2462,17 +2439,16 @@ void scan(const char* pszText, const char* pszName);
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
 <a href="http://www.matrix67.com/blog/archives/4361">趣题：老鼠与毒药问题的推广</a>
-</p></div>
+</p></div></div>
 
 
 </div>
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: lsl</p>
-<p class="date">Created: 2016-07-06 三 14:31</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2016-07-23 六 12:29</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

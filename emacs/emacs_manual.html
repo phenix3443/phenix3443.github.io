@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Emacs Manual</title>
-<!-- 2016-07-06 三 14:31 -->
+<!-- 2016-07-23 六 12:30 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Emacs Manual</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="lsl" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -58,15 +65,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -134,48 +140,28 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
-<script type="text/javascript">
-<!--/*--><![CDATA[/*><!--*/
+<script type="text/x-mathjax-config">
     MathJax.Hub.Config({
-        // Only one of the two following lines, depending on user settings
-        // First allows browser-native MathML display, second forces HTML/CSS
-        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
-            jax: ["input/TeX", "output/HTML-CSS"],
-        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
-                     "TeX/noUndefined.js"],
-        tex2jax: {
-            inlineMath: [ ["\\(","\\)"] ],
-            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
-            skipTags: ["script","noscript","style","textarea","pre","code"],
-            ignoreClass: "tex2jax_ignore",
-            processEscapes: false,
-            processEnvironments: true,
-            preview: "TeX"
-        },
-        showProcessingMessages: true,
         displayAlign: "center",
-        displayIndent: "2em",
+        displayIndent: "0em",
 
-        "HTML-CSS": {
-             scale: 100,
-             availableFonts: ["STIX","TeX"],
-             preferredFont: "TeX",
-             webFont: "TeX",
-             imageFont: "TeX",
-             showMathMenu: true,
-        },
-        MMLorHTML: {
-             prefer: {
-                 MSIE:    "MML",
-                 Firefox: "MML",
-                 Opera:   "HTML",
-                 other:   "HTML"
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
              }
-        }
-    });
-/*]]>*///-->
+});
 </script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
@@ -184,120 +170,120 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. 5 Enter Emacs</a></li>
-<li><a href="#sec-2">2. 6 Exiting Emacs</a></li>
-<li><a href="#sec-3">3. 7 Basic Editing Commands</a></li>
-<li><a href="#sec-4">4. 8 The Minibuffer</a></li>
-<li><a href="#sec-5">5. 12 Killing and Moving Text</a>
+<li><a href="#orgheadline1">1. 5 Enter Emacs</a></li>
+<li><a href="#orgheadline2">2. 6 Exiting Emacs</a></li>
+<li><a href="#orgheadline3">3. 7 Basic Editing Commands</a></li>
+<li><a href="#orgheadline4">4. 8 The Minibuffer</a></li>
+<li><a href="#orgheadline7">5. 12 Killing and Moving Text</a>
 <ul>
-<li><a href="#sec-5-1">5.1. 12.5 Rectangles</a></li>
-<li><a href="#sec-5-2">5.2. 12.6 CUA Bindings</a></li>
+<li><a href="#orgheadline5">5.1. 12.5 Rectangles</a></li>
+<li><a href="#orgheadline6">5.2. 12.6 CUA Bindings</a></li>
 </ul>
 </li>
-<li><a href="#sec-6">6. 14 Controlling the Display</a></li>
-<li><a href="#sec-7">7. 15 Searching and Replacement</a></li>
-<li><a href="#sec-8">8. 18 File Handling</a></li>
-<li><a href="#sec-9">9. 20 Multiple Windows</a></li>
-<li><a href="#sec-10">10. 21 Frames and Graphical Displays</a></li>
-<li><a href="#sec-11">11. 22 International character set support</a>
+<li><a href="#orgheadline8">6. 14 Controlling the Display</a></li>
+<li><a href="#orgheadline9">7. 15 Searching and Replacement</a></li>
+<li><a href="#orgheadline10">8. 18 File Handling</a></li>
+<li><a href="#orgheadline11">9. 20 Multiple Windows</a></li>
+<li><a href="#orgheadline12">10. 21 Frames and Graphical Displays</a></li>
+<li><a href="#orgheadline21">11. 22 International character set support</a>
 <ul>
-<li><a href="#sec-11-1">11.1. 22.5 Coding Systems</a></li>
-<li><a href="#sec-11-2">11.2. 22.6 Recognizing Coding Systems</a></li>
-<li><a href="#sec-11-3">11.3. 22.7 Specifying a File’s Coding System</a></li>
-<li><a href="#sec-11-4">11.4. 22.8 Choosing Coding Systems for Output</a></li>
-<li><a href="#sec-11-5">11.5. 22.9 Specifying a Coding System for File Text</a></li>
-<li><a href="#sec-11-6">11.6. 22.10 Coding Systems for Interprocess Communication</a></li>
-<li><a href="#sec-11-7">11.7. 22.11 Coding Systems for File Names</a></li>
-<li><a href="#sec-11-8">11.8. 22.12 Coding Systems for Terminal I/O</a></li>
+<li><a href="#orgheadline13">11.1. 22.5 Coding Systems</a></li>
+<li><a href="#orgheadline14">11.2. 22.6 Recognizing Coding Systems</a></li>
+<li><a href="#orgheadline15">11.3. 22.7 Specifying a File’s Coding System</a></li>
+<li><a href="#orgheadline16">11.4. 22.8 Choosing Coding Systems for Output</a></li>
+<li><a href="#orgheadline17">11.5. 22.9 Specifying a Coding System for File Text</a></li>
+<li><a href="#orgheadline18">11.6. 22.10 Coding Systems for Interprocess Communication</a></li>
+<li><a href="#orgheadline19">11.7. 22.11 Coding Systems for File Names</a></li>
+<li><a href="#orgheadline20">11.8. 22.12 Coding Systems for Terminal I/O</a></li>
 </ul>
 </li>
-<li><a href="#sec-12">12. 24 Indentation</a>
+<li><a href="#orgheadline26">12. 24 Indentation</a>
 <ul>
-<li><a href="#sec-12-1">12.1. 24.1 Indentation Commands</a></li>
-<li><a href="#sec-12-2">12.2. 24.2 Tab Stops</a></li>
-<li><a href="#sec-12-3">12.3. 24.3 Tabs vs. Spaces</a></li>
-<li><a href="#sec-12-4">12.4. 24.4 Convenience Features for Indentation</a></li>
+<li><a href="#orgheadline22">12.1. 24.1 Indentation Commands</a></li>
+<li><a href="#orgheadline23">12.2. 24.2 Tab Stops</a></li>
+<li><a href="#orgheadline24">12.3. 24.3 Tabs vs. Spaces</a></li>
+<li><a href="#orgheadline25">12.4. 24.4 Convenience Features for Indentation</a></li>
 </ul>
 </li>
-<li><a href="#sec-13">13. 25 Commands for Human Languages</a></li>
-<li><a href="#sec-14">14. 26 Editing Programs</a>
+<li><a href="#orgheadline27">13. 25 Commands for Human Languages</a></li>
+<li><a href="#orgheadline54">14. 26 Editing Programs</a>
 <ul>
-<li><a href="#sec-14-1">14.1. 26.1 Major Modes for Programming Languages</a></li>
-<li><a href="#sec-14-2">14.2. 26.2 Top-Level Definitions, or Defuns</a>
+<li><a href="#orgheadline28">14.1. 26.1 Major Modes for Programming Languages</a></li>
+<li><a href="#orgheadline30">14.2. 26.2 Top-Level Definitions, or Defuns</a>
 <ul>
-<li><a href="#sec-14-2-1">14.2.1. 26.2.4 Which Function Mode</a></li>
+<li><a href="#orgheadline29">14.2.1. 26.2.4 Which Function Mode</a></li>
 </ul>
 </li>
-<li><a href="#sec-14-3">14.3. 26.3 Indentation for Programs</a>
+<li><a href="#orgheadline36">14.3. 26.3 Indentation for Programs</a>
 <ul>
-<li><a href="#sec-14-3-1">14.3.1. 26.3.1 Basic Program Indentation Commands</a></li>
-<li><a href="#sec-14-3-2">14.3.2. 26.3.2 Indenting Several Lines</a></li>
-<li><a href="#sec-14-3-3">14.3.3. 26.3.3 Customizing Lisp Indentation</a></li>
-<li><a href="#sec-14-3-4">14.3.4. 26.3.4 Commands for C Indentation</a></li>
-<li><a href="#sec-14-3-5">14.3.5. 26.3.5 Customizing C Indentation</a></li>
+<li><a href="#orgheadline31">14.3.1. 26.3.1 Basic Program Indentation Commands</a></li>
+<li><a href="#orgheadline32">14.3.2. 26.3.2 Indenting Several Lines</a></li>
+<li><a href="#orgheadline33">14.3.3. 26.3.3 Customizing Lisp Indentation</a></li>
+<li><a href="#orgheadline34">14.3.4. 26.3.4 Commands for C Indentation</a></li>
+<li><a href="#orgheadline35">14.3.5. 26.3.5 Customizing C Indentation</a></li>
 </ul>
 </li>
-<li><a href="#sec-14-4">14.4. 26.4 Commands for Editing with Parentheses</a>
+<li><a href="#orgheadline40">14.4. 26.4 Commands for Editing with Parentheses</a>
 <ul>
-<li><a href="#sec-14-4-1">14.4.1. 26.4.1 Expressions with Balanced Parentheses</a></li>
-<li><a href="#sec-14-4-2">14.4.2. 26.4.2 Moving in the Parenthesis Structure</a></li>
-<li><a href="#sec-14-4-3">14.4.3. 26.4.3 Matching Parentheses</a></li>
+<li><a href="#orgheadline37">14.4.1. 26.4.1 Expressions with Balanced Parentheses</a></li>
+<li><a href="#orgheadline38">14.4.2. 26.4.2 Moving in the Parenthesis Structure</a></li>
+<li><a href="#orgheadline39">14.4.3. 26.4.3 Matching Parentheses</a></li>
 </ul>
 </li>
-<li><a href="#sec-14-5">14.5. 26.5 Manipulating Comments</a>
+<li><a href="#orgheadline44">14.5. 26.5 Manipulating Comments</a>
 <ul>
-<li><a href="#sec-14-5-1">14.5.1. 26.5.1 Comment Commands</a></li>
-<li><a href="#sec-14-5-2">14.5.2. 26.5.2 Multiple Lines of Comments</a></li>
-<li><a href="#sec-14-5-3">14.5.3. 26.5.3 Options Controlling Comments</a></li>
+<li><a href="#orgheadline41">14.5.1. 26.5.1 Comment Commands</a></li>
+<li><a href="#orgheadline42">14.5.2. 26.5.2 Multiple Lines of Comments</a></li>
+<li><a href="#orgheadline43">14.5.3. 26.5.3 Options Controlling Comments</a></li>
 </ul>
 </li>
-<li><a href="#sec-14-6">14.6. 26.6 Documentation Lookup</a>
+<li><a href="#orgheadline48">14.6. 26.6 Documentation Lookup</a>
 <ul>
-<li><a href="#sec-14-6-1">14.6.1. 26.6.1 Info Documentation Lookup</a></li>
-<li><a href="#sec-14-6-2">14.6.2. 26.6.2 Man Page Lookup</a></li>
-<li><a href="#sec-14-6-3">14.6.3. 26.6.3 Emacs Lisp Documentation Lookup</a></li>
+<li><a href="#orgheadline45">14.6.1. 26.6.1 Info Documentation Lookup</a></li>
+<li><a href="#orgheadline46">14.6.2. 26.6.2 Man Page Lookup</a></li>
+<li><a href="#orgheadline47">14.6.3. 26.6.3 Emacs Lisp Documentation Lookup</a></li>
 </ul>
 </li>
-<li><a href="#sec-14-7">14.7. 26.7 Hideshow minor mode</a></li>
-<li><a href="#sec-14-8">14.8. 26.8 Completion for Symbol Names</a></li>
-<li><a href="#sec-14-9">14.9. 26.9 MixedCase Words</a></li>
-<li><a href="#sec-14-10">14.10. 26.10 Semantic</a></li>
-<li><a href="#sec-14-11">14.11. 26.11 Other Features Useful for Editing Programs</a></li>
+<li><a href="#orgheadline49">14.7. 26.7 Hideshow minor mode</a></li>
+<li><a href="#orgheadline50">14.8. 26.8 Completion for Symbol Names</a></li>
+<li><a href="#orgheadline51">14.9. 26.9 MixedCase Words</a></li>
+<li><a href="#orgheadline52">14.10. 26.10 Semantic</a></li>
+<li><a href="#orgheadline53">14.11. 26.11 Other Features Useful for Editing Programs</a></li>
 </ul>
 </li>
-<li><a href="#sec-15">15. 27 Compiling and Testing Programs</a></li>
-<li><a href="#sec-16">16. 28 Maintaining Large Programs</a></li>
-<li><a href="#sec-17">17. 43 Saving Emacs Sessions</a></li>
-<li><a href="#sec-18">18. 47 Emacs Lisp Packages</a>
+<li><a href="#orgheadline55">15. 27 Compiling and Testing Programs</a></li>
+<li><a href="#orgheadline56">16. 28 Maintaining Large Programs</a></li>
+<li><a href="#orgheadline57">17. 43 Saving Emacs Sessions</a></li>
+<li><a href="#orgheadline61">18. 47 Emacs Lisp Packages</a>
 <ul>
-<li><a href="#sec-18-1">18.1. 47.1 The Package Menu Buffer</a></li>
-<li><a href="#sec-18-2">18.2. 47.2 Package Installation</a></li>
-<li><a href="#sec-18-3">18.3. 47.3 Package Files and Directory Layout</a></li>
+<li><a href="#orgheadline58">18.1. 47.1 The Package Menu Buffer</a></li>
+<li><a href="#orgheadline59">18.2. 47.2 Package Installation</a></li>
+<li><a href="#orgheadline60">18.3. 47.3 Package Files and Directory Layout</a></li>
 </ul>
 </li>
-<li><a href="#sec-19">19. 48 Customization</a></li>
+<li><a href="#orgheadline62">19. 48 Customization</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> 5 Enter Emacs</h2>
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> 5 Enter Emacs</h2>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> 6 Exiting Emacs</h2>
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> 6 Exiting Emacs</h2>
 </div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> 7 Basic Editing Commands</h2>
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">3</span> 7 Basic Editing Commands</h2>
 </div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> 8 The Minibuffer</h2>
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">4</span> 8 The Minibuffer</h2>
 </div>
 
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> 12 Killing and Moving Text</h2>
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7"><span class="section-number-2">5</span> 12 Killing and Moving Text</h2>
 <div class="outline-text-2" id="text-5">
-</div><div id="outline-container-sec-5-1" class="outline-3">
-<h3 id="sec-5-1"><span class="section-number-3">5.1</span> 12.5 Rectangles</h3>
+</div><div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">5.1</span> 12.5 Rectangles</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 Rectangle commands operate on rectangular areas of the text: all the characters between a certain pair of columns, in a certain range of lines. Emacs has commands to kill rectangles, yank killed rectangles, clear them out, fill them with blanks or text, or delete them. Rectangle commands are useful with text in multicolumn formats, and for changing text into or out of such formats.
@@ -313,82 +299,93 @@ The region-rectangle is controlled in much the same way as the region is control
 </p>
 
 <ul class="org-ul">
-<li>C-x r k
+<li><p>
+C-x r k
+</p>
 
 <p>
 Kill the text of the region-rectangle, saving its contents as the “last killed rectangle” (kill-rectangle).
-</p>
-</li>
+</p></li>
 
-<li>C-x r M-w
+<li><p>
+C-x r M-w
+</p>
 
 <p>
 Save the text of the region-rectangle as the “last killed rectangle” (copy-rectangle-as-kill).
-</p>
-</li>
+</p></li>
 
-<li>C-x r d
+<li><p>
+C-x r d
+</p>
 
 <p>
 Delete the text of the region-rectangle (delete-rectangle).
-</p>
-</li>
+</p></li>
 
-<li>C-x r y
+<li><p>
+C-x r y
+</p>
 
 <p>
 Yank the last killed rectangle with its upper left corner at point (yank-rectangle).
-</p>
-</li>
+</p></li>
 
-<li>C-x r o
+<li><p>
+C-x r o
+</p>
 
 <p>
 Insert blank space to fill the space of the region-rectangle (open-rectangle). This pushes the previous contents of the region-rectangle to the right.
-</p>
-</li>
+</p></li>
 
-<li>C-x r N
+<li><p>
+C-x r N
+</p>
 
 <p>
 Insert line numbers along the left edge of the region-rectangle (rectangle-number-lines). This pushes the previous contents of the region-rectangle to the right.
-</p>
-</li>
+</p></li>
 
-<li>C-x r c
+<li><p>
+C-x r c
+</p>
 
 <p>
 Clear the region-rectangle by replacing all of its contents with spaces (clear-rectangle).
-</p>
-</li>
+</p></li>
 
-<li>M-x delete-whitespace-rectangle
+<li><p>
+M-x delete-whitespace-rectangle
+</p>
 
 <p>
 Delete whitespace in each of the lines on the specified rectangle, starting from the left edge column of the rectangle.
-</p>
-</li>
+</p></li>
 
-<li>C-x r t string RET
+<li><p>
+C-x r t string RET
+</p>
 
 <p>
 Replace rectangle contents with string on each line (string-rectangle).
-</p>
-</li>
+</p></li>
 
-<li>M-x string-insert-rectangle RET string RET
+<li><p>
+M-x string-insert-rectangle RET string RET
+</p>
 
 <p>
 Insert string on each line of the rectangle.
-</p>
-</li>
+</p></li>
 
-<li>C-x SPC
+<li><p>
+C-x SPC
+</p>
 
 <p>
 Toggle Rectangle Mark mode (rectangle-mark-mode). When this mode is active, the region-rectangle is highlighted and can be shrunk/grown, and the standard kill and yank commands operate on it.
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -445,33 +442,33 @@ The command C-x SPC (rectangle-mark-mode) toggles whether the region-rectangle o
 </div>
 </div>
 
-<div id="outline-container-sec-5-2" class="outline-3">
-<h3 id="sec-5-2"><span class="section-number-3">5.2</span> 12.6 CUA Bindings</h3>
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">5.2</span> 12.6 CUA Bindings</h3>
 </div>
 </div>
 
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> 14 Controlling the Display</h2>
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8"><span class="section-number-2">6</span> 14 Controlling the Display</h2>
 </div>
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7"><span class="section-number-2">7</span> 15 Searching and Replacement</h2>
-</div>
-
-<div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8"><span class="section-number-2">8</span> 18 File Handling</h2>
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9"><span class="section-number-2">7</span> 15 Searching and Replacement</h2>
 </div>
 
-<div id="outline-container-sec-9" class="outline-2">
-<h2 id="sec-9"><span class="section-number-2">9</span> 20 Multiple Windows</h2>
+<div id="outline-container-orgheadline10" class="outline-2">
+<h2 id="orgheadline10"><span class="section-number-2">8</span> 18 File Handling</h2>
 </div>
-<div id="outline-container-sec-10" class="outline-2">
-<h2 id="sec-10"><span class="section-number-2">10</span> 21 Frames and Graphical Displays</h2>
+
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11"><span class="section-number-2">9</span> 20 Multiple Windows</h2>
 </div>
-<div id="outline-container-sec-11" class="outline-2">
-<h2 id="sec-11"><span class="section-number-2">11</span> 22 International character set support</h2>
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12"><span class="section-number-2">10</span> 21 Frames and Graphical Displays</h2>
+</div>
+<div id="outline-container-orgheadline21" class="outline-2">
+<h2 id="orgheadline21"><span class="section-number-2">11</span> 22 International character set support</h2>
 <div class="outline-text-2" id="text-11">
-</div><div id="outline-container-sec-11-1" class="outline-3">
-<h3 id="sec-11-1"><span class="section-number-3">11.1</span> 22.5 Coding Systems</h3>
+</div><div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13"><span class="section-number-3">11.1</span> 22.5 Coding Systems</h3>
 <div class="outline-text-3" id="text-11-1">
 <p>
 Users of various languages have established many more-or-less standard coding systems for representing them. Emacs does not use these coding systems internally; instead, it converts from various coding systems to its own system when reading data, and converts the internal coding system to other coding systems when writing data. Conversion is possible in reading or writing files, in sending or receiving from the terminal, and in exchanging data with subprocesses.
@@ -506,7 +503,9 @@ In addition to converting various representations of non-ASCII characters, a cod
 </p>
 
 <ul class="org-ul">
-<li>C-h C coding RET
+<li><p>
+C-h C coding RET
+</p>
 
 <p>
 Describe coding system coding (describe-coding-system).
@@ -514,10 +513,11 @@ Describe coding system coding (describe-coding-system).
 
 <p>
 描述编码系统的编码。
-</p>
-</li>
+</p></li>
 
-<li>C-h C RET
+<li><p>
+C-h C RET
+</p>
 
 <p>
 Describe the coding systems currently in use.
@@ -525,10 +525,11 @@ Describe the coding systems currently in use.
 
 <p>
 描述当前正在使用的编码系统。
-</p>
-</li>
+</p></li>
 
-<li>M-x list-coding-systems
+<li><p>
+M-x list-coding-systems
+</p>
 
 <p>
 Display a list of all the supported coding systems.
@@ -544,8 +545,7 @@ The command C-h C (describe-coding-system) displays information about particular
 
 <p>
 命令 C-h C (describe-coding-system)显示特定编码系统的信息，包括这些编码系统指定的行尾转换。可以指定编码系统的名字作为参数；也可以没有参数，它命数用于各种目的的编码系统，包括当前 buffer 和默认设置，以及用于识别编码系统的优先级列表。(see <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Recognize-Coding">Recognize Coding</a>)
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -573,7 +573,9 @@ Each of the listed coding systems has three variants, which specify exactly what
 </p>
 
 <ul class="org-ul">
-<li>…-unix
+<li><p>
+…-unix
+</p>
 
 <p>
 Don’t do any end-of-line conversion; assume the file uses newline to separate lines. (This is the convention normally used on Unix and GNU systems, and Mac OS X.)
@@ -581,10 +583,11 @@ Don’t do any end-of-line conversion; assume the file uses newline to separate 
 
 <p>
 不做行尾转换；假定使用换行来分割行。（通常用于 Unix GNU system 和 Mac OS）
-</p>
-</li>
+</p></li>
 
-<li>…-dos
+<li><p>
+…-dos
+</p>
 
 <p>
 Assume the file uses carriage-return linefeed to separate lines, and do the appropriate conversion. (This is the convention normally used on Microsoft systems.)
@@ -592,10 +595,11 @@ Assume the file uses carriage-return linefeed to separate lines, and do the appr
 
 <p>
 假设文件使用换行回车分割行，并进行合适的转换。（通常用于 Microsoft systems 进行转换。）
-</p>
-</li>
+</p></li>
 
-<li>…-mac
+<li><p>
+…-mac
+</p>
 
 <p>
 Assume the file uses carriage-return to separate lines, and do the appropriate conversion. (This was the convention used on the Macintosh system prior to OS X.)
@@ -603,8 +607,7 @@ Assume the file uses carriage-return to separate lines, and do the appropriate c
 
 <p>
 假设文件使用回车分割行，并进行合适的转换。（转换用于 OS X 之前的 Macintosh 系统。）
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -654,8 +657,8 @@ emacs-internal 编码系统（或者也可以称为 utf-8-emacs）意味着文�
 </div>
 </div>
 
-<div id="outline-container-sec-11-2" class="outline-3">
-<h3 id="sec-11-2"><span class="section-number-3">11.2</span> 22.6 Recognizing Coding Systems</h3>
+<div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14"><span class="section-number-3">11.2</span> 22.6 Recognizing Coding Systems</h3>
 <div class="outline-text-3" id="text-11-2">
 <p>
 Whenever Emacs reads a given piece of text, it tries to recognize which coding system to use. This applies to files being read, output from subprocesses, text from X selections, etc. Emacs can select the right coding system automatically most of the time—once you have specified your preferences.
@@ -715,7 +718,7 @@ Sometimes a file name indicates which coding system to use for the file. The var
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(modify-coding-system-alist 'file "\\.txt\\'" 'chinese-iso-8bit)
+<pre class="src src-elisp">(modify-coding-system-alist 'file <span style="color: #ff4ea3;">"\\.txt\\'"</span> 'chinese-iso-8bit)
 </pre>
 </div>
 
@@ -777,8 +780,8 @@ Another way to specify a coding system is with the variable auto-coding-function
 </div>
 </div>
 
-<div id="outline-container-sec-11-3" class="outline-3">
-<h3 id="sec-11-3"><span class="section-number-3">11.3</span> 22.7 Specifying a File’s Coding System</h3>
+<div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15"><span class="section-number-3">11.3</span> 22.7 Specifying a File’s Coding System</h3>
 <div class="outline-text-3" id="text-11-3">
 <p>
 <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Specify-Coding">GNU Emacs Manual</a>
@@ -802,8 +805,8 @@ You can specify the coding system for a particular file in the file itself, usin
 </div>
 </div>
 
-<div id="outline-container-sec-11-4" class="outline-3">
-<h3 id="sec-11-4"><span class="section-number-3">11.4</span> 22.8 Choosing Coding Systems for Output</h3>
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16"><span class="section-number-3">11.4</span> 22.8 Choosing Coding Systems for Output</h3>
 <div class="outline-text-3" id="text-11-4">
 <p>
 Once Emacs has chosen a coding system for a buffer, it stores that coding system in buffer-file-coding-system. That makes it the default for operations that write from this buffer into a file, such as save-buffer and write-region. You can specify a different coding system for further file output from the buffer using set-buffer-file-coding-system (see <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#%0AText%20Coding">Text Coding</a>).
@@ -847,8 +850,8 @@ When you send a mail message (see <a href="https://www.gnu.org/software/emacs/ma
 </div>
 </div>
 
-<div id="outline-container-sec-11-5" class="outline-3">
-<h3 id="sec-11-5"><span class="section-number-3">11.5</span> 22.9 Specifying a Coding System for File Text</h3>
+<div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17"><span class="section-number-3">11.5</span> 22.9 Specifying a Coding System for File Text</h3>
 <div class="outline-text-3" id="text-11-5">
 <p>
 In cases where Emacs does not automatically choose the right coding system for a file’s contents, you can use these commands to specify one:
@@ -859,7 +862,9 @@ In cases where Emacs does not automatically choose the right coding system for a
 </p>
 
 <ul class="org-ul">
-<li>C-x RET f coding RET
+<li><p>
+C-x RET f coding RET
+</p>
 
 <p>
 Use coding system coding to save or revisit the file in the current buffer (set-buffer-file-coding-system).
@@ -870,7 +875,9 @@ Use coding system coding to save or revisit the file in the current buffer (set-
 </p>
 
 <ul class="org-ul">
-<li>C-x RET c coding RET
+<li><p>
+C-x RET c coding RET
+</p>
 
 <p>
 Specify coding system coding for the immediately following command (universal-coding-system-argument).
@@ -878,10 +885,11 @@ Specify coding system coding for the immediately following command (universal-co
 
 <p>
 为紧跟的命令指定编码系统(universal-coding-system-argument)。
-</p>
-</li>
+</p></li>
 
-<li>C-x RET r coding RET
+<li><p>
+C-x RET r coding RET
+</p>
 
 <p>
 Revisit the current file using the coding system coding        (revert-buffer-with-coding-system).
@@ -889,10 +897,11 @@ Revisit the current file using the coding system coding        (revert-buffer-wi
 
 <p>
 使用指定的编码系统重新浏览当前文件(revert-buffer-with-coding-system)。
-</p>
-</li>
+</p></li>
 
-<li>M-x recode-region RET right RET wrong RET
+<li><p>
+M-x recode-region RET right RET wrong RET
+</p>
 
 <p>
 Convert a region that was decoded using coding system wrong, decoding it using coding system right instead.
@@ -900,10 +909,8 @@ Convert a region that was decoded using coding system wrong, decoding it using c
 
 <p>
 转换使用错误编码系统解码的区域，将使用正确编码系统进行解码。
-</p>
-</li>
-</ul>
-</li>
+</p></li>
+</ul></li>
 </ul>
 
 <p>
@@ -988,8 +995,8 @@ If a piece of text has already been inserted into a buffer using the wrong codin
 </div>
 </div>
 
-<div id="outline-container-sec-11-6" class="outline-3">
-<h3 id="sec-11-6"><span class="section-number-3">11.6</span> 22.10 Coding Systems for Interprocess Communication</h3>
+<div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18"><span class="section-number-3">11.6</span> 22.10 Coding Systems for Interprocess Communication</h3>
 <div class="outline-text-3" id="text-11-6">
 <p>
 This section explains how to specify coding systems for use in communication with other processes.
@@ -1000,26 +1007,29 @@ This section explains how to specify coding systems for use in communication wit
 </p>
 
 <ul class="org-ul">
-<li>C-x RET x coding RET
+<li><p>
+C-x RET x coding RET
+</p>
 
 <p>
 Use coding system coding for transferring selections to and from other graphical applications (set-selection-coding-system).
-</p>
-</li>
+</p></li>
 
-<li>C-x RET X coding RET
+<li><p>
+C-x RET X coding RET
+</p>
 
 <p>
 Use coding system coding for transferring one selection—the next one—to or from another graphical application (set-next-selection-coding-system).
-</p>
-</li>
+</p></li>
 
-<li>C-x RET p input-coding RET output-coding RET
+<li><p>
+C-x RET p input-coding RET output-coding RET
+</p>
 
 <p>
 Use coding systems input-coding and output-coding for subprocess input and output in the current buffer (set-buffer-process-coding-system).
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -1048,11 +1058,13 @@ The variable locale-coding-system specifies a coding system to use when encoding
 </div>
 </div>
 
-<div id="outline-container-sec-11-7" class="outline-3">
-<h3 id="sec-11-7"><span class="section-number-3">11.7</span> 22.11 Coding Systems for File Names</h3>
+<div id="outline-container-orgheadline19" class="outline-3">
+<h3 id="orgheadline19"><span class="section-number-3">11.7</span> 22.11 Coding Systems for File Names</h3>
 <div class="outline-text-3" id="text-11-7">
 <ul class="org-ul">
-<li>C-x RET F coding RET
+<li><p>
+C-x RET F coding RET
+</p>
 
 <p>
 Use coding system coding for encoding and decoding file names (set-file-name-coding-system).
@@ -1060,8 +1072,7 @@ Use coding system coding for encoding and decoding file names (set-file-name-cod
 
 <p>
 使用编码系统编码和解码文件名字(set-file-name-coding-system)。
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -1114,11 +1125,13 @@ If a mistake occurs when encoding a file name, use the command M-x recode-file-n
 </div>
 </div>
 
-<div id="outline-container-sec-11-8" class="outline-3">
-<h3 id="sec-11-8"><span class="section-number-3">11.8</span> 22.12 Coding Systems for Terminal I/O</h3>
+<div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20"><span class="section-number-3">11.8</span> 22.12 Coding Systems for Terminal I/O</h3>
 <div class="outline-text-3" id="text-11-8">
 <ul class="org-ul">
-<li>C-x RET t coding RET
+<li><p>
+C-x RET t coding RET
+</p>
 
 <p>
 Use coding system coding for terminal output (set-terminal-coding-system).
@@ -1126,10 +1139,11 @@ Use coding system coding for terminal output (set-terminal-coding-system).
 
 <p>
 为终端输出指定编码系统(set-terminal-coding-system)。
-</p>
-</li>
+</p></li>
 
-<li>C-x RET k coding RET
+<li><p>
+C-x RET k coding RET
+</p>
 
 <p>
 Use coding system coding for keyboard input (set-keyboard-coding-system).
@@ -1137,8 +1151,7 @@ Use coding system coding for keyboard input (set-keyboard-coding-system).
 
 <p>
 为键盘输入指定编码系统(set-keyboard-coding-system)。
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -1206,8 +1219,8 @@ There is a similarity between using a coding system translation for keyboard inp
 </div>
 </div>
 </div>
-<div id="outline-container-sec-12" class="outline-2">
-<h2 id="sec-12"><span class="section-number-2">12</span> 24 Indentation</h2>
+<div id="outline-container-orgheadline26" class="outline-2">
+<h2 id="orgheadline26"><span class="section-number-2">12</span> 24 Indentation</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 Indentation refers to inserting or adjusting whitespace characters (space and/or tab characters) at the beginning of a line of text. This chapter documents indentation commands and options which are common to Text mode and related modes, as well as programming language modes. See <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Program-Indent">Program Indent</a>, for additional documentation about indenting in programming modes.
@@ -1226,7 +1239,9 @@ The simplest way to perform indentation is the TAB key. In most major modes, thi
 </p>
 
 <ul class="org-ul">
-<li>TAB
+<li><p>
+TAB
+</p>
 
 <p>
 Insert whitespace, or indent the current line, in a mode-appropriate way (indent-for-tab-command). If the region is active, indent all the lines within it.
@@ -1234,8 +1249,7 @@ Insert whitespace, or indent the current line, in a mode-appropriate way (indent
 
 <p>
 使用合适的方式插入空白符或缩进当前行（indent-for-tab-command）。如果激活了一块区域，则缩进区域中的所有行。
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -1263,8 +1277,8 @@ If you just want to insert a tab character in the buffer, type C-q TAB (see <a h
 </p>
 </div>
 
-<div id="outline-container-sec-12-1" class="outline-3">
-<h3 id="sec-12-1"><span class="section-number-3">12.1</span> 24.1 Indentation Commands</h3>
+<div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22"><span class="section-number-3">12.1</span> 24.1 Indentation Commands</h3>
 <div class="outline-text-3" id="text-12-1">
 <p>
 Apart from the TAB (indent-for-tab-command) command, Emacs provides a variety of commands to perform indentation in other ways.
@@ -1275,7 +1289,9 @@ Apart from the TAB (indent-for-tab-command) command, Emacs provides a variety of
 </p>
 
 <ul class="org-ul">
-<li>C-M-o
+<li><p>
+C-M-o
+</p>
 
 <p>
 Split the current line at point (split-line). The text on the line after point becomes a new line, indented to the same column where point is located. This command first moves point forward over any spaces and tabs. Afterward, point is positioned before the inserted newline.
@@ -1283,10 +1299,11 @@ Split the current line at point (split-line). The text on the line after point b
 
 <p>
 在当前 point 分割当前行（split-line）。行上 point 之后的文本变为新行，按照当前 point 所在的列进行缩进。该命令首先将 point 向前移过任何空格符或指标符。之后，point 放在插入新行之前。
-</p>
-</li>
+</p></li>
 
-<li>M-m
+<li><p>
+M-m
+</p>
 
 <p>
 Move (forward or back) to the first non-whitespace character on the current line (back-to-indentation). If there are no non-whitespace characters on the line, move to the end of the line.
@@ -1294,18 +1311,20 @@ Move (forward or back) to the first non-whitespace character on the current line
 
 <p>
 移动（向前或向后）当前行上第一个非空白字符（back-to-indentation）。如果当前行没有非空白字符就移动到行尾。
-</p>
-</li>
+</p></li>
 
-<li>M-i
+<li><p>
+M-i
+</p>
 
 <p>
 Indent whitespace at point, up to the next tab stop (tab-to-tab-stop). See Tab Stops.
 当缩进 point 处的空白符到下个 tab stop（tab-to-tab-stop）。See Tab Stops。
-</p>
-</li>
+</p></li>
 
-<li>M-x indent-relative
+<li><p>
+M-x indent-relative
+</p>
 
 <p>
 Insert whitespace at point, until point is aligned with the first non-whitespace character on the previous line (actually, the last non-blank line). If point is already farther right than that, run tab-to-tab-stop instead—unless called with a numeric argument, in which case do nothing.
@@ -1313,10 +1332,11 @@ Insert whitespace at point, until point is aligned with the first non-whitespace
 
 <p>
 在 point 处插入空白符，知道 poit 和前一行（实际上是上一个非空白行）的第一个非空白符对齐。如果 point 已经超过了顶起位置，执行 tab-to-tab-stop&#x2014;带参数执行则什么都不做。
-</p>
-</li>
+</p></li>
 
-<li>M-^
+<li><p>
+M-^
+</p>
 
 <p>
 Merge the previous and the current line (delete-indentation). This “joins” the two lines cleanly, by replacing any indentation at the front of the current line, together with the line boundary, with a single space.
@@ -1340,10 +1360,11 @@ If there is a fill prefix, M-^ deletes the fill prefix if it appears after the n
 
 <p>
 如果被删除新行后有一个 fill 前缀，M-^将会删除它。See Fill Prefix。
-</p>
-</li>
+</p></li>
 
-<li>C-M-\
+<li><p>
+C-M-\
+</p>
 
 <p>
 Indent all the lines in the region, as though you had typed TAB at the beginning of each line (indent-region).
@@ -1359,10 +1380,11 @@ If a numeric argument is supplied, indent every line in the region to that colum
 
 <p>
 如果提供数字参数，区域将缩进数字指示的列。
-</p>
-</li>
+</p></li>
 
-<li>C-x TAB
+<li><p>
+C-x TAB
+</p>
 
 <p>
 This command is used to change the indentation of all lines that begin in the region, moving the affected lines as a “rigid” unit.
@@ -1389,14 +1411,13 @@ If called with a prefix argument n, this command indents the lines forward by n 
 </p>
 <pre class="example">
 C-u -999 C-x TAB
-</pre>
-</li>
+</pre></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-12-2" class="outline-3">
-<h3 id="sec-12-2"><span class="section-number-3">12.2</span> 24.2 Tab Stops</h3>
+<div id="outline-container-orgheadline23" class="outline-3">
+<h3 id="orgheadline23"><span class="section-number-3">12.2</span> 24.2 Tab Stops</h3>
 <div class="outline-text-3" id="text-12-2">
 <p>
 Emacs defines certain column numbers to be tab stops. These are used as stopping points by TAB when inserting whitespace in Text mode and related modes (see Indentation), and by commands like M-i (see Indentation Commands). The variable tab-stop-list controls these positions. The default value is nil, which means a tab stop every 8 columns. The value can also be a list of zero-based column numbers (in increasing order) at which to place tab stops. Emacs extends the list forever by repeating the difference between the last and next-to-last elements.
@@ -1442,8 +1463,8 @@ Note that the tab stops discussed in this section have nothing to do with how ta
 </p>
 </div>
 </div>
-<div id="outline-container-sec-12-3" class="outline-3">
-<h3 id="sec-12-3"><span class="section-number-3">12.3</span> 24.3 Tabs vs. Spaces</h3>
+<div id="outline-container-orgheadline24" class="outline-3">
+<h3 id="orgheadline24"><span class="section-number-3">12.3</span> 24.3 Tabs vs. Spaces</h3>
 <div class="outline-text-3" id="text-12-3">
 <p>
 Normally, indentation commands insert (or remove) an optimal mix of space characters and tab characters to align to the desired column. Tab characters are displayed as a stretch of empty space extending to the next display tab stop. By default, there is one display tab stop every tab-width columns (the default is 8). See <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Text-Display">Text Display</a>.
@@ -1479,8 +1500,8 @@ There are also commands to convert tabs to spaces or vice versa, always preservi
 </div>
 </div>
 
-<div id="outline-container-sec-12-4" class="outline-3">
-<h3 id="sec-12-4"><span class="section-number-3">12.4</span> 24.4 Convenience Features for Indentation</h3>
+<div id="outline-container-orgheadline25" class="outline-3">
+<h3 id="orgheadline25"><span class="section-number-3">12.4</span> 24.4 Convenience Features for Indentation</h3>
 <div class="outline-text-3" id="text-12-4">
 <p>
 The variable tab-always-indent tweaks the behavior of the TAB (indent-for-tab-command) command. The default value, t, gives the behavior described in <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Indentation">Indentation</a>. If you change the value to the symbol complete, then TAB first tries to indent the current line, and if the line was already indented, it tries to complete the text at point (see <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Symbol-Completion">Symbol Completion</a>). If the value is nil, then TAB indents the current line only if point is at the left margin or in the line’s indentation; otherwise, it inserts a tab character.
@@ -1500,11 +1521,11 @@ Electric Indent mode 是全局辅助模式，可以在每次输入 RET 之后进
 </div>
 </div>
 </div>
-<div id="outline-container-sec-13" class="outline-2">
-<h2 id="sec-13"><span class="section-number-2">13</span> 25 Commands for Human Languages</h2>
+<div id="outline-container-orgheadline27" class="outline-2">
+<h2 id="orgheadline27"><span class="section-number-2">13</span> 25 Commands for Human Languages</h2>
 </div>
-<div id="outline-container-sec-14" class="outline-2">
-<h2 id="sec-14"><span class="section-number-2">14</span> 26 Editing Programs</h2>
+<div id="outline-container-orgheadline54" class="outline-2">
+<h2 id="orgheadline54"><span class="section-number-2">14</span> 26 Editing Programs</h2>
 <div class="outline-text-2" id="text-14">
 <p>
 This chapter describes Emacs features for facilitating editing programs. Some of the things these features can do are:
@@ -1515,44 +1536,49 @@ This chapter describes Emacs features for facilitating editing programs. Some of
 </p>
 
 <ul class="org-ul">
-<li>Find or move over top-level definitions (see Defuns).
+<li><p>
+Find or move over top-level definitions (see Defuns).
+</p>
 
 <p>
 在顶层定义上查找或移动（see Defuns）
-</p>
-</li>
+</p></li>
 
-<li>Apply the usual indentation conventions of the language (see Program Indent).
+<li><p>
+Apply the usual indentation conventions of the language (see Program Indent).
+</p>
 
 <p>
 使用语言的缩进约定（see Program Indent）。
-</p>
-</li>
+</p></li>
 
-<li>Balance parentheses (see Parentheses).
+<li><p>
+Balance parentheses (see Parentheses).
+</p>
 
 <p>
 平衡括号（see Parentheses）
-</p>
-</li>
+</p></li>
 
-<li>Insert, kill or align comments (see Comments).
+<li><p>
+Insert, kill or align comments (see Comments).
+</p>
 
 <p>
 插入，kill 或对其注释（see Comments）。
-</p>
-</li>
+</p></li>
 
-<li>Highlight program syntax (see Font Lock).
+<li><p>
+Highlight program syntax (see Font Lock).
+</p>
 
 <p>
 高亮程序语法（see Font Lock）。
-</p>
-</li>
+</p></li>
 </ul>
 </div>
-<div id="outline-container-sec-14-1" class="outline-3">
-<h3 id="sec-14-1"><span class="section-number-3">14.1</span> 26.1 Major Modes for Programming Languages</h3>
+<div id="outline-container-orgheadline28" class="outline-3">
+<h3 id="orgheadline28"><span class="section-number-3">14.1</span> 26.1 Major Modes for Programming Languages</h3>
 <div class="outline-text-3" id="text-14-1">
 <p>
 Emacs has specialized major modes (see <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Major-Modes">Major Modes</a>) for many programming languages. A programming language mode typically specifies the syntax of expressions, the customary rules for indentation, how to do syntax highlighting for the language, and how to find the beginning or end of a function definition. It often has features for compiling and debugging programs as well. The major mode for each language is named after the language; for instance, the major mode for the C programming language is c-mode.
@@ -1583,11 +1609,11 @@ Separate manuals are available for the modes for Ada (see Ada Mode in Ada Mode),
 </p>
 </div>
 </div>
-<div id="outline-container-sec-14-2" class="outline-3">
-<h3 id="sec-14-2"><span class="section-number-3">14.2</span> 26.2 Top-Level Definitions, or Defuns</h3>
+<div id="outline-container-orgheadline30" class="outline-3">
+<h3 id="orgheadline30"><span class="section-number-3">14.2</span> 26.2 Top-Level Definitions, or Defuns</h3>
 <div class="outline-text-3" id="text-14-2">
-</div><div id="outline-container-sec-14-2-1" class="outline-4">
-<h4 id="sec-14-2-1"><span class="section-number-4">14.2.1</span> 26.2.4 Which Function Mode</h4>
+</div><div id="outline-container-orgheadline29" class="outline-4">
+<h4 id="orgheadline29"><span class="section-number-4">14.2.1</span> 26.2.4 Which Function Mode</h4>
 <div class="outline-text-4" id="text-14-2-1">
 <p>
 The best way to keep a program properly indented is to use Emacs to reindent it as you change it. Emacs has commands to indent either a single line, a specified number of lines, or all of the lines inside a single parenthetical grouping.
@@ -1603,8 +1629,8 @@ Emacs also provides a Lisp pretty-printer in the pp package, which reformats Lis
 </div>
 </div>
 </div>
-<div id="outline-container-sec-14-3" class="outline-3">
-<h3 id="sec-14-3"><span class="section-number-3">14.3</span> 26.3 Indentation for Programs</h3>
+<div id="outline-container-orgheadline36" class="outline-3">
+<h3 id="orgheadline36"><span class="section-number-3">14.3</span> 26.3 Indentation for Programs</h3>
 <div class="outline-text-3" id="text-14-3">
 <p>
 The best way to keep a program properly indented is to use Emacs to reindent it as you change it. Emacs has commands to indent either a single line, a specified number of lines, or all of the lines inside a single parenthetical grouping.
@@ -1623,11 +1649,13 @@ See <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Inde
 </p>
 </div>
 
-<div id="outline-container-sec-14-3-1" class="outline-4">
-<h4 id="sec-14-3-1"><span class="section-number-4">14.3.1</span> 26.3.1 Basic Program Indentation Commands</h4>
+<div id="outline-container-orgheadline31" class="outline-4">
+<h4 id="orgheadline31"><span class="section-number-4">14.3.1</span> 26.3.1 Basic Program Indentation Commands</h4>
 <div class="outline-text-4" id="text-14-3-1">
 <ul class="org-ul">
-<li>TAB
+<li><p>
+TAB
+</p>
 
 <p>
 Adjust indentation of current line (indent-for-tab-command).
@@ -1635,10 +1663,11 @@ Adjust indentation of current line (indent-for-tab-command).
 
 <p>
 调整当前行缩进（indent-for-tab-command）
-</p>
-</li>
+</p></li>
 
-<li>RET
+<li><p>
+RET
+</p>
 
 <p>
 Insert a newline, then adjust indentation of following line (newline).
@@ -1646,8 +1675,7 @@ Insert a newline, then adjust indentation of following line (newline).
 
 <p>
 插入新行，然后调整接下来的缩进（newline）。
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -1684,8 +1712,8 @@ The indentation commands for most programming language modes assume that a open-
 </div>
 </div>
 
-<div id="outline-container-sec-14-3-2" class="outline-4">
-<h4 id="sec-14-3-2"><span class="section-number-4">14.3.2</span> 26.3.2 Indenting Several Lines</h4>
+<div id="outline-container-orgheadline32" class="outline-4">
+<h4 id="orgheadline32"><span class="section-number-4">14.3.2</span> 26.3.2 Indenting Several Lines</h4>
 <div class="outline-text-4" id="text-14-3-2">
 <p>
 Sometimes, you may want to reindent several lines of code at a time. One way to do this is to use the mark; when the mark is active and the region is non-empty, TAB indents every line in the region. Alternatively, the command C-M-\ (indent-region) indents every line in the region, whether or not the mark is active (see Indentation Commands).
@@ -1704,7 +1732,9 @@ In addition, Emacs provides the following commands for indenting large chunks of
 </p>
 
 <ul class="org-ul">
-<li>C-M-q
+<li><p>
+C-M-q
+</p>
 
 <p>
 Reindent all the lines within one parenthetical grouping.
@@ -1712,10 +1742,11 @@ Reindent all the lines within one parenthetical grouping.
 
 <p>
 缩进括号分组中的所有行。
-</p>
-</li>
+</p></li>
 
-<li>C-u TAB
+<li><p>
+C-u TAB
+</p>
 
 <p>
 Shift an entire parenthetical grouping rigidly sideways so that its first line is properly indented.
@@ -1723,10 +1754,11 @@ Shift an entire parenthetical grouping rigidly sideways so that its first line i
 
 <p>
 这样它的第一行能正确缩进。
-</p>
-</li>
+</p></li>
 
-<li>M-x indent-code-rigidly
+<li><p>
+M-x indent-code-rigidly
+</p>
 
 <p>
 Shift all the lines in the region rigidly sideways, but do not alter lines that start inside comments and strings.
@@ -1734,8 +1766,7 @@ Shift all the lines in the region rigidly sideways, but do not alter lines that 
 
 <p>
 移动区域中的所有行移动到一遍，但是不改变注释和字符串中的行。
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -1764,8 +1795,8 @@ The command M-x indent-code-rigidly rigidly shifts all the lines in the region s
 </div>
 </div>
 
-<div id="outline-container-sec-14-3-3" class="outline-4">
-<h4 id="sec-14-3-3"><span class="section-number-4">14.3.3</span> 26.3.3 Customizing Lisp Indentation</h4>
+<div id="outline-container-orgheadline33" class="outline-4">
+<h4 id="orgheadline33"><span class="section-number-4">14.3.3</span> 26.3.3 Customizing Lisp Indentation</h4>
 <div class="outline-text-4" id="text-14-3-3">
 <p>
 The indentation pattern for a Lisp expression can depend on the function called by the expression. For each Lisp function, you can choose among several predefined patterns of indentation, or define an arbitrary one with a Lisp program.
@@ -1809,8 +1840,8 @@ You can override the standard pattern in various ways for individual functions, 
 </div>
 </div>
 
-<div id="outline-container-sec-14-3-4" class="outline-4">
-<h4 id="sec-14-3-4"><span class="section-number-4">14.3.4</span> 26.3.4 Commands for C Indentation</h4>
+<div id="outline-container-orgheadline34" class="outline-4">
+<h4 id="orgheadline34"><span class="section-number-4">14.3.4</span> 26.3.4 Commands for C Indentation</h4>
 <div class="outline-text-4" id="text-14-3-4">
 <p>
 Here are special features for indentation in C mode and related modes:
@@ -1821,7 +1852,9 @@ C 和相关模式中有一些与缩进相关的特性：
 </p>
 
 <ul class="org-ul">
-<li>C-c C-q
+<li><p>
+C-c C-q
+</p>
 
 <p>
 Reindent the current top-level function definition or aggregate type declaration (c-indent-defun).
@@ -1829,10 +1862,11 @@ Reindent the current top-level function definition or aggregate type declaration
 
 <p>
 再次缩进当期顶级的函数定义或者聚合类型声明（c-indent-defun）。
-</p>
-</li>
+</p></li>
 
-<li>C-M-q
+<li><p>
+C-M-q
+</p>
 
 <p>
 Reindent each line in the balanced expression that follows point (c-indent-exp). A prefix argument inhibits warning messages about invalid syntax.
@@ -1840,10 +1874,11 @@ Reindent each line in the balanced expression that follows point (c-indent-exp).
 
 <p>
 缩进 point 后面平衡表达式中的每一行（c-indent-exp）。前缀参数阻止和无效语法有关的警告消息。
-</p>
-</li>
+</p></li>
 
-<li>TAB
+<li><p>
+TAB
+</p>
 
 <p>
 Reindent the current line, and/or in some cases insert a tab character (c-indent-command).
@@ -1875,8 +1910,7 @@ Any other value (not nil or t) means always reindent the line, and also insert a
 
 <p>
 任何其他值（非 nil 或 t）意味着总是重新缩进该行，如果在注释或字符串中的话插入制表符。
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -1897,8 +1931,8 @@ To reindent the current block, use C-M-u C-M-q. This moves to the front of the b
 </div>
 </div>
 
-<div id="outline-container-sec-14-3-5" class="outline-4">
-<h4 id="sec-14-3-5"><span class="section-number-4">14.3.5</span> 26.3.5 Customizing C Indentation</h4>
+<div id="outline-container-orgheadline35" class="outline-4">
+<h4 id="orgheadline35"><span class="section-number-4">14.3.5</span> 26.3.5 Customizing C Indentation</h4>
 <div class="outline-text-4" id="text-14-3-5">
 <p>
 C mode and related modes use a flexible mechanism for customizing indentation. C mode indents a source line in two steps: first it classifies the line syntactically according to its contents and context; second, it determines the indentation offset associated by your selected style with the syntactic construct and adds this onto the indentation of the anchor statement.
@@ -1909,7 +1943,9 @@ C 模式和相关模式使用灵活的机制来定制缩进解决机制。C 模�
 </p>
 
 <ul class="org-ul">
-<li>C-c . style RET
+<li><p>
+C-c . style RET
+</p>
 
 <p>
 Select a predefined style style (c-set-style).
@@ -1917,8 +1953,7 @@ Select a predefined style style (c-set-style).
 
 <p>
 选择预定义的风格（c-set-style）。
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -1948,9 +1983,9 @@ You can also set the variable c-default-style to specify the default style for v
 <div class="org-src-container">
 
 <pre class="src src-elisp">(setq c-default-style
-	  '((java-mode . "java")
-		(awk-mode . "awk")
-		(other . "gnu")))
+      '((java-mode . <span style="color: #ff4ea3;">"java"</span>)
+        (awk-mode . <span style="color: #ff4ea3;">"awk"</span>)
+        (other . <span style="color: #ff4ea3;">"gnu"</span>)))
 </pre>
 </div>
 
@@ -1985,8 +2020,8 @@ As an alternative to specifying a style, you can tell Emacs to guess a style by 
 </div>
 </div>
 </div>
-<div id="outline-container-sec-14-4" class="outline-3">
-<h3 id="sec-14-4"><span class="section-number-3">14.4</span> 26.4 Commands for Editing with Parentheses</h3>
+<div id="outline-container-orgheadline40" class="outline-3">
+<h3 id="orgheadline40"><span class="section-number-3">14.4</span> 26.4 Commands for Editing with Parentheses</h3>
 <div class="outline-text-3" id="text-14-4">
 <p>
 This section describes the commands and features that take advantage of the parenthesis structure in a program, or help you keep it balanced.
@@ -2013,8 +2048,8 @@ You can use M-x check-parens to find any unbalanced parentheses and unbalanced s
 </p>
 </div>
 
-<div id="outline-container-sec-14-4-1" class="outline-4">
-<h4 id="sec-14-4-1"><span class="section-number-4">14.4.1</span> 26.4.1 Expressions with Balanced Parentheses</h4>
+<div id="outline-container-orgheadline37" class="outline-4">
+<h4 id="orgheadline37"><span class="section-number-4">14.4.1</span> 26.4.1 Expressions with Balanced Parentheses</h4>
 <div class="outline-text-4" id="text-14-4-1">
 <p>
 Each programming language mode has its own definition of a balanced expression. Balanced expressions typically include individual symbols, numbers, and string constants, as well as pieces of code enclosed in a matching pair of delimiters. The following commands deal with balanced expressions (in Emacs, such expressions are referred to internally as sexps11).
@@ -2025,7 +2060,9 @@ Each programming language mode has its own definition of a balanced expression. 
 </p>
 
 <ul class="org-ul">
-<li>C-M-f
+<li><p>
+C-M-f
+</p>
 
 <p>
 Move forward over a balanced expression (forward-sexp).
@@ -2033,10 +2070,11 @@ Move forward over a balanced expression (forward-sexp).
 
 <p>
 向前移动一个平衡表达式（forward-sexp）。
-</p>
-</li>
+</p></li>
 
-<li>C-M-b
+<li><p>
+C-M-b
+</p>
 
 <p>
 Move backward over a balanced expression (backward-sexp).
@@ -2044,10 +2082,11 @@ Move backward over a balanced expression (backward-sexp).
 
 <p>
 向后移动一个平衡表达式（backward-sexp）。
-</p>
-</li>
+</p></li>
 
-<li>C-M-k
+<li><p>
+C-M-k
+</p>
 
 <p>
 Kill balanced expression forward (kill-sexp).
@@ -2055,10 +2094,11 @@ Kill balanced expression forward (kill-sexp).
 
 <p>
 向前删除一个平衡表达式（kill-sexp）。
-</p>
-</li>
+</p></li>
 
-<li>C-M-t
+<li><p>
+C-M-t
+</p>
 
 <p>
 Transpose expressions (transpose-sexps).
@@ -2066,13 +2106,13 @@ Transpose expressions (transpose-sexps).
 
 <p>
 交换表达式位置（transpose-sexps）。
+</p></li>
+
+<li>C-M-@</li>
+
+<li><p>
+C-M-SPC
 </p>
-</li>
-
-<li>C-M-@
-</li>
-
-<li>C-M-SPC
 
 <p>
 Put mark after following expression (mark-sexp).
@@ -2080,8 +2120,7 @@ Put mark after following expression (mark-sexp).
 
 <p>
 在表达式之后设置 mark（mark-sexp）。
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -2142,8 +2181,8 @@ In languages that use infix operators, such as C, it is not possible to recogniz
 </div>
 </div>
 
-<div id="outline-container-sec-14-4-2" class="outline-4">
-<h4 id="sec-14-4-2"><span class="section-number-4">14.4.2</span> 26.4.2 Moving in the Parenthesis Structure</h4>
+<div id="outline-container-orgheadline38" class="outline-4">
+<h4 id="orgheadline38"><span class="section-number-4">14.4.2</span> 26.4.2 Moving in the Parenthesis Structure</h4>
 <div class="outline-text-4" id="text-14-4-2">
 <p>
 The following commands move over groupings delimited by parentheses (or whatever else serves as delimiters in the language you are working with). They ignore strings and comments, including any parentheses within them, and also ignore parentheses that are “quoted” with an escape character. These commands are mainly intended for editing programs, but can be useful for editing any text containing parentheses. They are referred to internally as “list” commands because in Lisp these groupings are lists.
@@ -2162,7 +2201,9 @@ These commands assume that the starting point is not inside a string or a commen
 </p>
 
 <ul class="org-ul">
-<li>C-M-n
+<li><p>
+C-M-n
+</p>
 
 <p>
 Move forward over a parenthetical group (forward-list).
@@ -2170,10 +2211,11 @@ Move forward over a parenthetical group (forward-list).
 
 <p>
 前进一个括号组（forward-list）
-</p>
-</li>
+</p></li>
 
-<li>C-M-p
+<li><p>
+C-M-p
+</p>
 
 <p>
 Move backward over a parenthetical group (backward-list).
@@ -2181,10 +2223,11 @@ Move backward over a parenthetical group (backward-list).
 
 <p>
 后退一个括号组（backword-list）
-</p>
-</li>
+</p></li>
 
-<li>C-M-u
+<li><p>
+C-M-u
+</p>
 
 <p>
 Move up in parenthesis structure (backward-up-list).
@@ -2192,10 +2235,11 @@ Move up in parenthesis structure (backward-up-list).
 
 <p>
 上移一个括号组（backword-up-list）
-</p>
-</li>
+</p></li>
 
-<li>C-M-d
+<li><p>
+C-M-d
+</p>
 
 <p>
 Move down in parenthesis structure (down-list).
@@ -2203,8 +2247,7 @@ Move down in parenthesis structure (down-list).
 
 <p>
 下移一个括号组（down-list）
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -2233,8 +2276,8 @@ To move down in the parenthesis structure, use C-M-d (down-list). In Lisp mode, 
 </div>
 </div>
 
-<div id="outline-container-sec-14-4-3" class="outline-4">
-<h4 id="sec-14-4-3"><span class="section-number-4">14.4.3</span> 26.4.3 Matching Parentheses</h4>
+<div id="outline-container-orgheadline39" class="outline-4">
+<h4 id="orgheadline39"><span class="section-number-4">14.4.3</span> 26.4.3 Matching Parentheses</h4>
 <div class="outline-text-4" id="text-14-4-3">
 <p>
 Emacs has a number of parenthesis matching features, which make it easy to see how and whether parentheses (or other delimiters) match up.
@@ -2261,26 +2304,29 @@ Three variables control the display of matching parentheses:
 </p>
 
 <ul class="org-ul">
-<li>blink-matching-paren turns the feature on or off: nil disables it, but the default is t to enable it. Set it to jump to make indication work by momentarily moving the cursor to the matching opening delimiter.
+<li><p>
+blink-matching-paren turns the feature on or off: nil disables it, but the default is t to enable it. Set it to jump to make indication work by momentarily moving the cursor to the matching opening delimiter.
+</p>
 
 <p>
 blink-matching-paren 开启或关闭该功能：nil 关闭它，但默认是启动它。将它设置为 jump 可以让光标暂时移动到匹配的分隔符。
-</p>
-</li>
+</p></li>
 
-<li>blink-matching-delay says how many seconds to keep indicating the matching opening delimiter. This may be an integer or floating-point number; the default is 1.
+<li><p>
+blink-matching-delay says how many seconds to keep indicating the matching opening delimiter. This may be an integer or floating-point number; the default is 1.
+</p>
 
 <p>
 blink-matching-delay 表明保持指示匹配的开分隔符多久。这可能是个浮点数，默认值是 1.
-</p>
-</li>
+</p></li>
 
-<li>blink-matching-paren-distance specifies how many characters back to search to find the matching opening delimiter. If the match is not found in that distance, Emacs stops scanning and nothing is displayed. The default is 102400.
+<li><p>
+blink-matching-paren-distance specifies how many characters back to search to find the matching opening delimiter. If the match is not found in that distance, Emacs stops scanning and nothing is displayed. The default is 102400.
+</p>
 
 <p>
 blink-matching-paren-distance 只是为了查找匹配的开分隔符向后搜索的字符数量。如果这段距离没有找到匹配，Emasc 停止扫描，不显示任何东西。默认值是 102400.
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -2300,33 +2346,37 @@ Electric Pair 模式，是一个全局辅助模式，提供一种可以方便插
 </p>
 
 <ul class="org-ul">
-<li>electric-pair-preserve-balance, when non-nil, makes the default pairing logic balance out the number of opening and closing delimiters.
+<li><p>
+electric-pair-preserve-balance, when non-nil, makes the default pairing logic balance out the number of opening and closing delimiters.
+</p>
 
 <p>
 electric-pair-preserve-balance，如果非 nil，使用默认的配对逻辑平衡开关分隔符的数量。
-</p>
-</li>
+</p></li>
 
-<li>electric-pair-delete-adjacent-pairs, when non-nil, makes backspacing between two adjacent delimiters also automatically delete the closing delimiter.
+<li><p>
+electric-pair-delete-adjacent-pairs, when non-nil, makes backspacing between two adjacent delimiters also automatically delete the closing delimiter.
+</p>
 
 <p>
 electric-pair-delete-adjacent-pairs，非 nil 时，在两个相邻的分隔符之间使用 backspace 也会自动删除对应的关分隔符。
-</p>
-</li>
+</p></li>
 
-<li>electric-pair-open-newline-between-pairs, when non-nil, makes inserting inserting a newline between two adjacent pairs also automatically open and extra newline after point.
+<li><p>
+electric-pair-open-newline-between-pairs, when non-nil, makes inserting inserting a newline between two adjacent pairs also automatically open and extra newline after point.
+</p>
 
 <p>
 electric-pair-open-newline-between-pairs，非 nil 值，在两个相邻配对分隔符之间插入新行会自动在 point 之后打开额外的新行。
-</p>
-</li>
+</p></li>
 
-<li>electric-pair-skip-whitespace, when non-nil, causes the minor mode to skip whitespace forward before deciding whether to skip over the closing delimiter.
+<li><p>
+electric-pair-skip-whitespace, when non-nil, causes the minor mode to skip whitespace forward before deciding whether to skip over the closing delimiter.
+</p>
 
 <p>
 electric-pair-skip-whitespace，非 nil 时，导致辅助模式在决定是否跳过关分隔符之前向前跳过空白符。
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -2339,8 +2389,8 @@ To toggle Electric Pair mode, type M-x electric-pair-mode.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-14-5" class="outline-3">
-<h3 id="sec-14-5"><span class="section-number-3">14.5</span> 26.5 Manipulating Comments</h3>
+<div id="outline-container-orgheadline44" class="outline-3">
+<h3 id="orgheadline44"><span class="section-number-3">14.5</span> 26.5 Manipulating Comments</h3>
 <div class="outline-text-3" id="text-14-5">
 <p>
 Because comments are such an important part of programming, Emacs provides special commands for editing and inserting comments. It can also do spell checking on comments with Flyspell Prog mode (see Spelling).
@@ -2360,18 +2410,18 @@ Some major modes have special rules for indenting different kinds of comments. F
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">;; This function is just an example.
-;;; Here either two or three semicolons are appropriate.
-(defun foo (x)
-;;;  And now, the first part of the function:
-  ;; The following line adds one.
-  (1+ x))           ; This line adds one.
+<pre class="src src-elisp"><span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">This function is just an example.</span>
+<span style="color: #6c6c6c; font-style: italic;">;;; </span><span style="color: #6c6c6c; font-style: italic;">Here either two or three semicolons are appropriate.</span>
+(<span style="color: #a1db00;">defun</span> <span style="color: #ffd700;">foo</span> (x)
+<span style="color: #6c6c6c; font-style: italic;">;;;  </span><span style="color: #6c6c6c; font-style: italic;">And now, the first part of the function:</span>
+  <span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">The following line adds one.</span>
+  (1+ x))           <span style="color: #6c6c6c; font-style: italic;">; </span><span style="color: #6c6c6c; font-style: italic;">This line adds one.</span>
 </pre>
 </div>
 </div>
 
-<div id="outline-container-sec-14-5-1" class="outline-4">
-<h4 id="sec-14-5-1"><span class="section-number-4">14.5.1</span> 26.5.1 Comment Commands</h4>
+<div id="outline-container-orgheadline41" class="outline-4">
+<h4 id="orgheadline41"><span class="section-number-4">14.5.1</span> 26.5.1 Comment Commands</h4>
 <div class="outline-text-4" id="text-14-5-1">
 <p>
 The following commands operate on comments:
@@ -2382,7 +2432,9 @@ The following commands operate on comments:
 </p>
 
 <ul class="org-ul">
-<li>M-;
+<li><p>
+M-;
+</p>
 
 <p>
 Insert or realign comment on current line; if the region is active, comment or uncomment the region instead (comment-dwim).
@@ -2390,10 +2442,11 @@ Insert or realign comment on current line; if the region is active, comment or u
 
 <p>
 插入或调整当前行的注释；如果激活区域，切换区域的注释状态（comment-dwim）。
-</p>
-</li>
+</p></li>
 
-<li>C-u M-;
+<li><p>
+C-u M-;
+</p>
 
 <p>
 Kill comment on current line (comment-kill).
@@ -2401,10 +2454,11 @@ Kill comment on current line (comment-kill).
 
 <p>
 删除当前行上的注释（comment-kill）。
-</p>
-</li>
+</p></li>
 
-<li>C-x ;
+<li><p>
+C-x ;
+</p>
 
 <p>
 Set comment column (comment-set-column).
@@ -2412,13 +2466,13 @@ Set comment column (comment-set-column).
 
 <p>
 设置注释列（comment-set-column）。
+</p></li>
+
+<li>C-M-j</li>
+
+<li><p>
+M-j
 </p>
-</li>
-
-<li>C-M-j
-</li>
-
-<li>M-j
 
 <p>
 Like RET followed by inserting and aligning a comment (comment-indent-new-line). See <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Multi_002dLine-Comments">Multi-Line Comments</a>.
@@ -2426,13 +2480,13 @@ Like RET followed by inserting and aligning a comment (comment-indent-new-line).
 
 <p>
 回车之后紧接着插入和对齐注释（comment-indent-new-line）。see Multi-line comments。
+</p></li>
+
+<li>M-x comment-region</li>
+
+<li><p>
+C-c C-c (in C-like modes)
 </p>
-</li>
-
-<li>M-x comment-region
-</li>
-
-<li>C-c C-c (in C-like modes)
 
 <p>
 Add comment delimiters to all the lines in the region.
@@ -2440,8 +2494,7 @@ Add comment delimiters to all the lines in the region.
 
 <p>
 在区域的所有行添加注释分隔符。
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -2510,8 +2563,8 @@ For C-like modes, you can configure the exact effect of M-; by setting the varia
 </div>
 </div>
 
-<div id="outline-container-sec-14-5-2" class="outline-4">
-<h4 id="sec-14-5-2"><span class="section-number-4">14.5.2</span> 26.5.2 Multiple Lines of Comments</h4>
+<div id="outline-container-orgheadline42" class="outline-4">
+<h4 id="orgheadline42"><span class="section-number-4">14.5.2</span> 26.5.2 Multiple Lines of Comments</h4>
 <div class="outline-text-4" id="text-14-5-2">
 <p>
 If you are typing a comment and wish to continue it to another line, type M-j or C-M-j (comment-indent-new-line). This breaks the current line, and inserts the necessary comment delimiters and indentation to continue the comment.
@@ -2555,8 +2608,8 @@ You can configure C Mode such that when you type a ‘/’ at the start of a lin
 </div>
 </div>
 
-<div id="outline-container-sec-14-5-3" class="outline-4">
-<h4 id="sec-14-5-3"><span class="section-number-4">14.5.3</span> 26.5.3 Options Controlling Comments</h4>
+<div id="outline-container-orgheadline43" class="outline-4">
+<h4 id="orgheadline43"><span class="section-number-4">14.5.3</span> 26.5.3 Options Controlling Comments</h4>
 <div class="outline-text-4" id="text-14-5-3">
 <p>
 As mentioned in Comment Commands, when the M-j command adds a comment to a line, it tries to place the comment at the column specified by the buffer-local variable comment-column. You can set either the local value or the default value of this buffer-local variable in the usual way (see Locals). Alternatively, you can type C-x ; (comment-set-column) to set the value of comment-column in the current buffer to the column where point is currently located. C-u C-x ; sets the comment column to match the last comment before point in the buffer, and then does a M-; to align the current line’s comment under the previous one.
@@ -2608,8 +2661,8 @@ The variable comment-indent-function should contain a function that will be call
 </div>
 </div>
 </div>
-<div id="outline-container-sec-14-6" class="outline-3">
-<h3 id="sec-14-6"><span class="section-number-3">14.6</span> 26.6 Documentation Lookup</h3>
+<div id="outline-container-orgheadline48" class="outline-3">
+<h3 id="orgheadline48"><span class="section-number-3">14.6</span> 26.6 Documentation Lookup</h3>
 <div class="outline-text-3" id="text-14-6">
 <p>
 Emacs provides several features you can use to look up the documentation of functions, variables and commands that you plan to use in your program.
@@ -2620,8 +2673,8 @@ Emacs provides several features you can use to look up the documentation of func
 </p>
 </div>
 
-<div id="outline-container-sec-14-6-1" class="outline-4">
-<h4 id="sec-14-6-1"><span class="section-number-4">14.6.1</span> 26.6.1 Info Documentation Lookup</h4>
+<div id="outline-container-orgheadline45" class="outline-4">
+<h4 id="orgheadline45"><span class="section-number-4">14.6.1</span> 26.6.1 Info Documentation Lookup</h4>
 <div class="outline-text-4" id="text-14-6-1">
 <p>
 For major modes that apply to languages which have documentation in Info, you can use C-h S (info-lookup-symbol) to view the Info documentation for a symbol used in the program. You specify the symbol with the minibuffer; the default is the symbol appearing in the buffer at point. For example, in C mode this looks for the symbol in the C Library Manual. The command only works if the appropriate manual’s Info files are installed.
@@ -2649,8 +2702,8 @@ If you use C-h S in a major mode that does not support it, it asks you to specif
 </div>
 </div>
 
-<div id="outline-container-sec-14-6-2" class="outline-4">
-<h4 id="sec-14-6-2"><span class="section-number-4">14.6.2</span> 26.6.2 Man Page Lookup</h4>
+<div id="outline-container-orgheadline46" class="outline-4">
+<h4 id="orgheadline46"><span class="section-number-4">14.6.2</span> 26.6.2 Man Page Lookup</h4>
 <div class="outline-text-4" id="text-14-6-2">
 <p>
 On Unix, the main form of on-line documentation was the manual page or man page. In the GNU operating system, we aim to replace man pages with better-organized manuals that you can browse with Info (see <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Misc-Help">Misc Help</a>). This process is not finished, so it is still useful to read manual pages.
@@ -2718,8 +2771,8 @@ For more information about setting up and using M-x woman, see the WoMan Info ma
 </div>
 </div>
 
-<div id="outline-container-sec-14-6-3" class="outline-4">
-<h4 id="sec-14-6-3"><span class="section-number-4">14.6.3</span> 26.6.3 Emacs Lisp Documentation Lookup</h4>
+<div id="outline-container-orgheadline47" class="outline-4">
+<h4 id="orgheadline47"><span class="section-number-4">14.6.3</span> 26.6.3 Emacs Lisp Documentation Lookup</h4>
 <div class="outline-text-4" id="text-14-6-3">
 <p>
 When editing Emacs Lisp code, you can use the commands C-h f (describe-function) and C-h v (describe-variable) to view the built-in documentation for the Lisp functions and variables that you want to use. See <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Name-Help">Name Help</a>.
@@ -2740,8 +2793,8 @@ Eldoc 是一个 buffer-local 辅助模式，有助于查找 Lisp 文档。当启
 </div>
 </div>
 
-<div id="outline-container-sec-14-7" class="outline-3">
-<h3 id="sec-14-7"><span class="section-number-3">14.7</span> 26.7 Hideshow minor mode</h3>
+<div id="outline-container-orgheadline49" class="outline-3">
+<h3 id="orgheadline49"><span class="section-number-3">14.7</span> 26.7 Hideshow minor mode</h3>
 <div class="outline-text-3" id="text-14-7">
 <p>
 Hideshow mode is a buffer-local minor mode that allows you to selectively display portions of a program, which are referred to as blocks. Type M-x hs-minor-mode to toggle this minor mode (see <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Minor-Modes">Minor Modes</a>).
@@ -2768,54 +2821,61 @@ Hideshow 模式提供以下命令：
 </p>
 
 <ul class="org-ul">
-<li>C-c @ C-h
+<li><p>
+C-c @ C-h
+</p>
 
 <p>
 Hide the current block (hs-hide-block).
-</p>
-</li>
+</p></li>
 
-<li>C-c @ C-s
+<li><p>
+C-c @ C-s
+</p>
 
 <p>
 Show the current block (hs-show-block).
-</p>
-</li>
+</p></li>
 
-<li>C-c @ C-c
+<li><p>
+C-c @ C-c
+</p>
 
 <p>
 Either hide or show the current block (hs-toggle-hiding).
-</p>
-</li>
+</p></li>
 
-<li>S-Mouse-2
+<li><p>
+S-Mouse-2
+</p>
 
 <p>
 Toggle hiding for the block you click on (hs-mouse-toggle-hiding).
-</p>
-</li>
+</p></li>
 
-<li>C-c @ C-M-h
+<li><p>
+C-c @ C-M-h
+</p>
 
 <p>
 Hide all top-level blocks (hs-hide-all).
-</p>
-</li>
+</p></li>
 
-<li>C-c @ C-M-s
+<li><p>
+C-c @ C-M-s
+</p>
 
 <p>
 Show all blocks in the buffer (hs-show-all).
-</p>
-</li>
+</p></li>
 
-<li>C-c @ C-l
+<li><p>
+C-c @ C-l
+</p>
 
 <p>
 Hide all blocks n levels below this block (hs-hide-level).
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -2827,14 +2887,17 @@ These variables can be used to customize Hideshow mode:
 </p>
 
 <ul class="org-ul">
-<li>hs-hide-comments-when-hiding-all
+<li><p>
+hs-hide-comments-when-hiding-all
+</p>
 
 <p>
 If non-nil, C-c @ C-M-h (hs-hide-all) hides comments too.
-</p>
-</li>
+</p></li>
 
-<li>hs-isearch-open
+<li><p>
+hs-isearch-open
+</p>
 
 <p>
 This variable specifies the conditions under which incremental search should unhide a hidden block when matching text occurs within the block. Its value should be either code (unhide only code blocks), comment (unhide only comments), t (unhide both code blocks and comments), or nil (unhide neither code blocks nor comments). The default value is code.
@@ -2842,13 +2905,12 @@ This variable specifies the conditions under which incremental search should unh
 
 <p>
 该值说明如果递增搜索过程中如果匹配的文本出现在块中，应该如何显示隐藏的块。它的值应该是 code（只显示代码块），t（代码块和注释都显示），nil（代码块和注释都不显示）。默认值是 code。
-</p>
-</li>
+</p></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-14-8" class="outline-3">
-<h3 id="sec-14-8"><span class="section-number-3">14.8</span> 26.8 Completion for Symbol Names</h3>
+<div id="outline-container-orgheadline50" class="outline-3">
+<h3 id="orgheadline50"><span class="section-number-3">14.8</span> 26.8 Completion for Symbol Names</h3>
 <div class="outline-text-3" id="text-14-8">
 <p>
 Completion is normally done in the minibuffer (see <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Completion">Completion</a>), but you can also complete symbol names in ordinary Emacs buffers.
@@ -2891,8 +2953,8 @@ Text 模式或相关模式中，M-TAB 基于拼写检查器字典补全单词。
 </p>
 </div>
 </div>
-<div id="outline-container-sec-14-9" class="outline-3">
-<h3 id="sec-14-9"><span class="section-number-3">14.9</span> 26.9 MixedCase Words</h3>
+<div id="outline-container-orgheadline51" class="outline-3">
+<h3 id="orgheadline51"><span class="section-number-3">14.9</span> 26.9 MixedCase Words</h3>
 <div class="outline-text-3" id="text-14-9">
 <p>
 Some programming styles make use of mixed-case (or “CamelCase”) symbols like ‘unReadableSymbol’. (In the GNU project, we recommend using underscores to separate words within an identifier, rather than using case distinctions.) Emacs has various features to make it easier to deal with such symbols.
@@ -2927,8 +2989,8 @@ Subword 模式也是一种 buffer-local 辅助模式。subword 模式中，Emacs
 </p>
 </div>
 </div>
-<div id="outline-container-sec-14-10" class="outline-3">
-<h3 id="sec-14-10"><span class="section-number-3">14.10</span> 26.10 Semantic</h3>
+<div id="outline-container-orgheadline52" class="outline-3">
+<h3 id="orgheadline52"><span class="section-number-3">14.10</span> 26.10 Semantic</h3>
 <div class="outline-text-3" id="text-14-10">
 <p>
 Semantic is a package that provides language-aware editing commands based on source code parsers. This section provides a brief description of Semantic; for full details, see <a href="https://www.gnu.org/software/emacs/manual/html_mono/semantic.html#Top">Semantic</a> in Semantic.
@@ -2959,7 +3021,9 @@ When Semantic mode is enabled, Emacs automatically attempts to parse each file y
 </p>
 
 <ul class="org-ul">
-<li>C-c , j
+<li><p>
+C-c , j
+</p>
 
 <p>
 Prompt for the name of a function defined in the current file, and move point there (semantic-complete-jump-local).
@@ -2967,10 +3031,11 @@ Prompt for the name of a function defined in the current file, and move point th
 
 <p>
 提示当前文件中定义个的函数名，并进行跳转（semantic-complete-jump-local）。
-</p>
-</li>
+</p></li>
 
-<li>C-c , J
+<li><p>
+C-c , J
+</p>
 
 <p>
 Prompt for the name of a function defined in any file Emacs has parsed, and move point there (semantic-complete-jump).
@@ -2978,10 +3043,11 @@ Prompt for the name of a function defined in any file Emacs has parsed, and move
 
 <p>
 提示 Emacs 已经分析过得任何文件中定义的函数名并跳转（semantic-complete-jump）。
-</p>
-</li>
+</p></li>
 
-<li>C-c , SPC
+<li><p>
+C-c , SPC
+</p>
 
 <p>
 Display a list of possible completions for the symbol at point (semantic-complete-analyze-inline). This also activates a set of special key bindings for choosing a completion: RET accepts the current completion, M-n and M-p cycle through possible completions, TAB completes as far as possible and then cycles, and C-g or any other key aborts completion.
@@ -2989,10 +3055,11 @@ Display a list of possible completions for the symbol at point (semantic-complet
 
 <p>
 显示当前 point 处符号可能补全的列表（semantic-complete-analyze-inline）。这也会激活一组为了选择补全绑定的特殊键：RET 接受当前补全，M-n 和 M-p 轮换可用的不全选项，TAB 尽可能的补全然后循环，C-g 或其他任何键中断补全。
-</p>
-</li>
+</p></li>
 
-<li>C-c , l
+<li><p>
+C-c , l
+</p>
 
 <p>
 Display a list of the possible completions of the symbol at point, in another window (semantic-analyze-possible-completions).
@@ -3000,8 +3067,7 @@ Display a list of the possible completions of the symbol at point, in another wi
 
 <p>
 在另外的窗口中显示当前 point 处符号可能的补全列表。(semantic-analyze-possible-completions)
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -3014,8 +3080,8 @@ In addition to the above commands, the Semantic package provides a variety of ot
 </div>
 </div>
 
-<div id="outline-container-sec-14-11" class="outline-3">
-<h3 id="sec-14-11"><span class="section-number-3">14.11</span> 26.11 Other Features Useful for Editing Programs</h3>
+<div id="outline-container-orgheadline53" class="outline-3">
+<h3 id="orgheadline53"><span class="section-number-3">14.11</span> 26.11 Other Features Useful for Editing Programs</h3>
 <div class="outline-text-3" id="text-14-11">
 <p>
 Some Emacs commands that aren’t designed specifically for editing programs are useful for that nonetheless.
@@ -3050,7 +3116,7 @@ Electric Layout 模式（M-x electric-layout-mode）是一个全局辅助模式�
 </p>
 
 <p>
-Apart from Hideshow mode (see <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Hideshow">Hideshow</a>), another way to selectively display parts of a program is to use the selective display feature (see <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Selective-Displayhttps://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Selective-Display">Selective Display</a>). Programming modes often also support Outline minor mode (see <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Outline-Mode">Outline Mode</a>), which can be used with the Foldout package (see <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Foldout">Foldout</a>).
+Apart from Hideshow mode (see <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Hideshow">Hideshow</a>), another way to selectively display parts of a program is to use the selective display feature (see <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Selective-Displayhttps://www.gnu.org/software/emacs/manual/html_mono/emacs.html%23Selective-Display">Selective Display</a>). Programming modes often also support Outline minor mode (see <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Outline-Mode">Outline Mode</a>), which can be used with the Foldout package (see <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Foldout">Foldout</a>).
 </p>
 
 <p>
@@ -3067,19 +3133,19 @@ Prettify Symbol 模式是一个 buffer-local 辅助模式，为了显示目的�
 </div>
 </div>
 </div>
-<div id="outline-container-sec-15" class="outline-2">
-<h2 id="sec-15"><span class="section-number-2">15</span> 27 Compiling and Testing Programs</h2>
+<div id="outline-container-orgheadline55" class="outline-2">
+<h2 id="orgheadline55"><span class="section-number-2">15</span> 27 Compiling and Testing Programs</h2>
 </div>
-<div id="outline-container-sec-16" class="outline-2">
-<h2 id="sec-16"><span class="section-number-2">16</span> 28 Maintaining Large Programs</h2>
-</div>
-
-<div id="outline-container-sec-17" class="outline-2">
-<h2 id="sec-17"><span class="section-number-2">17</span> 43 Saving Emacs Sessions</h2>
+<div id="outline-container-orgheadline56" class="outline-2">
+<h2 id="orgheadline56"><span class="section-number-2">16</span> 28 Maintaining Large Programs</h2>
 </div>
 
-<div id="outline-container-sec-18" class="outline-2">
-<h2 id="sec-18"><span class="section-number-2">18</span> 47 Emacs Lisp Packages</h2>
+<div id="outline-container-orgheadline57" class="outline-2">
+<h2 id="orgheadline57"><span class="section-number-2">17</span> 43 Saving Emacs Sessions</h2>
+</div>
+
+<div id="outline-container-orgheadline61" class="outline-2">
+<h2 id="orgheadline61"><span class="section-number-2">18</span> 47 Emacs Lisp Packages</h2>
 <div class="outline-text-2" id="text-18">
 <p>
 Emacs includes a facility that lets you easily download and install packages that implement additional features. Each package is a separate Emacs Lisp program, sometimes including other components such as an Info manual.
@@ -3122,12 +3188,12 @@ For information about turning an Emacs Lisp program into an installable package,
 </p>
 </div>
 
-<div id="outline-container-sec-18-1" class="outline-3">
-<h3 id="sec-18-1"><span class="section-number-3">18.1</span> 47.1 The Package Menu Buffer</h3>
+<div id="outline-container-orgheadline58" class="outline-3">
+<h3 id="orgheadline58"><span class="section-number-3">18.1</span> 47.1 The Package Menu Buffer</h3>
 </div>
 
-<div id="outline-container-sec-18-2" class="outline-3">
-<h3 id="sec-18-2"><span class="section-number-3">18.2</span> 47.2 Package Installation</h3>
+<div id="outline-container-orgheadline59" class="outline-3">
+<h3 id="orgheadline59"><span class="section-number-3">18.2</span> 47.2 Package Installation</h3>
 <div class="outline-text-3" id="text-18-2">
 <p>
 Packages are most conveniently installed using the package menu (see <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Package-Menu">Package Menu</a>), but you can also use the command M-x package-install. This prompts for the name of a package with the ‘available’ status, then downloads and installs it.
@@ -3158,7 +3224,7 @@ The maintainers of package archives can increase the trust that you can have in 
 </p>
 
 <p>
-包档案维护人员对包进行签名可以提高自己的信任度。他们生成一对私有/公有密钥对，使用私钥为每个包生成签名文件。可以通过公钥来确定包的创建者，包是否被修改。有效的签名并不能保证包是无害的，你仍然应该谨慎。包档案应该说明如何获得它们的密钥。一个方法是从服务器上下载，比如 <a href="http://gpg.mit.edu%E3%80%82%E4%BD%BF%E7%94%A8">http://gpg.mit.edu%E3%80%82%E4%BD%BF%E7%94%A8</a> M-x package-import-keyring 将密钥导入 Emacs。Emacs 在 package-user-dir 的 gnupg 子目录存储包的密钥。GNU 包档案的公钥随 Emacs 发布，放在 etc/package-keyring.gpg。Emacs 自动使用它。
+包档案维护人员对包进行签名可以提高自己的信任度。他们生成一对私有/公有密钥对，使用私钥为每个包生成签名文件。可以通过公钥来确定包的创建者，包是否被修改。有效的签名并不能保证包是无害的，你仍然应该谨慎。包档案应该说明如何获得它们的密钥。一个方法是从服务器上下载，比如 <a href="http://gpg.mit.edu%E3%80%82%E4%BD%BF%E7%94%A8/">http://gpg.mit.edu%E3%80%82%E4%BD%BF%E7%94%A8/</a> M-x package-import-keyring 将密钥导入 Emacs。Emacs 在 package-user-dir 的 gnupg 子目录存储包的密钥。GNU 包档案的公钥随 Emacs 发布，放在 etc/package-keyring.gpg。Emacs 自动使用它。
 </p>
 
 <p>
@@ -3235,8 +3301,8 @@ For example, if you set package-load-list to '((muse "3.20") all), then Emacs on
 </div>
 </div>
 
-<div id="outline-container-sec-18-3" class="outline-3">
-<h3 id="sec-18-3"><span class="section-number-3">18.3</span> 47.3 Package Files and Directory Layout</h3>
+<div id="outline-container-orgheadline60" class="outline-3">
+<h3 id="orgheadline60"><span class="section-number-3">18.3</span> 47.3 Package Files and Directory Layout</h3>
 <div class="outline-text-3" id="text-18-3">
 <p>
 Each package is downloaded from the package archive in the form of a single package file—either an Emacs Lisp source file, or a tar file containing multiple Emacs Lisp source and other files. Package files are automatically retrieved, processed, and disposed of by the Emacs commands that install packages. Normally, you will not need to deal directly with them, unless you are making a package (see <a href="http://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Packaging">Packaging</a> in The Emacs Lisp Reference Manual). Should you ever need to install a package directly from a package file, use the command M-x package-install-file.
@@ -3273,14 +3339,13 @@ Deleting a package (see Package Menu) involves deleting the corresponding packag
 </div>
 </div>
 
-<div id="outline-container-sec-19" class="outline-2">
-<h2 id="sec-19"><span class="section-number-2">19</span> 48 Customization</h2>
+<div id="outline-container-orgheadline62" class="outline-2">
+<h2 id="orgheadline62"><span class="section-number-2">19</span> 48 Customization</h2>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: lsl</p>
-<p class="date">Created: 2016-07-06 三 14:31</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2016-07-23 六 12:30</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

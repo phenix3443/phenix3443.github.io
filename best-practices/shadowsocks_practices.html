@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>ShadowSocks Practices</title>
-<!-- 2016-07-06 三 14:32 -->
+<!-- 2016-07-23 六 12:30 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>ShadowSocks Practices</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="lsl" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -58,15 +65,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -142,36 +148,36 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. 简介</a></li>
-<li><a href="#sec-2">2. 安装</a>
+<li><a href="#orgheadline1">1. 简介</a></li>
+<li><a href="#orgheadline12">2. 安装</a>
 <ul>
-<li><a href="#sec-2-1">2.1. 源码编译安装</a></li>
-<li><a href="#sec-2-2">2.2. ss-server</a></li>
-<li><a href="#sec-2-3">2.3. ss-local</a>
+<li><a href="#orgheadline2">2.1. 源码编译安装</a></li>
+<li><a href="#orgheadline3">2.2. ss-server</a></li>
+<li><a href="#orgheadline6">2.3. ss-local</a>
 <ul>
-<li><a href="#sec-2-3-1">2.3.1. ss-local</a></li>
-<li><a href="#sec-2-3-2">2.3.2. ss-qt5</a></li>
+<li><a href="#orgheadline4">2.3.1. ss-local</a></li>
+<li><a href="#orgheadline5">2.3.2. ss-qt5</a></li>
 </ul>
 </li>
-<li><a href="#sec-2-4">2.4. 基本配置</a></li>
-<li><a href="#sec-2-5">2.5. 优化</a></li>
-<li><a href="#sec-2-6">2.6. 开机自启动</a>
+<li><a href="#orgheadline7">2.4. 基本配置</a></li>
+<li><a href="#orgheadline8">2.5. 优化</a></li>
+<li><a href="#orgheadline11">2.6. 开机自启动</a>
 <ul>
-<li><a href="#sec-2-6-1">2.6.1. ss-server</a></li>
-<li><a href="#sec-2-6-2">2.6.2. ss-local</a></li>
+<li><a href="#orgheadline9">2.6.1. ss-server</a></li>
+<li><a href="#orgheadline10">2.6.2. ss-local</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#sec-3">3. 源码分析</a></li>
+<li><a href="#orgheadline13">3. 源码分析</a></li>
 </ul>
 </div>
 </div>
 <p>
 当然，首先你需要有一台 VPS，参看《<a href="VPS-practices.html">VPS 实践</a>》。
 </p>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> 简介<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup></h2>
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> 简介<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></h2>
 <div class="outline-text-2" id="text-1">
 <p>
 ShadowSocks 是由 <a href="https://github.com/clowwindy">clowwindy</a> 编写的轻量级服务器中转包传输工具。
@@ -181,50 +187,47 @@ ShadowSocks 是由 <a href="https://github.com/clowwindy">clowwindy</a> 编写�
 ShadowSocks 主要由三个模块组成:
 </p>
 <ul class="org-ul">
-<li>ss-local：工作在本地的命令行客户端。
-</li>
-<li>ss-redirect:
-</li>
+<li>ss-local：工作在本地的命令行客户端。</li>
+<li>ss-redirect:</li>
 <li>ss-server：工作在远程主机上的服务器端。
-传输的时候，本地网络客户端首先使用 SOCKS5 连接到 ss-local，这里面的流量传输都是明文 的，然后 ss-local 将流量打包传输到 ss-server 上，这里的流量是加密的，然后 ss-server 解码 SOCKS5 数据包，访问目的服务器。
-</li>
+传输的时候，本地网络客户端首先使用 SOCKS5 连接到 ss-local，这里面的流量传输都是明文 的，然后 ss-local 将流量打包传输到 ss-server 上，这里的流量是加密的，然后 ss-server 解码 SOCKS5 数据包，访问目的服务器。</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> 安装</h2>
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12"><span class="section-number-2">2</span> 安装</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 源码编译安装</h3>
+</div><div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">2.1</span> 源码编译安装</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 
 <pre class="src src-sh">sudo apt-get install build-essential autoconf libtool libssl-dev
 git clone https://github.com/shadowsocks/shadowsocks-libev.git
-cd shadowsocks-libev
+<span style="color: #d18aff;">cd</span> shadowsocks-libev
 ./configure &amp;&amp; make
 sudo make install
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2"><span class="section-number-3">2.2</span> ss-server<sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup></h3>
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">2.2</span> ss-server<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 主要使用轻量级的 libev 版本：
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"># First, add the GPG public key to your system:
+<pre class="src src-sh"><span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">First, add the GPG public key to your system:</span>
 wget -O- http://ShadowSocks.org/debian/1D27208A.gpg | sudo apt-key add -
 
-# Ubuntu 14.04 or above
-sudo sh -c 'echo "deb http://shadowsocks.org/ubuntu trusty main" &gt; /etc/apt/sources.list.d/shadowsocks.list'
+<span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">Ubuntu 14.04 or above</span>
+sudo sh -c <span style="color: #ff4ea3;">'echo "deb http://shadowsocks.org/ubuntu trusty main" &gt; /etc/apt/sources.list.d/shadowsocks.list'</span>
 
-# Debian Wheezy, Ubuntu 12.04 or any distribution with libssl &gt; 1.0.1
-sudo sh -c 'echo "deb http://shadowsocks.org/debian wheezy main" &gt; /etc/apt/sources.list.d/shadowsocks.list'
+<span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">Debian Wheezy, Ubuntu 12.04 or any distribution with libssl &gt; 1.0.1</span>
+sudo sh -c <span style="color: #ff4ea3;">'echo "deb http://shadowsocks.org/debian wheezy main" &gt; /etc/apt/sources.list.d/shadowsocks.list'</span>
 
 sudo apt-get update
 sudo apt-get install ShadowSocks-libev
@@ -233,22 +236,22 @@ sudo apt-get install ShadowSocks-libev
 </div>
 </div>
 
-<div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3"><span class="section-number-3">2.3</span> ss-local<sup><a id="fnr.3" name="fnr.3" class="footref" href="#fn.3">3</a></sup></h3>
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">2.3</span> ss-local<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup></h3>
 <div class="outline-text-3" id="text-2-3">
-</div><div id="outline-container-sec-2-3-1" class="outline-4">
-<h4 id="sec-2-3-1"><span class="section-number-4">2.3.1</span> ss-local</h4>
+</div><div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4"><span class="section-number-4">2.3.1</span> ss-local</h4>
 </div>
 
-<div id="outline-container-sec-2-3-2" class="outline-4">
-<h4 id="sec-2-3-2"><span class="section-number-4">2.3.2</span> ss-qt5</h4>
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5"><span class="section-number-4">2.3.2</span> ss-qt5</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
 ss-qt5 是 linux 下面的图形界面客户端。
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh" id="install-ss-qt-client">sudo add-apt-repository ppa:hzwhuang/ss-qt5
+<pre class="src src-sh" id="orgsrcblock1">sudo add-apt-repository ppa:hzwhuang/ss-qt5
 sudo apt-get update
 sudo apt-get install ShadowSocks-qt5
 </pre>
@@ -256,8 +259,8 @@ sudo apt-get install ShadowSocks-qt5
 </div>
 </div>
 </div>
-<div id="outline-container-sec-2-4" class="outline-3">
-<h3 id="sec-2-4"><span class="section-number-3">2.4</span> 基本配置<sup><a id="fnr.4" name="fnr.4" class="footref" href="#fn.4">4</a></sup></h3>
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">2.4</span> 基本配置<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup></h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 ss-server 与 ss-local 配置文件是 json 格式的，默认名字是 config.json，服务器和客户端配置差不多，甚至可以共用一份配置文件。
@@ -278,66 +281,66 @@ ss-server 与 ss-local 配置文件是 json 格式的，默认名字是 config.j
 </pre>
 
 <table border="1" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" width="auto">
-
+<caption class="t-above"><span class="table-number">Table 1:</span> 配置的说明</caption>
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="left">Name</th>
-<th scope="col" class="left">Explaination</th>
+<th scope="col" class="org-left">Name</th>
+<th scope="col" class="org-left">Explaination</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="left">server</td>
-<td class="left">the address your server listens（服务器 IP）</td>
+<td class="org-left">server</td>
+<td class="org-left">the address your server listens（服务器 IP）</td>
 </tr>
 
 <tr>
-<td class="left">local_address</td>
-<td class="left">the address your local listens（本地代理地址）</td>
+<td class="org-left">local_address</td>
+<td class="org-left">the address your local listens（本地代理地址）</td>
 </tr>
 
 <tr>
-<td class="left">local_port</td>
-<td class="left">local port（本地代理端口）</td>
+<td class="org-left">local_port</td>
+<td class="org-left">local port（本地代理端口）</td>
 </tr>
 
 <tr>
-<td class="left">port_password</td>
-<td class="left">password used for encryption(自己设定的服务器端口和密码，可以支持多个用户)</td>
+<td class="org-left">port_password</td>
+<td class="org-left">password used for encryption(自己设定的服务器端口和密码，可以支持多个用户)</td>
 </tr>
 
 <tr>
-<td class="left">timeout</td>
-<td class="left">in seconds（超时断开，以秒为单位）</td>
+<td class="org-left">timeout</td>
+<td class="org-left">in seconds（超时断开，以秒为单位）</td>
 </tr>
 
 <tr>
-<td class="left">method</td>
-<td class="left">default: "aes-256-cfb",有多种加密方式可供选择，可以通过 M2Crypto 加快加密速度：</td>
+<td class="org-left">method</td>
+<td class="org-left">default: "aes-256-cfb",有多种加密方式可供选择，可以通过 M2Crypto 加快加密速度：</td>
 </tr>
 
 <tr>
-<td class="left">fast_open</td>
-<td class="left">use TCP_FASTOPEN, true / false，如果客户端和服务器都是 on Linux 3.7+，可以开启 <code>fast_open</code> 来减少延迟。</td>
+<td class="org-left">fast_open</td>
+<td class="org-left">use TCP_FASTOPEN, true / false，如果客户端和服务器都是 on Linux 3.7+，可以开启 <code>fast_open</code> 来减少延迟。</td>
 </tr>
 
 <tr>
-<td class="left">workers</td>
-<td class="left">number of workers, available on Unix/Linux（支持类似 nginx 一样使用多个子进程，这个只在 Unix 和 Linux 下有用，可不设置）</td>
+<td class="org-left">workers</td>
+<td class="org-left">number of workers, available on Unix/Linux（支持类似 nginx 一样使用多个子进程，这个只在 Unix 和 Linux 下有用，可不设置）</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-sec-2-5" class="outline-3">
-<h3 id="sec-2-5"><span class="section-number-3">2.5</span> 优化<sup><a id="fnr.5" name="fnr.5" class="footref" href="#fn.5">5</a></sup></h3>
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">2.5</span> 优化<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup></h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 如果出现
@@ -414,15 +417,15 @@ Warning: DO NOT ENABLE net.ipv4.tcp_tw_recycle!!! See <a href="http://vincent.be
 </div>
 </div>
 
-<div id="outline-container-sec-2-6" class="outline-3">
-<h3 id="sec-2-6"><span class="section-number-3">2.6</span> 开机自启动<sup><a id="fnr.6" name="fnr.6" class="footref" href="#fn.6">6</a></sup></h3>
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">2.6</span> 开机自启动<sup><a id="fnr.6" class="footref" href="#fn.6">6</a></sup></h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 使用 systemd 控制启动：
 </p>
 </div>
-<div id="outline-container-sec-2-6-1" class="outline-4">
-<h4 id="sec-2-6-1"><span class="section-number-4">2.6.1</span> ss-server</h4>
+<div id="outline-container-orgheadline9" class="outline-4">
+<h4 id="orgheadline9"><span class="section-number-4">2.6.1</span> ss-server</h4>
 <div class="outline-text-4" id="text-2-6-1">
 <pre class="example">
 [Unit]
@@ -448,15 +451,15 @@ WantedBy=multi-user.target
 
 <div class="org-src-container">
 
-<pre class="src src-sh">	 systemctl start ss-server.service
-	 systemctl enable ss-server.service
-	 systemctl status ss-server.service
+<pre class="src src-sh">     systemctl start ss-server.service
+     systemctl enable ss-server.service
+     systemctl status ss-server.service
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-2-6-2" class="outline-4">
-<h4 id="sec-2-6-2"><span class="section-number-4">2.6.2</span> ss-local</h4>
+<div id="outline-container-orgheadline10" class="outline-4">
+<h4 id="orgheadline10"><span class="section-number-4">2.6.2</span> ss-local</h4>
 <div class="outline-text-4" id="text-2-6-2">
 <pre class="example">
 [Unit]
@@ -478,53 +481,52 @@ WantedBy=multi-user.target
 
 <div class="org-src-container">
 
-<pre class="src src-sh">	 systemctl start ss-local.service
-	 systemctl enable ss-local.service
-	 systemctl status ss-local.service
+<pre class="src src-sh">     systemctl start ss-local.service
+     systemctl enable ss-local.service
+     systemctl status ss-local.service
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> 源码分析</h2>
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13"><span class="section-number-2">3</span> 源码分析</h2>
 </div>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
 <a href="https://shadowsocks.org/en/index.html">ShadowSocks 官网</a>
-</p></div>
+</p></div></div>
 
-<div class="footdef"><sup><a id="fn.2" name="fn.2" class="footnum" href="#fnr.2">2</a></sup> <p class="footpara">
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
 <a href="https://shadowsocks.org/en/download/servers.html">ShadowSocks server</a>
-</p></div>
+</p></div></div>
 
-<div class="footdef"><sup><a id="fn.3" name="fn.3" class="footnum" href="#fnr.3">3</a></sup> <p class="footpara">
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
 <a href="https://shadowsocks.org/en/download/clients.html">ShadowSocks client</a>
-</p></div>
+</p></div></div>
 
-<div class="footdef"><sup><a id="fn.4" name="fn.4" class="footnum" href="#fnr.4">4</a></sup> <p class="footpara">
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
 <a href="https://github.com/BlackLotus/shadowsocks/wiki">ShadowSocks wiki</a>
-</p></div>
+</p></div></div>
 
-<div class="footdef"><sup><a id="fn.5" name="fn.5" class="footnum" href="#fnr.5">5</a></sup> <p class="footpara">
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5">5</a></sup> <div class="footpara"><p class="footpara">
 <a href="https://github.com/shadowsocks/shadowsocks/wiki/Optimizing-Shadowsocks">Optimizing ShadowSocks</a>
-</p></div>
+</p></div></div>
 
-<div class="footdef"><sup><a id="fn.6" name="fn.6" class="footnum" href="#fnr.6">6</a></sup> <p class="footpara">
+<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6">6</a></sup> <div class="footpara"><p class="footpara">
 <a href="https://blog.restonce.com/archives/1113.html">ShadowSocks 搭建与使用笔记</a>
-</p></div>
+</p></div></div>
 
 
 </div>
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: lsl</p>
-<p class="date">Created: 2016-07-06 三 14:32</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2016-07-23 六 12:30</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

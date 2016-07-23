@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>TRAMP mode 实践</title>
-<!-- 2016-07-06 三 14:31 -->
+<!-- 2016-07-23 六 12:30 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>TRAMP mode 实践</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="lsl" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -58,15 +65,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -134,6 +140,28 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
@@ -142,144 +170,144 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. An overview of TRAMP</a>
+<li><a href="#orgheadline2">1. An overview of TRAMP</a>
 <ul>
-<li><a href="#sec-1-1">1.1. Behind the scenes</a></li>
+<li><a href="#orgheadline1">1.1. Behind the scenes</a></li>
 </ul>
 </li>
-<li><a href="#sec-2">2. Obtaining TRAMP</a></li>
-<li><a href="#sec-3">3. History of TRAMP</a></li>
-<li><a href="#sec-4">4. Configuring TRAMP for use</a>
+<li><a href="#orgheadline3">2. Obtaining TRAMP</a></li>
+<li><a href="#orgheadline4">3. History of TRAMP</a></li>
+<li><a href="#orgheadline73">4. Configuring TRAMP for use</a>
 <ul>
-<li><a href="#sec-4-1">4.1. Types of connections made to remote hosts</a></li>
-<li><a href="#Inline-methods">4.2. Inline methods</a>
+<li><a href="#orgheadline5">4.1. Types of connections made to remote hosts</a></li>
+<li><a href="#Inline methods">4.2. Inline methods</a>
 <ul>
-<li><a href="#sec-4-2-1">4.2.1. rsh</a></li>
-<li><a href="#sec-4-2-2">4.2.2. ssh</a></li>
-<li><a href="#sec-4-2-3">4.2.3. telnet</a></li>
-<li><a href="#sec-4-2-4">4.2.4. su</a></li>
-<li><a href="#sec-4-2-5">4.2.5. sudo</a></li>
-<li><a href="#sec-4-2-6">4.2.6. sshx</a></li>
-<li><a href="#sec-4-2-7">4.2.7. krlogin</a></li>
-<li><a href="#sec-4-2-8">4.2.8. ksu</a></li>
-<li><a href="#sec-4-2-9">4.2.9. plink</a></li>
-<li><a href="#sec-4-2-10">4.2.10. plinkx</a></li>
+<li><a href="#orgheadline6">4.2.1. rsh</a></li>
+<li><a href="#orgheadline7">4.2.2. ssh</a></li>
+<li><a href="#orgheadline8">4.2.3. telnet</a></li>
+<li><a href="#orgheadline9">4.2.4. su</a></li>
+<li><a href="#orgheadline10">4.2.5. sudo</a></li>
+<li><a href="#orgheadline11">4.2.6. sshx</a></li>
+<li><a href="#orgheadline12">4.2.7. krlogin</a></li>
+<li><a href="#orgheadline13">4.2.8. ksu</a></li>
+<li><a href="#orgheadline14">4.2.9. plink</a></li>
+<li><a href="#orgheadline15">4.2.10. plinkx</a></li>
 </ul>
 </li>
-<li><a href="#External-methods">4.3. External methods</a>
+<li><a href="#External methods">4.3. External methods</a>
 <ul>
-<li><a href="#sec-4-3-1">4.3.1. rcp—rsh and rcp</a></li>
-<li><a href="#sec-4-3-2">4.3.2. scp—ssh and scp</a></li>
-<li><a href="#sec-4-3-3">4.3.3. rsync—ssh and rsync</a></li>
-<li><a href="#sec-4-3-4">4.3.4. scpx—ssh and scp</a></li>
-<li><a href="#sec-4-3-5">4.3.5. pscp—plink and pscp</a></li>
-<li><a href="#sec-4-3-6">4.3.6. psftp—plink and psftp</a></li>
-<li><a href="#sec-4-3-7">4.3.7. fcp—fsh and fcp</a></li>
-<li><a href="#sec-4-3-8">4.3.8. nc—telnet and nc</a></li>
-<li><a href="#sec-4-3-9">4.3.9. ftp</a></li>
-<li><a href="#sec-4-3-10">4.3.10. smb—smbclient</a></li>
-<li><a href="#sec-4-3-11">4.3.11. adb</a></li>
+<li><a href="#orgheadline17">4.3.1. rcp—rsh and rcp</a></li>
+<li><a href="#orgheadline18">4.3.2. scp—ssh and scp</a></li>
+<li><a href="#orgheadline19">4.3.3. rsync—ssh and rsync</a></li>
+<li><a href="#orgheadline20">4.3.4. scpx—ssh and scp</a></li>
+<li><a href="#orgheadline21">4.3.5. pscp—plink and pscp</a></li>
+<li><a href="#orgheadline22">4.3.6. psftp—plink and psftp</a></li>
+<li><a href="#orgheadline23">4.3.7. fcp—fsh and fcp</a></li>
+<li><a href="#orgheadline24">4.3.8. nc—telnet and nc</a></li>
+<li><a href="#orgheadline25">4.3.9. ftp</a></li>
+<li><a href="#orgheadline26">4.3.10. smb—smbclient</a></li>
+<li><a href="#orgheadline27">4.3.11. adb</a></li>
 </ul>
 </li>
-<li><a href="#sec-4-4">4.4. GVFS based external methods</a>
+<li><a href="#orgheadline34">4.4. GVFS based external methods</a>
 <ul>
-<li><a href="#sec-4-4-1">4.4.1. dav</a></li>
-<li><a href="#sec-4-4-2">4.4.2. obex</a></li>
-<li><a href="#sec-4-4-3">4.4.3. sftp</a></li>
-<li><a href="#sec-4-4-4">4.4.4. synce</a></li>
-<li><a href="#sec-4-4-5">4.4.5. User Option: tramp-gvfs-methods</a></li>
+<li><a href="#orgheadline29">4.4.1. dav</a></li>
+<li><a href="#orgheadline30">4.4.2. obex</a></li>
+<li><a href="#orgheadline31">4.4.3. sftp</a></li>
+<li><a href="#orgheadline32">4.4.4. synce</a></li>
+<li><a href="#orgheadline33">4.4.5. User Option: tramp-gvfs-methods</a></li>
 </ul>
 </li>
-<li><a href="#sec-4-5">4.5. Gateway methods</a>
+<li><a href="#orgheadline37">4.5. Gateway methods</a>
 <ul>
-<li><a href="#sec-4-5-1">4.5.1. tunnel</a></li>
-<li><a href="#sec-4-5-2">4.5.2. socks</a></li>
+<li><a href="#orgheadline35">4.5.1. tunnel</a></li>
+<li><a href="#orgheadline36">4.5.2. socks</a></li>
 </ul>
 </li>
-<li><a href="#sec-4-6">4.6. Selecting a default method</a>
+<li><a href="#orgheadline39">4.6. Selecting a default method</a>
 <ul>
-<li><a href="#sec-4-6-1">4.6.1. Which method is the right one for me?</a></li>
+<li><a href="#orgheadline38">4.6.1. Which method is the right one for me?</a></li>
 </ul>
 </li>
-<li><a href="#sec-4-7">4.7. Selecting a default user</a></li>
-<li><a href="#sec-4-8">4.8. Selecting a default host</a></li>
+<li><a href="#orgheadline40">4.7. Selecting a default user</a></li>
+<li><a href="#orgheadline41">4.8. Selecting a default host</a></li>
 <li><a href="#Multi-hops">4.9. Connecting to a remote host using multiple hops</a>
 <ul>
-<li><a href="#sec-4-9-1">4.9.1. User Option: tramp-default-proxies-alist</a></li>
+<li><a href="#orgheadline42">4.9.1. User Option: tramp-default-proxies-alist</a></li>
 </ul>
 </li>
-<li><a href="#sec-4-10">4.10. Using Non-Standard Methods</a></li>
-<li><a href="#sec-4-11">4.11. Selecting config files for user/host name completion</a>
+<li><a href="#orgheadline44">4.10. Using Non-Standard Methods</a></li>
+<li><a href="#orgheadline53">4.11. Selecting config files for user/host name completion</a>
 <ul>
-<li><a href="#sec-4-11-1">4.11.1. tramp-parse-rhosts</a></li>
-<li><a href="#sec-4-11-2">4.11.2. tramp-parse-shosts</a></li>
-<li><a href="#sec-4-11-3">4.11.3. tramp-parse-sconfig</a></li>
-<li><a href="#sec-4-11-4">4.11.4. tramp-parse-shostkeys</a></li>
-<li><a href="#sec-4-11-5">4.11.5. tramp-parse-sknownhosts</a></li>
-<li><a href="#sec-4-11-6">4.11.6. tramp-parse-hosts</a></li>
-<li><a href="#sec-4-11-7">4.11.7. tramp-parse-passwd</a></li>
-<li><a href="#sec-4-11-8">4.11.8. tramp-parse-netrc</a></li>
+<li><a href="#orgheadline45">4.11.1. tramp-parse-rhosts</a></li>
+<li><a href="#orgheadline46">4.11.2. tramp-parse-shosts</a></li>
+<li><a href="#orgheadline47">4.11.3. tramp-parse-sconfig</a></li>
+<li><a href="#orgheadline48">4.11.4. tramp-parse-shostkeys</a></li>
+<li><a href="#orgheadline49">4.11.5. tramp-parse-sknownhosts</a></li>
+<li><a href="#orgheadline50">4.11.6. tramp-parse-hosts</a></li>
+<li><a href="#orgheadline51">4.11.7. tramp-parse-passwd</a></li>
+<li><a href="#orgheadline52">4.11.8. tramp-parse-netrc</a></li>
 </ul>
 </li>
-<li><a href="#Password-handling">4.12. Reusing passwords for several connections</a>
+<li><a href="#Password handling">4.12. Reusing passwords for several connections</a>
 <ul>
-<li><a href="#sec-4-12-1">4.12.1. 4.12.1 Using an authentication file</a></li>
-<li><a href="#sec-4-12-2">4.12.2. 4.12.2 Caching passwords</a></li>
+<li><a href="#orgheadline54">4.12.1. 4.12.1 Using an authentication file</a></li>
+<li><a href="#orgheadline55">4.12.2. 4.12.2 Caching passwords</a></li>
 </ul>
 </li>
-<li><a href="#sec-4-13">4.13. Reusing connection related information</a></li>
-<li><a href="#sec-4-14">4.14. Setting own connection related information</a></li>
-<li><a href="#Remote-Programs">4.15. How TRAMP finds and uses programs on the remote host</a>
+<li><a href="#orgheadline57">4.13. Reusing connection related information</a></li>
+<li><a href="#orgheadline58">4.14. Setting own connection related information</a></li>
+<li><a href="#Remote Programs">4.15. How TRAMP finds and uses programs on the remote host</a>
 <ul>
-<li><a href="#sec-4-15-1">4.15.1. User Option: tramp-remote-path</a></li>
+<li><a href="#orgheadline59">4.15.1. User Option: tramp-remote-path</a></li>
 </ul>
 </li>
-<li><a href="#sec-4-16">4.16. Remote shell setup hints</a>
+<li><a href="#orgheadline69">4.16. Remote shell setup hints</a>
 <ul>
-<li><a href="#sec-4-16-1">4.16.1. shell-prompt-pattern</a></li>
-<li><a href="#sec-4-16-2">4.16.2. tramp-shell-prompt-pattern</a></li>
-<li><a href="#sec-4-16-3">4.16.3. tramp-password-prompt-regexp</a></li>
-<li><a href="#sec-4-16-4">4.16.4. tset and other questions</a></li>
-<li><a href="#sec-4-16-5">4.16.5. Environment variables named like users in .profile</a></li>
-<li><a href="#sec-4-16-6">4.16.6. Non-Bourne commands in .profile</a></li>
-<li><a href="#sec-4-16-7">4.16.7. Interactive shell prompt</a></li>
-<li><a href="#sec-4-16-8">4.16.8. busybox / nc</a></li>
+<li><a href="#orgheadline61">4.16.1. shell-prompt-pattern</a></li>
+<li><a href="#orgheadline62">4.16.2. tramp-shell-prompt-pattern</a></li>
+<li><a href="#orgheadline63">4.16.3. tramp-password-prompt-regexp</a></li>
+<li><a href="#orgheadline64">4.16.4. tset and other questions</a></li>
+<li><a href="#orgheadline65">4.16.5. Environment variables named like users in .profile</a></li>
+<li><a href="#orgheadline66">4.16.6. Non-Bourne commands in .profile</a></li>
+<li><a href="#orgheadline67">4.16.7. Interactive shell prompt</a></li>
+<li><a href="#orgheadline68">4.16.8. busybox / nc</a></li>
 </ul>
 </li>
-<li><a href="#sec-4-17">4.17. Android shell setup hints</a></li>
-<li><a href="#sec-4-18">4.18. Auto-save and Backup configuration</a></li>
-<li><a href="#sec-4-19">4.19. Issues with Cygwin ssh</a></li>
+<li><a href="#orgheadline70">4.17. Android shell setup hints</a></li>
+<li><a href="#orgheadline71">4.18. Auto-save and Backup configuration</a></li>
+<li><a href="#orgheadline72">4.19. Issues with Cygwin ssh</a></li>
 </ul>
 </li>
-<li><a href="#sec-5">5. Using TRAMP</a>
+<li><a href="#orgheadline91">5. Using TRAMP</a>
 <ul>
-<li><a href="#sec-5-1">5.1. TRAMP file name conventions</a></li>
-<li><a href="#sec-5-2">5.2. File name completion</a>
+<li><a href="#orgheadline74">5.1. TRAMP file name conventions</a></li>
+<li><a href="#orgheadline76">5.2. File name completion</a>
 <ul>
-<li><a href="#sec-5-2-1">5.2.1. User Option: tramp-completion-reread-directory-timeout</a></li>
+<li><a href="#orgheadline75">5.2.1. User Option: tramp-completion-reread-directory-timeout</a></li>
 </ul>
 </li>
-<li><a href="#sec-5-3">5.3. Declaring multiple hops in the file name</a>
+<li><a href="#orgheadline78">5.3. Declaring multiple hops in the file name</a>
 <ul>
-<li><a href="#sec-5-3-1">5.3.1. User Option: tramp-save-ad-hoc-proxies</a></li>
+<li><a href="#orgheadline77">5.3.1. User Option: tramp-save-ad-hoc-proxies</a></li>
 </ul>
 </li>
-<li><a href="#sec-5-4">5.4. Integration with other Emacs packages</a>
+<li><a href="#orgheadline85">5.4. Integration with other Emacs packages</a>
 <ul>
-<li><a href="#sec-5-4-1">5.4.1. Running remote programs that create local X11 windows</a></li>
-<li><a href="#sec-5-4-2">5.4.2. Running shell on a remote host</a></li>
-<li><a href="#sec-5-4-3">5.4.3. Running shell-command on a remote host</a></li>
-<li><a href="#sec-5-4-4">5.4.4. Running eshell on a remote host</a></li>
-<li><a href="#sec-5-4-5">5.4.5. Running a debugger on a remote host</a></li>
-<li><a href="#sec-5-4-6">5.4.6. Running remote processes on Windows hosts</a></li>
+<li><a href="#orgheadline79">5.4.1. Running remote programs that create local X11 windows</a></li>
+<li><a href="#orgheadline80">5.4.2. Running shell on a remote host</a></li>
+<li><a href="#orgheadline81">5.4.3. Running shell-command on a remote host</a></li>
+<li><a href="#orgheadline82">5.4.4. Running eshell on a remote host</a></li>
+<li><a href="#orgheadline83">5.4.5. Running a debugger on a remote host</a></li>
+<li><a href="#orgheadline84">5.4.6. Running remote processes on Windows hosts</a></li>
 </ul>
 </li>
-<li><a href="#sec-5-5">5.5. Cleanup remote connections</a>
+<li><a href="#orgheadline90">5.5. Cleanup remote connections</a>
 <ul>
-<li><a href="#sec-5-5-1">5.5.1. Command: tramp-cleanup-connection vec</a></li>
-<li><a href="#sec-5-5-2">5.5.2. Command: tramp-cleanup-this-connection</a></li>
-<li><a href="#sec-5-5-3">5.5.3. Command: tramp-cleanup-all-connections</a></li>
-<li><a href="#sec-5-5-4">5.5.4. Command: tramp-cleanup-all-buffers</a></li>
+<li><a href="#orgheadline86">5.5.1. Command: tramp-cleanup-connection vec</a></li>
+<li><a href="#orgheadline87">5.5.2. Command: tramp-cleanup-this-connection</a></li>
+<li><a href="#orgheadline88">5.5.3. Command: tramp-cleanup-all-connections</a></li>
+<li><a href="#orgheadline89">5.5.4. Command: tramp-cleanup-all-buffers</a></li>
 </ul>
 </li>
 </ul>
@@ -291,8 +319,8 @@ for the JavaScript code in this tag.
 参照《<a href="https://www.gnu.org/software/emacs/manual/html_mono/tramp.html">TRAMP version 2.2.11 User Manual</a>》在 Emacs 中使用 TRAMP mode。
 </p>
 
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> An overview of TRAMP</h2>
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">1</span> An overview of TRAMP</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 After the installation of TRAMP into your Emacs, you will be able to access files on remote hosts as though they were local. Access to the remote file system for editing files, version control, and dired are transparently enabled.
@@ -368,8 +396,8 @@ tramp 还初级积极开发中，如果遇到任何问题，不管重要与否�
 </div>
 
 
-<div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Behind the scenes</h3>
+<div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> Behind the scenes</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 This section tries to explain what goes on behind the scenes when you access a remote file through TRAMP.
@@ -388,21 +416,25 @@ Suppose you type C-x C-f and enter part of an TRAMP file name, then hit TAB for 
 </p>
 
 <ul class="org-ul">
-<li>TRAMP discovers that it needs a connection to the host. So it invokes ‘telnet host’ or ‘rsh host -l user’ or a similar tool to connect to the remote host. Communication with this process happens through an Emacs buffer, that is, the output from the remote end goes into a buffer.
+<li><p>
+TRAMP discovers that it needs a connection to the host. So it invokes ‘telnet host’ or ‘rsh host -l user’ or a similar tool to connect to the remote host. Communication with this process happens through an Emacs buffer, that is, the output from the remote end goes into a buffer.
+</p>
 
 <p>
 TRAMP 发现它需要连接主机。所以它调用‘telnet host’ 或 ‘rsh host -l user’ 或者类似的工具来连接远程主机。这个交流的过程发生在 Emacs buffer 当中，也就说远程主机的输出会进入 buffer 当中。
-</p>
-</li>
+</p></li>
 
-<li>The remote host may prompt for a login name (for telnet). The login name is given in the file name, so TRAMP sends the login name and a newline.
+<li><p>
+The remote host may prompt for a login name (for telnet). The login name is given in the file name, so TRAMP sends the login name and a newline.
+</p>
 
 <p>
 远程主机可能会提示输入登录名（如 telnet）。文件名中已经给出登录名字，所以 tramp 发送登录名和一个换行符。
-</p>
-</li>
+</p></li>
 
-<li>The remote host may prompt for a password or pass phrase (for rsh or for telnet after sending the login name). TRAMP displays the prompt in the minibuffer, asking you for the password or pass phrase.
+<li><p>
+The remote host may prompt for a password or pass phrase (for rsh or for telnet after sending the login name). TRAMP displays the prompt in the minibuffer, asking you for the password or pass phrase.
+</p>
 
 <p>
 远程主机及可能提示密码或 pass phrase（如 rsh 或 telnet 发送登录名后）。TRAMP 在 minibuffer 中显示提示，要求您输入密码或者 pass phrase。
@@ -414,17 +446,19 @@ You enter the password or pass phrase. TRAMP sends it to the remote host, follow
 
 <p>
 tramp 在你输入的密码或 pass phrase 附加一个换行符，发送到远程服务器。
-</p>
-</li>
+</p></li>
 
-<li>TRAMP now waits for the shell prompt or for a message that the login failed.
+<li><p>
+TRAMP now waits for the shell prompt or for a message that the login failed.
+</p>
 
 <p>
 现在 TRAMP 现在等待 shell 提示符或者登陆失败的消息。
-</p>
-</li>
+</p></li>
 
-<li>If TRAMP sees neither of them after a certain period of time (a minute, say), then it issues an error message saying that it couldn’t find the remote shell prompt and shows you what the remote host has sent.
+<li><p>
+If TRAMP sees neither of them after a certain period of time (a minute, say), then it issues an error message saying that it couldn’t find the remote shell prompt and shows you what the remote host has sent.
+</p>
 
 <p>
 如果等待一段时间（比如说一分钟）后，TRAMP 两个都没有都到，那它就发出一个错误消息说它找不到远程 shell 提示符，并显示远程主机发送的消息。
@@ -436,10 +470,11 @@ If TRAMP sees a ‘login failed’ message, it tells you so, aborts the login at
 
 <p>
 如果收到登陆失败消息，它会告诉你，不再尝试登陆，让你再试一次。
-</p>
-</li>
+</p></li>
 
-<li>Suppose that the login was successful and TRAMP sees the shell prompt from the remote host. Now TRAMP invokes /bin/sh because Bourne shells and C shells have different command syntaxes.
+<li><p>
+Suppose that the login was successful and TRAMP sees the shell prompt from the remote host. Now TRAMP invokes /bin/sh because Bourne shells and C shells have different command syntaxes.
+</p>
 
 <p>
 假设登陆成功，TRAMP 收到远程主机的提示符，TRAMP 会调用/bin/sh，因为 Bourne shells 和 C shells 有不同的命令语法。
@@ -451,10 +486,11 @@ After the Bourne shell has come up, TRAMP sends a few commands to ensure a good 
 
 <p>
 Bourne shell 启动后，TRAMP 发送一些命令来确保一个良好的工作环境。它关闭回显，设置 shell 提示符，还有其它的事情。
-</p>
-</li>
+</p></li>
 
-<li>Now the remote shell is up and it good working order. Remember, what was supposed to happen is that TRAMP tries to find out what files exist on the remote host so that it can do file name completion.
+<li><p>
+Now the remote shell is up and it good working order. Remember, what was supposed to happen is that TRAMP tries to find out what files exist on the remote host so that it can do file name completion.
+</p>
 
 <p>
 现在远程 shell 启动并且工况良好，记住，希望发生的事情是 TRAMP 尝试确定远程文件系统上有哪些文件可以用来做文件名补全。
@@ -466,10 +502,11 @@ So, TRAMP basically issues cd and ls commands and also sometimes echo with globb
 
 <p>
 所以，tramp 主要调用 cd 和 ls 命令，有时调用带有 globbing 的 echo 命令。另一个经常使用的命令是 test，用来发现一个文件是否可写，是否是目录或者其他类似的什么。为了必要的操作每个命令的输出都会被分析。
-</p>
-</li>
+</p></li>
 
-<li>Suppose you are finished with file name completion, have entered C-x C-f, a full file name and hit RET. Now comes the time to transfer the file contents from the remote host to the local host so that you can edit them.
+<li><p>
+Suppose you are finished with file name completion, have entered C-x C-f, a full file name and hit RET. Now comes the time to transfer the file contents from the remote host to the local host so that you can edit them.
+</p>
 
 <p>
 假设已经完成文件补全，现在应该将文件内容已从远程传到本地，这样就可以编辑了。
@@ -510,22 +547,23 @@ It then reads the local temporary file /tmp/tramp.4711 into a buffer and deletes
 
 <p>
 然后将临时文件读取到一个 buffer，并删除临时文件。
-</p>
-</li>
+</p></li>
 
-<li>You now edit the buffer contents, blithely unaware of what has happened behind the scenes. (Unless you have read this section, that is.) When you are finished, you type C-x C-s to save the buffer.
+<li><p>
+You now edit the buffer contents, blithely unaware of what has happened behind the scenes. (Unless you have read this section, that is.) When you are finished, you type C-x C-s to save the buffer.
+</p>
 
 <p>
 现在可以编辑 buffer 的内容了，你并不会意识到幕后发生了什么。（除非你有阅读了本节内容）。当编辑完之后，键入 C-x C-s 保存 buffer。
-</p>
-</li>
+</p></li>
 
-<li>Again, TRAMP transfers the file contents to the remote host either inline or external. This is the reverse of what happens when reading the file.
+<li><p>
+Again, TRAMP transfers the file contents to the remote host either inline or external. This is the reverse of what happens when reading the file.
+</p>
 
 <p>
 tramp 通过 inline 或 external 再次传输文件到远程主机。这是读文件的逆过程。
-</p>
-</li>
+</p></li>
 </ul>
 
 <p>
@@ -539,16 +577,16 @@ I hope this has provided you with a basic overview of what happens behind the sc
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> Obtaining TRAMP</h2>
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">2</span> Obtaining TRAMP</h2>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> History of TRAMP</h2>
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">3</span> History of TRAMP</h2>
 </div>
 
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> Configuring TRAMP for use</h2>
+<div id="outline-container-orgheadline73" class="outline-2">
+<h2 id="orgheadline73"><span class="section-number-2">4</span> Configuring TRAMP for use</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 TRAMP is (normally) fully functional when it is initially installed. It is initially configured to use the scp program to connect to the remote host. So in the easiest case, you just type C-x C-f and then enter the file name /user@host:/path/to.file.
@@ -583,8 +621,8 @@ If you don’t know which method is right for you, see See Default Method.
 </p>
 </div>
 
-<div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Types of connections made to remote hosts</h3>
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">4.1</span> Types of connections made to remote hosts</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 There are two basic types of transfer methods, each with its own advantages and limitations. Both types of connection make use of a remote shell access program such as rsh, ssh or telnet to connect to the remote host.
@@ -627,7 +665,7 @@ The one exception to this rule are the scp based transfer methods. While these m
 </p>
 
 <p>
-External methods should be configured such a way that they don’t require a password (with ssh-agent, or such alike). Modern scp implementations offer options to reuse existing ssh connections, which will be enabled by default if available. If it isn’t possible, you should consider <a href="#Password-handling">Password handling</a>, otherwise you will be prompted for a password every copy action.
+External methods should be configured such a way that they don’t require a password (with ssh-agent, or such alike). Modern scp implementations offer options to reuse existing ssh connections, which will be enabled by default if available. If it isn’t possible, you should consider <a href="#Password handling">Password handling</a>, otherwise you will be prompted for a password every copy action.
 </p>
 
 <p>
@@ -636,8 +674,8 @@ external 方法应该配置成不需要密码的（使用 ssh-agent 或者类似
 </div>
 </div>
 
-<div id="outline-container-Inline methods" class="outline-3">
-<h3 id="Inline methods"><a id="sec-4-2" name="sec-4-2"></a><span class="section-number-3">4.2</span> Inline methods</h3>
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="Inline methods"><a id="orgheadline16"></a><span class="section-number-3">4.2</span> Inline methods</h3>
 <div class="outline-text-3" id="text-Inline methods">
 <p>
 The inline methods in TRAMP are quite powerful and can work in situations where you cannot use an external transfer program to connect. There are also strange inline methods which allow you to transfer files between user identities rather than hosts, see below.
@@ -656,7 +694,7 @@ These methods depend on the existence of a suitable encoding and decoding comman
 </p>
 
 <p>
-TRAMP checks the availability and usability of commands like mimencode (part of the metamail package) or uuencode on the remote host. The first reliable command will be used. The search path can be customized, see <a href="#Remote-Programs">Remote Programs</a>.
+TRAMP checks the availability and usability of commands like mimencode (part of the metamail package) or uuencode on the remote host. The first reliable command will be used. The search path can be customized, see <a href="#Remote Programs">Remote Programs</a>.
 </p>
 
 <p>
@@ -679,8 +717,8 @@ The variable tramp-inline-compress-start-size controls, whether a file shall be 
 变量 tramp-inline-compress-start-size 控制一个文件在编码之前是否应该被压缩。这可以提高大文本文件传输的速度。
 </p>
 </div>
-<div id="outline-container-sec-4-2-1" class="outline-4">
-<h4 id="sec-4-2-1"><span class="section-number-4">4.2.1</span> rsh</h4>
+<div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6"><span class="section-number-4">4.2.1</span> rsh</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <p>
 Connect to the remote host with rsh. Due to the unsecure connection it is recommended for very local host topology only.
@@ -699,8 +737,8 @@ On operating systems which provide the command remsh instead of rsh, you can use
 </p>
 </div>
 </div>
-<div id="outline-container-sec-4-2-2" class="outline-4">
-<h4 id="sec-4-2-2"><span class="section-number-4">4.2.2</span> ssh</h4>
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7"><span class="section-number-4">4.2.2</span> ssh</h4>
 <div class="outline-text-4" id="text-4-2-2">
 <p>
 Connect to the remote host with ssh. This is identical to the previous option except that the ssh package is used, making the connection more secure.
@@ -720,8 +758,8 @@ All the methods based on ssh have an additional feature: you can specify a host 
 </div>
 </div>
 
-<div id="outline-container-sec-4-2-3" class="outline-4">
-<h4 id="sec-4-2-3"><span class="section-number-4">4.2.3</span> telnet</h4>
+<div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8"><span class="section-number-4">4.2.3</span> telnet</h4>
 <div class="outline-text-4" id="text-4-2-3">
 <p>
 Connect to the remote host with telnet. This is as unsecure as the rsh method.
@@ -733,8 +771,8 @@ Connect to the remote host with telnet. This is as unsecure as the rsh method.
 </div>
 </div>
 
-<div id="outline-container-sec-4-2-4" class="outline-4">
-<h4 id="sec-4-2-4"><span class="section-number-4">4.2.4</span> su</h4>
+<div id="outline-container-orgheadline9" class="outline-4">
+<h4 id="orgheadline9"><span class="section-number-4">4.2.4</span> su</h4>
 <div class="outline-text-4" id="text-4-2-4">
 <p>
 This method does not connect to a remote host at all, rather it uses the su program to allow you to edit files as another user. That means, the specified host name in the file name must be either ‘localhost’ or the host name as returned by the function (system-name). For an exception of this rule see <a href="#Multi-hops">Multi-hops</a>.
@@ -746,8 +784,8 @@ This method does not connect to a remote host at all, rather it uses the su prog
 </div>
 </div>
 
-<div id="outline-container-sec-4-2-5" class="outline-4">
-<h4 id="sec-4-2-5"><span class="section-number-4">4.2.5</span> sudo</h4>
+<div id="outline-container-orgheadline10" class="outline-4">
+<h4 id="orgheadline10"><span class="section-number-4">4.2.5</span> sudo</h4>
 <div class="outline-text-4" id="text-4-2-5">
 <p>
 This is similar to the su method, but it uses sudo rather than su to become a different user.
@@ -763,8 +801,8 @@ Note that sudo must be configured to allow you to start a shell as the user. It 
 </div>
 </div>
 
-<div id="outline-container-sec-4-2-6" class="outline-4">
-<h4 id="sec-4-2-6"><span class="section-number-4">4.2.6</span> sshx</h4>
+<div id="outline-container-orgheadline11" class="outline-4">
+<h4 id="orgheadline11"><span class="section-number-4">4.2.6</span> sshx</h4>
 <div class="outline-text-4" id="text-4-2-6">
 <p>
 As you would expect, this is similar to ssh, only a little different. Whereas ssh opens a normal interactive shell on the remote host, this option uses ‘ssh -t -t host -l user /bin/sh’ to open a connection. This is useful for users where the normal login shell is set up to ask them a number of questions when logging in. This procedure avoids these questions, and just gives TRAMP a more-or-less ‘standard’ login shell to work with.
@@ -800,8 +838,8 @@ This supports the ‘-p’ argument.
 </div>
 </div>
 
-<div id="outline-container-sec-4-2-7" class="outline-4">
-<h4 id="sec-4-2-7"><span class="section-number-4">4.2.7</span> krlogin</h4>
+<div id="outline-container-orgheadline12" class="outline-4">
+<h4 id="orgheadline12"><span class="section-number-4">4.2.7</span> krlogin</h4>
 <div class="outline-text-4" id="text-4-2-7">
 <p>
 This method is also similar to ssh. It only uses the krlogin -x command to log in to the remote host.
@@ -813,8 +851,8 @@ This method is also similar to ssh. It only uses the krlogin -x command to log i
 </div>
 </div>
 
-<div id="outline-container-sec-4-2-8" class="outline-4">
-<h4 id="sec-4-2-8"><span class="section-number-4">4.2.8</span> ksu</h4>
+<div id="outline-container-orgheadline13" class="outline-4">
+<h4 id="orgheadline13"><span class="section-number-4">4.2.8</span> ksu</h4>
 <div class="outline-text-4" id="text-4-2-8">
 <p>
 This is another method from the Kerberos suite. It behaves like su.
@@ -826,8 +864,8 @@ Kerberos 套件的另一种方法，行为类似 su。
 </div>
 </div>
 
-<div id="outline-container-sec-4-2-9" class="outline-4">
-<h4 id="sec-4-2-9"><span class="section-number-4">4.2.9</span> plink</h4>
+<div id="outline-container-orgheadline14" class="outline-4">
+<h4 id="orgheadline14"><span class="section-number-4">4.2.9</span> plink</h4>
 <div class="outline-text-4" id="text-4-2-9">
 <p>
 This method is mostly interesting for Windows users using the PuTTY implementation of SSH. It uses ‘plink -ssh’ to log in to the remote host.
@@ -847,8 +885,8 @@ This method supports the ‘-P’ argument.
 </div>
 </div>
 
-<div id="outline-container-sec-4-2-10" class="outline-4">
-<h4 id="sec-4-2-10"><span class="section-number-4">4.2.10</span> plinkx</h4>
+<div id="outline-container-orgheadline15" class="outline-4">
+<h4 id="orgheadline15"><span class="section-number-4">4.2.10</span> plinkx</h4>
 <div class="outline-text-4" id="text-4-2-10">
 <p>
 Another method using PuTTY on Windows. Instead of host names, it expects PuTTY session names, calling ‘plink -load session -t’. User names and port numbers must be defined in the session.
@@ -869,8 +907,8 @@ With a recent PuTTY, it is recommended to check the ‘Share SSH connections if 
 </div>
 </div>
 
-<div id="outline-container-External methods" class="outline-3">
-<h3 id="External methods"><a id="sec-4-3" name="sec-4-3"></a><span class="section-number-3">4.3</span> External methods</h3>
+<div id="outline-container-orgheadline28" class="outline-3">
+<h3 id="External methods"><a id="orgheadline28"></a><span class="section-number-3">4.3</span> External methods</h3>
 <div class="outline-text-3" id="text-External methods">
 <p>
 The external methods operate through multiple channels, using the remote shell connection for many actions while delegating file transfers to an external transfer utility.
@@ -897,8 +935,8 @@ external 方法开通一个新通道需要产生额外的开销，大小低于 t
 </p>
 </div>
 
-<div id="outline-container-sec-4-3-1" class="outline-4">
-<h4 id="sec-4-3-1"><span class="section-number-4">4.3.1</span> rcp—rsh and rcp</h4>
+<div id="outline-container-orgheadline17" class="outline-4">
+<h4 id="orgheadline17"><span class="section-number-4">4.3.1</span> rcp—rsh and rcp</h4>
 <div class="outline-text-4" id="text-4-3-1">
 <p>
 This method uses the rsh and rcp commands to connect to the remote host and transfer files. This is probably the fastest connection method available.
@@ -918,8 +956,8 @@ The alternative method remcp uses the remsh and rcp commands. It should be appli
 </div>
 </div>
 
-<div id="outline-container-sec-4-3-2" class="outline-4">
-<h4 id="sec-4-3-2"><span class="section-number-4">4.3.2</span> scp—ssh and scp</h4>
+<div id="outline-container-orgheadline18" class="outline-4">
+<h4 id="orgheadline18"><span class="section-number-4">4.3.2</span> scp—ssh and scp</h4>
 <div class="outline-text-4" id="text-4-3-2">
 <p>
 Using ssh to connect to the remote host and scp to transfer files between the hosts is the best method for securely connecting to a remote host and accessing files.
@@ -947,8 +985,8 @@ All the ssh based methods support the ‘-p’ feature where you can specify a p
 </div>
 </div>
 
-<div id="outline-container-sec-4-3-3" class="outline-4">
-<h4 id="sec-4-3-3"><span class="section-number-4">4.3.3</span> rsync—ssh and rsync</h4>
+<div id="outline-container-orgheadline19" class="outline-4">
+<h4 id="orgheadline19"><span class="section-number-4">4.3.3</span> rsync—ssh and rsync</h4>
 <div class="outline-text-4" id="text-4-3-3">
 <p>
 Using the ssh command to connect securely to the remote host and the rsync command to transfer files is almost identical to the scp method.
@@ -976,8 +1014,8 @@ This method supports the ‘-p’ argument.
 </div>
 </div>
 
-<div id="outline-container-sec-4-3-4" class="outline-4">
-<h4 id="sec-4-3-4"><span class="section-number-4">4.3.4</span> scpx—ssh and scp</h4>
+<div id="outline-container-orgheadline20" class="outline-4">
+<h4 id="orgheadline20"><span class="section-number-4">4.3.4</span> scpx—ssh and scp</h4>
 <div class="outline-text-4" id="text-4-3-4">
 <p>
 As you would expect, this is similar to scp, only a little different. Whereas scp opens a normal interactive shell on the remote host, this option uses ‘ssh -t -t host -l user /bin/sh’ to open a connection. This is useful for users where the normal login shell is set up to ask them a number of questions when logging in. This procedure avoids these questions, and just gives TRAMP a more-or-less ‘standard’ login shell to work with.
@@ -997,11 +1035,11 @@ This method supports the ‘-p’ argument.
 </div>
 </div>
 
-<div id="outline-container-sec-4-3-5" class="outline-4">
-<h4 id="sec-4-3-5"><span class="section-number-4">4.3.5</span> pscp—plink and pscp</h4>
+<div id="outline-container-orgheadline21" class="outline-4">
+<h4 id="orgheadline21"><span class="section-number-4">4.3.5</span> pscp—plink and pscp</h4>
 </div>
-<div id="outline-container-sec-4-3-6" class="outline-4">
-<h4 id="sec-4-3-6"><span class="section-number-4">4.3.6</span> psftp—plink and psftp</h4>
+<div id="outline-container-orgheadline22" class="outline-4">
+<h4 id="orgheadline22"><span class="section-number-4">4.3.6</span> psftp—plink and psftp</h4>
 <div class="outline-text-4" id="text-4-3-6">
 <p>
 These methods are similar to scp or sftp, but they use the plink command to connect to the remote host, and they use pscp or psftp for transferring the files. These programs are part of PuTTY, an SSH implementation for Windows.
@@ -1021,8 +1059,8 @@ These methods support the ‘-P’ argument.
 </div>
 </div>
 
-<div id="outline-container-sec-4-3-7" class="outline-4">
-<h4 id="sec-4-3-7"><span class="section-number-4">4.3.7</span> fcp—fsh and fcp</h4>
+<div id="outline-container-orgheadline23" class="outline-4">
+<h4 id="orgheadline23"><span class="section-number-4">4.3.7</span> fcp—fsh and fcp</h4>
 <div class="outline-text-4" id="text-4-3-7">
 <p>
 This method is similar to scp, but it uses the fsh command to connect to the remote host, and it uses fcp for transferring the files. fsh/fcp are a front-end for ssh which allow for reusing the same ssh session for submitting several commands. This avoids the startup overhead of scp (which has to establish a secure connection whenever it is called). Note, however, that you can also use one of the inline methods to achieve a similar effect.
@@ -1042,8 +1080,8 @@ There is no inline method using fsh as the multiplexing provided by the program 
 </div>
 </div>
 
-<div id="outline-container-sec-4-3-8" class="outline-4">
-<h4 id="sec-4-3-8"><span class="section-number-4">4.3.8</span> nc—telnet and nc</h4>
+<div id="outline-container-orgheadline24" class="outline-4">
+<h4 id="orgheadline24"><span class="section-number-4">4.3.8</span> nc—telnet and nc</h4>
 <div class="outline-text-4" id="text-4-3-8">
 <p>
 Using telnet to connect to the remote host and nc for file transfer is often the only possibility to access dumb devices, like routers or NAS hosts. Those hosts have just a restricted busybox as local shell, and there is no program to encode and decode files for transfer.
@@ -1054,8 +1092,8 @@ Using telnet to connect to the remote host and nc for file transfer is often the
 </p>
 </div>
 </div>
-<div id="outline-container-sec-4-3-9" class="outline-4">
-<h4 id="sec-4-3-9"><span class="section-number-4">4.3.9</span> ftp</h4>
+<div id="outline-container-orgheadline25" class="outline-4">
+<h4 id="orgheadline25"><span class="section-number-4">4.3.9</span> ftp</h4>
 <div class="outline-text-4" id="text-4-3-9">
 <p>
 This is not a native TRAMP method. Instead, it forwards all requests to Ange-FTP.
@@ -1067,8 +1105,8 @@ This is not a native TRAMP method. Instead, it forwards all requests to Ange-FTP
 </div>
 </div>
 
-<div id="outline-container-sec-4-3-10" class="outline-4">
-<h4 id="sec-4-3-10"><span class="section-number-4">4.3.10</span> smb—smbclient</h4>
+<div id="outline-container-orgheadline26" class="outline-4">
+<h4 id="orgheadline26"><span class="section-number-4">4.3.10</span> smb—smbclient</h4>
 <div class="outline-text-4" id="text-4-3-10">
 <p>
 This is another not native TRAMP method. It uses the smbclient command on different Unices in order to connect to an SMB server. An SMB server might be a Samba (or CIFS) server on another UNIX host or, more interesting, a host running MS Windows. So far, it is tested against MS Windows NT, MS Windows 2000, MS Windows XP, MS Windows Vista, and MS Windows 7.
@@ -1112,8 +1150,8 @@ Please note: If Emacs runs locally under MS Windows, this method isn’t availab
 </div>
 </div>
 
-<div id="outline-container-sec-4-3-11" class="outline-4">
-<h4 id="sec-4-3-11"><span class="section-number-4">4.3.11</span> adb</h4>
+<div id="outline-container-orgheadline27" class="outline-4">
+<h4 id="orgheadline27"><span class="section-number-4">4.3.11</span> adb</h4>
 <div class="outline-text-4" id="text-4-3-11">
 <p>
 This special method uses the Android Debug Bridge for accessing Android devices. The Android Debug Bridge must be installed locally. Some GNU/Linux distributions offer it for installation, otherwise it can be installed as part of the Android SDK. If the adb program is not found via the PATH environment variable, the variable tramp-adb-program must point to its absolute path.
@@ -1130,8 +1168,8 @@ Usually, the adb method does not need any user name. It runs under the permissio
 </div>
 </div>
 
-<div id="outline-container-sec-4-4" class="outline-3">
-<h3 id="sec-4-4"><span class="section-number-3">4.4</span> GVFS based external methods</h3>
+<div id="outline-container-orgheadline34" class="outline-3">
+<h3 id="orgheadline34"><span class="section-number-3">4.4</span> GVFS based external methods</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 The connection methods described in this section are based on GVFS <a href="http://en.wikipedia.org/wiki/GVFS">http://en.wikipedia.org/wiki/GVFS</a>. Via GVFS, the remote filesystem is mounted locally through FUSE. TRAMP uses this local mounted directory internally.
@@ -1142,8 +1180,8 @@ The communication with GVFS is implemented via D-Bus messages. Therefore, your E
 </p>
 </div>
 
-<div id="outline-container-sec-4-4-1" class="outline-4">
-<h4 id="sec-4-4-1"><span class="section-number-4">4.4.1</span> dav</h4>
+<div id="outline-container-orgheadline29" class="outline-4">
+<h4 id="orgheadline29"><span class="section-number-4">4.4.1</span> dav</h4>
 <div class="outline-text-4" id="text-4-4-1">
 <p>
 This method provides access to WebDAV files and directories. There exists also the external method davs, which uses SSL encryption for the access.
@@ -1155,8 +1193,8 @@ Both methods support the port number specification as discussed above.
 </div>
 </div>
 
-<div id="outline-container-sec-4-4-2" class="outline-4">
-<h4 id="sec-4-4-2"><span class="section-number-4">4.4.2</span> obex</h4>
+<div id="outline-container-orgheadline30" class="outline-4">
+<h4 id="orgheadline30"><span class="section-number-4">4.4.2</span> obex</h4>
 <div class="outline-text-4" id="text-4-4-2">
 <p>
 OBEX is an FTP-like access protocol for simple devices, like cell phones. For the time being, TRAMP only supports OBEX over Bluetooth.
@@ -1164,8 +1202,8 @@ OBEX is an FTP-like access protocol for simple devices, like cell phones. For th
 </div>
 </div>
 
-<div id="outline-container-sec-4-4-3" class="outline-4">
-<h4 id="sec-4-4-3"><span class="section-number-4">4.4.3</span> sftp</h4>
+<div id="outline-container-orgheadline31" class="outline-4">
+<h4 id="orgheadline31"><span class="section-number-4">4.4.3</span> sftp</h4>
 <div class="outline-text-4" id="text-4-4-3">
 <p>
 As you might expect, this method uses sftp in order to access the remote host. Contrary to the ssh and scp methods, it doesn’t open an ssh session for login. Therefore, it could be used to access to remote hosts which refuse ssh for security reasons.
@@ -1173,8 +1211,8 @@ As you might expect, this method uses sftp in order to access the remote host. C
 </div>
 </div>
 
-<div id="outline-container-sec-4-4-4" class="outline-4">
-<h4 id="sec-4-4-4"><span class="section-number-4">4.4.4</span> synce</h4>
+<div id="outline-container-orgheadline32" class="outline-4">
+<h4 id="orgheadline32"><span class="section-number-4">4.4.4</span> synce</h4>
 <div class="outline-text-4" id="text-4-4-4">
 <p>
 The synce method allows communication with Windows Mobile devices. Beside GVFS for mounting remote files and directories via FUSE, it also needs the SYNCE-GVFS plugin.
@@ -1182,8 +1220,8 @@ The synce method allows communication with Windows Mobile devices. Beside GVFS f
 </div>
 </div>
 
-<div id="outline-container-sec-4-4-5" class="outline-4">
-<h4 id="sec-4-4-5"><span class="section-number-4">4.4.5</span> User Option: tramp-gvfs-methods</h4>
+<div id="outline-container-orgheadline33" class="outline-4">
+<h4 id="orgheadline33"><span class="section-number-4">4.4.5</span> User Option: tramp-gvfs-methods</h4>
 <div class="outline-text-4" id="text-4-4-5">
 <p>
 This customer option, a list, defines the external methods which shall be used with GVFS. Per default, these are dav, davs, obex, sftp and synce. Other possible values are ftp and smb.
@@ -1192,8 +1230,8 @@ This customer option, a list, defines the external methods which shall be used w
 </div>
 </div>
 
-<div id="outline-container-sec-4-5" class="outline-3">
-<h3 id="sec-4-5"><span class="section-number-3">4.5</span> Gateway methods</h3>
+<div id="outline-container-orgheadline37" class="outline-3">
+<h3 id="orgheadline37"><span class="section-number-3">4.5</span> Gateway methods</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 Gateway methods are not methods to access a remote host directly. These methods are intended to pass firewalls or proxy servers. Therefore, they can be used for proxy host declarations (see Multi-hops) only.
@@ -1219,8 +1257,8 @@ Gateway methods support user name and password declarations. These are used to a
 Gateway 方法支持用户名和密码声明。他们用来验证对应的防火墙或代理服务器。只有管理授权访问他们才能通过。
 </p>
 </div>
-<div id="outline-container-sec-4-5-1" class="outline-4">
-<h4 id="sec-4-5-1"><span class="section-number-4">4.5.1</span> tunnel</h4>
+<div id="outline-container-orgheadline35" class="outline-4">
+<h4 id="orgheadline35"><span class="section-number-4">4.5.1</span> tunnel</h4>
 <div class="outline-text-4" id="text-4-5-1">
 <p>
 This method implements an HTTP tunnel via the CONNECT command (see RFC 2616, 2817). Any HTTP 1.1 compliant (proxy) server shall support this command.
@@ -1241,8 +1279,8 @@ As authentication method, only Basic Authentication (see RFC 2617) is implemente
 </div>
 </div>
 
-<div id="outline-container-sec-4-5-2" class="outline-4">
-<h4 id="sec-4-5-2"><span class="section-number-4">4.5.2</span> socks</h4>
+<div id="outline-container-orgheadline36" class="outline-4">
+<h4 id="orgheadline36"><span class="section-number-4">4.5.2</span> socks</h4>
 <div class="outline-text-4" id="text-4-5-2">
 <p>
 The socks method provides access to SOCKSv5 servers (see RFC 1928). Username/Password Authentication according to RFC 1929 is supported.
@@ -1263,8 +1301,8 @@ socks 服务器如果没有指定，默认端口是 1080。
 </div>
 </div>
 
-<div id="outline-container-sec-4-6" class="outline-3">
-<h3 id="sec-4-6"><span class="section-number-3">4.6</span> Selecting a default method</h3>
+<div id="outline-container-orgheadline39" class="outline-3">
+<h3 id="orgheadline39"><span class="section-number-3">4.6</span> Selecting a default method</h3>
 <div class="outline-text-3" id="text-4-6">
 <p>
 When you select an appropriate transfer method for your typical usage you should set the variable tramp-default-method to reflect that choice. This variable controls which method will be used when a method is not specified in the TRAMP file name. For example:
@@ -1288,10 +1326,10 @@ You can also specify different methods for certain user/host combinations, via t
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(add-to-list 'tramp-default-method-alist '("" "john" "ssh"))
-(add-to-list 'tramp-default-method-alist '("lily" "" "rsync"))
+<pre class="src src-elisp">(add-to-list 'tramp-default-method-alist '(<span style="color: #ff4ea3;">""</span> <span style="color: #ff4ea3;">"john"</span> <span style="color: #ff4ea3;">"ssh"</span>))
+(add-to-list 'tramp-default-method-alist '(<span style="color: #ff4ea3;">"lily"</span> <span style="color: #ff4ea3;">""</span> <span style="color: #ff4ea3;">"rsync"</span>))
 (add-to-list 'tramp-default-method-alist
-             '("\\`localhost\\'" "\\`root\\'" "su"))
+             '(<span style="color: #ff4ea3;">"\\`localhost\\'"</span> <span style="color: #ff4ea3;">"\\`root\\'"</span> <span style="color: #ff4ea3;">"su"</span>))
 </pre>
 </div>
 
@@ -1308,7 +1346,7 @@ external 方法通常比 inline 方法提供更好的性能。
 </p>
 
 <p>
-See <a href="#Inline-methods">Inline methods</a>. See <a href="#External-methods">External methods</a>.
+See <a href="#Inline methods">Inline methods</a>. See <a href="#External methods">External methods</a>.
 </p>
 
 <p>
@@ -1336,8 +1374,8 @@ If you need to connect to remote systems that are accessible from the Internet, 
 </p>
 </div>
 
-<div id="outline-container-sec-4-6-1" class="outline-4">
-<h4 id="sec-4-6-1"><span class="section-number-4">4.6.1</span> Which method is the right one for me?</h4>
+<div id="outline-container-orgheadline38" class="outline-4">
+<h4 id="orgheadline38"><span class="section-number-4">4.6.1</span> Which method is the right one for me?</h4>
 <div class="outline-text-4" id="text-4-6-1">
 <p>
 Given all of the above, you are probably thinking that this is all fine and good, but it’s not helping you to choose a method! Right you are. As a developer, we don’t want to boss our users around but give them maximum freedom instead. However, the reality is that some users would like to have some guidance, so here I’ll try to give you this guidance without bossing you around. You tell me whether it works …
@@ -1390,8 +1428,8 @@ People who edit large files may want to consider scp instead of ssh, or pscp ins
 </div>
 </div>
 
-<div id="outline-container-sec-4-7" class="outline-3">
-<h3 id="sec-4-7"><span class="section-number-3">4.7</span> Selecting a default user</h3>
+<div id="outline-container-orgheadline40" class="outline-3">
+<h3 id="orgheadline40"><span class="section-number-3">4.7</span> Selecting a default user</h3>
 <div class="outline-text-3" id="text-4-7">
 <p>
 The user part of a TRAMP file name can be omitted. Usually, it is replaced by the user name you are logged in. Often, this is not what you want. A typical use of TRAMP might be to edit some files with root permissions on the local host. This case, you should set the variable tramp-default-user to reflect that choice. For example:
@@ -1403,7 +1441,7 @@ The user part of a TRAMP file name can be omitted. Usually, it is replaced by th
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq tramp-default-user "root")
+<pre class="src src-elisp">(setq tramp-default-user <span style="color: #ff4ea3;">"root"</span>)
 </pre>
 </div>
 
@@ -1426,7 +1464,7 @@ You can also specify different users for certain method/host combinations, via t
 <div class="org-src-container">
 
 <pre class="src src-elisp">(add-to-list 'tramp-default-user-alist
-             '("ssh" ".*\\.somewhere\\.else\\'" "john"))
+             '(<span style="color: #ff4ea3;">"ssh"</span> <span style="color: #ff4ea3;">".*\\.somewhere\\.else\\'"</span> <span style="color: #ff4ea3;">"john"</span>))
 </pre>
 </div>
 
@@ -1458,7 +1496,7 @@ than you must discard selecting a default user by TRAMP. This will be done by se
 <div class="org-src-container">
 
 <pre class="src src-elisp">(add-to-list 'tramp-default-user-alist
-			 '("ssh" "\\`here\\.somewhere\\.else\\'" nil))
+             '(<span style="color: #ff4ea3;">"ssh"</span> <span style="color: #ff4ea3;">"\\`here\\.somewhere\\.else\\'"</span> nil))
 </pre>
 </div>
 
@@ -1472,8 +1510,8 @@ The last entry in tramp-default-user-alist could be your default user you’ll a
 </div>
 </div>
 
-<div id="outline-container-sec-4-8" class="outline-3">
-<h3 id="sec-4-8"><span class="section-number-3">4.8</span> Selecting a default host</h3>
+<div id="outline-container-orgheadline41" class="outline-3">
+<h3 id="orgheadline41"><span class="section-number-3">4.8</span> Selecting a default host</h3>
 <div class="outline-text-3" id="text-4-8">
 <p>
 Finally, it is even possible to omit the host name part of a TRAMP file name. This case, the value of the variable tramp-default-host is used. Per default, it is initialized with the host name your local Emacs is running.
@@ -1493,8 +1531,8 @@ If you, for example, use TRAMP mainly to contact the host ‘target’ as user �
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq tramp-default-user "john"
-	  tramp-default-host "target")
+<pre class="src src-elisp">(setq tramp-default-user <span style="color: #ff4ea3;">"john"</span>
+      tramp-default-host <span style="color: #ff4ea3;">"target"</span>)
 </pre>
 </div>
 
@@ -1520,10 +1558,9 @@ See the documentation for the variable tramp-default-host-alist for more details
 </div>
 </div>
 
-<div id="outline-container-Multi-hops" class="outline-3">
-<h3 id="Multi-hops"><a id="sec-4-9" name="sec-4-9"></a><span class="section-number-3">4.9</span> Connecting to a remote host using multiple hops</h3>
+<div id="outline-container-orgheadline43" class="outline-3">
+<h3 id="Multi-hops"><a id="orgheadline43"></a><span class="section-number-3">4.9</span> Connecting to a remote host using multiple hops</h3>
 <div class="outline-text-3" id="text-Multi-hops">
-
 <p>
 Sometimes, the methods described before are not sufficient. Sometimes, it is not possible to connect to a remote host using a simple command. For example, if you are in a secured network, you might have to log in to a bastion host first before you can connect to the outside world. Of course, the target host may also require a bastion host.
 </p>
@@ -1533,8 +1570,8 @@ Sometimes, the methods described before are not sufficient. Sometimes, it is not
 </p>
 </div>
 
-<div id="outline-container-sec-4-9-1" class="outline-4">
-<h4 id="sec-4-9-1"><span class="section-number-4">4.9.1</span> User Option: tramp-default-proxies-alist</h4>
+<div id="outline-container-orgheadline42" class="outline-4">
+<h4 id="orgheadline42"><span class="section-number-4">4.9.1</span> User Option: tramp-default-proxies-alist</h4>
 <div class="outline-text-4" id="text-4-9-1">
 <p>
 In order to specify multiple hops, it is possible to define a proxy host to pass through, via the variable tramp-default-proxies-alist. This variable keeps a list of triples (host user proxy).
@@ -1560,9 +1597,9 @@ If you, for example, must pass the host ‘bastion.your.domain’ as user ‘bir
 <div class="org-src-container">
 
 <pre class="src src-elisp">(add-to-list 'tramp-default-proxies-alist
-			 '("\\." nil "/ssh:bird@bastion.your.domain:"))
+             '(<span style="color: #ff4ea3;">"\\."</span> nil <span style="color: #ff4ea3;">"/ssh:bird@bastion.your.domain:"</span>))
 (add-to-list 'tramp-default-proxies-alist
-			 '("\\.your\\.domain\\'" nil nil))
+             '(<span style="color: #ff4ea3;">"\\.your\\.domain\\'"</span> nil nil))
 </pre>
 </div>
 
@@ -1637,8 +1674,8 @@ Next: Customizing Completion, Previous: Multi-hops, Up: Configuration   [Content
 </div>
 </div>
 
-<div id="outline-container-sec-4-10" class="outline-3">
-<h3 id="sec-4-10"><span class="section-number-3">4.10</span> Using Non-Standard Methods</h3>
+<div id="outline-container-orgheadline44" class="outline-3">
+<h3 id="orgheadline44"><span class="section-number-3">4.10</span> Using Non-Standard Methods</h3>
 <div class="outline-text-3" id="text-4-10">
 <p>
 There is a variable tramp-methods which you can change if the predefined methods don’t seem right.
@@ -1657,8 +1694,8 @@ For the time being, I’ll refer you to the Lisp documentation of that variable,
 </p>
 </div>
 </div>
-<div id="outline-container-sec-4-11" class="outline-3">
-<h3 id="sec-4-11"><span class="section-number-3">4.11</span> Selecting config files for user/host name completion</h3>
+<div id="outline-container-orgheadline53" class="outline-3">
+<h3 id="orgheadline53"><span class="section-number-3">4.11</span> Selecting config files for user/host name completion</h3>
 <div class="outline-text-3" id="text-4-11">
 <p>
 The variable tramp-completion-function-alist is intended to customize which files are taken into account for user and host name completion (see File name completion). For every method, it keeps a set of configuration files, accompanied by a Lisp function able to parse that file. Entries in tramp-completion-function-alist have the form (method pair1 pair2 …).
@@ -1689,7 +1726,7 @@ Example:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">   (tramp-get-completion-function "rsh")
+<pre class="src src-elisp">   (tramp-get-completion-function <span style="color: #ff4ea3;">"rsh"</span>)
 </pre>
 </div>
 
@@ -1711,9 +1748,9 @@ Example:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(tramp-set-completion-function "ssh"
-							   '((tramp-parse-sconfig "/etc/ssh_config")
-								 (tramp-parse-sconfig "~/.ssh/config")))
+<pre class="src src-elisp">(tramp-set-completion-function <span style="color: #ff4ea3;">"ssh"</span>
+                               '((tramp-parse-sconfig <span style="color: #ff4ea3;">"/etc/ssh_config"</span>)
+                                 (tramp-parse-sconfig <span style="color: #ff4ea3;">"~/.ssh/config"</span>)))
 </pre>
 </div>
 
@@ -1731,8 +1768,8 @@ The following predefined functions parsing configuration files exist:
 </p>
 </div>
 
-<div id="outline-container-sec-4-11-1" class="outline-4">
-<h4 id="sec-4-11-1"><span class="section-number-4">4.11.1</span> tramp-parse-rhosts</h4>
+<div id="outline-container-orgheadline45" class="outline-4">
+<h4 id="orgheadline45"><span class="section-number-4">4.11.1</span> tramp-parse-rhosts</h4>
 <div class="outline-text-4" id="text-4-11-1">
 <p>
 This function parses files which are syntactical equivalent to ~/.rhosts. It returns both host names and user names, if specified.
@@ -1740,8 +1777,8 @@ This function parses files which are syntactical equivalent to ~/.rhosts. It ret
 </div>
 </div>
 
-<div id="outline-container-sec-4-11-2" class="outline-4">
-<h4 id="sec-4-11-2"><span class="section-number-4">4.11.2</span> tramp-parse-shosts</h4>
+<div id="outline-container-orgheadline46" class="outline-4">
+<h4 id="orgheadline46"><span class="section-number-4">4.11.2</span> tramp-parse-shosts</h4>
 <div class="outline-text-4" id="text-4-11-2">
 <p>
 This function parses files which are syntactical equivalent to ~/.ssh/known_hosts. Since there are no user names specified in such files, it can return host names only.
@@ -1749,8 +1786,8 @@ This function parses files which are syntactical equivalent to ~/.ssh/known_host
 </div>
 </div>
 
-<div id="outline-container-sec-4-11-3" class="outline-4">
-<h4 id="sec-4-11-3"><span class="section-number-4">4.11.3</span> tramp-parse-sconfig</h4>
+<div id="outline-container-orgheadline47" class="outline-4">
+<h4 id="orgheadline47"><span class="section-number-4">4.11.3</span> tramp-parse-sconfig</h4>
 <div class="outline-text-4" id="text-4-11-3">
 <p>
 This function returns the host nicknames defined by Host entries in ~/.ssh/config style files.
@@ -1758,8 +1795,8 @@ This function returns the host nicknames defined by Host entries in ~/.ssh/confi
 </div>
 </div>
 
-<div id="outline-container-sec-4-11-4" class="outline-4">
-<h4 id="sec-4-11-4"><span class="section-number-4">4.11.4</span> tramp-parse-shostkeys</h4>
+<div id="outline-container-orgheadline48" class="outline-4">
+<h4 id="orgheadline48"><span class="section-number-4">4.11.4</span> tramp-parse-shostkeys</h4>
 <div class="outline-text-4" id="text-4-11-4">
 <p>
 SSH2 parsing of directories /etc/ssh2/hostkeys/* and ~/ssh2/hostkeys/*. Hosts are coded in file names hostkey_portnumber_host-name.pub. User names are always nil.
@@ -1767,8 +1804,8 @@ SSH2 parsing of directories /etc/ssh2/hostkeys/* and ~/ssh2/hostkeys/*. Hosts ar
 </div>
 </div>
 
-<div id="outline-container-sec-4-11-5" class="outline-4">
-<h4 id="sec-4-11-5"><span class="section-number-4">4.11.5</span> tramp-parse-sknownhosts</h4>
+<div id="outline-container-orgheadline49" class="outline-4">
+<h4 id="orgheadline49"><span class="section-number-4">4.11.5</span> tramp-parse-sknownhosts</h4>
 <div class="outline-text-4" id="text-4-11-5">
 <p>
 Another SSH2 style parsing of directories like /etc/ssh2/knownhosts/* and ~/ssh2/knownhosts/*. This case, hosts names are coded in file names host-name.algorithm.pub. User names are always nil.
@@ -1776,8 +1813,8 @@ Another SSH2 style parsing of directories like /etc/ssh2/knownhosts/* and ~/ssh2
 </div>
 </div>
 
-<div id="outline-container-sec-4-11-6" class="outline-4">
-<h4 id="sec-4-11-6"><span class="section-number-4">4.11.6</span> tramp-parse-hosts</h4>
+<div id="outline-container-orgheadline50" class="outline-4">
+<h4 id="orgheadline50"><span class="section-number-4">4.11.6</span> tramp-parse-hosts</h4>
 <div class="outline-text-4" id="text-4-11-6">
 <p>
 A function dedicated to /etc/hosts style files. It returns host names only.
@@ -1785,8 +1822,8 @@ A function dedicated to /etc/hosts style files. It returns host names only.
 </div>
 </div>
 
-<div id="outline-container-sec-4-11-7" class="outline-4">
-<h4 id="sec-4-11-7"><span class="section-number-4">4.11.7</span> tramp-parse-passwd</h4>
+<div id="outline-container-orgheadline51" class="outline-4">
+<h4 id="orgheadline51"><span class="section-number-4">4.11.7</span> tramp-parse-passwd</h4>
 <div class="outline-text-4" id="text-4-11-7">
 <p>
 A function which parses /etc/passwd like files. Obviously, it can return user names only.
@@ -1794,8 +1831,8 @@ A function which parses /etc/passwd like files. Obviously, it can return user na
 </div>
 </div>
 
-<div id="outline-container-sec-4-11-8" class="outline-4">
-<h4 id="sec-4-11-8"><span class="section-number-4">4.11.8</span> tramp-parse-netrc</h4>
+<div id="outline-container-orgheadline52" class="outline-4">
+<h4 id="orgheadline52"><span class="section-number-4">4.11.8</span> tramp-parse-netrc</h4>
 <div class="outline-text-4" id="text-4-11-8">
 <p>
 Finally, a function which parses ~/.netrc like files. This includes also ~/.authinfo-style files.
@@ -1818,7 +1855,7 @@ Example:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">   (my-tramp-parse "~/.my-tramp-hosts")
+<pre class="src src-elisp">   (my-tramp-parse <span style="color: #ff4ea3;">"~/.my-tramp-hosts"</span>)
 </pre>
 </div>
 
@@ -1829,10 +1866,9 @@ Example:
 </div>
 </div>
 
-<div id="outline-container-Password handling" class="outline-3">
-<h3 id="Password handling"><a id="sec-4-12" name="sec-4-12"></a><span class="section-number-3">4.12</span> Reusing passwords for several connections</h3>
+<div id="outline-container-orgheadline56" class="outline-3">
+<h3 id="Password handling"><a id="orgheadline56"></a><span class="section-number-3">4.12</span> Reusing passwords for several connections</h3>
 <div class="outline-text-3" id="text-Password handling">
-
 <p>
 Sometimes it is necessary to connect to the same remote host several times. Reentering passwords again and again would be annoying, when the chosen method does not support access without password prompt through own configuration.
 </p>
@@ -1855,8 +1891,8 @@ However, if you cannot apply such native password handling, TRAMP offers alterna
 </p>
 </div>
 
-<div id="outline-container-sec-4-12-1" class="outline-4">
-<h4 id="sec-4-12-1"><span class="section-number-4">4.12.1</span> 4.12.1 Using an authentication file</h4>
+<div id="outline-container-orgheadline54" class="outline-4">
+<h4 id="orgheadline54"><span class="section-number-4">4.12.1</span> 4.12.1 Using an authentication file</h4>
 <div class="outline-text-4" id="text-4-12-1">
 <p>
 The package auth-source.el, originally developed in No Gnus, offers the possibility to read passwords from a file, like FTP does it from ~/.netrc. The default authentication file is ~/.authinfo.gpg, this can be changed via the variable auth-sources.
@@ -1892,8 +1928,8 @@ In case of problems, setting auth-source-debug to t gives useful debug messages.
 </div>
 </div>
 
-<div id="outline-container-sec-4-12-2" class="outline-4">
-<h4 id="sec-4-12-2"><span class="section-number-4">4.12.2</span> 4.12.2 Caching passwords</h4>
+<div id="outline-container-orgheadline55" class="outline-4">
+<h4 id="orgheadline55"><span class="section-number-4">4.12.2</span> 4.12.2 Caching passwords</h4>
 <div class="outline-text-4" id="text-4-12-2">
 <p>
 If there is no authentication file, TRAMP caches the passwords entered by you. They will be reused next time if a connection needs them for the same user name and host name, independently of the connection method.
@@ -1922,8 +1958,8 @@ Implementation Note: password caching is based on the package password-cache.el.
 </div>
 </div>
 
-<div id="outline-container-sec-4-13" class="outline-3">
-<h3 id="sec-4-13"><span class="section-number-3">4.13</span> Reusing connection related information</h3>
+<div id="outline-container-orgheadline57" class="outline-3">
+<h3 id="orgheadline57"><span class="section-number-3">4.13</span> Reusing connection related information</h3>
 <div class="outline-text-3" id="text-4-13">
 <p>
 In order to reduce initial connection time, TRAMP stores connection related information persistently. The variable tramp-persistency-file-name keeps the file name where these information are written. Its default value is ~/.emacs.d/tramp. It is recommended to choose a local file name.
@@ -1975,8 +2011,8 @@ When TRAMP detects a changed operating system version on a remote host (via the 
 </div>
 </div>
 
-<div id="outline-container-sec-4-14" class="outline-3">
-<h3 id="sec-4-14"><span class="section-number-3">4.14</span> Setting own connection related information</h3>
+<div id="outline-container-orgheadline58" class="outline-3">
+<h3 id="orgheadline58"><span class="section-number-3">4.14</span> Setting own connection related information</h3>
 <div class="outline-text-3" id="text-4-14">
 <p>
 Sometimes, tramp is not able to detect correct connection related information. In such cases, you could tell tramp which value it has to take. Since this could result in errors, it has to be used with care.
@@ -2005,17 +2041,16 @@ A special property is "busybox". This must be set, if the remote host runs a ver
 <div class="org-src-container">
 
 <pre class="src src-elisp">(add-to-list 'tramp-connection-properties
-			 (list (regexp-quote "/ssh:user@randomhost.your.domain:")
-				   "busybox" t))
+             (list (regexp-quote <span style="color: #ff4ea3;">"/ssh:user@randomhost.your.domain:"</span>)
+                   <span style="color: #ff4ea3;">"busybox"</span> t))
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-Remote Programs" class="outline-3">
-<h3 id="Remote Programs"><a id="sec-4-15" name="sec-4-15"></a><span class="section-number-3">4.15</span> How TRAMP finds and uses programs on the remote host</h3>
+<div id="outline-container-orgheadline60" class="outline-3">
+<h3 id="Remote Programs"><a id="orgheadline60"></a><span class="section-number-3">4.15</span> How TRAMP finds and uses programs on the remote host</h3>
 <div class="outline-text-3" id="text-Remote Programs">
-
 <p>
 TRAMP depends on a number of programs on the remote host in order to function, including ls, test, find and cat.
 </p>
@@ -2041,8 +2076,8 @@ Certain other tools, such as perl (or perl5) and grep will be used if they can b
 </p>
 </div>
 
-<div id="outline-container-sec-4-15-1" class="outline-4">
-<h4 id="sec-4-15-1"><span class="section-number-4">4.15.1</span> User Option: tramp-remote-path</h4>
+<div id="outline-container-orgheadline59" class="outline-4">
+<h4 id="orgheadline59"><span class="section-number-4">4.15.1</span> User Option: tramp-remote-path</h4>
 <div class="outline-text-4" id="text-4-15-1">
 <p>
 When TRAMP connects to the remote host, it searches for the programs that it can use. The variable tramp-remote-path controls the directories searched on the remote host.
@@ -2081,10 +2116,10 @@ To add a directory to the remote search path, you could use code such as:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">;; We load TRAMP to define the variable.
-(require 'tramp)
-;; We have perl in "/usr/local/perl/bin"
-(add-to-list 'tramp-remote-path "/usr/local/perl/bin")
+<pre class="src src-elisp"><span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">We load TRAMP to define the variable.</span>
+(<span style="color: #a1db00;">require</span> '<span style="color: #5fafd7;">tramp</span>)
+<span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">We have perl in "/usr/local/perl/bin"</span>
+(add-to-list 'tramp-remote-path <span style="color: #ff4ea3;">"/usr/local/perl/bin"</span>)
 </pre>
 </div>
 
@@ -2113,8 +2148,8 @@ tramp 缓存了一些信息，如 perl 二进制文件位置。改变远程搜�
 </div>
 </div>
 
-<div id="outline-container-sec-4-16" class="outline-3">
-<h3 id="sec-4-16"><span class="section-number-3">4.16</span> Remote shell setup hints</h3>
+<div id="outline-container-orgheadline69" class="outline-3">
+<h3 id="orgheadline69"><span class="section-number-3">4.16</span> Remote shell setup hints</h3>
 <div class="outline-text-3" id="text-4-16">
 <p>
 As explained in the Overview section, TRAMP connects to the remote host and talks to the shell it finds there. Of course, when you log in, the shell executes its init files. Suppose your init file requires you to enter the birth date of your mother; clearly TRAMP does not know this and hence fails to log you in to that host.
@@ -2146,8 +2181,8 @@ Below you find a discussion of a few things that TRAMP does not deal with, and t
 </p>
 </div>
 
-<div id="outline-container-sec-4-16-1" class="outline-4">
-<h4 id="sec-4-16-1"><span class="section-number-4">4.16.1</span> shell-prompt-pattern</h4>
+<div id="outline-container-orgheadline61" class="outline-4">
+<h4 id="orgheadline61"><span class="section-number-4">4.16.1</span> shell-prompt-pattern</h4>
 <div class="outline-text-4" id="text-4-16-1">
 <p>
 After logging in to the remote host, TRAMP has to wait for the remote shell startup to finish before it can send commands to the remote shell. The strategy here is to wait for the shell prompt. In order to recognize the shell prompt, the variable shell-prompt-pattern has to be set correctly to recognize the shell prompt on the remote host.
@@ -2158,17 +2193,17 @@ After logging in to the remote host, TRAMP has to wait for the remote shell star
 </p>
 
 <p>
-Note that TRAMP requires the match for shell-prompt-pattern to be at the end of the buffer. Many people have something like the following as the value for the variable: "^[^&gt;$][&gt;$] *". Now suppose your shell prompt is a &lt;b&gt; c $ . In this case, TRAMP recognizes the &gt; character as the end of the prompt, but it is not at the end of the buffer.
+Note that TRAMP requires the match for shell-prompt-pattern to be at the end of the buffer. Many people have something like the following as the value for the variable: "^[^&gt;\(][>\)] *". Now suppose your shell prompt is a &lt;b&gt; c $ . In this case, TRAMP recognizes the &gt; character as the end of the prompt, but it is not at the end of the buffer.
 </p>
 
 <p>
-注意，tramp 要求 shell-prompt-patter 的匹配应该是在 buffer 末尾。很多人这样设置该变量值："^[^&gt;$][&gt;$] *"。假设 shell 提示符是 a &lt;b&gt; c $。这种情况下，tramp 认为&gt;字符 是提示符的末尾，但他不在缓冲区的末尾。
+注意，tramp 要求 shell-prompt-patter 的匹配应该是在 buffer 末尾。很多人这样设置该变量值："^[^&gt;\(][>\)] *"。假设 shell 提示符是 a &lt;b&gt; c $。这种情况下，tramp 认为&gt;字符 是提示符的末尾，但他不在缓冲区的末尾。
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-4-16-2" class="outline-4">
-<h4 id="sec-4-16-2"><span class="section-number-4">4.16.2</span> tramp-shell-prompt-pattern</h4>
+<div id="outline-container-orgheadline62" class="outline-4">
+<h4 id="orgheadline62"><span class="section-number-4">4.16.2</span> tramp-shell-prompt-pattern</h4>
 <div class="outline-text-4" id="text-4-16-2">
 <p>
 This regular expression is used by TRAMP in the same way as shell-prompt-pattern, to match prompts from the remote shell. This second variable exists because the prompt from the remote shell might be different from the prompt from a local shell—after all, the whole point of TRAMP is to log in to remote hosts as a different user. The default value of tramp-shell-prompt-pattern is the same as the default value of shell-prompt-pattern, which is reported to work well in many circumstances.
@@ -2180,8 +2215,8 @@ tramp 中这个正则表达式的用法和 shell-prompt-pattern,用来匹配远�
 </div>
 </div>
 
-<div id="outline-container-sec-4-16-3" class="outline-4">
-<h4 id="sec-4-16-3"><span class="section-number-4">4.16.3</span> tramp-password-prompt-regexp</h4>
+<div id="outline-container-orgheadline63" class="outline-4">
+<h4 id="orgheadline63"><span class="section-number-4">4.16.3</span> tramp-password-prompt-regexp</h4>
 <div class="outline-text-4" id="text-4-16-3">
 <p>
 During login, TRAMP might be forced to enter a password or a passphrase. The difference between both is that a password is requested from the shell on the remote host, while a passphrase is needed for accessing local authentication information, like your ssh key.
@@ -2204,16 +2239,16 @@ tramp-password-prompt-repgexp 在英语环境中可以检测这种请求。当�
 <pre class="src src-elisp">(setq
  tramp-password-prompt-regexp
  (concat
-  "^.*"
+  <span style="color: #ff4ea3;">"^.*"</span>
   (regexp-opt
-   '("passphrase" "Passphrase"
-	 ;; English
-	 "password" "Password"
-	 ;; Deutsch
-	 "passwort" "Passwort"
-	 ;; Français
-	 "mot de passe" "Mot de passe") t)
-  ".*:\0? *"))
+   '(<span style="color: #ff4ea3;">"passphrase"</span> <span style="color: #ff4ea3;">"Passphrase"</span>
+     <span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">English</span>
+     <span style="color: #ff4ea3;">"password"</span> <span style="color: #ff4ea3;">"Password"</span>
+     <span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Deutsch</span>
+     <span style="color: #ff4ea3;">"passwort"</span> <span style="color: #ff4ea3;">"Passwort"</span>
+     <span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Fran&#231;ais</span>
+     <span style="color: #ff4ea3;">"mot de passe"</span> <span style="color: #ff4ea3;">"Mot de passe"</span>) t)
+  <span style="color: #ff4ea3;">".*:\0? *"</span>))
 </pre>
 </div>
 
@@ -2227,8 +2262,8 @@ In parallel, it might also be necessary to adapt tramp-wrong-passwd-regexp.
 </div>
 </div>
 
-<div id="outline-container-sec-4-16-4" class="outline-4">
-<h4 id="sec-4-16-4"><span class="section-number-4">4.16.4</span> tset and other questions</h4>
+<div id="outline-container-orgheadline64" class="outline-4">
+<h4 id="orgheadline64"><span class="section-number-4">4.16.4</span> tset and other questions</h4>
 <div class="outline-text-4" id="text-4-16-4">
 <p>
 Some people invoke the tset program from their shell startup scripts which asks the user about the terminal type of the shell. Maybe some shells ask other questions when they are started. TRAMP does not know how to answer these questions. There are two approaches for dealing with this problem. One approach is to take care that the shell does not ask any questions when invoked from TRAMP. You can do this by checking the TERM environment variable, it will be set to dumb when connecting.
@@ -2252,27 +2287,27 @@ The other approach is to teach TRAMP about these questions. See the variable tra
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(defconst my-tramp-prompt-regexp
-  (concat (regexp-opt '("Enter the birth date of your mother:") t)
-		  "\\s-*")
-  "Regular expression matching my login prompt question.")
+<pre class="src src-elisp">(<span style="color: #a1db00;">defconst</span> <span style="color: #ff8700;">my-tramp-prompt-regexp</span>
+  (concat (regexp-opt '(<span style="color: #ff4ea3;">"Enter the birth date of your mother:"</span>) t)
+          <span style="color: #ff4ea3;">"\\s-*"</span>)
+  <span style="color: #ff4b4b;">"Regular expression matching my login prompt question."</span>)
 
-(defun my-tramp-action (proc vec)
-  "Enter \"19000101\" in order to give a correct answer."
-  (save-window-excursion
-	(with-current-buffer (tramp-get-connection-buffer vec)
-	  (tramp-message vec 6 "\n%s" (buffer-string))
-	  (tramp-send-string vec "19000101"))))
+(<span style="color: #a1db00;">defun</span> <span style="color: #ffd700;">my-tramp-action</span> (proc vec)
+  <span style="color: #ff4b4b;">"Enter \"19000101\" in order to give a correct answer."</span>
+  (<span style="color: #a1db00;">save-window-excursion</span>
+    (<span style="color: #a1db00;">with-current-buffer</span> (tramp-get-connection-buffer vec)
+      (tramp-message vec 6 <span style="color: #ff4ea3;">"\n%s"</span> (buffer-string))
+      (tramp-send-string vec <span style="color: #ff4ea3;">"19000101"</span>))))
 
 (add-to-list 'tramp-actions-before-shell
-			 '(my-tramp-prompt-regexp my-tramp-action))
+             '(my-tramp-prompt-regexp my-tramp-action))
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-4-16-5" class="outline-4">
-<h4 id="sec-4-16-5"><span class="section-number-4">4.16.5</span> Environment variables named like users in .profile</h4>
+<div id="outline-container-orgheadline65" class="outline-4">
+<h4 id="orgheadline65"><span class="section-number-4">4.16.5</span> Environment variables named like users in .profile</h4>
 <div class="outline-text-4" id="text-4-16-5">
 <p>
 If you have a user named frumple and set the variable FRUMPLE in your shell environment, then this might cause trouble. Maybe rename the variable to FRUMPLE_DIR or the like.
@@ -2292,8 +2327,8 @@ This weird effect was actually reported by a TRAMP user!
 </div>
 </div>
 
-<div id="outline-container-sec-4-16-6" class="outline-4">
-<h4 id="sec-4-16-6"><span class="section-number-4">4.16.6</span> Non-Bourne commands in .profile</h4>
+<div id="outline-container-orgheadline66" class="outline-4">
+<h4 id="orgheadline66"><span class="section-number-4">4.16.6</span> Non-Bourne commands in .profile</h4>
 <div class="outline-text-4" id="text-4-16-6">
 <p>
 After logging in to the remote host, TRAMP issues the command exec <i>bin/sh. (Actually, the command is slightly different.) When /bin/sh is executed, it reads some init files, such as ~</i>.shrc or ~/.profile.
@@ -2361,8 +2396,8 @@ tramp 的开发者可能想绕开这个问题，所以如果关于这个有什�
 </div>
 </div>
 
-<div id="outline-container-sec-4-16-7" class="outline-4">
-<h4 id="sec-4-16-7"><span class="section-number-4">4.16.7</span> Interactive shell prompt</h4>
+<div id="outline-container-orgheadline67" class="outline-4">
+<h4 id="orgheadline67"><span class="section-number-4">4.16.7</span> Interactive shell prompt</h4>
 <div class="outline-text-4" id="text-4-16-7">
 <p>
 TRAMP redefines the shell prompt in order to parse the shell’s output robustly. When calling an interactive shell by M-x shell, this doesn’t look nice.
@@ -2382,7 +2417,7 @@ You can redefine the shell prompt by checking the environment variable INSIDE_EM
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setenv "ESHELL" "bash")
+<pre class="src src-elisp">(setenv <span style="color: #ff4ea3;">"ESHELL"</span> <span style="color: #ff4ea3;">"bash"</span>)
 </pre>
 </div>
 
@@ -2391,17 +2426,17 @@ Your file ~/.emacs_SHELLNAME could contain code like
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"># Reset the prompt for remote Tramp shells.
-if [ "${INSIDE_EMACS/*tramp*/tramp}" == "tramp" ] ; then
-	PS1="[\u@\h \w]$ "
-fi
+<pre class="src src-sh"><span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">Reset the prompt for remote Tramp shells.</span>
+<span style="color: #a1db00;">if</span> [ <span style="color: #ff4ea3;">"${INSIDE_EMACS/*tramp*/tramp}"</span> == <span style="color: #ff4ea3;">"tramp"</span> ] ; <span style="color: #a1db00;">then</span>
+    <span style="color: #ff8700;">PS1</span>=<span style="color: #ff4ea3;">"[\u@\h \w]$ "</span>
+<span style="color: #a1db00;">fi</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-4-16-8" class="outline-4">
-<h4 id="sec-4-16-8"><span class="section-number-4">4.16.8</span> busybox / nc</h4>
+<div id="outline-container-orgheadline68" class="outline-4">
+<h4 id="orgheadline68"><span class="section-number-4">4.16.8</span> busybox / nc</h4>
 <div class="outline-text-4" id="text-4-16-8">
 <p>
 The nc command will be used with the nc method. On the remote host, a listener will be installed. Unfortunately, the command line syntax for this has been changed with the different busybox versions. TRAMP uses the following syntax (see tramp-methods):
@@ -2414,7 +2449,7 @@ If your remote nc refuses to accept the -p parameter, you could overwrite the sy
 
 <pre class="src src-elisp">(add-to-list
  'tramp-connection-properties
- `(,(regexp-quote "192.168.0.1") "remote-copy-args" (("-l") ("%r"))))
+ `(,(regexp-quote <span style="color: #ff4ea3;">"192.168.0.1"</span>) <span style="color: #ff4ea3;">"remote-copy-args"</span> ((<span style="color: #ff4ea3;">"-l"</span>) (<span style="color: #ff4ea3;">"%r"</span>))))
 </pre>
 </div>
 
@@ -2425,8 +2460,8 @@ with ‘192.168.0.1’ being the IP address of your remote host (see Predefined 
 </div>
 </div>
 
-<div id="outline-container-sec-4-17" class="outline-3">
-<h3 id="sec-4-17"><span class="section-number-3">4.17</span> Android shell setup hints</h3>
+<div id="outline-container-orgheadline70" class="outline-3">
+<h3 id="orgheadline70"><span class="section-number-3">4.17</span> Android shell setup hints</h3>
 <div class="outline-text-3" id="text-4-17">
 <p>
 Android devices use a restricted shell. They can be accessed via the adb method. However, this restricts the access to a USB connection, and it requires the installation of the Android SDK on the local host.
@@ -2442,7 +2477,7 @@ The default shell /bin/sh does not exist. Instead, you shall use just sh, which 
 <div class="org-src-container">
 
 <pre class="src src-elisp">(add-to-list 'tramp-connection-properties
-			 (list (regexp-quote "192.168.0.26") "remote-shell" "sh"))
+             (list (regexp-quote <span style="color: #ff4ea3;">"192.168.0.26"</span>) <span style="color: #ff4ea3;">"remote-shell"</span> <span style="color: #ff4ea3;">"sh"</span>))
 </pre>
 </div>
 
@@ -2456,7 +2491,7 @@ The user settings for the PATH environment variable must be preserved. It has al
 <div class="org-src-container">
 
 <pre class="src src-elisp">(add-to-list 'tramp-remote-path 'tramp-own-remote-path)
-(add-to-list 'tramp-remote-path "/system/xbin")
+(add-to-list 'tramp-remote-path <span style="color: #ff4ea3;">"/system/xbin"</span>)
 </pre>
 </div>
 
@@ -2465,7 +2500,7 @@ If the Android device is not ‘rooted’, you must give the shell a writable di
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(add-to-list 'tramp-remote-process-environment "TMPDIR=$HOME")
+<pre class="src src-elisp">(add-to-list 'tramp-remote-process-environment <span style="color: #ff4ea3;">"TMPDIR=$HOME"</span>)
 </pre>
 </div>
 
@@ -2489,7 +2524,7 @@ In this case, you must change the setting for the remote shell to
 <div class="org-src-container">
 
 <pre class="src src-elisp">(add-to-list 'tramp-connection-properties
-			 (list (regexp-quote "android") "remote-shell" "sh"))
+             (list (regexp-quote <span style="color: #ff4ea3;">"android"</span>) <span style="color: #ff4ea3;">"remote-shell"</span> <span style="color: #ff4ea3;">"sh"</span>))
 </pre>
 </div>
 
@@ -2499,8 +2534,8 @@ You would open the connection with C-x C-f /ssh:android: then.
 </div>
 </div>
 
-<div id="outline-container-sec-4-18" class="outline-3">
-<h3 id="sec-4-18"><span class="section-number-3">4.18</span> Auto-save and Backup configuration</h3>
+<div id="outline-container-orgheadline71" class="outline-3">
+<h3 id="orgheadline71"><span class="section-number-3">4.18</span> Auto-save and Backup configuration</h3>
 <div class="outline-text-3" id="text-4-18">
 <p>
 Normally, Emacs writes backup files to the same directory as the original files, but this behavior can be changed via the variable backup-directory-alist. In connection with TRAMP, this can have unexpected side effects. Suppose that you specify that all backups should go to the directory ~/.emacs.d/backups/, and then you edit the file /su:root@localhost:/etc/secretfile. The effect is that the backup file will be owned by you and not by root, thus possibly enabling others to see it even if they were not intended to see it.
@@ -2528,7 +2563,7 @@ Therefore, it is useful to set special values for TRAMP files. For example, the 
 <div class="org-src-container">
 
 <pre class="src src-elisp">(add-to-list 'backup-directory-alist
-			 (cons tramp-file-name-regexp nil))
+             (cons tramp-file-name-regexp nil))
 </pre>
 </div>
 
@@ -2543,12 +2578,12 @@ It is also possible to disable backups depending on the used method. The followi
 <div class="org-src-container">
 
 <pre class="src src-elisp">(setq backup-enable-predicate
-	  (lambda (name)
-		(and (normal-backup-enable-predicate name)
-			 (not
-			  (let ((method (file-remote-p name 'method)))
-				(when (stringp method)
-				  (member method '("su" "sudo"))))))))
+      (<span style="color: #a1db00;">lambda</span> (name)
+        (and (normal-backup-enable-predicate name)
+             (not
+              (<span style="color: #a1db00;">let</span> ((method (file-remote-p name 'method)))
+                (<span style="color: #a1db00;">when</span> (stringp method)
+                  (member method '(<span style="color: #ff4ea3;">"su"</span> <span style="color: #ff4ea3;">"sudo"</span>))))))))
 </pre>
 </div>
 
@@ -2562,7 +2597,7 @@ Example:
 <div class="org-src-container">
 
 <pre class="src src-elisp">(add-to-list 'backup-directory-alist
-			 (cons "." "~/.emacs.d/backups/"))
+             (cons <span style="color: #ff4ea3;">"."</span> <span style="color: #ff4ea3;">"~/.emacs.d/backups/"</span>))
 (setq tramp-backup-directory-alist backup-directory-alist)
 </pre>
 </div>
@@ -2593,8 +2628,8 @@ Another possibility is to set the variable tramp-auto-save-directory to a proper
 </div>
 </div>
 
-<div id="outline-container-sec-4-19" class="outline-3">
-<h3 id="sec-4-19"><span class="section-number-3">4.19</span> Issues with Cygwin ssh</h3>
+<div id="outline-container-orgheadline72" class="outline-3">
+<h3 id="orgheadline72"><span class="section-number-3">4.19</span> Issues with Cygwin ssh</h3>
 <div class="outline-text-3" id="text-4-19">
 <p>
 This section needs a lot of work! Please help.
@@ -2631,8 +2666,8 @@ If anyone knows how to start ssh-agent under Windows in such a way that desktop 
 </div>
 </div>
 
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> Using TRAMP</h2>
+<div id="outline-container-orgheadline91" class="outline-2">
+<h2 id="orgheadline91"><span class="section-number-2">5</span> Using TRAMP</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Once you have installed TRAMP it will operate fairly transparently. You will be able to access files on any remote host that you can log in to as though they were local.
@@ -2659,8 +2694,8 @@ Something that might happen which surprises you is that Emacs remembers all your
 </p>
 </div>
 
-<div id="outline-container-sec-5-1" class="outline-3">
-<h3 id="sec-5-1"><span class="section-number-3">5.1</span> TRAMP file name conventions</h3>
+<div id="outline-container-orgheadline74" class="outline-3">
+<h3 id="orgheadline74"><span class="section-number-3">5.1</span> TRAMP file name conventions</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 To access the file localname on the remote host host you would specify the file name /host:localname. This will connect to host and transfer the file using the default method. See Default Method.
@@ -2765,8 +2800,8 @@ Finally, for some methods it is possible to specify a different port number than
 </p>
 </div>
 </div>
-<div id="outline-container-sec-5-2" class="outline-3">
-<h3 id="sec-5-2"><span class="section-number-3">5.2</span> File name completion</h3>
+<div id="outline-container-orgheadline76" class="outline-3">
+<h3 id="orgheadline76"><span class="section-number-3">5.2</span> File name completion</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 File name completion works with TRAMP for completion of method names, of user names and of host names as well as for completion of file names on remote hosts. In order to enable this, partial completion must be activated in your .emacs.
@@ -2847,8 +2882,8 @@ A remote directory might have changed its contents out of Emacs control, for exa
 </p>
 </div>
 
-<div id="outline-container-sec-5-2-1" class="outline-4">
-<h4 id="sec-5-2-1"><span class="section-number-4">5.2.1</span> User Option: tramp-completion-reread-directory-timeout</h4>
+<div id="outline-container-orgheadline75" class="outline-4">
+<h4 id="orgheadline75"><span class="section-number-4">5.2.1</span> User Option: tramp-completion-reread-directory-timeout</h4>
 <div class="outline-text-4" id="text-5-2-1">
 <p>
 This variable defines the number of seconds since last remote command before rereading a directory contents. A value of 0 would require an immediate reread during file name completion, nil means to use always cached values for the directory contents.
@@ -2861,8 +2896,8 @@ This variable defines the number of seconds since last remote command before rer
 </div>
 </div>
 
-<div id="outline-container-sec-5-3" class="outline-3">
-<h3 id="sec-5-3"><span class="section-number-3">5.3</span> Declaring multiple hops in the file name</h3>
+<div id="outline-container-orgheadline78" class="outline-3">
+<h3 id="orgheadline78"><span class="section-number-3">5.3</span> Declaring multiple hops in the file name</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 Multiple hops are configured with the variable tramp-default-proxies-alist (see Multi-hops). However, sometimes it is desirable to reach a remote host immediately, without configuration changes. This can be reached by an ad-hoc specification of the proxies.
@@ -2903,8 +2938,8 @@ ad-hoc 定义会动态添加到 tramp-default-proxies-alist。因此，emacs 会
 </p>
 </div>
 
-<div id="outline-container-sec-5-3-1" class="outline-4">
-<h4 id="sec-5-3-1"><span class="section-number-4">5.3.1</span> User Option: tramp-save-ad-hoc-proxies</h4>
+<div id="outline-container-orgheadline77" class="outline-4">
+<h4 id="orgheadline77"><span class="section-number-4">5.3.1</span> User Option: tramp-save-ad-hoc-proxies</h4>
 <div class="outline-text-4" id="text-5-3-1">
 <p>
 This customer option controls whether ad-hoc definitions are kept persistently in tramp-default-proxies-alist. That means, those definitions are available also for future Emacs sessions.
@@ -2913,8 +2948,8 @@ This customer option controls whether ad-hoc definitions are kept persistently i
 </div>
 </div>
 
-<div id="outline-container-sec-5-4" class="outline-3">
-<h3 id="sec-5-4"><span class="section-number-3">5.4</span> Integration with other Emacs packages</h3>
+<div id="outline-container-orgheadline85" class="outline-3">
+<h3 id="orgheadline85"><span class="section-number-3">5.4</span> Integration with other Emacs packages</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 TRAMP supports running processes on a remote host. This allows to exploit Emacs packages without modification for remote file names. It does not work for the ftp method. Association of a pty, as specified in start-file-process, is not supported.
@@ -2963,8 +2998,8 @@ If you use other Emacs packages which do not run out-of-the-box on a remote host
 </p>
 </div>
 
-<div id="outline-container-sec-5-4-1" class="outline-4">
-<h4 id="sec-5-4-1"><span class="section-number-4">5.4.1</span> Running remote programs that create local X11 windows</h4>
+<div id="outline-container-orgheadline79" class="outline-4">
+<h4 id="orgheadline79"><span class="section-number-4">5.4.1</span> Running remote programs that create local X11 windows</h4>
 <div class="outline-text-4" id="text-5-4-1">
 <p>
 If you want to run a remote program, which shall connect the X11 server you are using with your local host, you can set the DISPLAY environment variable on the remote host:
@@ -2982,8 +3017,8 @@ Another trick might be that you put ForwardX11 yes or ForwardX11Trusted yes to y
 </div>
 </div>
 
-<div id="outline-container-sec-5-4-2" class="outline-4">
-<h4 id="sec-5-4-2"><span class="section-number-4">5.4.2</span> Running shell on a remote host</h4>
+<div id="outline-container-orgheadline80" class="outline-4">
+<h4 id="orgheadline80"><span class="section-number-4">5.4.2</span> Running shell on a remote host</h4>
 <div class="outline-text-4" id="text-5-4-2">
 <p>
 Calling M-x shell in a buffer related to a remote host runs the local shell as defined in shell-file-name. This might be also a valid file name for a shell to be applied on the remote host, but it will fail at least when your local and remote hosts belong to different system types, like ‘windows-nt’ and ‘gnu/linux’.
@@ -2999,8 +3034,8 @@ Starting with Emacs 24 this won’t be necessary, if you call shell interactivel
 </div>
 </div>
 
-<div id="outline-container-sec-5-4-3" class="outline-4">
-<h4 id="sec-5-4-3"><span class="section-number-4">5.4.3</span> Running shell-command on a remote host</h4>
+<div id="outline-container-orgheadline81" class="outline-4">
+<h4 id="orgheadline81"><span class="section-number-4">5.4.3</span> Running shell-command on a remote host</h4>
 <div class="outline-text-4" id="text-5-4-3">
 <p>
 shell-command allows to execute commands in a shell, either synchronously, either asynchronously. This works also on remote hosts. Example:
@@ -3018,8 +3053,8 @@ A similar behavior can be reached by M-x auto-revert-tail-mode, if available.
 </div>
 </div>
 
-<div id="outline-container-sec-5-4-4" class="outline-4">
-<h4 id="sec-5-4-4"><span class="section-number-4">5.4.4</span> Running eshell on a remote host</h4>
+<div id="outline-container-orgheadline82" class="outline-4">
+<h4 id="orgheadline82"><span class="section-number-4">5.4.4</span> Running eshell on a remote host</h4>
 <div class="outline-text-4" id="text-5-4-4">
 <p>
 TRAMP is integrated into eshell.el. That is, you can open an interactive shell on your remote host, and run commands there. After you have started M-x eshell, you could perform commands like this:
@@ -3053,8 +3088,8 @@ uid=0(root) gid=0(root) groups=0(root)
 </p>
 </div>
 </div>
-<div id="outline-container-sec-5-4-5" class="outline-4">
-<h4 id="sec-5-4-5"><span class="section-number-4">5.4.5</span> Running a debugger on a remote host</h4>
+<div id="outline-container-orgheadline83" class="outline-4">
+<h4 id="orgheadline83"><span class="section-number-4">5.4.5</span> Running a debugger on a remote host</h4>
 <div class="outline-text-4" id="text-5-4-5">
 <p>
 gud.el offers an unified interface to several symbolic debuggers With TRAMP, it is possible to debug programs on remote hosts. You can call gdb with a remote file name:
@@ -3078,8 +3113,8 @@ Arguments of the program to be debugged are taken literally. That means, file na
 </div>
 </div>
 
-<div id="outline-container-sec-5-4-6" class="outline-4">
-<h4 id="sec-5-4-6"><span class="section-number-4">5.4.6</span> Running remote processes on Windows hosts</h4>
+<div id="outline-container-orgheadline84" class="outline-4">
+<h4 id="orgheadline84"><span class="section-number-4">5.4.6</span> Running remote processes on Windows hosts</h4>
 <div class="outline-text-4" id="text-5-4-6">
 <p>
 With the help of the winexe it is possible tu run processes on a remote Windows host. TRAMP has implemented this for process-file and start-file-process.
@@ -3108,8 +3143,8 @@ Previous: Remote processes, Up: Usage   [Contents][Index]
 </div>
 </div>
 
-<div id="outline-container-sec-5-5" class="outline-3">
-<h3 id="sec-5-5"><span class="section-number-3">5.5</span> Cleanup remote connections</h3>
+<div id="outline-container-orgheadline90" class="outline-3">
+<h3 id="orgheadline90"><span class="section-number-3">5.5</span> Cleanup remote connections</h3>
 <div class="outline-text-3" id="text-5-5">
 <p>
 Sometimes it is useful to cleanup remote connections. The following commands support this.
@@ -3120,8 +3155,8 @@ Sometimes it is useful to cleanup remote connections. The following commands sup
 </p>
 </div>
 
-<div id="outline-container-sec-5-5-1" class="outline-4">
-<h4 id="sec-5-5-1"><span class="section-number-4">5.5.1</span> Command: tramp-cleanup-connection vec</h4>
+<div id="outline-container-orgheadline86" class="outline-4">
+<h4 id="orgheadline86"><span class="section-number-4">5.5.1</span> Command: tramp-cleanup-connection vec</h4>
 <div class="outline-text-4" id="text-5-5-1">
 <p>
 This command flushes all connection related objects. vec is the internal representation of a remote connection. Called interactively, the command offers all active remote connections in the minibuffer as remote file name prefix like /method:user@host:. The cleanup includes password cache (see Password handling), file cache, connection cache (see Connection caching), connection buffers.
@@ -3129,8 +3164,8 @@ This command flushes all connection related objects. vec is the internal represe
 </div>
 </div>
 
-<div id="outline-container-sec-5-5-2" class="outline-4">
-<h4 id="sec-5-5-2"><span class="section-number-4">5.5.2</span> Command: tramp-cleanup-this-connection</h4>
+<div id="outline-container-orgheadline87" class="outline-4">
+<h4 id="orgheadline87"><span class="section-number-4">5.5.2</span> Command: tramp-cleanup-this-connection</h4>
 <div class="outline-text-4" id="text-5-5-2">
 <p>
 This command flushes all objects of the current buffer’s remote connection. The same objects are removed as in tramp-cleanup-connection.
@@ -3138,8 +3173,8 @@ This command flushes all objects of the current buffer’s remote connection. Th
 </div>
 </div>
 
-<div id="outline-container-sec-5-5-3" class="outline-4">
-<h4 id="sec-5-5-3"><span class="section-number-4">5.5.3</span> Command: tramp-cleanup-all-connections</h4>
+<div id="outline-container-orgheadline88" class="outline-4">
+<h4 id="orgheadline88"><span class="section-number-4">5.5.3</span> Command: tramp-cleanup-all-connections</h4>
 <div class="outline-text-4" id="text-5-5-3">
 <p>
 This command flushes objects for all active remote connections. The same objects are removed as in tramp-cleanup-connection.
@@ -3147,8 +3182,8 @@ This command flushes objects for all active remote connections. The same objects
 </div>
 </div>
 
-<div id="outline-container-sec-5-5-4" class="outline-4">
-<h4 id="sec-5-5-4"><span class="section-number-4">5.5.4</span> Command: tramp-cleanup-all-buffers</h4>
+<div id="outline-container-orgheadline89" class="outline-4">
+<h4 id="orgheadline89"><span class="section-number-4">5.5.4</span> Command: tramp-cleanup-all-buffers</h4>
 <div class="outline-text-4" id="text-5-5-4">
 <p>
 Like in tramp-cleanup-all-connections, all remote connections are cleaned up. Additionally all buffers, which are related to a remote connection, are killed.
@@ -3160,8 +3195,7 @@ Like in tramp-cleanup-all-connections, all remote connections are cleaned up. Ad
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: lsl</p>
-<p class="date">Created: 2016-07-06 三 14:31</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2016-07-23 六 12:30</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
