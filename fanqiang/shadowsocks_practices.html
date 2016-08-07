@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-08-07 Sun 19:30 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>ShadowSocks Practices</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="lsl" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">ShadowSocks Practices</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. 简介</a></li>
+<li><a href="#orgheadline12">2. 安装</a>
+<ul>
+<li><a href="#orgheadline2">2.1. 源码编译安装</a></li>
+<li><a href="#orgheadline3">2.2. ss-server</a></li>
+<li><a href="#orgheadline6">2.3. ss-local</a>
+<ul>
+<li><a href="#orgheadline4">2.3.1. ss-local</a></li>
+<li><a href="#orgheadline5">2.3.2. ss-qt5</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline7">2.4. 基本配置</a></li>
+<li><a href="#orgheadline8">2.5. 优化</a></li>
+<li><a href="#orgheadline11">2.6. 开机自启动</a>
+<ul>
+<li><a href="#orgheadline9">2.6.1. ss-server</a></li>
+<li><a href="#orgheadline10">2.6.2. ss-local</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline13">3. 源码分析</a></li>
+</ul>
+</div>
+</div>
+<p>
+当然，首先你需要有一台 VPS，参看《<a href="VPS-practices.html">VPS 实践</a>》。
+</p>
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> 简介<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></h2>
+<div class="outline-text-2" id="text-1">
+<p>
+ShadowSocks 是由 <a href="https://github.com/clowwindy">clowwindy</a> 编写的轻量级服务器中转包传输工具。
+</p>
+
+<p>
+ShadowSocks 主要由三个模块组成:
+</p>
+<ul class="org-ul">
+<li>ss-local：工作在本地的命令行客户端。</li>
+<li>ss-redirect:</li>
+<li>ss-server：工作在远程主机上的服务器端。
+传输的时候，本地网络客户端首先使用 SOCKS5 连接到 ss-local，这里面的流量传输都是明文 的，然后 ss-local 将流量打包传输到 ss-server 上，这里的流量是加密的，然后 ss-server 解码 SOCKS5 数据包，访问目的服务器。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12"><span class="section-number-2">2</span> 安装</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">2.1</span> 源码编译安装</h3>
+<div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+
+<pre class="src src-bash">sudo apt-get install build-essential autoconf libtool libssl-dev
+git clone https://github.com/shadowsocks/shadowsocks-libev.git
+<span style="color: #cc99cc;">cd</span> shadowsocks-libev
+./configure &amp;&amp; make
+sudo make install
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">2.2</span> ss-server<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+主要使用轻量级的 libev 版本：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash"><span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">First, add the GPG public key to your system:</span>
+wget -O- http://ShadowSocks.org/debian/1D27208A.gpg | sudo apt-key add -
+
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">Ubuntu 14.04 or above</span>
+sudo sh -c <span style="color: #66cccc;">'echo "deb http://shadowsocks.org/ubuntu trusty main" &gt; /etc/apt/sources.list.d/shadowsocks.list'</span>
+
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">Debian Wheezy, Ubuntu 12.04 or any distribution with libssl &gt; 1.0.1</span>
+sudo sh -c <span style="color: #66cccc;">'echo "deb http://shadowsocks.org/debian wheezy main" &gt; /etc/apt/sources.list.d/shadowsocks.list'</span>
+
+sudo apt-get update
+sudo apt-get install ShadowSocks-libev
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">2.3</span> ss-local<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup></h3>
+<div class="outline-text-3" id="text-2-3">
+</div><div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4"><span class="section-number-4">2.3.1</span> ss-local</h4>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5"><span class="section-number-4">2.3.2</span> ss-qt5</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+ss-qt5 是 linux 下面的图形界面客户端。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash" id="orgsrcblock1">sudo add-apt-repository ppa:hzwhuang/ss-qt5
+sudo apt-get update
+sudo apt-get install ShadowSocks-qt5
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">2.4</span> 基本配置<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup></h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+ss-server 与 ss-local 配置文件是 json 格式的，默认名字是 config.json，服务器和客户端配置差不多，甚至可以共用一份配置文件。
+</p>
+
+<pre class="example">
+{
+	"server":"server-ip",
+	"server_port":443,
+	"local_address":"127.0.0.1",
+	"local_port":1080,
+	"password":"your-password",
+	"timeout":300,
+	"method":"rc4-md5",
+	"fast_open":true,
+	"workers":1
+}
+</pre>
+
+<table border="1" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" width="auto">
+<caption class="t-above"><span class="table-number">Table 1:</span> 配置的说明</caption>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Name</th>
+<th scope="col" class="org-left">Explaination</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">server</td>
+<td class="org-left">the address your server listens（服务器 IP）</td>
+</tr>
+
+<tr>
+<td class="org-left">local_address</td>
+<td class="org-left">the address your local listens（本地代理地址）</td>
+</tr>
+
+<tr>
+<td class="org-left">local_port</td>
+<td class="org-left">local port（本地代理端口）</td>
+</tr>
+
+<tr>
+<td class="org-left">port_password</td>
+<td class="org-left">password used for encryption(自己设定的服务器端口和密码，可以支持多个用户)</td>
+</tr>
+
+<tr>
+<td class="org-left">timeout</td>
+<td class="org-left">in seconds（超时断开，以秒为单位）</td>
+</tr>
+
+<tr>
+<td class="org-left">method</td>
+<td class="org-left">default: "aes-256-cfb",有多种加密方式可供选择，可以通过 M2Crypto 加快加密速度：</td>
+</tr>
+
+<tr>
+<td class="org-left">fast_open</td>
+<td class="org-left">use TCP_FASTOPEN, true / false，如果客户端和服务器都是 on Linux 3.7+，可以开启 <code>fast_open</code> 来减少延迟。</td>
+</tr>
+
+<tr>
+<td class="org-left">workers</td>
+<td class="org-left">number of workers, available on Unix/Linux（支持类似 nginx 一样使用多个子进程，这个只在 Unix 和 Linux 下有用，可不设置）</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">2.5</span> 优化<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup></h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+如果出现
+</p>
+<blockquote>
+<p>
+error: too many open files
+</p>
+</blockquote>
+<p>
+那么应该对系统做一些优化，创建 <code>/etc/sysctl.d/local.conf</code> 文件，添加以下内容：
+</p>
+<pre class="example">
+# max open files
+fs.file-max = 51200
+# max read buffer
+net.core.rmem_max = 67108864
+# max write buffer
+net.core.wmem_max = 67108864
+# default read buffer
+net.core.rmem_default = 65536
+# default write buffer
+net.core.wmem_default = 65536
+# max processor input queue
+net.core.netdev_max_backlog = 4096
+# max backlog
+net.core.somaxconn = 4096
+
+# resist SYN flood attacks
+net.ipv4.tcp_syncookies = 1
+# reuse timewait sockets when safe
+net.ipv4.tcp_tw_reuse = 1
+# turn off fast timewait sockets recycling
+net.ipv4.tcp_tw_recycle = 0
+# short FIN timeout
+net.ipv4.tcp_fin_timeout = 30
+# short keepalive time
+net.ipv4.tcp_keepalive_time = 1200
+# outbound port range
+net.ipv4.ip_local_port_range = 10000 65000
+# max SYN backlog
+net.ipv4.tcp_max_syn_backlog = 4096
+# max timewait sockets held by system simultaneously
+net.ipv4.tcp_max_tw_buckets = 5000
+# turn on TCP Fast Open on both client and server side
+net.ipv4.tcp_fastopen = 3
+# TCP receive buffer
+net.ipv4.tcp_rmem = 4096 87380 67108864
+# TCP write buffer
+net.ipv4.tcp_wmem = 4096 65536 67108864
+# turn on path MTU discovery
+net.ipv4.tcp_mtu_probing = 1
+
+# for high-latency network
+net.ipv4.tcp_congestion_control = hybla
+
+# for low-latency network, use cubic instead
+# net.ipv4.tcp_congestion_control = cubic
+</pre>
+
+<p>
+然后执行以下命令应用上面的优化：
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-bash">sysctl --system
+</pre>
+</div>
+
+<p>
+Warning: DO NOT ENABLE net.ipv4.tcp_tw_recycle!!! See <a href="http://vincent.bernat.im/en/blog/2014-tcp-time-wait-state-linux.html">this article</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">2.6</span> 开机自启动<sup><a id="fnr.6" class="footref" href="#fn.6">6</a></sup></h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+使用 systemd 控制启动：
+</p>
+</div>
+<div id="outline-container-orgheadline9" class="outline-4">
+<h4 id="orgheadline9"><span class="section-number-4">2.6.1</span> ss-server</h4>
+<div class="outline-text-4" id="text-2-6-1">
+<pre class="example">
+[Unit]
+Description=ShadowSocks Server Daemon
+After=network.target
+
+[Service]
+User=root
+Group=root
+ExecStart=/usr/bin/ss-server -c /etc/ShadowSocks-libev/server.json
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
+</pre>
+
+<p>
+执行以下命令启动服务，并设置开机启动
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-bash">     systemctl start ss-server.service
+     systemctl enable ss-server.service
+     systemctl status ss-server.service
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline10" class="outline-4">
+<h4 id="orgheadline10"><span class="section-number-4">2.6.2</span> ss-local</h4>
+<div class="outline-text-4" id="text-2-6-2">
+<pre class="example">
+[Unit]
+Description=ShadowSocks client daemon
+After=network.target
+
+[Service]
+User=root
+Group=root
+ExecStart=/usr/bin/ss-local -c  /etc/ShadowSocks-libev/local.json
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
+</pre>
+
+<div class="org-src-container">
+
+<pre class="src src-bash">     systemctl start ss-local.service
+     systemctl enable ss-local.service
+     systemctl status ss-local.service
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13"><span class="section-number-2">3</span> 源码分析</h2>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://shadowsocks.org/en/index.html">ShadowSocks 官网</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://shadowsocks.org/en/download/servers.html">ShadowSocks server</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://shadowsocks.org/en/download/clients.html">ShadowSocks client</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://github.com/BlackLotus/shadowsocks/wiki">ShadowSocks wiki</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5">5</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://github.com/shadowsocks/shadowsocks/wiki/Optimizing-Shadowsocks">Optimizing ShadowSocks</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6">6</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://blog.restonce.com/archives/1113.html">ShadowSocks 搭建与使用笔记</a>
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: lsl</p>
+<p class="date">Created: 2016-08-07 Sun 19:30</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

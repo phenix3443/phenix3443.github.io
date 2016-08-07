@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-07-23 六 12:30 -->
+<!-- 2016-08-07 Sun 19:30 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>TRAMP mode 实践</title>
+<title>TRAMP mode manual</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="lsl" />
 <style type="text/css">
@@ -165,7 +165,7 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">TRAMP mode 实践</h1>
+<h1 class="title">TRAMP mode manual</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
@@ -537,7 +537,7 @@ For external transfers, TRAMP issues a command like the following:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">rcp user@host:/path/to/remote/file /tmp/tramp.4711
+<pre class="src src-bash">rcp user@host:/path/to/remote/file /tmp/tramp.4711
 </pre>
 </div>
 
@@ -1326,10 +1326,10 @@ You can also specify different methods for certain user/host combinations, via t
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(add-to-list 'tramp-default-method-alist '(<span style="color: #ff4ea3;">""</span> <span style="color: #ff4ea3;">"john"</span> <span style="color: #ff4ea3;">"ssh"</span>))
-(add-to-list 'tramp-default-method-alist '(<span style="color: #ff4ea3;">"lily"</span> <span style="color: #ff4ea3;">""</span> <span style="color: #ff4ea3;">"rsync"</span>))
+<pre class="src src-elisp">(add-to-list 'tramp-default-method-alist '(<span style="color: #66cccc;">""</span> <span style="color: #66cccc;">"john"</span> <span style="color: #66cccc;">"ssh"</span>))
+(add-to-list 'tramp-default-method-alist '(<span style="color: #66cccc;">"lily"</span> <span style="color: #66cccc;">""</span> <span style="color: #66cccc;">"rsync"</span>))
 (add-to-list 'tramp-default-method-alist
-             '(<span style="color: #ff4ea3;">"\\`localhost\\'"</span> <span style="color: #ff4ea3;">"\\`root\\'"</span> <span style="color: #ff4ea3;">"su"</span>))
+             '(<span style="color: #66cccc;">"\\`localhost\\'"</span> <span style="color: #66cccc;">"\\`root\\'"</span> <span style="color: #66cccc;">"su"</span>))
 </pre>
 </div>
 
@@ -1441,7 +1441,7 @@ The user part of a TRAMP file name can be omitted. Usually, it is replaced by th
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq tramp-default-user <span style="color: #ff4ea3;">"root"</span>)
+<pre class="src src-elisp">(setq tramp-default-user <span style="color: #66cccc;">"root"</span>)
 </pre>
 </div>
 
@@ -1464,7 +1464,7 @@ You can also specify different users for certain method/host combinations, via t
 <div class="org-src-container">
 
 <pre class="src src-elisp">(add-to-list 'tramp-default-user-alist
-             '(<span style="color: #ff4ea3;">"ssh"</span> <span style="color: #ff4ea3;">".*\\.somewhere\\.else\\'"</span> <span style="color: #ff4ea3;">"john"</span>))
+             '(<span style="color: #66cccc;">"ssh"</span> <span style="color: #66cccc;">".*\\.somewhere\\.else\\'"</span> <span style="color: #66cccc;">"john"</span>))
 </pre>
 </div>
 
@@ -1496,7 +1496,7 @@ than you must discard selecting a default user by TRAMP. This will be done by se
 <div class="org-src-container">
 
 <pre class="src src-elisp">(add-to-list 'tramp-default-user-alist
-             '(<span style="color: #ff4ea3;">"ssh"</span> <span style="color: #ff4ea3;">"\\`here\\.somewhere\\.else\\'"</span> nil))
+             '(<span style="color: #66cccc;">"ssh"</span> <span style="color: #66cccc;">"\\`here\\.somewhere\\.else\\'"</span> nil))
 </pre>
 </div>
 
@@ -1531,8 +1531,8 @@ If you, for example, use TRAMP mainly to contact the host ‘target’ as user �
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq tramp-default-user <span style="color: #ff4ea3;">"john"</span>
-      tramp-default-host <span style="color: #ff4ea3;">"target"</span>)
+<pre class="src src-elisp">(setq tramp-default-user <span style="color: #66cccc;">"john"</span>
+      tramp-default-host <span style="color: #66cccc;">"target"</span>)
 </pre>
 </div>
 
@@ -1597,9 +1597,9 @@ If you, for example, must pass the host ‘bastion.your.domain’ as user ‘bir
 <div class="org-src-container">
 
 <pre class="src src-elisp">(add-to-list 'tramp-default-proxies-alist
-             '(<span style="color: #ff4ea3;">"\\."</span> nil <span style="color: #ff4ea3;">"/ssh:bird@bastion.your.domain:"</span>))
+             '(<span style="color: #66cccc;">"\\."</span> nil <span style="color: #66cccc;">"/ssh:bird@bastion.your.domain:"</span>))
 (add-to-list 'tramp-default-proxies-alist
-             '(<span style="color: #ff4ea3;">"\\.your\\.domain\\'"</span> nil nil))
+             '(<span style="color: #66cccc;">"\\.your\\.domain\\'"</span> nil nil))
 </pre>
 </div>
 
@@ -1726,7 +1726,7 @@ Example:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">   (tramp-get-completion-function <span style="color: #ff4ea3;">"rsh"</span>)
+<pre class="src src-elisp">   (tramp-get-completion-function <span style="color: #66cccc;">"rsh"</span>)
 </pre>
 </div>
 
@@ -1748,9 +1748,9 @@ Example:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(tramp-set-completion-function <span style="color: #ff4ea3;">"ssh"</span>
-                               '((tramp-parse-sconfig <span style="color: #ff4ea3;">"/etc/ssh_config"</span>)
-                                 (tramp-parse-sconfig <span style="color: #ff4ea3;">"~/.ssh/config"</span>)))
+<pre class="src src-elisp">(tramp-set-completion-function <span style="color: #66cccc;">"ssh"</span>
+                               '((tramp-parse-sconfig <span style="color: #66cccc;">"/etc/ssh_config"</span>)
+                                 (tramp-parse-sconfig <span style="color: #66cccc;">"~/.ssh/config"</span>)))
 </pre>
 </div>
 
@@ -1855,7 +1855,7 @@ Example:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">   (my-tramp-parse <span style="color: #ff4ea3;">"~/.my-tramp-hosts"</span>)
+<pre class="src src-elisp">   (my-tramp-parse <span style="color: #66cccc;">"~/.my-tramp-hosts"</span>)
 </pre>
 </div>
 
@@ -2041,8 +2041,8 @@ A special property is "busybox". This must be set, if the remote host runs a ver
 <div class="org-src-container">
 
 <pre class="src src-elisp">(add-to-list 'tramp-connection-properties
-             (list (regexp-quote <span style="color: #ff4ea3;">"/ssh:user@randomhost.your.domain:"</span>)
-                   <span style="color: #ff4ea3;">"busybox"</span> t))
+             (list (regexp-quote <span style="color: #66cccc;">"/ssh:user@randomhost.your.domain:"</span>)
+                   <span style="color: #66cccc;">"busybox"</span> t))
 </pre>
 </div>
 </div>
@@ -2116,10 +2116,10 @@ To add a directory to the remote search path, you could use code such as:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp"><span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">We load TRAMP to define the variable.</span>
-(<span style="color: #a1db00;">require</span> '<span style="color: #5fafd7;">tramp</span>)
-<span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">We have perl in "/usr/local/perl/bin"</span>
-(add-to-list 'tramp-remote-path <span style="color: #ff4ea3;">"/usr/local/perl/bin"</span>)
+<pre class="src src-elisp"><span style="color: #999999; font-style: italic;">;; </span><span style="color: #999999; font-style: italic;">We load TRAMP to define the variable.</span>
+(<span style="color: #99cc99;">require</span> '<span style="color: #6699cc;">tramp</span>)
+<span style="color: #999999; font-style: italic;">;; </span><span style="color: #999999; font-style: italic;">We have perl in "/usr/local/perl/bin"</span>
+(add-to-list 'tramp-remote-path <span style="color: #66cccc;">"/usr/local/perl/bin"</span>)
 </pre>
 </div>
 
@@ -2239,16 +2239,16 @@ tramp-password-prompt-repgexp 在英语环境中可以检测这种请求。当�
 <pre class="src src-elisp">(setq
  tramp-password-prompt-regexp
  (concat
-  <span style="color: #ff4ea3;">"^.*"</span>
+  <span style="color: #66cccc;">"^.*"</span>
   (regexp-opt
-   '(<span style="color: #ff4ea3;">"passphrase"</span> <span style="color: #ff4ea3;">"Passphrase"</span>
-     <span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">English</span>
-     <span style="color: #ff4ea3;">"password"</span> <span style="color: #ff4ea3;">"Password"</span>
-     <span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Deutsch</span>
-     <span style="color: #ff4ea3;">"passwort"</span> <span style="color: #ff4ea3;">"Passwort"</span>
-     <span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">Fran&#231;ais</span>
-     <span style="color: #ff4ea3;">"mot de passe"</span> <span style="color: #ff4ea3;">"Mot de passe"</span>) t)
-  <span style="color: #ff4ea3;">".*:\0? *"</span>))
+   '(<span style="color: #66cccc;">"passphrase"</span> <span style="color: #66cccc;">"Passphrase"</span>
+     <span style="color: #999999; font-style: italic;">;; </span><span style="color: #999999; font-style: italic;">English</span>
+     <span style="color: #66cccc;">"password"</span> <span style="color: #66cccc;">"Password"</span>
+     <span style="color: #999999; font-style: italic;">;; </span><span style="color: #999999; font-style: italic;">Deutsch</span>
+     <span style="color: #66cccc;">"passwort"</span> <span style="color: #66cccc;">"Passwort"</span>
+     <span style="color: #999999; font-style: italic;">;; </span><span style="color: #999999; font-style: italic;">Fran&#231;ais</span>
+     <span style="color: #66cccc;">"mot de passe"</span> <span style="color: #66cccc;">"Mot de passe"</span>) t)
+  <span style="color: #66cccc;">".*:\0? *"</span>))
 </pre>
 </div>
 
@@ -2287,17 +2287,17 @@ The other approach is to teach TRAMP about these questions. See the variable tra
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #a1db00;">defconst</span> <span style="color: #ff8700;">my-tramp-prompt-regexp</span>
-  (concat (regexp-opt '(<span style="color: #ff4ea3;">"Enter the birth date of your mother:"</span>) t)
-          <span style="color: #ff4ea3;">"\\s-*"</span>)
-  <span style="color: #ff4b4b;">"Regular expression matching my login prompt question."</span>)
+<pre class="src src-elisp">(<span style="color: #99cc99;">defconst</span> <span style="color: #ffcc66;">my-tramp-prompt-regexp</span>
+  (concat (regexp-opt '(<span style="color: #66cccc;">"Enter the birth date of your mother:"</span>) t)
+          <span style="color: #66cccc;">"\\s-*"</span>)
+  <span style="color: #cc99cc;">"Regular expression matching my login prompt question."</span>)
 
-(<span style="color: #a1db00;">defun</span> <span style="color: #ffd700;">my-tramp-action</span> (proc vec)
-  <span style="color: #ff4b4b;">"Enter \"19000101\" in order to give a correct answer."</span>
-  (<span style="color: #a1db00;">save-window-excursion</span>
-    (<span style="color: #a1db00;">with-current-buffer</span> (tramp-get-connection-buffer vec)
-      (tramp-message vec 6 <span style="color: #ff4ea3;">"\n%s"</span> (buffer-string))
-      (tramp-send-string vec <span style="color: #ff4ea3;">"19000101"</span>))))
+(<span style="color: #99cc99;">defun</span> <span style="color: #f99157;">my-tramp-action</span> (proc vec)
+  <span style="color: #cc99cc;">"Enter \"19000101\" in order to give a correct answer."</span>
+  (<span style="color: #99cc99;">save-window-excursion</span>
+    (<span style="color: #99cc99;">with-current-buffer</span> (tramp-get-connection-buffer vec)
+      (tramp-message vec 6 <span style="color: #66cccc;">"\n%s"</span> (buffer-string))
+      (tramp-send-string vec <span style="color: #66cccc;">"19000101"</span>))))
 
 (add-to-list 'tramp-actions-before-shell
              '(my-tramp-prompt-regexp my-tramp-action))
@@ -2417,7 +2417,7 @@ You can redefine the shell prompt by checking the environment variable INSIDE_EM
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setenv <span style="color: #ff4ea3;">"ESHELL"</span> <span style="color: #ff4ea3;">"bash"</span>)
+<pre class="src src-elisp">(setenv <span style="color: #66cccc;">"ESHELL"</span> <span style="color: #66cccc;">"bash"</span>)
 </pre>
 </div>
 
@@ -2426,10 +2426,10 @@ Your file ~/.emacs_SHELLNAME could contain code like
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">Reset the prompt for remote Tramp shells.</span>
-<span style="color: #a1db00;">if</span> [ <span style="color: #ff4ea3;">"${INSIDE_EMACS/*tramp*/tramp}"</span> == <span style="color: #ff4ea3;">"tramp"</span> ] ; <span style="color: #a1db00;">then</span>
-    <span style="color: #ff8700;">PS1</span>=<span style="color: #ff4ea3;">"[\u@\h \w]$ "</span>
-<span style="color: #a1db00;">fi</span>
+<pre class="src src-bash"><span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">Reset the prompt for remote Tramp shells.</span>
+<span style="color: #99cc99;">if</span> [ <span style="color: #66cccc;">"${INSIDE_EMACS/*tramp*/tramp}"</span> == <span style="color: #66cccc;">"tramp"</span> ] ; <span style="color: #99cc99;">then</span>
+    <span style="color: #ffcc66;">PS1</span>=<span style="color: #66cccc;">"[\u@\h \w]$ "</span>
+<span style="color: #99cc99;">fi</span>
 </pre>
 </div>
 </div>
@@ -2449,7 +2449,7 @@ If your remote nc refuses to accept the -p parameter, you could overwrite the sy
 
 <pre class="src src-elisp">(add-to-list
  'tramp-connection-properties
- `(,(regexp-quote <span style="color: #ff4ea3;">"192.168.0.1"</span>) <span style="color: #ff4ea3;">"remote-copy-args"</span> ((<span style="color: #ff4ea3;">"-l"</span>) (<span style="color: #ff4ea3;">"%r"</span>))))
+ `(,(regexp-quote <span style="color: #66cccc;">"192.168.0.1"</span>) <span style="color: #66cccc;">"remote-copy-args"</span> ((<span style="color: #66cccc;">"-l"</span>) (<span style="color: #66cccc;">"%r"</span>))))
 </pre>
 </div>
 
@@ -2477,7 +2477,7 @@ The default shell /bin/sh does not exist. Instead, you shall use just sh, which 
 <div class="org-src-container">
 
 <pre class="src src-elisp">(add-to-list 'tramp-connection-properties
-             (list (regexp-quote <span style="color: #ff4ea3;">"192.168.0.26"</span>) <span style="color: #ff4ea3;">"remote-shell"</span> <span style="color: #ff4ea3;">"sh"</span>))
+             (list (regexp-quote <span style="color: #66cccc;">"192.168.0.26"</span>) <span style="color: #66cccc;">"remote-shell"</span> <span style="color: #66cccc;">"sh"</span>))
 </pre>
 </div>
 
@@ -2491,7 +2491,7 @@ The user settings for the PATH environment variable must be preserved. It has al
 <div class="org-src-container">
 
 <pre class="src src-elisp">(add-to-list 'tramp-remote-path 'tramp-own-remote-path)
-(add-to-list 'tramp-remote-path <span style="color: #ff4ea3;">"/system/xbin"</span>)
+(add-to-list 'tramp-remote-path <span style="color: #66cccc;">"/system/xbin"</span>)
 </pre>
 </div>
 
@@ -2500,7 +2500,7 @@ If the Android device is not ‘rooted’, you must give the shell a writable di
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(add-to-list 'tramp-remote-process-environment <span style="color: #ff4ea3;">"TMPDIR=$HOME"</span>)
+<pre class="src src-elisp">(add-to-list 'tramp-remote-process-environment <span style="color: #66cccc;">"TMPDIR=$HOME"</span>)
 </pre>
 </div>
 
@@ -2524,7 +2524,7 @@ In this case, you must change the setting for the remote shell to
 <div class="org-src-container">
 
 <pre class="src src-elisp">(add-to-list 'tramp-connection-properties
-             (list (regexp-quote <span style="color: #ff4ea3;">"android"</span>) <span style="color: #ff4ea3;">"remote-shell"</span> <span style="color: #ff4ea3;">"sh"</span>))
+             (list (regexp-quote <span style="color: #66cccc;">"android"</span>) <span style="color: #66cccc;">"remote-shell"</span> <span style="color: #66cccc;">"sh"</span>))
 </pre>
 </div>
 
@@ -2578,12 +2578,12 @@ It is also possible to disable backups depending on the used method. The followi
 <div class="org-src-container">
 
 <pre class="src src-elisp">(setq backup-enable-predicate
-      (<span style="color: #a1db00;">lambda</span> (name)
+      (<span style="color: #99cc99;">lambda</span> (name)
         (and (normal-backup-enable-predicate name)
              (not
-              (<span style="color: #a1db00;">let</span> ((method (file-remote-p name 'method)))
-                (<span style="color: #a1db00;">when</span> (stringp method)
-                  (member method '(<span style="color: #ff4ea3;">"su"</span> <span style="color: #ff4ea3;">"sudo"</span>))))))))
+              (<span style="color: #99cc99;">let</span> ((method (file-remote-p name 'method)))
+                (<span style="color: #99cc99;">when</span> (stringp method)
+                  (member method '(<span style="color: #66cccc;">"su"</span> <span style="color: #66cccc;">"sudo"</span>))))))))
 </pre>
 </div>
 
@@ -2597,7 +2597,7 @@ Example:
 <div class="org-src-container">
 
 <pre class="src src-elisp">(add-to-list 'backup-directory-alist
-             (cons <span style="color: #ff4ea3;">"."</span> <span style="color: #ff4ea3;">"~/.emacs.d/backups/"</span>))
+             (cons <span style="color: #66cccc;">"."</span> <span style="color: #66cccc;">"~/.emacs.d/backups/"</span>))
 (setq tramp-backup-directory-alist backup-directory-alist)
 </pre>
 </div>
@@ -2917,7 +2917,7 @@ A proxy looks like a remote file name specification without the local file name 
 
 <div class="org-src-container">
 
-<pre class="src src-sh">C-x C-f /ssh:bird@bastion|ssh:you@remotehost:/path
+<pre class="src src-bash">C-x C-f /ssh:bird@bastion|ssh:you@remotehost:/path
 </pre>
 </div>
 
@@ -3195,7 +3195,7 @@ Like in tramp-cleanup-all-connections, all remote connections are cleaned up. Ad
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: lsl</p>
-<p class="date">Created: 2016-07-23 六 12:30</p>
+<p class="date">Created: 2016-08-07 Sun 19:30</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

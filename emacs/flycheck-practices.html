@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-07-23 六 12:30 -->
+<!-- 2016-08-07 Sun 19:30 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Flycheck practices</title>
@@ -403,9 +403,9 @@ You need to enable them explicitly, by adding the following to your init file:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #a1db00;">require</span> '<span style="color: #5fafd7;">package</span>)
+<pre class="src src-elisp">(<span style="color: #99cc99;">require</span> '<span style="color: #6699cc;">package</span>)
 (add-to-list 'package-archives
-             '(<span style="color: #ff4ea3;">"melpa"</span> . <span style="color: #ff4ea3;">"http://melpa.org/packages/"</span>) t)
+             '(<span style="color: #66cccc;">"melpa"</span> . <span style="color: #66cccc;">"http://melpa.org/packages/"</span>) t)
 (package-initialize)
 </pre>
 </div>
@@ -423,7 +423,7 @@ If you use Cask to manage your packages, add the following to your Cask file:
 <pre class="src src-elisp">(source gnu)
 (source melpa-stable)
 
-(depends-on <span style="color: #ff4ea3;">"flycheck"</span>)
+(depends-on <span style="color: #66cccc;">"flycheck"</span>)
 </pre>
 </div>
 </div>
@@ -464,7 +464,7 @@ Next you need to install syntax checking tools for the major modes you are using
 
 <div class="org-src-container">
 
-<pre class="src src-sh">$ pip install pylint
+<pre class="src src-bash">$ pip install pylint
 </pre>
 </div>
 
@@ -474,7 +474,7 @@ For Ruby, you might want to use Rubocop and ruby-lint:
 
 <div class="org-src-container">
 
-<pre class="src src-sh">gem install rubocop ruby-lint
+<pre class="src src-bash">gem install rubocop ruby-lint
 </pre>
 </div>
 
@@ -1363,7 +1363,7 @@ Copy the IDs of the errors at point.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: lsl</p>
-<p class="date">Created: 2016-07-23 六 12:30</p>
+<p class="date">Created: 2016-08-07 Sun 19:30</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

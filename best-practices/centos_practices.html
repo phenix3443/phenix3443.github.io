@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-07-23 六 12:30 -->
+<!-- 2016-08-07 Sun 19:48 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>centos 实践</title>
@@ -182,7 +182,7 @@ for the JavaScript code in this tag.
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 
-<pre class="src src-sh">    sudo cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+<pre class="src src-bash">    sudo cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
     sudo ntpdate us.pool.ntp.org
 </pre>
 </div>
@@ -233,7 +233,7 @@ VMware workstation 安装 centos7 之后，每次重启之后网路都是默认�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">    <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">&#26597;&#30475;&#33258;&#24049;&#30340;&#32593;&#21345;&#20449;&#24687;</span>
+<pre class="src src-bash">    <span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">&#26597;&#30475;&#33258;&#24049;&#30340;&#32593;&#21345;&#20449;&#24687;</span>
     ip addr
     sudo vim /etc/sysconfig/network-scripts/ifcfg-eno16777736
 </pre>
@@ -246,7 +246,7 @@ VMware workstation 安装 centos7 之后，每次重启之后网路都是默认�
 </pre>
 <div class="org-src-container">
 
-<pre class="src src-sh">    sudo systemctl restart network
+<pre class="src src-bash">    sudo systemctl restart network
 </pre>
 </div>
 </div>
@@ -266,7 +266,7 @@ VMware workstation 安装 centos7 之后，每次重启之后网路都是默认�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">    sudo yum install epel-release
+<pre class="src src-bash">    sudo yum install epel-release
 </pre>
 </div>
 
@@ -276,7 +276,7 @@ VMware workstation 安装 centos7 之后，每次重启之后网路都是默认�
 
 <div class="org-src-container">
 
-<pre class="src src-sh">    sudo yum install dnf
+<pre class="src src-bash">    sudo yum install dnf
 </pre>
 </div>
 </div>
@@ -287,7 +287,7 @@ VMware workstation 安装 centos7 之后，每次重启之后网路都是默认�
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 
-<pre class="src src-sh">    sudo dnf install dnf-plugins-core
+<pre class="src src-bash">    sudo dnf install dnf-plugins-core
     sudo dnf copr enable librehat/shadowsocks
     sudo dnf update
     sudo dnf install shadowsocks-qt5
@@ -306,9 +306,9 @@ VMware workstation 安装 centos7 之后，每次重启之后网路都是默认�
 <div class="outline-text-2" id="text-7">
 <div class="org-src-container">
 
-<pre class="src src-sh">  sudo yum -y install gtk+-devel gtk2-devel libXpm-devel libpng-devel giflib-devel libtiff-devel libjpeg-devel ncurses-devel gpm-devel dbus-devel dbus-glib-devel dbus-python GConf2-devel pkgconfig
+<pre class="src src-bash">  sudo yum -y install gtk+-devel gtk2-devel libXpm-devel libpng-devel giflib-devel libtiff-devel libjpeg-devel ncurses-devel gpm-devel dbus-devel dbus-glib-devel dbus-python GConf2-devel pkgconfig
 
-  <span style="color: #d18aff;">cd</span> emacs24.5
+  <span style="color: #cc99cc;">cd</span> emacs24.5
   ./configure
   make &amp;&amp; sudo make install
 </pre>
@@ -321,7 +321,7 @@ VMware workstation 安装 centos7 之后，每次重启之后网路都是默认�
 <div class="outline-text-2" id="text-8">
 <div class="org-src-container">
 
-<pre class="src src-sh">rpm -Uvh http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+<pre class="src src-bash">rpm -Uvh http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
 yum install the_silver_searcher
 </pre>
 </div>
@@ -336,7 +336,7 @@ yum install the_silver_searcher
 
 <div class="org-src-container">
 
-<pre class="src src-sh">su root
+<pre class="src src-bash">su root
 vim /etc/yum.repos.d/google-chrome.repo
 </pre>
 </div>
@@ -360,7 +360,7 @@ gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
 
 <div class="org-src-container">
 
-<pre class="src src-sh">sudo yum install google-chrome-stable
+<pre class="src src-bash">sudo yum install google-chrome-stable
 </pre>
 </div>
 </div>
@@ -378,7 +378,7 @@ gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: lsl</p>
-<p class="date">Created: 2016-07-23 六 12:30</p>
+<p class="date">Created: 2016-08-07 Sun 19:48</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

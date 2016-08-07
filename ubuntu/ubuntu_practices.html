@@ -1,0 +1,863 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-08-07 Sun 19:36 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ubuntu 使用笔记</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="lsl" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Ubuntu 使用笔记</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline3">1. 安装</a>
+<ul>
+<li><a href="#orgheadline1">1.1. 硬盘安装</a></li>
+<li><a href="#orgheadline2">1.2. 虚拟机安装</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline4">2. 查看版本</a></li>
+<li><a href="#orgheadline5">3. 更新软件</a></li>
+<li><a href="#orgheadline6">4. 设置 root 密码</a></li>
+<li><a href="#orgheadline7">5. ubuntu 同步时间命令</a></li>
+<li><a href="#orgheadline8">6. 配置 bashrc</a></li>
+<li><a href="#orgheadline51">7. 软件</a>
+<ul>
+<li><a href="#orgheadline9">7.1. Aria2</a></li>
+<li><a href="#orgheadline10">7.2. Baidu 网盘</a></li>
+<li><a href="#orgheadline12">7.3. Chrome</a>
+<ul>
+<li><a href="#orgheadline11">7.3.1. 解决字体发虚问题</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline14">7.4. Chromium</a>
+<ul>
+<li><a href="#orgheadline13">7.4.1. 安装</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline15">7.5. Evernote</a></li>
+<li><a href="#orgheadline16">7.6. Fcitx</a></li>
+<li><a href="#orgheadline17">7.7. Flash</a></li>
+<li><a href="#orgheadline18">7.8. Foxit Reader</a></li>
+<li><a href="#orgheadline19">7.9. GIT</a></li>
+<li><a href="#orgheadline20">7.10. Graphviz</a></li>
+<li><a href="#orgheadline21">7.11. Gnome</a></li>
+<li><a href="#orgheadline24">7.12. KDE</a>
+<ul>
+<li><a href="#orgheadline22">7.12.1. 安装</a></li>
+<li><a href="#orgheadline23">7.12.2. 卸载</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline25">7.13. MYSQL</a></li>
+<li><a href="#orgheadline26">7.14. mldonkey</a></li>
+<li><a href="#orgheadline27">7.15. okular</a></li>
+<li><a href="#orgheadline28">7.16. Pidgin</a></li>
+<li><a href="#orgheadline29">7.17. PlayOnLinux</a></li>
+<li><a href="#orgheadline30">7.18. p7z-ful</a></li>
+<li><a href="#orgheadline31">7.19. Python</a></li>
+<li><a href="#orgheadline34">7.20. Rime</a>
+<ul>
+<li><a href="#orgheadline32">7.20.1. ibus-rime 中州韵</a></li>
+<li><a href="#orgheadline33">7.20.2. Fcitx-rime</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline35">7.21. Skype</a></li>
+<li><a href="#orgheadline36">7.22. Shadowsocks</a></li>
+<li><a href="#orgheadline37">7.23. Shutter</a></li>
+<li><a href="#orgheadline38">7.24. SmartGIT</a></li>
+<li><a href="#orgheadline39">7.25. SMPlayer</a></li>
+<li><a href="#orgheadline42">7.26. Sogou 输入法</a>
+<ul>
+<li><a href="#orgheadline40">7.26.1. 安装</a></li>
+<li><a href="#orgheadline41">7.26.2. 卸载</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline43">7.27. Telegram</a></li>
+<li><a href="#orgheadline44">7.28. texlive</a></li>
+<li><a href="#orgheadline45">7.29. transmission</a></li>
+<li><a href="#orgheadline46">7.30. Uget</a></li>
+<li><a href="#orgheadline47">7.31. VirtualBox</a></li>
+<li><a href="#orgheadline48">7.32. 搭建 VPN</a></li>
+<li><a href="#orgheadline49">7.33. 搭建 VPS</a></li>
+<li><a href="#orgheadline50">7.34. 有道词典</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">1</span> 安装</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> 硬盘安装</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+使用 EFI 引导模式安装，由于 EFI 能够自动识别磁盘根目录下的 EFI 文件夹中的引导文件，所以只需要把 ISO 文件解压到 U 盘即可，主要 U 盘需要先格式化为 FAT32 位的，这里有一个安装教程，安装过程中最重要的一点是要建立 EFI 引导分区，否则不能引导成功。
+</p>
+
+<p>
+安装过程中如可以下载更新的话推荐直接下载更新，因为有次安装的之后更新系统导致一些软件不能正确安装。此问题待有时间深究一下。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">1.2</span> 虚拟机安装</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+使用 VMware Workstation 安装。有必要的话安装 vmware-tools。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">2</span> 查看版本</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+
+<pre class="src src-bash">lsb_realease -a
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5"><span class="section-number-2">3</span> 更新软件</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+安装一些必要开发软件：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash" id="orgsrcblock1"><span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">&#23433;&#35013;&#24517;&#22791;&#30340;&#24320;&#21457;&#21253;</span>
+sudo apt-get install -y aptitude build-essential automake autoconf libtool cmake
+
+sudo apt-get upgrade
+
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">&#26032;&#24314;&#24037;&#31243;&#30446;&#24405;&#65292;&#25918;&#32622;&#20043;&#21518;&#30340;&#24037;&#31243;&#39033;&#30446;</span>
+mkdir ~/projects/
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">4</span> 设置 root 密码</h2>
+<div class="outline-text-2" id="text-4">
+<div class="org-src-container">
+
+<pre class="src src-bash">sudo passwd root
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7"><span class="section-number-2">5</span> ubuntu 同步时间命令</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+经常在虚拟机中使用，重新恢复之后经常需要同步网络时间：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash" id="orgsrcblock2">sudo ntpdate cn.pool.ntp.org
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8"><span class="section-number-2">6</span> 配置 bashrc</h2>
+<div class="outline-text-2" id="text-6">
+<div class="org-src-container">
+
+<pre class="src src-bash"></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline51" class="outline-2">
+<h2 id="orgheadline51"><span class="section-number-2">7</span> 软件</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">7.1</span> Aria2<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></h3>
+<div class="outline-text-3" id="text-7-1">
+<div class="org-src-container">
+
+<pre class="src src-bash">sudo add-apt-repository ppa:t-tujikawa/ppa
+sudo apt-get update
+sudo apt-get install -y aria2
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">7.2</span> Baidu 网盘<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></h3>
+</div>
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12"><span class="section-number-3">7.3</span> Chrome</h3>
+<div class="outline-text-3" id="text-7-3">
+</div><div id="outline-container-orgheadline11" class="outline-4">
+<h4 id="orgheadline11"><span class="section-number-4">7.3.1</span> 解决字体发虚问题</h4>
+<div class="outline-text-4" id="text-7-3-1">
+<p>
+修改字体配置文件：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">   mv /etc/fonts/conf.avail/69-language-selector-zh-cn.conf /etc/fonts/conf.avail/69-language-selector-zh-cn.conf.bak
+</pre>
+</div>
+<p>
+替换为下面的代码：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-xml">   &lt;?<span style="color: #99cc99;">xml</span> <span style="color: #cc99cc;">version="1.0"</span>?&gt;
+   &lt;!<span style="color: #99cc99;">DOCTYPE</span> fontconfig <span style="color: #99cc99;">SYSTEM</span> <span style="color: #cc99cc;">"</span><span style="color: #cc99cc;">fonts.dtd</span><span style="color: #cc99cc;">"</span>&gt;
+   &lt;<span style="color: #f99157;">fontconfig</span>&gt;
+
+     &lt;<span style="color: #f99157;">match</span> <span style="color: #ffcc66;">target</span>=<span style="color: #66cccc;">"</span><span style="color: #66cccc;">pattern</span><span style="color: #66cccc;">"</span>&gt;
+       &lt;<span style="color: #f99157;">test</span> <span style="color: #ffcc66;">qual</span>=<span style="color: #66cccc;">"</span><span style="color: #66cccc;">any</span><span style="color: #66cccc;">"</span> <span style="color: #ffcc66;">name</span>=<span style="color: #66cccc;">"</span><span style="color: #66cccc;">family</span><span style="color: #66cccc;">"</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;serif&lt;/<span style="color: #f99157;">string</span>&gt;
+       &lt;/<span style="color: #f99157;">test</span>&gt;
+       &lt;<span style="color: #f99157;">edit</span> <span style="color: #ffcc66;">name</span>=<span style="color: #66cccc;">"</span><span style="color: #66cccc;">family</span><span style="color: #66cccc;">"</span> <span style="color: #ffcc66;">mode</span>=<span style="color: #66cccc;">"</span><span style="color: #66cccc;">prepend</span><span style="color: #66cccc;">"</span> <span style="color: #ffcc66;">binding</span>=<span style="color: #66cccc;">"</span><span style="color: #66cccc;">strong</span><span style="color: #66cccc;">"</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;DejaVu Serif&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;Bitstream Vera Serif&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;HYSong&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;AR PL UMing CN&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;AR PL UMing HK&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;AR PL ShanHeiSun Uni&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;AR PL New Sung&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;WenQuanYi Bitmap Song&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;AR PL UKai CN&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;AR PL ZenKai Uni&lt;/<span style="color: #f99157;">string</span>&gt;
+       &lt;/<span style="color: #f99157;">edit</span>&gt;
+     &lt;/<span style="color: #f99157;">match</span>&gt;
+     &lt;<span style="color: #f99157;">match</span> <span style="color: #ffcc66;">target</span>=<span style="color: #66cccc;">"</span><span style="color: #66cccc;">pattern</span><span style="color: #66cccc;">"</span>&gt;
+       &lt;<span style="color: #f99157;">test</span> <span style="color: #ffcc66;">qual</span>=<span style="color: #66cccc;">"</span><span style="color: #66cccc;">any</span><span style="color: #66cccc;">"</span> <span style="color: #ffcc66;">name</span>=<span style="color: #66cccc;">"</span><span style="color: #66cccc;">family</span><span style="color: #66cccc;">"</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;sans-serif&lt;/<span style="color: #f99157;">string</span>&gt;
+       &lt;/<span style="color: #f99157;">test</span>&gt;
+       &lt;<span style="color: #f99157;">edit</span> <span style="color: #ffcc66;">name</span>=<span style="color: #66cccc;">"</span><span style="color: #66cccc;">family</span><span style="color: #66cccc;">"</span> <span style="color: #ffcc66;">mode</span>=<span style="color: #66cccc;">"</span><span style="color: #66cccc;">prepend</span><span style="color: #66cccc;">"</span> <span style="color: #ffcc66;">binding</span>=<span style="color: #66cccc;">"</span><span style="color: #66cccc;">strong</span><span style="color: #66cccc;">"</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;DejaVu Sans&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;Bitstream Vera Sans&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;WenQuanYi Micro Hei&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;WenQuanYi Zen Hei&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;Droid Sans Fallback&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;HYSong&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;AR PL UMing CN&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;AR PL UMing HK&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;AR PL ShanHeiSun Uni&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;AR PL New Sung&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;AR PL UKai CN&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;AR PL ZenKai Uni&lt;/<span style="color: #f99157;">string</span>&gt;
+       &lt;/<span style="color: #f99157;">edit</span>&gt;
+     &lt;/<span style="color: #f99157;">match</span>&gt;
+     &lt;<span style="color: #f99157;">match</span> <span style="color: #ffcc66;">target</span>=<span style="color: #66cccc;">"</span><span style="color: #66cccc;">pattern</span><span style="color: #66cccc;">"</span>&gt;
+       &lt;<span style="color: #f99157;">test</span> <span style="color: #ffcc66;">qual</span>=<span style="color: #66cccc;">"</span><span style="color: #66cccc;">any</span><span style="color: #66cccc;">"</span> <span style="color: #ffcc66;">name</span>=<span style="color: #66cccc;">"</span><span style="color: #66cccc;">family</span><span style="color: #66cccc;">"</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;monospace&lt;/<span style="color: #f99157;">string</span>&gt;
+       &lt;/<span style="color: #f99157;">test</span>&gt;
+       &lt;<span style="color: #f99157;">edit</span> <span style="color: #ffcc66;">name</span>=<span style="color: #66cccc;">"</span><span style="color: #66cccc;">family</span><span style="color: #66cccc;">"</span> <span style="color: #ffcc66;">mode</span>=<span style="color: #66cccc;">"</span><span style="color: #66cccc;">prepend</span><span style="color: #66cccc;">"</span> <span style="color: #ffcc66;">binding</span>=<span style="color: #66cccc;">"</span><span style="color: #66cccc;">strong</span><span style="color: #66cccc;">"</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;DejaVu Sans Mono&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;Bitstream Vera Sans Mono&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;WenQuanYi Micro Hei Mono&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;WenQuanYi Zen Hei Mono&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;Droid Sans Fallback&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;HYSong&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;AR PL UMing CN&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;AR PL UMing HK&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;AR PL ShanHeiSun Uni&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;AR PL New Sung&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;AR PL UKai CN&lt;/<span style="color: #f99157;">string</span>&gt;
+         &lt;<span style="color: #f99157;">string</span>&gt;AR PL ZenKai Uni&lt;/<span style="color: #f99157;">string</span>&gt;
+       &lt;/<span style="color: #f99157;">edit</span>&gt;
+     &lt;/<span style="color: #f99157;">match</span>&gt;
+
+   &lt;/<span style="color: #f99157;">fontconfig</span>&gt;
+</pre>
+</div>
+<p>
+刷新字体缓存
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">sudo fc-cache -vf
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14"><span class="section-number-3">7.4</span> Chromium</h3>
+<div class="outline-text-3" id="text-7-4">
+</div><div id="outline-container-orgheadline13" class="outline-4">
+<h4 id="orgheadline13"><span class="section-number-4">7.4.1</span> 安装</h4>
+<div class="outline-text-4" id="text-7-4-1">
+<div class="org-src-container">
+
+<pre class="src src-bash">sudo apt-get install -y chromium-browser
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15"><span class="section-number-3">7.5</span> Evernote</h3>
+<div class="outline-text-3" id="text-7-5">
+<p>
+在 windows 上面经常使用 evernote 作学习记录，但是该软件没有 linux 版本，不过有人做了第三方的客户端 everpad 可以使用：<a href="http://www.omgubuntu.co.uk/2012/09/use-evernote-in-ubuntu-with-everpad">Install Evernote Client (Everpad) in Ubuntu 14.04</a>
+注意的是：登录的时候需要在任务栏图标上右击才会出现登录窗口
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16"><span class="section-number-3">7.6</span> Fcitx<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup></h3>
+<div class="outline-text-3" id="text-7-6">
+<p>
+参见<a href="fcitx_practices.html">《Fcitxs 实践》</a>
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17"><span class="section-number-3">7.7</span> Flash</h3>
+<div class="outline-text-3" id="text-7-7">
+<ul class="org-ul">
+<li>chrome 安装教程：<a href="https://wiki.ubuntu.com/Chromium/Getting-Flash%22%20title=%22Getting-Flash">Getting-Flash</a></li>
+<li><p>
+Firefox 安装：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash" id="orgsrcblock3">sudo add-apt-repository ppa:nilarimogard/webupd8
+sudo apt-get update
+sudo apt-get install freshplayerplugin
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18"><span class="section-number-3">7.8</span> Foxit Reader</h3>
+</div>
+<div id="outline-container-orgheadline19" class="outline-3">
+<h3 id="orgheadline19"><span class="section-number-3">7.9</span> GIT</h3>
+<div class="outline-text-3" id="text-7-9">
+<p>
+参见<a href="git_practices.html">《GIT 实践》</a>
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20"><span class="section-number-3">7.10</span> Graphviz</h3>
+</div>
+<div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21"><span class="section-number-3">7.11</span> Gnome<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup></h3>
+<div class="outline-text-3" id="text-7-11">
+<p>
+参见<a href="gnome_practice.html">《gnome practice》</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline24" class="outline-3">
+<h3 id="orgheadline24"><span class="section-number-3">7.12</span> KDE</h3>
+<div class="outline-text-3" id="text-7-12">
+</div><div id="outline-container-orgheadline22" class="outline-4">
+<h4 id="orgheadline22"><span class="section-number-4">7.12.1</span> 安装</h4>
+<div class="outline-text-4" id="text-7-12-1">
+<p>
+KDE Plasma desktop latest packages are available under kubuntu-ci/stable PPA. Use the following commands to add this PPA to your system and install plasma-desktop package.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-bash">sudo apt-get install kubuntu-desktop
+
+sudo add-apt-repository ppa:kubuntu-ci/stable
+sudo apt-get update
+sudo apt-get install kubuntu-desktop
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline23" class="outline-4">
+<h4 id="orgheadline23"><span class="section-number-4">7.12.2</span> 卸载</h4>
+<div class="outline-text-4" id="text-7-12-2">
+<p>
+KDE plasma is a good desktop environment, but you still don’t like it, then you can revert all changes with following command.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-bash">sudo apt-get install ppa-purge
+sudo ppa-purge ppa:kubuntu-ci/stable
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline25" class="outline-3">
+<h3 id="orgheadline25"><span class="section-number-3">7.13</span> MYSQL</h3>
+<div class="outline-text-3" id="text-7-13">
+<div class="org-src-container">
+
+<pre class="src src-bash">sudo apt-get install -y mysql-server mysql-client
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline26" class="outline-3">
+<h3 id="orgheadline26"><span class="section-number-3">7.14</span> mldonkey</h3>
+<div class="outline-text-3" id="text-7-14">
+<div class="org-src-container">
+
+<pre class="src src-bash">sudo add-apt-repository ppa:a.bono/mldonkey
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline27" class="outline-3">
+<h3 id="orgheadline27"><span class="section-number-3">7.15</span> okular</h3>
+<div class="outline-text-3" id="text-7-15">
+<div class="org-src-container">
+
+<pre class="src src-bash">sudo apt-get install -y  okular
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline28" class="outline-3">
+<h3 id="orgheadline28"><span class="section-number-3">7.16</span> Pidgin</h3>
+<div class="outline-text-3" id="text-7-16">
+<div class="org-src-container">
+
+<pre class="src src-bash">sudo add-apt-repository ppa:pidgin-developers/ppa
+sudo apt-get update
+sudo apt-get install -y pidgin
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline29" class="outline-3">
+<h3 id="orgheadline29"><span class="section-number-3">7.17</span> PlayOnLinux</h3>
+<div class="outline-text-3" id="text-7-17">
+<p>
+以安装 安装 RTX2015 为例：
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-bash">wget -q <span style="color: #66cccc;">"http://deb.playonlinux.com/public.gpg"</span> -O- | sudo apt-key add -
+sudo wget http://deb.playonlinux.com/playonlinux_trusty.list -O /etc/apt/sources.list.d/playonlinux.list
+sudo apt-get update
+sudo apt-get install playonlinux
+</pre>
+</div>
+<ul class="org-ul">
+<li>打开 playonlinux 界面</li>
+<li>点击工具, 选择管理 wine 版本, 然后选择 (amd64), 当然 32 位选择 X86, 选择一个可以用的,装好就行。</li>
+<li>点击配置</li>
+<li>进入配置页面</li>
+<li>选择新建, 点击下一步, 创建一个 64 位的虚拟盘</li>
+<li>选择刚才安装的 Wine，或者没人 system</li>
+<li>点击下一步, 输入虚拟盘名称, 然后完成了, 我这里是 rtx。</li>
+<li>安装相应组件，点击虚拟盘, 选择安装内容, 安装相应组件. 下面是需要的组件列表, 一个都不能少哦：msxml3 msxml6 ie8 vcrun6 vcrun2005 riched20 riched30</li>
+<li>安装 RTX，回到主界面, 选择安装一个程序</li>
+<li>点击安装未在列表的程序</li>
+<li>点击编辑或更新现有的应用程序</li>
+<li>点击显示虚拟盘, 选择刚才新建的虚拟盘 rtx。</li>
+<li>什么不用勾选, 点击下一步</li>
+<li>点击 64 位安装, 点击下一步</li>
+<li>点击浏览, 选择 RTX 安装包安装就可以了, 这里可以下载安装包</li>
+</ul>
+
+<p>
+安装好以后不管怎么弄界面都是乱码，等待以后继续折腾。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline30" class="outline-3">
+<h3 id="orgheadline30"><span class="section-number-3">7.18</span> p7z-ful</h3>
+<div class="outline-text-3" id="text-7-18">
+<div class="org-src-container">
+
+<pre class="src src-bash">sudo apt-get install -y p7z-full
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline31" class="outline-3">
+<h3 id="orgheadline31"><span class="section-number-3">7.19</span> Python</h3>
+<div class="outline-text-3" id="text-7-19">
+<div class="org-src-container">
+
+<pre class="src src-bash">sudo apt-get install -y python python-dev
+sudo pip install --upgrade pip
+sudo pip install --upgrade virtualenv
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline34" class="outline-3">
+<h3 id="orgheadline34"><span class="section-number-3">7.20</span> Rime</h3>
+<div class="outline-text-3" id="text-7-20">
+</div><div id="outline-container-orgheadline32" class="outline-4">
+<h4 id="orgheadline32"><span class="section-number-4">7.20.1</span> ibus-rime 中州韵<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup></h4>
+<div class="outline-text-4" id="text-7-20-1">
+<div class="org-src-container">
+
+<pre class="src src-bash">   sudo aptitude install ibus-rime
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline33" class="outline-4">
+<h4 id="orgheadline33"><span class="section-number-4">7.20.2</span> Fcitx-rime</h4>
+<div class="outline-text-4" id="text-7-20-2">
+<div class="org-src-container">
+
+<pre class="src src-bash">sudo apt-get install Fcitx-rime
+</pre>
+</div>
+
+<p>
+Fcitx-rime 在 ubuntu15  emacs24.3 下不能切換輸入法，所以还是推荐先使用 ibus-rime，安装好以后参照官网给出的使用指南<sup><a id="fnr.6" class="footref" href="#fn.6">6</a></sup>，可以很方便的使用了。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline35" class="outline-3">
+<h3 id="orgheadline35"><span class="section-number-3">7.21</span> Skype</h3>
+</div>
+<div id="outline-container-orgheadline36" class="outline-3">
+<h3 id="orgheadline36"><span class="section-number-3">7.22</span> Shadowsocks</h3>
+<div class="outline-text-3" id="text-7-22">
+<p>
+参看<a href="shadowsocks-practices.html">《Shadowsocks 实践》</a>
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline37" class="outline-3">
+<h3 id="orgheadline37"><span class="section-number-3">7.23</span> Shutter</h3>
+<div class="outline-text-3" id="text-7-23">
+<div class="org-src-container">
+
+<pre class="src src-bash">sudo apt-get install -y shutter
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline38" class="outline-3">
+<h3 id="orgheadline38"><span class="section-number-3">7.24</span> SmartGIT</h3>
+<div class="outline-text-3" id="text-7-24">
+<div class="org-src-container">
+
+<pre class="src src-bash">sudo add-apt-repository ppa:eugenesan/ppa
+sudo apt-get update
+sudo apt-get install -y smartgit
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline39" class="outline-3">
+<h3 id="orgheadline39"><span class="section-number-3">7.25</span> SMPlayer</h3>
+<div class="outline-text-3" id="text-7-25">
+<div class="org-src-container">
+
+<pre class="src src-bash">sudo add-apt-repository ppa:rvm/smplayer
+sudo apt-get update
+sudo apt-get install -y smplayer smplayer-themes smplayer-skins
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline42" class="outline-3">
+<h3 id="orgheadline42"><span class="section-number-3">7.26</span> Sogou 输入法<sup><a id="fnr.7" class="footref" href="#fn.7">7</a></sup></h3>
+<div class="outline-text-3" id="text-7-26">
+</div><div id="outline-container-orgheadline40" class="outline-4">
+<h4 id="orgheadline40"><span class="section-number-4">7.26.1</span> 安装</h4>
+<div class="outline-text-4" id="text-7-26-1">
+<p>
+先安装好 Fcitx，然后直接安装 sogou 官网下载 deb 安装包。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline41" class="outline-4">
+<h4 id="orgheadline41"><span class="section-number-4">7.26.2</span> 卸载</h4>
+<div class="outline-text-4" id="text-7-26-2">
+<div class="org-src-container">
+
+<pre class="src src-bash">sudo apt-get purge sogoupinyin
+</pre>
+</div>
+<p>
+注意事项：（未测试）最近新版本搜狗出现进入不了桌面的情况，可以在登陆界面 ctrl+alt+f1 进入 tty1 字符界面并登陆，然后删除 / etc/X11/xinit/xinitrc.d/55-sogoupinyin.sh 这个文件，然后 ctrl+alt+f7 进入登陆界面登陆。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline43" class="outline-3">
+<h3 id="orgheadline43"><span class="section-number-3">7.27</span> Telegram</h3>
+</div>
+<div id="outline-container-orgheadline44" class="outline-3">
+<h3 id="orgheadline44"><span class="section-number-3">7.28</span> texlive</h3>
+<div class="outline-text-3" id="text-7-28">
+<div class="org-src-container">
+
+<pre class="src src-bash">sudo aptitude install texlive-full xzdec libdigest-perl-md5-perl perl-tk
+tlmgr init-usertree
+tlmgr update -all
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline45" class="outline-3">
+<h3 id="orgheadline45"><span class="section-number-3">7.29</span> transmission</h3>
+<div class="outline-text-3" id="text-7-29">
+<div class="org-src-container">
+
+<pre class="src src-bash">sudo add-apt-repository ppa:transmissionbt/ppa
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline46" class="outline-3">
+<h3 id="orgheadline46"><span class="section-number-3">7.30</span> Uget</h3>
+<div class="outline-text-3" id="text-7-30">
+<div class="org-src-container">
+
+<pre class="src src-bash">sudo add-apt-repository ppa:plushuang-tw/uget-stable
+sudo apt-get update
+sudo apt-get install -y uget
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline47" class="outline-3">
+<h3 id="orgheadline47"><span class="section-number-3">7.31</span> VirtualBox</h3>
+<div class="outline-text-3" id="text-7-31">
+<div class="org-src-container">
+
+<pre class="src src-bash" id="orgsrcblock4">sudo sh -c <span style="color: #66cccc;">'echo "deb http://download.virtualbox.org/virtualbox/debian xenial contrib" &gt; /etc/apt/sources.list.d/virtualbox.list'</span>
+wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install -y virtualbox
+</pre>
+</div>
+
+<p>
+虚拟机如果要全屏、同宿主机共享文件夹需要安装 VBoxGuestAdditions.iso。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline48" class="outline-3">
+<h3 id="orgheadline48"><span class="section-number-3">7.32</span> 搭建 VPN</h3>
+<div class="outline-text-3" id="text-7-32">
+<p>
+参看<a href="vpn_practices.html">《VPN 实践》</a>
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline49" class="outline-3">
+<h3 id="orgheadline49"><span class="section-number-3">7.33</span> 搭建 VPS</h3>
+<div class="outline-text-3" id="text-7-33">
+<p>
+参看 <a href="vps_practices.html">《VPS 实践》</a>
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline50" class="outline-3">
+<h3 id="orgheadline50"><span class="section-number-3">7.34</span> 有道词典</h3>
+<div class="outline-text-3" id="text-7-34">
+<p>
+<a href="https://github.com/justzx2011/openyoudao">项目网址</a>
+</p>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<a href="http://ugetdm.com/">uget 官网</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://github.com/LiuLang/bcloud">百度网盘 bcloud</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://fcitx-im.org/wiki/Fcitx">Fcitx wiki</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://www.gnome.org/">Gnome official site</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5">5</a></sup> <div class="footpara"><p class="footpara">
+<a href="http://rime.im/">rime 官网</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6">6</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://github.com/rime/home/wiki/UserGuide">rime 使用指南</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7">7</a></sup> <div class="footpara"><p class="footpara">
+<a href="http://pinyin.sogou.com/linux/help.php">搜狗输入法 for linux 安装指南</a>
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: lsl</p>
+<p class="date">Created: 2016-08-07 Sun 19:36</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

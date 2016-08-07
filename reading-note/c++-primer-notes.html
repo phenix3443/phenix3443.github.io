@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-07-23 六 12:29 -->
+<!-- 2016-08-07 Sun 19:07 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>c++ primer reading notes</title>
@@ -329,29 +329,29 @@ for the JavaScript code in this tag.
 <div class="outline-text-4" id="text-2-1-4">
 <div class="org-src-container">
 
-<pre class="src src-c++">   <span style="color: #ffd700;">TEST</span> (TestConst, ConstVar) {
-       <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">var</span> = 10;
-       <span style="color: #00d7af;">int</span>* <span style="color: #ff8700;">ptr</span> = <span style="color: #a1db00;">const_cast</span>&lt;<span style="color: #00d7af;">int</span>*&gt;(&amp;var);
+<pre class="src src-c++">   <span style="color: #f99157;">TEST</span> (TestConst, ConstVar) {
+       <span style="color: #99cc99;">const</span> <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">var</span> = 10;
+       <span style="color: #6699cc;">int</span>* <span style="color: #ffcc66;">ptr</span> = <span style="color: #99cc99;">const_cast</span>&lt;<span style="color: #6699cc;">int</span>*&gt;(&amp;var);
        *ptr = 20;
 
-       <span style="color: #5fafd7;">std</span>::cout &lt;&lt; var &lt;&lt; <span style="color: #ff4ea3;">" "</span> &lt;&lt; *ptr &lt;&lt; <span style="color: #5fafd7;">std</span>::endl; <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#27492;&#22788;&#32534;&#35793;&#22120;&#20351;&#29992;&#24120;&#37327;&#30452;&#25509;&#36827;&#34892;&#20102;&#26367;&#20195;</span>
-       EXPECT_EQ (&amp;var, ptr) &lt;&lt; <span style="color: #ff4ea3;">"var &#19982; ptr&#22320;&#22336;&#19981;&#19968;&#33268;"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
-       EXPECT_EQ (var, 10) &lt;&lt; <span style="color: #ff4ea3;">"var is "</span> &lt;&lt; var &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
-       EXPECT_EQ (*ptr, 20) &lt;&lt; <span style="color: #ff4ea3;">"ptr is "</span> &lt;&lt; *ptr &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+       <span style="color: #6699cc;">std</span>::cout &lt;&lt; var &lt;&lt; <span style="color: #66cccc;">" "</span> &lt;&lt; *ptr &lt;&lt; <span style="color: #6699cc;">std</span>::endl; <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#27492;&#22788;&#32534;&#35793;&#22120;&#20351;&#29992;&#24120;&#37327;&#30452;&#25509;&#36827;&#34892;&#20102;&#26367;&#20195;</span>
+       EXPECT_EQ (&amp;var, ptr) &lt;&lt; <span style="color: #66cccc;">"var &#19982; ptr&#22320;&#22336;&#19981;&#19968;&#33268;"</span> &lt;&lt; <span style="color: #6699cc;">std</span>::endl;
+       EXPECT_EQ (var, 10) &lt;&lt; <span style="color: #66cccc;">"var is "</span> &lt;&lt; var &lt;&lt; <span style="color: #6699cc;">std</span>::endl;
+       EXPECT_EQ (*ptr, 20) &lt;&lt; <span style="color: #66cccc;">"ptr is "</span> &lt;&lt; *ptr &lt;&lt; <span style="color: #6699cc;">std</span>::endl;
 
-       <span style="color: #a1db00;">struct</span> <span style="color: #00d7af;">Test</span> {
-           <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">var_</span>;
-           <span style="color: #ffd700;">Test</span>():<span style="color: #ffd700;">var_</span>(10){ }
+       <span style="color: #99cc99;">struct</span> <span style="color: #6699cc;">Test</span> {
+           <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">var_</span>;
+           <span style="color: #f99157;">Test</span>():<span style="color: #f99157;">var_</span>(10){ }
        };
-       <span style="color: #a1db00;">const</span> <span style="color: #00d7af;">Test</span> <span style="color: #ff8700;">t</span>;
-       <span style="color: #a1db00;">auto</span> <span style="color: #00d7af;">p_var</span> = &amp;<span style="color: #5fafd7;">Test</span>::var_; <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#25968;&#25454;&#25104;&#21592;&#25351;&#38024;</span>
-       <span style="color: #a1db00;">auto</span> <span style="color: #00d7af;">ptr2</span> = <span style="color: #a1db00;">const_cast</span>&lt;<span style="color: #00d7af;">int</span>*&gt;(&amp;(t.*p_var));
+       <span style="color: #99cc99;">const</span> <span style="color: #6699cc;">Test</span> <span style="color: #ffcc66;">t</span>;
+       <span style="color: #99cc99;">auto</span> <span style="color: #6699cc;">p_var</span> = &amp;<span style="color: #6699cc;">Test</span>::var_; <span style="color: #999999; font-style: italic;">// </span><span style="color: #999999; font-style: italic;">&#25968;&#25454;&#25104;&#21592;&#25351;&#38024;</span>
+       <span style="color: #99cc99;">auto</span> <span style="color: #6699cc;">ptr2</span> = <span style="color: #99cc99;">const_cast</span>&lt;<span style="color: #6699cc;">int</span>*&gt;(&amp;(t.*p_var));
        *ptr2 = 20;
 
-       <span style="color: #5fafd7;">std</span>::cout &lt;&lt; t.var_ &lt;&lt; <span style="color: #ff4ea3;">" "</span> &lt;&lt; *ptr2 &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
-       EXPECT_EQ (&amp;t.var_, ptr2) &lt;&lt; <span style="color: #ff4ea3;">"t.var_ &#19982; ptr2 &#22320;&#22336;&#19981;&#19968;&#33268;"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
-       EXPECT_EQ (t.var_, 20) &lt;&lt; <span style="color: #ff4ea3;">"t.var_ is "</span> &lt;&lt; t.var_ &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
-       EXPECT_EQ (*ptr2, 20) &lt;&lt; <span style="color: #ff4ea3;">"ptr2 is "</span> &lt;&lt; ptr2 &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+       <span style="color: #6699cc;">std</span>::cout &lt;&lt; t.var_ &lt;&lt; <span style="color: #66cccc;">" "</span> &lt;&lt; *ptr2 &lt;&lt; <span style="color: #6699cc;">std</span>::endl;
+       EXPECT_EQ (&amp;t.var_, ptr2) &lt;&lt; <span style="color: #66cccc;">"t.var_ &#19982; ptr2 &#22320;&#22336;&#19981;&#19968;&#33268;"</span> &lt;&lt; <span style="color: #6699cc;">std</span>::endl;
+       EXPECT_EQ (t.var_, 20) &lt;&lt; <span style="color: #66cccc;">"t.var_ is "</span> &lt;&lt; t.var_ &lt;&lt; <span style="color: #6699cc;">std</span>::endl;
+       EXPECT_EQ (*ptr2, 20) &lt;&lt; <span style="color: #66cccc;">"ptr2 is "</span> &lt;&lt; ptr2 &lt;&lt; <span style="color: #6699cc;">std</span>::endl;
    }
 </pre>
 </div>
@@ -407,13 +407,13 @@ L279:我们不能对 IO 对象进行拷贝。读写一个 IO 对象会改变其�
 <div class="outline-text-5" id="text-orgheadline16">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">#include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
+<pre class="src src-c++"><span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;iostream&gt;</span>
 
-<span style="color: #00d7af;">int</span> <span style="color: #ffd700;">main</span>(<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">argc</span>, <span style="color: #00d7af;">char</span> *<span style="color: #ff8700;">argv</span>[])
+<span style="color: #6699cc;">int</span> <span style="color: #f99157;">main</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">argc</span>, <span style="color: #6699cc;">char</span> *<span style="color: #ffcc66;">argv</span>[])
 {
-    <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #5fafd7;">std</span>::cout.bad() &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
+    <span style="color: #6699cc;">std</span>::cout &lt;&lt; <span style="color: #6699cc;">std</span>::cout.bad() &lt;&lt; <span style="color: #6699cc;">std</span>::endl;
 
-    <span style="color: #a1db00;">return</span> 0;
+    <span style="color: #99cc99;">return</span> 0;
 }
 </pre>
 </div>
@@ -425,35 +425,35 @@ L279:我们不能对 IO 对象进行拷贝。读写一个 IO 对象会改变其�
 <div class="outline-text-4" id="text-3-1-2">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
-<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;fstream&gt;</span>
-<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;sstream&gt;</span>
+<pre class="src src-c++"><span style="color: #cc99cc;">   #include</span> <span style="color: #66cccc;">&lt;iostream&gt;</span>
+<span style="color: #cc99cc;">   #include</span> <span style="color: #66cccc;">&lt;fstream&gt;</span>
+<span style="color: #cc99cc;">   #include</span> <span style="color: #66cccc;">&lt;sstream&gt;</span>
 
-<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;vector&gt;</span>
-<span style="color: #d18aff;">   #include</span> <span style="color: #ff4ea3;">&lt;string&gt;</span>
+<span style="color: #cc99cc;">   #include</span> <span style="color: #66cccc;">&lt;vector&gt;</span>
+<span style="color: #cc99cc;">   #include</span> <span style="color: #66cccc;">&lt;string&gt;</span>
 
-   <span style="color: #a1db00;">using</span> <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">std</span>;
+   <span style="color: #99cc99;">using</span> <span style="color: #99cc99;">namespace</span> <span style="color: #6699cc;">std</span>;
 
-   <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">TestStream</span>() {
-       <span style="color: #00d7af;">ofstream</span> <span style="color: #ff8700;">outFile</span>(<span style="color: #ff4ea3;">"hello.txt"</span>, <span style="color: #5fafd7;">ofstream</span>::out);
-       <span style="color: #a1db00;">if</span> (outFile) {
-           <span style="color: #a1db00;">for</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span> = 0; i &lt; 100; ++i) {
-               outFile &lt;&lt; <span style="color: #ff4ea3;">"This is Line "</span> &lt;&lt; i &lt;&lt; endl;
+   <span style="color: #6699cc;">int</span> <span style="color: #f99157;">TestStream</span>() {
+       <span style="color: #6699cc;">ofstream</span> <span style="color: #ffcc66;">outFile</span>(<span style="color: #66cccc;">"hello.txt"</span>, <span style="color: #6699cc;">ofstream</span>::out);
+       <span style="color: #99cc99;">if</span> (outFile) {
+           <span style="color: #99cc99;">for</span> (<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span> = 0; i &lt; 100; ++i) {
+               outFile &lt;&lt; <span style="color: #66cccc;">"This is Line "</span> &lt;&lt; i &lt;&lt; endl;
            }
            outFile.close();
        }
 
 
-       <span style="color: #00d7af;">ifstream</span> <span style="color: #ff8700;">inFile</span>(<span style="color: #ff4ea3;">"hello.txt"</span>, <span style="color: #5fafd7;">ifstream</span>::in);
-       <span style="color: #a1db00;">if</span> (inFile) {
-           <span style="color: #00d7af;">string</span> <span style="color: #ff8700;">line</span>;
-           <span style="color: #a1db00;">while</span> (getline(inFile, line)) {
+       <span style="color: #6699cc;">ifstream</span> <span style="color: #ffcc66;">inFile</span>(<span style="color: #66cccc;">"hello.txt"</span>, <span style="color: #6699cc;">ifstream</span>::in);
+       <span style="color: #99cc99;">if</span> (inFile) {
+           <span style="color: #6699cc;">string</span> <span style="color: #ffcc66;">line</span>;
+           <span style="color: #99cc99;">while</span> (getline(inFile, line)) {
                cout &lt;&lt; line &lt;&lt; endl;
            }
            inFile.close();
        }
 
-       <span style="color: #a1db00;">return</span> 0;
+       <span style="color: #99cc99;">return</span> 0;
    }
 </pre>
 </div>
@@ -482,7 +482,7 @@ L294:如果顺序容器中要保存的元素类型没有默认构造函数，我
 </p>
 <div class="org-src-container">
 
-<pre class="src src-C++"><span style="color: #00d7af;">vector</span>&lt;nodefault&gt; <span style="color: #ffd700;">v</span>(n,init);
+<pre class="src src-C++"><span style="color: #6699cc;">vector</span>&lt;nodefault&gt; <span style="color: #f99157;">v</span>(n,init);
 </pre>
 </div>
 </div>
@@ -669,7 +669,7 @@ L378:有序容器关键字类型必须定义元素比较方法。
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #00d7af;">multiset</span>&lt;key,decltype(compare)*&gt; <span style="color: #ff8700;">s</span>; <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#27880;&#24847;&#19981;&#35201;&#24536;&#35760;*&#25351;&#23450;&#20989;&#25968;&#25351;&#38024;</span>
+<pre class="src src-c++"><span style="color: #6699cc;">multiset</span>&lt;key,decltype(compare)*&gt; <span style="color: #ffcc66;">s</span>; <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#27880;&#24847;&#19981;&#35201;&#24536;&#35760;*&#25351;&#23450;&#20989;&#25968;&#25351;&#38024;</span>
 </pre>
 </div>
 </div>
@@ -707,8 +707,8 @@ L384：对于不包含重复关键字的容器，insert 函数返回的是一个
 <div class="outline-text-5" id="text-orgheadline53">
 <div class="org-src-container">
 
-<pre class="src src-c++">c.erase(k) <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#36820;&#22238;&#21024;&#38500;&#20803;&#32032;&#30340;&#25968;&#37327;</span>
-c.erase(p) c.erase(b,e) <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#21024;&#38500;&#25351;&#23450;&#65288;&#33539;&#22260;&#65289;&#20803;&#32032;&#65292;&#36820;&#22238;&#26368;&#21518;&#19968;&#20010;&#25351;&#21521;&#26368;&#21518;&#19968;&#20010;&#34987;&#21024;&#38500;&#20803;&#32032;&#20043;&#21518;&#20301;&#32622;&#30340;&#36845;&#20195;&#22120;</span>
+<pre class="src src-c++">c.erase(k) <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#36820;&#22238;&#21024;&#38500;&#20803;&#32032;&#30340;&#25968;&#37327;</span>
+c.erase(p) c.erase(b,e) <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#21024;&#38500;&#25351;&#23450;&#65288;&#33539;&#22260;&#65289;&#20803;&#32032;&#65292;&#36820;&#22238;&#26368;&#21518;&#19968;&#20010;&#25351;&#21521;&#26368;&#21518;&#19968;&#20010;&#34987;&#21024;&#38500;&#20803;&#32032;&#20043;&#21518;&#20301;&#32622;&#30340;&#36845;&#20195;&#22120;</span>
 </pre>
 </div>
 </div>
@@ -766,57 +766,57 @@ L395:无序容器的性能依赖与哈希函数的质量和桶的数量和大小
 <div class="outline-text-5" id="text-orgheadline59">
 <div class="org-src-container">
 
-<pre class="src src-c++">   <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#30693;&#35782;&#28857;&#65306;&#24120;&#35265;&#30340;&#26234;&#33021;&#25351;&#38024;&#25805;&#20316;</span>
-   <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">phenix3443</span> {
-       <span style="color: #a1db00;">template</span> &lt;<span style="color: #a1db00;">typename</span> <span style="color: #00d7af;">T</span>&gt;
-       <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">SmartPtr</span> {
-       <span style="color: #a1db00;">public</span>:
-           <span style="color: #ffd700;">SmartPtr</span> (<span style="color: #00d7af;">T</span>* <span style="color: #ff8700;">p</span> = nullptr) :ptr (p), use (<span style="color: #a1db00;">new</span> <span style="color: #00d7af;">size_t</span> (0)) { p ? *++use : ; }
-           <span style="color: #ffd700;">SmartPtr</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">SmartPtr</span>&amp; <span style="color: #ff8700;">rsh</span>);
-           <span style="color: #00d7af;">SmartPtr</span> &amp; <span style="color: #a1db00;">operator</span><span style="color: #ffd700;">=</span>(<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">SmartPtr</span>&amp; <span style="color: #ff8700;">rsh</span>);
-           ~<span style="color: #ffd700;">SmartPtr</span> ();
-           <span style="color: #00d7af;">T</span>&amp; <span style="color: #a1db00;">operator</span><span style="color: #ffd700;">*</span>() <span style="color: #a1db00;">const</span> { <span style="color: #a1db00;">return</span> *ptr; }
-           <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#30693;&#35782;&#28857;&#65306;&#37325;&#36733;&#31661;&#22836;&#25805;&#20316;&#31526;&#65292;&#27880;&#24847;&#36820;&#22238;&#20540;&#12290;</span>
-           <span style="color: #00d7af;">T</span>* <span style="color: #a1db00;">operator</span><span style="color: #ffd700;">-&gt;</span>() <span style="color: #a1db00;">const</span> { <span style="color: #a1db00;">return</span> ptr; }
-           <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#30693;&#35782;&#28857;&#65306;&#31867;&#31867;&#22411;&#36716;&#25442;</span>
-           <span style="color: #a1db00;">explicit</span> <span style="color: #a1db00;">operator</span> <span style="color: #00d7af;">bool</span> () <span style="color: #a1db00;">const</span> { <span style="color: #a1db00;">return</span> nullptr == ptr; }
-           <span style="color: #00d7af;">bool</span> <span style="color: #ffd700;">unique</span> () { <span style="color: #a1db00;">return</span> (1 == *use) ? <span style="color: #5fafd7;">true</span> : fasle; }
-           <span style="color: #00d7af;">size_t</span> <span style="color: #ffd700;">count</span> () { <span style="color: #a1db00;">return</span> *use; }
-           <span style="color: #00d7af;">T</span>* <span style="color: #ffd700;">get</span> () { <span style="color: #a1db00;">return</span> ptr; }
+<pre class="src src-c++">   <span style="color: #999999; font-style: italic;">// </span><span style="color: #999999; font-style: italic;">&#30693;&#35782;&#28857;&#65306;&#24120;&#35265;&#30340;&#26234;&#33021;&#25351;&#38024;&#25805;&#20316;</span>
+   <span style="color: #99cc99;">namespace</span> <span style="color: #6699cc;">phenix3443</span> {
+       <span style="color: #99cc99;">template</span> &lt;<span style="color: #99cc99;">typename</span> <span style="color: #6699cc;">T</span>&gt;
+       <span style="color: #99cc99;">class</span> <span style="color: #6699cc;">SmartPtr</span> {
+       <span style="color: #99cc99;">public</span>:
+           <span style="color: #f99157;">SmartPtr</span> (<span style="color: #6699cc;">T</span>* <span style="color: #ffcc66;">p</span> = nullptr) :ptr (p), use (<span style="color: #99cc99;">new</span> <span style="color: #6699cc;">size_t</span> (0)) { p ? *++use : ; }
+           <span style="color: #f99157;">SmartPtr</span> (<span style="color: #99cc99;">const</span> <span style="color: #6699cc;">SmartPtr</span>&amp; <span style="color: #ffcc66;">rsh</span>);
+           <span style="color: #6699cc;">SmartPtr</span> &amp; <span style="color: #99cc99;">operator</span><span style="color: #f99157;">=</span>(<span style="color: #99cc99;">const</span> <span style="color: #6699cc;">SmartPtr</span>&amp; <span style="color: #ffcc66;">rsh</span>);
+           ~<span style="color: #f99157;">SmartPtr</span> ();
+           <span style="color: #6699cc;">T</span>&amp; <span style="color: #99cc99;">operator</span><span style="color: #f99157;">*</span>() <span style="color: #99cc99;">const</span> { <span style="color: #99cc99;">return</span> *ptr; }
+           <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#30693;&#35782;&#28857;&#65306;&#37325;&#36733;&#31661;&#22836;&#25805;&#20316;&#31526;&#65292;&#27880;&#24847;&#36820;&#22238;&#20540;&#12290;</span>
+           <span style="color: #6699cc;">T</span>* <span style="color: #99cc99;">operator</span><span style="color: #f99157;">-&gt;</span>() <span style="color: #99cc99;">const</span> { <span style="color: #99cc99;">return</span> ptr; }
+           <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#30693;&#35782;&#28857;&#65306;&#31867;&#31867;&#22411;&#36716;&#25442;</span>
+           <span style="color: #99cc99;">explicit</span> <span style="color: #99cc99;">operator</span> <span style="color: #6699cc;">bool</span> () <span style="color: #99cc99;">const</span> { <span style="color: #99cc99;">return</span> nullptr == ptr; }
+           <span style="color: #6699cc;">bool</span> <span style="color: #f99157;">unique</span> () { <span style="color: #99cc99;">return</span> (1 == *use) ? <span style="color: #6699cc;">true</span> : fasle; }
+           <span style="color: #6699cc;">size_t</span> <span style="color: #f99157;">count</span> () { <span style="color: #99cc99;">return</span> *use; }
+           <span style="color: #6699cc;">T</span>* <span style="color: #f99157;">get</span> () { <span style="color: #99cc99;">return</span> ptr; }
 
-       <span style="color: #a1db00;">private</span>:
-           <span style="color: #00d7af;">T</span>* <span style="color: #ff8700;">ptr</span>;
-           <span style="color: #00d7af;">size_t</span>* <span style="color: #ff8700;">use</span>;
+       <span style="color: #99cc99;">private</span>:
+           <span style="color: #6699cc;">T</span>* <span style="color: #ffcc66;">ptr</span>;
+           <span style="color: #6699cc;">size_t</span>* <span style="color: #ffcc66;">use</span>;
        };
 
-       <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#30693;&#35782;&#28857;&#65306;&#22312;&#22806;&#37096;&#23450;&#20041;&#31867;&#27169;&#26495;&#30340;&#25104;&#21592;&#20989;&#25968;</span>
-       <span style="color: #a1db00;">template</span>&lt;<span style="color: #a1db00;">typename</span> <span style="color: #00d7af;">T</span>&gt;
-       <span style="color: #a1db00;">inline</span>  <span style="color: #5fafd7;">SmartPtr</span>&lt;<span style="color: #00d7af;">T</span>&gt;::<span style="color: #ffd700;">SmartPtr</span> (<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">SmartPtr</span>&amp; <span style="color: #ff8700;">rsh</span>) {
+       <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#30693;&#35782;&#28857;&#65306;&#22312;&#22806;&#37096;&#23450;&#20041;&#31867;&#27169;&#26495;&#30340;&#25104;&#21592;&#20989;&#25968;</span>
+       <span style="color: #99cc99;">template</span>&lt;<span style="color: #99cc99;">typename</span> <span style="color: #6699cc;">T</span>&gt;
+       <span style="color: #99cc99;">inline</span>  <span style="color: #6699cc;">SmartPtr</span>&lt;<span style="color: #6699cc;">T</span>&gt;::<span style="color: #f99157;">SmartPtr</span> (<span style="color: #99cc99;">const</span> <span style="color: #6699cc;">SmartPtr</span>&amp; <span style="color: #ffcc66;">rsh</span>) {
            ++*rsh.use;
            use = rsh.use;
            ptr = rsh.ptr;
        }
 
-       <span style="color: #a1db00;">template</span>&lt;<span style="color: #a1db00;">typename</span> <span style="color: #00d7af;">T</span>&gt;
-       <span style="color: #a1db00;">inline</span> <span style="color: #00d7af;">SmartPtr</span>&lt;<span style="color: #00d7af;">T</span>&gt;&amp; <span style="color: #5fafd7;">SmartPtr</span>&lt;<span style="color: #00d7af;">T</span>&gt;::<span style="color: #a1db00;">operator</span><span style="color: #ffd700;">=</span>(<span style="color: #a1db00;">const</span> <span style="color: #00d7af;">SmartPtr</span>&amp; <span style="color: #ff8700;">rsh</span>) {
-           <span style="color: #a1db00;">if</span> ( --*use == 0 ) {
-               <span style="color: #a1db00;">delete</span> ptr;
-               <span style="color: #a1db00;">delete</span> use;
+       <span style="color: #99cc99;">template</span>&lt;<span style="color: #99cc99;">typename</span> <span style="color: #6699cc;">T</span>&gt;
+       <span style="color: #99cc99;">inline</span> <span style="color: #6699cc;">SmartPtr</span>&lt;<span style="color: #6699cc;">T</span>&gt;&amp; <span style="color: #6699cc;">SmartPtr</span>&lt;<span style="color: #6699cc;">T</span>&gt;::<span style="color: #99cc99;">operator</span><span style="color: #f99157;">=</span>(<span style="color: #99cc99;">const</span> <span style="color: #6699cc;">SmartPtr</span>&amp; <span style="color: #ffcc66;">rsh</span>) {
+           <span style="color: #99cc99;">if</span> ( --*use == 0 ) {
+               <span style="color: #99cc99;">delete</span> ptr;
+               <span style="color: #99cc99;">delete</span> use;
            }
            use = rsh.use;
            ++*use;
            ptr = rsh.ptr;
-           <span style="color: #a1db00;">return</span> *<span style="color: #a1db00;">this</span>;
+           <span style="color: #99cc99;">return</span> *<span style="color: #99cc99;">this</span>;
        }
 
-       <span style="color: #a1db00;">template</span>&lt;<span style="color: #a1db00;">typename</span> <span style="color: #00d7af;">T</span>&gt;
-       <span style="color: #a1db00;">inline</span> <span style="color: #5fafd7;">SmartPtr</span>&lt;<span style="color: #00d7af;">T</span>&gt;::~<span style="color: #ffd700;">SmartPtr</span> () {
-           <span style="color: #a1db00;">if</span> ( --*use == 0 ) {
-               <span style="color: #a1db00;">delete</span> ptr;
-               <span style="color: #a1db00;">delete</span> use;
-               <span style="color: #6c6c6c; font-style: italic;">// </span><span style="color: #6c6c6c; font-style: italic;">&#30693;&#35782;&#28857;&#65306;&#39044;&#38450;&#37326;&#25351;&#38024;</span>
-               ptr = <span style="color: #5fafd7;">NULL</span>;
-               use = <span style="color: #5fafd7;">NULL</span>;
+       <span style="color: #99cc99;">template</span>&lt;<span style="color: #99cc99;">typename</span> <span style="color: #6699cc;">T</span>&gt;
+       <span style="color: #99cc99;">inline</span> <span style="color: #6699cc;">SmartPtr</span>&lt;<span style="color: #6699cc;">T</span>&gt;::~<span style="color: #f99157;">SmartPtr</span> () {
+           <span style="color: #99cc99;">if</span> ( --*use == 0 ) {
+               <span style="color: #99cc99;">delete</span> ptr;
+               <span style="color: #99cc99;">delete</span> use;
+               <span style="color: #999999; font-style: italic;">// </span><span style="color: #999999; font-style: italic;">&#30693;&#35782;&#28857;&#65306;&#39044;&#38450;&#37326;&#25351;&#38024;</span>
+               ptr = <span style="color: #6699cc;">NULL</span>;
+               use = <span style="color: #6699cc;">NULL</span>;
            }
        }
    }
@@ -868,35 +868,35 @@ L395:无序容器的性能依赖与哈希函数的质量和桶的数量和大小
 <div class="outline-text-4" id="text-4-2-8">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;map&gt;</span>
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;functional&gt;</span>
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;gtest\gtest.h&gt;</span>
+<pre class="src src-c++"><span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;iostream&gt;</span>
+<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;map&gt;</span>
+<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;functional&gt;</span>
+<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;gtest\gtest.h&gt;</span>
 
-    <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">phenix3443</span> {
-        <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">add</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">b</span>) {
-            <span style="color: #a1db00;">return</span> a + b;
+    <span style="color: #99cc99;">namespace</span> <span style="color: #6699cc;">phenix3443</span> {
+        <span style="color: #6699cc;">int</span> <span style="color: #f99157;">add</span> (<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">a</span>, <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">b</span>) {
+            <span style="color: #99cc99;">return</span> a + b;
         }
 
-        <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">divide</span> {
-        <span style="color: #a1db00;">public</span>:
-            <span style="color: #00d7af;">int</span> <span style="color: #a1db00;">operator</span><span style="color: #ffd700;">()</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">b</span>) {
-                <span style="color: #a1db00;">return</span> a / b;
+        <span style="color: #99cc99;">class</span> <span style="color: #6699cc;">divide</span> {
+        <span style="color: #99cc99;">public</span>:
+            <span style="color: #6699cc;">int</span> <span style="color: #99cc99;">operator</span><span style="color: #f99157;">()</span> (<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">a</span>, <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">b</span>) {
+                <span style="color: #99cc99;">return</span> a / b;
             }
         };
 
-        <span style="color: #a1db00;">auto</span> <span style="color: #00d7af;">mod</span> = [](<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">b</span>) { <span style="color: #a1db00;">return</span> a%b; };
+        <span style="color: #99cc99;">auto</span> <span style="color: #6699cc;">mod</span> = [](<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">a</span>, <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">b</span>) { <span style="color: #99cc99;">return</span> a%b; };
 
 
-        <span style="color: #5fafd7;">std</span>::map&lt;<span style="color: #5fafd7;">std</span>::string, <span style="color: #5fafd7;">std</span>::function&lt;<span style="color: #00d7af;">int</span> (<span style="color: #00d7af;">int</span>, <span style="color: #00d7af;">int</span>)&gt;&gt; binops = {
-            { <span style="color: #ff4ea3;">"+"</span>, add },
-            { <span style="color: #ff4ea3;">"-"</span>, <span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">minus</span>&lt;<span style="color: #00d7af;">int</span>&gt; () },
-            { <span style="color: #ff4ea3;">"/"</span>, divide () },
-            { <span style="color: #ff4ea3;">"*"</span>, [](<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span>, <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">b</span>) {<span style="color: #a1db00;">return</span> a*b; } },
-            { <span style="color: #ff4ea3;">"%"</span>, mod }
+        <span style="color: #6699cc;">std</span>::map&lt;<span style="color: #6699cc;">std</span>::string, <span style="color: #6699cc;">std</span>::function&lt;<span style="color: #6699cc;">int</span> (<span style="color: #6699cc;">int</span>, <span style="color: #6699cc;">int</span>)&gt;&gt; binops = {
+            { <span style="color: #66cccc;">"+"</span>, add },
+            { <span style="color: #66cccc;">"-"</span>, <span style="color: #6699cc;">std</span>::<span style="color: #6699cc;">minus</span>&lt;<span style="color: #6699cc;">int</span>&gt; () },
+            { <span style="color: #66cccc;">"/"</span>, divide () },
+            { <span style="color: #66cccc;">"*"</span>, [](<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">a</span>, <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">b</span>) {<span style="color: #99cc99;">return</span> a*b; } },
+            { <span style="color: #66cccc;">"%"</span>, mod }
         };
-        <span style="color: #ffd700;">TEST</span>(TestFunction,Calulator){
-            EXPECT_EQ (30, binops[<span style="color: #ff4ea3;">"+"</span>] (10, 20));
+        <span style="color: #f99157;">TEST</span>(TestFunction,Calulator){
+            EXPECT_EQ (30, binops[<span style="color: #66cccc;">"+"</span>] (10, 20));
         }
     }
 </pre>
@@ -931,33 +931,33 @@ L395:无序容器的性能依赖与哈希函数的质量和桶的数量和大小
 <div class="outline-text-4" id="text-5-2-2">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">  #include</span> <span style="color: #ff4ea3;">&lt;gtest\gtest.h&gt;</span>
+<pre class="src src-c++"><span style="color: #cc99cc;">  #include</span> <span style="color: #66cccc;">&lt;gtest\gtest.h&gt;</span>
 
-  <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#27979;&#35797;&#21629;&#21517;&#31354;&#38388;</span>
-  <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">phenix3443</span> {
-      <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">NS</span> {
-          <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">Quote</span> { };
-          <span style="color: #00d7af;">void</span> <span style="color: #ffd700;">display</span> (<span style="color: #00d7af;">Quote</span>&amp;) { <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"function in ns namespace"</span> &lt;&lt; <span style="color: #5fafd7;">std</span>::endl; }
+  <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#27979;&#35797;&#21629;&#21517;&#31354;&#38388;</span>
+  <span style="color: #99cc99;">namespace</span> <span style="color: #6699cc;">phenix3443</span> {
+      <span style="color: #99cc99;">namespace</span> <span style="color: #6699cc;">NS</span> {
+          <span style="color: #99cc99;">class</span> <span style="color: #6699cc;">Quote</span> { };
+          <span style="color: #6699cc;">void</span> <span style="color: #f99157;">display</span> (<span style="color: #6699cc;">Quote</span>&amp;) { <span style="color: #6699cc;">std</span>::cout &lt;&lt; <span style="color: #66cccc;">"function in ns namespace"</span> &lt;&lt; <span style="color: #6699cc;">std</span>::endl; }
       }
-      <span style="color: #ffd700;">TEST</span> (TestNameSpace, TestFunctionFind) {
-          <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#27979;&#35797;&#23884;&#22871;&#21629;&#21517;&#31354;&#38388;&#20013;&#20989;&#25968;&#34453;&#39135;&#26159;&#31867;&#23545;&#35937;&#30340;&#26597;&#25214;&#36807;&#31243;&#12290;</span>
-          display (<span style="color: #5fafd7;">NS</span>::<span style="color: #ff8700;">Quote</span> ());
+      <span style="color: #f99157;">TEST</span> (TestNameSpace, TestFunctionFind) {
+          <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#27979;&#35797;&#23884;&#22871;&#21629;&#21517;&#31354;&#38388;&#20013;&#20989;&#25968;&#34453;&#39135;&#26159;&#31867;&#23545;&#35937;&#30340;&#26597;&#25214;&#36807;&#31243;&#12290;</span>
+          display (<span style="color: #6699cc;">NS</span>::<span style="color: #ffcc66;">Quote</span> ());
       }
 
-      <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">A</span> { <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span> = 0, <span style="color: #ff8700;">j</span> = 0; }
-      <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">f</span> () {
-          <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span> = 1;
-          <span style="color: #a1db00;">using</span> <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">A</span>;
-          <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"f() i = "</span> &lt;&lt; i &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
-          <span style="color: #a1db00;">return</span> i;
+      <span style="color: #99cc99;">namespace</span> <span style="color: #6699cc;">A</span> { <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span> = 0, <span style="color: #ffcc66;">j</span> = 0; }
+      <span style="color: #6699cc;">int</span> <span style="color: #f99157;">f</span> () {
+          <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span> = 1;
+          <span style="color: #99cc99;">using</span> <span style="color: #99cc99;">namespace</span> <span style="color: #6699cc;">A</span>;
+          <span style="color: #6699cc;">std</span>::cout &lt;&lt; <span style="color: #66cccc;">"f() i = "</span> &lt;&lt; i &lt;&lt; <span style="color: #6699cc;">std</span>::endl;
+          <span style="color: #99cc99;">return</span> i;
       }
-      <span style="color: #00d7af;">int</span> <span style="color: #ffd700;">g</span> () {
-          <span style="color: #a1db00;">using</span> <span style="color: #5fafd7;">A</span>::<span style="color: #00d7af;">i</span>;
-          <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"g() i = "</span> &lt;&lt; i &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
-          <span style="color: #a1db00;">return</span> i;
+      <span style="color: #6699cc;">int</span> <span style="color: #f99157;">g</span> () {
+          <span style="color: #99cc99;">using</span> <span style="color: #6699cc;">A</span>::<span style="color: #6699cc;">i</span>;
+          <span style="color: #6699cc;">std</span>::cout &lt;&lt; <span style="color: #66cccc;">"g() i = "</span> &lt;&lt; i &lt;&lt; <span style="color: #6699cc;">std</span>::endl;
+          <span style="color: #99cc99;">return</span> i;
       }
-      <span style="color: #ffd700;">TEST</span> (TestNameSpace, TestUsing) {
-          <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#27979;&#35797;using&#22768;&#26126;&#21644;using&#25351;&#31034;&#20316;&#29992;&#22495;&#30340;&#24046;&#21035;</span>
+      <span style="color: #f99157;">TEST</span> (TestNameSpace, TestUsing) {
+          <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#27979;&#35797;using&#22768;&#26126;&#21644;using&#25351;&#31034;&#20316;&#29992;&#22495;&#30340;&#24046;&#21035;</span>
           EXPECT_EQ (1, f ());
           EXPECT_EQ (0, g ());
       }
@@ -981,15 +981,15 @@ L395:无序容器的性能依赖与哈希函数的质量和桶的数量和大小
 <div class="outline-text-5" id="text-orgheadline84">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">  #include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
-<span style="color: #d18aff;">  #include</span> <span style="color: #ff4ea3;">&lt;gtest\gtest.h&gt;</span>
+<pre class="src src-c++"><span style="color: #cc99cc;">  #include</span> <span style="color: #66cccc;">&lt;iostream&gt;</span>
+<span style="color: #cc99cc;">  #include</span> <span style="color: #66cccc;">&lt;gtest\gtest.h&gt;</span>
 
-  <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#27979;&#35797;new&#21644;delete</span>
-  <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">phenix3443</span> {
-      <span style="color: #ffd700;">TEST</span> (NewDelete, PlaceNew) {
-          <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#27979;&#35797;&#23450;&#20301;new&#20462;&#25913;&#21046;&#23450;&#20869;&#23384;&#25968;&#25454;</span>
-          <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">a</span> = 10;
-          <span style="color: #00d7af;">int</span>* <span style="color: #ff8700;">ps</span> = <span style="color: #a1db00;">new</span>(&amp;a) <span style="color: #00d7af;">int</span> (20);
+  <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#27979;&#35797;new&#21644;delete</span>
+  <span style="color: #99cc99;">namespace</span> <span style="color: #6699cc;">phenix3443</span> {
+      <span style="color: #f99157;">TEST</span> (NewDelete, PlaceNew) {
+          <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#27979;&#35797;&#23450;&#20301;new&#20462;&#25913;&#21046;&#23450;&#20869;&#23384;&#25968;&#25454;</span>
+          <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">a</span> = 10;
+          <span style="color: #6699cc;">int</span>* <span style="color: #ffcc66;">ps</span> = <span style="color: #99cc99;">new</span>(&amp;a) <span style="color: #6699cc;">int</span> (20);
           EXPECT_EQ (20, a);
       }
   }
@@ -1003,45 +1003,45 @@ L395:无序容器的性能依赖与哈希函数的质量和桶的数量和大小
 <div class="outline-text-4" id="text-5-3-2">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;iostream&gt;</span>
-<span style="color: #d18aff;">    #include</span> <span style="color: #ff4ea3;">&lt;gtest\gtest.h&gt;</span>
+<pre class="src src-c++"><span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;iostream&gt;</span>
+<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;gtest\gtest.h&gt;</span>
 
-    <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#27979;&#35797;RTTI,&#36890;&#36807;RTTI&#22914;&#20309;&#23450;&#20041;&#31867;&#30340;&#30456;&#31561;&#25805;&#20316;&#12290;</span>
-    <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">phenix3443</span> {
-        <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">Base</span> {
-        <span style="color: #a1db00;">public</span>:
-            <span style="color: #ffd700;">Base</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">i</span> = 0) :b_ (i) { }
-        <span style="color: #a1db00;">protected</span>:
-            <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">bool</span> <span style="color: #ffd700;">Equal</span> (<span style="color: #00d7af;">Base</span>&amp; <span style="color: #ff8700;">rsh</span>) { <span style="color: #a1db00;">return</span> b_ == rsh.b_; }
-        <span style="color: #a1db00;">private</span>:
-            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">b_</span>;
+    <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#27979;&#35797;RTTI,&#36890;&#36807;RTTI&#22914;&#20309;&#23450;&#20041;&#31867;&#30340;&#30456;&#31561;&#25805;&#20316;&#12290;</span>
+    <span style="color: #99cc99;">namespace</span> <span style="color: #6699cc;">phenix3443</span> {
+        <span style="color: #99cc99;">class</span> <span style="color: #6699cc;">Base</span> {
+        <span style="color: #99cc99;">public</span>:
+            <span style="color: #f99157;">Base</span> (<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span> = 0) :b_ (i) { }
+        <span style="color: #99cc99;">protected</span>:
+            <span style="color: #99cc99;">virtual</span> <span style="color: #6699cc;">bool</span> <span style="color: #f99157;">Equal</span> (<span style="color: #6699cc;">Base</span>&amp; <span style="color: #ffcc66;">rsh</span>) { <span style="color: #99cc99;">return</span> b_ == rsh.b_; }
+        <span style="color: #99cc99;">private</span>:
+            <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">b_</span>;
 
-            <span style="color: #a1db00;">friend</span> <span style="color: #00d7af;">bool</span> <span style="color: #a1db00;">operator</span><span style="color: #ffd700;">==</span> (<span style="color: #00d7af;">Base</span>&amp; <span style="color: #ff8700;">a</span>, <span style="color: #00d7af;">Base</span>&amp; <span style="color: #ff8700;">b</span>);
+            <span style="color: #99cc99;">friend</span> <span style="color: #6699cc;">bool</span> <span style="color: #99cc99;">operator</span><span style="color: #f99157;">==</span> (<span style="color: #6699cc;">Base</span>&amp; <span style="color: #ffcc66;">a</span>, <span style="color: #6699cc;">Base</span>&amp; <span style="color: #ffcc66;">b</span>);
         };
-        <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">Derived</span> : <span style="color: #a1db00;">public</span> <span style="color: #00d7af;">Base</span> {
-        <span style="color: #a1db00;">public</span>:
-            <span style="color: #ffd700;">Derived</span> (<span style="color: #00d7af;">int</span> <span style="color: #ff8700;">j</span>=1) :d_ (j) { }
-        <span style="color: #a1db00;">protected</span>:
-            <span style="color: #a1db00;">virtual</span> <span style="color: #00d7af;">bool</span> <span style="color: #ffd700;">Equal</span> (<span style="color: #00d7af;">Base</span>&amp; <span style="color: #ff8700;">rsh</span>) {
-                <span style="color: #00d7af;">Derived</span>&amp; <span style="color: #ff8700;">tmp</span> = <span style="color: #a1db00;">dynamic_cast</span>&lt;Derived&amp;&gt;(rsh);
-                <span style="color: #a1db00;">return</span> d_ == tmp.d_;
+        <span style="color: #99cc99;">class</span> <span style="color: #6699cc;">Derived</span> : <span style="color: #99cc99;">public</span> <span style="color: #6699cc;">Base</span> {
+        <span style="color: #99cc99;">public</span>:
+            <span style="color: #f99157;">Derived</span> (<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">j</span>=1) :d_ (j) { }
+        <span style="color: #99cc99;">protected</span>:
+            <span style="color: #99cc99;">virtual</span> <span style="color: #6699cc;">bool</span> <span style="color: #f99157;">Equal</span> (<span style="color: #6699cc;">Base</span>&amp; <span style="color: #ffcc66;">rsh</span>) {
+                <span style="color: #6699cc;">Derived</span>&amp; <span style="color: #ffcc66;">tmp</span> = <span style="color: #99cc99;">dynamic_cast</span>&lt;Derived&amp;&gt;(rsh);
+                <span style="color: #99cc99;">return</span> d_ == tmp.d_;
             }
-        <span style="color: #a1db00;">private</span>:
-            <span style="color: #00d7af;">int</span> <span style="color: #ff8700;">d_</span>;
+        <span style="color: #99cc99;">private</span>:
+            <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">d_</span>;
         };
-        <span style="color: #00d7af;">bool</span> <span style="color: #a1db00;">operator</span><span style="color: #ffd700;">==</span>(<span style="color: #00d7af;">Base</span>&amp; <span style="color: #ff8700;">a</span>, <span style="color: #00d7af;">Base</span>&amp; <span style="color: #ff8700;">b</span>) {
-            <span style="color: #a1db00;">return</span> (<span style="color: #a1db00;">typeid</span>(a) == <span style="color: #a1db00;">typeid</span>(b) &amp;&amp; a.Equal (b));
+        <span style="color: #6699cc;">bool</span> <span style="color: #99cc99;">operator</span><span style="color: #f99157;">==</span>(<span style="color: #6699cc;">Base</span>&amp; <span style="color: #ffcc66;">a</span>, <span style="color: #6699cc;">Base</span>&amp; <span style="color: #ffcc66;">b</span>) {
+            <span style="color: #99cc99;">return</span> (<span style="color: #99cc99;">typeid</span>(a) == <span style="color: #99cc99;">typeid</span>(b) &amp;&amp; a.Equal (b));
         }
 
-        <span style="color: #ffd700;">TEST</span> (TestRTTI, ClassEqual) {
-            <span style="color: #00d7af;">Base</span> <span style="color: #ff8700;">b</span>;
-            <span style="color: #00d7af;">Derived</span> <span style="color: #ff8700;">d1</span>, <span style="color: #ff8700;">d2</span>;
-            <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"Class Base's name is "</span> &lt;&lt; <span style="color: #a1db00;">typeid</span>(b).name() &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
-            <span style="color: #5fafd7;">std</span>::cout &lt;&lt; <span style="color: #ff4ea3;">"Class Derive's name is "</span> &lt;&lt; <span style="color: #a1db00;">typeid</span>(d1).name() &lt;&lt; <span style="color: #5fafd7;">std</span>::endl;
-            EXPECT_TRUE (<span style="color: #a1db00;">typeid</span>(b).before (<span style="color: #a1db00;">typeid</span>(d1)));
+        <span style="color: #f99157;">TEST</span> (TestRTTI, ClassEqual) {
+            <span style="color: #6699cc;">Base</span> <span style="color: #ffcc66;">b</span>;
+            <span style="color: #6699cc;">Derived</span> <span style="color: #ffcc66;">d1</span>, <span style="color: #ffcc66;">d2</span>;
+            <span style="color: #6699cc;">std</span>::cout &lt;&lt; <span style="color: #66cccc;">"Class Base's name is "</span> &lt;&lt; <span style="color: #99cc99;">typeid</span>(b).name() &lt;&lt; <span style="color: #6699cc;">std</span>::endl;
+            <span style="color: #6699cc;">std</span>::cout &lt;&lt; <span style="color: #66cccc;">"Class Derive's name is "</span> &lt;&lt; <span style="color: #99cc99;">typeid</span>(d1).name() &lt;&lt; <span style="color: #6699cc;">std</span>::endl;
+            EXPECT_TRUE (<span style="color: #99cc99;">typeid</span>(b).before (<span style="color: #99cc99;">typeid</span>(d1)));
             EXPECT_FALSE (b == d1);
             EXPECT_TRUE(d1 == d2);
-            <span style="color: #00d7af;">Base</span>&amp; <span style="color: #ff8700;">br</span> = d1;
+            <span style="color: #6699cc;">Base</span>&amp; <span style="color: #ffcc66;">br</span> = d1;
             EXPECT_TRUE (br == d1);
         }
     }
@@ -1057,64 +1057,64 @@ L395:无序容器的性能依赖与哈希函数的质量和桶的数量和大小
 <div class="outline-text-4" id="text-5-3-4">
 <div class="org-src-container">
 
-<pre class="src src-c++">    <span style="color: #6c6c6c; font-style: italic;">//</span><span style="color: #6c6c6c; font-style: italic;">&#27979;&#35797;&#20989;&#25968;&#25104;&#21592;&#25351;&#38024;</span>
-    <span style="color: #a1db00;">namespace</span> <span style="color: #5fafd7;">phenix3443</span> {
-        <span style="color: #a1db00;">class</span> <span style="color: #00d7af;">Screen</span> {
-        <span style="color: #a1db00;">public</span>:
-            <span style="color: #ffd700;">Screen</span> () { }
-            <span style="color: #ffd700;">Screen</span> (<span style="color: #a1db00;">const</span> <span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">initializer_list</span>&lt;<span style="color: #5fafd7;">std</span>::string&gt;&amp; <span style="color: #ff8700;">il</span>) :content_ (il) { }
-            <span style="color: #00d7af;">char</span> <span style="color: #ffd700;">get</span> () <span style="color: #a1db00;">const</span> {
-                <span style="color: #a1db00;">return</span> content_[cursor_[0]][cursor_[1]];
+<pre class="src src-c++">    <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#27979;&#35797;&#20989;&#25968;&#25104;&#21592;&#25351;&#38024;</span>
+    <span style="color: #99cc99;">namespace</span> <span style="color: #6699cc;">phenix3443</span> {
+        <span style="color: #99cc99;">class</span> <span style="color: #6699cc;">Screen</span> {
+        <span style="color: #99cc99;">public</span>:
+            <span style="color: #f99157;">Screen</span> () { }
+            <span style="color: #f99157;">Screen</span> (<span style="color: #99cc99;">const</span> <span style="color: #6699cc;">std</span>::<span style="color: #6699cc;">initializer_list</span>&lt;<span style="color: #6699cc;">std</span>::string&gt;&amp; <span style="color: #ffcc66;">il</span>) :content_ (il) { }
+            <span style="color: #6699cc;">char</span> <span style="color: #f99157;">get</span> () <span style="color: #99cc99;">const</span> {
+                <span style="color: #99cc99;">return</span> content_[cursor_[0]][cursor_[1]];
             }
-            <span style="color: #00d7af;">Screen</span>&amp; <span style="color: #ffd700;">Home</span> () {
+            <span style="color: #6699cc;">Screen</span>&amp; <span style="color: #f99157;">Home</span> () {
                 cursor_ = { 0,0 };
-                <span style="color: #a1db00;">return</span> *<span style="color: #a1db00;">this</span>;
+                <span style="color: #99cc99;">return</span> *<span style="color: #99cc99;">this</span>;
             }
-            <span style="color: #00d7af;">Screen</span>&amp; <span style="color: #ffd700;">End</span> () {
+            <span style="color: #6699cc;">Screen</span>&amp; <span style="color: #f99157;">End</span> () {
                 cursor_ = { content_.size () - 1,content_.back ().size () - 1 };
-                <span style="color: #a1db00;">return</span> *<span style="color: #a1db00;">this</span>;
+                <span style="color: #99cc99;">return</span> *<span style="color: #99cc99;">this</span>;
             }
-            <span style="color: #00d7af;">Screen</span>&amp; <span style="color: #ffd700;">Forward</span> () {
-                <span style="color: #a1db00;">if</span> ( cursor_[1] &lt; content_[cursor_[0]].size () - 1 ) {
+            <span style="color: #6699cc;">Screen</span>&amp; <span style="color: #f99157;">Forward</span> () {
+                <span style="color: #99cc99;">if</span> ( cursor_[1] &lt; content_[cursor_[0]].size () - 1 ) {
                     ++cursor_[1];
                 }
-                <span style="color: #a1db00;">else</span> {
-                    <span style="color: #a1db00;">if</span> ( cursor_[0] &lt; content_.size () - 1 ) {
+                <span style="color: #99cc99;">else</span> {
+                    <span style="color: #99cc99;">if</span> ( cursor_[0] &lt; content_.size () - 1 ) {
                         ++cursor_[0];
                         cursor_[1] = 0;
                     }
                 }
-                <span style="color: #a1db00;">return</span> *<span style="color: #a1db00;">this</span>;
+                <span style="color: #99cc99;">return</span> *<span style="color: #99cc99;">this</span>;
             }
-            <span style="color: #00d7af;">Screen</span>&amp; <span style="color: #ffd700;">Back</span> () {
-                <span style="color: #a1db00;">if</span> ( cursor_[1] &gt; 0 ) {
+            <span style="color: #6699cc;">Screen</span>&amp; <span style="color: #f99157;">Back</span> () {
+                <span style="color: #99cc99;">if</span> ( cursor_[1] &gt; 0 ) {
                     --cursor_[1];
                 }
-                <span style="color: #a1db00;">else</span> {
-                    <span style="color: #a1db00;">if</span> ( cursor_[0] &gt; 0 ) {
+                <span style="color: #99cc99;">else</span> {
+                    <span style="color: #99cc99;">if</span> ( cursor_[0] &gt; 0 ) {
                         --cursor_[0];
                         cursor_[1] = content_[cursor_[0]].size () - 1;
                     }
                 }
-                <span style="color: #a1db00;">return</span> *<span style="color: #a1db00;">this</span>;
+                <span style="color: #99cc99;">return</span> *<span style="color: #99cc99;">this</span>;
             }
-            <span style="color: #a1db00;">enum</span> <span style="color: #00d7af;">Direction</span> { <span style="color: #ff8700;">HOME</span>, <span style="color: #ff8700;">FORWARD</span>, <span style="color: #ff8700;">BACK</span>, <span style="color: #ff8700;">END</span> };
-            <span style="color: #a1db00;">using</span> <span style="color: #00d7af;">Action</span> = Screen&amp; (<span style="color: #5fafd7;">Screen</span>::*)();
-            <span style="color: #00d7af;">Screen</span>&amp; <span style="color: #ffd700;">Move</span> (<span style="color: #00d7af;">Direction</span> <span style="color: #ff8700;">d</span>) {
-                <span style="color: #a1db00;">return</span> (<span style="color: #a1db00;">this</span>-&gt;*menu_[d])();
+            <span style="color: #99cc99;">enum</span> <span style="color: #6699cc;">Direction</span> { <span style="color: #ffcc66;">HOME</span>, <span style="color: #ffcc66;">FORWARD</span>, <span style="color: #ffcc66;">BACK</span>, <span style="color: #ffcc66;">END</span> };
+            <span style="color: #99cc99;">using</span> <span style="color: #6699cc;">Action</span> = Screen&amp; (<span style="color: #6699cc;">Screen</span>::*)();
+            <span style="color: #6699cc;">Screen</span>&amp; <span style="color: #f99157;">Move</span> (<span style="color: #6699cc;">Direction</span> <span style="color: #ffcc66;">d</span>) {
+                <span style="color: #99cc99;">return</span> (<span style="color: #99cc99;">this</span>-&gt;*menu_[d])();
             }
-        <span style="color: #a1db00;">private</span>:
-            <span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">vector</span>&lt;<span style="color: #5fafd7;">std</span>::string&gt; <span style="color: #ff8700;">content_</span>;
-            <span style="color: #5fafd7;">std</span>::<span style="color: #00d7af;">array</span>&lt;<span style="color: #00d7af;">size_t</span>, 2&gt; <span style="color: #ff8700;">cursor_</span> = { 0,0 };
-            <span style="color: #a1db00;">static</span> <span style="color: #00d7af;">Action</span> <span style="color: #ff8700;">menu_</span>[];
+        <span style="color: #99cc99;">private</span>:
+            <span style="color: #6699cc;">std</span>::<span style="color: #6699cc;">vector</span>&lt;<span style="color: #6699cc;">std</span>::string&gt; <span style="color: #ffcc66;">content_</span>;
+            <span style="color: #6699cc;">std</span>::<span style="color: #6699cc;">array</span>&lt;<span style="color: #6699cc;">size_t</span>, 2&gt; <span style="color: #ffcc66;">cursor_</span> = { 0,0 };
+            <span style="color: #99cc99;">static</span> <span style="color: #6699cc;">Action</span> <span style="color: #ffcc66;">menu_</span>[];
         };
-        <span style="color: #5fafd7;">Screen</span>::<span style="color: #00d7af;">Action</span> <span style="color: #5fafd7;">Screen</span>::<span style="color: #ff8700;">menu_</span>[] = { &amp;<span style="color: #5fafd7;">Screen</span>::Home,&amp;<span style="color: #5fafd7;">Screen</span>::Forward,&amp;<span style="color: #5fafd7;">Screen</span>::Back,&amp;<span style="color: #5fafd7;">Screen</span>::End };
+        <span style="color: #6699cc;">Screen</span>::<span style="color: #6699cc;">Action</span> <span style="color: #6699cc;">Screen</span>::<span style="color: #ffcc66;">menu_</span>[] = { &amp;<span style="color: #6699cc;">Screen</span>::Home,&amp;<span style="color: #6699cc;">Screen</span>::Forward,&amp;<span style="color: #6699cc;">Screen</span>::Back,&amp;<span style="color: #6699cc;">Screen</span>::End };
 
-        <span style="color: #ffd700;">TEST</span> (ClassMemPoint, ScreenTest) {
-            <span style="color: #00d7af;">Screen</span> <span style="color: #ff8700;">text</span> = { <span style="color: #ff4ea3;">"first"</span>,<span style="color: #ff4ea3;">"second"</span>,<span style="color: #ff4ea3;">"third"</span> };
-            EXPECT_EQ (<span style="color: #ff4ea3;">'f'</span>, text.get ());
-            text.Move (<span style="color: #5fafd7;">Screen</span>::FORWARD);
-            EXPECT_EQ (<span style="color: #ff4ea3;">'i'</span>, text.get ());
+        <span style="color: #f99157;">TEST</span> (ClassMemPoint, ScreenTest) {
+            <span style="color: #6699cc;">Screen</span> <span style="color: #ffcc66;">text</span> = { <span style="color: #66cccc;">"first"</span>,<span style="color: #66cccc;">"second"</span>,<span style="color: #66cccc;">"third"</span> };
+            EXPECT_EQ (<span style="color: #66cccc;">'f'</span>, text.get ());
+            text.Move (<span style="color: #6699cc;">Screen</span>::FORWARD);
+            EXPECT_EQ (<span style="color: #66cccc;">'i'</span>, text.get ());
         }
     }
 </pre>
@@ -1148,7 +1148,7 @@ L395:无序容器的性能依赖与哈希函数的质量和桶的数量和大小
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: lsl</p>
-<p class="date">Created: 2016-07-23 六 12:29</p>
+<p class="date">Created: 2016-08-07 Sun 19:07</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

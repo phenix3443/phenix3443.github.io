@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-07-23 六 12:30 -->
+<!-- 2016-08-07 Sun 19:48 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>gnome practices</title>
@@ -180,9 +180,9 @@ for the JavaScript code in this tag.
 
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">&#27979;&#35797;&#29256;</span>
-<span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">sudo add-apt-repository ppa:gnome3-team/gnome3-staging</span>
-<span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">&#31283;&#23450;&#29256;</span>
+<pre class="src src-bash"><span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">&#27979;&#35797;&#29256;</span>
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">sudo add-apt-repository ppa:gnome3-team/gnome3-staging</span>
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">&#31283;&#23450;&#29256;</span>
 sudo add-apt-repository ppa:gnome3-team/gnome3
 sudo apt-get update
 sudo apt-get install ubuntu-gnome-desktop
@@ -195,7 +195,7 @@ sudo apt-get install ubuntu-gnome-desktop
 
 <div class="org-src-container">
 
-<pre class="src src-sh">sudo dpkg-reconfigure lightdm
+<pre class="src src-bash">sudo dpkg-reconfigure lightdm
 </pre>
 </div>
 
@@ -209,10 +209,10 @@ sudo apt-get install ubuntu-gnome-desktop
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 
-<pre class="src src-sh">sudo apt-get install ppa-purge
+<pre class="src src-bash">sudo apt-get install ppa-purge
 
-<span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">sudo ppa-purge ppa:gnome3-team/gnome3-staging</span>
-<span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">or</span>
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">sudo ppa-purge ppa:gnome3-team/gnome3-staging</span>
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">or</span>
 sudo ppa-purge ppa:gnome3-team/gnome3
 </pre>
 </div>
@@ -267,7 +267,7 @@ Alt + F2，然后输入 r 或 restart，再  Enter：重启 GNOME shell。这一
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">gsettings set org.gnome.desktop.interface clock-show-date true
+<pre class="src src-bash">gsettings set org.gnome.desktop.interface clock-show-date true
 </pre>
 </div>
 
@@ -277,7 +277,7 @@ Alt + F2，然后输入 r 或 restart，再  Enter：重启 GNOME shell。这一
 
 <div class="org-src-container">
 
-<pre class="src src-sh">gsettings set org.gnome.shell.calendar show-weekdate true
+<pre class="src src-bash">gsettings set org.gnome.shell.calendar show-weekdate true
 </pre>
 </div>
 
@@ -330,7 +330,7 @@ Alt + F2，然后输入 r 或 restart，再  Enter：重启 GNOME shell。这一
 
 <div class="org-src-container">
 
-<pre class="src src-sh">pkill -HUP gnome-shell
+<pre class="src src-bash">pkill -HUP gnome-shell
 </pre>
 </div>
 
@@ -340,9 +340,9 @@ Alt + F2，然后输入 r 或 restart，再  Enter：重启 GNOME shell。这一
 
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">for console logins</span>
+<pre class="src src-bash"><span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">for console logins</span>
 pkill X
-<span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">for GDM logins</span>
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">for GDM logins</span>
 systemctl restart gdm
 </pre>
 </div>
@@ -380,7 +380,7 @@ gnome 添加打印机的模块找网络打印机很不方便，目前还是先�
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: lsl</p>
-<p class="date">Created: 2016-07-23 六 12:30</p>
+<p class="date">Created: 2016-08-07 Sun 19:48</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

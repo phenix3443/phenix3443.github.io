@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-07-23 六 12:30 -->
+<!-- 2016-08-07 Sun 19:48 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linux 常用命令</title>
@@ -246,11 +246,11 @@ match
 </p>
 <div class="org-src-container">
 
-<pre class="src src-awk"><span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">With gawk, you can use the match function to capture parenthesized groups.</span>
-gawk '<span style="color: #d18aff;">match</span>($0, pattern, ary) {<span style="color: #d18aff;">print</span> ary[1]}'
-<span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">example:</span>
-echo <span style="color: #ff4ea3;">"abcdef"</span> | gawk '<span style="color: #d18aff;">match</span>($0, <span style="color: #ff4ea3;">/b(.*)e/</span>, a) {<span style="color: #d18aff;">print</span> a[1]}'
-<span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">outputs cd.</span>
+<pre class="src src-awk"><span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">With gawk, you can use the match function to capture parenthesized groups.</span>
+gawk '<span style="color: #cc99cc;">match</span>($0, pattern, ary) {<span style="color: #cc99cc;">print</span> ary[1]}'
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">example:</span>
+echo <span style="color: #66cccc;">"abcdef"</span> | gawk '<span style="color: #cc99cc;">match</span>($0, <span style="color: #66cccc;">/b(.*)e/</span>, a) {<span style="color: #cc99cc;">print</span> a[1]}'
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">outputs cd.</span>
 </pre>
 </div></li>
 </ul></li>
@@ -364,7 +364,7 @@ gunzip -c filename.gz &gt; filename</li>
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">localA$ scp user1@host:/transf_file user2@hostc
+<pre class="src src-bash">localA$ scp user1@host:/transf_file user2@hostc
 </pre>
 </div>
 <p>
@@ -405,7 +405,7 @@ gunzip -c filename.gz &gt; filename</li>
 
 <div class="org-src-container">
 
-<pre class="src src-sh"></pre>
+<pre class="src src-bash"></pre>
 </div></li>
 </ul>
 </div>
@@ -419,7 +419,7 @@ gunzip -c filename.gz &gt; filename</li>
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">split  -a 4 -l 1000 -d bigfile <span style="color: #ff4ea3;">"small/small-"</span>
+<pre class="src src-bash">split  -a 4 -l 1000 -d bigfile <span style="color: #66cccc;">"small/small-"</span>
 </pre>
 </div>
 <p>
@@ -485,7 +485,7 @@ gunzip -c filename.gz &gt; filename</li>
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">    cat /etc/passwd | wc -l
+<pre class="src src-bash">    cat /etc/passwd | wc -l
 </pre>
 </div>
 <p>
@@ -493,7 +493,7 @@ gunzip -c filename.gz &gt; filename</li>
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">wc -l &lt; testfile
+<pre class="src src-bash">wc -l &lt; testfile
 </pre>
 </div>
 </div>
@@ -503,7 +503,7 @@ gunzip -c filename.gz &gt; filename</li>
 <div class="outline-text-4" id="text-31-1-2">
 <div class="org-src-container">
 
-<pre class="src src-sh">    ls -l | wc -l
+<pre class="src src-bash">    ls -l | wc -l
 </pre>
 </div>
 </div>
@@ -513,7 +513,7 @@ gunzip -c filename.gz &gt; filename</li>
 <div class="outline-text-4" id="text-31-1-3">
 <div class="org-src-container">
 
-<pre class="src src-sh">    find . -name <span style="color: #ff4ea3;">'*.c'</span> | xargs wc -l
+<pre class="src src-bash">    find . -name <span style="color: #66cccc;">'*.c'</span> | xargs wc -l
 </pre>
 </div>
 
@@ -522,7 +522,7 @@ gunzip -c filename.gz &gt; filename</li>
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">    find . -name <span style="color: #ff4ea3;">'*.c'</span> | xargs wc -l | sort -n
+<pre class="src src-bash">    find . -name <span style="color: #66cccc;">'*.c'</span> | xargs wc -l | sort -n
 </pre>
 </div>
 
@@ -531,7 +531,7 @@ gunzip -c filename.gz &gt; filename</li>
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">    find . -name *.c | xargs wc -l | sort -k2
+<pre class="src src-bash">    find . -name *.c | xargs wc -l | sort -k2
 </pre>
 </div>
 
@@ -540,7 +540,7 @@ gunzip -c filename.gz &gt; filename</li>
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">    find . -name <span style="color: #ff4ea3;">"*.[ch]*"</span>| xargs wc -l | grep<span style="color: #ff4ea3;">"total"</span>| awk<span style="color: #ff4ea3;">'{print $1}'</span>
+<pre class="src src-bash">    find . -name <span style="color: #66cccc;">"*.[ch]*"</span>| xargs wc -l | grep<span style="color: #66cccc;">"total"</span>| awk<span style="color: #66cccc;">'{print $1}'</span>
 </pre>
 </div>
 
@@ -578,7 +578,7 @@ gunzip -c filename.gz &gt; filename</li>
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: lsl</p>
-<p class="date">Created: 2016-07-23 六 12:30</p>
+<p class="date">Created: 2016-08-07 Sun 19:48</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

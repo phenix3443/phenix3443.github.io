@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-07-23 六 12:29 -->
+<!-- 2016-08-07 Sun 19:10 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>auth-source 实践</title>
@@ -272,8 +272,8 @@ You can customize the variable auth-sources. The following may be needed if you 
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #a1db00;">require</span> '<span style="color: #5fafd7;">auth-source</span>)             <span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">probably not necessary</span>
-(customize-variable 'auth-sources) <span style="color: #6c6c6c; font-style: italic;">;; </span><span style="color: #6c6c6c; font-style: italic;">optional, do it once</span>
+<pre class="src src-elisp">(<span style="color: #99cc99;">require</span> '<span style="color: #6699cc;">auth-source</span>)             <span style="color: #999999; font-style: italic;">;; </span><span style="color: #999999; font-style: italic;">probably not necessary</span>
+(customize-variable 'auth-sources) <span style="color: #999999; font-style: italic;">;; </span><span style="color: #999999; font-style: italic;">optional, do it once</span>
 </pre>
 </div>
 
@@ -291,15 +291,15 @@ The auth-sources variable tells the auth-source library where your netrc files o
 
 <div class="org-src-container">
 
-<pre class="src src-elisp"><span style="color: #6c6c6c; font-style: italic;">;;; </span><span style="color: #6c6c6c; font-style: italic;">old default: required :host and :port, not needed anymore</span>
-(setq auth-sources '((<span style="color: #d18aff;">:source</span> <span style="color: #ff4ea3;">"~/.authinfo.gpg"</span> <span style="color: #d18aff;">:host</span> t <span style="color: #d18aff;">:port</span> t)))
-  <span style="color: #6c6c6c; font-style: italic;">;;; </span><span style="color: #6c6c6c; font-style: italic;">mostly equivalent (see below about fallbacks) but shorter:</span>
-(setq auth-sources '((<span style="color: #d18aff;">:source</span> <span style="color: #ff4ea3;">"~/.authinfo.gpg"</span>)))
-  <span style="color: #6c6c6c; font-style: italic;">;;; </span><span style="color: #6c6c6c; font-style: italic;">even shorter and the default:</span>
-(setq auth-sources '(<span style="color: #ff4ea3;">"~/.authinfo.gpg"</span> <span style="color: #ff4ea3;">"~/.authinfo"</span> <span style="color: #ff4ea3;">"~/.netrc"</span>))
-  <span style="color: #6c6c6c; font-style: italic;">;;; </span><span style="color: #6c6c6c; font-style: italic;">use the Secrets API Login collection</span>
-  <span style="color: #6c6c6c; font-style: italic;">;;; </span><span style="color: #6c6c6c; font-style: italic;">(see Secret Service API)</span>
-(setq auth-sources '(<span style="color: #ff4ea3;">"secrets:Login"</span>))
+<pre class="src src-elisp"><span style="color: #999999; font-style: italic;">;;; </span><span style="color: #999999; font-style: italic;">old default: required :host and :port, not needed anymore</span>
+(setq auth-sources '((<span style="color: #cc99cc;">:source</span> <span style="color: #66cccc;">"~/.authinfo.gpg"</span> <span style="color: #cc99cc;">:host</span> t <span style="color: #cc99cc;">:port</span> t)))
+  <span style="color: #999999; font-style: italic;">;;; </span><span style="color: #999999; font-style: italic;">mostly equivalent (see below about fallbacks) but shorter:</span>
+(setq auth-sources '((<span style="color: #cc99cc;">:source</span> <span style="color: #66cccc;">"~/.authinfo.gpg"</span>)))
+  <span style="color: #999999; font-style: italic;">;;; </span><span style="color: #999999; font-style: italic;">even shorter and the default:</span>
+(setq auth-sources '(<span style="color: #66cccc;">"~/.authinfo.gpg"</span> <span style="color: #66cccc;">"~/.authinfo"</span> <span style="color: #66cccc;">"~/.netrc"</span>))
+  <span style="color: #999999; font-style: italic;">;;; </span><span style="color: #999999; font-style: italic;">use the Secrets API Login collection</span>
+  <span style="color: #999999; font-style: italic;">;;; </span><span style="color: #999999; font-style: italic;">(see Secret Service API)</span>
+(setq auth-sources '(<span style="color: #66cccc;">"secrets:Login"</span>))
 </pre>
 </div>
 <p>
@@ -319,9 +319,9 @@ Here’s a mixed example using two sources:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq auth-sources '((<span style="color: #d18aff;">:source</span> (<span style="color: #d18aff;">:secrets</span> default)
-                              <span style="color: #d18aff;">:host</span> <span style="color: #ff4ea3;">"myserver"</span> <span style="color: #d18aff;">:user</span> <span style="color: #ff4ea3;">"joe"</span>)
-                     <span style="color: #ff4ea3;">"~/.authinfo.gpg"</span>))
+<pre class="src src-elisp">(setq auth-sources '((<span style="color: #cc99cc;">:source</span> (<span style="color: #cc99cc;">:secrets</span> default)
+                              <span style="color: #cc99cc;">:host</span> <span style="color: #66cccc;">"myserver"</span> <span style="color: #cc99cc;">:user</span> <span style="color: #66cccc;">"joe"</span>)
+                     <span style="color: #66cccc;">"~/.authinfo.gpg"</span>))
 </pre>
 </div>
 
@@ -642,7 +642,7 @@ Emacs 23 和更高的版本中哟一个选项来 auto-encryption-mode 来自动�
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #a1db00;">require</span> '<span style="color: #5fafd7;">epa-file</span>)
+<pre class="src src-elisp">(<span style="color: #99cc99;">require</span> '<span style="color: #6699cc;">epa-file</span>)
 (epa-file-enable)
 </pre>
 </div>
@@ -681,7 +681,7 @@ Here are configurations depending on your answers:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: lsl</p>
-<p class="date">Created: 2016-07-23 六 12:29</p>
+<p class="date">Created: 2016-08-07 Sun 19:10</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

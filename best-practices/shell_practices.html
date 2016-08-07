@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-07-23 六 12:30 -->
+<!-- 2016-08-07 Sun 19:48 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>shell practices</title>
@@ -336,15 +336,10 @@ ${string%regx}
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #ff8700;">str</span>=<span style="color: #ff4ea3;">'http://www. &#20320;&#30340;&#22495;&#21517;. com/cut-string.html'</span>
-<span style="color: #d18aff;">echo</span> ${<span style="color: #ff8700;">str</span>%/*}
+<pre class="src src-bash"><span style="color: #ffcc66;">str</span>=<span style="color: #66cccc;">'http://www. &#20320;&#30340;&#22495;&#21517;. com/cut-string.html'</span>
+<span style="color: #cc99cc;">echo</span> ${<span style="color: #ffcc66;">str</span>%/*}
 </pre>
-</div>
-
-<pre class="example">
-http://www. 你的域名. com
-</pre></li>
-
+</div></li>
 <li><p>
 ${string%%regx}
 </p>
@@ -354,14 +349,10 @@ ${string%%regx}
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #ff8700;">str</span>=<span style="color: #ff4ea3;">'http://www. &#20320;&#30340;&#22495;&#21517;. com/cut-string.html'</span>
-<span style="color: #d18aff;">echo</span> ${<span style="color: #ff8700;">str</span>%%/*}
+<pre class="src src-bash"><span style="color: #ffcc66;">str</span>=<span style="color: #66cccc;">'http://www. &#20320;&#30340;&#22495;&#21517;. com/cut-string.html'</span>
+<span style="color: #cc99cc;">echo</span> ${<span style="color: #ffcc66;">str</span>%%/*}
 </pre>
-</div>
-
-<pre class="example">
-http:
-</pre></li>
+</div></li>
 
 <li><p>
 ${string#regx}
@@ -372,14 +363,10 @@ ${string#regx}
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #ff8700;">str</span>=<span style="color: #ff4ea3;">'http://www. &#20320;&#30340;&#22495;&#21517;. com/cut-string.html'</span>
-<span style="color: #d18aff;">echo</span> ${<span style="color: #ff8700;">str</span>#*//}
+<pre class="src src-bash"><span style="color: #ffcc66;">str</span>=<span style="color: #66cccc;">'http://www. &#20320;&#30340;&#22495;&#21517;. com/cut-string.html'</span>
+<span style="color: #cc99cc;">echo</span> ${<span style="color: #ffcc66;">str</span>#*//}
 </pre>
-</div>
-
-<pre class="example">
-www. 你的域名. com/cut-string.html
-</pre></li>
+</div></li>
 
 <li><p>
 ${string##regx}
@@ -390,14 +377,10 @@ ${string##regx}
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #ff8700;">str</span>=<span style="color: #ff4ea3;">'http://www. &#20320;&#30340;&#22495;&#21517;. com/cut-string.html'</span>
-<span style="color: #d18aff;">echo</span> ${<span style="color: #ff8700;">str</span>##*/}
+<pre class="src src-bash"><span style="color: #ffcc66;">str</span>=<span style="color: #66cccc;">'http://www. &#20320;&#30340;&#22495;&#21517;. com/cut-string.html'</span>
+<span style="color: #cc99cc;">echo</span> ${<span style="color: #ffcc66;">str</span>##*/}
 </pre>
-</div>
-
-<pre class="example">
-cut-string.html
-</pre></li>
+</div></li>
 
 <li><p>
 ${string:start:len}
@@ -409,9 +392,9 @@ ${string:start:len}
 
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #ff8700;">str</span>=<span style="color: #ff4ea3;">'http://www. &#20320;&#30340;&#22495;&#21517;. com/cut-string.html'</span>
-<span style="color: #d18aff;">echo</span> ${<span style="color: #ff8700;">str</span>:0:5}
-<span style="color: #d18aff;">echo</span> ${<span style="color: #ff8700;">str</span>:7}
+<pre class="src src-bash"><span style="color: #ffcc66;">str</span>=<span style="color: #66cccc;">'http://www. &#20320;&#30340;&#22495;&#21517;. com/cut-string.html'</span>
+<span style="color: #cc99cc;">echo</span> ${<span style="color: #ffcc66;">str</span>:0:5}
+<span style="color: #cc99cc;">echo</span> ${<span style="color: #ffcc66;">str</span>:7}
 </pre>
 </div></li>
 
@@ -425,8 +408,8 @@ ${string:0-start:len}
 
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #ff8700;">str</span>=<span style="color: #ff4ea3;">'http://www. &#20320;&#30340;&#22495;&#21517;. com/cut-string.html'</span>
-<span style="color: #d18aff;">echo</span> ${<span style="color: #ff8700;">str</span>:0-6:10}
+<pre class="src src-bash"><span style="color: #ffcc66;">str</span>=<span style="color: #66cccc;">'http://www. &#20320;&#30340;&#22495;&#21517;. com/cut-string.html'</span>
+<span style="color: #cc99cc;">echo</span> ${<span style="color: #ffcc66;">str</span>:0-6:10}
 </pre>
 </div></li>
 </ul>
@@ -455,8 +438,8 @@ ${string:0-start:len}
 
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #ff8700;">names</span>[0]=<span style="color: #ff4ea3;">'zhao'</span>
-<span style="color: #ff8700;">names</span>[1]=<span style="color: #ff4ea3;">'li'</span>
+<pre class="src src-bash"><span style="color: #ffcc66;">names</span>[0]=<span style="color: #66cccc;">'zhao'</span>
+<span style="color: #ffcc66;">names</span>[1]=<span style="color: #66cccc;">'li'</span>
 </pre>
 </div></li>
 
@@ -465,7 +448,7 @@ ${string:0-start:len}
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #ff8700;">names</span>=(<span style="color: #ff4ea3;">'zhao'</span> <span style="color: #ff4ea3;">'li'</span>)
+<pre class="src src-bash"><span style="color: #ffcc66;">names</span>=(<span style="color: #66cccc;">'zhao'</span> <span style="color: #66cccc;">'li'</span>)
 </pre>
 </div></li>
 
@@ -474,7 +457,7 @@ ${string:0-start:len}
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #d18aff;">declare</span> -a name
+<pre class="src src-bash"><span style="color: #cc99cc;">declare</span> -a name
 </pre>
 </div></li>
 
@@ -484,8 +467,8 @@ ${string:0-start:len}
 
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">&#23558;&#27599;&#19968;&#34892;&#35835;&#21462;&#20026;&#25968;&#32452;&#30340;&#19968;&#20010;&#20803;&#32032;</span>
-<span style="color: #ff8700;">names</span>=(<span style="color: #fa8072;">`cat 'names.txt'`</span>)
+<pre class="src src-bash"><span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">&#23558;&#27599;&#19968;&#34892;&#35835;&#21462;&#20026;&#25968;&#32452;&#30340;&#19968;&#20010;&#20803;&#32032;</span>
+<span style="color: #ffcc66;">names</span>=(<span style="color: #cc99cc;">`cat 'names.txt'`</span>)
 </pre>
 </div></li>
 
@@ -495,14 +478,14 @@ ${string:0-start:len}
 
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #ff8700;">PROVERB</span>=<span style="color: #ff4ea3;">"All work and no play makes Jack a dull boy."</span>
-<span style="color: #d18aff;">read</span> -a WORDS &lt;&lt;&lt; $<span style="color: #ff8700;">PROVERB</span>
-<span style="color: #d18aff;">echo</span> <span style="color: #ff4ea3;">"$WORDS"</span>
-<span style="color: #d18aff;">echo</span> <span style="color: #ff4ea3;">"${#WORDS}"</span>
-<span style="color: #d18aff;">echo</span> <span style="color: #ff4ea3;">"${WORDS[*]}"</span>
-<span style="color: #d18aff;">echo</span> <span style="color: #ff4ea3;">"${WORDS[@]}"</span>
-<span style="color: #d18aff;">echo</span> <span style="color: #ff4ea3;">"${#WORDS[*]}"</span>
-<span style="color: #d18aff;">echo</span> <span style="color: #ff4ea3;">"${#WORDS[@]}"</span>
+<pre class="src src-bash"><span style="color: #ffcc66;">PROVERB</span>=<span style="color: #66cccc;">"All work and no play makes Jack a dull boy."</span>
+<span style="color: #cc99cc;">read</span> -a WORDS &lt;&lt;&lt; $<span style="color: #ffcc66;">PROVERB</span>
+<span style="color: #cc99cc;">echo</span> <span style="color: #66cccc;">"$WORDS"</span>
+<span style="color: #cc99cc;">echo</span> <span style="color: #66cccc;">"${#WORDS}"</span>
+<span style="color: #cc99cc;">echo</span> <span style="color: #66cccc;">"${WORDS[*]}"</span>
+<span style="color: #cc99cc;">echo</span> <span style="color: #66cccc;">"${WORDS[@]}"</span>
+<span style="color: #cc99cc;">echo</span> <span style="color: #66cccc;">"${#WORDS[*]}"</span>
+<span style="color: #cc99cc;">echo</span> <span style="color: #66cccc;">"${#WORDS[@]}"</span>
 </pre>
 </div></li>
 
@@ -516,10 +499,10 @@ ${string:0-start:len}
 
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #d18aff;">echo</span> $<span style="color: #ff8700;">IFS</span>
-<span style="color: #ff8700;">IFS</span>=: read -r -a DIRS &lt;&lt;&lt; <span style="color: #ff4ea3;">"$PATH"</span>
-<span style="color: #d18aff;">echo</span> $<span style="color: #ff8700;">IFS</span>
-<span style="color: #d18aff;">declare</span> -p DIRS
+<pre class="src src-bash"><span style="color: #cc99cc;">echo</span> $<span style="color: #ffcc66;">IFS</span>
+<span style="color: #ffcc66;">IFS</span>=: read -r -a DIRS &lt;&lt;&lt; <span style="color: #66cccc;">"$PATH"</span>
+<span style="color: #cc99cc;">echo</span> $<span style="color: #ffcc66;">IFS</span>
+<span style="color: #cc99cc;">declare</span> -p DIRS
 </pre>
 </div></li>
 
@@ -529,11 +512,11 @@ ${string:0-start:len}
 
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #d18aff;">echo</span> <span style="color: #ff4ea3;">"$STR"</span> | cut -f $<span style="color: #ff8700;">N</span>
-<span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">&#20197; TAB &#20998;&#38548;&#65292;&#25171;&#21360;&#31532; N &#20010;&#23376;&#20018;&#20540;&#65292;N &#20174; 1 &#24320;&#22987;&#35745;&#25968;&#12290;</span>
+<pre class="src src-bash"><span style="color: #cc99cc;">echo</span> <span style="color: #66cccc;">"$STR"</span> | cut -f $<span style="color: #ffcc66;">N</span>
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">&#20197; TAB &#20998;&#38548;&#65292;&#25171;&#21360;&#31532; N &#20010;&#23376;&#20018;&#20540;&#65292;N &#20174; 1 &#24320;&#22987;&#35745;&#25968;&#12290;</span>
 
-<span style="color: #d18aff;">echo</span> <span style="color: #ff4ea3;">"$STR"</span> | cut -d <span style="color: #ff4ea3;">"$DELIM"</span> -d $<span style="color: #ff8700;">N</span>
-<span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">&#20197;&#25351;&#23450; DELIM &#20998;&#38548;&#65292;&#25171;&#21360;&#31532; N &#20010;&#23376;&#20018;&#20540;&#65292;N &#20174; 1 &#24320;&#22987;&#35745;&#25968;&#12290;&#20854;&#20013;&#65292;-d &#37096;&#20998;&#20063;&#21487;&#20197;&#26159; $N1,$N2,$N3 &#30340;&#24418;&#24335;&#65292;&#21363;&#36755;&#20986;&#22810;&#20010;&#23376;&#20018;&#12290;</span>
+<span style="color: #cc99cc;">echo</span> <span style="color: #66cccc;">"$STR"</span> | cut -d <span style="color: #66cccc;">"$DELIM"</span> -d $<span style="color: #ffcc66;">N</span>
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">&#20197;&#25351;&#23450; DELIM &#20998;&#38548;&#65292;&#25171;&#21360;&#31532; N &#20010;&#23376;&#20018;&#20540;&#65292;N &#20174; 1 &#24320;&#22987;&#35745;&#25968;&#12290;&#20854;&#20013;&#65292;-d &#37096;&#20998;&#20063;&#21487;&#20197;&#26159; $N1,$N2,$N3 &#30340;&#24418;&#24335;&#65292;&#21363;&#36755;&#20986;&#22810;&#20010;&#23376;&#20018;&#12290;</span>
 </pre>
 </div></li>
 
@@ -543,7 +526,7 @@ ${string:0-start:len}
 
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #d18aff;">echo</span> <span style="color: #ff4ea3;">"$STR"</span> | awk <span style="color: #ff4ea3;">'{print $1}'</span>
+<pre class="src src-bash"><span style="color: #cc99cc;">echo</span> <span style="color: #66cccc;">"$STR"</span> | awk <span style="color: #66cccc;">'{print $1}'</span>
 </pre>
 </div></li>
 </ul>
@@ -559,10 +542,10 @@ ${string:0-start:len}
 
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #ff8700;">adobe</span>=(<span style="color: #ff4ea3;">'Flash'</span> <span style="color: #ff4ea3;">'Flex'</span> <span style="color: #ff4ea3;">'Photoshop'</span> <span style="color: #ff4ea3;">'Dreamweaver'</span> <span style="color: #ff4ea3;">'Premiere'</span>)
-<span style="color: #ff8700;">adobe2</span>=(<span style="color: #ff4ea3;">'Fireworks'</span> <span style="color: #ff4ea3;">'Illustrator'</span>)
-<span style="color: #ff8700;">adobe3</span>=(${<span style="color: #ff8700;">adobe</span>[@]} ${<span style="color: #ff8700;">adobe2</span>[@]})
-<span style="color: #d18aff;">echo</span> ${#<span style="color: #ff8700;">adobe3</span>[@]}
+<pre class="src src-bash"><span style="color: #ffcc66;">adobe</span>=(<span style="color: #66cccc;">'Flash'</span> <span style="color: #66cccc;">'Flex'</span> <span style="color: #66cccc;">'Photoshop'</span> <span style="color: #66cccc;">'Dreamweaver'</span> <span style="color: #66cccc;">'Premiere'</span>)
+<span style="color: #ffcc66;">adobe2</span>=(<span style="color: #66cccc;">'Fireworks'</span> <span style="color: #66cccc;">'Illustrator'</span>)
+<span style="color: #ffcc66;">adobe3</span>=(${<span style="color: #ffcc66;">adobe</span>[@]} ${<span style="color: #ffcc66;">adobe2</span>[@]})
+<span style="color: #cc99cc;">echo</span> ${#<span style="color: #ffcc66;">adobe3</span>[@]}
 </pre>
 </div>
 </div>
@@ -577,27 +560,25 @@ ${string:0-start:len}
 
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">&#21024;&#38500; Photoshop &#20803;&#32032;</span>
-<span style="color: #ff8700;">adobe</span>=(<span style="color: #ff4ea3;">'Flash'</span> <span style="color: #ff4ea3;">'Flex'</span> <span style="color: #ff4ea3;">'Photoshop'</span> <span style="color: #ff4ea3;">'Dreamweaver'</span> <span style="color: #ff4ea3;">'Premiere'</span>)
-<span style="color: #ff8700;">adobe</span>=(${<span style="color: #ff8700;">adobe</span>[@]:0:2} ${<span style="color: #ff8700;">adobe</span>[@]:3})
-<span style="color: #d18aff;">echo</span> ${<span style="color: #ff8700;">adobe</span>[@]}
+<pre class="src src-bash"><span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">&#21024;&#38500; Photoshop &#20803;&#32032;</span>
+<span style="color: #ffcc66;">adobe</span>=(<span style="color: #66cccc;">'Flash'</span> <span style="color: #66cccc;">'Flex'</span> <span style="color: #66cccc;">'Photoshop'</span> <span style="color: #66cccc;">'Dreamweaver'</span> <span style="color: #66cccc;">'Premiere'</span>)
+<span style="color: #ffcc66;">adobe</span>=(${<span style="color: #ffcc66;">adobe</span>[@]:0:2} ${<span style="color: #ffcc66;">adobe</span>[@]:3})
+<span style="color: #cc99cc;">echo</span> ${<span style="color: #ffcc66;">adobe</span>[@]}
 </pre>
 </div>
-
 <ul class="org-ul">
 <li>使用正则表达式替换</li>
 </ul>
 
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #ff8700;">adobe</span>=(<span style="color: #ff4ea3;">'Flash'</span> <span style="color: #ff4ea3;">'Flex'</span> <span style="color: #ff4ea3;">'Photoshop'</span> <span style="color: #ff4ea3;">'Dreamweaver'</span> <span style="color: #ff4ea3;">'Premiere'</span>)
-<span style="color: #ff8700;">adobe</span>=(${<span style="color: #ff8700;">adobe</span>[@]/Photoshop/})
-<span style="color: #d18aff;">echo</span> ${<span style="color: #ff8700;">adobe</span>[@]}
+<pre class="src src-bash"><span style="color: #ffcc66;">adobe</span>=(<span style="color: #66cccc;">'Flash'</span> <span style="color: #66cccc;">'Flex'</span> <span style="color: #66cccc;">'Photoshop'</span> <span style="color: #66cccc;">'Dreamweaver'</span> <span style="color: #66cccc;">'Premiere'</span>)
+<span style="color: #ffcc66;">adobe</span>=(${<span style="color: #ffcc66;">adobe</span>[@]/Photoshop/})
+<span style="color: #cc99cc;">echo</span> ${<span style="color: #ffcc66;">adobe</span>[@]}
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-orgheadline15" class="outline-4">
 <h4 id="orgheadline15"><span class="section-number-4">3.3.4</span> 截取</h4>
 <div class="outline-text-4" id="text-3-3-4">
@@ -607,13 +588,12 @@ ${string:0-start:len}
 
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #ff8700;">adobe</span>=(<span style="color: #ff4ea3;">'Flash'</span> <span style="color: #ff4ea3;">'Flex'</span> <span style="color: #ff4ea3;">'Photoshop'</span> <span style="color: #ff4ea3;">'Dreamweaver'</span> <span style="color: #ff4ea3;">'Premiere'</span>)
-<span style="color: #d18aff;">echo</span> ${<span style="color: #ff8700;">adobe</span>[@]:1:3}
+<pre class="src src-bash"><span style="color: #ffcc66;">adobe</span>=(<span style="color: #66cccc;">'Flash'</span> <span style="color: #66cccc;">'Flex'</span> <span style="color: #66cccc;">'Photoshop'</span> <span style="color: #66cccc;">'Dreamweaver'</span> <span style="color: #66cccc;">'Premiere'</span>)
+<span style="color: #cc99cc;">echo</span> ${<span style="color: #ffcc66;">adobe</span>[@]:1:3}
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-orgheadline16" class="outline-4">
 <h4 id="orgheadline16"><span class="section-number-4">3.3.5</span> 替换</h4>
 <div class="outline-text-4" id="text-3-3-5">
@@ -623,10 +603,10 @@ ${string:0-start:len}
 
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #ff8700;">adobe</span>=(<span style="color: #ff4ea3;">'Flash'</span> <span style="color: #ff4ea3;">'Flex'</span> <span style="color: #ff4ea3;">'Photoshop'</span> <span style="color: #ff4ea3;">'Dreamweaver'</span> <span style="color: #ff4ea3;">'Premiere'</span>)
-<span style="color: #d18aff;">echo</span> ${<span style="color: #ff8700;">adobe</span>[@]/Flash/FlashCS5}
-<span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">&#23558;&#26367;&#25442;&#21518;&#30340;&#20540;&#37325;&#26032;&#20445;&#23384;&#25104;&#25968;&#32452;</span>
-<span style="color: #ff8700;">adobe</span>=(${<span style="color: #ff8700;">adobe</span>[@]/Flash/FlashCS5})
+<pre class="src src-bash"><span style="color: #ffcc66;">adobe</span>=(<span style="color: #66cccc;">'Flash'</span> <span style="color: #66cccc;">'Flex'</span> <span style="color: #66cccc;">'Photoshop'</span> <span style="color: #66cccc;">'Dreamweaver'</span> <span style="color: #66cccc;">'Premiere'</span>)
+<span style="color: #cc99cc;">echo</span> ${<span style="color: #ffcc66;">adobe</span>[@]/Flash/FlashCS5}
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">&#23558;&#26367;&#25442;&#21518;&#30340;&#20540;&#37325;&#26032;&#20445;&#23384;&#25104;&#25968;&#32452;</span>
+<span style="color: #ffcc66;">adobe</span>=(${<span style="color: #ffcc66;">adobe</span>[@]/Flash/FlashCS5})
 </pre>
 </div>
 </div>
@@ -641,8 +621,8 @@ ${string:0-start:len}
 
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #ff8700;">adobe</span>=(<span style="color: #ff4ea3;">'Flash'</span> <span style="color: #ff4ea3;">'Flex'</span> <span style="color: #ff4ea3;">'Photoshop'</span>)
-<span style="color: #d18aff;">echo</span> ${#<span style="color: #ff8700;">adobe</span>[@]}
+<pre class="src src-bash"><span style="color: #ffcc66;">adobe</span>=(<span style="color: #66cccc;">'Flash'</span> <span style="color: #66cccc;">'Flex'</span> <span style="color: #66cccc;">'Photoshop'</span>)
+<span style="color: #cc99cc;">echo</span> ${#<span style="color: #ffcc66;">adobe</span>[@]}
 </pre>
 </div>
 
@@ -652,8 +632,8 @@ ${string:0-start:len}
 
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #ff8700;">adobe</span>=([0]=<span style="color: #ff4ea3;">'Flash'</span> [2]=<span style="color: #ff4ea3;">'Flex'</span> [4]=<span style="color: #ff4ea3;">'Photoshop'</span>)
-<span style="color: #d18aff;">echo</span> ${#<span style="color: #ff8700;">adobe</span>[@]}
+<pre class="src src-bash"><span style="color: #ffcc66;">adobe</span>=([0]=<span style="color: #66cccc;">'Flash'</span> [2]=<span style="color: #66cccc;">'Flex'</span> [4]=<span style="color: #66cccc;">'Photoshop'</span>)
+<span style="color: #cc99cc;">echo</span> ${#<span style="color: #ffcc66;">adobe</span>[@]}
 </pre>
 </div>
 </div>
@@ -668,10 +648,10 @@ ${string:0-start:len}
 
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #ff8700;">adobe</span>=(<span style="color: #ff4ea3;">'Flash'</span> <span style="color: #ff4ea3;">'Flex'</span> <span style="color: #ff4ea3;">'Photoshop'</span> <span style="color: #ff4ea3;">'Dreamweaver'</span> <span style="color: #ff4ea3;">'Premiere'</span>)
-<span style="color: #a1db00;">for</span> item<span style="color: #a1db00;"> in</span> ${<span style="color: #ff8700;">adobe</span>[@]};<span style="color: #a1db00;">do</span>
-    <span style="color: #d18aff;">echo</span> $<span style="color: #ff8700;">item</span>
-<span style="color: #a1db00;">done</span>
+<pre class="src src-bash"><span style="color: #ffcc66;">adobe</span>=(<span style="color: #66cccc;">'Flash'</span> <span style="color: #66cccc;">'Flex'</span> <span style="color: #66cccc;">'Photoshop'</span> <span style="color: #66cccc;">'Dreamweaver'</span> <span style="color: #66cccc;">'Premiere'</span>)
+<span style="color: #99cc99;">for</span> item<span style="color: #99cc99;"> in</span> ${<span style="color: #ffcc66;">adobe</span>[@]};<span style="color: #99cc99;">do</span>
+    <span style="color: #cc99cc;">echo</span> $<span style="color: #ffcc66;">item</span>
+<span style="color: #99cc99;">done</span>
 </pre>
 </div>
 </div>
@@ -696,10 +676,10 @@ ${string:0-start:len}
 <div class="outline-text-4" id="text-6-1-1">
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #a1db00;">if </span><span style="color: #d18aff;">command</span>
-<span style="color: #a1db00;">then</span>
-    <span style="color: #d18aff;">command</span>
-<span style="color: #a1db00;">fi</span>
+<pre class="src src-bash"><span style="color: #99cc99;">if </span><span style="color: #cc99cc;">command</span>
+<span style="color: #99cc99;">then</span>
+    <span style="color: #cc99cc;">command</span>
+<span style="color: #99cc99;">fi</span>
 </pre>
 </div>
 <p>
@@ -712,12 +692,12 @@ bash shell 的 if 语句会运行 if 行定义的那个命令。如果该命令�
 <div class="outline-text-4" id="text-6-1-2">
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #a1db00;">if </span><span style="color: #d18aff;">command</span>
-<span style="color: #a1db00;">then</span>
+<pre class="src src-bash"><span style="color: #99cc99;">if </span><span style="color: #cc99cc;">command</span>
+<span style="color: #99cc99;">then</span>
     commands
-<span style="color: #a1db00;">else</span>
+<span style="color: #99cc99;">else</span>
     commands
-<span style="color: #a1db00;">fi</span>
+<span style="color: #99cc99;">fi</span>
 </pre>
 </div>
 </div>
@@ -727,13 +707,13 @@ bash shell 的 if 语句会运行 if 行定义的那个命令。如果该命令�
 <div class="outline-text-4" id="text-6-1-3">
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #a1db00;">if</span> command1
-<span style="color: #a1db00;">then</span>
+<pre class="src src-bash"><span style="color: #99cc99;">if</span> command1
+<span style="color: #99cc99;">then</span>
     commands
-<span style="color: #a1db00;">elif</span> command2
-<span style="color: #a1db00;">then</span>
+<span style="color: #99cc99;">elif</span> command2
+<span style="color: #99cc99;">then</span>
     commands
-<span style="color: #a1db00;">fi</span>
+<span style="color: #99cc99;">fi</span>
 </pre>
 </div>
 </div>
@@ -757,13 +737,13 @@ bash shell 的 if 语句会运行 if 行定义的那个命令。如果该命令�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">  <span style="color: #ff8700;">str1</span>=baseball
-  <span style="color: #ff8700;">str2</span>=hockey
+<pre class="src src-bash">  <span style="color: #ffcc66;">str1</span>=baseball
+  <span style="color: #ffcc66;">str2</span>=hockey
 
-  <span style="color: #a1db00;">if</span> [str1 <span style="color: #ff4ea3;">\&lt;</span> str2]
-  <span style="color: #a1db00;">then</span>
-      <span style="color: #d18aff;">echo</span> <span style="color: #ff4ea3;">"str1 &lt; str2"</span>
-  <span style="color: #a1db00;">fi</span>
+  <span style="color: #99cc99;">if</span> [str1 <span style="color: #66cccc;">\&lt;</span> str2]
+  <span style="color: #99cc99;">then</span>
+      <span style="color: #cc99cc;">echo</span> <span style="color: #66cccc;">"str1 &lt; str2"</span>
+  <span style="color: #99cc99;">fi</span>
 </pre>
 </div></li>
 <li>大于小于顺序和 sort 命令所采用的不同，主要表现在大写字母的处理上。test 命令中大写字母会被当成小于小写字母；而 sort 命令排序时，小写字母会先出现。</li>
@@ -811,11 +791,11 @@ bash shell 的 if 语句会运行 if 行定义的那个命令。如果该命令�
 <div class="outline-text-3" id="text-6-2">
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #a1db00;">case</span> variable<span style="color: #a1db00;"> in</span>
+<pre class="src src-bash"><span style="color: #99cc99;">case</span> variable<span style="color: #99cc99;"> in</span>
     pattern1 | pattern2) commands1;;
     pattern3) commands2;;
     *) default commands;;
-<span style="color: #a1db00;">esac</span>
+<span style="color: #99cc99;">esac</span>
 </pre>
 </div>
 <p>
@@ -828,10 +808,10 @@ bash shell 的 if 语句会运行 if 行定义的那个命令。如果该命令�
 <div class="outline-text-3" id="text-6-3">
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #a1db00;">for</span> var<span style="color: #a1db00;"> in</span> list
-<span style="color: #a1db00;">do</span>
+<pre class="src src-bash"><span style="color: #99cc99;">for</span> var<span style="color: #99cc99;"> in</span> list
+<span style="color: #99cc99;">do</span>
     commands
-<span style="color: #a1db00;">done</span>
+<span style="color: #99cc99;">done</span>
 </pre>
 </div>
 <p>
@@ -846,7 +826,7 @@ bash shell 的 if 语句会运行 if 行定义的那个命令。如果该命令�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #ff8700;">IFS</span>=$<span style="color: #ff4ea3;">'\n'</span>
+<pre class="src src-bash"><span style="color: #ffcc66;">IFS</span>=$<span style="color: #66cccc;">'\n'</span>
 </pre>
 </div>
 <p>
@@ -854,7 +834,7 @@ bash shell 的 if 语句会运行 if 行定义的那个命令。如果该命令�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #ff8700;">IFS</span>=$:;
+<pre class="src src-bash"><span style="color: #ffcc66;">IFS</span>=$:;
 </pre>
 </div></li>
 <li>使用通配符遍历目录。</li>
@@ -863,10 +843,10 @@ bash shell 中还可以使用 C 语言风格的 for 命令，注意括号内侧�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #a1db00;">for</span>(( <span style="color: #ff8700;">i</span>=1; i&lt;10; ++i))
-<span style="color: #a1db00;">do</span>
-    <span style="color: #d18aff;">echo</span> $<span style="color: #ff8700;">i</span>
-<span style="color: #a1db00;">done</span>
+<pre class="src src-bash"><span style="color: #99cc99;">for</span>(( <span style="color: #ffcc66;">i</span>=1; i&lt;10; ++i))
+<span style="color: #99cc99;">do</span>
+    <span style="color: #cc99cc;">echo</span> $<span style="color: #ffcc66;">i</span>
+<span style="color: #99cc99;">done</span>
 </pre>
 </div></li>
 </ul>
@@ -878,10 +858,10 @@ bash shell 中还可以使用 C 语言风格的 for 命令，注意括号内侧�
 <div class="outline-text-3" id="text-6-4">
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #a1db00;">while </span><span style="color: #d18aff;">command</span>
-<span style="color: #a1db00;">do</span>
+<pre class="src src-bash"><span style="color: #99cc99;">while </span><span style="color: #cc99cc;">command</span>
+<span style="color: #99cc99;">do</span>
     other commands
-<span style="color: #a1db00;">done</span>
+<span style="color: #99cc99;">done</span>
 </pre>
 </div>
 </div>
@@ -892,10 +872,10 @@ bash shell 中还可以使用 C 语言风格的 for 命令，注意括号内侧�
 <div class="outline-text-3" id="text-6-5">
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #a1db00;">until </span><span style="color: #d18aff;">command</span>
-<span style="color: #a1db00;">do</span>
+<pre class="src src-bash"><span style="color: #99cc99;">until </span><span style="color: #cc99cc;">command</span>
+<span style="color: #99cc99;">do</span>
     other commands
-<span style="color: #a1db00;">done</span>
+<span style="color: #99cc99;">done</span>
 </pre>
 </div>
 </div>
@@ -1027,22 +1007,22 @@ bash shell 中还可以使用 C 语言风格的 for 命令，注意括号内侧�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #d18aff;">read</span> tips_type url &lt;&lt;EOF
-<span style="color: #ffff00; font-weight: bold;"> $(</span><span style="color: #fa8072;">mysql</span><span style="color: #ffff00; font-weight: bold;"> -u root -ptoor -D tips_server -Bse "select tips_type,url from tips where tips_type='bubble';")</span>
-<span style="color: #ffff00; font-weight: bold;">EOF</span>
-<span style="color: #d18aff;">echo</span> -e <span style="color: #ff4ea3;">"$tips_type \t $url \n"</span>
+<pre class="src src-bash"><span style="color: #cc99cc;">read</span> tips_type url &lt;&lt;EOF
+<span style="color: #66cccc;"> $(</span><span style="color: #cc99cc;">mysql</span><span style="color: #66cccc;"> -u root -ptoor -D tips_server -Bse "select tips_type,url from tips where tips_type='bubble';")</span>
+<span style="color: #66cccc;">EOF</span>
+<span style="color: #cc99cc;">echo</span> -e <span style="color: #66cccc;">"$tips_type \t $url \n"</span>
 </pre>
 </div></li>
 <li>返回结果集</li>
 </ul>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #a1db00;">while </span><span style="color: #d18aff;">read</span> -a row
-<span style="color: #a1db00;">do</span>
-    <span style="color: #d18aff;">echo</span> ${<span style="color: #ff8700;">row</span>[0]} ${<span style="color: #ff8700;">row</span>[1]}
-<span style="color: #a1db00;">done</span> &lt;&lt;EOF
-<span style="color: #ffff00; font-weight: bold;"> $(</span><span style="color: #fa8072;">mysql</span><span style="color: #ffff00; font-weight: bold;"> -u root -ptoor -D tips_server -Bse "select tips_type,url from tips;")</span>
-<span style="color: #ffff00; font-weight: bold;">EOF</span>
+<pre class="src src-bash"><span style="color: #99cc99;">while </span><span style="color: #cc99cc;">read</span> -a row
+<span style="color: #99cc99;">do</span>
+    <span style="color: #cc99cc;">echo</span> ${<span style="color: #ffcc66;">row</span>[0]} ${<span style="color: #ffcc66;">row</span>[1]}
+<span style="color: #99cc99;">done</span> &lt;&lt;EOF
+<span style="color: #66cccc;"> $(</span><span style="color: #cc99cc;">mysql</span><span style="color: #66cccc;"> -u root -ptoor -D tips_server -Bse "select tips_type,url from tips;")</span>
+<span style="color: #66cccc;">EOF</span>
 </pre>
 </div>
 </div>
@@ -1064,7 +1044,7 @@ bash shell 中还可以使用 C 语言风格的 for 命令，注意括号内侧�
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: lsl</p>
-<p class="date">Created: 2016-07-23 六 12:30</p>
+<p class="date">Created: 2016-08-07 Sun 19:48</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

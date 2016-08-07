@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-07-23 六 12:30 -->
+<!-- 2016-08-07 Sun 19:48 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Fcitx 实践</title>
@@ -170,10 +170,10 @@ for the JavaScript code in this tag.
 
 <div class="org-src-container">
 
-<pre class="src src-sh">sudo add-apt-repository ppa:Fcitx-team/nightly
+<pre class="src src-bash">sudo add-apt-repository ppa:Fcitx-team/nightly
 sudo apt-get update
 sudo apt-get install Fcitx Fcitx-googlepinyin
-<span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">&#23433;&#35013;&#20043;&#21518;&#38656;&#35201;&#37325;&#21551; Fcitx</span>
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">&#23433;&#35013;&#20043;&#21518;&#38656;&#35201;&#37325;&#21551; Fcitx</span>
 Fcitx -r
 </pre>
 </div>
@@ -184,7 +184,7 @@ Fcitx -r
 
 <div class="org-src-container">
 
-<pre class="src src-sh">sudo apt-get install im-config
+<pre class="src src-bash">sudo apt-get install im-config
 im-config
 </pre>
 </div>
@@ -204,7 +204,7 @@ im-config
 
 <div class="org-src-container">
 
-<pre class="src src-sh">sudo apt-get purge fcitx
+<pre class="src src-bash">sudo apt-get purge fcitx
 </pre>
 </div>
 <ol class="org-ol">
@@ -213,7 +213,7 @@ im-config
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">im-switch -s ibus -z default
+<pre class="src src-bash">im-switch -s ibus -z default
 </pre>
 </div></li>
 <li>重启</li>
@@ -229,7 +229,7 @@ im-config
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 
-<pre class="src src-sh">gsettings set org.gnome.settings-daemon.plugins.xsettings overrides <span style="color: #ff4ea3;">"{'Gtk/IMModule':&lt;'Fcitx'&gt;}"</span>
+<pre class="src src-bash">gsettings set org.gnome.settings-daemon.plugins.xsettings overrides <span style="color: #66cccc;">"{'Gtk/IMModule':&lt;'Fcitx'&gt;}"</span>
 </pre>
 </div>
 </div>
@@ -249,19 +249,19 @@ im-config
 
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #6c6c6c; font-style: italic;">#</span><span style="color: #6c6c6c; font-style: italic;">&#35774;&#32622; im &#30340; envvars</span>
-<span style="color: #d18aff;">export</span> <span style="color: #ff8700;">XMODIFIERS</span>=@<span style="color: #ff8700;">im</span>=Fcitx
-<span style="color: #d18aff;">export</span> <span style="color: #ff8700;">GTK_IM_MODULE</span>=Fcitx
-<span style="color: #d18aff;">export</span> <span style="color: #ff8700;">QT_IM_MODULE</span>=Fcitx
+<pre class="src src-bash"><span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">&#35774;&#32622; im &#30340; envvars</span>
+<span style="color: #cc99cc;">export</span> <span style="color: #ffcc66;">XMODIFIERS</span>=@<span style="color: #ffcc66;">im</span>=Fcitx
+<span style="color: #cc99cc;">export</span> <span style="color: #ffcc66;">GTK_IM_MODULE</span>=Fcitx
+<span style="color: #cc99cc;">export</span> <span style="color: #ffcc66;">QT_IM_MODULE</span>=Fcitx
 
-<span style="color: #a1db00;">if</span> [ -d /etc/X11/xinit/xinitrc.d ]; <span style="color: #a1db00;">then</span>
-  <span style="color: #a1db00;">for</span> f<span style="color: #a1db00;"> in</span> /etc/X11/xinit/xinitrc.d/*; <span style="color: #a1db00;">do</span> <span style="color: #6c6c6c; font-style: italic;">#</span><span style="color: #6c6c6c; font-style: italic;">dbus &#30340;&#21551;&#21160;&#33050;&#26412;&#20301;&#20110; xinitrc.d &#20013;&#30340; 30-dbus</span>
-    [ -x <span style="color: #ff4ea3;">"$f"</span> ] &amp;&amp; <span style="color: #d18aff;">.</span> <span style="color: #ff4ea3;">"$f"</span>
-  <span style="color: #a1db00;">done</span>
-  <span style="color: #d18aff;">unset</span> f
-<span style="color: #a1db00;">fi</span>
+<span style="color: #99cc99;">if</span> [ -d /etc/X11/xinit/xinitrc.d ]; <span style="color: #99cc99;">then</span>
+  <span style="color: #99cc99;">for</span> f<span style="color: #99cc99;"> in</span> /etc/X11/xinit/xinitrc.d/*; <span style="color: #99cc99;">do</span> <span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">dbus &#30340;&#21551;&#21160;&#33050;&#26412;&#20301;&#20110; xinitrc.d &#20013;&#30340; 30-dbus</span>
+    [ -x <span style="color: #66cccc;">"$f"</span> ] &amp;&amp; <span style="color: #cc99cc;">.</span> <span style="color: #66cccc;">"$f"</span>
+  <span style="color: #99cc99;">done</span>
+  <span style="color: #cc99cc;">unset</span> f
+<span style="color: #99cc99;">fi</span>
 
-<span style="color: #a1db00;">exec</span> gnome-session
+<span style="color: #99cc99;">exec</span> gnome-session
 </pre>
 </div>
 </div>
@@ -284,7 +284,7 @@ im-config
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">    env <span style="color: #ff8700;">LANG</span>=zh_CN.utf-8 emacs
+<pre class="src src-bash">    env <span style="color: #ffcc66;">LANG</span>=zh_CN.utf-8 emacs
 </pre>
 </div></li>
 
@@ -296,7 +296,7 @@ im-config
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: lsl</p>
-<p class="date">Created: 2016-07-23 六 12:30</p>
+<p class="date">Created: 2016-08-07 Sun 19:48</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -1,0 +1,845 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-08-07 Sun 19:37 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Python practices</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="lsl" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Python practices</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. 简介</a></li>
+<li><a href="#orgheadline73">2. 语言</a>
+<ul>
+<li><a href="#orgheadline2">2.1. 环境搭建</a></li>
+<li><a href="#orgheadline3">2.2. 中文编码</a></li>
+<li><a href="#orgheadline13">2.3. 基础语法</a>
+<ul>
+<li><a href="#orgheadline4">2.3.1. 标识符</a></li>
+<li><a href="#orgheadline5">2.3.2. 保留字符</a></li>
+<li><a href="#orgheadline6">2.3.3. 行和缩进</a></li>
+<li><a href="#orgheadline7">2.3.4. 多行语句</a></li>
+<li><a href="#orgheadline8">2.3.5. 引号</a></li>
+<li><a href="#orgheadline9">2.3.6. 注释</a></li>
+<li><a href="#orgheadline10">2.3.7. 空行</a></li>
+<li><a href="#orgheadline11">2.3.8. 一行多条语句</a></li>
+<li><a href="#orgheadline12">2.3.9. 代码块</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline39">2.4. 变量类型</a>
+<ul>
+<li><a href="#orgheadline14">2.4.1. 赋值</a></li>
+<li><a href="#orgheadline15">2.4.2. 多个变量赋值</a></li>
+<li><a href="#orgheadline38">2.4.3. 标准数据类型</a>
+<ul>
+<li><a href="#orgheadline22">数字</a></li>
+<li><a href="#orgheadline30">字符串</a></li>
+<li><a href="#orgheadline34">列表</a></li>
+<li><a href="#orgheadline36">元组</a></li>
+<li><a href="#orgheadline37">元字典</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline48">2.5. 运算符</a>
+<ul>
+<li><a href="#orgheadline40">2.5.1. 算数运算符</a></li>
+<li><a href="#orgheadline41">2.5.2. 比较运算符</a></li>
+<li><a href="#orgheadline42">2.5.3. 赋值操作符</a></li>
+<li><a href="#orgheadline43">2.5.4. 位运算符</a></li>
+<li><a href="#orgheadline44">2.5.5. 逻辑运算符</a></li>
+<li><a href="#orgheadline45">2.5.6. 成员运算符</a></li>
+<li><a href="#orgheadline46">2.5.7. 身份运算符</a></li>
+<li><a href="#orgheadline47">2.5.8. 运算符优先级</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline58">2.6. 流控制</a>
+<ul>
+<li><a href="#orgheadline50">2.6.1. 条件语句</a>
+<ul>
+<li><a href="#orgheadline49">if</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline57">2.6.2. 循环语句</a>
+<ul>
+<li><a href="#orgheadline51">while</a></li>
+<li><a href="#orgheadline52">for</a></li>
+<li><a href="#orgheadline53">循环使用 else</a></li>
+<li><a href="#orgheadline54">break</a></li>
+<li><a href="#orgheadline55">continue</a></li>
+<li><a href="#orgheadline56">pass</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline64">2.7. 函数</a>
+<ul>
+<li><a href="#orgheadline59">2.7.1. 定义</a></li>
+<li><a href="#orgheadline60">2.7.2. 参数传递</a></li>
+<li><a href="#orgheadline61">2.7.3. 匿名函数</a></li>
+<li><a href="#orgheadline62">2.7.4. 变量作用域</a></li>
+<li><a href="#orgheadline63">2.7.5. main 函数</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline69">2.8. 模块</a>
+<ul>
+<li><a href="#orgheadline65">2.8.1. 导入模块</a></li>
+<li><a href="#orgheadline66">2.8.2. 定位模块</a></li>
+<li><a href="#orgheadline67">2.8.3. 命名空间和作用域</a></li>
+<li><a href="#orgheadline68">2.8.4. python 中的包</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline70">2.9. 文件 IO</a></li>
+<li><a href="#orgheadline71">2.10. 异常处理</a></li>
+<li><a href="#orgheadline72">2.11. 面向对象</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline93">3. 库</a>
+<ul>
+<li><a href="#orgheadline74">3.1. configparse</a></li>
+<li><a href="#orgheadline75">3.2. email</a></li>
+<li><a href="#orgheadline77">3.3. mysql connect/python</a>
+<ul>
+<li><a href="#orgheadline76">3.3.1. connect server</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline78">3.4. GUI</a></li>
+<li><a href="#orgheadline79">3.5. JSON</a></li>
+<li><a href="#orgheadline80">3.6. multiprocessing</a></li>
+<li><a href="#orgheadline81">3.7. os</a></li>
+<li><a href="#orgheadline82">3.8. os.path</a></li>
+<li><a href="#orgheadline83">3.9. pexpect</a></li>
+<li><a href="#orgheadline84">3.10. profile</a></li>
+<li><a href="#orgheadline85">3.11. redis</a></li>
+<li><a href="#orgheadline86">3.12. Requests</a></li>
+<li><a href="#orgheadline87">3.13. shutil</a></li>
+<li><a href="#orgheadline88">3.14. smtplib</a></li>
+<li><a href="#orgheadline89">3.15. subprocess</a></li>
+<li><a href="#orgheadline90">3.16. threading</a></li>
+<li><a href="#orgheadline91">3.17. time</a></li>
+<li><a href="#orgheadline92">3.18. XML</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> 简介</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">!/usr/bin/python3</span>
+<span style="color: #99cc99;">print</span>(<span style="color: #66cccc;">"Hello,Python"</span>)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline73" class="outline-2">
+<h2 id="orgheadline73"><span class="section-number-2">2</span> 语言</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">2.1</span> 环境搭建</h3>
+<div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+
+<pre class="src src-bash"><span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">!/bin/</span><span style="color: #99cc99;">bash</span>
+python --version
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-bash"><span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">!/bin/</span><span style="color: #99cc99;">bash</span>
+python3 -V
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">2.2</span> 中文编码</h3>
+<div class="outline-text-3" id="text-2-2">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">!/usr/bin/python3</span>
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">-*- coding:utf-8; -*-</span>
+<span style="color: #99cc99;">print</span>(<span style="color: #66cccc;">"&#20320;&#22909;&#65292;python"</span>)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13"><span class="section-number-3">2.3</span> 基础语法</h3>
+<div class="outline-text-3" id="text-2-3">
+</div><div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4"><span class="section-number-4">2.3.1</span> 标识符</h4>
+</div>
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5"><span class="section-number-4">2.3.2</span> 保留字符</h4>
+</div>
+<div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6"><span class="section-number-4">2.3.3</span> 行和缩进</h4>
+<div class="outline-text-4" id="text-2-3-3">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">!/usr/bin/python3</span>
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">-*- coding:utf-8; -*-</span>
+
+<span style="color: #99cc99;">if</span> <span style="color: #6699cc;">True</span>:
+    <span style="color: #99cc99;">print</span>(<span style="color: #66cccc;">"true"</span>)
+<span style="color: #99cc99;">else</span>:
+    <span style="color: #99cc99;">print</span>(<span style="color: #66cccc;">"false"</span>)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7"><span class="section-number-4">2.3.4</span> 多行语句</h4>
+</div>
+<div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8"><span class="section-number-4">2.3.5</span> 引号</h4>
+</div>
+<div id="outline-container-orgheadline9" class="outline-4">
+<h4 id="orgheadline9"><span class="section-number-4">2.3.6</span> 注释</h4>
+</div>
+<div id="outline-container-orgheadline10" class="outline-4">
+<h4 id="orgheadline10"><span class="section-number-4">2.3.7</span> 空行</h4>
+</div>
+<div id="outline-container-orgheadline11" class="outline-4">
+<h4 id="orgheadline11"><span class="section-number-4">2.3.8</span> 一行多条语句</h4>
+<div class="outline-text-4" id="text-2-3-8">
+<p>
+以分号分割。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline12" class="outline-4">
+<h4 id="orgheadline12"><span class="section-number-4">2.3.9</span> 代码块</h4>
+<div class="outline-text-4" id="text-2-3-9">
+<p>
+复合语句一关键字开始，以冒号（：）机诶书，改行之后的一行或者多行代码构成代码块。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline39" class="outline-3">
+<h3 id="orgheadline39"><span class="section-number-3">2.4</span> 变量类型</h3>
+<div class="outline-text-3" id="text-2-4">
+</div><div id="outline-container-orgheadline14" class="outline-4">
+<h4 id="orgheadline14"><span class="section-number-4">2.4.1</span> 赋值</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<p>
+变量不需要提前声明，变量的赋值操作就声明和定义的过程。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline15" class="outline-4">
+<h4 id="orgheadline15"><span class="section-number-4">2.4.2</span> 多个变量赋值</h4>
+<div class="outline-text-4" id="text-2-4-2">
+<p>
+可以同时为多个变量赋值。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">!/usr/bin/python3</span>
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">-*- coding:utf-8; -*-</span>
+<span style="color: #ffcc66;">a</span> = <span style="color: #ffcc66;">b</span> = <span style="color: #ffcc66;">c</span> = 1
+<span style="color: #99cc99;">print</span>(a, b,c)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">!/usr/bin/python3</span>
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">-*- coding:utf-8; -*-</span>
+<span style="color: #ffcc66;">a</span>, <span style="color: #ffcc66;">b</span>, <span style="color: #ffcc66;">c</span> = 1, 2, <span style="color: #66cccc;">"john"</span>
+<span style="color: #99cc99;">print</span>(a, b,c)
+</pre>
+</div>
+<p>
+为什么这里有括号呢？
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline38" class="outline-4">
+<h4 id="orgheadline38"><span class="section-number-4">2.4.3</span> 标准数据类型</h4>
+<div class="outline-text-4" id="text-2-4-3">
+</div><div id="outline-container-orgheadline22" class="outline-5">
+<h5 id="orgheadline22">数字</h5>
+<div class="outline-text-5" id="text-orgheadline22">
+</div><ul class="org-ul"><li><a id="orgheadline16"></a>支持类型<br  /></li>
+<li><a id="orgheadline17"></a>数字类型转换<br  /></li>
+<li><a id="orgheadline18"></a>数学函数<br  /></li>
+<li><a id="orgheadline19"></a>随机数函数<br  /></li>
+<li><a id="orgheadline20"></a>三角函数<br  /></li>
+<li><a id="orgheadline21"></a>数学常量<br  /></li></ul>
+</div>
+<div id="outline-container-orgheadline30" class="outline-5">
+<h5 id="orgheadline30">字符串</h5>
+<div class="outline-text-5" id="text-orgheadline30">
+</div><ul class="org-ul"><li><a id="orgheadline23"></a>访问更新<br  /></li>
+<li><a id="orgheadline24"></a>转义字符<br  /></li>
+<li><a id="orgheadline25"></a>字符串运算符<br  /></li>
+<li><a id="orgheadline26"></a>格式化<br  /></li>
+<li><a id="orgheadline27"></a>三引号<br  /></li>
+<li><a id="orgheadline28"></a>Unicode 字符串<br  /></li>
+<li><a id="orgheadline29"></a>字符串内建函数<br  /></li></ul>
+</div>
+<div id="outline-container-orgheadline34" class="outline-5">
+<h5 id="orgheadline34">列表</h5>
+<div class="outline-text-5" id="text-orgheadline34">
+</div><ul class="org-ul"><li><a id="orgheadline31"></a>增删改查<br  /></li>
+<li><a id="orgheadline32"></a>列表脚本操作符<br  /></li>
+<li><a id="orgheadline33"></a>列表函数方法<br  /></li></ul>
+</div>
+<div id="outline-container-orgheadline36" class="outline-5">
+<h5 id="orgheadline36">元组</h5>
+<div class="outline-text-5" id="text-orgheadline36">
+</div><ul class="org-ul"><li><a id="orgheadline35"></a>元组中只包含一个元素时，需要在元素后面添加逗号。<br  /></li></ul>
+</div>
+<div id="outline-container-orgheadline37" class="outline-5">
+<h5 id="orgheadline37">元字典</h5>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline48" class="outline-3">
+<h3 id="orgheadline48"><span class="section-number-3">2.5</span> 运算符</h3>
+<div class="outline-text-3" id="text-2-5">
+</div><div id="outline-container-orgheadline40" class="outline-4">
+<h4 id="orgheadline40"><span class="section-number-4">2.5.1</span> 算数运算符</h4>
+</div>
+<div id="outline-container-orgheadline41" class="outline-4">
+<h4 id="orgheadline41"><span class="section-number-4">2.5.2</span> 比较运算符</h4>
+</div>
+<div id="outline-container-orgheadline42" class="outline-4">
+<h4 id="orgheadline42"><span class="section-number-4">2.5.3</span> 赋值操作符</h4>
+</div>
+<div id="outline-container-orgheadline43" class="outline-4">
+<h4 id="orgheadline43"><span class="section-number-4">2.5.4</span> 位运算符</h4>
+</div>
+<div id="outline-container-orgheadline44" class="outline-4">
+<h4 id="orgheadline44"><span class="section-number-4">2.5.5</span> 逻辑运算符</h4>
+</div>
+<div id="outline-container-orgheadline45" class="outline-4">
+<h4 id="orgheadline45"><span class="section-number-4">2.5.6</span> 成员运算符</h4>
+</div>
+<div id="outline-container-orgheadline46" class="outline-4">
+<h4 id="orgheadline46"><span class="section-number-4">2.5.7</span> 身份运算符</h4>
+</div>
+<div id="outline-container-orgheadline47" class="outline-4">
+<h4 id="orgheadline47"><span class="section-number-4">2.5.8</span> 运算符优先级</h4>
+</div>
+</div>
+<div id="outline-container-orgheadline58" class="outline-3">
+<h3 id="orgheadline58"><span class="section-number-3">2.6</span> 流控制</h3>
+<div class="outline-text-3" id="text-2-6">
+</div><div id="outline-container-orgheadline50" class="outline-4">
+<h4 id="orgheadline50"><span class="section-number-4">2.6.1</span> 条件语句</h4>
+<div class="outline-text-4" id="text-2-6-1">
+</div><div id="outline-container-orgheadline49" class="outline-5">
+<h5 id="orgheadline49">if</h5>
+</div>
+</div>
+<div id="outline-container-orgheadline57" class="outline-4">
+<h4 id="orgheadline57"><span class="section-number-4">2.6.2</span> 循环语句</h4>
+<div class="outline-text-4" id="text-2-6-2">
+</div><div id="outline-container-orgheadline51" class="outline-5">
+<h5 id="orgheadline51">while</h5>
+</div>
+<div id="outline-container-orgheadline52" class="outline-5">
+<h5 id="orgheadline52">for</h5>
+<div class="outline-text-5" id="text-orgheadline52">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #99cc99;">for</span> i <span style="color: #99cc99;">in</span> <span style="color: #cc99cc;">range</span>(0,5):
+    <span style="color: #99cc99;">print</span>(i)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline53" class="outline-5">
+<h5 id="orgheadline53">循环使用 else</h5>
+</div>
+<div id="outline-container-orgheadline54" class="outline-5">
+<h5 id="orgheadline54">break</h5>
+</div>
+<div id="outline-container-orgheadline55" class="outline-5">
+<h5 id="orgheadline55">continue</h5>
+</div>
+<div id="outline-container-orgheadline56" class="outline-5">
+<h5 id="orgheadline56">pass</h5>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline64" class="outline-3">
+<h3 id="orgheadline64"><span class="section-number-3">2.7</span> 函数</h3>
+<div class="outline-text-3" id="text-2-7">
+</div><div id="outline-container-orgheadline59" class="outline-4">
+<h4 id="orgheadline59"><span class="section-number-4">2.7.1</span> 定义</h4>
+<div class="outline-text-4" id="text-2-7-1">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">!/usr/bin/python3</span>
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">-*- coding:utf-8; -*-</span>
+<span style="color: #99cc99;">def</span> <span style="color: #f99157;">printme</span>(<span style="color: #cc99cc;">str</span>):
+    <span style="color: #66cccc;">"&#25171;&#21360;&#23383;&#31526;&#20018;&#33258;&#36523;"</span>
+    <span style="color: #99cc99;">print</span>(<span style="color: #cc99cc;">str</span>)
+    <span style="color: #99cc99;">return</span>
+
+printme(<span style="color: #66cccc;">"&#25171;&#21360;&#23383;&#31526;&#20018;&#33258;&#36523;"</span>)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline60" class="outline-4">
+<h4 id="orgheadline60"><span class="section-number-4">2.7.2</span> 参数传递</h4>
+<div class="outline-text-4" id="text-2-7-2">
+<ul class="org-ul">
+<li>都是传递引用</li>
+<li>参数类型有：必备参数、关键字参数、默认参数、不定长参数。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline61" class="outline-4">
+<h4 id="orgheadline61"><span class="section-number-4">2.7.3</span> 匿名函数</h4>
+</div>
+<div id="outline-container-orgheadline62" class="outline-4">
+<h4 id="orgheadline62"><span class="section-number-4">2.7.4</span> 变量作用域</h4>
+</div>
+
+<div id="outline-container-orgheadline63" class="outline-4">
+<h4 id="orgheadline63"><span class="section-number-4">2.7.5</span> main 函数</h4>
+<div class="outline-text-4" id="text-2-7-5">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">!/usr/bin/python3</span>
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">-*- coding:utf-8; -*-</span>
+
+<span style="color: #99cc99;">def</span> <span style="color: #f99157;">foo</span>():
+    <span style="color: #99cc99;">print</span>(<span style="color: #66cccc;">"function"</span>)
+
+<span style="color: #99cc99;">if</span> <span style="color: #cc99cc;">__name__</span> == <span style="color: #66cccc;">"__main__"</span>:
+    <span style="color: #99cc99;">print</span>(<span style="color: #66cccc;">"main"</span>)
+    foo()
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline69" class="outline-3">
+<h3 id="orgheadline69"><span class="section-number-3">2.8</span> 模块</h3>
+<div class="outline-text-3" id="text-2-8">
+</div><div id="outline-container-orgheadline65" class="outline-4">
+<h4 id="orgheadline65"><span class="section-number-4">2.8.1</span> 导入模块</h4>
+<div class="outline-text-4" id="text-2-8-1">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">!/usr/bin/python3</span>
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">-*- coding:utf-8; -*-</span>
+<span style="color: #99cc99;">import</span> support
+
+support.print_func(<span style="color: #66cccc;">"zara"</span>)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline66" class="outline-4">
+<h4 id="orgheadline66"><span class="section-number-4">2.8.2</span> 定位模块</h4>
+</div>
+
+<div id="outline-container-orgheadline67" class="outline-4">
+<h4 id="orgheadline67"><span class="section-number-4">2.8.3</span> 命名空间和作用域</h4>
+</div>
+
+<div id="outline-container-orgheadline68" class="outline-4">
+<h4 id="orgheadline68"><span class="section-number-4">2.8.4</span> python 中的包</h4>
+</div>
+</div>
+
+<div id="outline-container-orgheadline70" class="outline-3">
+<h3 id="orgheadline70"><span class="section-number-3">2.9</span> 文件 IO</h3>
+<div class="outline-text-3" id="text-2-9">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">!/usr/bin/python3</span>
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">-*- coding:utf-8; -*-</span>
+
+<span style="color: #99cc99;">try</span>:
+    <span style="color: #ffcc66;">user_info</span> = <span style="color: #66cccc;">"user_info.data"</span>
+    <span style="color: #ffcc66;">data</span> = <span style="color: #cc99cc;">open</span>(user_info, <span style="color: #66cccc;">'r'</span>)
+    data.readline()
+
+<span style="color: #99cc99;">except</span> <span style="color: #6699cc;">IOError</span> <span style="color: #99cc99;">as</span> err:
+    <span style="color: #99cc99;">print</span>(<span style="color: #66cccc;">"File Erro: &#25171;&#24320;&#29992;&#25143;&#25968;&#25454;&#25991;&#20214;&#22833;&#36133;"</span>)
+
+<span style="color: #99cc99;">finally</span>:
+    <span style="color: #99cc99;">if</span> <span style="color: #66cccc;">'data'</span> <span style="color: #99cc99;">in</span> <span style="color: #cc99cc;">locals</span>():
+        data.close()
+</pre>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgheadline71" class="outline-3">
+<h3 id="orgheadline71"><span class="section-number-3">2.10</span> 异常处理</h3>
+</div>
+<div id="outline-container-orgheadline72" class="outline-3">
+<h3 id="orgheadline72"><span class="section-number-3">2.11</span> 面向对象</h3>
+<div class="outline-text-3" id="text-2-11">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">-*- coding: UTF-8 -*-</span>
+<span style="color: #99cc99;">class</span> <span style="color: #6699cc;">Employee</span>:
+   <span style="color: #66cccc;">'&#22522;&#31867;'</span>
+   <span style="color: #ffcc66;">empCount</span> = 0
+
+   <span style="color: #99cc99;">def</span> <span style="color: #f99157;">__init__</span>(<span style="color: #99cc99;">self</span>, name, salary):
+      <span style="color: #99cc99;">self</span>.name = name
+      <span style="color: #99cc99;">self</span>.salary = salary
+      <span style="color: #ffcc66;">Employee.empCount</span> += 1
+
+   <span style="color: #99cc99;">def</span> <span style="color: #f99157;">displayCount</span>(<span style="color: #99cc99;">self</span>):
+     <span style="color: #99cc99;">print</span> <span style="color: #66cccc;">"Total Employee %d"</span> % Employee.empCount
+
+   <span style="color: #99cc99;">def</span> <span style="color: #f99157;">displayEmployee</span>(<span style="color: #99cc99;">self</span>):
+      <span style="color: #99cc99;">print</span> <span style="color: #66cccc;">"Name : "</span>, <span style="color: #99cc99;">self</span>.name,  <span style="color: #66cccc;">", Salary: "</span>, <span style="color: #99cc99;">self</span>.salary
+
+<span style="color: #99cc99;">print</span> <span style="color: #66cccc;">"Employee.__doc__:"</span>, Employee.<span style="color: #cc99cc;">__doc__</span>
+<span style="color: #99cc99;">print</span> <span style="color: #66cccc;">"Employee.__name__:"</span>, Employee.<span style="color: #cc99cc;">__name__</span>
+<span style="color: #99cc99;">print</span> <span style="color: #66cccc;">"Employee.__module__:"</span>, Employee.__module__
+<span style="color: #99cc99;">print</span> <span style="color: #66cccc;">"Employee.__bases__:"</span>, Employee.__bases__
+<span style="color: #99cc99;">print</span> <span style="color: #66cccc;">"Employee.__dict__:"</span>, Employee.__dict__
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline93" class="outline-2">
+<h2 id="orgheadline93"><span class="section-number-2">3</span> 库</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-orgheadline74" class="outline-3">
+<h3 id="orgheadline74"><span class="section-number-3">3.1</span> configparse</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+python2 可以使用 config.py，python3 使用 configparser module。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline75" class="outline-3">
+<h3 id="orgheadline75"><span class="section-number-3">3.2</span> <a href="https://docs.python.org/2.7/library/email.html#module-email">email</a></h3>
+</div>
+<div id="outline-container-orgheadline77" class="outline-3">
+<h3 id="orgheadline77"><span class="section-number-3">3.3</span> <a href="https://dev.mysql.com/doc/connector-python/en/">mysql connect/python</a></h3>
+<div class="outline-text-3" id="text-3-3">
+</div><div id="outline-container-orgheadline76" class="outline-4">
+<h4 id="orgheadline76"><span class="section-number-4">3.3.1</span> connect server</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">!/usr/bin/python3</span>
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">-*- coding:utf-8; -*-</span>
+<span style="color: #99cc99;">import</span> mysql.connector
+<span style="color: #99cc99;">from</span> mysql.connector <span style="color: #99cc99;">import</span> errorcode
+
+<span style="color: #ffcc66;">config</span> = {
+    <span style="color: #66cccc;">'host'</span>:<span style="color: #66cccc;">'127.0.0.1'</span>,
+    <span style="color: #66cccc;">'user'</span>:<span style="color: #66cccc;">'root'</span>,
+    <span style="color: #66cccc;">'password'</span>:<span style="color: #66cccc;">'toor'</span>,
+    <span style="color: #66cccc;">'database'</span>:<span style="color: #66cccc;">'touch_manager'</span>,
+}
+
+<span style="color: #99cc99;">try</span>:
+    <span style="color: #99cc99;">print</span>(<span style="color: #66cccc;">"Connecting Database {}: "</span>.<span style="color: #cc99cc;">format</span>(config[<span style="color: #66cccc;">'database'</span>]), end=<span style="color: #66cccc;">''</span>)
+    <span style="color: #ffcc66;">cnx</span> = mysql.connector.connect(**config)
+
+<span style="color: #99cc99;">except</span> mysql.connector.Error <span style="color: #99cc99;">as</span> err:
+    <span style="color: #99cc99;">if</span> err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+          <span style="color: #99cc99;">print</span>(<span style="color: #66cccc;">"Something is wrong with your user name or password"</span>)
+    <span style="color: #99cc99;">elif</span> err.errno == errorcode.ER_BAD_DB_ERROR:
+          <span style="color: #99cc99;">print</span>(<span style="color: #66cccc;">"Database does not exist"</span>)
+    <span style="color: #99cc99;">else</span>:
+          <span style="color: #99cc99;">print</span>(err.msg)
+<span style="color: #99cc99;">else</span>:
+    <span style="color: #99cc99;">print</span>(<span style="color: #66cccc;">"OK"</span>)
+    cnx.close()
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline78" class="outline-3">
+<h3 id="orgheadline78"><span class="section-number-3">3.4</span> GUI</h3>
+</div>
+<div id="outline-container-orgheadline79" class="outline-3">
+<h3 id="orgheadline79"><span class="section-number-3">3.5</span> JSON</h3>
+</div>
+<div id="outline-container-orgheadline80" class="outline-3">
+<h3 id="orgheadline80"><span class="section-number-3">3.6</span> <a href="https://docs.python.org/2/library/multiprocessing.html">multiprocessing</a></h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+python 多进程处理。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">!/usr/bin/env python3</span>
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">-*- coding:utf-8 -*-</span>
+
+<span style="color: #99cc99;">import</span> multiprocessing
+
+<span style="color: #99cc99;">def</span> <span style="color: #f99157;">do_cal</span>(data):
+    <span style="color: #99cc99;">return</span> data*2
+
+<span style="color: #99cc99;">def</span> <span style="color: #f99157;">pre_process</span>():
+    <span style="color: #99cc99;">print</span> <span style="color: #66cccc;">'start process'</span>,multiprocessing.current_process().name
+
+<span style="color: #99cc99;">if</span> <span style="color: #cc99cc;">__name__</span> == <span style="color: #66cccc;">'__main__'</span>:
+    <span style="color: #ffcc66;">inputs</span> = <span style="color: #cc99cc;">list</span>(<span style="color: #cc99cc;">range</span>(10))
+    pirnt(<span style="color: #66cccc;">'input&#65306;'</span>,inputs)
+
+    <span style="color: #ffcc66;">buildin_output</span> = <span style="color: #cc99cc;">map</span>(do_cal, inputs)
+    <span style="color: #99cc99;">print</span>(<span style="color: #66cccc;">'buildin_output:'</span>, buildin_output)
+
+    <span style="color: #ffcc66;">pool_size</span> = multiprocessing.cpu_count() * 2
+    <span style="color: #ffcc66;">pool</span> = multiprocessing.Pool(processes = pool_size, initializer = pre_process)
+    <span style="color: #ffcc66;">pool_output</span> = pool.<span style="color: #cc99cc;">map</span>(do_cal, inputs)
+    pool.close()
+    pool.join()
+
+    <span style="color: #99cc99;">print</span>(<span style="color: #66cccc;">'Pool output:'</span>,pool_output)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline81" class="outline-3">
+<h3 id="orgheadline81"><span class="section-number-3">3.7</span> os</h3>
+</div>
+<div id="outline-container-orgheadline82" class="outline-3">
+<h3 id="orgheadline82"><span class="section-number-3">3.8</span> os.path</h3>
+</div>
+<div id="outline-container-orgheadline83" class="outline-3">
+<h3 id="orgheadline83"><span class="section-number-3">3.9</span> <a href="https://pexpect.readthedocs.io/en/stable/overview.html">pexpect</a></h3>
+</div>
+<div id="outline-container-orgheadline84" class="outline-3">
+<h3 id="orgheadline84"><span class="section-number-3">3.10</span> profile</h3>
+</div>
+<div id="outline-container-orgheadline85" class="outline-3">
+<h3 id="orgheadline85"><span class="section-number-3">3.11</span> <a href="https://pypi.python.org/pypi/redis">redis</a></h3>
+</div>
+<div id="outline-container-orgheadline86" class="outline-3">
+<h3 id="orgheadline86"><span class="section-number-3">3.12</span> <a href="http://docs.python-requests.org/en/master/">Requests</a></h3>
+</div>
+<div id="outline-container-orgheadline87" class="outline-3">
+<h3 id="orgheadline87"><span class="section-number-3">3.13</span> shutil</h3>
+</div>
+<div id="outline-container-orgheadline88" class="outline-3">
+<h3 id="orgheadline88"><span class="section-number-3">3.14</span> <a href="https://docs.python.org/2.7/library/smtplib.html#module-smtplib">smtplib</a></h3>
+</div>
+<div id="outline-container-orgheadline89" class="outline-3">
+<h3 id="orgheadline89"><span class="section-number-3">3.15</span> <a href="https://docs.python.org/2/library/subprocess.html">subprocess</a></h3>
+<div class="outline-text-3" id="text-3-15">
+<p>
+主要用来调用 shell 命令，常用的命令有：
+</p>
+<ul class="org-ul">
+<li>subprocess.call</li>
+<li>subprocess.check_call</li>
+<li>subprocess.check_output</li>
+</ul>
+
+<p>
+以及异常处理：
+</p>
+<ul class="org-ul">
+<li>subprocess.CalledProcessError</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline90" class="outline-3">
+<h3 id="orgheadline90"><span class="section-number-3">3.16</span> threading</h3>
+<div class="outline-text-3" id="text-3-16">
+<p>
+python 多线程库。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline91" class="outline-3">
+<h3 id="orgheadline91"><span class="section-number-3">3.17</span> time</h3>
+<div class="outline-text-3" id="text-3-17">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #999999; font-style: italic;">#</span><span style="color: #999999; font-style: italic;">!/usr/bin/python3</span>
+
+<span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">-*- coding:utf-8; -*-</span>
+<span style="color: #99cc99;">import</span> time
+
+<span style="color: #ffcc66;">ticks</span> = time.time();
+<span style="color: #99cc99;">print</span>(<span style="color: #66cccc;">"&#24403;&#21069;&#26102;&#38388;&#25139;&#26159;&#65306;"</span>, ticks)
+
+<span style="color: #99cc99;">print</span>(time.strftime(<span style="color: #66cccc;">"%Y-%m-%d"</span>,time.localtime()))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline92" class="outline-3">
+<h3 id="orgheadline92"><span class="section-number-3">3.18</span> XML</h3>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: lsl</p>
+<p class="date">Created: 2016-08-07 Sun 19:37</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

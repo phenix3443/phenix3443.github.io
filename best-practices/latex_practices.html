@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-07-23 六 12:30 -->
+<!-- 2016-08-07 Sun 19:48 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>latex practices</title>
@@ -401,7 +401,7 @@ LaTeX 源文件是普通的文本文件格式，其中不仅包括所要排版�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">    latex hello.tex
+<pre class="src src-bash">    latex hello.tex
 </pre>
 </div>
 <p>
@@ -417,7 +417,7 @@ LaTeX 源文件是普通的文本文件格式，其中不仅包括所要排版�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">    xdvi hello.dvi
+<pre class="src src-bash">    xdvi hello.dvi
 </pre>
 </div>
 <p>
@@ -433,7 +433,7 @@ DVI 元文件中的信息最终要被转化成可以在特定打印机上输出�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">  dvihp hello.dvi
+<pre class="src src-bash">  dvihp hello.dvi
 </pre>
 </div>
 </div>
@@ -446,7 +446,7 @@ DVI 元文件中的信息最终要被转化成可以在特定打印机上输出�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">    dvipdf hello.dvi
+<pre class="src src-bash">    dvipdf hello.dvi
     dvips hello.dvi -o
 </pre>
 </div>
@@ -485,8 +485,8 @@ TeXLive 是以光盘镜像（ISO）的形式发布的，在 <a href="http://www.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">     mount -t iso9660 -o ro,loop texlive2015-20150523.iso
-     <span style="color: #d18aff;">cd</span> /mnt/texlive
+<pre class="src src-bash">     mount -t iso9660 -o ro,loop texlive2015-20150523.iso
+     <span style="color: #cc99cc;">cd</span> /mnt/texlive
 </pre>
 </div>
 
@@ -495,7 +495,7 @@ TeXLive 的安装比较容易，首先是将光盘根目录下的 bin 和 texmf 
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">     mkdir /usr/local/texlive
+<pre class="src src-bash">     mkdir /usr/local/texlive
      cp /mnt/texlive/bin/ /usr/local/texlive/ -R
      cp /mnt/texlive/texmf/ /usr/local/texlive/ -R
 </pre>
@@ -506,7 +506,7 @@ TeXLive 的安装比较容易，首先是将光盘根目录下的 bin 和 texmf 
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">     <span style="color: #d18aff;">export</span> <span style="color: #ff8700;">PATH</span>=/usr/local/texlive/bin/i386-linux/:$<span style="color: #ff8700;">PATH</span>
+<pre class="src src-bash">     <span style="color: #cc99cc;">export</span> <span style="color: #ffcc66;">PATH</span>=/usr/local/texlive/bin/i386-linux/:$<span style="color: #ffcc66;">PATH</span>
 </pre>
 </div>
 <p>
@@ -515,7 +515,7 @@ TeXLive 的安装比较容易，首先是将光盘根目录下的 bin 和 texmf 
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"> tex
+<pre class="src src-bash"> tex
 </pre>
 </div>
 
@@ -524,7 +524,7 @@ TeXLive 的安装比较容易，首先是将光盘根目录下的 bin 和 texmf 
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">     \relax\bye
+<pre class="src src-bash">     \relax\bye
 </pre>
 </div>
 <p>
@@ -563,7 +563,7 @@ ubuntu 下安装程序依赖 perl-tk。
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">   sudo apt-get install perl-tk
+<pre class="src src-bash">   sudo apt-get install perl-tk
 </pre>
 </div></li>
 <li>安装过程中出一些 tar 不完整的错误重新安装可以解决，之前下载的安装包也不会重复下载。</li>
@@ -580,7 +580,7 @@ XeTEX 和 LuaTEX 可以使用任何系统安装的字体，而不只是 TEX 目�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">    sudo tlmgr install collection-xetex
+<pre class="src src-bash">    sudo tlmgr install collection-xetex
 </pre>
 </div>
 <p>
@@ -588,7 +588,7 @@ XeTEX 和 LuaTEX 可以使用任何系统安装的字体，而不只是 TEX 目�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">      sudo cp /usr/local/texlive/2015/texmf-var/fonts/conf/texlive-fontconfig.conf /etc/fonts/conf.d/09-texlive.conf
+<pre class="src src-bash">      sudo cp /usr/local/texlive/2015/texmf-var/fonts/conf/texlive-fontconfig.conf /etc/fonts/conf.d/09-texlive.conf
       sudo fc-cache -fsv
 </pre>
 </div>
@@ -598,7 +598,7 @@ XeTEX 和 LuaTEX 可以使用任何系统安装的字体，而不只是 TEX 目�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">      cp /usr/local/texlive/2015/texmf-var/fonts/conf/texlive-fontconfig.conf ~/.fonts.conf
+<pre class="src src-bash">      cp /usr/local/texlive/2015/texmf-var/fonts/conf/texlive-fontconfig.conf ~/.fonts.conf
       fc-cache -fv
 </pre>
 </div></li>
@@ -615,30 +615,30 @@ xelatex 虽然能够正常使用系统字体，但是无法分别指定中英文
 
 <div class="org-src-container">
 
-<pre class="src src-latex">    <span style="color: #a1db00;">\documentclass</span>[<span style="color: #ff8700;">12pt,a4paper</span>]{<span style="color: #ffd700;">article</span>}
-    <span style="color: #a1db00;">\usepackage</span>{<span style="color: #ffd700;">xltxtra,fontspec,xunicode</span>}
-    <span style="color: #a1db00;">\usepackage</span>[<span style="color: #ff8700;">slantfont,boldfont</span>]{<span style="color: #ffd700;">xeCJK</span>} <span style="color: #6c6c6c; font-style: italic;">% &#20801;&#35768;&#26012;&#20307;&#21644;&#31895;&#20307;</span>
+<pre class="src src-latex">    <span style="color: #99cc99;">\documentclass</span>[<span style="color: #ffcc66;">12pt,a4paper</span>]{<span style="color: #f99157;">article</span>}
+    <span style="color: #99cc99;">\usepackage</span>{<span style="color: #f99157;">xltxtra,fontspec,xunicode</span>}
+    <span style="color: #99cc99;">\usepackage</span>[<span style="color: #ffcc66;">slantfont,boldfont</span>]{<span style="color: #f99157;">xeCJK</span>} <span style="color: #999999; font-style: italic;">% &#20801;&#35768;&#26012;&#20307;&#21644;&#31895;&#20307;</span>
 
-    <span style="color: #d3d3d3;">\setCJKmainfont</span>{&#25991;&#27849;&#39551;&#31561;&#23485;&#24494;&#31859;&#40657;}   <span style="color: #6c6c6c; font-style: italic;">% &#35774;&#32622;&#32570;&#30465;&#20013;&#25991;&#23383;&#20307;</span>
-    <span style="color: #d3d3d3;">\setCJKmonofont</span>{&#25991;&#27849;&#39551;&#24494;&#31859;&#40657;}   <span style="color: #6c6c6c; font-style: italic;">% &#35774;&#32622;&#31561;&#23485;&#23383;&#20307;</span>
-    <span style="color: #d3d3d3;">\setmainfont</span>{DejaVu Serif}   <span style="color: #6c6c6c; font-style: italic;">% &#33521;&#25991;&#34924;&#32447;&#23383;&#20307;</span>
-    <span style="color: #d3d3d3;">\setmonofont</span>{DejaVu Sans Mono}   <span style="color: #6c6c6c; font-style: italic;">% &#33521;&#25991;&#31561;&#23485;&#23383;&#20307;</span>
-    <span style="color: #d3d3d3;">\setsansfont</span>{DejaVu Sans} <span style="color: #6c6c6c; font-style: italic;">% &#33521;&#25991;&#26080;&#34924;&#32447;&#23383;&#20307;</span>
+    <span style="color: #d3d3d3;">\setCJKmainfont</span>{&#25991;&#27849;&#39551;&#31561;&#23485;&#24494;&#31859;&#40657;}   <span style="color: #999999; font-style: italic;">% &#35774;&#32622;&#32570;&#30465;&#20013;&#25991;&#23383;&#20307;</span>
+    <span style="color: #d3d3d3;">\setCJKmonofont</span>{&#25991;&#27849;&#39551;&#24494;&#31859;&#40657;}   <span style="color: #999999; font-style: italic;">% &#35774;&#32622;&#31561;&#23485;&#23383;&#20307;</span>
+    <span style="color: #d3d3d3;">\setmainfont</span>{DejaVu Serif}   <span style="color: #999999; font-style: italic;">% &#33521;&#25991;&#34924;&#32447;&#23383;&#20307;</span>
+    <span style="color: #d3d3d3;">\setmonofont</span>{DejaVu Sans Mono}   <span style="color: #999999; font-style: italic;">% &#33521;&#25991;&#31561;&#23485;&#23383;&#20307;</span>
+    <span style="color: #d3d3d3;">\setsansfont</span>{DejaVu Sans} <span style="color: #999999; font-style: italic;">% &#33521;&#25991;&#26080;&#34924;&#32447;&#23383;&#20307;</span>
 
-    <span style="color: #a1db00;">\begin</span>{<span style="color: #ffd700;">document</span>}
-    <span style="color: #a1db00;">\begin</span>{<span style="color: #ffd700;">verse</span>}
+    <span style="color: #99cc99;">\begin</span>{<span style="color: #f99157;">document</span>}
+    <span style="color: #99cc99;">\begin</span>{<span style="color: #f99157;">verse</span>}
       Stray birds of summer come to my window to sing and fly away. <span style="color: #ff0000; font-weight: bold;">\\</span>
       And yellow leaves of autumn, which have no songs, <span style="color: #ff0000; font-weight: bold;">\\</span>
       flutter and fall there with a sign.<span style="color: #ff0000; font-weight: bold;">\\</span>
-      <span style="color: #d3d3d3;">\hfill</span> <span style="color: #a1db00;">\emph</span>{<span style="color: #6b8e23; font-style: italic;">Rabindranath Tagore</span>}
-    <span style="color: #a1db00;">\end</span>{<span style="color: #ffd700;">verse</span>}
+      <span style="color: #d3d3d3;">\hfill</span> <span style="color: #99cc99;">\emph</span>{<span style="color: #6b8e23; font-style: italic;">Rabindranath Tagore</span>}
+    <span style="color: #99cc99;">\end</span>{<span style="color: #f99157;">verse</span>}
 
-    <span style="color: #a1db00;">\begin</span>{<span style="color: #ffd700;">verse</span>}
+    <span style="color: #99cc99;">\begin</span>{<span style="color: #f99157;">verse</span>}
       &#22799;&#22825;&#30340;&#39134;&#40479;&#65292;&#39134;&#21040;&#25105;&#30340;&#31383;&#21069;&#21809;&#27468;&#65292;&#21448;&#39134;&#21435;&#20102;&#12290;<span style="color: #ff0000; font-weight: bold;">\\</span>
       &#31179;&#22825;&#30340;&#40644;&#21494;&#65292;&#23427;&#20204;&#27809;&#26377;&#20160;&#20040;&#21487;&#21809;&#65292;&#21482;&#21497;&#24687;&#19968;&#22768;&#65292;&#39134;&#33853;&#22312;&#37027;&#37324;&#12290;<span style="color: #ff0000; font-weight: bold;">\\</span>
-      <span style="color: #d3d3d3;">\hfill</span> <span style="color: #a1db00;">\emph</span>{<span style="color: #6b8e23; font-style: italic;">&#32599;&#23486;&#24503;&#25289;&#32435;&#29305;&#183;&#27888;&#25096;&#23572;</span>}
-    <span style="color: #a1db00;">\end</span>{<span style="color: #ffd700;">verse</span>}
-    <span style="color: #a1db00;">\end</span>{<span style="color: #ffd700;">document</span>}
+      <span style="color: #d3d3d3;">\hfill</span> <span style="color: #99cc99;">\emph</span>{<span style="color: #6b8e23; font-style: italic;">&#32599;&#23486;&#24503;&#25289;&#32435;&#29305;&#183;&#27888;&#25096;&#23572;</span>}
+    <span style="color: #99cc99;">\end</span>{<span style="color: #f99157;">verse</span>}
+    <span style="color: #99cc99;">\end</span>{<span style="color: #f99157;">document</span>}
 </pre>
 </div>
 <p>
@@ -959,7 +959,7 @@ MacTeX<sup><a id="fnr.18" class="footref" href="#fn.18">18</a></sup>实际上是
 <div class="outline-text-3" id="text-4-6">
 <div class="org-src-container">
 
-<pre class="src src-sh">    fc-list :<span style="color: #ff8700;">lang</span>=zh family style file spacing | awk -F: <span style="color: #ff4ea3;">'BEGIN {OFS=" : "} {print $2 , $1 , $3 }'</span> | sort &gt; chinesefontname
+<pre class="src src-bash">    fc-list :<span style="color: #ffcc66;">lang</span>=zh family style file spacing | awk -F: <span style="color: #66cccc;">'BEGIN {OFS=" : "} {print $2 , $1 , $3 }'</span> | sort &gt; chinesefontname
 </pre>
 </div>
 <p>
@@ -967,7 +967,7 @@ MacTeX<sup><a id="fnr.18" class="footref" href="#fn.18">18</a></sup>实际上是
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">    fc-list :<span style="color: #ff8700;">lang</span>=en family style file spacing | awk -F: <span style="color: #ff4ea3;">'BEGIN {OFS=" : "} {print $2 , $1 , $3 }'</span> | sort &gt; englishfontname
+<pre class="src src-bash">    fc-list :<span style="color: #ffcc66;">lang</span>=en family style file spacing | awk -F: <span style="color: #66cccc;">'BEGIN {OFS=" : "} {print $2 , $1 , $3 }'</span> | sort &gt; englishfontname
 </pre>
 </div>
 </div>
@@ -977,7 +977,7 @@ MacTeX<sup><a id="fnr.18" class="footref" href="#fn.18">18</a></sup>实际上是
 <div class="outline-text-3" id="text-4-7">
 <div class="org-src-container">
 
-<pre class="src src-sh">    sudo apt-get install ttf-wqy-zenhei ttf-wqy-microhei xfonts-wqy fonts-arphic-ukai fonts-arphic-uming
+<pre class="src src-bash">    sudo apt-get install ttf-wqy-zenhei ttf-wqy-microhei xfonts-wqy fonts-arphic-ukai fonts-arphic-uming
 </pre>
 </div>
 
@@ -986,9 +986,9 @@ MacTeX<sup><a id="fnr.18" class="footref" href="#fn.18">18</a></sup>实际上是
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">    fc-cache -fv <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">&#23433;&#35013;&#22312;~/.fonts.conf</span>
-    <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">&#25110;&#32773;</span>
-    fc-cache -fsv <span style="color: #6c6c6c; font-style: italic;"># </span><span style="color: #6c6c6c; font-style: italic;">&#23433;&#35013;&#22312;/etc/fonts/</span>
+<pre class="src src-bash">    fc-cache -fv <span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">&#23433;&#35013;&#22312;~/.fonts.conf</span>
+    <span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">&#25110;&#32773;</span>
+    fc-cache -fsv <span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">&#23433;&#35013;&#22312;/etc/fonts/</span>
 </pre>
 </div>
 </div>
@@ -1075,7 +1075,7 @@ MacTeX<sup><a id="fnr.18" class="footref" href="#fn.18">18</a></sup>实际上是
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: lsl</p>
-<p class="date">Created: 2016-07-23 六 12:30</p>
+<p class="date">Created: 2016-08-07 Sun 19:48</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
