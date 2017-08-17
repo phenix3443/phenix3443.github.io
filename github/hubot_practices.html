@@ -3,8 +3,8 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>thunderbird practices</title>
-<!-- 2017-08-17 四 18:28 -->
+<title>hubot practices</title>
+<!-- 2017-08-17 四 18:42 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="lsl" />
@@ -137,55 +137,79 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">thunderbird practices</h1>
+<h1 class="title">hubot practices</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. 切换中文</a></li>
-<li><a href="#sec-2">2. 设置过滤器</a></li>
-<li><a href="#sec-3">3. 修改邮件存放位置</a></li>
+<li><a href="#sec-1">1. install</a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> 切换中文</h2>
+<h2 id="sec-1"><span class="section-number-2">1</span> install<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup></h2>
 <div class="outline-text-2" id="text-1">
-<ol class="org-ol">
-<li>下载中文语言包
-</li>
-</ol>
 <p>
-在官方网站的 <a href="https://addons.mozilla.org/en-US/thunderbird/language-tools/">https://addons.mozilla.org/en-US/thunderbird/language-tools/</a> 中找不到中文语言包，可以到它的 ftp 服务器上下载：
-<a href="http://ftp.mozilla.org/pub/mozilla.org/thunderbird/nightly/3.1.7-candidates/build3/win32/xpi/zh-CN.xpi%EF%BC%88%E5%85%B6%E4%B8%AD">http://ftp.mozilla.org/pub/mozilla.org/thunderbird/nightly/3.1.7-candidates/build3/win32/xpi/zh-CN.xpi%EF%BC%88%E5%85%B6%E4%B8%AD</a> 3.1.7 是版本号，如果要下载英文语言包将 zh-CN 改成 en-US 即可）
+require
 </p>
-<ol class="org-ol">
-<li>修改默认语言
-</li>
-</ol>
-<p>
-打开 Thunderbird-&gt;Tools-&gt;Options-&gt;Advanced-&gt;General-&gt;Config Editor 将 general.useragent.locale 设置为 zh-CN
-如需改回英文界面，将 general.useragent.locale 设置为 en-US
-</p>
-<ol class="org-ol">
-<li>重起 Thunderbird 即可生效
-</li>
-</ol>
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo apt-get install redis-server
+sudo npm install -g coffee-script
+</pre>
 </div>
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo npm install -g yo generator-hubot
+</pre>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> 设置过滤器</h2>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">cd ~/github/
+mkdir myhubot
+cd myhubot
+yo hubot
+</pre>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> 修改邮件存放位置</h2>
+<p>
+遇到问题：<a href="https://github.com/npm/npm/issues/5869">https://github.com/npm/npm/issues/5869</a>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo npm cache clean
+# 再次执行
+yo hubot
+</pre>
+</div>
+<p>
+运行：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">bin/hubot
+</pre>
 </div>
 </div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
+<a href="https://hubot.github.com/docs/">hubot doc</a>
+</p></div>
+
+
+</div>
+</div></div>
 <div id="postamble" class="status">
 <p class="author">Author: lsl</p>
-<p class="date">Created: 2017-08-17 四 18:28</p>
+<p class="date">Created: 2017-08-17 四 18:42</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.2.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
