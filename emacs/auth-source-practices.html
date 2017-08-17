@@ -3,30 +3,23 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-08-07 Sun 19:10 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>auth-source 实践</title>
+<!-- 2017-08-17 四 18:07 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="lsl" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center;
-             margin-bottom: .2em; }
-  .subtitle { text-align: center;
-              font-size: medium;
-              font-weight: bold;
-              margin-top:0; }
+  .title  { text-align: center; }
   .todo   { font-family: monospace; color: red; }
-  .done   { font-family: monospace; color: green; }
-  .priority { font-family: monospace; color: orange; }
+  .done   { color: green; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -65,14 +58,15 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.org-right  { text-align: center;  }
-  th.org-left   { text-align: center;   }
-  th.org-center { text-align: center; }
-  td.org-right  { text-align: right;  }
-  td.org-left   { text-align: left;   }
-  td.org-center { text-align: center; }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara { display: inline; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -148,16 +142,16 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. Overview</a></li>
-<li><a href="#orgheadline2">2. Help for users</a></li>
-<li><a href="#orgheadline3">3. Secret Service API</a></li>
-<li><a href="#orgheadline4">4. Appendix A GnuPG and EasyPG Assistant Configuration</a></li>
+<li><a href="#sec-1">1. Overview</a></li>
+<li><a href="#sec-2">2. Help for users</a></li>
+<li><a href="#sec-3">3. Secret Service API</a></li>
+<li><a href="#sec-4">4. Appendix A GnuPG and EasyPG Assistant Configuration</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> Overview</h2>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Overview</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The auth-source library is simply a way for Emacs and Gnus, among others, to answer the old burning question “What are my user name and password?”
@@ -181,8 +175,8 @@ Next: Secret Service API, Previous: Overview, Up: Top   [Contents][Index]
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">2</span> Help for users</h2>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Help for users</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 “Netrc” files are a de facto standard. They look like this:
@@ -200,7 +194,7 @@ The machine is the server (either a DNS name or an IP address). It’s known as 
 </p>
 
 <p>
-machine 指的是服务（可以是 DNS 名字或者是 IP 地址）。auth-source-search 查询中的:host。也可以使用 host 代替
+machine指的是服务（可以是DNS名字或者是IP地址）。auth-source-search查询中的:host。也可以使用host代替
 </p>
 
 <p>
@@ -208,7 +202,7 @@ The port is the connection port or protocol. It’s known as :port in auth-sourc
 </p>
 
 <p>
-port 是连接端口或协议。
+port是连接端口或协议。
 </p>
 
 <p>
@@ -216,7 +210,7 @@ The user is the user name. It’s known as :user in auth-source-search queries. 
 </p>
 
 <p>
-user 是用户名。也可以使用 login 或者 account。
+user是用户名。也可以使用login或者account。
 </p>
 
 <p>
@@ -224,7 +218,7 @@ Spaces are always OK as far as auth-source is concerned (but other programs may 
 </p>
 
 <p>
-对于 auth-source 来说空格是没问题的（但是其他程序可能不喜欢他们）。可以把数据放在括号里，如你所想，括号可以通过‘\’进行转义。
+对于auth-source来说空格是没问题的（但是其他程序可能不喜欢他们）。可以把数据放在括号里，如你所想，括号可以通过‘\’进行转义。
 </p>
 
 <p>
@@ -251,7 +245,7 @@ to use the same password everywhere. Again, DO NOT DO THIS or you will be pwned 
 </p>
 
 <p>
-“netrc”文件通常被称作.authinfo 或者.neterc；现在.authinfo 看起来更流行。auto-source 库也通过接手两者来鼓励这种混淆，正如你后面看到的。
+“netrc”文件通常被称作.authinfo或者.neterc；现在.authinfo看起来更流行。auto-source库也通过接手两者来鼓励这种混淆，正如你后面看到的。
 </p>
 
 <p>
@@ -259,7 +253,7 @@ If you have problems with the search, set auth-source-debug to 'trivia and see w
 </p>
 
 <p>
-如果搜索的过程中遇到了问题，将 auth-source-debug 设置为'trivia，可以在 <b>Messages</b>  buffer 中看到库正在检查的 host port 和 user 信息。同样对于任何其他问题，第一步总是查看在检查什么。第二步，当然，是写一个关于它的博客，在评论中等待答案。
+如果搜索的过程中遇到了问题，将auth-source-debug设置为'trivia，可以在 <b>Messages</b>  buffer中看到库正在检查的host port和user信息。同样对于任何其他问题，第一步总是查看在检查什么。第二步，当然，是写一个关于它的博客，在评论中等待答案。
 </p>
 
 
@@ -268,12 +262,12 @@ You can customize the variable auth-sources. The following may be needed if you 
 </p>
 
 <p>
-可以定制 auto-soources 变量。如果使用旧版本的 Emacs 或者由于某些问题 auto-source 库没有加载，你可能需要下面的代码：
+可以定制auto-soources变量。如果使用旧版本的Emacs或者由于某些问题auto-source库没有加载，你可能需要下面的代码：
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #99cc99;">require</span> '<span style="color: #6699cc;">auth-source</span>)             <span style="color: #999999; font-style: italic;">;; </span><span style="color: #999999; font-style: italic;">probably not necessary</span>
-(customize-variable 'auth-sources) <span style="color: #999999; font-style: italic;">;; </span><span style="color: #999999; font-style: italic;">optional, do it once</span>
+<pre class="src src-elisp">(require 'auth-source)             ;; probably not necessary
+(customize-variable 'auth-sources) ;; optional, do it once
 </pre>
 </div>
 
@@ -286,20 +280,20 @@ The auth-sources variable tells the auth-source library where your netrc files o
 </p>
 
 <p>
-变量 auth-sources 告诉 auto-source 库 netrc 文件或者一个特定主机和协议的 Secret Service API 集合条目。可以想象一下，默认和最简单的配置是这样的：
+变量auth-sources告诉auto-source 库netrc文件或者一个特定主机和协议的Secret Service API集合条目。可以想象一下，默认和最简单的配置是这样的：
 </p>
 
 <div class="org-src-container">
 
-<pre class="src src-elisp"><span style="color: #999999; font-style: italic;">;;; </span><span style="color: #999999; font-style: italic;">old default: required :host and :port, not needed anymore</span>
-(setq auth-sources '((<span style="color: #cc99cc;">:source</span> <span style="color: #66cccc;">"~/.authinfo.gpg"</span> <span style="color: #cc99cc;">:host</span> t <span style="color: #cc99cc;">:port</span> t)))
-  <span style="color: #999999; font-style: italic;">;;; </span><span style="color: #999999; font-style: italic;">mostly equivalent (see below about fallbacks) but shorter:</span>
-(setq auth-sources '((<span style="color: #cc99cc;">:source</span> <span style="color: #66cccc;">"~/.authinfo.gpg"</span>)))
-  <span style="color: #999999; font-style: italic;">;;; </span><span style="color: #999999; font-style: italic;">even shorter and the default:</span>
-(setq auth-sources '(<span style="color: #66cccc;">"~/.authinfo.gpg"</span> <span style="color: #66cccc;">"~/.authinfo"</span> <span style="color: #66cccc;">"~/.netrc"</span>))
-  <span style="color: #999999; font-style: italic;">;;; </span><span style="color: #999999; font-style: italic;">use the Secrets API Login collection</span>
-  <span style="color: #999999; font-style: italic;">;;; </span><span style="color: #999999; font-style: italic;">(see Secret Service API)</span>
-(setq auth-sources '(<span style="color: #66cccc;">"secrets:Login"</span>))
+<pre class="src src-elisp">;;; old default: required :host and :port, not needed anymore
+(setq auth-sources '((:source "~/.authinfo.gpg" :host t :port t)))
+  ;;; mostly equivalent (see below about fallbacks) but shorter:
+(setq auth-sources '((:source "~/.authinfo.gpg")))
+  ;;; even shorter and the default:
+(setq auth-sources '("~/.authinfo.gpg" "~/.authinfo" "~/.netrc"))
+  ;;; use the Secrets API Login collection
+  ;;; (see Secret Service API)
+(setq auth-sources '("secrets:Login"))
 </pre>
 </div>
 <p>
@@ -307,7 +301,7 @@ By adding multiple entries to auth-sources with a particular host or protocol, y
 </p>
 
 <p>
-通过向 auth-sources 添加主机和协议相关的条目，可以为该主机和协议指定 netrc 文件。通常没必要这么做，但是如果共享 netrc 文件或有其他不寻常的设置，这样做可能有意义。（90%的 Emacas 用户有不寻常的配置，剩下的 10%是真的不寻常）。
+通过向auth-sources添加主机和协议相关的条目，可以为该主机和协议指定netrc文件。通常没必要这么做，但是如果共享netrc文件或有其他不寻常的设置，这样做可能有意义。（90%的Emacas用户有不寻常的配置，剩下的10%是真的不寻常）。
 </p>
 
 <p>
@@ -315,13 +309,13 @@ Here’s a mixed example using two sources:
 </p>
 
 <p>
-这是使用两个 source 的混合例子：
+这是使用两个source的混合例子：
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq auth-sources '((<span style="color: #cc99cc;">:source</span> (<span style="color: #cc99cc;">:secrets</span> default)
-                              <span style="color: #cc99cc;">:host</span> <span style="color: #66cccc;">"myserver"</span> <span style="color: #cc99cc;">:user</span> <span style="color: #66cccc;">"joe"</span>)
-                     <span style="color: #66cccc;">"~/.authinfo.gpg"</span>))
+<pre class="src src-elisp">(setq auth-sources '((:source (:secrets default)
+							  :host "myserver" :user "joe")
+					 "~/.authinfo.gpg"))
 </pre>
 </div>
 
@@ -330,7 +324,7 @@ If you don’t customize auth-sources, you’ll have to live with the defaults: 
 </p>
 
 <p>
-如果不配置 auth-sources，就要使用默认配置：没有加密的 netrc 文件~/.authinfo 文件将会用于任何主机和端口。
+如果不配置auth-sources，就要使用默认配置：没有加密的netrc文件~/.authinfo文件将会用于任何主机和端口。
 </p>
 
 <p>
@@ -338,7 +332,7 @@ If that fails, any host and any port are looked up in the netrc file ~/.authinfo
 </p>
 
 <p>
-如果失败了，任何主机和端口就会在~/.authinfo.gpg 文件中查看，这是 GnuPG 加密过的文件。
+如果失败了，任何主机和端口就会在~/.authinfo.gpg文件中查看，这是GnuPG加密过的文件。
 </p>
 
 <p>
@@ -350,7 +344,7 @@ The typical netrc line example is without a port.
 </p>
 
 <p>
-这个例子描述了 netrc 文件中行的典型格式：
+这个例子描述了netrc文件中行的典型格式：
 </p>
 <pre class="example">
 machine YOURMACHINE login YOU password YOURPASSWORD
@@ -358,7 +352,7 @@ machine YOURMACHINE login YOU password YOURPASSWORD
 
 <p>
 This will match any authentication port. Simple, right? But what if there’s a SMTP server on port 433 of that machine that needs a different password from the IMAP server?
-这将会匹配任何验证端口。很简单，对吧？对单如果这台机器 433 端口开了 SMTP 服务需要一个和 IMAP 服务不同的密码怎么办？
+这将会匹配任何验证端口。很简单，对吧？对单如果这台机器433端口开了SMTP服务需要一个和IMAP服务不同的密码怎么办？
 </p>
 <pre class="example">
 machine YOURMACHINE login YOU password SMTPPASSWORD port 433
@@ -370,7 +364,7 @@ For url-auth authentication (HTTP/HTTPS), you need to put this in your netrc fil
 </p>
 
 <p>
-对于 url-auth 验证来说（HTTP/HTTPS），要在 netrc 文件中这样写：
+对于url-auth验证来说（HTTP/HTTPS），要在netrc文件中这样写：
 </p>
 <pre class="example">
 machine yourmachine.com:80 port http login testuser password testpass
@@ -378,7 +372,7 @@ machine yourmachine.com:80 port http login testuser password testpass
 
 <p>
 This will match any realm and authentication method (basic or digest) over HTTP. HTTPS is set up similarly. If you want finer controls, explore the url-auth source code and variables.
-这将会匹配基于 HTTP 的任何领域和认证方法（基本或 digest）。HTTPS 也是类似的，如果想要更好的控制，探索 url-auth 的源码和变量。
+这将会匹配基于HTTP的任何领域和认证方法（基本或digest）。HTTPS也是类似的，如果想要更好的控制，探索url-auth的源码和变量。
 </p>
 
 <p>
@@ -386,7 +380,7 @@ For Tramp authentication, use:
 </p>
 
 <p>
-对于 tram 验证，使用：
+对于tram验证，使用：
 </p>
 <pre class="example">
 machine yourmachine.com port scp login testuser password testpass
@@ -397,20 +391,20 @@ Note that the port denotes the Tramp connection method. When you don’t use a p
 </p>
 
 <p>
-注意 port 表示 Tramp 连接方法。如果不指定 port 字段，会匹配早先介绍的任意的 Tramp 方法。由于 Tramp 有大约 88 中连接方法，如果有不寻常的设置的话这可能是有用的。
+注意port表示Tramp连接方法。如果不指定port字段，会匹配早先介绍的任意的Tramp方法。由于Tramp有大约88中连接方法，如果有不寻常的设置的话这可能是有用的。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3"><span class="section-number-2">3</span> Secret Service API</h2>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Secret Service API</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The Secret Service API is a standard from freedesktop.org to securely store passwords and other confidential information. This API is implemented by system daemons such as the GNOME Keyring and the KDE Wallet (these are GNOME and KDE packages respectively and should be available on most modern GNU/Linux systems).
 </p>
 
 <p>
-Secret Service API 是来自 freedesktop.org 的一个标准，用来安全的存储密码或其他机密信息。该 API 被系统守护进程，入 GNOME Keyring 或 KDE Wallet 实现。
+Secret Service API是来自freedesktop.org的一个标准，用来安全的存储密码或其他机密信息。该API被系统守护进程，入GNOME Keyring或KDE Wallet实现。
 </p>
 
 <p>
@@ -418,11 +412,12 @@ The auth-source library uses the secrets.el library to connect through the Secre
 </p>
 
 <p>
-auth-source 使用 secrets.el 库来连接这些 API。也可以在其他 packages 中使用该库，它并不是 auth-source 独有的。
+auth-source 使用secrets.el库来连接这些API。也可以在其他packages中使用该库，它并不是auth-source独有的。
 </p>
 
 <ul class="org-ul">
-<li><b>Variable: secrets-enabled</b></li>
+<li><b>Variable: secrets-enabled</b>
+</li>
 </ul>
 
 <p>
@@ -430,7 +425,8 @@ After loading secrets.el, a non-nil value of this variable indicates the existen
 </p>
 
 <ul class="org-ul">
-<li><b>Command: secrets-show-secrets</b></li>
+<li><b>Command: secrets-show-secrets</b>
+</li>
 </ul>
 
 <p>
@@ -490,6 +486,8 @@ This function creates a new item in collection with label item and password pass
 ;;; The session "session", the label is "my item"
 ;;; and the secret (password) is "geheim"
 (secrets-create-item "session" "my item" "geheim"
+</p>
+<p>
 :method "sudo" :user "joe" :host "remote-host")
 Function: secrets-get-secret collection item
 Return the secret of item labeled item in collection. If there is no such item, return nil.
@@ -567,9 +565,17 @@ Let’s take a look at an example of using auth-source-search from Gnus’s nnim
 '((user  . "IMAP user at %h: ")
 (secret . "IMAP password for %u@%h: ")))
 (found (nth 0 (auth-source-search :max 1
+</p>
+<p>
 :host address
+</p>
+<p>
 :port ports
+</p>
+<p>
 :require '(:user :secret)
+</p>
+<p>
 :create t))))
 (if found
 (list (plist-get found :user)
@@ -621,15 +627,15 @@ This function forgets any cached data matching spec. It returns the number of it
 </div>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4"><span class="section-number-2">4</span> Appendix A GnuPG and EasyPG Assistant Configuration</h2>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Appendix A GnuPG and EasyPG Assistant Configuration</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 If the auth-sources variable contains ~/.authinfo.gpg before ~/.authinfo, the auth-source library will try to read the GnuPG encrypted .gpg file first, before the unencrypted file.
 </p>
 
 <p>
-如果变量 auth-source 中~/.authifno.gpg 在~/.authinfo 之前，auth-source 会先尝试限度去 GnuPG 加密的.gpg 文件。
+如果变量auth-source中~/.authifno.gpg在~/.authinfo之前，auth-source会先尝试限度去GnuPG加密的.gpg文件。
 </p>
 
 <p>
@@ -637,12 +643,12 @@ In Emacs 23 or later there is an option auto-encryption-mode to automatically de
 </p>
 
 <p>
-Emacs 23 和更高的版本中哟一个选项来 auto-encryption-mode 来自动解密 *.gpg 文件。如果使用的是早期版本的 Emacs，需要：
+Emacs 23 和更高的版本中哟一个选项来auto-encryption-mode来自动解密 *.gpg文件。如果使用的是早期版本的Emacs，需要：
 </p>
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #99cc99;">require</span> '<span style="color: #6699cc;">epa-file</span>)
+<pre class="src src-elisp">(require 'epa-file)
 (epa-file-enable)
 </pre>
 </div>
@@ -652,7 +658,7 @@ If you want your GnuPG passwords to be cached, set up gpg-agent or EasyPG Assist
 </p>
 
 <p>
-如果想要缓存 GnuPG 密码，设置 gpg-agent 或者 EasyPG Assistant。
+如果想要缓存GnuPG密码，设置gpg-agent或者EasyPG Assistant。
 </p>
 
 <p>
@@ -664,9 +670,12 @@ To quick start, here are some questions:
 </p>
 
 <ul class="org-ul">
-<li>Do you use GnuPG version 2 instead of GnuPG version 1?</li>
-<li>Do you use symmetric encryption rather than public key encryption?</li>
-<li>Do you want to use gpg-agent?</li>
+<li>Do you use GnuPG version 2 instead of GnuPG version 1?
+</li>
+<li>Do you use symmetric encryption rather than public key encryption?
+</li>
+<li>Do you want to use gpg-agent?
+</li>
 </ul>
 
 <p>
@@ -681,7 +690,8 @@ Here are configurations depending on your answers:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: lsl</p>
-<p class="date">Created: 2016-08-07 Sun 19:10</p>
+<p class="date">Created: 2017-08-17 四 18:07</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.2.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

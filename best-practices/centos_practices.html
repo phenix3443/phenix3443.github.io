@@ -3,30 +3,23 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-08-07 Sun 19:48 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>centos 实践</title>
+<!-- 2017-08-17 四 18:07 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="lsl" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center;
-             margin-bottom: .2em; }
-  .subtitle { text-align: center;
-              font-size: medium;
-              font-weight: bold;
-              margin-top:0; }
+  .title  { text-align: center; }
   .todo   { font-family: monospace; color: red; }
-  .done   { font-family: monospace; color: green; }
-  .priority { font-family: monospace; color: orange; }
+  .done   { color: green; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -65,14 +58,15 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.org-right  { text-align: center;  }
-  th.org-left   { text-align: center;   }
-  th.org-center { text-align: center; }
-  td.org-right  { text-align: right;  }
-  td.org-left   { text-align: left;   }
-  td.org-center { text-align: center; }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara { display: inline; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -148,61 +142,63 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. 时间设置</a></li>
-<li><a href="#orgheadline8">2. 网络</a>
+<li><a href="#sec-1">1. 时间设置</a></li>
+<li><a href="#sec-2">2. 网络</a>
 <ul>
-<li><a href="#orgheadline6">2.1. net-tools VS iproute2</a>
+<li><a href="#sec-2-1">2.1. net-tools VS iproute2</a>
 <ul>
-<li><a href="#orgheadline2">2.1.1. ip</a></li>
-<li><a href="#orgheadline3">2.1.2. ss</a></li>
-<li><a href="#orgheadline4">2.1.3. nmtui</a></li>
-<li><a href="#orgheadline5">2.1.4. nmcli</a></li>
+<li><a href="#sec-2-1-1">2.1.1. ip</a></li>
+<li><a href="#sec-2-1-2">2.1.2. ss</a></li>
+<li><a href="#sec-2-1-3">2.1.3. nmtui</a></li>
+<li><a href="#sec-2-1-4">2.1.4. nmcli</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline7">2.2. 问题</a></li>
+<li><a href="#sec-2-2">2.2. 问题</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline11">3. 软件源</a>
+<li><a href="#sec-3">3. 软件源</a>
 <ul>
-<li><a href="#orgheadline9">3.1. yum</a></li>
-<li><a href="#orgheadline10">3.2. dnf</a></li>
+<li><a href="#sec-3-1">3.1. yum</a></li>
+<li><a href="#sec-3-2">3.2. dnf</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline12">4. shadowsocks</a></li>
-<li><a href="#orgheadline13">5. pygments</a></li>
-<li><a href="#orgheadline14">6. global</a></li>
-<li><a href="#orgheadline15">7. emacs</a></li>
-<li><a href="#orgheadline16">8. ag</a></li>
-<li><a href="#orgheadline17">9. google chrome</a></li>
+<li><a href="#sec-4">4. shadowsocks</a></li>
+<li><a href="#sec-5">5. pygments</a></li>
+<li><a href="#sec-6">6. global</a></li>
+<li><a href="#sec-7">7. emacs</a></li>
+<li><a href="#sec-8">8. ag</a></li>
+<li><a href="#sec-9">9. google chrome</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> 时间设置</h2>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 时间设置</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 
-<pre class="src src-bash">    sudo cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+<pre class="src src-sh">    sudo cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
     sudo ntpdate us.pool.ntp.org
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-2">
-<h2 id="orgheadline8"><span class="section-number-2">2</span> 网络</h2>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 网络</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 **
 由于 systemd 和 udev 引入了一种新的网络设备命名方式&#x2014;一致网络设备命名（CONSISTENT NETWORK DEVICE NAMING），CentOS 7 可以根据固件、拓扑、位置信息来设置固定名字。这种命名方式：
 </p>
 <ul class="org-ul">
-<li>优点</li>
-<li>缺点</li>
+<li>优点
+</li>
+<li>缺点
+</li>
 </ul>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6"><span class="section-number-3">2.1</span> net-tools VS iproute2</h3>
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> net-tools VS iproute2</h3>
 <div class="outline-text-3" id="text-2-1">
 
 <div class="figure">
@@ -211,29 +207,29 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-4">
-<h4 id="orgheadline2"><span class="section-number-4">2.1.1</span> ip</h4>
+<div id="outline-container-sec-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1"><span class="section-number-4">2.1.1</span> ip</h4>
 </div>
-<div id="outline-container-orgheadline3" class="outline-4">
-<h4 id="orgheadline3"><span class="section-number-4">2.1.2</span> ss</h4>
+<div id="outline-container-sec-2-1-2" class="outline-4">
+<h4 id="sec-2-1-2"><span class="section-number-4">2.1.2</span> ss</h4>
 </div>
-<div id="outline-container-orgheadline4" class="outline-4">
-<h4 id="orgheadline4"><span class="section-number-4">2.1.3</span> nmtui</h4>
+<div id="outline-container-sec-2-1-3" class="outline-4">
+<h4 id="sec-2-1-3"><span class="section-number-4">2.1.3</span> nmtui</h4>
 </div>
-<div id="outline-container-orgheadline5" class="outline-4">
-<h4 id="orgheadline5"><span class="section-number-4">2.1.4</span> nmcli</h4>
+<div id="outline-container-sec-2-1-4" class="outline-4">
+<h4 id="sec-2-1-4"><span class="section-number-4">2.1.4</span> nmcli</h4>
 </div>
 </div>
 
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7"><span class="section-number-3">2.2</span> 问题</h3>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> 问题</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 VMware workstation 安装 centos7 之后，每次重启之后网路都是默认关闭的，不方便，因此需要设置一下：
 </p>
 <div class="org-src-container">
 
-<pre class="src src-bash">    <span style="color: #999999; font-style: italic;"># </span><span style="color: #999999; font-style: italic;">&#26597;&#30475;&#33258;&#24049;&#30340;&#32593;&#21345;&#20449;&#24687;</span>
+<pre class="src src-sh">    # 查看自己的网卡信息
     ip addr
     sudo vim /etc/sysconfig/network-scripts/ifcfg-eno16777736
 </pre>
@@ -246,27 +242,27 @@ VMware workstation 安装 centos7 之后，每次重启之后网路都是默认�
 </pre>
 <div class="org-src-container">
 
-<pre class="src src-bash">    sudo systemctl restart network
+<pre class="src src-sh">    sudo systemctl restart network
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-2">
-<h2 id="orgheadline11"><span class="section-number-2">3</span> 软件源</h2>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 软件源</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9"><span class="section-number-3">3.1</span> yum</h3>
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> yum</h3>
 </div>
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10"><span class="section-number-3">3.2</span> dnf</h3>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> dnf</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 为了安装 DNF，您必须先安装并启用 epel-release 依赖。
 </p>
 <div class="org-src-container">
 
-<pre class="src src-bash">    sudo yum install epel-release
+<pre class="src src-sh">    sudo yum install epel-release
 </pre>
 </div>
 
@@ -276,18 +272,18 @@ VMware workstation 安装 centos7 之后，每次重启之后网路都是默认�
 
 <div class="org-src-container">
 
-<pre class="src src-bash">    sudo yum install dnf
+<pre class="src src-sh">    sudo yum install dnf
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-2">
-<h2 id="orgheadline12"><span class="section-number-2">4</span> shadowsocks<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></h2>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> shadowsocks<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup></h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 
-<pre class="src src-bash">    sudo dnf install dnf-plugins-core
+<pre class="src src-sh">    sudo dnf install dnf-plugins-core
     sudo dnf copr enable librehat/shadowsocks
     sudo dnf update
     sudo dnf install shadowsocks-qt5
@@ -295,20 +291,20 @@ VMware workstation 安装 centos7 之后，每次重启之后网路都是默认�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-2">
-<h2 id="orgheadline13"><span class="section-number-2">5</span> pygments</h2>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> pygments</h2>
 </div>
-<div id="outline-container-orgheadline14" class="outline-2">
-<h2 id="orgheadline14"><span class="section-number-2">6</span> global</h2>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> global</h2>
 </div>
-<div id="outline-container-orgheadline15" class="outline-2">
-<h2 id="orgheadline15"><span class="section-number-2">7</span> emacs</h2>
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> emacs</h2>
 <div class="outline-text-2" id="text-7">
 <div class="org-src-container">
 
-<pre class="src src-bash">  sudo yum -y install gtk+-devel gtk2-devel libXpm-devel libpng-devel giflib-devel libtiff-devel libjpeg-devel ncurses-devel gpm-devel dbus-devel dbus-glib-devel dbus-python GConf2-devel pkgconfig
+<pre class="src src-sh">  sudo yum -y install gtk+-devel gtk2-devel libXpm-devel libpng-devel giflib-devel libtiff-devel libjpeg-devel ncurses-devel gpm-devel dbus-devel dbus-glib-devel dbus-python GConf2-devel pkgconfig
 
-  <span style="color: #cc99cc;">cd</span> emacs24.5
+  cd emacs24.5
   ./configure
   make &amp;&amp; sudo make install
 </pre>
@@ -316,19 +312,19 @@ VMware workstation 安装 centos7 之后，每次重启之后网路都是默认�
 </div>
 </div>
 
-<div id="outline-container-orgheadline16" class="outline-2">
-<h2 id="orgheadline16"><span class="section-number-2">8</span> ag</h2>
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> ag</h2>
 <div class="outline-text-2" id="text-8">
 <div class="org-src-container">
 
-<pre class="src src-bash">rpm -Uvh http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+<pre class="src src-sh">rpm -Uvh http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
 yum install the_silver_searcher
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline17" class="outline-2">
-<h2 id="orgheadline17"><span class="section-number-2">9</span> google chrome</h2>
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> google chrome</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 添加软件源：
@@ -336,7 +332,7 @@ yum install the_silver_searcher
 
 <div class="org-src-container">
 
-<pre class="src src-bash">su root
+<pre class="src src-sh">su root
 vim /etc/yum.repos.d/google-chrome.repo
 </pre>
 </div>
@@ -360,7 +356,7 @@ gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
 
 <div class="org-src-container">
 
-<pre class="src src-bash">sudo yum install google-chrome-stable
+<pre class="src src-sh">sudo yum install google-chrome-stable
 </pre>
 </div>
 </div>
@@ -369,16 +365,17 @@ gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
 <a href="https://github.com/shadowsocks/shadowsocks-qt5/wiki/Installation">shadowsocks client install</a>
-</p></div></div>
+</p></div>
 
 
 </div>
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: lsl</p>
-<p class="date">Created: 2016-08-07 Sun 19:48</p>
+<p class="date">Created: 2017-08-17 四 18:07</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.2.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

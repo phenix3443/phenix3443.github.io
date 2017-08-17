@@ -3,30 +3,23 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-08-07 Sun 19:48 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>常见算法题目解析</title>
+<!-- 2017-08-17 四 18:07 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="lsl" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center;
-             margin-bottom: .2em; }
-  .subtitle { text-align: center;
-              font-size: medium;
-              font-weight: bold;
-              margin-top:0; }
+  .title  { text-align: center; }
   .todo   { font-family: monospace; color: red; }
-  .done   { font-family: monospace; color: green; }
-  .priority { font-family: monospace; color: orange; }
+  .done   { color: green; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -65,14 +58,15 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.org-right  { text-align: center;  }
-  th.org-left   { text-align: center;   }
-  th.org-center { text-align: center; }
-  td.org-right  { text-align: right;  }
-  td.org-left   { text-align: left;   }
-  td.org-center { text-align: center; }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara { display: inline; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -148,116 +142,116 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline23">1. Array（数组）</a>
+<li><a href="#sec-1">1. Array（数组）</a>
 <ul>
-<li><a href="#orgheadline1">1.1. 数组求和</a></li>
-<li><a href="#orgheadline2">1.2. 求数组中出现次数超过一半的元素</a></li>
-<li><a href="#orgheadline3">1.3. 求数组中元素的最短距离</a></li>
-<li><a href="#orgheadline4">1.4. 求两个有序数组的共同元素</a></li>
-<li><a href="#orgheadline5">1.5. 求三个数组的共同元素</a></li>
-<li><a href="#orgheadline6">1.6. 找出出现奇数次的元素</a></li>
-<li><a href="#orgheadline7">1.7. 求有序数组中满足给定和的数对</a></li>
-<li><a href="#orgheadline8">1.8. 数组循环移位</a></li>
-<li><a href="#orgheadline9">1.9. 字符串逆序</a></li>
-<li><a href="#orgheadline10">1.10. 组合问题</a></li>
-<li><a href="#orgheadline11">1.11. 合并两个数组</a></li>
-<li><a href="#orgheadline12">1.12. 重排问题</a></li>
-<li><a href="#orgheadline13">1.13. 找出绝对值最小的元素</a></li>
-<li><a href="#orgheadline14">1.14. 数组中前 K 大的数字</a></li>
-<li><a href="#orgheadline15">1.15. 寻找出现次数最多的 K 个数</a></li>
-<li><a href="#orgheadline16">1.16. 查找不存在的数字或重复出现的数字</a></li>
-<li><a href="#orgheadline17">1.17. 数组元素随机重新排列</a></li>
-<li><a href="#orgheadline22">1.18. 前缀和与前缀积及其应用</a>
+<li><a href="#sec-1-1">1.1. 数组求和</a></li>
+<li><a href="#sec-1-2">1.2. 求数组中出现次数超过一半的元素</a></li>
+<li><a href="#sec-1-3">1.3. 求数组中元素的最短距离</a></li>
+<li><a href="#sec-1-4">1.4. 求两个有序数组的共同元素</a></li>
+<li><a href="#sec-1-5">1.5. 求三个数组的共同元素</a></li>
+<li><a href="#sec-1-6">1.6. 找出出现奇数次的元素</a></li>
+<li><a href="#sec-1-7">1.7. 求有序数组中满足给定和的数对</a></li>
+<li><a href="#sec-1-8">1.8. 数组循环移位</a></li>
+<li><a href="#sec-1-9">1.9. 字符串逆序</a></li>
+<li><a href="#sec-1-10">1.10. 组合问题</a></li>
+<li><a href="#sec-1-11">1.11. 合并两个数组</a></li>
+<li><a href="#sec-1-12">1.12. 重排问题</a></li>
+<li><a href="#sec-1-13">1.13. 找出绝对值最小的元素</a></li>
+<li><a href="#sec-1-14">1.14. 数组中前 K 大的数字</a></li>
+<li><a href="#sec-1-15">1.15. 寻找出现次数最多的 K 个数</a></li>
+<li><a href="#sec-1-16">1.16. 查找不存在的数字或重复出现的数字</a></li>
+<li><a href="#sec-1-17">1.17. 数组元素随机重新排列</a></li>
+<li><a href="#sec-1-18">1.18. 前缀和与前缀积及其应用</a>
 <ul>
-<li><a href="#orgheadline21">1.18.1. 什么是前缀和、前缀积？前缀和、前缀积也称前缀和数组，前缀积数组。</a>
+<li><a href="#sec-1-18-1">1.18.1. 什么是前缀和、前缀积？前缀和、前缀积也称前缀和数组，前缀积数组。</a>
 <ul>
-<li><a href="#orgheadline18">题目 1：double a[n],b[n]，其中 <code>b[i]=a[0]*a[1]*…*a[i-1]*a[i+1]*…*a[n-1]</code> ，不能使用除法，不允许新开数组。</a></li>
-<li><a href="#orgheadline19">题目 2：求数组中连续一段和，绝对值最小？</a></li>
-<li><a href="#orgheadline20">题目 3：把一个数组从中间 p 位置分开，使得 <code>a[0]+…+a[p-1]</code> 与 <code>a[p]+a[p+1]+…+a[n-1]</code> 差值最小？</a></li>
+<li><a href="#sec-1-18-1-1">题目 1：double a[n],b[n]，其中 <code>b[i]=a[0]*a[1]*…*a[i-1]*a[i+1]*…*a[n-1]</code> ，不能使用除法，不允许新开数组。</a></li>
+<li><a href="#sec-1-18-1-2">题目 2：求数组中连续一段和，绝对值最小？</a></li>
+<li><a href="#sec-1-18-1-3">题目 3：把一个数组从中间 p 位置分开，使得 <code>a[0]+…+a[p-1]</code> 与 <code>a[p]+a[p+1]+…+a[n-1]</code> 差值最小？</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline26">2. Bit Manipulation</a>
+<li><a href="#sec-2">2. Bit Manipulation</a>
 <ul>
-<li><a href="#orgheadline24">2.1. 位运算实现四则运算</a></li>
-<li><a href="#orgheadline25">2.2. 判断二进制中 0 或 1 的个数</a></li>
+<li><a href="#sec-2-1">2.1. 位运算实现四则运算</a></li>
+<li><a href="#sec-2-2">2.2. 判断二进制中 0 或 1 的个数</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline27">3. Tree</a></li>
-<li><a href="#orgheadline37">4. 什么是动态规划？动态规划的意义是什么？与递归、分治、贪婪的区别和联系</a>
+<li><a href="#sec-3">3. Tree</a></li>
+<li><a href="#sec-4">4. 什么是动态规划？动态规划的意义是什么？与递归、分治、贪婪的区别和联系</a>
 <ul>
-<li><a href="#orgheadline29">4.1. 递归</a>
+<li><a href="#sec-4-1">4.1. 递归</a>
 <ul>
-<li><a href="#orgheadline28">4.1.1. 爬楼梯问题</a></li>
+<li><a href="#sec-4-1-1">4.1.1. 爬楼梯问题</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline35">4.2. Dynamic Programming（动态规划）</a>
+<li><a href="#sec-4-2">4.2. Dynamic Programming（动态规划）</a>
 <ul>
-<li><a href="#orgheadline30">4.2.1. 最长递增子序列 (LIS)</a></li>
-<li><a href="#orgheadline31">4.2.2. 最大连续子序列之和</a></li>
-<li><a href="#orgheadline32">4.2.3. 数塔问题</a></li>
-<li><a href="#orgheadline33">4.2.4. 背包问题</a></li>
-<li><a href="#orgheadline34">4.2.5. 最长公共子序列 (LCS)</a></li>
+<li><a href="#sec-4-2-1">4.2.1. 最长递增子序列 (LIS)</a></li>
+<li><a href="#sec-4-2-2">4.2.2. 最大连续子序列之和</a></li>
+<li><a href="#sec-4-2-3">4.2.3. 数塔问题</a></li>
+<li><a href="#sec-4-2-4">4.2.4. 背包问题</a></li>
+<li><a href="#sec-4-2-5">4.2.5. 最长公共子序列 (LCS)</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline36">4.3. Greedy（贪婪）</a></li>
+<li><a href="#sec-4-3">4.3. Greedy（贪婪）</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline38">5. Backtracking</a></li>
-<li><a href="#orgheadline42">6. Linked list</a>
+<li><a href="#sec-5">5. Backtracking</a></li>
+<li><a href="#sec-6">6. Linked list</a>
 <ul>
-<li><a href="#orgheadline39">6.1. 单链表反转</a></li>
-<li><a href="#orgheadline40">6.2. 单链表判断是否有环</a></li>
-<li><a href="#orgheadline41">6.3. 单链表判断是否相交</a></li>
+<li><a href="#sec-6-1">6.1. 单链表反转</a></li>
+<li><a href="#sec-6-2">6.2. 单链表判断是否有环</a></li>
+<li><a href="#sec-6-3">6.3. 单链表判断是否相交</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline45">7. Math</a>
+<li><a href="#sec-7">7. Math</a>
 <ul>
 <li>
 <ul>
-<li><a href="#orgheadline43">7.0.1. 大数加法</a></li>
-<li><a href="#orgheadline44">7.0.2. 高精度乘法</a></li>
+<li><a href="#sec-7-0-1">7.0.1. 大数加法</a></li>
+<li><a href="#sec-7-0-2">7.0.2. 高精度乘法</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline48">8. String</a>
+<li><a href="#sec-8">8. String</a>
 <ul>
-<li><a href="#orgheadline46">8.1. 字符串逆序</a></li>
-<li><a href="#orgheadline47">8.2. 单词逆序</a></li>
+<li><a href="#sec-8-1">8.1. 字符串逆序</a></li>
+<li><a href="#sec-8-2">8.2. 单词逆序</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline50">9. 大数据处理</a>
+<li><a href="#sec-9">9. 大数据处理</a>
 <ul>
-<li><a href="#orgheadline49">9.1. 中位数</a></li>
+<li><a href="#sec-9-1">9.1. 中位数</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline51">10. 快排 归并 二分查找</a></li>
-<li><a href="#orgheadline52">11. 统计一些数字中出现次数最多的数字</a></li>
+<li><a href="#sec-10">10. 快排 归并 二分查找</a></li>
+<li><a href="#sec-11">11. 统计一些数字中出现次数最多的数字</a></li>
 </ul>
 </div>
 </div>
 <p>
-内容包括 leetcode<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>、matrix67 的题目以及面试过程中遇到的一些题目。
+内容包括 leetcode<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>、matrix67 的题目以及面试过程中遇到的一些题目。
 主要是按照 leetcode 题型来分类：
 </p>
-<div id="outline-container-orgheadline23" class="outline-2">
-<h2 id="orgheadline23"><span class="section-number-2">1</span> Array<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>（数组）</h2>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Array<sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup>（数组）</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1"><span class="section-number-3">1.1</span> 数组求和</h3>
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 数组求和</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 要求：只用一行代码
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #6699cc;">int</span> <span style="color: #f99157;">sum</span>(<span style="color: #6699cc;">int</span>*<span style="color: #ffcc66;">a</span>, <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">n</span>)
+<pre class="src src-c++">int sum(int*a, int n)
 {
-     <span style="color: #99cc99;">return</span> n ==0?0 : sum(a, n -1) + a[n -1];
+     return n ==0?0 : sum(a, n -1) + a[n -1];
 }
 </pre>
 </div>
@@ -271,8 +265,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="section-number-3">1.2</span> 求数组中出现次数超过一半的元素</h3>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> 求数组中出现次数超过一半的元素</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 出自《编程之美》。思路如下：
@@ -280,35 +274,37 @@ for the JavaScript code in this tag.
 另一种方式：可以根据不同就抵消，相同就增一的计算器完成。设置一个当前值和当前值的计数器，初始化当前值为数组首元素，计数器值为 1，然后从第二个元素开始遍历整个数组，对于每个被遍历到的值 a[i]：
 </p>
 <ul class="org-ul">
-<li>如果 a[i]==currentValue，则计数器值加 1。</li>
-<li>如果 a[i] != currentValue， 则计数器值减 1，如果计数器值小于 0，则更新当前值为 a[i]，并将计数器值重置为 1。</li>
+<li>如果 a[i]==currentValue，则计数器值加 1。
+</li>
+<li>如果 a[i] != currentValue， 则计数器值减 1，如果计数器值小于 0，则更新当前值为 a[i]，并将计数器值重置为 1。
+</li>
 </ul>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;stdio.h&gt;</span>
-<span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;stdlib.h&gt;</span>
+<pre class="src src-c++">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
 
-<span style="color: #6699cc;">int</span> <span style="color: #f99157;">FindMoreValue</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">arr</span>[], <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">n</span>){
-    <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span>;
-    <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">curr_count</span> = 1;
-    <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">curr_value</span> = arr[0];
-    <span style="color: #99cc99;">for</span>(i = 1; i &lt; n; i++){
-        <span style="color: #99cc99;">if</span>(arr[i] == curr_value){
-            curr_count++;
-        }<span style="color: #99cc99;">else</span>{
-            curr_count--;
-            <span style="color: #99cc99;">if</span>(curr_count &lt; 0){
-                curr_value = arr[i];
-                curr_count = 1;
-            }
-        }
-    }
-    <span style="color: #99cc99;">if</span>(curr_count &gt; 0){
-        <span style="color: #99cc99;">return</span> curr_value;
-    }<span style="color: #99cc99;">else</span>{
-        <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#19981;&#23384;&#22312;&#20986;&#29616;&#27425;&#25968;&#36229;&#36807;&#19968;&#21322;&#30340;&#20803;&#32032;</span>
-        <span style="color: #99cc99;">return</span> -1;
-    }
+int FindMoreValue(int arr[], int n){
+	int i;
+	int curr_count = 1;
+	int curr_value = arr[0];
+	for(i = 1; i &lt; n; i++){
+		if(arr[i] == curr_value){
+			curr_count++;
+		}else{
+			curr_count--;
+			if(curr_count &lt; 0){
+				curr_value = arr[i];
+				curr_count = 1;
+			}
+		}
+	}
+	if(curr_count &gt; 0){
+		return curr_value;
+	}else{
+		//不存在出现次数超过一半的元素
+		return -1;
+	}
 }
 </pre>
 </div>
@@ -317,41 +313,41 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3"><span class="section-number-3">1.3</span> 求数组中元素的最短距离</h3>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> 求数组中元素的最短距离</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 先对数组排序，然后遍历一次即可
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4"><span class="section-number-3">1.4</span> 求两个有序数组的共同元素</h3>
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> 求两个有序数组的共同元素</h3>
 </div>
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5"><span class="section-number-3">1.5</span> 求三个数组的共同元素</h3>
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> 求三个数组的共同元素</h3>
 </div>
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6"><span class="section-number-3">1.6</span> 找出出现奇数次的元素</h3>
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6"><span class="section-number-3">1.6</span> 找出出现奇数次的元素</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 所有元素求异或，结果就是所找的元素。
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7"><span class="section-number-3">1.7</span> 求有序数组中满足给定和的数对</h3>
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7"><span class="section-number-3">1.7</span> 求有序数组中满足给定和的数对</h3>
 </div>
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8"><span class="section-number-3">1.8</span> 数组循环移位</h3>
+<div id="outline-container-sec-1-8" class="outline-3">
+<h3 id="sec-1-8"><span class="section-number-3">1.8</span> 数组循环移位</h3>
 <div class="outline-text-3" id="text-1-8">
 <p>
 《编程之美》
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9"><span class="section-number-3">1.9</span> 字符串逆序</h3>
+<div id="outline-container-sec-1-9" class="outline-3">
+<h3 id="sec-1-9"><span class="section-number-3">1.9</span> 字符串逆序</h3>
 <div class="outline-text-3" id="text-1-9">
 <p>
 将一个含有 n 个元素的数组向右循环移动 k 位，要求时间复杂度是 O(n)，且只能使用两个额外的变量。
@@ -363,8 +359,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10"><span class="section-number-3">1.10</span> 组合问题</h3>
+<div id="outline-container-sec-1-10" class="outline-3">
+<h3 id="sec-1-10"><span class="section-number-3">1.10</span> 组合问题</h3>
 <div class="outline-text-3" id="text-1-10">
 <p>
 给定一个含有 n 个元素的整型数组 a，从中任取 m 个元素，求所有组合。比如下面的例子
@@ -386,36 +382,36 @@ m = 3
 
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #999999; font-style: italic;">// </span><span style="color: #999999; font-style: italic;">n &#36873; m &#30340;&#25152;&#26377;&#32452;&#21512;</span>
-<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">buffer</span>[100] ;
+<pre class="src src-c++">// n 选 m 的所有组合
+int buffer[100] ;
 
-<span style="color: #6699cc;">void</span> <span style="color: #f99157;">PrintArray</span>(<span style="color: #6699cc;">int</span> *<span style="color: #ffcc66;">a</span>, <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">n</span>)
+void PrintArray(int *a, int n)
 {
-    <span style="color: #99cc99;">for</span> (<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span> = 0; i &lt; n; ++i)
-        cout &lt;&lt; a[i] &lt;&lt; <span style="color: #66cccc;">""</span>;
+    for (int i = 0; i &lt; n; ++i)
+        cout &lt;&lt; a[i] &lt;&lt; "";
     cout &lt;&lt; endl ;
 }
 
-<span style="color: #6699cc;">bool</span> <span style="color: #f99157;">IsValid</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">lastIndex</span>, <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">value</span>)
+bool IsValid(int lastIndex, int value)
 {
-    <span style="color: #99cc99;">for</span> (<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span> = 0; i &lt; lastIndex; i++)
+    for (int i = 0; i &lt; lastIndex; i++)
     {
-        <span style="color: #99cc99;">if</span> (buffer[i] &gt;= value)
-            <span style="color: #99cc99;">return</span> <span style="color: #6699cc;">false</span>;
+        if (buffer[i] &gt;= value)
+            return false;
     }
-    <span style="color: #99cc99;">return</span> <span style="color: #6699cc;">true</span>;
+    return true;
 }
 
-<span style="color: #6699cc;">void</span> <span style="color: #f99157;">Select</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">t</span>, <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">n</span>, <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">m</span>)
+void Select(int t, int n, int m)
 {
-    <span style="color: #99cc99;">if</span> (t == m)
+    if (t == m)
         PrintArray(buffer, m);
-    <span style="color: #99cc99;">else</span>
+    else
     {
-        <span style="color: #99cc99;">for</span> (<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span> = 1; i &lt;= n; i++)
+        for (int i = 1; i &lt;= n; i++)
         {
             buffer[t] = i;
-            <span style="color: #99cc99;">if</span> (IsValid(t, i))
+            if (IsValid(t, i))
                 Select(t + 1, n, m);
         }
     }
@@ -424,25 +420,25 @@ m = 3
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11"><span class="section-number-3">1.11</span> 合并两个数组</h3>
+<div id="outline-container-sec-1-11" class="outline-3">
+<h3 id="sec-1-11"><span class="section-number-3">1.11</span> 合并两个数组</h3>
 </div>
-<div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12"><span class="section-number-3">1.12</span> 重排问题</h3>
+<div id="outline-container-sec-1-12" class="outline-3">
+<h3 id="sec-1-12"><span class="section-number-3">1.12</span> 重排问题</h3>
 </div>
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13"><span class="section-number-3">1.13</span> 找出绝对值最小的元素</h3>
+<div id="outline-container-sec-1-13" class="outline-3">
+<h3 id="sec-1-13"><span class="section-number-3">1.13</span> 找出绝对值最小的元素</h3>
 </div>
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14"><span class="section-number-3">1.14</span> 数组中前 K 大的数字</h3>
+<div id="outline-container-sec-1-14" class="outline-3">
+<h3 id="sec-1-14"><span class="section-number-3">1.14</span> 数组中前 K 大的数字</h3>
 <div class="outline-text-3" id="text-1-14">
 <p>
 使用堆排序，或者 STL 的部分排序。
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15"><span class="section-number-3">1.15</span> 寻找出现次数最多的 K 个数</h3>
+<div id="outline-container-sec-1-15" class="outline-3">
+<h3 id="sec-1-15"><span class="section-number-3">1.15</span> 寻找出现次数最多的 K 个数</h3>
 <div class="outline-text-3" id="text-1-15">
 <p>
 延伸：服务器内存 1G，有一个 2G 的文件，里面每行存着一个 QQ 号（5-10 位数），怎么最快找出出现过最多次的 QQ 号。
@@ -461,8 +457,8 @@ m = 3
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16"><span class="section-number-3">1.16</span> 查找不存在的数字或重复出现的数字</h3>
+<div id="outline-container-sec-1-16" class="outline-3">
+<h3 id="sec-1-16"><span class="section-number-3">1.16</span> 查找不存在的数字或重复出现的数字</h3>
 <div class="outline-text-3" id="text-1-16">
 <p>
 a[n]数组中有 n-1 个取值范围在 0 到 n-1 的数，并且不重复，剩余那个数组项为-1，求不存在的那个数是多少？
@@ -473,12 +469,14 @@ a[n]数组中有 n-1 个取值范围在 0 到 n-1 的数，并且不重复，剩
 延伸：
 </p>
 <ul class="org-ul">
-<li>如果有两个不存在的数呢？</li>
+<li>如果有两个不存在的数呢？
+</li>
 </ul>
 
 
 <ul class="org-ul">
-<li>如果有 m 个不存在的数呢？</li>
+<li>如果有 m 个不存在的数呢？
+</li>
 </ul>
 
 <p>
@@ -486,61 +484,67 @@ a[n]数组中有 n-1 个取值范围在 0 到 n-1 的数，并且不重复，剩
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;iostream&gt;</span>
-<span style="color: #cc99cc;">#include</span> <span style="color: #66cccc;">&lt;algorithm&gt;</span>
+<pre class="src src-c++">#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
 
-<span style="color: #6699cc;">void</span> <span style="color: #f99157;">mNoExistInN</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">a</span>[], <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">n</span>) {
-    <span style="color: #99cc99;">for</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span>=0; i&lt;n-1; ++i) {
-        <span style="color: #99cc99;">while</span>(a[i]!=i) {
-            <span style="color: #99cc99;">if</span>(a[i] == -1) {
-                <span style="color: #6699cc;">std</span>::cout &lt;&lt; i &lt;&lt; <span style="color: #66cccc;">" not exists"</span> &lt;&lt; <span style="color: #6699cc;">std</span>::endl;
-                <span style="color: #99cc99;">break</span>;
-            }
-            <span style="color: #99cc99;">else</span> {
-                swap(&amp;a[i],&amp;a[a[i]]);
-            }
-        }
-    }
+void mNoExistInN(int a[], int n) {
+	for(int i=0; i&lt;n-1; ++i) {
+		while(a[i]!=i) {
+			if(a[i] == -1) {
+				std::cout &lt;&lt; i &lt;&lt; " not exists" &lt;&lt; std::endl;
+				break;
+			}
+			else {
+				swap(&amp;a[i],&amp;a[a[i]]);
+			}
+		}
+	}
 }
 </pre>
 </div>
 <ul class="org-ul">
-<li>一个文件中有 40 亿个整数，每个整数为四个字节，内存为 1GB，写出一个算法：求出这个文件里的整数里不包含的一个整数。</li>
+<li>一个文件中有 40 亿个整数，每个整数为四个字节，内存为 1GB，写出一个算法：求出这个文件里的整数里不包含的一个整数。
+</li>
 </ul>
 
 <p>
 解法：使用一个 bit 表示出现。
 </p>
 <ol class="org-ol">
-<li>腾讯服务器每秒有 2w 个 QQ 号同时上线，找出 5min 内重新登入的 qq 号并打印出来。</li>
+<li>腾讯服务器每秒有 2w 个 QQ 号同时上线，找出 5min 内重新登入的 qq 号并打印出来。
+</li>
 </ol>
 </div>
 </div>
 
 
-<div id="outline-container-orgheadline17" class="outline-3">
-<h3 id="orgheadline17"><span class="section-number-3">1.17</span> 数组元素随机重新排列</h3>
+<div id="outline-container-sec-1-17" class="outline-3">
+<h3 id="sec-1-17"><span class="section-number-3">1.17</span> 数组元素随机重新排列</h3>
 </div>
-<div id="outline-container-orgheadline22" class="outline-3">
-<h3 id="orgheadline22"><span class="section-number-3">1.18</span> 前缀和与前缀积及其应用</h3>
+<div id="outline-container-sec-1-18" class="outline-3">
+<h3 id="sec-1-18"><span class="section-number-3">1.18</span> 前缀和与前缀积及其应用</h3>
 <div class="outline-text-3" id="text-1-18">
-</div><div id="outline-container-orgheadline21" class="outline-4">
-<h4 id="orgheadline21"><span class="section-number-4">1.18.1</span> 什么是前缀和、前缀积？前缀和、前缀积也称前缀和数组，前缀积数组。</h4>
+</div><div id="outline-container-sec-1-18-1" class="outline-4">
+<h4 id="sec-1-18-1"><span class="section-number-4">1.18.1</span> 什么是前缀和、前缀积？前缀和、前缀积也称前缀和数组，前缀积数组。</h4>
 <div class="outline-text-4" id="text-1-18-1">
 <p>
 给一数组 A
 </p>
 <ul class="org-ul">
-<li>前缀和：新建一数组 B，数组中每一项 B[i]保存 A 中[0…i]的和；</li>
-<li>后缀和：新建一数组 B，数组中每一项 B[i]保存 A 中[i…n-1]的和；</li>
-<li>前缀积：新建一数组 B，数组中每一项 B[i]保存 A 中[0…i]的积；</li>
-<li>后缀积：新建一数组 B，数组中每一项 B[i]保存 A 中[i…n-1]的积；</li>
+<li>前缀和：新建一数组 B，数组中每一项 B[i]保存 A 中[0…i]的和；
+</li>
+<li>后缀和：新建一数组 B，数组中每一项 B[i]保存 A 中[i…n-1]的和；
+</li>
+<li>前缀积：新建一数组 B，数组中每一项 B[i]保存 A 中[0…i]的积；
+</li>
+<li>后缀积：新建一数组 B，数组中每一项 B[i]保存 A 中[i…n-1]的积；
+</li>
 </ul>
 </div>
 
-<div id="outline-container-orgheadline18" class="outline-5">
-<h5 id="orgheadline18">题目 1：double a[n],b[n]，其中 <code>b[i]=a[0]*a[1]*…*a[i-1]*a[i+1]*…*a[n-1]</code> ，不能使用除法，不允许新开数组。</h5>
-<div class="outline-text-5" id="text-orgheadline18">
+<div id="outline-container-sec-1-18-1-1" class="outline-5">
+<h5 id="sec-1-18-1-1">题目 1：double a[n],b[n]，其中 <code>b[i]=a[0]*a[1]*…*a[i-1]*a[i+1]*…*a[n-1]</code> ，不能使用除法，不允许新开数组。</h5>
+<div class="outline-text-5" id="text-1-18-1-1">
 <p>
 思路：观察表达式可以发现
 </p>
@@ -569,32 +573,32 @@ S[i-1]=a[i]*S[i]
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #6699cc;">void</span> <span style="color: #f99157;">PreSuffAcc</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">a</span>[], <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">b</span>[], <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">len</span>) {
-    <span style="color: #99cc99;">for</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span>=0; i&lt;len; ++i) {
-        b[i] = (i==0) ? 1 : a[i-1]*b[i-1]; <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">p</span>
-    }
-    <span style="color: #99cc99;">for</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span>=n-1,<span style="color: #ffcc66;">j</span>=1; i&gt;=0&#65307;--i) {
-        j = (i==n-1)?1:j*a[i+1];<span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">s</span>
-        b[i] *= j;
-    }
+<pre class="src src-c++">void PreSuffAcc(int a[], int b[], int len) {
+	for(int i=0; i&lt;len; ++i) {
+		b[i] = (i==0) ? 1 : a[i-1]*b[i-1]; //p
+	}
+	for(int i=n-1,j=1; i&gt;=0；--i) {
+		j = (i==n-1)?1:j*a[i+1];//s
+		b[i] *= j;
+	}
 }
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline19" class="outline-5">
-<h5 id="orgheadline19">题目 2：求数组中连续一段和，绝对值最小？</h5>
-<div class="outline-text-5" id="text-orgheadline19">
+<div id="outline-container-sec-1-18-1-2" class="outline-5">
+<h5 id="sec-1-18-1-2">题目 2：求数组中连续一段和，绝对值最小？</h5>
+<div class="outline-text-5" id="text-1-18-1-2">
 <p>
 思路：前缀和的性质： <code>a[i]+a[i+1]+…+a[j]=sum[j]-sum[i-1]</code> 前缀和排序，取最小
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgheadline20" class="outline-5">
-<h5 id="orgheadline20">题目 3：把一个数组从中间 p 位置分开，使得 <code>a[0]+…+a[p-1]</code> 与 <code>a[p]+a[p+1]+…+a[n-1]</code> 差值最小？</h5>
-<div class="outline-text-5" id="text-orgheadline20">
+<div id="outline-container-sec-1-18-1-3" class="outline-5">
+<h5 id="sec-1-18-1-3">题目 3：把一个数组从中间 p 位置分开，使得 <code>a[0]+…+a[p-1]</code> 与 <code>a[p]+a[p+1]+…+a[n-1]</code> 差值最小？</h5>
+<div class="outline-text-5" id="text-1-18-1-3">
 <p>
 思路：前缀和-（总和-前缀和）=2*前缀和-总和，是该公式最小；
 </p>
@@ -604,21 +608,21 @@ S[i-1]=a[i]*S[i]
 </div>
 </div>
 
-<div id="outline-container-orgheadline26" class="outline-2">
-<h2 id="orgheadline26"><span class="section-number-2">2</span> Bit Manipulation</h2>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Bit Manipulation</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-orgheadline24" class="outline-3">
-<h3 id="orgheadline24"><span class="section-number-3">2.1</span> 位运算实现四则运算</h3>
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 位运算实现四则运算</h3>
 </div>
-<div id="outline-container-orgheadline25" class="outline-3">
-<h3 id="orgheadline25"><span class="section-number-3">2.2</span> 判断二进制中 0 或 1 的个数</h3>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> 判断二进制中 0 或 1 的个数</h3>
 </div>
 </div>
-<div id="outline-container-orgheadline27" class="outline-2">
-<h2 id="orgheadline27"><span class="section-number-2">3</span> Tree</h2>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Tree</h2>
 </div>
-<div id="outline-container-orgheadline37" class="outline-2">
-<h2 id="orgheadline37"><span class="section-number-2">4</span> 什么是动态规划？动态规划的意义是什么？与递归、分治、贪婪的区别和联系<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup></h2>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 什么是动态规划？动态规划的意义是什么？与递归、分治、贪婪的区别和联系<sup><a id="fnr.3" name="fnr.3" class="footref" href="#fn.3">3</a></sup></h2>
 <div class="outline-text-2" id="text-4">
 <p>
 下面是知乎上王勐关于这个问题的回答，讲解的很透彻（<a href="https://www.zhihu.com/question/23995189/answer/35429905">链接</a>） ：
@@ -714,21 +718,25 @@ LIS(i) = max{LIS(j)+1} j&lt;i and a[j]&lt;a[i]
 所以 <b>一个问题是该用递推、贪心、搜索还是动态规划，完全是由这个问题本身阶段间状态的转移方式决定的！</b> :
 </p>
 <ul class="org-ul">
-<li>每个阶段只有一个状态 -&gt; 递推；</li>
-<li>每个阶段的最优状态都是由上一个阶段的最优状态得到的 -&gt; 贪心；</li>
-<li>每个阶段的最优状态是由之前所有阶段的状态的组合得到的 -&gt; 搜索；</li>
-<li>每个阶段的最优状态可以从之前某个阶段的某个或某些状态直接得到而不管之前这个状态是如何得到的 -&gt; 动态规划。</li>
+<li>每个阶段只有一个状态 -&gt; 递推；
+</li>
+<li>每个阶段的最优状态都是由上一个阶段的最优状态得到的 -&gt; 贪心；
+</li>
+<li>每个阶段的最优状态是由之前所有阶段的状态的组合得到的 -&gt; 搜索；
+</li>
+<li>每个阶段的最优状态可以从之前某个阶段的某个或某些状态直接得到而不管之前这个状态是如何得到的 -&gt; 动态规划。
+</li>
 </ul>
 
 <p>
 <b>每个阶段的最优状态可以从之前某个阶段的某个或某些状态直接得到这个性质叫做最优子结构；而不管之前这个状态是如何得到的这个性质叫做无后效性。</b> 另：其实动态规划中的最优状态的说法容易产生误导，以为只需要计算最优状态就好，LIS 问题确实如此，转移时只用到了每个阶段 “选” 的状态。但实际上有的问题往往 <b>需要对每个阶段的所有状态都算出一个最优值，然后根据这些最优值再来找最优状态。</b> 比如背包问题就需要对前 i 个包（阶段）容量为 j 时（状态）计算出最大价值。然后在最后一个阶段中的所有状态种找到最优值。
 </p>
 </div>
-<div id="outline-container-orgheadline29" class="outline-3">
-<h3 id="orgheadline29"><span class="section-number-3">4.1</span> 递归</h3>
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> 递归</h3>
 <div class="outline-text-3" id="text-4-1">
-</div><div id="outline-container-orgheadline28" class="outline-4">
-<h4 id="orgheadline28"><span class="section-number-4">4.1.1</span> 爬楼梯问题</h4>
+</div><div id="outline-container-sec-4-1-1" class="outline-4">
+<h4 id="sec-4-1-1"><span class="section-number-4">4.1.1</span> 爬楼梯问题</h4>
 <div class="outline-text-4" id="text-4-1-1">
 <p>
 有 n 层的台阶，一开始你站在第 0 层，每次最多可以爬 m 层，请问爬到第 n 层有多少种不同的方法？
@@ -740,20 +748,20 @@ LIS(i) = max{LIS(j)+1} j&lt;i and a[j]&lt;a[i]
 
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #6699cc;">void</span> <span style="color: #f99157;">clim_stair</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">m</span>, <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">k</span>) {
-    <span style="color: #99cc99;">static</span> <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">a</span>[k];
-    <span style="color: #99cc99;">if</span>(a[k]==0) {
-        <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">cal a[k]</span>
-        <span style="color: #99cc99;">if</span>(k==0) {
-            a[k] = 1;
-        }
-        <span style="color: #99cc99;">else</span> {
-            <span style="color: #99cc99;">for</span>(<span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span>=k-1; (i&gt;=k-m)&amp;&amp;(i&gt;=0); --i) {
-                a[k] += clim_stair(i);
-            }
-        }
-    }
-    <span style="color: #99cc99;">return</span> a[k];
+<pre class="src src-c++">void clim_stair(int m, int k) {
+	static int a[k];
+	if(a[k]==0) {
+		//cal a[k]
+		if(k==0) {
+			a[k] = 1;
+		}
+		else {
+			for(int i=k-1; (i&gt;=k-m)&amp;&amp;(i&gt;=0); --i) {
+				a[k] += clim_stair(i);
+			}
+		}
+	}
+	return a[k];
 }
 </pre>
 </div>
@@ -761,14 +769,14 @@ LIS(i) = max{LIS(j)+1} j&lt;i and a[j]&lt;a[i]
 </div>
 </div>
 
-<div id="outline-container-orgheadline35" class="outline-3">
-<h3 id="orgheadline35"><span class="section-number-3">4.2</span> Dynamic Programming（动态规划）</h3>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> Dynamic Programming（动态规划）</h3>
 <div class="outline-text-3" id="text-4-2">
-</div><div id="outline-container-orgheadline30" class="outline-4">
-<h4 id="orgheadline30"><span class="section-number-4">4.2.1</span> 最长递增子序列 (LIS)</h4>
+</div><div id="outline-container-sec-4-2-1" class="outline-4">
+<h4 id="sec-4-2-1"><span class="section-number-4">4.2.1</span> 最长递增子序列 (LIS)</h4>
 </div>
-<div id="outline-container-orgheadline31" class="outline-4">
-<h4 id="orgheadline31"><span class="section-number-4">4.2.2</span> 最大连续子序列之和</h4>
+<div id="outline-container-sec-4-2-2" class="outline-4">
+<h4 id="sec-4-2-2"><span class="section-number-4">4.2.2</span> 最大连续子序列之和</h4>
 <div class="outline-text-4" id="text-4-2-2">
 <p>
 给定 K 个整数的序列 {N1, N2, &#x2026;, NK}，其任意连续子序列可表示为 {Ni, Ni+1, &#x2026;, Nj}，其中 1 &lt;= i &lt;= j &lt;= K。最大连续子序列是所有连续子序中元素和最大的一个， 例如给定序列 {-2, 11, -4, 13, -5, -2}，其最大连续子序列为 {11, -4, 13}，最大和为 20。
@@ -779,24 +787,24 @@ LIS(i) = max{LIS(j)+1} j&lt;i and a[j]&lt;a[i]
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline32" class="outline-4">
-<h4 id="orgheadline32"><span class="section-number-4">4.2.3</span> 数塔问题</h4>
+<div id="outline-container-sec-4-2-3" class="outline-4">
+<h4 id="sec-4-2-3"><span class="section-number-4">4.2.3</span> 数塔问题</h4>
 <div class="outline-text-4" id="text-4-2-3">
 <p>
 数塔问题 ：要求从顶层走到底层，若每一步只能走到相邻的结点，则经过的结点的数字之和最大是多少？
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline33" class="outline-4">
-<h4 id="orgheadline33"><span class="section-number-4">4.2.4</span> 背包问题</h4>
+<div id="outline-container-sec-4-2-4" class="outline-4">
+<h4 id="sec-4-2-4"><span class="section-number-4">4.2.4</span> 背包问题</h4>
 <div class="outline-text-4" id="text-4-2-4">
 <p>
 有 n 个重量和价值分别为 vector&lt;int&gt; weight, vector&lt;int&gt; value 的物品；背包最大负重为 W，求能用背包装下的物品的最大价值？
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline34" class="outline-4">
-<h4 id="orgheadline34"><span class="section-number-4">4.2.5</span> 最长公共子序列 (LCS)</h4>
+<div id="outline-container-sec-4-2-5" class="outline-4">
+<h4 id="sec-4-2-5"><span class="section-number-4">4.2.5</span> 最长公共子序列 (LCS)</h4>
 <div class="outline-text-4" id="text-4-2-5">
 <p>
 一个序列 S，如果分别是两个或多个已知序列的子序列，且是所有符合此条件序列中最长的，则 S 称为已知序列的最长公共子序列。
@@ -804,150 +812,150 @@ LIS(i) = max{LIS(j)+1} j&lt;i and a[j]&lt;a[i]
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline36" class="outline-3">
-<h3 id="orgheadline36"><span class="section-number-3">4.3</span> Greedy（贪婪）</h3>
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> Greedy（贪婪）</h3>
 </div>
 </div>
 
-<div id="outline-container-orgheadline38" class="outline-2">
-<h2 id="orgheadline38"><span class="section-number-2">5</span> Backtracking</h2>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Backtracking</h2>
 </div>
-<div id="outline-container-orgheadline42" class="outline-2">
-<h2 id="orgheadline42"><span class="section-number-2">6</span> Linked list</h2>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Linked list</h2>
 <div class="outline-text-2" id="text-6">
-</div><div id="outline-container-orgheadline39" class="outline-3">
-<h3 id="orgheadline39"><span class="section-number-3">6.1</span> 单链表反转</h3>
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> 单链表反转</h3>
 </div>
-<div id="outline-container-orgheadline40" class="outline-3">
-<h3 id="orgheadline40"><span class="section-number-3">6.2</span> 单链表判断是否有环</h3>
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> 单链表判断是否有环</h3>
 </div>
-<div id="outline-container-orgheadline41" class="outline-3">
-<h3 id="orgheadline41"><span class="section-number-3">6.3</span> 单链表判断是否相交</h3>
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> 单链表判断是否相交</h3>
 </div>
 </div>
-<div id="outline-container-orgheadline45" class="outline-2">
-<h2 id="orgheadline45"><span class="section-number-2">7</span> Math</h2>
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Math</h2>
 <div class="outline-text-2" id="text-7">
-</div><div id="outline-container-orgheadline43" class="outline-4">
-<h4 id="orgheadline43"><span class="section-number-4">7.0.1</span> 大数加法</h4>
+</div><div id="outline-container-sec-7-0-1" class="outline-4">
+<h4 id="sec-7-0-1"><span class="section-number-4">7.0.1</span> 大数加法</h4>
 <div class="outline-text-4" id="text-7-0-1">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;iostream&gt;</span>
-<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;vector&gt;</span>
-<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;string&gt;</span>
-<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;map&gt;</span>
-<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;memory&gt;</span>
-<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;algorithm&gt;</span>
-<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;cassert&gt;</span>
-<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;functional&gt;</span>
+<pre class="src src-c++">    #include &lt;iostream&gt;
+    #include &lt;vector&gt;
+    #include &lt;string&gt;
+    #include &lt;map&gt;
+    #include &lt;memory&gt;
+    #include &lt;algorithm&gt;
+    #include &lt;cassert&gt;
+    #include &lt;functional&gt;
 
-<span style="color: #cc99cc;">    #include</span> <span style="color: #66cccc;">&lt;gtest\gtest.h&gt;</span>
+    #include &lt;gtest\gtest.h&gt;
 
-    <span style="color: #99cc99;">namespace</span> <span style="color: #6699cc;">phenix3443</span> {
-        <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#24314;&#31435;&#36827;&#21046;&#23545;&#24212;&#30340;&#21704;&#24076;&#34920;</span>
-        <span style="color: #6699cc;">std</span>::shared_ptr&lt;<span style="color: #6699cc;">std</span>::map&lt;<span style="color: #6699cc;">char</span>, <span style="color: #6699cc;">short</span>&gt;&gt; Map_10 () {
-            <span style="color: #99cc99;">auto</span> <span style="color: #6699cc;">r_map</span> = <span style="color: #6699cc;">std</span>::make_shared&lt;<span style="color: #6699cc;">std</span>::map&lt;<span style="color: #6699cc;">char</span>, <span style="color: #6699cc;">short</span>&gt;&gt; ();
+    namespace phenix3443 {
+        //建立进制对应的哈希表
+        std::shared_ptr&lt;std::map&lt;char, short&gt;&gt; Map_10 () {
+            auto r_map = std::make_shared&lt;std::map&lt;char, short&gt;&gt; ();
 
-            <span style="color: #99cc99;">for</span> ( <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span> = 0; i &lt; 10; ++i ) {
-                (*r_map)[<span style="color: #66cccc;">'0'</span> + i] = i;
+            for ( int i = 0; i &lt; 10; ++i ) {
+                (*r_map)['0' + i] = i;
             }
-            <span style="color: #99cc99;">return</span> r_map;
+            return r_map;
         }
-        <span style="color: #6699cc;">std</span>::shared_ptr&lt;<span style="color: #6699cc;">std</span>::map&lt;<span style="color: #6699cc;">char</span>, <span style="color: #6699cc;">short</span>&gt;&gt; Map_16 () {
-            <span style="color: #99cc99;">auto</span> <span style="color: #6699cc;">r_map</span> = <span style="color: #6699cc;">std</span>::make_shared&lt;<span style="color: #6699cc;">std</span>::map&lt;<span style="color: #6699cc;">char</span>, <span style="color: #6699cc;">short</span>&gt;&gt; ();
+        std::shared_ptr&lt;std::map&lt;char, short&gt;&gt; Map_16 () {
+            auto r_map = std::make_shared&lt;std::map&lt;char, short&gt;&gt; ();
 
-            <span style="color: #99cc99;">for</span> ( <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span> = 0; i &lt; 10; ++i ) {
-                (*r_map)[<span style="color: #66cccc;">'0'</span> + i] = i;
+            for ( int i = 0; i &lt; 10; ++i ) {
+                (*r_map)['0' + i] = i;
             }
-            <span style="color: #99cc99;">for</span> ( <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span> = 10; i &lt; 16; ++i ) {
-                (*r_map)[<span style="color: #66cccc;">'A'</span> + i - 10] = i;
+            for ( int i = 10; i &lt; 16; ++i ) {
+                (*r_map)['A' + i - 10] = i;
             }
-            <span style="color: #99cc99;">return</span> r_map;
+            return r_map;
         }
-        <span style="color: #6699cc;">std</span>::map&lt;<span style="color: #6699cc;">short</span>, <span style="color: #6699cc;">std</span>::function&lt;<span style="color: #6699cc;">std</span>::shared_ptr&lt;<span style="color: #6699cc;">std</span>::map&lt;<span style="color: #6699cc;">char</span>, <span style="color: #6699cc;">short</span>&gt;&gt; ()&gt;&gt; build_randix_map = {
+        std::map&lt;short, std::function&lt;std::shared_ptr&lt;std::map&lt;char, short&gt;&gt; ()&gt;&gt; build_randix_map = {
             { 10,Map_10 },
             { 16,Map_16 },
         };
-        <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#23558; std::string &#34920;&#31034;&#30340;&#22823;&#25968;&#23384;&#25918;&#22312; std::vector&lt;short&gt;&#20013;</span>
-        <span style="color: #99cc99;">inline</span> <span style="color: #6699cc;">void</span> <span style="color: #f99157;">str_to_vc</span> (<span style="color: #99cc99;">const</span> <span style="color: #6699cc;">std</span>::<span style="color: #6699cc;">string</span>&amp; <span style="color: #ffcc66;">str</span>, <span style="color: #6699cc;">std</span>::<span style="color: #6699cc;">vector</span>&lt;<span style="color: #6699cc;">short</span>&gt;&amp; <span style="color: #ffcc66;">vs</span>, <span style="color: #99cc99;">const</span> <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">base</span> = 10) {
-            <span style="color: #99cc99;">auto</span> <span style="color: #6699cc;">r_map</span> = build_randix_map[base] ();
+        //将 std::string 表示的大数存放在 std::vector&lt;short&gt;中
+        inline void str_to_vc (const std::string&amp; str, std::vector&lt;short&gt;&amp; vs, const int base = 10) {
+            auto r_map = build_randix_map[base] ();
 
-            <span style="color: #6699cc;">std</span>::<span style="color: #6699cc;">function</span>&lt;<span style="color: #6699cc;">bool</span> (<span style="color: #99cc99;">const</span> <span style="color: #6699cc;">char</span>&amp;)&gt; <span style="color: #ffcc66;">f</span> = [&amp;](<span style="color: #99cc99;">const</span> <span style="color: #6699cc;">char</span>&amp; <span style="color: #ffcc66;">c</span>) {<span style="color: #99cc99;">return</span> (*r_map).count (c) != 0; };
-            <span style="color: #99cc99;">auto</span> <span style="color: #6699cc;">first_dig</span> = find_if (str.begin (), str.end (), f);
-            <span style="color: #99cc99;">auto</span> <span style="color: #6699cc;">last_dig</span> = find_if_not (first_dig, str.end (), f);
-            <span style="color: #99cc99;">auto</span> <span style="color: #6699cc;">sign_at</span> = find (str.begin (), first_dig, <span style="color: #66cccc;">'-'</span>);
-            <span style="color: #6699cc;">short</span> <span style="color: #ffcc66;">sign</span> = (sign_at != first_dig) ? -1 : 1;
+            std::function&lt;bool (const char&amp;)&gt; f = [&amp;](const char&amp; c) {return (*r_map).count (c) != 0; };
+            auto first_dig = find_if (str.begin (), str.end (), f);
+            auto last_dig = find_if_not (first_dig, str.end (), f);
+            auto sign_at = find (str.begin (), first_dig, '-');
+            short sign = (sign_at != first_dig) ? -1 : 1;
 
-            for_each (first_dig, last_dig, [&amp;](<span style="color: #99cc99;">const</span> <span style="color: #6699cc;">char</span>&amp; <span style="color: #ffcc66;">e</span>) {vs.push_back (sign*((*r_map)[e])); });
+            for_each (first_dig, last_dig, [&amp;](const char&amp; e) {vs.push_back (sign*((*r_map)[e])); });
         }
-        <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#23558; std::vector&lt;short&gt;&#20013;&#23384;&#25918;&#30340;&#22823;&#25968;&#25918;&#22238; std::string &#20013;</span>
-        <span style="color: #99cc99;">inline</span> <span style="color: #6699cc;">void</span> <span style="color: #f99157;">vc_to_str</span> (<span style="color: #99cc99;">const</span> <span style="color: #6699cc;">std</span>::<span style="color: #6699cc;">vector</span>&lt;<span style="color: #6699cc;">short</span>&gt;&amp; <span style="color: #ffcc66;">vs</span>, <span style="color: #6699cc;">std</span>::<span style="color: #ffcc66;">string</span>&amp; str, <span style="color: #99cc99;">const</span> <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">base</span> = 10) {
-            <span style="color: #99cc99;">auto</span> <span style="color: #6699cc;">r_map</span> = build_randix_map[base] ();
-            <span style="color: #6699cc;">std</span>::<span style="color: #6699cc;">map</span>&lt;<span style="color: #6699cc;">short</span>, <span style="color: #6699cc;">char</span>&gt; <span style="color: #ffcc66;">tmp_map</span>;
-            <span style="color: #99cc99;">for</span> ( <span style="color: #99cc99;">auto</span>&amp; <span style="color: #ffcc66;">e</span> : *r_map )
+        //将 std::vector&lt;short&gt;中存放的大数放回 std::string 中
+        inline void vc_to_str (const std::vector&lt;short&gt;&amp; vs, std::string&amp; str, const int base = 10) {
+            auto r_map = build_randix_map[base] ();
+            std::map&lt;short, char&gt; tmp_map;
+            for ( auto&amp; e : *r_map )
                 tmp_map.insert ({ e.second,e.first });
-            for_each (vs.begin (), vs.end (), [&amp;](<span style="color: #99cc99;">const</span> <span style="color: #6699cc;">short</span>&amp; <span style="color: #ffcc66;">e</span>) {str.push_back (tmp_map[(e + base) % base]); });
-            <span style="color: #99cc99;">if</span> ( vs[0] &lt; 0 ) str.insert (str.begin (), <span style="color: #66cccc;">'-'</span>);
+            for_each (vs.begin (), vs.end (), [&amp;](const short&amp; e) {str.push_back (tmp_map[(e + base) % base]); });
+            if ( vs[0] &lt; 0 ) str.insert (str.begin (), '-');
         }
 
-        <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#22823;&#25972;&#25968;&#21152;&#27861;</span>
-        <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#32771;&#34385;&#65306;    1.&#26377;&#25928;&#36755;&#20837;&#65292;&#21253;&#21547;&#27491;&#36127;&#21495;&#65292;&#23383;&#31526;&#20018;&#20013;&#38750;&#25968;&#23383;&#23383;&#31526;,&#23383;&#31526;&#20018;&#24320;&#22987;&#30340;&#36830;&#32493;&#31354;&#26684;&#65292;</span>
-        <span style="color: #999999; font-style: italic;">//      </span><span style="color: #999999; font-style: italic;">2.&#23384;&#25918;&#30340;&#25968;&#25454;&#32467;&#26500; std::vector &#19982; std::string</span>
-        <span style="color: #999999; font-style: italic;">//      </span><span style="color: #999999; font-style: italic;">3.&#22914;&#20309;&#22788;&#29702;&#36827;&#20301;</span>
-        <span style="color: #999999; font-style: italic;">//      </span><span style="color: #999999; font-style: italic;">4.&#38543;&#24847;&#36755;&#20837;&#22823;&#25968;&#23383;&#30340;&#38271;&#24230;&#22823;&#23567;</span>
-        <span style="color: #999999; font-style: italic;">//      </span><span style="color: #999999; font-style: italic;">5.&#36827;&#21046;</span>
+        //大整数加法
+        //考虑：    1.有效输入，包含正负号，字符串中非数字字符,字符串开始的连续空格，
+        //      2.存放的数据结构 std::vector 与 std::string
+        //      3.如何处理进位
+        //      4.随意输入大数字的长度大小
+        //      5.进制
 
-        <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#30693;&#35782;&#28857;&#65306;1.&#23383;&#31526;&#19982;&#25968;&#23383;&#20043;&#38388;&#30340;&#36716;&#25442;</span>
-        <span style="color: #999999; font-style: italic;">//       </span><span style="color: #999999; font-style: italic;">2.const &#22312;&#21442;&#25968;&#21015;&#34920;&#22788;&#30340;&#20351;&#29992;</span>
-        <span style="color: #999999; font-style: italic;">//       </span><span style="color: #999999; font-style: italic;">3.STL &#31639;&#27861;&#24211;&#20351;&#29992; find &#31995;&#21015; for_each</span>
-        <span style="color: #999999; font-style: italic;">//       </span><span style="color: #999999; font-style: italic;">4.lamda &#20989;&#25968;&#30340;&#20351;&#29992;&#65292;&#20540;&#25429;&#33719;&#19982;&#24341;&#29992;&#25429;&#33719;</span>
-        <span style="color: #999999; font-style: italic;">//       </span><span style="color: #999999; font-style: italic;">5.&#36127;&#25968;&#21462;&#27169;&#36816;&#31639;</span>
+        //知识点：1.字符与数字之间的转换
+        //       2.const 在参数列表处的使用
+        //       3.STL 算法库使用 find 系列 for_each
+        //       4.lamda 函数的使用，值捕获与引用捕获
+        //       5.负数取模运算
 
-        <span style="color: #6699cc;">int</span> <span style="color: #f99157;">BigSum</span> (<span style="color: #99cc99;">const</span> <span style="color: #6699cc;">std</span>::<span style="color: #6699cc;">string</span>&amp; <span style="color: #ffcc66;">num1</span>, <span style="color: #99cc99;">const</span> <span style="color: #6699cc;">std</span>::<span style="color: #6699cc;">string</span>&amp; <span style="color: #ffcc66;">num2</span>, <span style="color: #6699cc;">std</span>::<span style="color: #ffcc66;">string</span>&amp; sum, <span style="color: #99cc99;">const</span> <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">base</span> = 10) {
-            assert (<span style="color: #6699cc;">!</span>num1.empty () &amp;&amp; <span style="color: #6699cc;">!</span>num2.empty () &amp;&amp; sum.empty ());
-            <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#23558; std::string &#27599;&#19968;&#20301;&#36716;&#25442;&#20026; voctor&lt;short&gt;&#23545;&#24212;&#30340;&#25968;&#23383;</span>
-            <span style="color: #6699cc;">std</span>::<span style="color: #6699cc;">vector</span>&lt;<span style="color: #6699cc;">short</span>&gt; <span style="color: #ffcc66;">vbig</span>, <span style="color: #ffcc66;">vsmall</span>;
+        int BigSum (const std::string&amp; num1, const std::string&amp; num2, std::string&amp; sum, const int base = 10) {
+            assert (!num1.empty () &amp;&amp; !num2.empty () &amp;&amp; sum.empty ());
+            //将 std::string 每一位转换为 voctor&lt;short&gt;对应的数字
+            std::vector&lt;short&gt; vbig, vsmall;
 
             str_to_vc (num1, vbig);
             str_to_vc (num2, vsmall);
 
-            <span style="color: #999999; font-style: italic;">// </span><span style="color: #999999; font-style: italic;">&#20445;&#35777; vbig &#20445;&#23384;&#20102;&#36739;&#22823;&#30340;&#25968;</span>
-            <span style="color: #99cc99;">if</span> ( vbig.size () &lt; vsmall.size () ) swap (vbig, vsmall);
-            <span style="color: #999999; font-style: italic;">// </span><span style="color: #999999; font-style: italic;">vbig vsmall &#25353;&#20301;&#32047;&#21152;&#65292;&#19981;&#32771;&#34385;&#36827;&#20301;</span>
-            <span style="color: #6699cc;">std</span>::<span style="color: #6699cc;">vector</span>&lt;<span style="color: #6699cc;">short</span>&gt; <span style="color: #ffcc66;">vsum</span> (vbig.size (), 0);
-            <span style="color: #99cc99;">for</span> ( <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span> = vbig.size () - 1, <span style="color: #ffcc66;">j</span> = vsmall.size () - 1; i &gt;= 0; --i ) {
+            // 保证 vbig 保存了较大的数
+            if ( vbig.size () &lt; vsmall.size () ) swap (vbig, vsmall);
+            // vbig vsmall 按位累加，不考虑进位
+            std::vector&lt;short&gt; vsum (vbig.size (), 0);
+            for ( int i = vbig.size () - 1, j = vsmall.size () - 1; i &gt;= 0; --i ) {
                 vsum[i] = vbig[i] + ((j &gt;= 0) ? vsmall[j--] : 0);
             }
-            <span style="color: #999999; font-style: italic;">// </span><span style="color: #999999; font-style: italic;">&#22788;&#29702;&#36827;&#20301;</span>
-            <span style="color: #99cc99;">for</span> ( <span style="color: #6699cc;">int</span> <span style="color: #ffcc66;">i</span> = vsum.size () - 1; i &gt;= 0; --i ) {
-                <span style="color: #99cc99;">if</span> ( vsum[i] &gt; base ) {
+            // 处理进位
+            for ( int i = vsum.size () - 1; i &gt;= 0; --i ) {
+                if ( vsum[i] &gt; base ) {
                     vsum[i] -= base;
-                    <span style="color: #99cc99;">if</span> ( i &gt; 0 )
+                    if ( i &gt; 0 )
                         ++vsum[i - 1];
-                    <span style="color: #99cc99;">else</span>
+                    else
                         vsum.insert (vsum.begin (), 1);
                 }
             }
-            <span style="color: #999999; font-style: italic;">//</span><span style="color: #999999; font-style: italic;">&#31532;&#19968;&#27493;&#30340;&#36870;&#36716;&#25442;</span>
+            //第一步的逆转换
             vc_to_str (vsum, sum);
-            <span style="color: #99cc99;">return</span> 0;
+            return 0;
         }
 
-        <span style="color: #f99157;">TEST</span>(TestBigSum,mul){
-            <span style="color: #6699cc;">std</span>::<span style="color: #6699cc;">string</span> <span style="color: #ffcc66;">a</span> = <span style="color: #66cccc;">"-2222"</span>;
-            <span style="color: #6699cc;">std</span>::<span style="color: #6699cc;">string</span> <span style="color: #ffcc66;">b</span> = <span style="color: #66cccc;">"1111"</span>;
-            <span style="color: #6699cc;">std</span>::<span style="color: #6699cc;">string</span> <span style="color: #ffcc66;">sum</span>;
+        TEST(TestBigSum,mul){
+            std::string a = "-2222";
+            std::string b = "1111";
+            std::string sum;
             BigSum (b, a, sum);
-            EXPECT_STREQ (<span style="color: #66cccc;">"-9999"</span>, sum.c_str ());
+            EXPECT_STREQ ("-9999", sum.c_str ());
         }
     }
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline44" class="outline-4">
-<h4 id="orgheadline44"><span class="section-number-4">7.0.2</span> 高精度乘法</h4>
+<div id="outline-container-sec-7-0-2" class="outline-4">
+<h4 id="sec-7-0-2"><span class="section-number-4">7.0.2</span> 高精度乘法</h4>
 <div class="outline-text-4" id="text-7-0-2">
 <p>
 两个数相乘，小数点后位数没有限制，请写一个高精度算法
@@ -955,21 +963,21 @@ LIS(i) = max{LIS(j)+1} j&lt;i and a[j]&lt;a[i]
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline48" class="outline-2">
-<h2 id="orgheadline48"><span class="section-number-2">8</span> String</h2>
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> String</h2>
 <div class="outline-text-2" id="text-8">
-</div><div id="outline-container-orgheadline46" class="outline-3">
-<h3 id="orgheadline46"><span class="section-number-3">8.1</span> 字符串逆序</h3>
+</div><div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1"><span class="section-number-3">8.1</span> 字符串逆序</h3>
 </div>
-<div id="outline-container-orgheadline47" class="outline-3">
-<h3 id="orgheadline47"><span class="section-number-3">8.2</span> 单词逆序</h3>
+<div id="outline-container-sec-8-2" class="outline-3">
+<h3 id="sec-8-2"><span class="section-number-3">8.2</span> 单词逆序</h3>
 </div>
 </div>
-<div id="outline-container-orgheadline50" class="outline-2">
-<h2 id="orgheadline50"><span class="section-number-2">9</span> 大数据处理</h2>
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> 大数据处理</h2>
 <div class="outline-text-2" id="text-9">
-</div><div id="outline-container-orgheadline49" class="outline-3">
-<h3 id="orgheadline49"><span class="section-number-3">9.1</span> 中位数</h3>
+</div><div id="outline-container-sec-9-1" class="outline-3">
+<h3 id="sec-9-1"><span class="section-number-3">9.1</span> 中位数</h3>
 <div class="outline-text-3" id="text-9-1">
 <p>
 在一个文件中有 10G 个整数，乱序排列，要求找出中位数。内存限制为 2G。只写出思路即可。
@@ -978,36 +986,37 @@ LIS(i) = max{LIS(j)+1} j&lt;i and a[j]&lt;a[i]
 </div>
 </div>
 
-<div id="outline-container-orgheadline51" class="outline-2">
-<h2 id="orgheadline51"><span class="section-number-2">10</span> 快排 归并 二分查找</h2>
+<div id="outline-container-sec-10" class="outline-2">
+<h2 id="sec-10"><span class="section-number-2">10</span> 快排 归并 二分查找</h2>
 </div>
 
 
-<div id="outline-container-orgheadline52" class="outline-2">
-<h2 id="orgheadline52"><span class="section-number-2">11</span> 统计一些数字中出现次数最多的数字</h2>
+<div id="outline-container-sec-11" class="outline-2">
+<h2 id="sec-11"><span class="section-number-2">11</span> 统计一些数字中出现次数最多的数字</h2>
 </div>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
 <a href="https://leetcode.com/">leetcode 官网</a>
-</p></div></div>
+</p></div>
 
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.2" name="fn.2" class="footnum" href="#fnr.2">2</a></sup> <p class="footpara">
 <a href="http://www.cnblogs.com/graphics/archive/2010/08/24/1761620.html">关于数组的几道面试题</a>
-</p></div></div>
+</p></div>
 
-<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.3" name="fn.3" class="footnum" href="#fnr.3">3</a></sup> <p class="footpara">
 <a href="https://www.zhihu.com/question/23995189">这个问题在知乎上面的回答，排名前 2 的回答讲的很好</a>
-</p></div></div>
+</p></div>
 
 
 </div>
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: lsl</p>
-<p class="date">Created: 2016-08-07 Sun 19:48</p>
+<p class="date">Created: 2017-08-17 四 18:07</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.2.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
