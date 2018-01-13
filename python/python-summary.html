@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>python summary</title>
-<!-- 2017-08-30 三 16:06 -->
+<!-- 2018-01-13 六 18:32 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="刘尚亮" />
@@ -189,9 +189,12 @@ for the JavaScript code in this tag.
 <li><a href="#sec-5-1-2">5.1.2. 返回值</a></li>
 </ul>
 </li>
-<li><a href="#sec-5-2">5.2. 变量</a>
+<li><a href="#sec-5-2">5.2. 标识符</a>
 <ul>
-<li><a href="#sec-5-2-1">5.2.1. 作用域</a></li>
+<li><a href="#sec-5-2-1">5.2.1. 常量</a></li>
+<li><a href="#sec-5-2-2">5.2.2. 变量</a></li>
+<li><a href="#sec-5-2-3">5.2.3. 动态绑定</a></li>
+<li><a href="#sec-5-2-4">5.2.4. 作用域</a></li>
 </ul>
 </li>
 </ul>
@@ -205,7 +208,13 @@ for the JavaScript code in this tag.
 <li><a href="#sec-6-1-3">6.1.3. 字符串(string)</a></li>
 </ul>
 </li>
-<li><a href="#sec-6-2">6.2. 复合类型</a></li>
+<li><a href="#sec-6-2">6.2. 复合类型</a>
+<ul>
+<li><a href="#sec-6-2-1">6.2.1. 元组（tuple）</a></li>
+<li><a href="#sec-6-2-2">6.2.2. 列表（list）</a></li>
+<li><a href="#sec-6-2-3">6.2.3. 字典（dict）</a></li>
+</ul>
+</li>
 <li><a href="#sec-6-3">6.3. 默认值</a></li>
 <li><a href="#sec-6-4">6.4. 类型转换</a></li>
 </ul>
@@ -230,24 +239,66 @@ for the JavaScript code in this tag.
 <li><a href="#sec-9-3">9.3. 跳转</a></li>
 </ul>
 </li>
-<li><a href="#sec-10">10. 编程范式</a></li>
+<li><a href="#sec-10">10. 编程范式</a>
+<ul>
+<li><a href="#sec-10-1">10.1. 面向对象</a>
+<ul>
+<li><a href="#sec-10-1-1">10.1.1. 封装</a></li>
+<li><a href="#sec-10-1-2">10.1.2. 继承</a>
+<ul>
+<li><a href="#sec-10-1-2-1">类变量</a></li>
+<li><a href="#sec-10-1-2-2">实例变量</a></li>
+<li><a href="#sec-10-1-2-3">类方法</a></li>
+<li><a href="#sec-10-1-2-4">成员方法</a></li>
+<li><a href="#sec-10-1-2-5">静态方法</a></li>
+<li><a href="#sec-10-1-2-6">构造函数</a></li>
+<li><a href="#sec-10-1-2-7">析构函数</a></li>
+</ul>
+</li>
+<li><a href="#sec-10-1-3">10.1.3. 多态</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#sec-11">11. 程序库</a>
 <ul>
-<li><a href="#sec-11-1">11.1. crypto</a></li>
-<li><a href="#sec-11-2">11.2. database</a></li>
-<li><a href="#sec-11-3">11.3. i18n</a></li>
-<li><a href="#sec-11-4">11.4. json</a></li>
-<li><a href="#sec-11-5">11.5. logs</a></li>
-<li><a href="#sec-11-6">11.6. network</a></li>
-<li><a href="#sec-11-7">11.7. os</a></li>
-<li><a href="#sec-11-8">11.8. OOP</a></li>
-<li><a href="#sec-11-9">11.9. protobuf</a></li>
-<li><a href="#sec-11-10">11.10. redis</a></li>
-<li><a href="#sec-11-11">11.11. regexp</a></li>
-<li><a href="#sec-11-12">11.12. serialization</a></li>
-<li><a href="#sec-11-13">11.13. string</a></li>
-<li><a href="#sec-11-14">11.14. test</a></li>
-<li><a href="#sec-11-15">11.15. utils</a></li>
+<li><a href="#sec-11-1">11.1. 操作系统</a></li>
+<li><a href="#sec-11-2">11.2. 测试</a>
+<ul>
+<li><a href="#sec-11-2-1">11.2.1. deepdiff</a></li>
+<li><a href="#sec-11-2-2">11.2.2. unittest</a></li>
+</ul>
+</li>
+<li><a href="#sec-11-3">11.3. 密码学</a>
+<ul>
+<li><a href="#sec-11-3-1">11.3.1. hashlib</a></li>
+<li><a href="#sec-11-3-2">11.3.2. pycryto</a></li>
+</ul>
+</li>
+<li><a href="#sec-11-4">11.4. 国际化</a></li>
+<li><a href="#sec-11-5">11.5. 配置</a></li>
+<li><a href="#sec-11-6">11.6. 日期</a></li>
+<li><a href="#sec-11-7">11.7. 日志</a>
+<ul>
+<li><a href="#sec-11-7-1">11.7.1. logging</a></li>
+</ul>
+</li>
+<li><a href="#sec-11-8">11.8. 数据库</a>
+<ul>
+<li><a href="#sec-11-8-1">11.8.1. mysql</a>
+<ul>
+<li><a href="#sec-11-8-1-1">MySQL-db</a></li>
+<li><a href="#sec-11-8-1-2">mysql-connector</a></li>
+</ul>
+</li>
+<li><a href="#sec-11-8-2">11.8.2. redis</a></li>
+</ul>
+</li>
+<li><a href="#sec-11-9">11.9. 序列化</a>
+<ul>
+<li><a href="#sec-11-9-1">11.9.1. struct</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#sec-12">12. 参考书籍</a>
@@ -270,9 +321,22 @@ for the JavaScript code in this tag.
 </div>
 <div id="outline-container-sec-1-2" class="outline-3">
 <h3 id="sec-1-2"><span class="section-number-3">1.2</span> 优点</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>上手方便，用来写程序原型特别方便。
+</li>
+<li>代码库很全面。
+</li>
+</ul>
+</div>
 </div>
 <div id="outline-container-sec-1-3" class="outline-3">
 <h3 id="sec-1-3"><span class="section-number-3">1.3</span> 特性</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+动态类型以及多态性是 Python 语言灵活性的根源。每个对象都有两个标准的头部信息：类型标志符和引用计数器。
+</p>
+</div>
 </div>
 <div id="outline-container-sec-1-4" class="outline-3">
 <h3 id="sec-1-4"><span class="section-number-3">1.4</span> 语言文化</h3>
@@ -330,8 +394,27 @@ for the JavaScript code in this tag.
 </div>
 <div id="outline-container-sec-3-9-2" class="outline-4">
 <h4 id="sec-3-9-2"><span class="section-number-4">3.9.2</span> pip</h4>
+<div class="outline-text-4" id="text-3-9-2">
+<p>
+使用豆瓣作为软件源镜像：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">vim $HOME/.config/pip/pip.conf
+</pre>
+</div>
+
+
+<pre class="example">
+[global]
+timeout = 60
+index-url = https://pypi.doubanio.com/simple
+</pre>
 </div>
 </div>
+</div>
+
+
 <div id="outline-container-sec-3-10" class="outline-3">
 <h3 id="sec-3-10"><span class="section-number-3">3.10</span> 其他工具</h3>
 </div>
@@ -353,10 +436,37 @@ for the JavaScript code in this tag.
 </div>
 </div>
 <div id="outline-container-sec-5-2" class="outline-3">
-<h3 id="sec-5-2"><span class="section-number-3">5.2</span> 变量</h3>
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> 标识符</h3>
 <div class="outline-text-3" id="text-5-2">
 </div><div id="outline-container-sec-5-2-1" class="outline-4">
-<h4 id="sec-5-2-1"><span class="section-number-4">5.2.1</span> 作用域</h4>
+<h4 id="sec-5-2-1"><span class="section-number-4">5.2.1</span> 常量</h4>
+<div class="outline-text-4" id="text-5-2-1">
+<ul class="org-ul">
+<li>数字
+</li>
+<li>字符串
+</li>
+<li>元组
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-5-2-2" class="outline-4">
+<h4 id="sec-5-2-2"><span class="section-number-4">5.2.2</span> 变量</h4>
+<div class="outline-text-4" id="text-5-2-2">
+<ul class="org-ul">
+<li>列表
+</li>
+<li>字典
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-5-2-3" class="outline-4">
+<h4 id="sec-5-2-3"><span class="section-number-4">5.2.3</span> 动态绑定</h4>
+</div>
+<div id="outline-container-sec-5-2-4" class="outline-4">
+<h4 id="sec-5-2-4"><span class="section-number-4">5.2.4</span> 作用域</h4>
 </div>
 </div>
 </div>
@@ -371,13 +481,33 @@ for the JavaScript code in this tag.
 </div>
 <div id="outline-container-sec-6-1-2" class="outline-4">
 <h4 id="sec-6-1-2"><span class="section-number-4">6.1.2</span> 数字(numeric)</h4>
+<div class="outline-text-4" id="text-6-1-2">
+<p>
+int()
+</p>
+</div>
 </div>
 <div id="outline-container-sec-6-1-3" class="outline-4">
 <h4 id="sec-6-1-3"><span class="section-number-4">6.1.3</span> 字符串(string)</h4>
+<div class="outline-text-4" id="text-6-1-3">
+<p>
+str()
+</p>
+</div>
 </div>
 </div>
 <div id="outline-container-sec-6-2" class="outline-3">
 <h3 id="sec-6-2"><span class="section-number-3">6.2</span> 复合类型</h3>
+<div class="outline-text-3" id="text-6-2">
+</div><div id="outline-container-sec-6-2-1" class="outline-4">
+<h4 id="sec-6-2-1"><span class="section-number-4">6.2.1</span> 元组（tuple）</h4>
+</div>
+<div id="outline-container-sec-6-2-2" class="outline-4">
+<h4 id="sec-6-2-2"><span class="section-number-4">6.2.2</span> 列表（list）</h4>
+</div>
+<div id="outline-container-sec-6-2-3" class="outline-4">
+<h4 id="sec-6-2-3"><span class="section-number-4">6.2.3</span> 字典（dict）</h4>
+</div>
 </div>
 <div id="outline-container-sec-6-3" class="outline-3">
 <h3 id="sec-6-3"><span class="section-number-3">6.3</span> 默认值</h3>
@@ -430,97 +560,285 @@ for the JavaScript code in this tag.
 
 <div id="outline-container-sec-10" class="outline-2">
 <h2 id="sec-10"><span class="section-number-2">10</span> 编程范式</h2>
+<div class="outline-text-2" id="text-10">
+</div><div id="outline-container-sec-10-1" class="outline-3">
+<h3 id="sec-10-1"><span class="section-number-3">10.1</span> 面向对象</h3>
+<div class="outline-text-3" id="text-10-1">
+<p>
+python 本身支持类模型。
+</p>
+</div>
+<div id="outline-container-sec-10-1-1" class="outline-4">
+<h4 id="sec-10-1-1"><span class="section-number-4">10.1.1</span> 封装</h4>
+</div>
+<div id="outline-container-sec-10-1-2" class="outline-4">
+<h4 id="sec-10-1-2"><span class="section-number-4">10.1.2</span> 继承</h4>
+<div class="outline-text-4" id="text-10-1-2">
+<div class="org-src-container">
+
+<pre class="src src-python"># -*- coding:utf-8-*-
+class Base:
+    cls_var = "cls_var"
+
+    def __init__(self, name):
+        print("construct Foo instance: " + name)
+        self.instance_var = "instance var"
+
+    @classmethod
+    def cls_method(cls):
+        return type(cls).__name__ + " class method"
+
+    @classmethod
+    def call_static_method(cls):
+        return "from class method call " + cls.static_methold()
+
+    @staticmethod
+    def static_methold():
+        return "base static method "
+
+    @staticmethod
+    def call_cls_methold():
+        return "from static method call " + Base.cls_method()
+
+    def instance_method(self):
+        return type(self).__name__ + " instance method"
+
+
+class Derive(Base):
+    @classmethod
+    def cls_method(cls):
+        return type(cls).__name__ + " class method"
+
+    @staticmethod
+    def static_methold():
+        return "child static method"
+
+
+if __name__ == "__main__":
+    b1 = Base("foo1")
+    b2 = Base("foo2")
+
+    print(b1.instance_var is b2.instance_var)  # True
+    print(b1.cls_var is b2.cls_var)  # True
+    print(b1.cls_method is b2.cls_method)  # False
+    print(b1.static_methold is b2.static_methold)  # True
+
+    print(b1.instance_method())
+
+    print(b1.cls_method())
+    print(Base.cls_method())
+
+    print(b1.static_methold())
+    print(Base.static_methold())
+
+    print(Base.call_cls_methold())
+    print(Base.call_static_method())
+
+    d = Derive("child")
+    print(d.call_static_method())
+    print(d.call_cls_methold())
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-10-1-2-1" class="outline-5">
+<h5 id="sec-10-1-2-1">类变量</h5>
+</div>
+<div id="outline-container-sec-10-1-2-2" class="outline-5">
+<h5 id="sec-10-1-2-2">实例变量</h5>
+</div>
+<div id="outline-container-sec-10-1-2-3" class="outline-5">
+<h5 id="sec-10-1-2-3">类方法</h5>
+<div class="outline-text-5" id="text-10-1-2-3">
+<p>
+如果函数总需要访问类的成员，不需要访问实例成员，就将函数声明为类方法。其中第一个参数动态绑定到调用该函数的类型上。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-10-1-2-4" class="outline-5">
+<h5 id="sec-10-1-2-4">成员方法</h5>
+<div class="outline-text-5" id="text-10-1-2-4">
+<p>
+如果需要访问实例成员就声明为实例方法，其中第一个参数动态绑定到调用该函数的实例上。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-10-1-2-5" class="outline-5">
+<h5 id="sec-10-1-2-5">静态方法</h5>
+<div class="outline-text-5" id="text-10-1-2-5">
+<p>
+如果类成员和实例成员都不需要访问，就声明为静态方法。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-10-1-2-6" class="outline-5">
+<h5 id="sec-10-1-2-6">构造函数</h5>
+<div class="outline-text-5" id="text-10-1-2-6">
+<p>
+子类不会主动调用父类的构造函数，需要手动调用。注意不要直接使用父类名进行调用，而是使用 super()
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">class A:
+    def __init__(self):
+        print("init A")
+
+
+class B(A):
+    def __init__(self):
+        A.__init__(self)
+        print("init B")
+
+
+class C(A):
+    def __init__(self):
+        A.__init__(self)
+        print("init C")
+
+
+class D(B, C):
+    def __init__(self):
+        B.__init__(self)
+        C.__init__(self)
+        print("init D")
+
+
+d = D()
+</pre>
+</div>
+<p>
+正确做法：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">class A:
+    def __init__(self):
+        print("init A")
+
+
+class B(A):
+    def __init__(self):
+        super().__init__()
+        print("init B")
+
+
+class C(A):
+    def __init__(self):
+        super().__init__()
+        print("init C")
+
+
+class D(B, C):
+    def __init__(self):
+        super().__init__()
+        print("init D")
+
+
+d = D()
+</pre>
+</div>
+<p>
+注意上面构造函数中的调用顺序。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-10-1-2-7" class="outline-5">
+<h5 id="sec-10-1-2-7">析构函数</h5>
+</div>
+</div>
+
+<div id="outline-container-sec-10-1-3" class="outline-4">
+<h4 id="sec-10-1-3"><span class="section-number-4">10.1.3</span> 多态</h4>
+</div>
+</div>
 </div>
 <div id="outline-container-sec-11" class="outline-2">
 <h2 id="sec-11"><span class="section-number-2">11</span> 程序库</h2>
 <div class="outline-text-2" id="text-11">
 </div><div id="outline-container-sec-11-1" class="outline-3">
-<h3 id="sec-11-1"><span class="section-number-3">11.1</span> crypto</h3>
-<div class="outline-text-3" id="text-11-1">
-<ul class="org-ul">
-<li>hashlib, build-in
-</li>
-<li>pycryto
-</li>
-</ul>
+<h3 id="sec-11-1"><span class="section-number-3">11.1</span> 操作系统</h3>
 </div>
-</div>
-
 <div id="outline-container-sec-11-2" class="outline-3">
-<h3 id="sec-11-2"><span class="section-number-3">11.2</span> database</h3>
+<h3 id="sec-11-2"><span class="section-number-3">11.2</span> 测试</h3>
 <div class="outline-text-3" id="text-11-2">
-<ul class="org-ul">
-<li>MySQL-db
-</li>
-</ul>
+</div><div id="outline-container-sec-11-2-1" class="outline-4">
+<h4 id="sec-11-2-1"><span class="section-number-4">11.2.1</span> deepdiff</h4>
 </div>
-</div>
-<div id="outline-container-sec-11-3" class="outline-3">
-<h3 id="sec-11-3"><span class="section-number-3">11.3</span> i18n</h3>
-</div>
-<div id="outline-container-sec-11-4" class="outline-3">
-<h3 id="sec-11-4"><span class="section-number-3">11.4</span> json</h3>
-</div>
-<div id="outline-container-sec-11-5" class="outline-3">
-<h3 id="sec-11-5"><span class="section-number-3">11.5</span> logs</h3>
-<div class="outline-text-3" id="text-11-5">
-<ul class="org-ul">
-<li>logging, build-in
-</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-sec-11-6" class="outline-3">
-<h3 id="sec-11-6"><span class="section-number-3">11.6</span> network</h3>
-</div>
-<div id="outline-container-sec-11-7" class="outline-3">
-<h3 id="sec-11-7"><span class="section-number-3">11.7</span> os</h3>
-</div>
-<div id="outline-container-sec-11-8" class="outline-3">
-<h3 id="sec-11-8"><span class="section-number-3">11.8</span> OOP</h3>
-</div>
-<div id="outline-container-sec-11-9" class="outline-3">
-<h3 id="sec-11-9"><span class="section-number-3">11.9</span> protobuf</h3>
-</div>
-<div id="outline-container-sec-11-10" class="outline-3">
-<h3 id="sec-11-10"><span class="section-number-3">11.10</span> redis</h3>
-</div>
-<div id="outline-container-sec-11-11" class="outline-3">
-<h3 id="sec-11-11"><span class="section-number-3">11.11</span> regexp</h3>
-</div>
-<div id="outline-container-sec-11-12" class="outline-3">
-<h3 id="sec-11-12"><span class="section-number-3">11.12</span> serialization</h3>
-<div class="outline-text-3" id="text-11-12">
-<ul class="org-ul">
-<li>struct, build-in
-</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-sec-11-13" class="outline-3">
-<h3 id="sec-11-13"><span class="section-number-3">11.13</span> string</h3>
-</div>
-<div id="outline-container-sec-11-14" class="outline-3">
-<h3 id="sec-11-14"><span class="section-number-3">11.14</span> test</h3>
-<div class="outline-text-3" id="text-11-14">
-<ul class="org-ul">
-<li>deepdiff
-</li>
-<li>unittest
-
+<div id="outline-container-sec-11-2-2" class="outline-4">
+<h4 id="sec-11-2-2"><span class="section-number-4">11.2.2</span> unittest</h4>
+<div class="outline-text-4" id="text-11-2-2">
 <p>
 build-in
 </p>
-</li>
-</ul>
 </div>
+</div>
+</div>
+<div id="outline-container-sec-11-3" class="outline-3">
+<h3 id="sec-11-3"><span class="section-number-3">11.3</span> 密码学</h3>
+<div class="outline-text-3" id="text-11-3">
+</div><div id="outline-container-sec-11-3-1" class="outline-4">
+<h4 id="sec-11-3-1"><span class="section-number-4">11.3.1</span> hashlib</h4>
+<div class="outline-text-4" id="text-11-3-1">
+<p>
+build-in
+</p>
+</div>
+</div>
+<div id="outline-container-sec-11-3-2" class="outline-4">
+<h4 id="sec-11-3-2"><span class="section-number-4">11.3.2</span> pycryto</h4>
+</div>
+</div>
+<div id="outline-container-sec-11-4" class="outline-3">
+<h3 id="sec-11-4"><span class="section-number-3">11.4</span> 国际化</h3>
+</div>
+<div id="outline-container-sec-11-5" class="outline-3">
+<h3 id="sec-11-5"><span class="section-number-3">11.5</span> 配置</h3>
 </div>
 
-<div id="outline-container-sec-11-15" class="outline-3">
-<h3 id="sec-11-15"><span class="section-number-3">11.15</span> utils</h3>
+<div id="outline-container-sec-11-6" class="outline-3">
+<h3 id="sec-11-6"><span class="section-number-3">11.6</span> 日期</h3>
+</div>
+<div id="outline-container-sec-11-7" class="outline-3">
+<h3 id="sec-11-7"><span class="section-number-3">11.7</span> 日志</h3>
+<div class="outline-text-3" id="text-11-7">
+</div><div id="outline-container-sec-11-7-1" class="outline-4">
+<h4 id="sec-11-7-1"><span class="section-number-4">11.7.1</span> logging</h4>
+<div class="outline-text-4" id="text-11-7-1">
+<p>
+build-in
+</p>
 </div>
 </div>
-
+</div>
+<div id="outline-container-sec-11-8" class="outline-3">
+<h3 id="sec-11-8"><span class="section-number-3">11.8</span> 数据库</h3>
+<div class="outline-text-3" id="text-11-8">
+</div><div id="outline-container-sec-11-8-1" class="outline-4">
+<h4 id="sec-11-8-1"><span class="section-number-4">11.8.1</span> mysql</h4>
+<div class="outline-text-4" id="text-11-8-1">
+</div><div id="outline-container-sec-11-8-1-1" class="outline-5">
+<h5 id="sec-11-8-1-1">MySQL-db</h5>
+</div>
+<div id="outline-container-sec-11-8-1-2" class="outline-5">
+<h5 id="sec-11-8-1-2">mysql-connector</h5>
+</div>
+</div>
+<div id="outline-container-sec-11-8-2" class="outline-4">
+<h4 id="sec-11-8-2"><span class="section-number-4">11.8.2</span> redis</h4>
+</div>
+</div>
+<div id="outline-container-sec-11-9" class="outline-3">
+<h3 id="sec-11-9"><span class="section-number-3">11.9</span> 序列化</h3>
+<div class="outline-text-3" id="text-11-9">
+</div><div id="outline-container-sec-11-9-1" class="outline-4">
+<h4 id="sec-11-9-1"><span class="section-number-4">11.9.1</span> struct</h4>
+<div class="outline-text-4" id="text-11-9-1">
+<p>
+build-in
+</p>
+</div>
+</div>
+</div>
+</div>
 
 <div id="outline-container-sec-12" class="outline-2">
 <h2 id="sec-12"><span class="section-number-2">12</span> 参考书籍</h2>
@@ -529,7 +847,7 @@ build-in
 <h3 id="sec-12-1"><span class="section-number-3">12.1</span> 入门</h3>
 <div class="outline-text-3" id="text-12-1">
 <ul class="org-ul">
-<li><a href="https://book.douban.com/subject/6049132/">Python学习手册</a>
+<li><a href="https://book.douban.com/subject/6049132/">Python 学习手册</a>
 </li>
 </ul>
 </div>
@@ -541,7 +859,7 @@ build-in
 <h3 id="sec-12-3"><span class="section-number-3">12.3</span> 实践</h3>
 <div class="outline-text-3" id="text-12-3">
 <ul class="org-ul">
-<li><a href="https://book.douban.com/subject/26801374/">Python核心编程</a>
+<li><a href="https://book.douban.com/subject/26801374/">Python 核心编程</a>
 </li>
 </ul>
 </div>
@@ -550,7 +868,7 @@ build-in
 <h3 id="sec-12-4"><span class="section-number-3">12.4</span> 原理</h3>
 <div class="outline-text-3" id="text-12-4">
 <ul class="org-ul">
-<li><a href="https://book.douban.com/subject/3117898/">Python源码剖析</a>
+<li><a href="https://book.douban.com/subject/3117898/">Python 源码剖析</a>
 </li>
 </ul>
 </div>
@@ -559,8 +877,8 @@ build-in
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 刘尚亮</p>
-<p class="date">Created: 2017-08-30 三 16:06</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.2.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2018-01-13 六 18:32</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

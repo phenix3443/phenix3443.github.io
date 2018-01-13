@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>golang summary</title>
-<!-- 2017-08-30 三 16:06 -->
+<!-- 2018-01-13 六 18:32 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="刘尚亮" />
@@ -160,8 +160,8 @@ for the JavaScript code in this tag.
 <li><a href="#sec-2-1">2.1. 安装</a></li>
 <li><a href="#sec-2-2">2.2. 运行</a>
 <ul>
-<li><a href="#sec-2-2-1">2.2.1. goroot</a></li>
-<li><a href="#sec-2-2-2">2.2.2. gopath</a></li>
+<li><a href="#sec-2-2-1">2.2.1. GOROOT</a></li>
+<li><a href="#sec-2-2-2">2.2.2. GOPATH</a></li>
 </ul>
 </li>
 </ul>
@@ -174,19 +174,18 @@ for the JavaScript code in this tag.
 <li><a href="#sec-3-1-2">3.1.2. go clean</a></li>
 <li><a href="#sec-3-1-3">3.1.3. go doc</a></li>
 <li><a href="#sec-3-1-4">3.1.4. go env</a></li>
-<li><a href="#sec-3-1-5">3.1.5. go bug</a></li>
-<li><a href="#sec-3-1-6">3.1.6. go fix</a></li>
-<li><a href="#sec-3-1-7">3.1.7. go fmt</a></li>
-<li><a href="#sec-3-1-8">3.1.8. go get</a></li>
-<li><a href="#sec-3-1-9">3.1.9. go list</a></li>
-<li><a href="#sec-3-1-10">3.1.10. go install</a></li>
-<li><a href="#sec-3-1-11">3.1.11. go run</a></li>
-<li><a href="#sec-3-1-12">3.1.12. go test</a></li>
-<li><a href="#sec-3-1-13">3.1.13. go tool</a>
+<li><a href="#sec-3-1-5">3.1.5. go fix</a></li>
+<li><a href="#sec-3-1-6">3.1.6. go fmt</a></li>
+<li><a href="#sec-3-1-7">3.1.7. go get</a></li>
+<li><a href="#sec-3-1-8">3.1.8. go list</a></li>
+<li><a href="#sec-3-1-9">3.1.9. go install</a></li>
+<li><a href="#sec-3-1-10">3.1.10. go run</a></li>
+<li><a href="#sec-3-1-11">3.1.11. go test</a></li>
+<li><a href="#sec-3-1-12">3.1.12. go tool</a>
 <ul>
-<li><a href="#sec-3-1-13-1">pprof</a></li>
-<li><a href="#sec-3-1-13-2">vet</a></li>
-<li><a href="#sec-3-1-13-3">trace</a></li>
+<li><a href="#sec-3-1-12-1">pprof</a></li>
+<li><a href="#sec-3-1-12-2">vet</a></li>
+<li><a href="#sec-3-1-12-3">trace</a></li>
 </ul>
 </li>
 </ul>
@@ -196,13 +195,18 @@ for the JavaScript code in this tag.
 <li><a href="#sec-3-2-1">3.2.1. editor</a></li>
 <li><a href="#sec-3-2-2">3.2.2. gocode</a></li>
 <li><a href="#sec-3-2-3">3.2.3. godef</a></li>
+<li><a href="#sec-3-2-4">3.2.4. Guru</a></li>
 </ul>
 </li>
 <li><a href="#sec-3-3">3.3. 代码检查</a>
 <ul>
 <li><a href="#sec-3-3-1">3.3.1. gofmt</a></li>
 <li><a href="#sec-3-3-2">3.3.2. goimports</a></li>
-<li><a href="#sec-3-3-3">3.3.3. go oracle</a></li>
+<li><a href="#sec-3-3-3">3.3.3. oracle</a></li>
+<li><a href="#sec-3-3-4">3.3.4. vet</a></li>
+<li><a href="#sec-3-3-5">3.3.5. golint</a></li>
+<li><a href="#sec-3-3-6">3.3.6. errcheck</a></li>
+<li><a href="#sec-3-3-7">3.3.7. goreporter</a></li>
 </ul>
 </li>
 <li><a href="#sec-3-4">3.4. 构建编译</a>
@@ -213,9 +217,15 @@ for the JavaScript code in this tag.
 <li><a href="#sec-3-5">3.5. 代码调试</a>
 <ul>
 <li><a href="#sec-3-5-1">3.5.1. gdb</a></li>
+<li><a href="#sec-3-5-2">3.5.2. dlv</a></li>
 </ul>
 </li>
-<li><a href="#sec-3-6">3.6. 自动测试</a></li>
+<li><a href="#sec-3-6">3.6. 自动测试</a>
+<ul>
+<li><a href="#sec-3-6-1">3.6.1. gotests</a></li>
+<li><a href="#sec-3-6-2">3.6.2. gocheck</a></li>
+</ul>
+</li>
 <li><a href="#sec-3-7">3.7. 性能分析</a>
 <ul>
 <li><a href="#sec-3-7-1">3.7.1. go tool pprof</a></li>
@@ -232,7 +242,7 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#sec-4">4. 工程布局</a>
 <ul>
-<li><a href="#sec-4-1">4.1. 库</a></li>
+<li><a href="#sec-4-1">4.1. 包</a></li>
 <li><a href="#sec-4-2">4.2. 命令程序</a></li>
 </ul>
 </li>
@@ -240,7 +250,7 @@ for the JavaScript code in this tag.
 <ul>
 <li>
 <ul>
-<li><a href="#sec-5-0-1">5.0.1. 包（package）</a></li>
+<li><a href="#sec-5-0-1">5.0.1. 包</a></li>
 <li><a href="#sec-5-0-2">5.0.2. 函数</a>
 <ul>
 <li><a href="#sec-5-0-2-1">参数</a></li>
@@ -370,27 +380,56 @@ for the JavaScript code in this tag.
 </li>
 </ul>
 </li>
-<li><a href="#sec-10">10. 程序库</a>
+<li><a href="#sec-10">10. 基础库</a>
 <ul>
-<li><a href="#sec-10-1">10.1. unicode/utf8</a></li>
-<li><a href="#sec-10-2">10.2. strings</a></li>
-<li><a href="#sec-10-3">10.3. strconv</a></li>
-<li><a href="#sec-10-4">10.4. time</a></li>
-<li><a href="#sec-10-5">10.5. container</a></li>
-<li><a href="#sec-10-6">10.6. flag</a></li>
+<li><a href="#sec-10-1">10.1. bytes</a></li>
+<li><a href="#sec-10-2">10.2. encoding</a>
+<ul>
+<li><a href="#sec-10-2-1">10.2.1. binary</a></li>
+<li><a href="#sec-10-2-2">10.2.2. errors</a></li>
+<li><a href="#sec-10-2-3">10.2.3. hex</a></li>
+<li><a href="#sec-10-2-4">10.2.4. json</a></li>
 </ul>
 </li>
-<li><a href="#sec-11">11. 参考书籍</a>
+<li><a href="#sec-10-3">10.3. net</a>
 <ul>
-<li><a href="#sec-11-1">11.1. 入门</a></li>
-<li><a href="#sec-11-2">11.2. 高级</a></li>
-<li><a href="#sec-11-3">11.3. 实践</a></li>
-<li><a href="#sec-11-4">11.4. 原理</a></li>
+<li><a href="#sec-10-3-1">10.3.1. http</a></li>
 </ul>
 </li>
-<li><a href="#sec-12">12. 其他</a>
+<li><a href="#sec-10-4">10.4. os</a></li>
+<li><a href="#sec-10-5">10.5. path</a>
 <ul>
-<li><a href="#sec-12-1">12.1. golang.org/x/xx 下载失败解决办法</a></li>
+<li><a href="#sec-10-5-1">10.5.1. filepath</a></li>
+</ul>
+</li>
+<li><a href="#sec-10-6">10.6. sql</a></li>
+<li><a href="#sec-10-7">10.7. strconv</a></li>
+<li><a href="#sec-10-8">10.8. strings</a></li>
+<li><a href="#sec-10-9">10.9. time</a></li>
+</ul>
+</li>
+<li><a href="#sec-11">11. 第三方库</a>
+<ul>
+<li><a href="#sec-11-1">11.1. go-cache</a></li>
+<li><a href="#sec-11-2">11.2. gocheck</a></li>
+<li><a href="#sec-11-3">11.3. log4go</a></li>
+<li><a href="#sec-11-4">11.4. logrus</a></li>
+<li><a href="#sec-11-5">11.5. mysql-driver</a></li>
+<li><a href="#sec-11-6">11.6. redis</a></li>
+<li><a href="#sec-11-7">11.7. proto</a></li>
+</ul>
+</li>
+<li><a href="#sec-12">12. 参考书籍</a>
+<ul>
+<li><a href="#sec-12-1">12.1. 入门</a></li>
+<li><a href="#sec-12-2">12.2. 高级</a></li>
+<li><a href="#sec-12-3">12.3. 实践</a></li>
+<li><a href="#sec-12-4">12.4. 原理</a></li>
+</ul>
+</li>
+<li><a href="#sec-13">13. 实践 tips</a>
+<ul>
+<li><a href="#sec-13-1">13.1. golang.org/x/xx 下载失败解决办法</a></li>
 </ul>
 </li>
 </ul>
@@ -404,7 +443,7 @@ for the JavaScript code in this tag.
 <h3 id="sec-1-1"><span class="section-number-3">1.1</span> 起源</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
-golang受到很多语言的启发：
+golang 受到很多语言的启发：
 </p>
 
 <ul class="org-ul">
@@ -414,7 +453,7 @@ golang受到很多语言的启发：
 </li>
 <li>java、C#、python： 包管理。
 </li>
-<li>unix，Plan9，Limbo ：通信序列进程（communicating sequential process，CSP），协程间通信。
+<li>unix，Plan9，Limbo：通信序列进程（communicating sequential process，CSP），协程间通信。
 </li>
 </ul>
 </div>
@@ -423,7 +462,7 @@ golang受到很多语言的启发：
 <h3 id="sec-1-2"><span class="section-number-3">1.2</span> 优点</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
-golang达到以下三者的平衡：
+golang 达到以下三者的平衡：
 </p>
 
 <ul class="org-ul">
@@ -520,7 +559,7 @@ golang达到以下三者的平衡：
 简单（simple）
 </p>
 <ul class="org-ul">
-<li>关键字少，25 个
+<li>只有 25 个关键字
 </li>
 <li>同一个问题只使用一两种方法来解决。
 </li>
@@ -534,7 +573,7 @@ golang达到以下三者的平衡：
 <h3 id="sec-1-5"><span class="section-number-3">1.5</span> 编码规范</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
-<a href="https://golang.org/ref/spec">go语言编码规范</a>
+<a href="https://golang.org/ref/spec">go 语言编码规范</a>
 </p>
 </div>
 <div id="outline-container-sec-1-5-1" class="outline-4">
@@ -587,13 +626,20 @@ func enterOrbit() error {
 需要设置环境变量：
 </p>
 </div>
-
 <div id="outline-container-sec-2-2-1" class="outline-4">
-<h4 id="sec-2-2-1"><span class="section-number-4">2.2.1</span> goroot</h4>
+<h4 id="sec-2-2-1"><span class="section-number-4">2.2.1</span> GOROOT</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+go 运行环境的安装目录。
+</p>
+</div>
 </div>
 <div id="outline-container-sec-2-2-2" class="outline-4">
-<h4 id="sec-2-2-2"><span class="section-number-4">2.2.2</span> gopath</h4>
+<h4 id="sec-2-2-2"><span class="section-number-4">2.2.2</span> GOPATH</h4>
 <div class="outline-text-4" id="text-2-2-2">
+<p>
+GOPATH 用于解析 import 声明。GOPATH 中的路径下必须包含 bin、src、pkg 三个目录。
+</p>
 <div class="org-src-container">
 
 <pre class="src src-sh">mkdir ~/gospace
@@ -608,14 +654,17 @@ func enterOrbit() error {
 
 <pre class="src src-sh">export GOROOT="/usr/local/go"
 export GOPATH="$HOME/gospace"
-PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
+export PATH="$PATH:$GOROOT/bin:$HOME/gospace/bin"
 </pre>
 </div>
-</div>
-</div>
-</div>
-</div>
 
+<p>
+GOPATH 中第一个目录要固定，这样以后安装的第三方库都会安装到这个目录下，而且应该将该目录下的 bin 加入到 PATH 中。
+</p>
+</div>
+</div>
+</div>
+</div>
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3"><span class="section-number-2">3</span> 相关工具</h2>
 <div class="outline-text-2" id="text-3">
@@ -631,6 +680,14 @@ PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
 </div>
 <div id="outline-container-sec-3-1-2" class="outline-4">
 <h4 id="sec-3-1-2"><span class="section-number-4">3.1.2</span> go clean</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<ul class="org-ul">
+<li>-i 选项删除 go install 安装的文件。
+</li>
+<li>-r 选项递归清理依赖项。
+</li>
+</ul>
+</div>
 </div>
 <div id="outline-container-sec-3-1-3" class="outline-4">
 <h4 id="sec-3-1-3"><span class="section-number-4">3.1.3</span> go doc</h4>
@@ -639,40 +696,37 @@ PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
 <h4 id="sec-3-1-4"><span class="section-number-4">3.1.4</span> go env</h4>
 </div>
 <div id="outline-container-sec-3-1-5" class="outline-4">
-<h4 id="sec-3-1-5"><span class="section-number-4">3.1.5</span> go bug</h4>
+<h4 id="sec-3-1-5"><span class="section-number-4">3.1.5</span> go fix</h4>
 </div>
 <div id="outline-container-sec-3-1-6" class="outline-4">
-<h4 id="sec-3-1-6"><span class="section-number-4">3.1.6</span> go fix</h4>
+<h4 id="sec-3-1-6"><span class="section-number-4">3.1.6</span> go fmt</h4>
 </div>
 <div id="outline-container-sec-3-1-7" class="outline-4">
-<h4 id="sec-3-1-7"><span class="section-number-4">3.1.7</span> go fmt</h4>
+<h4 id="sec-3-1-7"><span class="section-number-4">3.1.7</span> go get</h4>
 </div>
 <div id="outline-container-sec-3-1-8" class="outline-4">
-<h4 id="sec-3-1-8"><span class="section-number-4">3.1.8</span> go get</h4>
+<h4 id="sec-3-1-8"><span class="section-number-4">3.1.8</span> go list</h4>
 </div>
 <div id="outline-container-sec-3-1-9" class="outline-4">
-<h4 id="sec-3-1-9"><span class="section-number-4">3.1.9</span> go list</h4>
+<h4 id="sec-3-1-9"><span class="section-number-4">3.1.9</span> go install</h4>
 </div>
 <div id="outline-container-sec-3-1-10" class="outline-4">
-<h4 id="sec-3-1-10"><span class="section-number-4">3.1.10</span> go install</h4>
+<h4 id="sec-3-1-10"><span class="section-number-4">3.1.10</span> go run</h4>
 </div>
 <div id="outline-container-sec-3-1-11" class="outline-4">
-<h4 id="sec-3-1-11"><span class="section-number-4">3.1.11</span> go run</h4>
+<h4 id="sec-3-1-11"><span class="section-number-4">3.1.11</span> go test</h4>
 </div>
 <div id="outline-container-sec-3-1-12" class="outline-4">
-<h4 id="sec-3-1-12"><span class="section-number-4">3.1.12</span> go test</h4>
+<h4 id="sec-3-1-12"><span class="section-number-4">3.1.12</span> go tool</h4>
+<div class="outline-text-4" id="text-3-1-12">
+</div><div id="outline-container-sec-3-1-12-1" class="outline-5">
+<h5 id="sec-3-1-12-1">pprof</h5>
 </div>
-<div id="outline-container-sec-3-1-13" class="outline-4">
-<h4 id="sec-3-1-13"><span class="section-number-4">3.1.13</span> go tool</h4>
-<div class="outline-text-4" id="text-3-1-13">
-</div><div id="outline-container-sec-3-1-13-1" class="outline-5">
-<h5 id="sec-3-1-13-1">pprof</h5>
+<div id="outline-container-sec-3-1-12-2" class="outline-5">
+<h5 id="sec-3-1-12-2">vet</h5>
 </div>
-<div id="outline-container-sec-3-1-13-2" class="outline-5">
-<h5 id="sec-3-1-13-2">vet</h5>
-</div>
-<div id="outline-container-sec-3-1-13-3" class="outline-5">
-<h5 id="sec-3-1-13-3">trace</h5>
+<div id="outline-container-sec-3-1-12-3" class="outline-5">
+<h5 id="sec-3-1-12-3">trace</h5>
 </div>
 </div>
 </div>
@@ -690,6 +744,9 @@ PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
 <div id="outline-container-sec-3-2-2" class="outline-4">
 <h4 id="sec-3-2-2"><span class="section-number-4">3.2.2</span> gocode</h4>
 <div class="outline-text-4" id="text-3-2-2">
+<p>
+golang 可以配合编辑器做自动补全。配置文件位于 <code>~/.config/gocode</code> ，可用于定制 gocode 行为。
+</p>
 <div class="org-src-container">
 
 <pre class="src src-sh">go get -u github.com/nsf/gocode
@@ -700,11 +757,22 @@ PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
 <div id="outline-container-sec-3-2-3" class="outline-4">
 <h4 id="sec-3-2-3"><span class="section-number-4">3.2.3</span> godef</h4>
 <div class="outline-text-4" id="text-3-2-3">
+<p>
+用于查找定义。
+</p>
 <div class="org-src-container">
 
 <pre class="src src-sh">go get github.com/rogpeppe/godef
 </pre>
 </div>
+</div>
+</div>
+<div id="outline-container-sec-3-2-4" class="outline-4">
+<h4 id="sec-3-2-4"><span class="section-number-4">3.2.4</span> <a href="https://godoc.org/golang.org/x/tools/cmd/guru">Guru</a></h4>
+<div class="outline-text-4" id="text-3-2-4">
+<p>
+代码导航工具。这里有 <a href="http://www.jianshu.com/p/994e85e21135">说明</a> 。
+</p>
 </div>
 </div>
 </div>
@@ -725,14 +793,32 @@ PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
 </div>
 </div>
 <div id="outline-container-sec-3-3-3" class="outline-4">
-<h4 id="sec-3-3-3"><span class="section-number-4">3.3.3</span> go oracle</h4>
+<h4 id="sec-3-3-3"><span class="section-number-4">3.3.3</span> oracle</h4>
 <div class="outline-text-4" id="text-3-3-3">
 <p>
 找到所有函数方法的调用者。
 </p>
 </div>
 </div>
+<div id="outline-container-sec-3-3-4" class="outline-4">
+<h4 id="sec-3-3-4"><span class="section-number-4">3.3.4</span> vet</h4>
 </div>
+<div id="outline-container-sec-3-3-5" class="outline-4">
+<h4 id="sec-3-3-5"><span class="section-number-4">3.3.5</span> golint</h4>
+</div>
+<div id="outline-container-sec-3-3-6" class="outline-4">
+<h4 id="sec-3-3-6"><span class="section-number-4">3.3.6</span> errcheck</h4>
+</div>
+<div id="outline-container-sec-3-3-7" class="outline-4">
+<h4 id="sec-3-3-7"><span class="section-number-4">3.3.7</span> <a href="https://github.com/360EntSecGroup-Skylar/goreporter">goreporter</a></h4>
+<div class="outline-text-4" id="text-3-3-7">
+<p>
+整合其他工具，做代码质量检测，生成网页版报告。
+</p>
+</div>
+</div>
+</div>
+
 <div id="outline-container-sec-3-4" class="outline-3">
 <h3 id="sec-3-4"><span class="section-number-3">3.4</span> 构建编译</h3>
 <div class="outline-text-3" id="text-3-4">
@@ -746,10 +832,51 @@ PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
 </div><div id="outline-container-sec-3-5-1" class="outline-4">
 <h4 id="sec-3-5-1"><span class="section-number-4">3.5.1</span> gdb</h4>
 </div>
+<div id="outline-container-sec-3-5-2" class="outline-4">
+<h4 id="sec-3-5-2"><span class="section-number-4">3.5.2</span> dlv</h4>
+<div class="outline-text-4" id="text-3-5-2">
+<p>
+出现错误：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">Could not attach to pid 6814: set /proc/sys/kernel/yama/ptrace_scope to 0
+</pre>
+</div>
+<p>
+原因：
+<a href="https://www.kernel.org/doc/Documentation/security/Yama.txt">https://www.kernel.org/doc/Documentation/security/Yama.txt</a>, you will need to set that to 0 in order to attach to a running process.
+解决办法：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="outline-container-sec-3-6" class="outline-3">
 <h3 id="sec-3-6"><span class="section-number-3">3.6</span> 自动测试</h3>
+<div class="outline-text-3" id="text-3-6">
+</div><div id="outline-container-sec-3-6-1" class="outline-4">
+<h4 id="sec-3-6-1"><span class="section-number-4">3.6.1</span> <a href="https://github.com/cweill/gotests">gotests</a></h4>
+<div class="outline-text-4" id="text-3-6-1">
+<p>
+根据源码自动编写测试代码。
+</p>
 </div>
+</div>
+<div id="outline-container-sec-3-6-2" class="outline-4">
+<h4 id="sec-3-6-2"><span class="section-number-4">3.6.2</span> <a href="https://godoc.org/gopkg.in/check.v1">gocheck</a></h4>
+<div class="outline-text-4" id="text-3-6-2">
+<p>
+丰富的测试用例包。
+</p>
+</div>
+</div>
+</div>
+
 <div id="outline-container-sec-3-7" class="outline-3">
 <h3 id="sec-3-7"><span class="section-number-3">3.7</span> 性能分析</h3>
 <div class="outline-text-3" id="text-3-7">
@@ -783,17 +910,21 @@ go get
 </div>
 
 <div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> 工程布局</h2>
+<h2 id="sec-4"><span class="section-number-2">4</span> 工程布局<sup><a id="fnr.3" name="fnr.3" class="footref" href="#fn.3">3</a></sup></h2>
 <div class="outline-text-2" id="text-4">
-</div><div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1"><span class="section-number-3">4.1</span> 库</h3>
+<p>
+所有的 go 程序都应该在一个共同的 workspace 下面，这与其他语言不同，其他语言中一个项目就是一个单独的 workspace。这样组织方便 go build，go install 等工具的使用。
+</p>
+</div>
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> 包</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
-如果我们想把一个项目上传到 Github 网站（或其他代码托管网站）上并被其他人使用的话，那么我们就应该把这个项目当做一个代码包来看待。
+go get 命令会将项目下的所有子目录和源码文件存放到第一个工作区的 src 目录下，而 src 目录下的所有子目录都会是某个代码包导入路径的一部分或者全部。所以应该 <b>直接在项目目录下存放子代码包和源码文件</b> ，并且 <b>直接存放在项目目录下的源码文件所声明的包名应该与该项目名相同</b> 。这样做可以让其他人使用 go get 命令从 Github 站点上下载你的项目之后直接就能使用它。
 </p>
 
 <p>
-其实我们在之前已经提到过原因，go get命令会将项目下的所有子目录和源码文件存放到第一个工作区的 src 目录下，而 src 目录下的所有子目录都会是某个代码包导入路径的一部分或者全部。也就是说， 我们应该 <b>直接在项目目录下存放子代码包和源码文件</b> ，并且 <b>直接存放在项目目录下的源码文件所声明的包名应该与该项目名相同</b> （除非它是命令源码文件）。这样做可以让其他人使用go get命令从 Github 站点上下载你的项目之后直接就能使用它。
+package name 应该是小写的单词，不要使用下划线或者驼峰命名法。
 </p>
 
 <pre class="example">
@@ -826,13 +957,13 @@ func Reverse(s string) string {
 <h3 id="sec-4-2"><span class="section-number-3">4.2</span> 命令程序</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
-命令程序和库代码有所不同，每个命令程序项目应该作为一个gopath路径进行部署。
+命令程序和库代码有所不同，每个命令程序项目应该作为一个 gopath 路径进行部署。
 </p>
 
 <ul class="org-ul">
-<li>build.sh对项目进行编译。
+<li>build.sh 对项目进行编译。
 </li>
-<li>src下不直接放置代码文件，而是将其归类存放在文件夹中。
+<li>src 下不直接放置代码文件，而是将其归类存放在文件夹中。
 </li>
 </ul>
 <pre class="example">
@@ -876,7 +1007,7 @@ buiild.sh
 project_name=hello
 
 if [ ! -d "src/${project_name}" ]; then
-	echo "项目代码必须放在src/${project_name}下"
+	echo "项目代码必须放在 src/${project_name}下"
 	exit 1
 fi
 
@@ -894,10 +1025,10 @@ go install ${project_name}
 </div>
 
 <div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> 程序结构</h2>
+<h2 id="sec-5"><span class="section-number-2">5</span> 程序结构<sup><a id="fnr.4" name="fnr.4" class="footref" href="#fn.4">4</a></sup></h2>
 <div class="outline-text-2" id="text-5">
 </div><div id="outline-container-sec-5-0-1" class="outline-4">
-<h4 id="sec-5-0-1"><span class="section-number-4">5.0.1</span> 包（package）</h4>
+<h4 id="sec-5-0-1"><span class="section-number-4">5.0.1</span> 包</h4>
 <div class="outline-text-4" id="text-5-0-1">
 <ul class="org-ul">
 <li>package
@@ -1029,7 +1160,7 @@ go install ${project_name}
 </div>
 </li>
 
-<li><a id="sec-5-0-2-2-4" name="sec-5-0-2-2-4"></a>def与命名返回值的坑<br  /><div class="outline-text-6" id="text-5-0-2-2-4">
+<li><a id="sec-5-0-2-2-4" name="sec-5-0-2-2-4"></a>def 与命名返回值的坑<br  /><div class="outline-text-6" id="text-5-0-2-2-4">
 <div class="org-src-container">
 
 <pre class="src src-go"> package main
@@ -1501,7 +1632,7 @@ func suck(ch chan int) {
 
 <li><a id="sec-6-1-5-3-2" name="sec-6-1-5-3-2"></a>通道迭代模式<br  /><div class="outline-text-6" id="text-6-1-5-3-2">
 <p>
-返回只读通道迭代container。
+返回只读通道迭代 container。
 </p>
 
 <div class="org-src-container">
@@ -1546,7 +1677,7 @@ func processChannel(in &lt;-chan int, out chan&lt;- string) {
 </div>
 </li>
 
-<li><a id="sec-6-1-5-3-4" name="sec-6-1-5-3-4"></a>for-range自动检测通道是否关闭。<br  /></li></ul>
+<li><a id="sec-6-1-5-3-4" name="sec-6-1-5-3-4"></a>for-range 自动检测通道是否关闭。<br  /></li></ul>
 </div>
 </div>
 </div>
@@ -1654,7 +1785,7 @@ map[keytype]valuetype
 </p>
 
 <ul class="org-ul">
-<li>Key 类型只要能支持==和!=操作符，所以不能是 slice，map，function。<sup><a id="fnr.3" name="fnr.3" class="footref" href="#fn.3">3</a></sup>
+<li>Key 类型只要能支持==和!=操作符，所以不能是 slice，map，function。<sup><a id="fnr.5" name="fnr.5" class="footref" href="#fn.5">5</a></sup>
 </li>
 
 <li>不要使用 new，永远使用 make 来构造 map。
@@ -1890,7 +2021,6 @@ func main() {
 </div>
 </div>
 
-
 <div id="outline-container-sec-6-3" class="outline-3">
 <h3 id="sec-6-3"><span class="section-number-3">6.3</span> 默认值</h3>
 </div>
@@ -2091,7 +2221,7 @@ func main() {
 <h4 id="sec-8-3-6"><span class="section-number-4">8.3.6</span> select</h4>
 <div class="outline-text-4" id="text-8-3-6">
 <p>
-select与无限循环配合使用。
+select 与无限循环配合使用。
 </p>
 <div class="org-src-container">
 
@@ -2147,74 +2277,229 @@ select与无限循环配合使用。
 </div>
 
 <div id="outline-container-sec-10" class="outline-2">
-<h2 id="sec-10"><span class="section-number-2">10</span> 程序库</h2>
+<h2 id="sec-10"><span class="section-number-2">10</span> 基础库</h2>
 <div class="outline-text-2" id="text-10">
 </div><div id="outline-container-sec-10-1" class="outline-3">
-<h3 id="sec-10-1"><span class="section-number-3">10.1</span> unicode/utf8</h3>
+<h3 id="sec-10-1"><span class="section-number-3">10.1</span> <a href="https://golang.org/pkg/bytes/">bytes</a></h3>
 <div class="outline-text-3" id="text-10-1">
 <p>
-utf8 与 byte 编码解码
+实现了操作 bytes 序列的相关操作，类似 strings。
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-10-2" class="outline-3">
-<h3 id="sec-10-2"><span class="section-number-3">10.2</span> strings</h3>
+<h3 id="sec-10-2"><span class="section-number-3">10.2</span> encoding</h3>
 <div class="outline-text-3" id="text-10-2">
+</div><div id="outline-container-sec-10-2-1" class="outline-4">
+<h4 id="sec-10-2-1"><span class="section-number-4">10.2.1</span> <a href="https://golang.org/pkg/encoding/binary/">binary</a></h4>
+<div class="outline-text-4" id="text-10-2-1">
 <p>
-字符串操作函数，比较，查找，大小写转换。
+实现 bytes 和数字之间的转换。
 </p>
 </div>
 </div>
+
+<div id="outline-container-sec-10-2-2" class="outline-4">
+<h4 id="sec-10-2-2"><span class="section-number-4">10.2.2</span> <a href="https://golang.org/pkg/errors/">errors</a></h4>
+<div class="outline-text-4" id="text-10-2-2">
+<p>
+错误处理。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-10-2-3" class="outline-4">
+<h4 id="sec-10-2-3"><span class="section-number-4">10.2.3</span> <a href="https://golang.org/pkg/encoding/hex/">hex</a></h4>
+<div class="outline-text-4" id="text-10-2-3">
+<p>
+实现十六进制字符串 bytes 的转换。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-10-2-4" class="outline-4">
+<h4 id="sec-10-2-4"><span class="section-number-4">10.2.4</span> <a href="https://golang.org/pkg/encoding/json/">json</a></h4>
+<div class="outline-text-4" id="text-10-2-4">
+<p>
+实现了 json 序列化的操作。
+</p>
+</div>
+</div>
+</div>
+
 <div id="outline-container-sec-10-3" class="outline-3">
-<h3 id="sec-10-3"><span class="section-number-3">10.3</span> strconv</h3>
+<h3 id="sec-10-3"><span class="section-number-3">10.3</span> <a href="https://golang.org/pkg/net/">net</a></h3>
 <div class="outline-text-3" id="text-10-3">
 <p>
-字符串与其他数据类型的比较
+底层网络接口
 </p>
 </div>
-</div>
-<div id="outline-container-sec-10-4" class="outline-3">
-<h3 id="sec-10-4"><span class="section-number-3">10.4</span> time</h3>
-<div class="outline-text-3" id="text-10-4">
+
+<div id="outline-container-sec-10-3-1" class="outline-4">
+<h4 id="sec-10-3-1"><span class="section-number-4">10.3.1</span> <a href="https://golang.org/pkg/net/http/">http</a></h4>
+<div class="outline-text-4" id="text-10-3-1">
 <p>
-注意格式化方式
+http 协议，client，server 相关实现。
 </p>
 </div>
 </div>
+</div>
+
+<div id="outline-container-sec-10-4" class="outline-3">
+<h3 id="sec-10-4"><span class="section-number-3">10.4</span> <a href="https://golang.org/pkg/os/">os</a></h3>
+</div>
+
 <div id="outline-container-sec-10-5" class="outline-3">
-<h3 id="sec-10-5"><span class="section-number-3">10.5</span> container</h3>
+<h3 id="sec-10-5"><span class="section-number-3">10.5</span> path</h3>
+<div class="outline-text-3" id="text-10-5">
+</div><div id="outline-container-sec-10-5-1" class="outline-4">
+<h4 id="sec-10-5-1"><span class="section-number-4">10.5.1</span> <a href="https://golang.org/pkg/path/filepath/">filepath</a></h4>
 </div>
+</div>
+
 <div id="outline-container-sec-10-6" class="outline-3">
-<h3 id="sec-10-6"><span class="section-number-3">10.6</span> flag</h3>
+<h3 id="sec-10-6"><span class="section-number-3">10.6</span> <a href="https://golang.org/pkg/database/sql/">sql</a></h3>
+</div>
+
+<div id="outline-container-sec-10-7" class="outline-3">
+<h3 id="sec-10-7"><span class="section-number-3">10.7</span> <a href="https://golang.org/pkg/strconv/">strconv</a></h3>
+<div class="outline-text-3" id="text-10-7">
+<p>
+实现字符串和基础数据结构中之间的转换。
+</p>
 </div>
 </div>
+
+<div id="outline-container-sec-10-8" class="outline-3">
+<h3 id="sec-10-8"><span class="section-number-3">10.8</span> <a href="https://golang.org/pkg/strings/">strings</a></h3>
+<div class="outline-text-3" id="text-10-8">
+<p>
+实现了字符串相关操作，例如，查找，切片，strip，split 等。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-10-9" class="outline-3">
+<h3 id="sec-10-9"><span class="section-number-3">10.9</span> <a href="https://golang.org/pkg/time/">time</a></h3>
+<div class="outline-text-3" id="text-10-9">
+<p>
+实现日期时间相关的函数。
+</p>
+</div>
+</div>
+</div>
+
 <div id="outline-container-sec-11" class="outline-2">
-<h2 id="sec-11"><span class="section-number-2">11</span> 参考书籍</h2>
+<h2 id="sec-11"><span class="section-number-2">11</span> 第三方库</h2>
 <div class="outline-text-2" id="text-11">
 </div><div id="outline-container-sec-11-1" class="outline-3">
-<h3 id="sec-11-1"><span class="section-number-3">11.1</span> 入门</h3>
+<h3 id="sec-11-1"><span class="section-number-3">11.1</span> <a href="https://godoc.org/github.com/patrickmn/go-cache">go-cache</a></h3>
+<div class="outline-text-3" id="text-11-1">
+<p>
+基于内存的 kv 缓存系统。
+</p>
 </div>
+</div>
+
 <div id="outline-container-sec-11-2" class="outline-3">
-<h3 id="sec-11-2"><span class="section-number-3">11.2</span> 高级</h3>
+<h3 id="sec-11-2"><span class="section-number-3">11.2</span> <a href="https://labix.org/gocheck">gocheck</a></h3>
+<div class="outline-text-3" id="text-11-2">
+<p>
+单元测试。
+</p>
 </div>
+</div>
+
 <div id="outline-container-sec-11-3" class="outline-3">
-<h3 id="sec-11-3"><span class="section-number-3">11.3</span> 实践</h3>
+<h3 id="sec-11-3"><span class="section-number-3">11.3</span> <a href="https://github.com/alecthomas/log4go">log4go</a></h3>
+<div class="outline-text-3" id="text-11-3">
+<p>
+日志库，已经没人维护，不要使用。
+</p>
 </div>
+</div>
+
 <div id="outline-container-sec-11-4" class="outline-3">
-<h3 id="sec-11-4"><span class="section-number-3">11.4</span> 原理</h3>
+<h3 id="sec-11-4"><span class="section-number-3">11.4</span> <a href="https://godoc.org/github.com/sirupsen/logrus">logrus</a></h3>
+<div class="outline-text-3" id="text-11-4">
+<p>
+日志库
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-11-5" class="outline-3">
+<h3 id="sec-11-5"><span class="section-number-3">11.5</span> <a href="https://godoc.org/github.com/go-sql-driver/mysql">mysql-driver</a></h3>
+<div class="outline-text-3" id="text-11-5">
+<p>
+mysql 数据库驱动，配合 sql 库使用。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-11-6" class="outline-3">
+<h3 id="sec-11-6"><span class="section-number-3">11.6</span> <a href="https://godoc.org/github.com/go-redis/redis">redis</a></h3>
+<div class="outline-text-3" id="text-11-6">
+<p>
+redis 客户端。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-11-7" class="outline-3">
+<h3 id="sec-11-7"><span class="section-number-3">11.7</span> <a href="https://godoc.org/github.com/golang/protobuf/proto">proto</a></h3>
+<div class="outline-text-3" id="text-11-7">
+<p>
+实现了 protobuf 协议。
+</p>
+</div>
 </div>
 </div>
 
 <div id="outline-container-sec-12" class="outline-2">
-<h2 id="sec-12"><span class="section-number-2">12</span> 其他</h2>
+<h2 id="sec-12"><span class="section-number-2">12</span> 参考书籍</h2>
 <div class="outline-text-2" id="text-12">
 </div><div id="outline-container-sec-12-1" class="outline-3">
-<h3 id="sec-12-1"><span class="section-number-3">12.1</span> golang.org/x/xx 下载失败解决办法</h3>
+<h3 id="sec-12-1"><span class="section-number-3">12.1</span> 入门</h3>
 <div class="outline-text-3" id="text-12-1">
+<p>
+<a href="https://github.com/Unknwon/the-way-to-go_ZH_CN/blob/master/eBook/directory.md">the way to go</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-12-2" class="outline-3">
+<h3 id="sec-12-2"><span class="section-number-3">12.2</span> 高级</h3>
+</div>
+<div id="outline-container-sec-12-3" class="outline-3">
+<h3 id="sec-12-3"><span class="section-number-3">12.3</span> 实践</h3>
+</div>
+<div id="outline-container-sec-12-4" class="outline-3">
+<h3 id="sec-12-4"><span class="section-number-3">12.4</span> 原理</h3>
+</div>
+</div>
+
+<div id="outline-container-sec-13" class="outline-2">
+<h2 id="sec-13"><span class="section-number-2">13</span> 实践 tips</h2>
+<div class="outline-text-2" id="text-13">
+</div><div id="outline-container-sec-13-1" class="outline-3">
+<h3 id="sec-13-1"><span class="section-number-3">13.1</span> golang.org/x/xx 下载失败解决办法</h3>
+<div class="outline-text-3" id="text-13-1">
 <ul class="org-ul">
 <li>使用 VPN
 </li>
 <li>golang 中国上面给出了一种<a href="https://www.golangtc.com/download/package">解决办法</a>
+</li>
+<li>从 github 下载，比如 golang.org/x/net，其实镜像托管在在 github.com/golang/net。
+<div class="org-src-container">
+
+<pre class="src src-sh">cd $GOPATH/src/golang.org/x/
+git clone git@github.com:golang/net.git
+cd net
+go install
+</pre>
+</div>
 </li>
 </ul>
 </div>
@@ -2233,6 +2518,14 @@ utf8 与 byte 编码解码
 </p></div>
 
 <div class="footdef"><sup><a id="fn.3" name="fn.3" class="footnum" href="#fnr.3">3</a></sup> <p class="footpara">
+<a href="https://golang.org/doc/code.html">How to Write Go Code</a>
+</p></div>
+
+<div class="footdef"><sup><a id="fn.4" name="fn.4" class="footnum" href="#fnr.4">4</a></sup> <p class="footpara">
+<a href="https://golang.org/doc/effective_go.html#names">Effective Go</a>
+</p></div>
+
+<div class="footdef"><sup><a id="fn.5" name="fn.5" class="footnum" href="#fnr.5">5</a></sup> <p class="footpara">
 <a href="http://lanlingzi.cn/post/technical/2016/0904_go_map/">go map key 类型分析</a>
 </p></div>
 
@@ -2241,8 +2534,8 @@ utf8 与 byte 编码解码
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: 刘尚亮</p>
-<p class="date">Created: 2017-08-30 三 16:06</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.2.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2018-01-13 六 18:32</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

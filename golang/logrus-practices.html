@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>logrus 实践</title>
+<!-- 2018-01-13 六 18:32 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="刘尚亮" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">logrus 实践</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. 简介</a></li>
+<li><a href="#sec-2">2. 优点</a></li>
+<li><a href="#sec-3">3. 缺点</a></li>
+<li><a href="#sec-4">4. 示例</a>
+<ul>
+<li><a href="#sec-4-1">4.1. 标准 logger</a></li>
+<li><a href="#sec-4-2">4.2. 自定义 logger</a></li>
+<li><a href="#sec-4-3">4.3. entry</a></li>
+<li><a href="#sec-4-4">4.4. hook</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. 注意事项</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 简介</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+logrus 是一个日志记录工具，核心思想是日志的记录应该是结构化的，而只是记录一个字符串。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 优点</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>线程安全
+
+<p>
+通过 sync.Mutex 的方式每次对 Logger 进行加锁，获得锁后写入单条日志，然后释放锁。
+</p>
+</li>
+
+<li>支持不同的日志等级
+</li>
+
+<li>支持不同的目的端
+
+<p>
+通过 hook 实现。
+</p>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 缺点</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>不支持配置文件
+
+<p>
+可以使用替代的解决方案 logrus_mate，但是该工具只支持 json 形式的文件。
+</p>
+</li>
+
+<li>不支持对日志文件进行 rotate
+
+<p>
+logrus 在 README 中明确说明如果需要对日志进行 rotate 操作，应由系统中的 logrotate(8) 命令进行，logrus 本身并不支持该操作。
+</p>
+</li>
+
+<li>不支持文件名和行号。<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>
+
+<p>
+但是可以利用 runtime.Caller 进一步封装，runtime.Caller 可以得到调用者的 pc, 文件名, 文件行数, runtime.FuncForPC(pc).Name() 可以得到 pc 所在的函数名。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-go"></pre>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 示例</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> 标准 logger</h3>
+<div class="outline-text-3" id="text-4-1">
+<div class="org-src-container">
+
+<pre class="src src-go">func testLogrus() {
+	logrus.SetOutput(os.Stdout)
+	logrus.SetFormatter(&amp;logrus.JSONFormatter{})
+	// logrus.SetFormatter(&amp;logrus.TextFormatter{})
+	logrus.SetLevel(logrus.InfoLevel)
+	logrus.Debug("debug log")
+	logrus.Info("info log")
+	logrus.Info(map[string]int{"age": 12})
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> 自定义 logger</h3>
+<div class="outline-text-3" id="text-4-2">
+<div class="org-src-container">
+
+<pre class="src src-go">func testLogger() {
+	logger := &amp;logrus.Logger{
+		Out:       os.Stdout,
+		Formatter: new(logrus.JSONFormatter),
+		Level:     logrus.DebugLevel,
+	}
+	logger.Debug("debug log")
+	logger.Info("info log")
+	logger.Info(map[string]int{"age": 12})
+
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> entry</h3>
+<div class="outline-text-3" id="text-4-3">
+<div class="org-src-container">
+
+<pre class="src src-go">func testEntry() {
+	logger := &amp;logrus.Logger{
+		Out:       os.Stdout,
+		Formatter: new(logrus.JSONFormatter),
+		Level:     logrus.DebugLevel,
+	}
+
+	e := logrus.NewEntry(logger)
+	e.WithFields(logrus.Fields{
+		"name": "lsl",
+		"age":  30,
+	})
+
+	e.Debug("debug log")
+	e.Info("info log")
+	e.Warn(e.Level)
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> hook</h3>
+<div class="outline-text-3" id="text-4-4">
+<div class="org-src-container">
+
+<pre class="src src-go">func testHook() {
+	logger := logrus.New()
+	hook, err := logrus_mail.NewMailAuthHook("APPLICATION_NAME", "HOST", PORT, "FROM", "TO", "USERNAME", "PASSWORD")
+
+	if err != nil {
+		logger.Error("init hook error")
+	}
+	logger.Hooks.Add(hook)
+
+	e := logger.WithFields(logrus.Fields{
+		"content": "test logrus hook",
+	})
+	//设置时间戳和 message
+	e.Error("这是一个 hook 发来的邮件")
+
+	//使用 Fire 发送,包含时间戳，message
+	hook.Fire(e)
+
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> 注意事项</h2>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
+<a href="https://github.com/sirupsen/logrus/issues/63">Log filename and line number</a>
+</p></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: 刘尚亮</p>
+<p class="date">Created: 2018-01-13 六 18:32</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>C++ summary</title>
-<!-- 2017-08-30 三 16:07 -->
+<!-- 2018-01-13 六 18:33 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="刘尚亮" />
@@ -164,15 +164,59 @@ for the JavaScript code in this tag.
 <li><a href="#sec-3">3. 相关工具</a>
 <ul>
 <li><a href="#sec-3-1">3.1. 标准命令</a></li>
-<li><a href="#sec-3-2">3.2. 集成开发</a></li>
-<li><a href="#sec-3-3">3.3. 代码检查</a></li>
-<li><a href="#sec-3-4">3.4. 构建编译</a></li>
-<li><a href="#sec-3-5">3.5. 代码调试</a></li>
-<li><a href="#sec-3-6">3.6. 自动测试</a></li>
-<li><a href="#sec-3-7">3.7. 性能分析</a></li>
-<li><a href="#sec-3-8">3.8. 文档系统</a></li>
-<li><a href="#sec-3-9">3.9. 包管理系统</a></li>
-<li><a href="#sec-3-10">3.10. 其他工具</a></li>
+<li><a href="#sec-3-2">3.2. 集成开发</a>
+<ul>
+<li><a href="#sec-3-2-1">3.2.1. Vim</a></li>
+<li><a href="#sec-3-2-2">3.2.2. Emacs</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-3">3.3. 静态检查</a>
+<ul>
+<li><a href="#sec-3-3-1">3.3.1. Coverity</a></li>
+<li><a href="#sec-3-3-2">3.3.2. Lint</a></li>
+<li><a href="#sec-3-3-3">3.3.3. Splint</a></li>
+<li><a href="#sec-3-3-4">3.3.4. Fortify</a></li>
+<li><a href="#sec-3-3-5">3.3.5. Codecheck</a></li>
+<li><a href="#sec-3-3-6">3.3.6. Understand C++</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-4">3.4. 构建编译</a>
+<ul>
+<li><a href="#sec-3-4-1">3.4.1. GCC</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-5">3.5. 代码调试</a>
+<ul>
+<li><a href="#sec-3-5-1">3.5.1. GDB</a></li>
+<li><a href="#sec-3-5-2">3.5.2. DDD</a></li>
+<li><a href="#sec-3-5-3">3.5.3. TotalView Debugger</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-6">3.6. 内存检查</a>
+<ul>
+<li><a href="#sec-3-6-1">3.6.1. Purify</a></li>
+<li><a href="#sec-3-6-2">3.6.2. Valgrind</a></li>
+<li><a href="#sec-3-6-3">3.6.3. KCachegrind</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-7">3.7. 性能分析</a>
+<ul>
+<li><a href="#sec-3-7-1">3.7.1. gprof</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-8">3.8. 并行检查</a>
+<ul>
+<li><a href="#sec-3-8-1">3.8.1. Intel 线程分析工具</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-9">3.9. 自动测试</a></li>
+<li><a href="#sec-3-10">3.10. 文档系统</a></li>
+<li><a href="#sec-3-11">3.11. 包管理系统</a></li>
+<li><a href="#sec-3-12">3.12. 其他工具</a>
+<ul>
+<li><a href="#sec-3-12-1">3.12.1. GNU binutils</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#sec-4">4. 工程布局</a></li>
@@ -287,36 +331,105 @@ for the JavaScript code in this tag.
 </div>
 <div id="outline-container-sec-3-2" class="outline-3">
 <h3 id="sec-3-2"><span class="section-number-3">3.2</span> 集成开发</h3>
+<div class="outline-text-3" id="text-3-2">
+</div><div id="outline-container-sec-3-2-1" class="outline-4">
+<h4 id="sec-3-2-1"><span class="section-number-4">3.2.1</span> Vim</h4>
+</div>
+<div id="outline-container-sec-3-2-2" class="outline-4">
+<h4 id="sec-3-2-2"><span class="section-number-4">3.2.2</span> Emacs</h4>
+</div>
 </div>
 <div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3"><span class="section-number-3">3.3</span> 代码检查</h3>
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> 静态检查</h3>
+<div class="outline-text-3" id="text-3-3">
+</div><div id="outline-container-sec-3-3-1" class="outline-4">
+<h4 id="sec-3-3-1"><span class="section-number-4">3.3.1</span> Coverity</h4>
+</div>
+<div id="outline-container-sec-3-3-2" class="outline-4">
+<h4 id="sec-3-3-2"><span class="section-number-4">3.3.2</span> Lint</h4>
+</div>
+<div id="outline-container-sec-3-3-3" class="outline-4">
+<h4 id="sec-3-3-3"><span class="section-number-4">3.3.3</span> Splint</h4>
+</div>
+<div id="outline-container-sec-3-3-4" class="outline-4">
+<h4 id="sec-3-3-4"><span class="section-number-4">3.3.4</span> Fortify</h4>
+</div>
+<div id="outline-container-sec-3-3-5" class="outline-4">
+<h4 id="sec-3-3-5"><span class="section-number-4">3.3.5</span> Codecheck</h4>
+</div>
+<div id="outline-container-sec-3-3-6" class="outline-4">
+<h4 id="sec-3-3-6"><span class="section-number-4">3.3.6</span> Understand C++</h4>
+</div>
 </div>
 <div id="outline-container-sec-3-4" class="outline-3">
 <h3 id="sec-3-4"><span class="section-number-3">3.4</span> 构建编译</h3>
+<div class="outline-text-3" id="text-3-4">
+</div><div id="outline-container-sec-3-4-1" class="outline-4">
+<h4 id="sec-3-4-1"><span class="section-number-4">3.4.1</span> GCC</h4>
+</div>
 </div>
 <div id="outline-container-sec-3-5" class="outline-3">
 <h3 id="sec-3-5"><span class="section-number-3">3.5</span> 代码调试</h3>
+<div class="outline-text-3" id="text-3-5">
+</div><div id="outline-container-sec-3-5-1" class="outline-4">
+<h4 id="sec-3-5-1"><span class="section-number-4">3.5.1</span> GDB</h4>
+</div>
+<div id="outline-container-sec-3-5-2" class="outline-4">
+<h4 id="sec-3-5-2"><span class="section-number-4">3.5.2</span> DDD</h4>
+</div>
+<div id="outline-container-sec-3-5-3" class="outline-4">
+<h4 id="sec-3-5-3"><span class="section-number-4">3.5.3</span> TotalView Debugger</h4>
+</div>
 </div>
 <div id="outline-container-sec-3-6" class="outline-3">
-<h3 id="sec-3-6"><span class="section-number-3">3.6</span> 自动测试</h3>
+<h3 id="sec-3-6"><span class="section-number-3">3.6</span> 内存检查</h3>
+<div class="outline-text-3" id="text-3-6">
+</div><div id="outline-container-sec-3-6-1" class="outline-4">
+<h4 id="sec-3-6-1"><span class="section-number-4">3.6.1</span> Purify</h4>
+</div>
+<div id="outline-container-sec-3-6-2" class="outline-4">
+<h4 id="sec-3-6-2"><span class="section-number-4">3.6.2</span> Valgrind</h4>
+</div>
+<div id="outline-container-sec-3-6-3" class="outline-4">
+<h4 id="sec-3-6-3"><span class="section-number-4">3.6.3</span> KCachegrind</h4>
+</div>
 </div>
 <div id="outline-container-sec-3-7" class="outline-3">
 <h3 id="sec-3-7"><span class="section-number-3">3.7</span> 性能分析</h3>
+<div class="outline-text-3" id="text-3-7">
+</div><div id="outline-container-sec-3-7-1" class="outline-4">
+<h4 id="sec-3-7-1"><span class="section-number-4">3.7.1</span> gprof</h4>
+</div>
 </div>
 <div id="outline-container-sec-3-8" class="outline-3">
-<h3 id="sec-3-8"><span class="section-number-3">3.8</span> 文档系统</h3>
+<h3 id="sec-3-8"><span class="section-number-3">3.8</span> 并行检查</h3>
+<div class="outline-text-3" id="text-3-8">
+</div><div id="outline-container-sec-3-8-1" class="outline-4">
+<h4 id="sec-3-8-1"><span class="section-number-4">3.8.1</span> Intel 线程分析工具</h4>
 </div>
+</div>
+
 <div id="outline-container-sec-3-9" class="outline-3">
-<h3 id="sec-3-9"><span class="section-number-3">3.9</span> 包管理系统</h3>
-<div class="outline-text-3" id="text-3-9">
+<h3 id="sec-3-9"><span class="section-number-3">3.9</span> 自动测试</h3>
+</div>
+<div id="outline-container-sec-3-10" class="outline-3">
+<h3 id="sec-3-10"><span class="section-number-3">3.10</span> 文档系统</h3>
+</div>
+<div id="outline-container-sec-3-11" class="outline-3">
+<h3 id="sec-3-11"><span class="section-number-3">3.11</span> 包管理系统</h3>
+<div class="outline-text-3" id="text-3-11">
 <ul class="org-ul">
 <li><a href="https://conan.io/">conan</a>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-3-10" class="outline-3">
-<h3 id="sec-3-10"><span class="section-number-3">3.10</span> 其他工具</h3>
+<div id="outline-container-sec-3-12" class="outline-3">
+<h3 id="sec-3-12"><span class="section-number-3">3.12</span> 其他工具</h3>
+<div class="outline-text-3" id="text-3-12">
+</div><div id="outline-container-sec-3-12-1" class="outline-4">
+<h4 id="sec-3-12-1"><span class="section-number-4">3.12.1</span> GNU binutils</h4>
+</div>
 </div>
 </div>
 <div id="outline-container-sec-4" class="outline-2">
@@ -456,7 +569,7 @@ for the JavaScript code in this tag.
 <ul class="org-ul">
 <li><a href="https://book.douban.com/subject/10427315/">深度探索 C++ 对象模型</a>
 </li>
-<li><a href="http:https://book.douban.com/subject/1110934/">STL源码剖析</a>
+<li><a href="http:https://book.douban.com/subject/1110934/">STL 源码剖析</a>
 </li>
 <li><a href="https://book.douban.com/subject/10536031/">C++ 语言的设计与演化</a>
 </li>
@@ -467,8 +580,8 @@ for the JavaScript code in this tag.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 刘尚亮</p>
-<p class="date">Created: 2017-08-30 三 16:07</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.2.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2018-01-13 六 18:33</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

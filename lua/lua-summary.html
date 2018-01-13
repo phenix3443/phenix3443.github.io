@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>lua summary</title>
-<!-- 2017-08-30 三 16:06 -->
+<!-- 2018-01-13 六 18:32 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="刘尚亮" />
@@ -428,7 +428,7 @@ people:say()					--  hello, i am	noname
 </pre>
 </div>
 <p>
-注意，Human:new函数中两处用的都是self，而不是Human，这里的作用是防止Human被赋值给其他变量之后该类不能使用。
+注意，Human:new 函数中两处用的都是 self，而不是 Human，这里的作用是防止 Human 被赋值给其他变量之后该类不能使用。
 </p>
 <div class="org-src-container">
 
@@ -450,7 +450,7 @@ p2:say() -- hello, i am	noname
 </li>
 <li>__index = self
 </li>
-<li>class:new在定义class实例和子类中self和元表的不同用处。（关键）
+<li>class:new 在定义 class 实例和子类中 self 和元表的不同用处。（关键）
 </li>
 </ul>
 <div class="org-src-container">
@@ -461,7 +461,7 @@ p2:say() -- hello, i am	noname
 
 function Human:new(o)
 	local o = o or {}
-	setmetatable(o,self)		-- 注意，此次用到self就是实现继承的关键
+	setmetatable(o,self)		-- 注意，此次用到 self 就是实现继承的关键
 	self.__index = self
 	return o
 end
@@ -664,7 +664,7 @@ build-in。
 <h3 id="sec-11-4"><span class="section-number-3">11.4</span> 原理</h3>
 <div class="outline-text-3" id="text-11-4">
 <ul class="org-ul">
-<li><a href="https://www.codingnow.com/temp/readinglua.pdf">Lua源码欣赏</a>
+<li><a href="https://www.codingnow.com/temp/readinglua.pdf">Lua 源码欣赏</a>
 </li>
 </ul>
 </div>
@@ -673,8 +673,8 @@ build-in。
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 刘尚亮</p>
-<p class="date">Created: 2017-08-30 三 16:06</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.2.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2018-01-13 六 18:32</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Ubuntu 上使用的软件</title>
+<!-- 2018-01-13 六 18:31 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="刘尚亮" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Ubuntu 上使用的软件</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. alacarte</a></li>
+<li><a href="#sec-2">2. aria2</a></li>
+<li><a href="#sec-3">3. AriaNg</a></li>
+<li><a href="#sec-4">4. bcloud</a></li>
+<li><a href="#sec-5">5. chromium</a></li>
+<li><a href="#sec-6">6. electronic wechat</a></li>
+<li><a href="#sec-7">7. emacs</a></li>
+<li><a href="#sec-8">8. fcitx</a></li>
+<li><a href="#sec-9">9. fish shell</a></li>
+<li><a href="#sec-10">10. foxit reader</a></li>
+<li><a href="#sec-11">11. git</a></li>
+<li><a href="#sec-12">12. my-weather-indicator</a></li>
+<li><a href="#sec-13">13. okular</a></li>
+<li><a href="#sec-14">14. proxychains</a></li>
+<li><a href="#sec-15">15. qtorrent</a></li>
+<li><a href="#sec-16">16. rime</a>
+<ul>
+<li><a href="#sec-16-1">16.1. ibus-rime</a></li>
+</ul>
+</li>
+<li><a href="#sec-17">17. shadowsocks</a></li>
+<li><a href="#sec-18">18. smartgit</a></li>
+<li><a href="#sec-19">19. SMPlayer</a></li>
+<li><a href="#sec-20">20. sogou input</a></li>
+<li><a href="#sec-21">21. switchhosts</a></li>
+<li><a href="#sec-22">22. sublime</a></li>
+<li><a href="#sec-23">23. uget</a></li>
+<li><a href="#sec-24">24. VirtualBox</a>
+<ul>
+<li><a href="#sec-24-1">24.1. problem</a>
+<ul>
+<li><a href="#sec-24-1-1">24.1.1. secure boot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-25">25. 搭建 VPN</a></li>
+<li><a href="#sec-26">26. 搭建 VPS</a></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> alacarte</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+ubuntu 菜单编辑器，可以编辑 dash，menu 中的条目。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo apt install alacarte
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> <a href="https://aria2.github.io/">aria2</a></h2>
+<div class="outline-text-2" id="text-2">
+<p>
+一个很好用的下载工具。
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo apt install -y aria2
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> <a href="http://ariang.mayswind.net/zh_Hans/">AriaNg</a></h2>
+<div class="outline-text-2" id="text-3">
+<p>
+aria2 web 页面客户端。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> <a href="https://github.com/LiuLang/bcloud">bcloud</a></h2>
+<div class="outline-text-2" id="text-4">
+<p>
+百度网盘 linux 客户端。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> chromium</h2>
+<div class="outline-text-2" id="text-5">
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo apt install -y chromium-browser
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> <a href="https://github.com/geeeeeeeeek/electronic-wechat">electronic wechat</a></h2>
+<div class="outline-text-2" id="text-6">
+<p>
+微信客户端
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> <a href="https://www.gnu.org/software/emacs/">emacs</a></h2>
+<div class="outline-text-2" id="text-7">
+<p>
+神的编辑器。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo add-apt-repository ppa:kelleyk/emacs
+sudo apt update
+sudo apt install -y emacs25
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> fcitx</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+参见<a href="fcitx_practices.html">《Fcitxs 实践》</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> <a href="https://fishshell.com/">fish shell</a></h2>
+<div class="outline-text-2" id="text-9">
+<p>
+一款很好用的增强客户端。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-10" class="outline-2">
+<h2 id="sec-10"><span class="section-number-2">10</span> <a href="https://www.foxitsoftware.com/pdf-reader/">foxit reader</a></h2>
+<div class="outline-text-2" id="text-10">
+<p>
+PDF 阅读器
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-11" class="outline-2">
+<h2 id="sec-11"><span class="section-number-2">11</span> git</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+版本控制工具。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo apt install -y git
+
+git config --global user.name liushangliang
+git config --global user.email liushangliang@xunlei.com
+
+ssh-keygen -t rsa -b 4096 -C &lt;email addr&gt;
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-12" class="outline-2">
+<h2 id="sec-12"><span class="section-number-2">12</span> my-weather-indicator</h2>
+<div class="outline-text-2" id="text-12">
+<p>
+天气指示器。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo add-apt-repository ppa:atareao/atareao
+sudo apt update &amp;&amp; sudo apt install my-weather-indicator
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-13" class="outline-2">
+<h2 id="sec-13"><span class="section-number-2">13</span> okular</h2>
+<div class="outline-text-2" id="text-13">
+<p>
+PDF 阅读器。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo apt-get install -y  okular
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-14" class="outline-2">
+<h2 id="sec-14"><span class="section-number-2">14</span> proxychains</h2>
+<div class="outline-text-2" id="text-14">
+<p>
+翻墙代理工具。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">export PROXYCHAINS_CONF_FILE=$HOME/gitlab/software-settings/proxychains/proxychains.conf
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-15" class="outline-2">
+<h2 id="sec-15"><span class="section-number-2">15</span> qtorrent</h2>
+<div class="outline-text-2" id="text-15">
+<div class="org-src-container">
+
+<pre class="src src-sh"># qBittorrent Stable
+sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable
+sudo apt update &amp;&amp; sudo apt-get install qbittorrent
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-16" class="outline-2">
+<h2 id="sec-16"><span class="section-number-2">16</span> <a href="http://rime.im/">rime</a></h2>
+<div class="outline-text-2" id="text-16">
+<p>
+超赞的输入法，Windows 平台上叫小狼毫，MacOS 叫鼠须管，Linux 平台叫中州韵。
+</p>
+<ul class="org-ul">
+<li><a href="https://github.com/rime/home/wiki/UserGuide">使用指南</a>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-16-1" class="outline-3">
+<h3 id="sec-16-1"><span class="section-number-3">16.1</span> ibus-rime</h3>
+<div class="outline-text-3" id="text-16-1">
+<div class="org-src-container">
+
+<pre class="src src-sh"># this repo provides libkyotocabinet, libgoogle-glog for Ubuntu 12.04;
+# these packages are officially supported since Ubuntu 12.10.
+sudo add-apt-repository ppa:fcitx-team/nightly
+
+# providing libyaml-cpp0.5, librime, rime-data, ibus-rime
+sudo add-apt-repository ppa:lotem/rime
+
+sudo apt-get update
+sudo apt-get install ibus-rime
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-17" class="outline-2">
+<h2 id="sec-17"><span class="section-number-2">17</span> <a href="https://shadowsocks.org/en/index.html">shadowsocks</a></h2>
+<div class="outline-text-2" id="text-17">
+<p>
+参看<a href="shadowsocks-practices.html">《Shadowsocks 实践》</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-18" class="outline-2">
+<h2 id="sec-18"><span class="section-number-2">18</span> <a href="https://www.syntevo.com/smartgit/">smartgit</a></h2>
+<div class="outline-text-2" id="text-18">
+<p>
+git 的客户端。
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo add-apt-repository ppa:eugenesan/ppa
+sudo apt update
+sudo apt install -y smartgit
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-19" class="outline-2">
+<h2 id="sec-19"><span class="section-number-2">19</span> <a href="https://www.smplayer.info/">SMPlayer</a></h2>
+<div class="outline-text-2" id="text-19">
+<p>
+影音播放器。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo add-apt-repository ppa:rvm/smplayer
+sudo apt update
+sudo apt install -y smplayer smplayer-themes smplayer-skins
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-20" class="outline-2">
+<h2 id="sec-20"><span class="section-number-2">20</span> <a href="https://pinyin.sogou.com/linux/?r=pinyin">sogou input</a></h2>
+<div class="outline-text-2" id="text-20">
+<p>
+搜狗输入法现在已经可以很好的在 emacs 中使用了。<a href="http://pinyin.sogou.com/linux/help.php">搜狗输入法 for linux 安装指南</a>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo add-apt-repository ppa:fcitx-team/nightly
+sudo apt udpate
+sudo apt install sogoupinyin
+</pre>
+</div>
+<p>
+现在已经可以使用搜狗输入法了，由于 emacs 的一个 bug，导致不能很好的切换输入法。所以需要修改启动器参数：/usr/share/applications/emacs25.desktop
+</p>
+<pre class="example">
+Exec=env LC_CTYPE=zh_CN.UTF-8 emacs25 %F
+</pre>
+<p>
+还有一个 el 程序可以让 emacs 更好的配合 fcitx：<a href="https://github.com/cute-jumper/fcitx.el">fcitx.el</a>
+</p>
+
+<p>
+现在主要的问题有：
+</p>
+<ol class="org-ol">
+<li>输入法崩溃。这需要重启使用输入法的应用程序，比如 emacs 或者浏览器。
+另外还可以使用一个重启 sogou 输入法的脚本 restart_sogou.sh：
+<div class="org-src-container">
+
+<pre class="src src-sh">#!/bin/sh
+pidof fcitx | xargs kill
+pidof sogou-qimpanel | xargs kill
+nohup fcitx  1&gt;/dev/null 2&gt;/dev/null &amp;
+nohup sogou-qimpanel  1&gt;/dev/null 2&gt;/dev/null &amp;
+</pre>
+</div>
+</li>
+<li>输入法中文后选框出现乱码：
+<div class="org-src-container">
+
+<pre class="src src-sh">rm -rf SogouPY* sogou*
+</pre>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-21" class="outline-2">
+<h2 id="sec-21"><span class="section-number-2">21</span> <a href="https://github.com/oldj/SwitchHosts">switchhosts</a></h2>
+<div class="outline-text-2" id="text-21">
+<p>
+切换 host 文件。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-22" class="outline-2">
+<h2 id="sec-22"><span class="section-number-2">22</span> <a href="https://www.sublimetext.com/">sublime</a></h2>
+<div class="outline-text-2" id="text-22">
+<p>
+非常好用，性感的编辑器。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+sudo apt-get update
+sudo apt-get install -y sublime-text
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-23" class="outline-2">
+<h2 id="sec-23"><span class="section-number-2">23</span> <a href="http://ugetdm.com/">uget</a></h2>
+<div class="outline-text-2" id="text-23">
+<p>
+下载管理器，可以配合其他下载工具使用。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo add-apt-repository ppa:plushuang-tw/uget-stable
+sudo apt update
+sudo apt install -y uget
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-24" class="outline-2">
+<h2 id="sec-24"><span class="section-number-2">24</span> VirtualBox</h2>
+<div class="outline-text-2" id="text-24">
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib" &gt; /etc/apt/sources.list.d/virtualbox.list'
+wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+sudo apt update
+sudo apt install dkms
+sudo apt install -y virtualbox-5.1
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-24-1" class="outline-3">
+<h3 id="sec-24-1"><span class="section-number-3">24.1</span> problem</h3>
+<div class="outline-text-3" id="text-24-1">
+<p>
+<a href="https://askubuntu.com/questions/760671/could-not-load-vboxdrv-after-upgrade-to-ubuntu-16-04-and-i-want-to-keep-secur">https://askubuntu.com/questions/760671/could-not-load-vboxdrv-after-upgrade-to-ubuntu-16-04-and-i-want-to-keep-secur</a>
+</p>
+</div>
+<div id="outline-container-sec-24-1-1" class="outline-4">
+<h4 id="sec-24-1-1"><span class="section-number-4">24.1.1</span> secure boot</h4>
+<div class="outline-text-4" id="text-24-1-1">
+<ul class="org-ul">
+<li>Create signing keys
+<div class="org-src-container">
+
+<pre class="src src-sh">openssl req -new -x509 -newkey rsa:2048 -keyout MOK.priv -outform DER -out MOK.der -nodes -days 36500 -subj "/CN=vbox_sign_key/"
+</pre>
+</div>
+</li>
+<li>Register the keys to Secure Boot
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo mokutil --import MOK.der
+</pre>
+</div>
+</li>
+<li>Supply a password for later use after reboot
+</li>
+
+<li>Reboot and follow instructions to Enroll MOK (Machine Owner Key). Here's a <a href="https://sourceware.org/systemtap/wiki/SecureBoot">sample</a> with pictures. The system will reboot one more time. After the reboot, you may also need to sudo modprobe vboxdrv to load the module.
+</li>
+
+<li>Sign the module
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo /usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n vboxdrv)
+</pre>
+</div>
+
+<p>
+此处使用 vbox_sign.sh 批量给 module 添加签名。 <b>注意不要再次执行/sbin/vboxconfig</b>
+</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-25" class="outline-2">
+<h2 id="sec-25"><span class="section-number-2">25</span> 搭建 VPN</h2>
+<div class="outline-text-2" id="text-25">
+<p>
+参看<a href="vpn_practices.html">《VPN 实践》</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-26" class="outline-2">
+<h2 id="sec-26"><span class="section-number-2">26</span> 搭建 VPS</h2>
+<div class="outline-text-2" id="text-26">
+<p>
+参看 <a href="vps_practices.html">《VPS 实践》</a>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 刘尚亮</p>
+<p class="date">Created: 2018-01-13 六 18:31</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

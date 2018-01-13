@@ -3,8 +3,8 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Pro Git笔记</title>
-<!-- 2017-08-30 三 16:06 -->
+<title>《Pro Git》笔记</title>
+<!-- 2018-01-13 六 18:32 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="刘尚亮" />
@@ -137,97 +137,51 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Pro Git笔记</h1>
+<h1 class="title">《Pro Git》笔记</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. 安装</a></li>
-<li><a href="#sec-2">2. 起步</a>
+<li><a href="#sec-1">1. 起步</a></li>
+<li><a href="#sec-2">2. Git 基础</a></li>
+<li><a href="#sec-3">3. Git 分支</a></li>
+<li><a href="#sec-4">4. 服务器上的 git</a></li>
+<li><a href="#sec-5">5. 分布式 Git</a></li>
+<li><a href="#sec-6">6. GitHub</a></li>
+<li><a href="#sec-7">7. Git 工具</a>
 <ul>
-<li><a href="#sec-2-1">2.1. 关于版本控制</a></li>
-<li><a href="#sec-2-2">2.2. Git 简史</a></li>
-<li><a href="#sec-2-3">2.3. Git 基础</a>
+<li>
 <ul>
-<li><a href="#sec-2-3-1">2.3.1. Git 如何保存快照？快照多个部分的共同部分多次存放会不会导致文件系统过大？</a></li>
-<li><a href="#sec-2-3-2">2.3.2. Git 文件恢复原理</a></li>
-</ul>
-</li>
-<li><a href="#sec-2-4">2.4. 命令行</a></li>
-<li><a href="#sec-2-5">2.5. 安装 Git</a></li>
-<li><a href="#sec-2-6">2.6. 初次运行 Git 前的配置</a></li>
-<li><a href="#sec-2-7">2.7. 获取帮助</a></li>
-<li><a href="#sec-2-8">2.8. 总结</a></li>
-</ul>
-</li>
-<li><a href="#sec-3">3. Git 基础</a>
-<ul>
-<li><a href="#sec-3-1">3.1. 获取 Git 仓库</a>
-<ul>
-<li><a href="#sec-3-1-1">3.1.1. git init 与 git init &#x2013;bare 的区别？</a></li>
-</ul>
-</li>
-<li><a href="#sec-3-2">3.2. 记录每次更新到仓库</a>
-<ul>
-<li><a href="#sec-3-2-1">3.2.1. differ 格式</a></li>
-<li><a href="#sec-3-2-2">3.2.2. 使用 Beyond Compare</a></li>
-</ul>
-</li>
-<li><a href="#sec-3-3">3.3. 查看提交历史</a>
-<ul>
-<li><a href="#sec-3-3-1">3.3.1. git windows 下提交 comment 乱码问题</a></li>
-<li><a href="#sec-3-3-2">3.3.2. Git log 高级用法</a></li>
-</ul>
-</li>
-<li><a href="#sec-3-4">3.4. 撤销操作</a></li>
-</ul>
-</li>
-<li><a href="#sec-4">4. Git 分支</a></li>
-<li><a href="#sec-5">5. 服务器上的 git</a></li>
-<li><a href="#sec-6">6. 分布式 Git</a></li>
-<li><a href="#sec-7">7. GitHub</a></li>
-<li><a href="#sec-8">8. Git 工具</a>
-<ul>
-<li><a href="#sec-8-1">8.1. 子模块</a>
-<ul>
-<li><a href="#sec-8-1-1">8.1.1. 添加</a></li>
-<li><a href="#sec-8-1-2">8.1.2. 删除</a></li>
-<li><a href="#sec-8-1-3">8.1.3. 更新</a></li>
+<li><a href="#sec-7-0-1">7.0.1. 删除</a></li>
+<li><a href="#sec-7-0-2">7.0.2. 更新</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#sec-9">9. 自定义 Git</a></li>
-<li><a href="#sec-10">10. Git 与其他系统</a>
+<li><a href="#sec-8">8. 自定义 Git</a></li>
+<li><a href="#sec-9">9. Git 与其他系统</a>
 <ul>
-<li><a href="#sec-10-1">10.1. 作为客户端的 Git</a>
+<li><a href="#sec-9-1">9.1. 迁移到 Git</a>
 <ul>
-<li><a href="#sec-10-1-1">10.1.1. 设置 git commit log 编码</a></li>
-<li><a href="#sec-10-1-2">10.1.2. windwos 下文件路径编码</a></li>
-</ul>
-</li>
-<li><a href="#sec-10-2">10.2. 迁移到 Git</a>
-<ul>
-<li><a href="#sec-10-2-1">10.2.1. 准备环境</a></li>
-<li><a href="#sec-10-2-2">10.2.2. 规范 Subversion</a></li>
-<li><a href="#sec-10-2-3">10.2.3. 生成提交者 ID 和邮箱</a></li>
-<li><a href="#sec-10-2-4">10.2.4. 转化成 Git 仓库格式</a></li>
-<li><a href="#sec-10-2-5">10.2.5. 添加远程仓库</a></li>
-<li><a href="#sec-10-2-6">10.2.6. 传所有分支与标签</a></li>
+<li><a href="#sec-9-1-1">9.1.1. 准备环境</a></li>
+<li><a href="#sec-9-1-2">9.1.2. 规范 Subversion</a></li>
+<li><a href="#sec-9-1-3">9.1.3. 生成提交者 ID 和邮箱</a></li>
+<li><a href="#sec-9-1-4">9.1.4. 转化成 Git 仓库格式</a></li>
+<li><a href="#sec-9-1-5">9.1.5. 添加远程仓库</a></li>
+<li><a href="#sec-9-1-6">9.1.6. 传所有分支与标签</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#sec-11">11. Git 内部原理</a></li>
-<li><a href="#sec-12">12. Tips</a>
+<li><a href="#sec-10">10. Git 内部原理</a></li>
+<li><a href="#sec-11">11. Tips</a>
 <ul>
-<li><a href="#sec-12-1">12.1. Git 代码管理中 .gitignore 文件无效的解决方法</a></li>
-<li><a href="#sec-12-2">12.2. 使用 bcompare 作为 diff、merge 工具</a>
+<li><a href="#sec-11-1">11.1. Git 代码管理中 .gitignore 文件无效的解决方法</a></li>
+<li><a href="#sec-11-2">11.2. 使用 bcompare 作为 diff、merge 工具</a>
 <ul>
-<li><a href="#sec-12-2-1">12.2.1. Diff</a></li>
-<li><a href="#sec-12-2-2">12.2.2. Merge</a></li>
-<li><a href="#sec-12-2-3">12.2.3. beyondCompareMerge</a></li>
-<li><a href="#sec-12-2-4">12.2.4. 中文路径乱码</a></li>
+<li><a href="#sec-11-2-1">11.2.1. Diff</a></li>
+<li><a href="#sec-11-2-2">11.2.2. Merge</a></li>
+<li><a href="#sec-11-2-3">11.2.3. 中文路径乱码</a></li>
 </ul>
 </li>
 </ul>
@@ -238,168 +192,133 @@ for the JavaScript code in this tag.
 <p>
 这篇文章主要根据《<a href="https://git-scm.com/book/zh/v2">Pro Git 2nd</a>》中文版来记录 GIT 的实践过程。
 </p>
+
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> 安装</h2>
+<h2 id="sec-1"><span class="section-number-2">1</span> 起步</h2>
 <div class="outline-text-2" id="text-1">
-<div class="org-src-container">
+<ol class="org-ol">
+<li>git 记录的是快照而不是文件差异，为什么这么做？（这样对于分支管理有益处）这样 git 文件夹会不会很大？
+</li>
+<li>git 使用哈希值来引用文件。
+</li>
+</ol>
+</div>
+</div>
 
-<pre class="src src-sh">sudo apt-get install -y git
-</pre>
-</div>
-</div>
-</div>
 <div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> 起步</h2>
+<h2 id="sec-2"><span class="section-number-2">2</span> Git 基础</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 关于版本控制</h3>
-</div>
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Git 简史</h3>
-</div>
-<div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Git 基础</h3>
-<div class="outline-text-3" id="text-2-3">
-</div><div id="outline-container-sec-2-3-1" class="outline-4">
-<h4 id="sec-2-3-1"><span class="section-number-4">2.3.1</span> Git 如何保存快照？快照多个部分的共同部分多次存放会不会导致文件系统过大？</h4>
-</div>
-<div id="outline-container-sec-2-3-2" class="outline-4">
-<h4 id="sec-2-3-2"><span class="section-number-4">2.3.2</span> Git 文件恢复原理</h4>
-</div>
-</div>
-<div id="outline-container-sec-2-4" class="outline-3">
-<h3 id="sec-2-4"><span class="section-number-3">2.4</span> 命令行</h3>
-</div>
-<div id="outline-container-sec-2-5" class="outline-3">
-<h3 id="sec-2-5"><span class="section-number-3">2.5</span> 安装 Git</h3>
-</div>
-<div id="outline-container-sec-2-6" class="outline-3">
-<h3 id="sec-2-6"><span class="section-number-3">2.6</span> 初次运行 Git 前的配置</h3>
-</div>
-<div id="outline-container-sec-2-7" class="outline-3">
-<h3 id="sec-2-7"><span class="section-number-3">2.7</span> 获取帮助</h3>
-</div>
-<div id="outline-container-sec-2-8" class="outline-3">
-<h3 id="sec-2-8"><span class="section-number-3">2.8</span> 总结</h3>
-</div>
-</div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> Git 基础</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 获取 Git 仓库</h3>
-<div class="outline-text-3" id="text-3-1">
-</div><div id="outline-container-sec-3-1-1" class="outline-4">
-<h4 id="sec-3-1-1"><span class="section-number-4">3.1.1</span> git init 与 git init &#x2013;bare 的区别？</h4>
-</div>
-</div>
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2"><span class="section-number-3">3.2</span> 记录每次更新到仓库</h3>
-<div class="outline-text-3" id="text-3-2">
-</div><div id="outline-container-sec-3-2-1" class="outline-4">
-<h4 id="sec-3-2-1"><span class="section-number-4">3.2.1</span> differ 格式<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup></h4>
-</div>
-<div id="outline-container-sec-3-2-2" class="outline-4">
-<h4 id="sec-3-2-2"><span class="section-number-4">3.2.2</span> 使用 Beyond Compare<sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup></h4>
+<ol class="org-ol">
+<li>git init 与 git init &#x2013;bare 的区别？
+</li>
+<li>了解 git status -s 命令所有标记。
+</li>
+<li>git diff 本身只显示尚未暂存的改动。使用 git diff &#x2013;staged 查看已经暂存的改动。
+</li>
+<li>git commit -v -a -m 选项。
+</li>
+<li>git rm &#x2013;cached 只是将文件从仓库删除，不删除磁盘文件。
+</li>
+<li>git log
+<ul class="org-ul">
+<li>-p 按补丁形式显示每个更新之间的差异
+</li>
+<li>-&lt;n&gt; 显示最近 n 次提交。
+</li>
+<li>&#x2013;stat 选项显示每次被修改的文件。
+</li>
+<li>&#x2013;pretty 修改显示日志打印的格式。
+</li>
+<li>&#x2013;graph 显示分支、合并历史。
+</li>
+<li>&#x2013;since &#x2013;after &#x2013;before &#x2013;until 按照时间过滤。
+</li>
+<li>&#x2013;S 添加或者移除摸个关键字的提交。
+</li>
+<li>&#x2013; &lt;path&gt; 指定某路径、文件的提交历史。
+</li>
+<li>&#x2013;author 指定作者。
+</li>
+</ul>
+</li>
+<li>git commit &#x2013;amend 会用第二次提交的结果替代第一次。
+</li>
+<li>git reset HEAD &lt;file&gt; 来取消暂存。
+</li>
+<li>git checkout &#x2013; &lt;file&gt; 来取消文件所做的修改。
+</li>
+<li>git remote show, add, rm, rename
+</li>
+<li>git tag
+<ul class="org-ul">
+<li>git push origin &lt;tagname&gt;
+</li>
+<li>git checkout -b &lt;branch&gt; &lt;tagname&gt;
+</li>
+</ul>
+</li>
+</ol>
 </div>
 </div>
 
-<div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3"><span class="section-number-3">3.3</span> 查看提交历史</h3>
-<div class="outline-text-3" id="text-3-3">
-</div><div id="outline-container-sec-3-3-1" class="outline-4">
-<h4 id="sec-3-3-1"><span class="section-number-4">3.3.1</span> git windows 下提交 comment 乱码问题</h4>
-</div>
-<div id="outline-container-sec-3-3-2" class="outline-4">
-<h4 id="sec-3-3-2"><span class="section-number-4">3.3.2</span> <a href="https://github.com/geeeeeeeeek/git-recipes/blob/master/sources/Git_log%25E9%25AB%2598%25E7%25BA%25A7%25E7%2594%25A8%25E6%25B3%2595.md?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io">Git log 高级用法</a></h4>
-</div>
-</div>
-<div id="outline-container-sec-3-4" class="outline-3">
-<h3 id="sec-3-4"><span class="section-number-3">3.4</span> 撤销操作</h3>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Git 分支</h2>
+<div class="outline-text-2" id="text-3">
+<ol class="org-ol">
+<li>git 三种对象：blob 对象（保存文件快照），树对象（记录目录结构和 blob 对象索引），提交对象（包含树对象指针和所有提交信息）。
+</li>
+<li>git branch -d &lt;branch&gt; 删除分支。-D 删除还没有合并的分支。
+</li>
+<li>git branch -v 查看每个分支的最后一次提交。
+</li>
+<li>git brach &#x2013;no-merged 查看还没有合并的分支。
+</li>
+<li>本地 master 跟踪远程分支 origin/master
+</li>
+<li>git push &lt;local-branch&gt; &lt;remote/branch&gt; 将本地分支推送到远程分支。
+</li>
+<li>git checkout &lt;local-branch&gt; &lt;remote/branch&gt; 将远程分支拉取到本地分支。
+</li>
+<li>git push &lt;rep&gt; &#x2013;delete &lt;branch&gt; 删除远程分支。
+</li>
+<li>变基的目的是为了确保在向远程分支推送时能保持提交历史的整洁。
+</li>
+<li>git rebase &#x2013;onto
+</li>
+<li>变基的原则：只对尚未推送或分享给别人的本地修改执行变基操作清理历史，从不对已推送至别处的提交执行变基操作，
+</li>
+</ol>
 </div>
 </div>
 
 <div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> Git 分支</h2>
+<h2 id="sec-4"><span class="section-number-2">4</span> 服务器上的 git</h2>
 </div>
 
 <div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> 服务器上的 git</h2>
-<div class="outline-text-2" id="text-5">
-<p>
-需求：在 VPS 有一个 Git Server 来保存一些私有项目，并不打算进行进行分享或者进行复杂的编辑，如拉分支等。
-</p>
-
-<p>
-方案：
-</p>
-<ul class="org-ul">
-<li>使用 git 官网介绍的方法搭建 ssh 链接的 server。
-<div class="org-src-container">
-
-<pre class="src src-sh">git init --bare private-projects.git
-</pre>
+<h2 id="sec-5"><span class="section-number-2">5</span> 分布式 Git</h2>
 </div>
 
-<p>
-配置 ssh
-</p>
-
-<div class="org-src-container">
-
-<pre class="src src-sh">mkdir ~/.ssh
-cd ~/.ssh
-touch authorized_keys
-</pre>
-</div>
-</li>
-</ul>
-
-<p>
-然后把开发者的私钥添加要这个 <code>authorized_keys</code> 当中。
-</p>
-
-<ul class="org-ul">
-<li>使用 GitLab。
-
-<p>
-GitLab 支持私人仓库，可以直接使用。
-</p>
-</li>
-
-<li>使用 Bitbucket
-</li>
-</ul>
-<div class="org-src-container">
-
-<pre class="src src-sh">mkdr private-projects
-cd private-projects
-git --bare init
-</pre>
-</div>
-</div>
-</div>
 <div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> 分布式 Git</h2>
+<h2 id="sec-6"><span class="section-number-2">6</span> GitHub</h2>
 </div>
 
 <div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7"><span class="section-number-2">7</span> GitHub</h2>
+<h2 id="sec-7"><span class="section-number-2">7</span> Git 工具</h2>
+<div class="outline-text-2" id="text-7">
+<ol class="org-ol">
+<li>git stash 暂存
+</li>
+<li>git clean 清理所有未跟踪的文件和目录。经常使用-n 先了解一下会删除哪些。
+</li>
+<li>git log -L 打印某个函数的历史。
+</li>
+</ol>
 </div>
 
-<div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8"><span class="section-number-2">8</span> Git 工具</h2>
-<div class="outline-text-2" id="text-8">
-</div><div id="outline-container-sec-8-1" class="outline-3">
-<h3 id="sec-8-1"><span class="section-number-3">8.1</span> 子模块</h3>
-<div class="outline-text-3" id="text-8-1">
-</div><div id="outline-container-sec-8-1-1" class="outline-4">
-<h4 id="sec-8-1-1"><span class="section-number-4">8.1.1</span> 添加</h4>
-</div>
-
-<div id="outline-container-sec-8-1-2" class="outline-4">
-<h4 id="sec-8-1-2"><span class="section-number-4">8.1.2</span> 删除</h4>
-<div class="outline-text-4" id="text-8-1-2">
+<div id="outline-container-sec-7-0-1" class="outline-4">
+<h4 id="sec-7-0-1"><span class="section-number-4">7.0.1</span> 删除</h4>
+<div class="outline-text-4" id="text-7-0-1">
 <ul class="org-ul">
 <li>删除 .gitsubmodule 中对应 submodule 的条目
 </li>
@@ -411,9 +330,9 @@ git --bare init
 </div>
 </div>
 
-<div id="outline-container-sec-8-1-3" class="outline-4">
-<h4 id="sec-8-1-3"><span class="section-number-4">8.1.3</span> 更新</h4>
-<div class="outline-text-4" id="text-8-1-3">
+<div id="outline-container-sec-7-0-2" class="outline-4">
+<h4 id="sec-7-0-2"><span class="section-number-4">7.0.2</span> 更新</h4>
+<div class="outline-text-4" id="text-7-0-2">
 <ul class="org-ul">
 <li>更新 .gitsubmodule 中对应 submodule 的条目 URL
 </li>
@@ -425,35 +344,23 @@ git --bare init
 </div>
 </div>
 </div>
+
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> 自定义 Git</h2>
 </div>
 <div id="outline-container-sec-9" class="outline-2">
-<h2 id="sec-9"><span class="section-number-2">9</span> 自定义 Git</h2>
-</div>
-
-<div id="outline-container-sec-10" class="outline-2">
-<h2 id="sec-10"><span class="section-number-2">10</span> Git 与其他系统</h2>
-<div class="outline-text-2" id="text-10">
-</div><div id="outline-container-sec-10-1" class="outline-3">
-<h3 id="sec-10-1"><span class="section-number-3">10.1</span> 作为客户端的 Git</h3>
-<div class="outline-text-3" id="text-10-1">
-</div><div id="outline-container-sec-10-1-1" class="outline-4">
-<h4 id="sec-10-1-1"><span class="section-number-4">10.1.1</span> 设置 git commit log 编码</h4>
-</div>
-<div id="outline-container-sec-10-1-2" class="outline-4">
-<h4 id="sec-10-1-2"><span class="section-number-4">10.1.2</span> windwos 下文件路径编码</h4>
-</div>
-</div>
-<div id="outline-container-sec-10-2" class="outline-3">
-<h3 id="sec-10-2"><span class="section-number-3">10.2</span> 迁移到 Git</h3>
-<div class="outline-text-3" id="text-10-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> Git 与其他系统</h2>
+<div class="outline-text-2" id="text-9">
+</div><div id="outline-container-sec-9-1" class="outline-3">
+<h3 id="sec-9-1"><span class="section-number-3">9.1</span> 迁移到 Git</h3>
+<div class="outline-text-3" id="text-9-1">
 <p>
-这小节主要描述在公司如何代码库从 SVN 迁移到 Git，并保留原有的 commit log 信息，以及迁移过程中要注意的事情。迁移步骤：<sup><a id="fnr.3" name="fnr.3" class="footref" href="#fn.3">3</a></sup>
+这小节主要描述在公司如何代码库从 SVN 迁移到 Git，并保留原有的 commit log 信息，以及迁移过程中要注意的事情。迁移步骤：<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>
 </p>
 </div>
-
-<div id="outline-container-sec-10-2-1" class="outline-4">
-<h4 id="sec-10-2-1"><span class="section-number-4">10.2.1</span> 准备环境</h4>
-<div class="outline-text-4" id="text-10-2-1">
+<div id="outline-container-sec-9-1-1" class="outline-4">
+<h4 id="sec-9-1-1"><span class="section-number-4">9.1.1</span> 准备环境</h4>
+<div class="outline-text-4" id="text-9-1-1">
 <p>
 需要安装对应的软件：
 </p>
@@ -464,9 +371,9 @@ git --bare init
 </div>
 </div>
 </div>
-<div id="outline-container-sec-10-2-2" class="outline-4">
-<h4 id="sec-10-2-2"><span class="section-number-4">10.2.2</span> 规范 Subversion<sup><a id="fnr.4" name="fnr.4" class="footref" href="#fn.4">4</a></sup></h4>
-<div class="outline-text-4" id="text-10-2-2">
+<div id="outline-container-sec-9-1-2" class="outline-4">
+<h4 id="sec-9-1-2"><span class="section-number-4">9.1.2</span> 规范 Subversion<sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup></h4>
+<div class="outline-text-4" id="text-9-1-2">
 <p>
 确认项目的 Subversion 地址：<a href="https://scms.example.com/svn/projects/west/">https://scms.example.com/svn/projects/west/</a>
 </p>
@@ -534,9 +441,9 @@ west
 </pre>
 </div>
 </div>
-<div id="outline-container-sec-10-2-3" class="outline-4">
-<h4 id="sec-10-2-3"><span class="section-number-4">10.2.3</span> 生成提交者 ID 和邮箱</h4>
-<div class="outline-text-4" id="text-10-2-3">
+<div id="outline-container-sec-9-1-3" class="outline-4">
+<h4 id="sec-9-1-3"><span class="section-number-4">9.1.3</span> 生成提交者 ID 和邮箱</h4>
+<div class="outline-text-4" id="text-9-1-3">
 <p>
 在 Subversion 中，每一个人提交时都需要在系统中有一个用户，它会被记录在提交信息内。 如果想要将 Subversion 用户映射到一个更好的 Git 作者数据中，需要一个 Subversion 用户到 Git 用户的映射。 创建一个 users.txt 的文件包含像下面这种格式的映射：
 </p>
@@ -612,9 +519,9 @@ svn tags 也会当做 branch 导入。
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-10-2-4" class="outline-4">
-<h4 id="sec-10-2-4"><span class="section-number-4">10.2.4</span> 转化成 Git 仓库格式</h4>
-<div class="outline-text-4" id="text-10-2-4">
+<div id="outline-container-sec-9-1-4" class="outline-4">
+<h4 id="sec-9-1-4"><span class="section-number-4">9.1.4</span> 转化成 Git 仓库格式</h4>
+<div class="outline-text-4" id="text-9-1-4">
 <p>
 应当做一些导入后的清理工作。 第一步，你应当清理 git svn 设置的奇怪的引用。 首先移动标签，这样它们就是标签而不是奇怪的远程引用，然后你会移动剩余的分支这样它们就是本地的了。
 为了将标签变为合适的 Git 标签，运行
@@ -646,9 +553,9 @@ svn tags 也会当做 branch 导入。
 </p>
 </div>
 </div>
-<div id="outline-container-sec-10-2-5" class="outline-4">
-<h4 id="sec-10-2-5"><span class="section-number-4">10.2.5</span> 添加远程仓库</h4>
-<div class="outline-text-4" id="text-10-2-5">
+<div id="outline-container-sec-9-1-5" class="outline-4">
+<h4 id="sec-9-1-5"><span class="section-number-4">9.1.5</span> 添加远程仓库</h4>
+<div class="outline-text-4" id="text-9-1-5">
 <div class="org-src-container">
 
 <pre class="src src-sh">git remote add gerrit gerrit:xl_lixian_ris.git
@@ -656,9 +563,9 @@ svn tags 也会当做 branch 导入。
 </div>
 </div>
 </div>
-<div id="outline-container-sec-10-2-6" class="outline-4">
-<h4 id="sec-10-2-6"><span class="section-number-4">10.2.6</span> 传所有分支与标签<sup><a id="fnr.5" name="fnr.5" class="footref" href="#fn.5">5</a></sup></h4>
-<div class="outline-text-4" id="text-10-2-6">
+<div id="outline-container-sec-9-1-6" class="outline-4">
+<h4 id="sec-9-1-6"><span class="section-number-4">9.1.6</span> 传所有分支与标签<sup><a id="fnr.3" name="fnr.3" class="footref" href="#fn.3">3</a></sup></h4>
+<div class="outline-text-4" id="text-9-1-6">
 <div class="org-src-container">
 
 <pre class="src src-sh">git push gerrit --all
@@ -673,31 +580,31 @@ git push gerrit --tags
 </div>
 </div>
 
-<div id="outline-container-sec-11" class="outline-2">
-<h2 id="sec-11"><span class="section-number-2">11</span> Git 内部原理</h2>
+<div id="outline-container-sec-10" class="outline-2">
+<h2 id="sec-10"><span class="section-number-2">10</span> Git 内部原理</h2>
 </div>
 
-<div id="outline-container-sec-12" class="outline-2">
-<h2 id="sec-12"><span class="section-number-2">12</span> Tips</h2>
-<div class="outline-text-2" id="text-12">
-</div><div id="outline-container-sec-12-1" class="outline-3">
-<h3 id="sec-12-1"><span class="section-number-3">12.1</span> <a href="http://www.ifeegoo.com/git-code-management-dot-gitignore-file-has-no-effect-solution.html">Git 代码管理中 .gitignore 文件无效的解决方法</a></h3>
+<div id="outline-container-sec-11" class="outline-2">
+<h2 id="sec-11"><span class="section-number-2">11</span> Tips</h2>
+<div class="outline-text-2" id="text-11">
+</div><div id="outline-container-sec-11-1" class="outline-3">
+<h3 id="sec-11-1"><span class="section-number-3">11.1</span> <a href="http://www.ifeegoo.com/git-code-management-dot-gitignore-file-has-no-effect-solution.html">Git 代码管理中 .gitignore 文件无效的解决方法</a></h3>
 </div>
-<div id="outline-container-sec-12-2" class="outline-3">
-<h3 id="sec-12-2"><span class="section-number-3">12.2</span> 使用 bcompare 作为 diff、merge 工具<sup><a id="fnr.6" name="fnr.6" class="footref" href="#fn.6">6</a></sup></h3>
-<div class="outline-text-3" id="text-12-2">
+<div id="outline-container-sec-11-2" class="outline-3">
+<h3 id="sec-11-2"><span class="section-number-3">11.2</span> 使用 bcompare 作为 diff、merge 工具<sup><a id="fnr.4" name="fnr.4" class="footref" href="#fn.4">4</a></sup></h3>
+<div class="outline-text-3" id="text-11-2">
 <p>
 <a href="http://www.scootersoftware.com/index.php">Beyond Compare</a> 官网上的版本目前是 4.+ 版本, 下载直接安装即可。
 </p>
 
 <p>
-检查 git 的版本, 根据版本的不同选不同的方法进行设置, 本文是基于 Git 2.3+ 版本操作, 2.3 以下的版本可以参考 Beyond Compare 官网上的其他版本控制配置方法。<sup><a id="fnr.7" name="fnr.7" class="footref" href="#fn.7">7</a></sup>
+检查 git 的版本, 根据版本的不同选不同的方法进行设置, 本文是基于 Git 2.3+ 版本操作, 2.3 以下的版本可以参考 Beyond Compare 官网上的其他版本控制配置方法。<sup><a id="fnr.5" name="fnr.5" class="footref" href="#fn.5">5</a></sup>
 </p>
 </div>
 
-<div id="outline-container-sec-12-2-1" class="outline-4">
-<h4 id="sec-12-2-1"><span class="section-number-4">12.2.1</span> Diff</h4>
-<div class="outline-text-4" id="text-12-2-1">
+<div id="outline-container-sec-11-2-1" class="outline-4">
+<h4 id="sec-11-2-1"><span class="section-number-4">11.2.1</span> Diff</h4>
+<div class="outline-text-4" id="text-11-2-1">
 <p>
 切换到终端:
 </p>
@@ -714,9 +621,9 @@ git push gerrit --tags
 </div>
 </div>
 
-<div id="outline-container-sec-12-2-2" class="outline-4">
-<h4 id="sec-12-2-2"><span class="section-number-4">12.2.2</span> Merge</h4>
-<div class="outline-text-4" id="text-12-2-2">
+<div id="outline-container-sec-11-2-2" class="outline-4">
+<h4 id="sec-11-2-2"><span class="section-number-4">11.2.2</span> Merge</h4>
+<div class="outline-text-4" id="text-11-2-2">
 <p>
 切换到终端:
 </p>
@@ -734,28 +641,9 @@ git config --global mergetool.bc3 trustExitCode true
 </div>
 </div>
 
-
-<div id="outline-container-sec-12-2-3" class="outline-4">
-<h4 id="sec-12-2-3"><span class="section-number-4">12.2.3</span> beyondCompareMerge</h4>
-<div class="outline-text-4" id="text-12-2-3">
-<p>
-注意在使用 git megetool 来解决冲突后, 会生成 备份文件 (*.orig), 大多数情况下不是我们想要的, 在终端中配置:
-</p>
-<div class="org-src-container">
-
-<pre class="src src-sh">git config --global mergetool.keepBackup false
-</pre>
-</div>
-
-<p>
-这样就不会每次在解决冲突后生成对应的 .orig 文件了.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-12-2-4" class="outline-4">
-<h4 id="sec-12-2-4"><span class="section-number-4">12.2.4</span> 中文路径乱码</h4>
-<div class="outline-text-4" id="text-12-2-4">
+<div id="outline-container-sec-11-2-3" class="outline-4">
+<h4 id="sec-11-2-3"><span class="section-number-4">11.2.3</span> 中文路径乱码</h4>
+<div class="outline-text-4" id="text-11-2-3">
 <div class="org-src-container">
 
 <pre class="src src-sh">git config --global core.quotepath false
@@ -770,30 +658,22 @@ git config --global mergetool.bc3 trustExitCode true
 <div id="text-footnotes">
 
 <div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
-<a href="http://www.ruanyifeng.com/blog/2012/08/how_to_read_diff.html">读懂 diff</a>
-</p></div>
-
-<div class="footdef"><sup><a id="fn.2" name="fn.2" class="footnum" href="#fnr.2">2</a></sup> <p class="footpara">
-<a href="http://www.scootersoftware.com/support.php?zz=kb_vcs#gitwindows">Using Beyond Compare with Version Control Systems</a>
-</p></div>
-
-<div class="footdef"><sup><a id="fn.3" name="fn.3" class="footnum" href="#fnr.3">3</a></sup> <p class="footpara">
 <a href="https://pm.readthedocs.org/zh_CN/latest/vcs/git/subversion2git.html">项目如何从 Subversion 迁移到 Git</a>
 </p></div>
 
-<div class="footdef"><sup><a id="fn.4" name="fn.4" class="footnum" href="#fnr.4">4</a></sup> <p class="footpara">
+<div class="footdef"><sup><a id="fn.2" name="fn.2" class="footnum" href="#fnr.2">2</a></sup> <p class="footpara">
 <a href="http://www.lovelucy.info/codebase-from-svn-to-git-migration-keep-commit-history.html">将代码库从 SVN 迁移至 Git 并保留所有 commit 记录</a>
 </p></div>
 
-<div class="footdef"><sup><a id="fn.5" name="fn.5" class="footnum" href="#fnr.5">5</a></sup> <p class="footpara">
+<div class="footdef"><sup><a id="fn.3" name="fn.3" class="footnum" href="#fnr.3">3</a></sup> <p class="footpara">
 <a href="http://www.blogjava.net/lishunli/archive/2012/01/15/368562.html">SVN 迁移到 Git 的过程（+ 一些技巧）</a>
 </p></div>
 
-<div class="footdef"><sup><a id="fn.6" name="fn.6" class="footnum" href="#fnr.6">6</a></sup> <p class="footpara">
+<div class="footdef"><sup><a id="fn.4" name="fn.4" class="footnum" href="#fnr.4">4</a></sup> <p class="footpara">
 <a href="http://www.jianshu.com/p/a080c8649015">OSX Git 结合 Beyond Compare 使用</a>
 </p></div>
 
-<div class="footdef"><sup><a id="fn.7" name="fn.7" class="footnum" href="#fnr.7">7</a></sup> <p class="footpara">
+<div class="footdef"><sup><a id="fn.5" name="fn.5" class="footnum" href="#fnr.5">5</a></sup> <p class="footpara">
 <a href="http://www.scootersoftware.com/support.php?zz=kb_vcs">Using Beyond Compare with Version Control Systems</a>
 </p></div>
 
@@ -802,8 +682,8 @@ git config --global mergetool.bc3 trustExitCode true
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: 刘尚亮</p>
-<p class="date">Created: 2017-08-30 三 16:06</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.2.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2018-01-13 六 18:32</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

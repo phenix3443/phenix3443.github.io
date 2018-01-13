@@ -4,10 +4,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>ShadowSocks Practices</title>
-<!-- 2017-08-30 三 16:06 -->
+<!-- 2018-01-13 六 18:32 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="lsl" />
+<meta  name="author" content="刘尚亮" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center; }
@@ -169,11 +169,12 @@ for the JavaScript code in this tag.
 <p>
 当然，首先你需要有一台 VPS，参看《<a href="VPS-practices.html">VPS 实践</a>》。
 </p>
+
 <div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1"><span class="section-number-2">1</span> 简介<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup></h2>
 <div class="outline-text-2" id="text-1">
 <p>
-ShadowSocks 是由 <a href="https://github.com/clowwindy">clowwindy</a> 编写的轻量级服务器中转包传输工具。
+<a href="https://github.com/shadowsocks">Shadowsocks</a> 是由 <a href="https://github.com/clowwindy">clowwindy</a> 编写的轻量级服务器中转包传输工具。
 </p>
 
 <p>
@@ -197,6 +198,9 @@ ShadowSocks 主要由三个模块组成:
 <div id="outline-container-sec-1-1" class="outline-3">
 <h3 id="sec-1-1"><span class="section-number-3">1.1</span> 安装</h3>
 <div class="outline-text-3" id="text-1-1">
+<p>
+使用
+</p>
 <div class="org-src-container">
 
 <pre class="src src-sh">sudo add-apt-repository ppa:max-c-lv/shadowsocks-libev
@@ -241,15 +245,15 @@ ss-server 与 ss-local 配置文件是 json 格式的，默认名字是 config.j
 
 <pre class="example">
 {
-	"server":"server-ip",
-	"server_port":443,
-	"local_address":"127.0.0.1",
-	"local_port":1080,
-	"password":"your-password",
-	"timeout":300,
-	"method":"rc4-md5",
-	"fast_open":true,
-	"workers":1
+ "server":"server-ip",
+ "server_port":443,
+ "local_address":"127.0.0.1",
+ "local_port":1080,
+ "password":"your-password",
+ "timeout":300,
+ "method":"rc4-md5",
+ "fast_open":true,
+ "workers":1
 }
 </pre>
 
@@ -424,9 +428,9 @@ WantedBy=multi-user.target
 
 <div class="org-src-container">
 
-<pre class="src src-sh">	 systemctl start ss-server.service
-	 systemctl enable ss-server.service
-	 systemctl status ss-server.service
+<pre class="src src-sh">systemctl start ss-server.service
+systemctl enable ss-server.service
+systemctl status ss-server.service
 </pre>
 </div>
 </div>
@@ -454,9 +458,9 @@ WantedBy=multi-user.target
 
 <div class="org-src-container">
 
-<pre class="src src-sh">	 systemctl start ss-local.service
-	 systemctl enable ss-local.service
-	 systemctl status ss-local.service
+<pre class="src src-sh">systemctl start ss-local.service
+systemctl enable ss-local.service
+systemctl status ss-local.service
 </pre>
 </div>
 </div>
@@ -494,9 +498,9 @@ WantedBy=multi-user.target
 </div>
 </div></div>
 <div id="postamble" class="status">
-<p class="author">Author: lsl</p>
-<p class="date">Created: 2017-08-30 三 16:06</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.2.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="author">Author: 刘尚亮</p>
+<p class="date">Created: 2018-01-13 六 18:32</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
