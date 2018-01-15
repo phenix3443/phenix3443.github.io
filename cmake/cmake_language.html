@@ -1,0 +1,618 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>cmake language 笔记</title>
+<!-- 2018-01-15 一 17:58 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="phenix3443" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">cmake language 笔记</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. 组织</a>
+<ul>
+<li><a href="#sec-1-1">1.1. 目录(Directories)</a></li>
+<li><a href="#sec-1-2">1.2. 脚本(Scripts)</a></li>
+<li><a href="#sec-1-3">1.3. 模块(Modules)</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. 语法（Syntax）</a>
+<ul>
+<li><a href="#sec-2-1">2.1. 编码（Encoding）</a></li>
+<li><a href="#sec-2-2">2.2. 源文件（Source Files）</a></li>
+<li><a href="#sec-2-3">2.3. 命令调用（Command Invocations）</a></li>
+<li><a href="#sec-2-4">2.4. 命令参数（Command Arguments）</a>
+<ul>
+<li><a href="#sec-2-4-1">2.4.1. 括号参数（Bracket Argument）</a></li>
+<li><a href="#sec-2-4-2">2.4.2. 引号参数（Quoted Argument）</a></li>
+<li><a href="#sec-2-4-3">2.4.3. 非引号参数（Unquoted Argument）</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-5">2.5. 转义序列（Escape Sequences）</a></li>
+<li><a href="#sec-2-6">2.6. 变量引用（Variable References）</a></li>
+<li><a href="#sec-2-7">2.7. 注释（Comments）</a>
+<ul>
+<li><a href="#sec-2-7-1">2.7.1. 括号注释（Bracket Comment）</a></li>
+<li><a href="#sec-2-7-2">2.7.2. 行注释（Line Comment）</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-3">3. 控制结构（Control Structures）</a>
+<ul>
+<li><a href="#sec-3-1">3.1. 条件块（Conditional Blocks）</a></li>
+<li><a href="#sec-3-2">3.2. 循环（Loops）</a></li>
+<li><a href="#sec-3-3">3.3. 命令定义（Command Definitions）</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. 变量（Variables）</a></li>
+<li><a href="#sec-5">5. 列表（List）</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 组织</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+CMake 输入文件用 “cmake language” 编写。该文件名为 CMakeLists.txt 或用.cmake 作为后缀。
+项目中的 CMake 源文件组织为：
+</p>
+<ul class="org-ul">
+<li>目录 (CMakeLists.txt)
+</li>
+<li>脚本 (&lt;script&gt;.cmake)
+</li>
+<li>模块 (&lt;module&gt;.cmake)
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 目录(Directories)</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+当 CMake 处理项目源代码树时，入口点是顶级源代码目录中名为 CMakeLists.txt 的源文件。该文件可能包含整个构建规范，或使用 <a href="https://cmake.org/cmake/help/latest/command/add_subdirectory.html#command:add_subdirectory">add_subdirectory（）</a> 命令将子目录添加到构建中。每个由该命令添加的子目录还必须包含一个 CMakeLists.txt 文件作为该目录的入口点。CMake 会为处理的 CMakeLists.txt 所在目录 在构建树中生成相应的目录作为默认的工作和输出目录。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> 脚本(Scripts)</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+单个&lt;script&gt;.cmake 源文件可以通过使用带有-P 选项的 cmake（1）命令行工具以脚本模式处理。脚本模式只运行给定的 CMake 语言源文件中的命令，不会生成构建系统。它不允许定义构建目标或操作的 CMake 命令。
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-cmake"># script.cmake
+foreach(arg
+    NoSpace
+    Escaped\ Space
+    This;Divides;Into;Five;Arguments
+    Escaped\;Semicolon
+    )
+  message("${arg}")
+endforeach()
+</pre>
+</div>
+<div class="org-src-container">
+
+<pre class="src src-sh">cmake -P script.cmake
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> 模块(Modules)</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+目录或脚本中的 CMake 语言代码可以使用 <a href="https://cmake.org/cmake/help/latest/command/include.html#command:include">include（）</a> 命令在包含上下文的范围内加载&lt;module&gt;.cmake 源文件。有关模块的文档，请参阅  CMake 分发中包含的 <a href="https://cmake.org/cmake/help/latest/manual/cmake-modules.7.html#manual:cmake-modules(7)">cmake-modules（7）</a>手册页。项目源代码树也可以提供它们自己的模块，并在 <a href="https://cmake.org/cmake/help/latest/variable/CMAKE_MODULE_PATH.html#variable:CMAKE_MODULE_PATH">CMAKE_MODULE_PATH</a> 变量中指定它们的位置。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 语法（Syntax）</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 编码（Encoding）</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+CMake 语言源文件可以用 7 位 ASCII 文本编写，以便在所有支持的平台上实现最大的可移植性。换行符可能被编码为“\n” 或“\r \n”，但作为输入文件被读取时会转换为“\n”。
+</p>
+
+<p>
+请注意，该实现是 8 位清理的，因此如果平台系统 API 支持，源文件将被编码为 UTF-8。另外，CMake 3.2 及以上版本支持在 Windows 上使用 UTF-8 编码的源文件（使用 UTF-16 调用系统 API）。此外，CMake 3.0 及更高版本允许在源文件中使用首部 UTF-8 <a href="http://en.wikipedia.org/wiki/Byte_order_mark">字节顺序(Byte-Order Mark)</a> 标记。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> 源文件（Source Files）</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+CMake 语言源文件由零个或多个<a href="https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#command-invocations">命令调用(Command Invocations)</a> 组成，这些命令调用由换行符和可选的空格和<a href="https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#comments">注释</a> 分开。
+</p>
+
+<p>
+请注意，任何不在“<a href="https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#command-arguments">命令参数(Command Arguments)</a>”或“<a href="https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#bracket-comment">括号注释(Bracket Comment)</a> ”中的源文件行都可以以<a href="https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#line-comment">行注释(Line Comment)</a> 结束。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> 命令调用（Command Invocations）</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+命令调用是一个名称，后跟括号，括号中是由空格分隔的参数。例如:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">add_executable(hello world.c)
+</pre>
+</div>
+<p>
+命令名称不区分大小写。参数中嵌套的不带引号的括号必须平衡。每个命令调用中的（或）都是字面值。调用 if（）命令这可用于来封装条件。例如：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">if(FALSE AND (FALSE OR TRUE)) # evaluates to FALSE
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> 命令参数（Command Arguments）</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+命令调用（Command Invocations）中有三种类型的参数：
+</p>
+</div>
+
+<div id="outline-container-sec-2-4-1" class="outline-4">
+<h4 id="sec-2-4-1"><span class="section-number-4">2.4.1</span> 括号参数（Bracket Argument）</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<p>
+括号参数，由 Lua 长括号语法启发，将内容封闭在相同长度的开始和结束“括号”之间：
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-cmake">message([=[
+This is the first line in a bracket argument with bracket length 1.
+No \-escape sequences or ${variable} references are evaluated.
+This is always one argument even though it contains a ; character.
+The text does not end on a closing bracket of length 0 like ]].
+It does end in a closing bracket of length 1.
+]=])
+</pre>
+</div>
+
+<p>
+一个左括号是写[后跟 0 或更多=后面是[。相应的右括号写为]，后跟相同的数字=，后跟]。括号不嵌套。可以选择独特的长度左右括号来包含其他长度的右括号。
+</p>
+
+<p>
+括号参数内容由开始和结束括号之间的所有文本组成，紧接在开头括号之后的一个换行符（如果有的话）被忽略。对括号参数内容（例如转义序列或变量引用）不进行计算。括号参数总是作为一个参数赋给命令调用。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4-2" class="outline-4">
+<h4 id="sec-2-4-2"><span class="section-number-4">2.4.2</span> 引号参数（Quoted Argument）</h4>
+<div class="outline-text-4" id="text-2-4-2">
+<p>
+引用参数(Quoted Argument)包含在双引号("")中间。
+</p>
+
+<p>
+引用参数内容由开始和结束引号之间的所有文本组成。<a href="https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#escape-sequences">转义序列（Escape Sequences）</a> 和<a href="https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#variable-references">变量引用（Variable References）</a>。引用参数总是作为命令调用的一个参数。例如：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">message("This is a quoted argument containing multiple lines.
+This is always one argument even though it contains a ; character.
+Both \\-escape sequences and ${variable} references are evaluated.
+The text does not end on an escaped double-quote like \".
+It does end in an unescaped double quote.
+")
+</pre>
+</div>
+<p>
+任何行上以奇数个反斜杠结尾的的最后那个“\”被视为一个续行，它和紧跟在后面的换行符将被忽略。例如：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">message("\
+This is the first line of a quoted argument. \
+In fact it is the only line but since it is long \
+the source code uses line continuation.\
+")
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4-3" class="outline-4">
+<h4 id="sec-2-4-3"><span class="section-number-4">2.4.3</span> 非引号参数（Unquoted Argument）</h4>
+<div class="outline-text-4" id="text-2-4-3">
+<p>
+非引号参数不包含在任何引用语法中。它可能不包含任何空格，（，），＃，“或\，除非被反斜线转义。
+非引号参数内容由允许或可转义的字符的连续块中的所有文本组成。转义序列和变量引用都会被求值。结果值以列表分成元素的相同的方式进行切分。每个非空元素都作为参数赋给命令调用。因此，一个非引号参数可以作为零个或多个参数传给命令调用。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">foreach(arg
+    NoSpace
+    Escaped\ Space
+    This;Divides;Into;Five;Arguments
+    Escaped\;Semicolon
+    )
+  message("${arg}")
+endforeach()
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> 转义序列（Escape Sequences）</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+转义序列是“\”后跟一个字符。
+</p>
+
+<p>
+“\”后面跟着一个非字母数字字符，只是对字面字符进行编码，而不会将其解释为语法。“\t”，“\r”或“\n”分别对制表符，回车符或换行符进行编码。“\;”用在任何变量引用之外可以编码变量本身，但用在未引用的参数中来编码“;”，而不是分割参数值。变量引用内部的“;”用来编码字面量的“;”字符。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6"><span class="section-number-3">2.6</span> 变量引用（Variable References）</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+变量引用的格式为$ {variable_name}，并在引用的参数或非引用的参数中进行求值。变量引用被变量的值替换，或者如果变量没有被设置，则由空字符串替换。变量引用可嵌套，并从内向外进行评估，例如， $ <code>{_outer_${inner_variable}_variable}</code> 。
+</p>
+
+<p>
+字面变量引用可能由字母数字，/_.+-和转义序列组成。可以使用嵌套引用来对任何名称的变量进行求值。
+</p>
+
+<p>
+<a href="https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#variables">变量（variables）</a> 部分记录变量名称的范围以及如何设置它们的值。
+</p>
+
+<p>
+环境变量引用的形式为 <code>$ENV{VAR}</code> ，并在与普通变量引用一样在上下文中进行求值。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-7" class="outline-3">
+<h3 id="sec-2-7"><span class="section-number-3">2.7</span> 注释（Comments）</h3>
+<div class="outline-text-3" id="text-2-7">
+</div><div id="outline-container-sec-2-7-1" class="outline-4">
+<h4 id="sec-2-7-1"><span class="section-number-4">2.7.1</span> 括号注释（Bracket Comment）</h4>
+<div class="outline-text-4" id="text-2-7-1">
+<p>
+“#”紧接着一个<a href="https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#bracket-argument">括号参数（Bracket Argument）</a>构成了一个由整个括号框组成的括号注释，例如：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">#[[This is a bracket comment.
+It runs until the close bracket.]]
+message("First Argument\n" #[[Bracket Comment]] "Second Argument")
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-7-2" class="outline-4">
+<h4 id="sec-2-7-2"><span class="section-number-4">2.7.2</span> 行注释（Line Comment）</h4>
+<div class="outline-text-4" id="text-2-7-2">
+<p>
+“#”不立即跟着一个<a href="https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#bracket-argument">括号参数(Bracket Argumen)</a>形成一个行注释直到行尾，例如：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake"># This is a line comment.
+message("First Argument\n" # This is a line comment :)
+        "Second Argument") # This is a line comment.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 控制结构（Control Structures）</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 条件块（Conditional Blocks）</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+<a href="https://cmake.org/cmake/help/latest/command/if.html#command:if">if()</a>/elseif()/else()/endif()命令分隔代码块以有条件地执行。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> 循环（Loops）</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+<a href="https://cmake.org/cmake/help/latest/command/foreach.html#command:foreach">foreach()</a>/endforeach()和 <a href="https://cmake.org/cmake/help/latest/command/while.html#command:while">while()</a>/endwhile()命令分隔代码块，以循环执行。在这样的块内部，<a href="https://cmake.org/cmake/help/latest/command/break.html#command:break">break()</a>命令可以用来提前终止循环，而<a href="https://cmake.org/cmake/help/latest/command/continue.html#command:continue">continue()</a>命令可以用来立即开始下一次迭代。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> 命令定义（Command Definitions）</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+macro()]]/endmacro()和 <a href="https://cmake.org/cmake/help/latest/command/function.html#command:function">function()</a>/ endfunction()命令将代码块分隔以便稍后调用以作为命令被记录。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 变量（Variables）</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+变量是 CMake 语言的基本存储单元。它们的值始终是字符串类型，尽管有些命令可能会将字符串解释为其他类型的值。<a href="https://cmake.org/cmake/help/latest/command/set.html#command:set">set()</a>和 unset()命令明确设置或取消设置变量，但其他命令也具有修改变量的语义。变量名称区分大小写，几乎可以包含任何文本，但是我们推荐使用只包含字母数字字符加上_和 - 的名称。
+</p>
+
+<p>
+变量具有动态范围。每个变量“set”或“unset”在当前范围内创建一个绑定：
+</p>
+
+<ul class="org-ul">
+<li>函数作用域（Function Scope）
+
+<p>
+由 function（）命令创建的命令定义创建命令，当被调用时，在一个新的变量绑定范围中处理记录的命令。通过“set”或“unset”在此范围内绑定的变量，只对于当前函数及其内部的任何嵌套调用可见，函数返回后不可见。
+</p>
+</li>
+
+<li>目录作用域（Directory Scope）
+
+<p>
+源树中的每个目录都有自己的变量绑定。在处理目录中的 CMakeLists.txt 文件之前，CMake 会复制父目录中当前定义的所有变量绑定（如果有的话）以初始化新的目录作用域。当用 cmake -P 进行处理时，CMake 脚本将变量绑定在一个“目录”范围内。
+</p>
+</li>
+
+<li>持久缓存（Persistent Cache）
+
+<p>
+CMake 存储一组单独的“缓存”变量或“缓存条目”，它们的值在项目构建树中的多个运行中保持不变。缓存条目具有独立绑定范围，仅由显式请求修改，例如由 set（）和 unset（）命令的 CACHE 选项 修改。
+</p>
+</li>
+</ul>
+
+<p>
+当评估变量引用时，CMake 首先搜索函数调用堆栈（如果有的话）进行绑定，然后回退到当前目录范围中的绑定（如果有的话）。如果找到“set”绑定，则使用它的值。如果找到“unset”绑定，或者没有找到绑定，CMake 就会搜索一个缓存条目。如果找到缓存条目，则使用其值。否则，变量引用计算为空字符串。
+</p>
+
+<p>
+<a href="https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html#manual:cmake-variables(7)">cmake-variables(7)</a>手册记录了由 CMake 提供的许多变量，或者在由项目代码设置时对 CMake 有意义。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> 列表（List）</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+尽管 CMake 中的所有值都以字符串的形式存储，但是在特定的上下文中（例如在求值一个 <a href="https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#unquoted-argument">Unquoted Argument</a> 期间），可能会将字符串视为列表。在这样的上下文中，一个字符串用“;”字符，将[和]不相等或“\”之后的字符分割为列表元素。序列“\;”不划分字符，而是在产生的元素被“;”取代。
+</p>
+
+<p>
+元素列表通过由“;”将分隔的元素连接表示为一个字符串。例如，set（）命令将多个值作为列表存储到目标变量中：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">set(srcs a.c b.c c.c) # sets "srcs" to "a.c;b.c;c.c"
+</pre>
+</div>
+
+<p>
+列表适用于简单用例，如源文件列表，不应用于复杂的数据处理任务。构造列表的大多数命令不会转义列表元素中的“;”的字符，从而扁平化嵌套列表：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">set(x a "b;c") # sets "x" to "a;b;c", not "a;b\;c"
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: phenix3443</p>
+<p class="date">Created: 2018-01-15 一 17:58</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
