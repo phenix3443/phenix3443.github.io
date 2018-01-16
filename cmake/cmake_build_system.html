@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>cmake build system 笔记</title>
-<!-- 2018-01-15 一 18:02 -->
+<!-- 2018-01-16 二 10:44 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="phenix3443" />
@@ -142,138 +142,243 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. 简介</a></li>
-<li><a href="#sec-2">2. 二进制目标</a>
+<li><a href="#sec-1">1. 简介（Introduction）</a></li>
+<li><a href="#sec-2">2. 二进制目标（Binary Targets）</a>
 <ul>
-<li><a href="#sec-2-1">2.1. Binary Executables</a></li>
-<li><a href="#sec-2-2">2.2. Binary Library Types</a>
+<li><a href="#sec-2-1">2.1. 二进制执行程序（Binary Executables）</a></li>
+<li><a href="#sec-2-2">2.2. 二进制库类型（Binary Library Types）</a>
 <ul>
-<li><a href="#sec-2-2-1">2.2.1. Normal Libraries</a></li>
-<li><a href="#sec-2-2-2">2.2.2. Apple Framework</a></li>
-<li><a href="#sec-2-2-3">2.2.3. Object Libraries</a></li>
+<li><a href="#sec-2-2-1">2.2.1. 普通库（Normal Libraries）</a>
+<ul>
+<li><a href="#sec-2-2-1-1">Apple Framework</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-2-2">2.2.2. Object Libraries</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#sec-3">3. Build Specification and Usage Requirement（构建规范和使用要求）</a>
+<li><a href="#sec-3">3. 构建规范和使用要求 （Build Specification and Usage Requirements）</a>
 <ul>
-<li><a href="#sec-3-1">3.1. Target Properties（目标属性）</a></li>
-<li><a href="#sec-3-2">3.2. Transitive Usage Requirements（可传递的使用要求）</a></li>
-<li><a href="#sec-3-3">3.3. Compatible Interface Properties（兼容的接口属性）</a></li>
-<li><a href="#sec-3-4">3.4. Property Origin Debugging（面向调试的属性）</a></li>
-<li><a href="#sec-3-5">3.5. Build Specification with Generator Expressions（构建规范中使用生成表达式）</a></li>
-<li><a href="#sec-3-6">3.6. Include Directories and Usage Requirements（头文件目录和使用要求）</a></li>
-<li><a href="#sec-3-7">3.7. Link Libraries and Generator Expressions（链接库和生成表达式）</a></li>
+<li><a href="#sec-3-1">3.1. 目标属性（Target Properties）</a></li>
+<li><a href="#sec-3-2">3.2. 传递使用要求（Transitive Usage Requirements）</a></li>
+<li><a href="#sec-3-3">3.3. 兼容的接口属性（Compatible Interface Properties）</a></li>
+<li><a href="#sec-3-4">3.4. 面向调试的属性（Property Origin Debugging）</a></li>
+<li><a href="#sec-3-5">3.5. 使用生成器表达式构建规范（Build Specification with Generator Expressions）</a></li>
+<li><a href="#sec-3-6">3.6. 头文件目录和使用要求（Include Directories and Usage Requirements）</a></li>
+<li><a href="#sec-3-7">3.7. 链接库和生成表达式（Link Libraries and Generator Expressions）</a></li>
+<li><a href="#sec-3-8">3.8. 输出（Output Artifacts）</a>
+<ul>
+<li><a href="#sec-3-8-1">3.8.1. Runtime Output Artifacts</a></li>
+<li><a href="#sec-3-8-2">3.8.2. Library Output Artifacts</a></li>
+<li><a href="#sec-3-8-3">3.8.3. Archive Output Artifacts</a></li>
+<li><a href="#sec-3-8-4">3.8.4. Directory-Scoped Commands</a></li>
 </ul>
 </li>
-<li><a href="#sec-4">4. Output Artifacts（输出）</a>
-<ul>
-<li><a href="#sec-4-1">4.1. Runtime Output Artifacts</a></li>
-<li><a href="#sec-4-2">4.2. Library Output Artifacts</a></li>
-<li><a href="#sec-4-3">4.3. Archive Output Artifacts</a></li>
-<li><a href="#sec-4-4">4.4. Directory-Scoped Commands</a></li>
 </ul>
 </li>
-<li><a href="#sec-5">5. Pseudo Targets</a></li>
-<li><a href="#sec-6">6. Imported Target</a></li>
+<li><a href="#sec-4">4. 伪目标（Pseudo Targets）</a></li>
+<li><a href="#sec-5">5. 导入的目标（Imported Target）</a></li>
+<li><a href="#sec-6">6. 别名目标（Alias Targets）</a></li>
 <li><a href="#sec-7">7. Interface Libraries</a></li>
 </ul>
 </div>
 </div>
 
-
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> 简介</h2>
+<h2 id="sec-1"><span class="section-number-2">1</span> 简介（Introduction）</h2>
 <div class="outline-text-2" id="text-1">
-<ul class="org-ul">
-<li>high-level logical target: executable, library, custom target
-</li>
-<li>dependencies determine the build order and regeneration
-</li>
-</ul>
+<p>
+基于 CMake 的构建系统被组织为一组高级逻辑目标。每个目标对应于一个可执行文件或库，或者是一个包含自定义命令的自定义目标。构建系统说明了目标之间的依赖关系，以此确定构建顺序和响应于变化的再生规则。
+</p>
 </div>
 </div>
 
 <div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> 二进制目标</h2>
+<h2 id="sec-2"><span class="section-number-2">2</span> 二进制目标（Binary Targets）</h2>
 <div class="outline-text-2" id="text-2">
-<ul class="org-ul">
-<li>add_executable()
-</li>
-<li>add_library()
-</li>
-<li>target_link_libraries()
-</li>
-</ul>
+<p>
+可执行文件和库是使用<a href="https://cmake.org/cmake/help/latest/command/add_executable.html#command:add_executable">add_executable()</a>和 <a href="https://cmake.org/cmake/help/latest/command/add_library.html#command:add_library">add_library()</a>命令定义的。生成的二进制文件具有平台相关的前缀，后缀和扩展名。进制目标之间的依赖关系使用 <a href="https://cmake.org/cmake/help/latest/command/target_link_libraries.html#command:target_link_libraries">target_link_libraries()</a>命令表示：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">add_library(archive archive.cpp zip.cpp lzma.cpp)
+add_executable(zipapp zipapp.cpp)
+target_link_libraries(zipapp archive)
+</pre>
+</div>
+<p>
+archive 被定义为静态库 - 一个包含从 archive.cpp，zip.cpp 和 lzma.cpp 编译的对象的归档文件。zipapp 被定义为通过编译和链接 zipapp.cpp 形成的可执行文件。链接 zipapp 可执行文件时链接了 archive 静态库。
+</p>
 </div>
 
 <div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Binary Executables</h3>
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 二进制执行程序（Binary Executables）</h3>
 <div class="outline-text-3" id="text-2-1">
-<ul class="org-ul">
-<li>add_custom_command() 这个命令有什么作用？
-</li>
-</ul>
+<p>
+<a href="https://cmake.org/cmake/help/latest/command/add_executable.html#command:add_executable">add_executable()</a>命令定义一个可执行目标：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">add_executable(mytool mytool.cpp)
+</pre>
+</div>
+<p>
+有些命令（如 <a href="https://cmake.org/cmake/help/latest/command/add_custom_command.html#command:add_custom_command">add_custom_command()</a>）生成可以在构建时运行的规则，这些命令可以透明地使用 <a href="https://cmake.org/cmake/help/latest/prop_tgt/TYPE.html#prop_tgt:TYPE">EXECUTABLE</a> 目标作为 COMMAND 可执行文件。构建系统规则将确保在尝试运行命令之前构建可执行文件。
+</p>
 </div>
 </div>
+
+
 <div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Binary Library Types</h3>
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> 二进制库类型（Binary Library Types）</h3>
 <div class="outline-text-3" id="text-2-2">
 </div><div id="outline-container-sec-2-2-1" class="outline-4">
-<h4 id="sec-2-2-1"><span class="section-number-4">2.2.1</span> Normal Libraries</h4>
+<h4 id="sec-2-2-1"><span class="section-number-4">2.2.1</span> 普通库（Normal Libraries）</h4>
 <div class="outline-text-4" id="text-2-2-1">
-<ul class="org-ul">
-<li>BUILD_SHARED_LIBS
-</li>
-<li>In the context of the buildsystem definition as a whole, it is largely irrelevant whether particular libraries are SHARED or STATIC – the commands, dependency specifications and other APIs work similarly regardless of the library type.
-</li>
-</ul>
+<p>
+默认情况下，<a href="https://cmake.org/cmake/help/latest/command/add_library.html#command:add_library">add_library()</a>命令定义一个静态库，除非指定了一个类型。使用该命令时可以指定一个类型：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">add_library(archive SHARED archive.cpp zip.cpp lzma.cpp)
+add_library(archive STATIC archive.cpp zip.cpp lzma.cpp)
+</pre>
+</div>
+<p>
+可以启用 <a href="https://cmake.org/cmake/help/latest/variable/BUILD_SHARED_LIBS.html#variable:BUILD_SHARED_LIBS">BUILD_SHARED_LIBS</a> 变量来改变 add_library（）的行为来默认构建共享库。
+</p>
+
+<p>
+在整个构建系统定义的上下文中，特定的库是 SHARED 还是 STATIC 基本上是无关紧要的 - 无论库类型如何，命令，依赖规范和其他 API 的工作方式都是相似的。MODULE 库类型是不相似的，因为它通常不是用来链接的，它不在 <a href="https://cmake.org/cmake/help/latest/command/target_link_libraries.html#command:target_link_libraries">target_link_libraries()</a>命令的右侧使用。这是一种使用运行时技术作为插件加载的类型。如果库不导出任何非托管符号（例如 Windows 资源 DLL，C ++ / CLI DLL），则需要该库不是 SHARED 库，因为 CMake 期望 SHARED 库导出至少一个符号。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">add_library(archive MODULE 7z.cpp)
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2-1-1" class="outline-5">
+<h5 id="sec-2-2-1-1">Apple Framework</h5>
+<div class="outline-text-5" id="text-2-2-1-1">
+<p>
+SHARED 库可以用 FRAMEWORK 目标属性标记来创建 OS X 或 iOS Framework Bundle。MACOSX_FRAMEWORK_IDENTIFIER 设置 CFBundleIdentifier 密钥，并唯一标识该包。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">add_library(MyFramework SHARED MyFramework.cpp)
+set_target_properties(MyFramework PROPERTIES
+  FRAMEWORK TRUE
+  FRAMEWORK_VERSION A
+  MACOSX_FRAMEWORK_IDENTIFIER org.cmake.MyFramework
+)
+</pre>
+</div>
+</div>
 </div>
 </div>
 <div id="outline-container-sec-2-2-2" class="outline-4">
-<h4 id="sec-2-2-2"><span class="section-number-4">2.2.2</span> Apple Framework</h4>
-</div>
+<h4 id="sec-2-2-2"><span class="section-number-4">2.2.2</span> Object Libraries</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+OBJECT 库类型也不是用来链接的。它定义了编译给定源文件所产生的目标文件的非归档集合。目标文件集合可以用作其他目标的源输入：
+</p>
+<div class="org-src-container">
 
-<div id="outline-container-sec-2-2-3" class="outline-4">
-<h4 id="sec-2-2-3"><span class="section-number-4">2.2.3</span> Object Libraries</h4>
+<pre class="src src-cmake">add_library(archive OBJECT archive.cpp zip.cpp lzma.cpp)
+add_library(archiveExtras STATIC $&lt;TARGET_OBJECTS:archive&gt; extras.cpp)
+add_executable(test_exe $&lt;TARGET_OBJECTS:archive&gt; test.cpp)
+</pre>
+</div>
+<p>
+OBJECT 库可能不在 target_link_libraries（）的右侧使用。在使用 add_custom_command（TARGET）命令签名时，它们也不能用作 TARGET。他们可能被安装，并将作为 INTERFACE 库导出。
+</p>
+
+<p>
+尽管在调用 target_link_libraries（）命令时不能直接命名对象库，但可以通过使用 INTERFACE_SOURCES 目标属性设置为名称$ &lt;TARGET_OBJECTS：objlib&gt;的接口库来间接“链接”它们。
+</p>
+
+<p>
+尽管在使用 add_custom_command（TARGET）命令签名时，对象库不能用作 TARGET，但是可以使用$ &lt;TARGET_OBJECTS：objlib&gt;通过 add_custom_command（OUTPUT）或文件（GENERATE）来使用对象列表。
+</p>
+</div>
 </div>
 </div>
 </div>
 
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> Build Specification and Usage Requirement（构建规范和使用要求）</h2>
+<h2 id="sec-3"><span class="section-number-2">3</span> 构建规范和使用要求 （Build Specification and Usage Requirements）</h2>
 <div class="outline-text-2" id="text-3">
-<ul class="org-ul">
-<li>target_include_directories(), target_compile_definitions() and target_compile_options()
-</li>
-<li>PRIVATE, PUBLIC and INTERFACE
-
 <p>
-PRIVATE mode 填充目标属性的 non-INTERFACE_变体。INTERFACE mode 只填充 INTERFACE 变体。PUBLIC mode 两种变体都填充。
+<a href="https://cmake.org/cmake/help/latest/command/target_include_directories.html#command:target_include_directories">target_include_directories()</a>，<a href="https://cmake.org/cmake/help/latest/command/target_compile_definitions.html#command:target_compile_definitions">target_compile_definitions()</a>和 <a href="https://cmake.org/cmake/help/latest/command/target_compile_options.html#command:target_compile_options">target_compile_options()</a>命令指定了二进制目标的构建规范和使用要求。这些命令分别填充 <a href="https://cmake.org/cmake/help/latest/prop_tgt/INCLUDE_DIRECTORIES.html#prop_tgt:INCLUDE_DIRECTORIES">INCLUDE_DIRECTORIES</a>， <a href="https://cmake.org/cmake/help/latest/prop_tgt/COMPILE_DEFINITIONS.html#prop_tgt:COMPILE_DEFINITIONS">COMPILE_DEFINITIONS</a> 和 <a href="https://cmake.org/cmake/help/latest/prop_tgt/COMPILE_OPTIONS.html#prop_tgt:COMPILE_OPTIONS">COMPILE_OPTIONS</a> 目标属性，和/或 <a href="https://cmake.org/cmake/help/latest/prop_tgt/INTERFACE_INCLUDE_DIRECTORIES.html#prop_tgt:INTERFACE_INCLUDE_DIRECTORIES">INTERFACE_INCLUDE_DIRECTORIES</a>， <a href="https://cmake.org/cmake/help/latest/prop_tgt/INTERFACE_COMPILE_DEFINITIONS.html#prop_tgt:INTERFACE_COMPILE_DEFINITIONS">INTERFACE_COMPILE_DEFINITIONS</a> 和 <a href="https://cmake.org/cmake/help/latest/prop_tgt/INTERFACE_COMPILE_OPTIONS.html#prop_tgt:INTERFACE_COMPILE_OPTIONS">INTERFACE_COMPILE_OPTIONS</a> 目标属性。
 </p>
-</li>
-
-<li>Note that usage requirements are not designed as a way to make downstreams use particular COMPILE_OPTIONS or COMPILE_DEFINITIONS etc for convenience only.The contents of the properties must be requirements, not merely recommendations or convenience.
-</li>
-</ul>
-
 
 <p>
-<code>什么是 downstream？</code>
+每个命令都有一个 PRIVATE，PUBLIC 和 INTERFACE 模式。PRIVATE 模式仅填充目标属性的非 INTERFACE_变体，而 INTERFACE 模式仅填充 INTERFACE_变体。PUBLIC 模式填充相应目标属性的两个变体。每个命令都可以通过多次使用每个关键字来调用：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">target_compile_definitions(archive
+  PRIVATE BUILDING_WITH_LZMA
+  INTERFACE USING_ARCHIVE_LIB
+)
+</pre>
+</div>
+<p>
+请注意，使用要求不是为了方便使下游使用特定的 COMPILE_OPTIONS 或 COMPILE_DEFINITIONS 等。这些属性的内容是必须要求的，而不仅仅是建议或便利。
 </p>
 </div>
 
 <div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Target Properties（目标属性）</h3>
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 目标属性（Target Properties）</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
-INTERFACE_INCLUDE_DIRECTORIES, INTERFACE_COMPILE_DEFINITIONS and INTERFACE_COMPILE_OPTIONS 这三个目标属性是使用使用要求，它们指定了调用者正确编译和链接该目标时需要使用的内容。
+在编译二进制目标的源文件时，正确使用 INCLUDE_DIRECTORIES，COMPILE_DEFINITIONS 和 COMPILE_OPTIONS 目标属性的内容。
+</p>
+
+<p>
+将 INCLUDE_DIRECTORIES 中的条目伴随-I 或-isystem 前缀按照属性值中的出现顺序添加到编译行中。
+</p>
+
+<p>
+COMPILE_DEFINITIONS 中的条目使用前缀为-D 或/ D，并以未指定的顺序添加到编译行中。DEFINE_SYMBOL 目标属性也作为编译定义添加，作为 SHARED 和 MODULE 库目标的特殊便利情况。
+</p>
+
+<p>
+COMPILE_OPTIONS 中的条目针对 shell 进行转义，并按照属性值中的出现顺序添加。几个编译选项有特殊的单独处理，如 <a href="https://cmake.org/cmake/help/latest/prop_tgt/POSITION_INDEPENDENT_CODE.html#prop_tgt:POSITION_INDEPENDENT_CODE">POSITION_INDEPENDENT_CODE</a>。
+</p>
+
+<p>
+INTERFACE_INCLUDE_DIRECTORIES, INTERFACE_COMPILE_DEFINITIONS and INTERFACE_COMPILE_OPTIONS 内容 这三个目标属性是使用使用要求，它们指定了使用者正确编译和链接该目标时需要使用的内容。
 </p>
 
 <p>
 对于任意二进制目标，target_link_libraries()中指定的每个目标的 INTERFACE_ 属性都会被采用。
 </p>
 
+<div class="org-src-container">
+
+<pre class="src src-cmake">set(srcs archive.cpp zip.cpp)
+if (LZMA_FOUND)
+  list(APPEND srcs lzma.cpp)
+endif()
+add_library(archive SHARED ${srcs})
+if (LZMA_FOUND)
+  # The archive library sources are compiled with -DBUILDING_WITH_LZMA
+  target_compile_definitions(archive PRIVATE BUILDING_WITH_LZMA)
+endif()
+target_compile_definitions(archive INTERFACE USING_ARCHIVE_LIB)
+
+add_executable(consumer)
+# Link consumer to archive and consume its usage requirements. The consumer
+# executable sources are compiled with -DUSING_ARCHIVE_LIB.
+target_link_libraries(consumer archive)
+</pre>
+</div>
+<p>
+因为通常要求将源目录和相应的编译目录添加到 INCLUDE_DIRECTORIES 中，可以启用 <a href="https://cmake.org/cmake/help/latest/variable/CMAKE_INCLUDE_CURRENT_DIR.html#variable:CMAKE_INCLUDE_CURRENT_DIR">CMAKE_INCLUDE_CURRENT_DIR</a> 变量来方便地将相应的目录添加到所有目标的 INCLUDE_DIRECTORIES 中。可以启用变量 <a href="https://cmake.org/cmake/help/latest/variable/CMAKE_INCLUDE_CURRENT_DIR_IN_INTERFACE.html#variable:CMAKE_INCLUDE_CURRENT_DIR_IN_INTERFACE">CMAKE_INCLUDE_CURRENT_DIR_IN_INTERFACE</a>， 将相应的目录添加到所有目标的 INTERFACE_INCLUDE_DIRECTORIES 中。这使得通过使用 target_link_libraries（）命令方便地使用多个不同目录中的目标。
+</p>
 <ul class="org-ul">
 <li>CMAKE_INCLUDE_CURRENT_DIR
 </li>
@@ -284,152 +389,677 @@ INTERFACE_INCLUDE_DIRECTORIES, INTERFACE_COMPILE_DEFINITIONS and INTERFACE_COMPI
 </div>
 
 <div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Transitive Usage Requirements（可传递的使用要求）</h3>
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> 传递使用要求（Transitive Usage Requirements）</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
-Generally, a dependency should be specified in a use of target_link_libraries() with PRIVATE, INTERFACE and PUBLIC:
-</p>
-<ul class="org-ul">
-<li>PRIVATE: dependency is used only in the implementation of a library, and not in the header files.
-</li>
-<li>PUBLIC:  dependency is used in both implementation and header files of a library.。
-</li>
-<li>INTERFACE: dependency is used only in the header files of a library.
-</li>
-</ul>
-
-<p>
-Usage requirements are propagated by reading the INTERFACE_ variants of target properties from dependencies and appending the values to the non-INTERFACE_ variants of the operand.
+目标的使用需求可以传递给依赖。target_link_libraries（）命令具有 PRIVATE，INTERFACE 和 PUBLIC 关键字来控制传播。
 </p>
 
-<p>
-使用要求这样传递：目标属性中的 INTERFACE_ 变体取值从依赖中读取，然后将这些取值附加到相应属性的 non-INTERFACE_变体上。
-</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">add_library(archive archive.cpp)
+target_compile_definitions(archive INTERFACE USING_ARCHIVE_LIB)
+
+add_library(serialization serialization.cpp)
+target_compile_definitions(serialization INTERFACE USING_SERIALIZATION_LIB)
+
+add_library(archiveExtras extras.cpp)
+target_link_libraries(archiveExtras PUBLIC archive)
+target_link_libraries(archiveExtras PRIVATE serialization)
+# archiveExtras is compiled with -DUSING_ARCHIVE_LIB
+# and -DUSING_SERIALIZATION_LIB
+
+add_executable(consumer consumer.cpp)
+# consumer is compiled with -DUSING_ARCHIVE_LIB
+target_link_libraries(consumer archiveExtras)
+</pre>
+</div>
 
 <p>
-In cases where order is relevant and maintained, and the order resulting from the target_link_libraries() calls does not allow correct compilation, use of an appropriate command to set the property directly may update the order.
-</p>
-
-<p>
-如果 include 顺序维护有相关性，但 target_link_libraries()调用产生的顺序又不能正确编译，使用合适的命令直接设置属性可以更新顺序。
-</p>
-
-<p>
-使用 install(export)命令导出为了安装的目标时，指定目标的使用要求时候必须小心。
+由于 archive 是 archiveExtras 的 PUBLIC 依赖项，因此它的使用需求也会传播给使用者。由于序列化是 archiveExtras 的 PRIVATE 依赖项，因此它的使用要求不会传播给使用者。
 </p>
 
 <p>
-<code>export 是什么意思？install（export）是什么？</code>
+通常，如果只使用库的实现而不使用头文件，使用 target_link_libraries（）时应该在使用 PRIVATE 关键字来指定依赖项。如果还使用了依赖库的头文件（例如，用于类继承），则应该将其指定为 PUBLIC 依赖项。只使用了依赖库的头文件而没有使用实现，应该指定为一个 INTERFACE 依赖。调用 target_link_libraries（）命令可以通过使用多个关键字：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">target_link_libraries(archiveExtras
+  PUBLIC archive
+  PRIVATE serialization
+)
+</pre>
+</div>
+
+<p>
+传递使用要求，先要读取所依赖的目标属性中的 INTERFACE_ 变体，然后将这些取值附加到操作数相应属性的 non-INTERFACE_变体上。例如，依赖的 INTERFACE_INCLUDE_DIRECTORIES 被读取并附加到操作数的 INCLUDE_DIRECTORIES。   在顺序相关和需要维护的情况下，由于 target_link_libraries()调用产生的顺序或许不能正确编译，使用合适的命令直接设置属性可以更新顺序。
+</p>
+
+<p>
+例如，如果目标的链接库必须以 lib1 lib2 lib3 的顺序指定，但 include 目录必须以 lib3 lib1 lib2 的顺序指定：
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-cmake">target_link_libraries(myExe lib1 lib2 lib3)
+target_include_directories(myExe
+  PRIVATE $&lt;TARGET_PROPERTY:lib3,INTERFACE_INCLUDE_DIRECTORIES&gt;)
+</pre>
+</div>
+
+<p>
+请注意，如果是为了安装，使用<a href="https://cmake.org/cmake/help/latest/command/install.html#command:install">install(EXPORT)</a>命令导出，那么指定目标的使用需求时必须小心。
 </p>
 </div>
 </div>
 
 <div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Compatible Interface Properties（兼容的接口属性）</h3>
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> 兼容的接口属性（Compatible Interface Properties）</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
-Some target properties are required to be compatible between a target and the interface of each dependency.
+有些目标属性要求目标和每个依赖的接口保持兼容性。例如，POSITION_INDEPENDENT_CODE 目标属性可以指定目标是否应被编译为与位置无关的代码的布尔值，其具有平台特定的结果。目标也可以指定使用要求 INTERFACE_POSITION_INDEPENDENT_CODE 来传达使用者必须被编译为位置无关代码。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">add_executable(exe1 exe1.cpp)
+set_property(TARGET exe1 PROPERTY POSITION_INDEPENDENT_CODE ON)
+
+add_library(lib1 SHARED lib1.cpp)
+set_property(TARGET lib1 PROPERTY INTERFACE_POSITION_INDEPENDENT_CODE ON)
+
+add_executable(exe2 exe2.cpp)
+target_link_libraries(exe2 lib1)
+</pre>
+</div>
+
+<p>
+此处，exe1 和 exe2 将被编译为位置无关的代码。lib1 也将被编译为位置无关的代码，因为这是 SHARED 库的默认设置。如果依赖关系冲突，则不兼容的需求发出一个诊断信息：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">add_library(lib1 SHARED lib1.cpp)
+set_property(TARGET lib1 PROPERTY INTERFACE_POSITION_INDEPENDENT_CODE ON)
+
+add_library(lib2 SHARED lib2.cpp)
+set_property(TARGET lib2 PROPERTY INTERFACE_POSITION_INDEPENDENT_CODE OFF)
+
+add_executable(exe1 exe1.cpp)
+target_link_libraries(exe1 lib1)
+set_property(TARGET exe1 PROPERTY POSITION_INDEPENDENT_CODE OFF)
+
+add_executable(exe2 exe2.cpp)
+target_link_libraries(exe2 lib1 lib2)
+</pre>
+</div>
+<p>
+lib1 要求 INTERFACE_POSITION_INDEPENDENT_CODE 与 exe1 目标的 POSITION_INDEPENDENT_CODE 属性不“兼容”。该库要求使用者构建为位置无关代码，而可执行文件指定不构建为位置无关代码，所以发生了诊断。
 </p>
 
 <p>
-有些目标属性要求目标和每个依赖的接口保持兼容性。
+lib1 和 lib2 的要求不是“兼容的”。其中之一要求消费者被建立为与位置无关的代码，而另一个则要求消费者不被建立为与位置无关的代码。因为 exe2 链接到两者并且它们有冲突，所以发布诊断。
+</p>
+
+<p>
+为了“兼容”，POSITION_INDEPENDENT_CODE 属性（如果设置），必须与依赖项的传递的 INTERFACE_POSITION_INDEPENDENT_CODE 属性布尔意义上相同。
+</p>
+
+<p>
+通过在 COMPATIBLE_INTERFACE_BOOL 目标属性的内容中指定属性，可以将“兼容接口要求”的这个属性扩展到其他属性。每个指定的属性必须在消费目标和每个依赖项对应的 INTERFACE_前缀属性之间兼容：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">add_library(lib1Version2 SHARED lib1_v2.cpp)
+set_property(TARGET lib1Version2 PROPERTY INTERFACE_CUSTOM_PROP ON)
+set_property(TARGET lib1Version2 APPEND PROPERTY
+  COMPATIBLE_INTERFACE_BOOL CUSTOM_PROP
+)
+
+add_library(lib1Version3 SHARED lib1_v3.cpp)
+set_property(TARGET lib1Version3 PROPERTY INTERFACE_CUSTOM_PROP OFF)
+
+add_executable(exe1 exe1.cpp)
+target_link_libraries(exe1 lib1Version2) # CUSTOM_PROP will be ON
+
+add_executable(exe2 exe2.cpp)
+target_link_libraries(exe2 lib1Version2 lib1Version3) # Diagnostic
+</pre>
+</div>
+<p>
+非布尔属性也可以参与“兼容接口”的计算。COMPATIBLE_INTERFACE_STRING 属性中指定的属性必须是未指定的，或者可以与所有传递指定的依赖项中的相同字符串进行比较。这可以用来确保一个库的多个不兼容版本不会通过目标的传递需求链接在一起：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">add_library(lib1Version2 SHARED lib1_v2.cpp)
+set_property(TARGET lib1Version2 PROPERTY INTERFACE_LIB_VERSION 2)
+set_property(TARGET lib1Version2 APPEND PROPERTY
+  COMPATIBLE_INTERFACE_STRING LIB_VERSION
+)
+
+add_library(lib1Version3 SHARED lib1_v3.cpp)
+set_property(TARGET lib1Version3 PROPERTY INTERFACE_LIB_VERSION 3)
+
+add_executable(exe1 exe1.cpp)
+target_link_libraries(exe1 lib1Version2) # LIB_VERSION will be "2"
+
+add_executable(exe2 exe2.cpp)
+target_link_libraries(exe2 lib1Version2 lib1Version3) # Diagnostic
+</pre>
+</div>
+<p>
+COMPATIBLE_INTERFACE_NUMBER_MAX 目标属性指定将以数字方式评估的内容，以及用于计算所有指定的最大数目：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">add_library(lib1Version2 SHARED lib1_v2.cpp)
+set_property(TARGET lib1Version2 PROPERTY INTERFACE_CONTAINER_SIZE_REQUIRED 200)
+set_property(TARGET lib1Version2 APPEND PROPERTY
+  COMPATIBLE_INTERFACE_NUMBER_MAX CONTAINER_SIZE_REQUIRED
+)
+
+add_library(lib1Version3 SHARED lib1_v3.cpp)
+set_property(TARGET lib1Version3 PROPERTY INTERFACE_CONTAINER_SIZE_REQUIRED 1000)
+
+add_executable(exe1 exe1.cpp)
+# CONTAINER_SIZE_REQUIRED will be "200"
+target_link_libraries(exe1 lib1Version2)
+
+add_executable(exe2 exe2.cpp)
+# CONTAINER_SIZE_REQUIRED will be "1000"
+target_link_libraries(exe2 lib1Version2 lib1Version3)
+</pre>
+</div>
+<p>
+同样，可以使用 COMPATIBLE_INTERFACE_NUMBER_MIN 来计算来自依赖关系的属性的数字最小值。
+</p>
+
+<p>
+每个计算过“兼容”属性值可以在生成时使用生成器表达式在使用者中读取。
+</p>
+
+<p>
+请注意，对于每个依赖者，每个兼容接口属性中指定的一组属性不得与任何其他属性中指定的集合相交。
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-3-4" class="outline-3">
-<h3 id="sec-3-4"><span class="section-number-3">3.4</span> Property Origin Debugging（面向调试的属性）</h3>
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> 面向调试的属性（Property Origin Debugging）</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
-Because build specifications can be determined by dependencies, the lack of locality of code which creates a target and code which is responsible for setting build specifications may make the code more difficult to reason about.
+由于构建规范可以通过依赖关系来确定，因此如果创建目标的代码和负责构建规范的代码缺少定位，可能会使代码更难以推理。cmake 提供了调试机制，可以打印由依赖决定的属性的原始内容。CMAKE_DEBUG_TARGET_PROPERTIES 变量列出需要调试的属性。
 </p>
+<div class="org-src-container">
 
+<pre class="src src-cmake">set(CMAKE_DEBUG_TARGET_PROPERTIES
+  INCLUDE_DIRECTORIES
+  COMPILE_DEFINITIONS
+  POSITION_INDEPENDENT_CODE
+  CONTAINER_SIZE_REQUIRED
+  LIB_VERSION
+)
+add_executable(exe1 exe1.cpp)
+</pre>
+</div>
 <p>
-由于构建规范可以由依赖决定，由于缺少创建目标和设置构建规范代码的局部性，导致代码更加难以推理。c
-</p>
-
-<p>
-make 提供了一种调试机制，可以打印由依赖决定的属性的原始内容。将调试的属性在变量 CMAKE_DEBUG_TARGET_PROPERTIES 中列出。
+对于 COMPATIBLE_INTERFACE_BOOL 或 COMPATIBLE_INTERFACE_STRING 中列出的属性，调试输出显示哪个目标负责设置该属性，以及哪些其他依赖项也定义了该属性。在 COMPATIBLE_INTERFACE_NUMBER_MAX 和 COMPATIBLE_INTERFACE_NUMBER_MIN 的情况下，调试输出将显示每个依赖项的属性值，以及该值是否确定新的极值。
 </p>
 </div>
 </div>
 
 <div id="outline-container-sec-3-5" class="outline-3">
-<h3 id="sec-3-5"><span class="section-number-3">3.5</span> Build Specification with Generator Expressions（构建规范中使用生成表达式）</h3>
+<h3 id="sec-3-5"><span class="section-number-3">3.5</span> 使用生成器表达式构建规范（Build Specification with Generator Expressions）</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
-生成表达式包含条件性的内容或仅在生成阶段已知的内容。
+构建规范可以使用<a href="https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html#manual:cmake-generator-expressions(7)">生成器表达式(generator expressions )</a>，它包含那些可能是有条件的或仅在生成时才知道的内容，例如，可以使用 TARGET_PROPERTY 表达式来读取计算过的属性“兼容”值：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">add_library(lib1Version2 SHARED lib1_v2.cpp)
+set_property(TARGET lib1Version2 PROPERTY
+  INTERFACE_CONTAINER_SIZE_REQUIRED 200)
+set_property(TARGET lib1Version2 APPEND PROPERTY
+  COMPATIBLE_INTERFACE_NUMBER_MAX CONTAINER_SIZE_REQUIRED
+)
+
+add_executable(exe1 exe1.cpp)
+target_link_libraries(exe1 lib1Version2)
+target_compile_definitions(exe1 PRIVATE
+    CONTAINER_SIZE=$&lt;TARGET_PROPERTY:CONTAINER_SIZE_REQUIRED&gt;
+)
+</pre>
+</div>
+<p>
+在这种情况下，exe1 源文件将被编译为-DCONTAINER_SIZE = 200。
 </p>
 
 <p>
-<code>了解生成表达式内容</code> : $&lt;TARGET_PROPERTY:&gt;  $&lt;$&lt;CONFIG:Debug&gt;:DEBUG_BUILD&gt;
+决定构建规范的配置可以使用 CONFIG 生成器表达式方便地设置。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">target_compile_definitions(exe1 PRIVATE
+    $&lt;$&lt;CONFIG:Debug&gt;:DEBUG_BUILD&gt;
+)
+</pre>
+</div>
+<p>
+CONFIG 参数与正在构建的配置不区分大小写进行比较。在存在 IMPORTED 目标的情况下，MAP_IMPORTED_CONFIG_DEBUG 的内容也被该表达式考虑。
 </p>
 
 <p>
-IMPORTED configuration-mappings 是什么？
+由 cmake（1）生成的一些构建系统在 CMAKE_BUILD_TYPE 变量中设置了预定的构建配置。IDE（如 Visual Studio 和 Xcode）的构建系统是独立于构建配置生成的，实际的构建配置直到构建时才可知。所以代码如：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">string(TOLOWER ${CMAKE_BUILD_TYPE} _type)
+if (_type STREQUAL debug)
+  target_compile_definitions(exe1 PRIVATE DEBUG_BUILD)
+endif()
+</pre>
+</div>
+<p>
+对于基于 Makefile 和 Ninja 生成器可能会工作，但不能移植到 IDE 生成器。另外，IMPORTED 的配置映射不用这样的代码来解决，所以应该避免。
+</p>
+
+<p>
+一元 TARGET_PROPERTY 生成器表达式和 TARGET_POLICY 生成器表达式使用使用者的上下文进行计算。这意味着可以基于使用者对使用需求规格进行不同的求值：
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-cmake">add_library(lib1 lib1.cpp)
+target_compile_definitions(lib1 INTERFACE
+  $&lt;$&lt;STREQUAL:$&lt;TARGET_PROPERTY:TYPE&gt;,EXECUTABLE&gt;:LIB1_WITH_EXE&gt;
+  $&lt;$&lt;STREQUAL:$&lt;TARGET_PROPERTY:TYPE&gt;,SHARED_LIBRARY&gt;:LIB1_WITH_SHARED_LIB&gt;
+  $&lt;$&lt;TARGET_POLICY:CMP0041&gt;:CONSUMER_CMP0041_NEW&gt;
+)
+
+add_executable(exe1 exe1.cpp)
+target_link_libraries(exe1 lib1)
+
+cmake_policy(SET CMP0041 NEW)
+
+add_library(shared_lib shared_lib.cpp)
+target_link_libraries(shared_lib lib1)
+</pre>
+</div>
+<p>
+在这种情况下，将使用-DClimbingStats_FROM_BUILD_LOCATION 编译 exe1 可执行文件。导出命令用 INSTALL_INTERFACE 或 省略的 BUILD_INTERFACE 生成 IMPORTED 目标，并去除* _INTERFACE 标记。使用 ClimbingStats 包的单独项目将包含：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">find_package(ClimbingStats REQUIRED)
+
+add_executable(Downstream main.cpp)
+target_link_libraries(Downstream Upstream::ClimbingStats)
+</pre>
+</div>
+<p>
+Downstream 根据从构建位置还是安装位置使用 ClimbingStats 软件包，将使用-DClimbingStats_FROM_BUILD_LOCATION 或-DClimbingStats_FROM_INSTALL_LOCATION 进行编译。
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-3-6" class="outline-3">
-<h3 id="sec-3-6"><span class="section-number-3">3.6</span> Include Directories and Usage Requirements（头文件目录和使用要求）</h3>
+<h3 id="sec-3-6"><span class="section-number-3">3.6</span> 头文件目录和使用要求（Include Directories and Usage Requirements）</h3>
 <div class="outline-text-3" id="text-3-6">
-<ul class="org-ul">
-<li>$&lt;BUILD_INTERFACE:&gt;
-</li>
-<li>$&lt;INSTALL_INTERFACE:&gt;
-</li>
-<li>CMAKE_INCLUDE_CURRENT_DIR_IN_INTERFACE
-</li>
-</ul>
+<p>
+包含目录在被指定为使用要求时以及与生成器表达式一起使用时，需要特别考虑。target_include_directories（）命令接受相对和绝对包含目录：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">add_library(lib1 lib1.cpp)
+target_include_directories(lib1 PRIVATE
+  /absolute/path
+  relative/path
+)
+</pre>
+</div>
+<p>
+相对路径相对于命令出现的源目录进行解释。IMPORTED 目标的 INTERFACE_INCLUDE_DIRECTORIES 中不允许使用相对路径。
+</p>
+
+<p>
+在使用 non-trivial 生成器表达式的情况下，可以在 INSTALL_INTERFACE 表达式的参数内使用 INSTALL_PREFIX 表达式。它是一个替换标记，当由一个使用项目导入时，扩展为安装前缀。
+</p>
+
+<p>
+包含目录的使用要求在构建树和安装树之间通常是不同的。BUILD_INTERFACE 和 INSTALL_INTERFACE 生成器表达式可用于根据使用位置描述单独的使用要求。INSTALL_INTERFACE 表达式中允许相对路径，并相对于安装前缀进行解释。例如：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">add_library(ClimbingStats climbingstats.cpp)
+target_include_directories(ClimbingStats INTERFACE
+  $&lt;BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/generated&gt;
+  $&lt;INSTALL_INTERFACE:/absolute/path&gt;
+  $&lt;INSTALL_INTERFACE:relative/path&gt;
+  $&lt;INSTALL_INTERFACE:$&lt;INSTALL_PREFIX&gt;/$&lt;CONFIG&gt;/generated&gt;
+)
+</pre>
+</div>
+<p>
+有两个与包括目录使用要求相关的便利 API。CMAKE_INCLUDE_CURRENT_DIR_IN_INTERFACE 变量可以被启用，对于每个受影响的目标，其效果等同于：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">set_property(TARGET tgt APPEND PROPERTY INTERFACE_INCLUDE_DIRECTORIES
+  $&lt;BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR}&gt;
+)
+</pre>
+</div>
+<p>
+对于安装目标的便利是 INCLUDES DESTINATION 组件与 install（TARGETS）命令一起使用：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">install(TARGETS foo bar bat EXPORT tgts ${dest_args}
+  INCLUDES DESTINATION include
+)
+install(EXPORT tgts ${other_args})
+install(FILES ${headers} DESTINATION include)
+</pre>
+</div>
+<p>
+这相当于在由 install（EXPORT）生成时，将 <code>${CMAKE_INSTALL_PREFIX}/include</code> 附加到每个已安装的 IMPORTED 目标的 INTERFACE_INCLUDE_DIRECTORIES。
+</p>
+
+<p>
+当使用导入目标的 INTERFACE_INCLUDE_DIRECTORIES 时，属性中的条目将被视为 SYSTEM 包含目录，就像它们在依赖的 INTERFACE_SYSTEM_INCLUDE_DIRECTORIES 中列出一样。这可能会导致在这些目录中找到头的编译器警告的省略。<a href="https://cmake.org/cmake/help/latest/manual/cmake-buildsystem.7.html#imported-targets">导入目标( Imported Targets)</a>的这种行为可以通过在导入目标的使用者上设置 NO_SYSTEM_FROM_IMPORTED 目标属性来控制。
+</p>
+
+<p>
+如果二进制目标传递到 Mac OX 框架，则框架的 Headers 目录也被视为使用要求。这与将框架目录作为包含目录传递的效果相同。
+</p>
 </div>
 </div>
 
 <div id="outline-container-sec-3-7" class="outline-3">
-<h3 id="sec-3-7"><span class="section-number-3">3.7</span> Link Libraries and Generator Expressions（链接库和生成表达式）</h3>
-</div>
-</div>
-
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> Output Artifacts（输出）</h2>
-<div class="outline-text-2" id="text-4">
+<h3 id="sec-3-7"><span class="section-number-3">3.7</span> 链接库和生成表达式（Link Libraries and Generator Expressions）</h3>
+<div class="outline-text-3" id="text-3-7">
 <p>
-TARGET_FILE, TARGET_LINKER_FILE
+像构建规范一样，<a href="https://cmake.org/cmake/help/latest/prop_tgt/LINK_LIBRARIES.html#prop_tgt:LINK_LIBRARIES">链接库(link libraries)</a>可以用生成器表达式条件来指定。但是，由于使用需求的使用是基于从链接的依赖，所以链接依赖必须形成“有向无环图”。也就是说，如果链接到目标取决于目标属性的值，则该目标属性可能不依赖于链接的依赖关系：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">add_library(lib1 lib1.cpp)
+add_library(lib2 lib2.cpp)
+target_link_libraries(lib1 PUBLIC
+  $&lt;$&lt;TARGET_PROPERTY:POSITION_INDEPENDENT_CODE&gt;:lib2&gt;
+)
+add_library(lib3 lib3.cpp)
+set_property(TARGET lib3 PROPERTY INTERFACE_POSITION_INDEPENDENT_CODE ON)
+
+add_executable(exe1 exe1.cpp)
+target_link_libraries(exe1 lib1 lib3)
+</pre>
+</div>
+<p>
+由于 exe1 目标的 POSITION_INDEPENDENT_CODE 属性的值取决于链接库（lib3），因此，并且链接 exe1 的边缘由相同的 POSITION_INDEPENDENT_CODE 属性确定，上面的依赖关系图包含一个循环。cmake（1）在这种情况下发出一个诊断。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-8" class="outline-3">
+<h3 id="sec-3-8"><span class="section-number-3">3.8</span> 输出（Output Artifacts）</h3>
+<div class="outline-text-3" id="text-3-8">
+<p>
+由 add_library（）和 add_executable（）命令创建的构建系统目标会创建规则来产生二进制输出。二进制文件的确切输出位置只能在生成时确定，因为它可以依赖于构建配置和链接依赖关系的链接语言等。TARGET_FILE，TARGET_LINKER_FILE 和相关表达式可用于访问生成的二进制文件的名称和位置。但是，这些表达式不适用于 OBJECT 库，因为没有与这些表达式相关的库生成单个文件。
+</p>
+
+<p>
+有三种可能由目标构建的输出工件，详见以下章节。它们的分类在 DLL 平台和非 DLL 平台之间是不同的。所有基于 Windows 的系统，包括 Cygwin 都是 DLL 平台。
 </p>
 </div>
 
-<div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Runtime Output Artifacts</h3>
+<div id="outline-container-sec-3-8-1" class="outline-4">
+<h4 id="sec-3-8-1"><span class="section-number-4">3.8.1</span> Runtime Output Artifacts</h4>
+<div class="outline-text-4" id="text-3-8-1">
+<p>
+构建系统目标的运行时输出工件可能是：
+</p>
+
+<ul class="org-ul">
+<li>由 add_executable（）命令创建的可执行目标的可执行文件（例如.exe）。
+</li>
+<li>在 DLL 平台上：使用 SHARED 选项通过 add_library（）命令创建的共享库目标的可执行文件（例如.dll）。
+</li>
+</ul>
+
+<p>
+RUNTIME_OUTPUT_DIRECTORY 和 RUNTIME_OUTPUT_NAME 目标属性可用于控制构建树中的运行时输出工件位置和名称。
+</p>
+</div>
 </div>
 
-<div id="outline-container-sec-4-2" class="outline-3">
-<h3 id="sec-4-2"><span class="section-number-3">4.2</span> Library Output Artifacts</h3>
+
+<div id="outline-container-sec-3-8-2" class="outline-4">
+<h4 id="sec-3-8-2"><span class="section-number-4">3.8.2</span> Library Output Artifacts</h4>
+<div class="outline-text-4" id="text-3-8-2">
+<p>
+构建系统目标的库输出工件可能是：
+</p>
+<ul class="org-ul">
+<li>由 add_library（）命令与 MODULE 选项创建的模块库目标的可加载模块文件（例如.dll 或.so）。
+</li>
+<li>在非 DLL 平台上：由 add_library（）命令和 SHARED 选项创建的共享共享库目标的共享库文件（例如.so 或.dylib）。
+</li>
+</ul>
+
+<p>
+LIBRARY_OUTPUT_DIRECTORY 和 LIBRARY_OUTPUT_NAME 目标属性可用于控制构建树中的库输出工件位置和名称。
+</p>
+</div>
 </div>
 
-<div id="outline-container-sec-4-3" class="outline-3">
-<h3 id="sec-4-3"><span class="section-number-3">4.3</span> Archive Output Artifacts</h3>
+
+<div id="outline-container-sec-3-8-3" class="outline-4">
+<h4 id="sec-3-8-3"><span class="section-number-4">3.8.3</span> Archive Output Artifacts</h4>
+<div class="outline-text-4" id="text-3-8-3">
+<p>
+构建系统目标的归档输出工件可能是：
+</p>
+<ul class="org-ul">
+<li>静态库文件（例如.lib 或.a），由 add_library（）命令通过 STATIC 选项创建的静态库目标。
+</li>
+<li>在 DLL 平台上：由 add_library（）命令和 SHARED 选项创建的共享库目标的导入库文件（例如.lib）。只有在库导出至少一个非托管符号时，才能保证该文件存在。
+</li>
+<li>在 DLL 平台上：当设置了 ENABLE_EXPORTS 目标属性时，由 add_executable（）命令创建的可执行目标的导入库文件（例如.lib）。
+</li>
+</ul>
+
+<p>
+ARCHIVE_OUTPUT_DIRECTORY 和 ARCHIVE_OUTPUT_NAME 目标属性可用于控制构建树中的归档输出工件位置和名称。
+</p>
+</div>
 </div>
 
-<div id="outline-container-sec-4-4" class="outline-3">
-<h3 id="sec-4-4"><span class="section-number-3">4.4</span> Directory-Scoped Commands</h3>
+<div id="outline-container-sec-3-8-4" class="outline-4">
+<h4 id="sec-3-8-4"><span class="section-number-4">3.8.4</span> Directory-Scoped Commands</h4>
+<div class="outline-text-4" id="text-3-8-4">
+<p>
+target_include_directories（），target_compile_definitions（）和 target_compile_options（）命令一次只对一个目标产生影响。add_definitions（），add_compile_options（）和 include_directories（）函数具有类似的功能，但为了方便，在目录范围而不是目标范围内运行。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 伪目标（Pseudo Targets）</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+某些目标类型不代表构建系统的输出，而只代表输入，如外部依赖关系，别名或其他非构建工件。伪目标不在生成的生成系统中表示。
+</p>
 </div>
 </div>
 
 <div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> Pseudo Targets</h2>
+<h2 id="sec-5"><span class="section-number-2">5</span> 导入的目标（Imported Target）</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+IMPORTED 目标表示预先存在的依赖关系。通常这些目标是由上游软件包定义的，应该被视为不可变的。在 target_compile_definitions（），target_include_directories（），target_compile_options（）或 target_link_libraries（）命令的左侧使用 IMPORTED 目标是不可能的，因为这将试图对其进行修改。IMPORTED 目标被设计为仅用于这些命令的右侧。
+</p>
+
+<p>
+IMPORTED 目标可能具有与二进制目标相同的使用要求属性，如 INTERFACE_INCLUDE_DIRECTORIES，INTERFACE_COMPILE_DEFINITIONS，INTERFACE_COMPILE_OPTIONS，INTERFACE_LINK_LIBRARIES 和 INTERFACE_POSITION_INDEPENDENT_CODE。
+</p>
+
+<p>
+LOCATION 也可以从 IMPORTED 目标读取，尽管很少有理由这么做。诸如 add_custom_command（）之类的命令可以透明地使用 IMPORTED EXECUTABLE 目标作为 COMMAND 可执行文件。
+</p>
+
+<p>
+IMPORTED 目标的定义范围是其定义的目录。它可以从子目录访问和使用，但不能从父目录或兄弟目录中访问和使用。范围与 cmake 变量的范围类似。
+</p>
+
+<p>
+也可以定义一个可在生成系统中全局访问的 GLOBAL IMPORTED 目标。
+</p>
+
+<p>
+有关创建包含 IMPORTED 目标的包的更多信息，请参阅 cmake-packages（7）手册。
+</p>
+</div>
 </div>
 
 <div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> Imported Target</h2>
-</div>
+<h2 id="sec-6"><span class="section-number-2">6</span> 别名目标（Alias Targets）</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+ALIAS 目标是在只读上下文中可以与二进制目标名称交换使用的名称。ALIAS 目标的一个主要用例是例如或者随同一个库的单元测试可执行文件，这个可执行文件可能是同一个生成系统的一部分，也可能是基于用户配置单独构建的。
+</p>
+<div class="org-src-container">
 
+<pre class="src src-cmake">add_library(lib1 lib1.cpp)
+install(TARGETS lib1 EXPORT lib1Export ${dest_args})
+install(EXPORT lib1Export NAMESPACE Upstream:: ${other_args})
+
+add_library(Upstream::lib1 ALIAS lib1)
+</pre>
+</div>
+<p>
+在另一个目录中，我们可以无条件地链接到 Upstream::lib1 目标，它可能是一个包中的 IMPORTED 目标，或者是作为同一个生成系统的一部分构建的 ALIAS 目标。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">if (NOT TARGET Upstream::lib1)
+  find_package(lib1 REQUIRED)
+endif()
+add_executable(exe1 exe1.cpp)
+target_link_libraries(exe1 Upstream::lib1)
+</pre>
+</div>
+<p>
+ALIAS 目标不可变，可安装或可导出。对于构建系统描述来说，它们完全是本地的。通过读取 ALIASED_TARGET 属性，可以测试名称是否是别名。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">get_target_property(_aliased Upstream::lib1 ALIASED_TARGET)
+if(_aliased)
+  message(STATUS "The name Upstream::lib1 is an ALIAS for ${_aliased}.")
+endif()
+</pre>
+</div>
+</div>
+</div>
 <div id="outline-container-sec-7" class="outline-2">
 <h2 id="sec-7"><span class="section-number-2">7</span> Interface Libraries</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+INTERFACE 目标没有 <a href="https://cmake.org/cmake/help/latest/prop_tgt/LOCATION.html#prop_tgt:LOCATION">LOCATION</a> 并且是可变的，但在其他方面类似于 IMPORTED 目标。
+</p>
+
+<p>
+它可以指定使用要求，例如 INTERFACE_INCLUDE_DIRECTORIES，INTERFACE_COMPILE_DEFINITIONS，INTERFACE_COMPILE_OPTIONS，INTERFACE_LINK_LIBRARIES，INTERFACE_SOURCES 和 INTERFACE_POSITION_INDEPENDENT_CODE。只有 INTERFACE 模式可以与 INTERFACE 库一起使用，包括 target_include_directories（），target_compile_definitions（），target_compile_options（），target_sources（）和 target_link_libraries（）命令。
+</p>
+
+<p>
+INTERFACE 库的主要用途是仅包含头文件的库。
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-cmake">add_library(Eigen INTERFACE)
+target_include_directories(Eigen INTERFACE
+  $&lt;BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src&gt;
+  $&lt;INSTALL_INTERFACE:include/Eigen&gt;
+)
+
+add_executable(exe1 exe1.cpp)
+target_link_libraries(exe1 Eigen)
+</pre>
+</div>
+<p>
+这里，Eigen 目标的使用需求在编译时被消耗和使用，但对链接没有影响。
+</p>
+
+<p>
+另一个用例是针对使用需求采用完全针对目标的设计：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">add_library(pic_on INTERFACE)
+set_property(TARGET pic_on PROPERTY INTERFACE_POSITION_INDEPENDENT_CODE ON)
+add_library(pic_off INTERFACE)
+set_property(TARGET pic_off PROPERTY INTERFACE_POSITION_INDEPENDENT_CODE OFF)
+
+add_library(enable_rtti INTERFACE)
+target_compile_options(enable_rtti INTERFACE
+  $&lt;$&lt;OR:$&lt;COMPILER_ID:GNU&gt;,$&lt;COMPILER_ID:Clang&gt;&gt;:-rtti&gt;
+)
+
+add_executable(exe1 exe1.cpp)
+target_link_libraries(exe1 pic_on enable_rtti)
+</pre>
+</div>
+<p>
+这样，exe1 的构建规范完全被表示为链接目标，并且编译器特定标志的复杂性被封装在 INTERFACE 库目标中。
+</p>
+
+<p>
+允许在 INTERFACE 库上设置或读取的属性有：
+</p>
+<ul class="org-ul">
+<li>Properties matching INTERFACE_*
+</li>
+<li>Built-in properties matching COMPATIBLE_INTERFACE_*
+</li>
+<li>EXPORT_NAME
+</li>
+<li>IMPORTED
+</li>
+<li>NAME
+</li>
+<li>Properties matching IMPORTED_LIBNAME_*
+</li>
+<li>Properties matching MAP_IMPORTED_CONFIG_*
+</li>
+</ul>
+
+<p>
+INTERFACE 库可以被安装和导出。他们引用的任何内容必须单独安装：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">add_library(Eigen INTERFACE)
+target_include_directories(Eigen INTERFACE
+  $&lt;BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src&gt;
+  $&lt;INSTALL_INTERFACE:include/Eigen&gt;
+)
+
+install(TARGETS Eigen EXPORT eigenExport)
+install(EXPORT eigenExport NAMESPACE Upstream::
+  DESTINATION lib/cmake/Eigen
+)
+install(FILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/eigen.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/vector.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/matrix.h
+  DESTINATION include/Eigen
+</pre>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: phenix3443</p>
-<p class="date">Created: 2018-01-15 一 18:02</p>
+<p class="date">Created: 2018-01-16 二 10:44</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
