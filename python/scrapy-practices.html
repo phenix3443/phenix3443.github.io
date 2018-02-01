@@ -1,0 +1,720 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>scrapy 实践</title>
+<!-- 2018-02-01 四 17:17 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="刘尚亮" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">scrapy 实践</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. 概述</a></li>
+<li><a href="#sec-2">2. 最简单的爬虫</a></li>
+<li><a href="#sec-3">3. 爬虫项目</a></li>
+<li><a href="#sec-4">4. 设置</a></li>
+<li><a href="#sec-5">5. 解析页面元素</a></li>
+<li><a href="#sec-6">6. 存储结果</a></li>
+<li><a href="#sec-7">7. 控制 spider 数据流向</a></li>
+<li><a href="#sec-8">8. 从脚本启动爬虫</a></li>
+<li><a href="#sec-9">9. 部署</a></li>
+<li><a href="#sec-10">10. ajax 异步</a></li>
+<li><a href="#sec-11">11. 分布式爬虫</a></li>
+<li><a href="#sec-12">12. 其他</a>
+<ul>
+<li><a href="#sec-12-1">12.1. 中文文档</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 概述</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+本文通过实践，逐步学习爬虫知识。文中代码如无特殊说明都来自<a href="https://doc.scrapy.org/en/latest/">Scrapy 1.5 documentation</a>，
+</p>
+
+<p>
+使用爬虫主要是为了方便的从网络上获取一些想要的数据，在此过程中，涉及到数据的抓取、过滤、分析和存储，我们可以使用一些基础的 python 库，如 requesets、beautifulsoup 来完整实现实现爬虫。但也可以使用现成的框架，如 scrap，好处在于，它：
+</p>
+<ol class="org-ol">
+<li>抽象爬虫的工作流程，实现了很多通用的模块，如下载模块，解析模块。我们只要关注核心的业务模块就可以了。
+</li>
+<li>提供了很多内置的功能，例如内置的几种 export 模块。
+</li>
+<li>可以高性能、分布式的爬取信息。scrapy 基于 twisted 实现了异步请求，可以异步处理爬虫任务。
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 最简单的爬虫</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+前面说到，使用 scrapy，我们只需要关注核心的业务模块就可以。爬虫的整个工作流程中最基础的就是页面的抓取和分析了，下面我们来实现一个最简单的爬虫：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">import scrapy
+
+
+class QuotesSpider(scrapy.Spider):
+    name = "quotes"
+    start_urls = [
+        'http://quotes.toscrape.com/tag/humor/',
+    ]
+
+    def parse(self, response):
+        for quote in response.css('div.quote'):
+            yield {
+                'text': quote.css('span.text::text').extract_first(),
+                'author': quote.xpath('span/small/text()').extract_first(),
+            }
+
+        next_page = response.css('li.next a::attr("href")').extract_first()
+        if next_page is not None:
+            yield response.follow(next_page, self.parse)
+</pre>
+</div>
+<p>
+这是我们通过类实现的一个爬虫，具体的语法内容参考文档，下面我们运行该爬虫：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">scrapy runspider quotes_spider.py -o quotes.json
+</pre>
+</div>
+<p>
+scrapy 可以单独运行一个爬虫，通过上面的代码：
+</p>
+<ul class="org-ul">
+<li>从网页中提取两个内容：格言的内容（text）和作者（author）
+</li>
+<li>next_page 表示继续爬取下一页内容
+</li>
+<li><code>-o~参数表示将提取的内容保存到 ~quotes.json</code> 文件中。
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-json">[{
+    "author": "Jane Austen",
+    "text": "\u201cThe person, be it gentleman or lady, who has not pleasure in a good novel, must be intolerably stupid.\u201d"
+},
+{
+    "author": "Groucho Marx",
+    "text": "\u201cOutside of a dog, a book is man's best friend. Inside of a dog it's too dark to read.\u201d"
+},
+{
+    "author": "Steve Martin",
+    "text": "\u201cA day without sunshine is like, you know, night.\u201d"
+},
+...]
+</pre>
+</div>
+
+<p>
+看到上面保存的文件中，有些编码\uxxx，使用 json 库的话会明白，这是保存 json 文件时候的编码问题，后面解决这个问题。
+</p>
+
+<p>
+待解决问题：
+</p>
+<ul class="org-ul">
+<li>一个完整的爬虫项目应该是如何组织？
+</li>
+<li>如何设置输出文件的编码？
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 爬虫项目</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+一个爬虫项目当然不可能只是上面一个爬虫类，下面我们看下如何建立一个工程意义上的爬虫项目：
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">scrapy startproject tutorial
+</pre>
+</div>
+
+<p>
+scrapy 提供很多<a href="https://docs.scrapy.org/en/latest/topics/commands.html">命令行工具</a> ，可以方便的建立爬虫项目、改变项目设置、调试爬虫等。上面的命令建立了一个名为 tutorial 的爬虫项目。tutorial 下的文档结构：
+</p>
+<pre class="example">
+tutorial/
+  scrapy.cfg            # deploy configuration file
+  tutorial/             # project's Python module, you'll import your code from here
+      __init__.py
+      items.py          # project items definition file
+      middlewares.py    # project middlewares file
+      pipelines.py      # project pipelines file
+      settings.py       # project settings file
+      spiders/          # a directory where you'll later put your spiders
+          __init__.py
+</pre>
+
+<p>
+之后我们所有的爬虫都会放在 <code>tutorial/spiders</code> 目录下。 将之前写的 <code>quote_spider.py</code> 放在此目录下。现在我们运行完整的爬虫项目：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">scrapy crawl quotes -o quotes.json
+</pre>
+</div>
+<p>
+注意：输出是追加到文件中，它并不会清空原先 quotes.json 中的内容。
+</p>
+
+<p>
+查看其中的内容，可以发现最终的数据都被放在 json 数组中，我们更希望每条数据一行记录：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">scrapy crawl quotes -o quotes.jl
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 设置</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+通过调整爬虫的设置，可以解决结果文件中的编码问题。设置相关参考 <a href="https://docs.scrapy.org/en/latest/topics/settings.html">settings</a>。
+</p>
+
+<p>
+具体来说，需要设置在 <code>tutorial/tutorial/settings.py</code> 中设置:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">FEED_EXPORT_ENCODING = "utf-8"
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> 解析页面元素</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+爬取的关键在于如何解析页面中的元素，这涉及到 scrapy 中药的概念：选择器（selectors）。选择器提供 xpath 和 css 两种方式来选取页面元素，参见 <a href="https://docs.scrapy.org/en/latest/topics/selectors.html">Selectors</a>。 实践中，我们通常结合两种方式，快速的选定元素。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> 存储结果</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+上面的步骤中，parse 函数中，将解析到的数据组成 python dict 结构，通过 <code>yield</code> 返回，最终保存在 json 文件中。
+</p>
+
+<p>
+但实际工作中，对数据的处理并不是这么简单，这些数据会进行过滤、分析、然后可能会被发送到其他服务器，存储到数据库等。scrapy 中通过 <a href="https://docs.scrapy.org/en/latest/topics/item-pipeline.html">Pipeline</a> （管道）来实现这样的流程，（有点像 linux 的管道操作符）。在 pipeline 中传输的数据被抽象为<a href="https://docs.scrapy.org/en/latest/topics/items.html">Items</a>。
+</p>
+
+<p>
+在 tutorial/tutorial/items.py 中添加自定的 item：
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python">class QuoteItem(scrapy.Item):
+    # store quotes spider result
+    text = scrapy.Field()
+    author = scrapy.Field()
+</pre>
+</div>
+
+<p>
+修改 tutorial/tutorial/spiders/quotes_spider 中响应的代码：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"># -*- coding: utf-8 -*-
+import scrapy
+from tutorial.items import QuoteItem # 注意此处的引用
+
+
+
+class QuotesSpider(scrapy.Spider):
+    name = 'quotes'
+    # custom_settings = {
+    #     'ITEM_PIPELINES': {
+    #         'tutorial.pipelines.CSVPipeline': 400
+    #     }
+    # }
+    allowed_domains = ['quotes.toscrape.com']
+    start_urls = ['http://quotes.toscrape.com/page/1/']
+
+    def parse(self, response):
+        for quote in response.css('div.quote'):
+            qi = QuoteItem()
+            qi["text"] = quote.css('span.text::text').extract_first()
+            qi["author"] = quote.css('small.author::text').extract_first()
+            yield qi
+
+        next_page = response.css('li.next a::attr(href)').extract_first()
+        if next_page is not None:
+            yield response.follow(next_page, callback=self.parse)
+</pre>
+</div>
+
+<p>
+在 tutorial/tutorial/pipelines.py 中添加自定义的管道：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">class CSVPipeline(object):
+    def open_spider(self, spider):
+        self.csv_file = open("quotes.csv", "w")
+
+    def close_spider(self, spider):
+        self.csv_file.close()
+
+    def process_item(self, item, spider):
+        if spider.name == "quotes":
+            text = item.get("text")
+            author = item.get("author")
+            self.csv_file.write("{},{}\n".format(text, author))
+            return item
+</pre>
+</div>
+
+<p>
+CSVPipeline 将 itemb 保存到 csv 文件中。
+</p>
+
+<p>
+注意： <b>process_item 最后要将 item 返回</b> ，需要注意这样一个事实：一个 item 是可以经过多个 item 处理的。
+</p>
+
+<p>
+现在修改设置，向 scrapy 框架注册 pipeline，这样 scrapy 才可以调用 pipeline 处理 item。
+</p>
+
+<p>
+修改 tutorial/tutorial/settings.py：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">ITEM_PIPELINES = {
+    'tutorial.pipelines.TutorialPipeline': 300,
+    'tutorial.pipelines.CSVPipeline': 400
+}
+</pre>
+</div>
+<p>
+pipeline 后面的数据表示优先级，数字越小，优先级越高。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> 控制 spider 数据流向</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+实际项目中不可能只有一个爬虫， 一般来说， <b>一个有效的页面解析对应一个爬虫</b> 。我们添加一个解析格言作者信息的爬虫：
+</p>
+
+<p>
+tutorial/tutorial/spiders/author_spider.py
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"># -*- coding:utf-8 -*-
+# author:liushangliang@xunlei.com
+import scrapy
+
+
+class AuthorSpider(scrapy.Spider):
+    name = 'author'
+
+    start_urls = ['http://quotes.toscrape.com/']
+
+    def parse(self, response):
+        # follow links to author pages
+        for href in response.css('.author + a::attr(href)'):
+            yield response.follow(href, self.parse_author)
+
+        # follow pagination links
+        for href in response.css('li.next a::attr(href)'):
+            yield response.follow(href, self.parse)
+
+    def parse_author(self, response):
+        def extract_with_css(query):
+            return response.css(query).extract_first().strip()
+
+        yield {
+            'name': extract_with_css('h3.author-title::text'),
+            'birthdate': extract_with_css('.author-born-date::text'),
+            'bio': extract_with_css('.author-description::text'),
+        }
+</pre>
+</div>
+
+<p>
+现在有两个 spider，他们解析到了不同的数据，如何控制各自 spider 产生的数据经过不同 pipeline 呢？有两种方法：
+</p>
+<ul class="org-ul">
+<li>方法一通过 pipeline 中的 spider.name 来做判断。
+</li>
+<li>方法二通过在 spdier 中的 custom_settings 来指定。
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python">custom_settings = {
+        'ITEM_PIPELINES': {
+            '&lt;project_name&gt;.pipelines.&lt;pipeline_name&gt;': 100
+        }
+    }
+</pre>
+</div>
+
+<p>
+实践中：通常用第二种方法指定 spider 特定的 pipeline。在 settings.py 中制定所有 spider 都要经过的 pipeline。
+</p>
+
+<p>
+现在只需要 quotes_spider 将输出写到 csv 文件，修改后 quotes_spider.py：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"># -*- coding: utf-8 -*-
+import scrapy
+from tutorial.items import QuoteItem
+
+
+class QuotesSpider(scrapy.Spider):
+    name = 'quotes'
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'tutorial.pipelines.CSVPipeline': 400
+        }
+    }
+    allowed_domains = ['quotes.toscrape.com']
+.......
+</pre>
+</div>
+<p>
+还需要对应修改 tutorial/tutorial/settings.py：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">ITEM_PIPELINES = {
+    'tutorial.pipelines.TutorialPipeline': 300,
+    # 'tutorial.pipelines.CSVPipeline': 400
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> 从脚本启动爬虫</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+之前都是从命令行启动爬虫，但有时候需要冲脚本启动爬虫，比如爬虫项目是另外一个项目的子项目。具体方法参见<a href="https://doc.scrapy.org/en/latest/topics/practices.html">Run Scrapy from a script</a> 。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> 部署</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+可以通过定时任务让爬虫程序定时执行。但是如果有多个爬虫，就需要并行执行来提高效率。
+</p>
+
+<p>
+scrapy 提供了更好的方式来部署爬虫：<a href="https://scrapyd.readthedocs.io/en/latest/index.html">scrapyd</a>。  scrapyd 是 demon 程序，提供了 HTTP 接口对爬虫进行方便的部署、运行和监控。。
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo pip3 install scrapyd
+</pre>
+</div>
+
+<p>
+但是<a href="https://github.com/scrapy/scrapyd-client">scrapyd-client</a> 提供了更方便的操作方式。
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo pip3 install --upgrade git+https://github.com/scrapy/scrapyd-client
+</pre>
+</div>
+<p>
+注意：使用 <code>pip3 install scrapyd-client</code> 安装的程序将会在命令行找不到 <code>scrapyd-client</code> 命令，所以需要用 github 代码进行更新升级。
+</p>
+
+<p>
+现在进入 scrapy.cfg 目录下（爬虫的 root 目录）：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">tutorial$ scrapyd-deploy
+</pre>
+</div>
+
+<p>
+scrapyd 接口返回如下信息：
+</p>
+<pre class="example">
+Packing version 1517472918
+Deploying to project "tutorial" in http://localhost:6800/addversion.json
+Server response (200):
+{"project": "tutorial", "spiders": 2, "node_name": "lsl-ThinkPad-X1-Carbon-5th", "status": "ok", "version": "1517472918"}
+</pre>
+
+<p>
+上述信息说明：名为 tutorial 的 project 部署成功，它有两个 spider，具体看下：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">tutorial$ scrapyd-client spiders -p tutorial
+</pre>
+</div>
+<p>
+正式代码中实现的连个 spider。
+</p>
+<pre class="example">
+tutorial:
+  author
+  quotes
+</pre>
+<p>
+运行 quotes 的爬虫：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">tutorial$ scrapyd-client schedule -p tutorial quotes
+</pre>
+</div>
+
+<p>
+scrapyd-client 并没有完整的支持 scrapyd 所有 HTTP 接口，比如查询爬虫进度的接口：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">curl http://localhost:6800/listjobs.json?project=tutorial | python -m json.tool
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-10" class="outline-2">
+<h2 id="sec-10"><span class="section-number-2">10</span> ajax 异步</h2>
+</div>
+
+<div id="outline-container-sec-11" class="outline-2">
+<h2 id="sec-11"><span class="section-number-2">11</span> 分布式爬虫</h2>
+</div>
+
+<div id="outline-container-sec-12" class="outline-2">
+<h2 id="sec-12"><span class="section-number-2">12</span> 其他</h2>
+<div class="outline-text-2" id="text-12">
+</div><div id="outline-container-sec-12-1" class="outline-3">
+<h3 id="sec-12-1"><span class="section-number-3">12.1</span> 中文文档</h3>
+<div class="outline-text-3" id="text-12-1">
+<p>
+官方文档已经描述很简单了，如果英语有困难的，可以参考<a href="http://blog.csdn.net/sdulsj/article/category/6496301">scrapy 中文翻译</a>。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 刘尚亮</p>
+<p class="date">Created: 2018-02-01 四 17:17</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

@@ -3,8 +3,8 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>跟我一起写 makefile 笔记</title>
-<!-- 2018-02-01 四 17:17 -->
+<title>cmake practice</title>
+<!-- 2018-02-01 四 17:18 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="phenix3443" />
@@ -137,149 +137,258 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">跟我一起写 makefile 笔记</h1>
+<h1 class="title">cmake practice</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. 概述</a>
+<li><a href="#sec-1">1. 概述</a></li>
+<li><a href="#sec-2">2. 项目结构</a>
 <ul>
-<li><a href="#sec-1-1">1.1. 疑问：</a></li>
+<li><a href="#sec-2-1">2.1. src</a></li>
+<li><a href="#sec-2-2">2.2. build</a></li>
 </ul>
 </li>
-<li><a href="#sec-2">2. makefile 介绍</a></li>
-<li><a href="#sec-3">3. 书写规则</a>
-<ul>
-<li><a href="#sec-3-1">3.1. 疑问：</a></li>
-</ul>
-</li>
-<li><a href="#sec-4">4. 书写命令</a></li>
-<li><a href="#sec-5">5. 使用变量</a>
-<ul>
-<li><a href="#sec-5-1">5.1. 疑问</a></li>
-</ul>
-</li>
-<li><a href="#sec-6">6. 使用条件判断</a></li>
-<li><a href="#sec-7">7. 使用函数</a></li>
-<li><a href="#sec-8">8. make 的运行</a></li>
-<li><a href="#sec-9">9. 隐含规则</a></li>
-<li><a href="#sec-10">10. 使用 make 更新函数库文件</a></li>
+<li><a href="#sec-3">3. cmake V1</a></li>
+<li><a href="#sec-4">4. cmake V2</a></li>
+<li><a href="#sec-5">5. cmake V3</a></li>
 </ul>
 </div>
 </div>
-
 
 <div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1"><span class="section-number-2">1</span> 概述</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 疑问：</h3>
-<div class="outline-text-3" id="text-1-1">
-<ul class="org-ul">
-<li>程序编译过程中不同的阶段是什么？
-</li>
-<li>库文件的用途是什么？其内容和组织方式是什么？
-</li>
-</ul>
-</div>
+<p>
+这里主要通过一个小项目实践 cmake 在工程项目中的主要用法。主要是基于<a href="https://cmake.org/cmake-tutorial/">cmake-tutorial</a> 做的一个小扩展。
+</p>
 </div>
 </div>
 
 <div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> makefile 介绍</h2>
+<h2 id="sec-2"><span class="section-number-2">2</span> 项目结构</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+遵循模块话的项目结构，工程目录如下：
+</p>
+<pre class="example">
+├── build
+├── CMakeLists.txt
+└── src
+  ├── hello
+  │   ├── hello.cpp
+  │   └── include
+  │       └── hello
+  │           └── hello.h
+  └── test
+      └── test.cpp
+</pre>
+</div>
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> src</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+所有的源代码放在 src 目录下。
+</p>
+
+<p>
+hello.h 是 hellolib 的头文件：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++">#include &lt;string&gt;
+
+void say_hello(std::string name);
+</pre>
+</div>
+<p>
+hello.cpp 实现和 say_hello 函数：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++">#include &lt;iostream&gt;
+
+void say_hello(std::string name) {
+		std::cout&lt;&lt;"hello "&lt;&lt;name &lt;&lt; std::endl;
+}
+</pre>
+</div>
+<p>
+test.cpp 调用了 say_hello 函数：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++">#include &lt;iostream&gt;
+
+#include &lt;hello/hello.h&gt;
+
+int main(int argc, char *argv[])
+{
+		say_hello("John");
+		return 0;
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> build</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+为了保持源代码目录干净，build 目录用于编译和打包代码。
+</p>
+</div>
+</div>
 </div>
 
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> 书写规则</h2>
+<h2 id="sec-3"><span class="section-number-2">3</span> cmake V1</h2>
 <div class="outline-text-2" id="text-3">
-<ul class="org-ul">
-<li>核心规则：
+<p>
+最外层的 CMakeLists.txt 来编译整个项目。
+</p>
 <div class="org-src-container">
 
-<pre class="src src-makefile">targets: prerequisites
-	commands
+<pre class="src src-cmake">cmake_minimum_required(VERSION 3.0)
+project(cmake_test VERSION 0.2)
+
+add_library(hello src/hello/hello.cpp)
+
+add_executable(cmake_test src/test/test.cpp)
+target_link_libraries(cmake_test hello)
+target_include_directories(cmake_test PUBLIC
+  /home/lsl/github/test/cmake/cmake_dir/src/hello/include)
 </pre>
-</div>
-
-<p>
-依赖（prerequisites） 中如果有一个以上的文件比 目标（target） 文件要新的话，命令（command）部分就会被执行。
-</p>
-</li>
-
-<li>隐式规则如非必要不要写出来，减少中间文件的生成。
-</li>
-<li>多目标规则中的静态模式可以根据模式匹配让规则变得更灵活。
-</li>
-<li>使用自动生成依赖性解决依赖问题。
-</li>
-</ul>
-</div>
-
-<div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 疑问：</h3>
-<div class="outline-text-3" id="text-3-1">
-<ul class="org-ul">
-<li>sed 如何处理自动依赖
-</li>
-</ul>
 </div>
 </div>
 </div>
 
 <div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> 书写命令</h2>
+<h2 id="sec-4"><span class="section-number-2">4</span> cmake V2</h2>
 <div class="outline-text-2" id="text-4">
+<p>
+其实 hello 库应该有自己独立的 cmake 文件，这样有几个好处：
+</p>
 <ul class="org-ul">
-<li>总控 makefile 中的显示声明的变量会传递到下级的 makefile 中，但不会覆盖下层 makefile 所定义的变量。
+<li>cmake 文件也是模块化组织的。
 </li>
-<li>嵌套执行 makefile，子模块中可能从上层 export 的变量应该使用'？='定义。
+<li>方便 hello 库被其他程序集成编译。
 </li>
 </ul>
+
+<p>
+所以新的代码目录如下：
+</p>
+<pre class="example">
+├── build
+├── CMakeLists.txt
+└── src
+    ├── hello
+    │   ├── CMakeLists.txt
+    │   ├── hello.cpp
+    │   └── include
+    │       └── hello
+    │           └── hello.h
+    └── test
+        ├── CMakeLists.txt
+        └── test.cpp
+</pre>
+<p>
+src/CMakeLists.txt
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">cmake_minimum_required(VERSION 3.0)
+project(cmake_test VERSION 0.2)
+add_subdirectory(src/hello)
+add_subdirectory(src/test)
+</pre>
+</div>
+
+<p>
+src/hello/CMakeLists.txt
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">add_library(hello hello.cpp)
+</pre>
+</div>
+<p>
+src/test/CMakeLists.txt
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">add_executable(cmake_test test.cpp)
+target_link_libraries(cmake_test hello)
+target_include_directories(cmake_test PUBLIC
+  /home/lsl/github/test/cmake/cmake_dir/src/hello/include)
+</pre>
+</div>
+
+<p>
+在 build 下运行 cmake 和 make，正如 cmake language 中所说：“CMake 会为处理的 CMakeLists.txt 所在目录在构建树中生成相应的目录作为默认的工作和输出目录”。
+</p>
+<pre class="example">
+build$ ls src/hello/
+CMakeFiles  cmake_install.cmake  libhello.a  Makefile
+build$ ls src/test/
+CMakeFiles  cmake_install.cmake  cmake_test  Makefile
+</pre>
 </div>
 </div>
 
 <div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> 使用变量</h2>
+<h2 id="sec-5"><span class="section-number-2">5</span> cmake V3</h2>
 <div class="outline-text-2" id="text-5">
-</div><div id="outline-container-sec-5-1" class="outline-3">
-<h3 id="sec-5-1"><span class="section-number-3">5.1</span> 疑问</h3>
-<div class="outline-text-3" id="text-5-1">
-<ul class="org-ul">
-<li>变量赋值等号两边可以有空格么？
-</li>
-</ul>
-</div>
-</div>
+<p>
+src/test/CMakeLists.txt 中为了导入 hello 库的模块，使用了绝对路径：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">target_include_directories(cmake_test PUBLIC
+  /home/lsl/github/test/cmake/cmake_dir/src/hello/include)
+</pre>
 </div>
 
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> 使用条件判断</h2>
+<p>
+这样不利于项目路径的迁移。
+</p>
+
+<p>
+src/test/CMakeLists.txt
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cmake">add_executable(cmake_test test.cpp)
+target_link_libraries(cmake_test hello)
+</pre>
 </div>
 
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7"><span class="section-number-2">7</span> 使用函数</h2>
-</div>
+<div class="org-src-container">
 
-<div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8"><span class="section-number-2">8</span> make 的运行</h2>
+<pre class="src src-cmake">add_library(hello hello.cpp)
+target_include_directories(hello PUBLIC
+  INTERFACE include)
+</pre>
 </div>
+<p>
+正如 cmake build system 中所说：“依赖项的使用需求的是可以传递的”：
+</p>
+<blockquote>
+<p>
+The usage requirements of a target can transitively propagate to dependents.
+</p>
+</blockquote>
 
-<div id="outline-container-sec-9" class="outline-2">
-<h2 id="sec-9"><span class="section-number-2">9</span> 隐含规则</h2>
-<div class="outline-text-2" id="text-9">
-<ul class="org-ul">
-<li>一般不要修改隐含规则，而是修改编译选项变量或链接选项变量。
-</li>
-</ul>
+<p>
+hello 库 INTERFACE_INCLUE_DIRECTORIES 目标属性值将会传递复制到到 test 的 INCLUDE_DIRECTORiES 中，所有 target 也能找到 hello/hello.h 头文件。
+</p>
 </div>
-</div>
-<div id="outline-container-sec-10" class="outline-2">
-<h2 id="sec-10"><span class="section-number-2">10</span> 使用 make 更新函数库文件</h2>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: phenix3443</p>
-<p class="date">Created: 2018-02-01 四 17:17</p>
+<p class="date">Created: 2018-02-01 四 17:18</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
