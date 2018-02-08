@@ -3,11 +3,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>通过 openwrt 翻墙</title>
-<!-- 2018-02-01 四 17:17 -->
+<title>Resilio practices</title>
+<!-- 2018-02-08 四 14:39 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="lsl" />
+<meta  name="author" content="刘尚亮" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center; }
@@ -137,70 +137,39 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">通过 openwrt 翻墙</h1>
-<p>
-好久没有更新博客了，最近一周都在尝试使用 openwrt 作为二级路由进行整个局域网的翻墙。今天顺便把我使用过的翻墙技术总结一下，比较一下优劣。
-</p>
+<h1 class="title">Resilio practices</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. 概述</a></li>
+<li><a href="#sec-2">2. 安装</a></li>
+<li><a href="#sec-3">3. 配置的文件</a></li>
+<li><a href="#sec-4">4. 附录</a></li>
+</ul>
+</div>
+</div>
 
-<p>
-首先，一个理想的翻墙环境应该是这样的：
-</p>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 概述</h2>
+</div>
 
-<p>
-1.DNS 解析要能兼顾防污染和 CDN 网络。
-</p>
 
-<p>
-2.IP 智能解析，国内能访问的直连，访问速度过慢甚至不能访问的通过代理直接访问。
-</p>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 安装</h2>
+</div>
 
-<p>
-3.不影响 SSL 证书。
-</p>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 配置的文件</h2>
+</div>
 
-<p>
-4.过滤广告。
-</p>
-
-<p>
-看起来是很简单的要求，但是自从大学之后经历了诸多翻墙软件之后，目前能够满意的还是 GoAgent 或者 shadowsocks+vps。
-</p>
-
-<p>
-这两天尝试通过 openwrt 上面一些软件达到智能上网的目的，主要使用的软件有如下几种：
-</p>
-
-<p>
-1.chinaDns，chinaDns 配置国内 DNS 和第三方抗污染的 DNS，虽然能实现 DNS 解析分流，但是需要维护一个域名白名单。
-</p>
-
-<p>
-2.dnsmasq，有 dns cache 和分流的功能。同时还有 dhcp 的功能。但是不支持 dns 请求通过 tcp 进行查询，也就是不能抗污染。
-</p>
-
-<p>
-3.pdnsd，有 dns cache 的作用，但主要作用还是做通过 tcp 进行 dns 请求的转发。
-</p>
-
-<p>
-通过这两天的尝试，主要问题如下：
-</p>
-
-<p>
-1.不能智能区分一个域名到底是走国内还是国外。
-</p>
-
-<p>
-2.不能智能区分一个 IP 应该直连还是走代理通道。有人直接将 SS 设为透明代理，然后给国内 IP 设置白名单，但是代理软件天生的速度缺陷并不适合这样做。
-</p>
-
-<p>
-3.通过 VPS，包括我自己也在 DO 上面搭建了一个，但是宽带上（长城宽带）还是很大程度上影响代理的连接速度。并不适合所有国外流量都走代理通道。
-</p>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 附录</h2>
+</div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: lsl</p>
-<p class="date">Created: 2018-02-01 四 17:17</p>
+<p class="author">Author: 刘尚亮</p>
+<p class="date">Created: 2018-02-08 四 14:39</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

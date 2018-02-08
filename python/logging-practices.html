@@ -3,8 +3,8 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>logging 模块实践</title>
-<!-- 2018-02-01 四 17:17 -->
+<title>logging模块实践</title>
+<!-- 2018-02-08 四 14:38 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="刘尚亮" />
@@ -137,7 +137,7 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">logging 模块实践</h1>
+<h1 class="title">logging模块实践</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
@@ -180,9 +180,9 @@ logging.config.dictConfig({
         'file': {
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
-            # 当达到 10MB 时分割日志
+            # 当达到10MB时分割日志
             'maxBytes': 1024 * 1024 * 10,
-            # 最多保留 50 份文件
+            # 最多保留50份文件
             'backupCount': 50,
             # If delay is true,
             # then file opening is deferred until the first call to emit().
@@ -246,9 +246,9 @@ Because there is no standard way to serialize access to a single file across mul
             'level': 'DEBUG',
             # 如果没有使用并发的日志处理类，在多实例的情况下日志会出现缺失
             'class': 'cloghandler.ConcurrentRotatingFileHandler',
-            # 当达到 10MB 时分割日志
+            # 当达到10MB时分割日志
             'maxBytes': 1024 * 1024 * 10,
-            # 最多保留 50 份文件
+            # 最多保留50份文件
             'backupCount': 50,
             # If delay is true,
             # then file opening is deferred until the first call to emit().
@@ -271,7 +271,7 @@ Because there is no standard way to serialize access to a single file across mul
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 刘尚亮</p>
-<p class="date">Created: 2018-02-01 四 17:17</p>
+<p class="date">Created: 2018-02-08 四 14:38</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

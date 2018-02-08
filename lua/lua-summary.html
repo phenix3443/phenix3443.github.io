@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>lua summary</title>
-<!-- 2018-02-01 四 17:17 -->
+<!-- 2018-02-08 四 14:39 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="刘尚亮" />
@@ -188,7 +188,11 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#sec-6-1-1">6.1.1. 布尔(bool)</a></li>
 <li><a href="#sec-6-1-2">6.1.2. 数字(numeric)</a></li>
-<li><a href="#sec-6-1-3">6.1.3. 字符串(string)</a></li>
+<li><a href="#sec-6-1-3">6.1.3. 字符串(string)</a>
+<ul>
+<li><a href="#sec-6-1-3-1">正则表达式</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#sec-6-2">6.2. 复合类型</a></li>
@@ -230,9 +234,11 @@ for the JavaScript code in this tag.
 <li><a href="#sec-10-9">10.9. redis-lua</a></li>
 <li><a href="#sec-10-10">10.10. luarestyredis</a></li>
 <li><a href="#sec-10-11">10.11. lpeg</a></li>
-<li><a href="#sec-10-12">10.12. serialization</a></li>
-<li><a href="#sec-10-13">10.13. test</a></li>
-<li><a href="#sec-10-14">10.14. penlight</a></li>
+<li><a href="#sec-10-12">10.12. lua-struct</a></li>
+<li><a href="#sec-10-13">10.13. serpent</a></li>
+<li><a href="#sec-10-14">10.14. luaunit</a></li>
+<li><a href="#sec-10-15">10.15. busted</a></li>
+<li><a href="#sec-10-16">10.16. penlight</a></li>
 </ul>
 </li>
 <li><a href="#sec-11">11. 参考书籍</a>
@@ -352,6 +358,33 @@ for the JavaScript code in this tag.
 </div>
 <div id="outline-container-sec-6-1-3" class="outline-4">
 <h4 id="sec-6-1-3"><span class="section-number-4">6.1.3</span> 字符串(string)</h4>
+<div class="outline-text-4" id="text-6-1-3">
+</div><ul class="org-ul"><li><a id="sec-6-1-3-0-1" name="sec-6-1-3-0-1"></a>find<br  /><ul class="org-ul"><li><a id="sec-6-1-3-0-1-1" name="sec-6-1-3-0-1-1"></a>string.find<br  /></li></ul>
+</li>
+<li><a id="sec-6-1-3-0-2" name="sec-6-1-3-0-2"></a>sub<br  /><ul class="org-ul"><li><a id="sec-6-1-3-0-2-1" name="sec-6-1-3-0-2-1"></a>string.sub<br  /></li></ul>
+</li>
+
+<li><a id="sec-6-1-3-0-3" name="sec-6-1-3-0-3"></a>replace<br  /><ul class="org-ul"><li><a id="sec-6-1-3-0-3-1" name="sec-6-1-3-0-3-1"></a>string.gsub<br  /></li></ul>
+</li>
+
+<li><a id="sec-6-1-3-0-4" name="sec-6-1-3-0-4"></a>match<br  /><ul class="org-ul"><li><a id="sec-6-1-3-0-4-1" name="sec-6-1-3-0-4-1"></a>string.match<br  /></li>
+<li><a id="sec-6-1-3-0-4-2" name="sec-6-1-3-0-4-2"></a>string.gmatch<br  /></li></ul>
+</li>
+
+<div id="outline-container-sec-6-1-3-1" class="outline-5">
+<h5 id="sec-6-1-3-1">正则表达式</h5>
+<div class="outline-text-5" id="text-6-1-3-1">
+<p>
+lua 正则表达式使用 <code>%</code> 作为转义字符：
+</p>
+
+<p>
+大写字母作为小写字母的补集：
+</p>
+</div>
+
+<ul class="org-ul"><li><a id="sec-6-1-3-1-1" name="sec-6-1-3-1-1"></a>capture<br  /></li></ul>
+</div>
 </div>
 </div>
 <div id="outline-container-sec-6-2" class="outline-3">
@@ -502,10 +535,6 @@ w:get_gender()					-- i am	famale
 
 <div id="outline-container-sec-10-2" class="outline-3">
 <h3 id="sec-10-2"><span class="section-number-3">10.2</span> lua-iconv</h3>
-<div class="outline-text-3" id="text-10-2">
-<pre class="example">
-</pre>
-</div>
 </div>
 <div id="outline-container-sec-10-3" class="outline-3">
 <h3 id="sec-10-3"><span class="section-number-3">10.3</span> <a href="https://luarocks.org/modules/luarocks/lua-cjson">lua-cjson</a></h3>
@@ -539,35 +568,19 @@ w:get_gender()					-- i am	famale
 <h3 id="sec-10-11"><span class="section-number-3">10.11</span> <a href="http://www.inf.puc-rio.br/~roberto/lpeg/lpeg.html">lpeg</a></h3>
 </div>
 <div id="outline-container-sec-10-12" class="outline-3">
-<h3 id="sec-10-12"><span class="section-number-3">10.12</span> serialization</h3>
-<div class="outline-text-3" id="text-10-12">
-<ul class="org-ul">
-<li><a href="https://luarocks.org/modules/luarocks/lpack">lpack</a>
-</li>
-<li><a href="https://github.com/mashape/lua-pack">lua-pack</a>
-</li>
-<li><a href="https://github.com/iryont/lua-struct">lua-struct</a>
-</li>
-<li><a href="https://github.com/pkulchenko/serpent">serpent</a>
-</li>
-</ul>
+<h3 id="sec-10-12"><span class="section-number-3">10.12</span> <a href="https://github.com/iryont/lua-struct">lua-struct</a></h3>
 </div>
-</div>
-
 <div id="outline-container-sec-10-13" class="outline-3">
-<h3 id="sec-10-13"><span class="section-number-3">10.13</span> test</h3>
-<div class="outline-text-3" id="text-10-13">
-<ul class="org-ul">
-<li><a href="https://github.com/bluebird75/luaunit">luaunit</a>
-</li>
-<li><a href="http://olivinelabs.com/busted/">busted</a>
-</li>
-</ul>
+<h3 id="sec-10-13"><span class="section-number-3">10.13</span> <a href="https://github.com/pkulchenko/serpent">serpent</a></h3>
 </div>
-</div>
-
 <div id="outline-container-sec-10-14" class="outline-3">
-<h3 id="sec-10-14"><span class="section-number-3">10.14</span> <a href="https://stevedonovan.github.io/Penlight/api/index.html">penlight</a></h3>
+<h3 id="sec-10-14"><span class="section-number-3">10.14</span> <a href="https://github.com/bluebird75/luaunit">luaunit</a></h3>
+</div>
+<div id="outline-container-sec-10-15" class="outline-3">
+<h3 id="sec-10-15"><span class="section-number-3">10.15</span> <a href="http://olivinelabs.com/busted/">busted</a></h3>
+</div>
+<div id="outline-container-sec-10-16" class="outline-3">
+<h3 id="sec-10-16"><span class="section-number-3">10.16</span> <a href="https://stevedonovan.github.io/Penlight/api/index.html">penlight</a></h3>
 </div>
 </div>
 
@@ -610,7 +623,7 @@ w:get_gender()					-- i am	famale
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 刘尚亮</p>
-<p class="date">Created: 2018-02-01 四 17:17</p>
+<p class="date">Created: 2018-02-08 四 14:39</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

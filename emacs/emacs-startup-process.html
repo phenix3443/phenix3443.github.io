@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Emacs 启动过程介绍</title>
-<!-- 2018-02-01 四 17:17 -->
+<!-- 2018-02-08 四 14:39 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="lsl" />
@@ -151,7 +151,7 @@ Emacs 启动之后做了如下操作：
 <ol class="org-ol">
 <li>在 load-path 列表中的目录下运行 subdirs.el 文件，将其子目录都添加到 load-path 中。
 </li>
-<li>Emacs 加载可能存在的 leim-list.el 库。该可选的库是为了注册输入法；Emacs 在 load-path 中查找的时候跳过包含标准 Emacs 库的目录（E 为这些库不应该包含该库）。
+<li>Emacs 加载可能存在的 leim-list.el 库。该可选的库是为了注册输入法；Emacs 在 load-path 中查找的时候跳过包含标准 Emacs 库的目录（E为这些库不应该包含该库）。
 </li>
 <li>将变量 befor-init-time 置为 current-time. 同样将 Emacs Lisp 程序中指示 Emacs 已经初始化的完成的变量 after-init-time 置为 nil。
 </li>
@@ -171,9 +171,9 @@ Emacs 启动之后做了如下操作：
 </li>
 <li>如果没有指定 -Q 或者 &#x2013;no-site-file，载入可能存在的库 site-start。
 </li>
-<li>如果没有指定-q、-Q 或者 batch 指定的话，载入你的初始化文件（init file），如果指定了 -u，Emacs 就会去指定的用户 home 文件夹去查找。
+<li>如果没有指定-q 、-Q 或者 batch 指定的话，载入你的初始化文件（init file），如果指定了 -u，Emacs 就会去指定的用户 home 文件夹去查找。
 </li>
-<li>如果 inhibit-default-init 为 nil，或者未指定选项 -q、-Q 或者 &#x2013;batch 的话，载入可能存在的 default 库。
+<li>如果 inhibit-default-init 为 nil，或者未指定选项 -q、-Q 或者 &#x2013;batch的话，载入可能存在的 default 库。
 </li>
 <li>如果 abbrev-file-name 指定的文件存在并且可读，从它读入 abbrevs。指定了 &#x2013;batch 参数不会执行这一操作。
 </li>
@@ -203,14 +203,14 @@ Emacs 启动之后做了如下操作：
 </li>
 <li>显示启动画面，启动画面是一个特殊的缓冲区，包含了版权和基本的 Emacs 使用信息。除非设置了 inhibit-startup-screen 或者 initial-buffer-choice 非 nil，或者 命令上使用 &#x2013;no-splash 或 -Q 参数。
 </li>
-<li>如果通过 x session manager 启动，会调用 emacs-session-restore 来传递之前会话的 id 作为参数传递给它。
+<li>如果通过 x session manager 启动，会调用 emacs-session-restore 来传递之前会话的id作为参数传递给它。
 </li>
 </ol>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: Fri Aug 15 11:26:32 2014</p>
 <p class="author">Author: lsl</p>
-<p class="date">Created: 2018-02-01 四 17:17</p>
+<p class="date">Created: 2018-02-08 四 14:39</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

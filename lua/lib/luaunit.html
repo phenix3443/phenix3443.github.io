@@ -3,8 +3,8 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>logrus 实践</title>
-<!-- 2018-02-01 四 17:17 -->
+<title>luaunit 实践</title>
+<!-- 2018-02-08 四 14:39 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="刘尚亮" />
@@ -137,206 +137,119 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">logrus 实践</h1>
+<h1 class="title">luaunit 实践</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. 简介</a></li>
-<li><a href="#sec-2">2. 优点</a></li>
-<li><a href="#sec-3">3. 缺点</a></li>
-<li><a href="#sec-4">4. 示例</a>
+<li><a href="#sec-1">1. 概述</a></li>
+<li><a href="#sec-2">2. 安装</a></li>
+<li><a href="#sec-3">3. 使用</a>
 <ul>
-<li><a href="#sec-4-1">4.1. 标准 logger</a></li>
-<li><a href="#sec-4-2">4.2. 自定义 logger</a></li>
-<li><a href="#sec-4-3">4.3. entry</a></li>
-<li><a href="#sec-4-4">4.4. hook</a></li>
+<li><a href="#sec-3-1">3.1. 命令行</a></li>
+<li><a href="#sec-3-2">3.2. Equal assertions</a></li>
+<li><a href="#sec-3-3">3.3. Value assertions</a></li>
+<li><a href="#sec-3-4">3.4. String assertions</a></li>
+<li><a href="#sec-3-5">3.5. Error assertions</a></li>
+<li><a href="#sec-3-6">3.6. Type assertions</a></li>
+<li><a href="#sec-3-7">3.7. Table assertions</a></li>
 </ul>
 </li>
-<li><a href="#sec-5">5. 注意事项</a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> 简介</h2>
+<h2 id="sec-1"><span class="section-number-2">1</span> 概述</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-logrus 是一个日志记录工具，核心思想是日志的记录应该是结构化的，而只是记录一个字符串。
+<a href="https://github.com/bluebird75/luaunit">LuaUnit</a> 是一个流行的 Lua 单元测试框架，具有典型的 xUnit 库（比如 Python 的 unittest，Junit 等）接口。它支持多种输出格式（文本，TAP，JUnit，&#x2026;）来直接使用或与持续集成平台（Jenkins，Maven，&#x2026;）一起使用。
+</p>
+
+<p>
+LuaUnit 提供了丰富的 assert 机制，并且在输出结果上也做的不错，比如，对比 table 的时候可以输出不一致的项。
+</p>
+
+<p>
+LuaUnit 还可以从命令行设置要执行的单元测试项目、输出格式，还有其他各种各样的配置。
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> 优点</h2>
+<h2 id="sec-2"><span class="section-number-2">2</span> 安装</h2>
 <div class="outline-text-2" id="text-2">
-<ul class="org-ul">
-<li>线程安全
-
 <p>
-通过 sync.Mutex 的方式每次对 Logger 进行加锁，获得锁后写入单条日志，然后释放锁。
+建议使用 luarocks 安装：
 </p>
-</li>
+<div class="org-src-container">
 
-<li>支持不同的日志等级
-</li>
-
-<li>支持不同的目的端
-
-<p>
-通过 hook 实现。
-</p>
-</li>
-</ul>
+<pre class="src src-sh">luarocks install luaunit
+</pre>
+</div>
 </div>
 </div>
 
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> 缺点</h2>
+<h2 id="sec-3"><span class="section-number-2">3</span> 使用</h2>
 <div class="outline-text-2" id="text-3">
-<ul class="org-ul">
-<li>不支持配置文件
+<p>
+LuaUnit 扫描所有以 <code>test</code> 或 <code>Test</code> 开头的变量。如果它们是函数，或者它们是包含以 <code>test</code> 或 <code>Test</code> 开始的函数的表，则它们作为测试套件的一部分运行（这点和 Python unittest 类似）。
+</p>
 
 <p>
-可以使用替代的解决方案 logrus_mate，但是该工具只支持 json 形式的文件。
+注意这些变量要放在全局空间。
 </p>
-</li>
+</div>
 
-<li>不支持对日志文件进行 rotate
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 命令行</h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">lua &lt;your_test_suite.lua&gt; [options] [testname1] [testname2]
+</pre>
+</div>
 
 <p>
-logrus 在 README 中明确说明如果需要对日志进行 rotate 操作，应由系统中的 logrotate(8) 命令进行，logrus 本身并不支持该操作。
+还可以通过使用&#x2013;pattern 参数匹配 testsuit 和 testcase 的名字，来指定运行示例。
 </p>
-</li>
+</div>
+</div>
 
-<li>不支持文件名和行号。<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>
-
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Equal assertions</h3>
+<div class="outline-text-3" id="text-3-2">
 <p>
-但是可以利用 runtime.Caller 进一步封装，runtime.Caller 可以得到调用者的 pc, 文件名, 文件行数, runtime.FuncForPC(pc).Name() 可以得到 pc 所在的函数名。
+注意是 assert(actual,expect)。
 </p>
-<div class="org-src-container">
-
-<pre class="src src-go"></pre>
-</div>
-</li>
-</ul>
 </div>
 </div>
 
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> 示例</h2>
-<div class="outline-text-2" id="text-4">
-</div><div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1"><span class="section-number-3">4.1</span> 标准 logger</h3>
-<div class="outline-text-3" id="text-4-1">
-<div class="org-src-container">
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Value assertions</h3>
+</div>
 
-<pre class="src src-go">func testLogrus() {
-	logrus.SetOutput(os.Stdout)
-	logrus.SetFormatter(&amp;logrus.JSONFormatter{})
-	// logrus.SetFormatter(&amp;logrus.TextFormatter{})
-	logrus.SetLevel(logrus.InfoLevel)
-	logrus.Debug("debug log")
-	logrus.Info("info log")
-	logrus.Info(map[string]int{"age": 12})
-}
-</pre>
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> String assertions</h3>
+</div>
+
+<div id="outline-container-sec-3-5" class="outline-3">
+<h3 id="sec-3-5"><span class="section-number-3">3.5</span> Error assertions</h3>
+</div>
+
+<div id="outline-container-sec-3-6" class="outline-3">
+<h3 id="sec-3-6"><span class="section-number-3">3.6</span> Type assertions</h3>
+</div>
+
+<div id="outline-container-sec-3-7" class="outline-3">
+<h3 id="sec-3-7"><span class="section-number-3">3.7</span> Table assertions</h3>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-4-2" class="outline-3">
-<h3 id="sec-4-2"><span class="section-number-3">4.2</span> 自定义 logger</h3>
-<div class="outline-text-3" id="text-4-2">
-<div class="org-src-container">
-
-<pre class="src src-go">func testLogger() {
-	logger := &amp;logrus.Logger{
-		Out:       os.Stdout,
-		Formatter: new(logrus.JSONFormatter),
-		Level:     logrus.DebugLevel,
-	}
-	logger.Debug("debug log")
-	logger.Info("info log")
-	logger.Info(map[string]int{"age": 12})
-
-}
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-sec-4-3" class="outline-3">
-<h3 id="sec-4-3"><span class="section-number-3">4.3</span> entry</h3>
-<div class="outline-text-3" id="text-4-3">
-<div class="org-src-container">
-
-<pre class="src src-go">func testEntry() {
-	logger := &amp;logrus.Logger{
-		Out:       os.Stdout,
-		Formatter: new(logrus.JSONFormatter),
-		Level:     logrus.DebugLevel,
-	}
-
-	e := logrus.NewEntry(logger)
-	e.WithFields(logrus.Fields{
-		"name": "lsl",
-		"age":  30,
-	})
-
-	e.Debug("debug log")
-	e.Info("info log")
-	e.Warn(e.Level)
-}
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-4-4" class="outline-3">
-<h3 id="sec-4-4"><span class="section-number-3">4.4</span> hook</h3>
-<div class="outline-text-3" id="text-4-4">
-<div class="org-src-container">
-
-<pre class="src src-go">func testHook() {
-	logger := logrus.New()
-	hook, err := logrus_mail.NewMailAuthHook("APPLICATION_NAME", "HOST", PORT, "FROM", "TO", "USERNAME", "PASSWORD")
-
-	if err != nil {
-		logger.Error("init hook error")
-	}
-	logger.Hooks.Add(hook)
-
-	e := logger.WithFields(logrus.Fields{
-		"content": "test logrus hook",
-	})
-	//设置时间戳和 message
-	e.Error("这是一个 hook 发来的邮件")
-
-	//使用 Fire 发送,包含时间戳，message
-	hook.Fire(e)
-
-}
-</pre>
-</div>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> 注意事项</h2>
-</div>
-<div id="footnotes">
-<h2 class="footnotes">Footnotes: </h2>
-<div id="text-footnotes">
-
-<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
-<a href="https://github.com/sirupsen/logrus/issues/63">Log filename and line number</a>
-</p></div>
-
-
-</div>
-</div></div>
 <div id="postamble" class="status">
 <p class="author">Author: 刘尚亮</p>
-<p class="date">Created: 2018-02-01 四 17:17</p>
+<p class="date">Created: 2018-02-08 四 14:39</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

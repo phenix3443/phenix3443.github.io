@@ -3,11 +3,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>VPS 实践</title>
-<!-- 2018-02-01 四 17:17 -->
+<title>Docker Practices</title>
+<!-- 2018-02-08 四 14:39 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="lsl" />
+<meta  name="author" content="刘尚亮" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center; }
@@ -137,18 +137,16 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">VPS 实践</h1>
+<h1 class="title">Docker Practices</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. 提供商选择</a></li>
-<li><a href="#sec-2">2. 安全设置</a></li>
-<li><a href="#sec-3">3. 一些有意思应用</a>
+<li><a href="#sec-1">1. Introduction</a></li>
+<li><a href="#sec-2">2. Install</a></li>
+<li><a href="#sec-3">3. Docker Hub Mirror</a>
 <ul>
-<li><a href="#sec-3-1">3.1. 代理</a></li>
-<li><a href="#sec-3-2">3.2. VPN</a></li>
-<li><a href="#sec-3-3">3.3. GPS 跟踪</a></li>
+<li><a href="#sec-3-1">3.1. daocloud 加速器</a></li>
 </ul>
 </li>
 </ul>
@@ -156,53 +154,65 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> 提供商选择</h2>
+<h2 id="sec-1"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-个人推荐 Digitalocean 或者 vultr，我现在就是用的 vultr 的东京站点，速度很快，看 youtube 1080P 都不卡。如果有需要，欢迎使用我的注册链接，会有优惠：
+Docker<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>
 </p>
-<ul class="org-ul">
-<li>digitalocean：<a href="https://www.digitalocean.com/?refcode=e172f68b0bee">https://www.digitalocean.com/?refcode=e172f68b0bee</a>
-</li>
-<li>vultr：<a href="http://www.vultr.com/?ref=6862956">http://www.vultr.com/?ref=6862956</a>
-</li>
-</ul>
 </div>
 </div>
+
 <div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> 安全设置</h2>
+<h2 id="sec-2"><span class="section-number-2">2</span> Install</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-创建新账户，禁用 root 账户
+按照教程安装：
+或者使用 docker 安装脚本：
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">adduser username
-visudo
+<pre class="src src-sh">curl https://get.docker.com/ | sudo sh
 </pre>
 </div>
 </div>
 </div>
 
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> 一些有意思应用</h2>
+<h2 id="sec-3"><span class="section-number-2">3</span> Docker Hub Mirror</h2>
 <div class="outline-text-2" id="text-3">
 </div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 代理</h3>
-</div>
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> daocloud 加速器<sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup></h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+使用 Docker 的时候，需要经常从官方获取镜像，但是由于显而易见的网络原因，拉取镜像的过程非常耗时，严重影响使用 Docker 的体验。因此 DaoCloud 推出了加速器工具解决这个难题，通过智能路由和缓存机制，极大提升了国内网络访问 Docker Hub 的速度，目前已经拥有了广泛的用户群体，并得到了 Docker 官方的大力推荐。如果您是在国内的网络环境使用 Docker，那么 Docker 加速器一定能帮助到您。
+</p>
 
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2"><span class="section-number-3">3.2</span> VPN</h3>
-</div>
+<div class="org-src-container">
 
-<div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3"><span class="section-number-3">3.3</span> GPS 跟踪</h3>
+<pre class="src src-sh">curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sudo sh -s http://4ca8d72b.m.daocloud.io
+</pre>
 </div>
 </div>
 </div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
+<a href="https://www.docker.com/">Docker 官网</a>
+</p></div>
+
+<div class="footdef"><sup><a id="fn.2" name="fn.2" class="footnum" href="#fnr.2">2</a></sup> <p class="footpara">
+<a href="https://www.daocloud.io/mirror#accelerator-doc">https://www.daocloud.io/mirror#accelerator-doc</a>
+</p></div>
+
+
+</div>
+</div></div>
 <div id="postamble" class="status">
-<p class="author">Author: lsl</p>
-<p class="date">Created: 2018-02-01 四 17:17</p>
+<p class="author">Author: 刘尚亮</p>
+<p class="date">Created: 2018-02-08 四 14:39</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

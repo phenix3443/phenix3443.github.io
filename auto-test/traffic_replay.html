@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>流量复制测试时间</title>
-<!-- 2018-02-01 四 17:18 -->
+<!-- 2018-02-08 四 14:40 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="刘尚亮" />
@@ -165,19 +165,19 @@ for the JavaScript code in this tag.
 <div class="outline-text-3" id="text-2-1">
 <p>
 <a href="http://blog.gaoyuan.xyz/2014/01/08/use-tcpcopy-test-online/">http://blog.gaoyuan.xyz/2014/01/08/use-tcpcopy-test-online/</a>
-1）启动内核模块 ip_queue
+1）启动内核模块ip_queue
 #modprobe ip_queue
-2）设置要截获的端口，并且设置对 output 截获
-#iptables -I OUTPUT -p tcp &#x2013;sport &lt;port&gt; -j QUEUE      //注意这里的 port 就是服务器监听的端口
-3）启动 intercept
+2）设置要截获的端口，并且设置对output截获
+#iptables -I OUTPUT -p tcp &#x2013;sport &lt;port&gt; -j QUEUE      //注意这里的port就是服务器监听的端口
+3）启动intercept
 #intercept
-注意：配置好 iptbales 之后不要去运行 service iptables start，不然新加的配置又会被清空了，如果 iptables 没有启动，可以在加规则之前启动；如果 1），2）已经设置并起效的话，只要运行 intercept 就好了；测试完成之后要调用 iptables -F 把过滤规则去掉
+注意：配置好iptbales之后不要去运行service iptables start，不然新加的配置又会被清空了，如果iptables没有启动，可以在加规则之前启动；如果1），2）已经设置并起效的话，只要运行intercept就好了；测试完成之后要调用iptables -F 把过滤规则去掉
 </p>
 
 <p>
-然后启动 TCP Client 进行包的转发
-./tcpcopy -x 线上服务器监听端口号-测试服务器 ip 地址：测试服务器监听端口
-另外可以加 -n 参数，进行多重复制，此参数的值就是代表复制过去的流量是在线的 n 倍
+然后启动TCP Client进行包的转发
+./tcpcopy -x 线上服务器监听端口号-测试服务器ip地址：测试服务器监听端口
+另外可以加 -n 参数，进行多重复制，此参数的值就是代表复制过去的流量是在线的n 倍
 </p>
 
 
@@ -200,7 +200,7 @@ tcpcopy -x 80-61.155.184.113:80
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 刘尚亮</p>
-<p class="date">Created: 2018-02-01 四 17:18</p>
+<p class="date">Created: 2018-02-08 四 14:40</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
