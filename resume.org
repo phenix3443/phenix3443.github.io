@@ -45,7 +45,7 @@
       + 使用Docker Compose建立闭环的测试环境。
 
   - 原高速离线系统项目维护
-    + 主要技术：C++，Lua, Python, Openresty，MySQL，Redis，Docker，falcon，Confluence，JIRA
+    + 主要技术：C++，Lua, Python, Openresty，MySQL，Redis，Docker，falcon，Confluence，JIRA，TCPCopy
     + 主要贡献：
       + 负责原先高速离线服务的日常维护和项目开发，包括高速加速、高速试用、高速通道、高速明细、资源索引、高速场景、高速鉴权等服务。
       + 负责原先高速离线服务的服务迁移工作，并在迁移过程中进行了大量整理工作，包括：
