@@ -2,7 +2,7 @@
 #+TITLE: 简历
 #+AUTHOR: liushangliang
 #+EMAIL: phenix3443@gmail.com
-#+OPTIONS: toc:nil
+#+OPTIONS: toc:nil author:nil date:nil creator:nil timestamp:nil validate:nil
 
 * 联系方式
 -----
@@ -16,6 +16,7 @@
 
 * 教育背景
 -----
+
 #+ATTR_HTML:  :rules none :frame void
 | 2010.9 ~ 2013.1 | 中国科技大学   | 软件工程信息安全（硕士）   |
 | 2005.9 ~ 2009.7 | 哈尔滨工业大学 | 计算机信息安全专业（学士） |
@@ -30,7 +31,7 @@
 
 * 工作经验
 -----
-+ 迅雷网络有限公司（2015.12--今）
++ 迅雷网络有限公司（2015.12 ~ 今）
   - 新高速离线系统开发
     + 项目背景：高速离线系统更新升级
     + 主要技术：C++，Lua，Python，Golang，Openresty，MySQL，Redis，Docker，CMake，gRPC，SSDB，Scrapy
@@ -63,9 +64,11 @@
       + 通过各种方式触达，增加运营活动营收。
       + 利用 Robot Framework 进行接口的自动化测试。
 
-+ 深圳尚游游戏有限公司（2014.3--2015.9）
-  + 手游服务器开发
-+ 深圳普联技术有限公司（2013.4--2013.11）
-  + 路由器相关开发
-+ 思科中国杭州研发中心（2011--2012）
-  + 实习
+
++ 深圳尚游游戏有限公司（2014.3 ~ 2015.9）
+
+
++ 深圳普联技术有限公司（2013.4 ~ 2013.11）
+
+
++ 思科中国杭州研发中心（2011 ~ 2012）
