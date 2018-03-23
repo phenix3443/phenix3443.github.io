@@ -243,42 +243,15 @@ for the JavaScript code in this tag.
 <ul class="org-ul">
 <li>迅雷网络有限公司（2015.12 ~ 今）
 <ul class="org-ul">
-<li>新高速离线系统开发
-<ul class="org-ul">
-<li>项目背景：高速离线系统更新升级
-</li>
-<li>主要技术：C++，Lua，Python，Golang，Openresty，MySQL，Redis，Docker，CMake，gRPC，SSDB，Scrapy
-</li>
-<li>主要贡献：
-<ul class="org-ul">
-<li>新版高速加速，高速试用，高速鉴权，资源索引，离线下载，离线空间，测速服务，资源爬虫等系统开发和维护。
-</li>
-<li>DCDN系统加速资源记录迁移，从原先的Redis + ssdb系统迁移到MySQL + Redis系统。
-</li>
-<li>新版加速系统资源调度优化。
-</li>
-<li>部署爬虫采集线上资源，加快热门资源的采集部署。
-</li>
-<li>使用CMake等工具规范项目的编译和打包流程。
-</li>
-<li>使用测试框架（GTest,GMock,LuaUnit,Gocheck等）编写代码单元测试，保证代码质量。
-</li>
-<li>编写二进制协议解析器，并用Python编写接口测试。
-</li>
-<li>使用Docker Compose建立闭环的测试环境。
-</li>
-</ul>
-</li>
-</ul>
-</li>
-
 <li>原高速离线系统项目维护
 <ul class="org-ul">
-<li>主要技术：C++，Lua, Python, Openresty，MySQL，Redis，Docker，falcon，Confluence，JIRA，TCPCopy
+<li>主要任务：负责原先高速离线服务的日常维护和项目开发，包括高速加速、高速试用、高速通道、高速明细、资源索引、高速场景、高速鉴权等服务。
+</li>
+<li>主要技术：C++，Lua, Python, Openresty，MySQL，Redis，Docker，falcon，Confluence，JIRA，TCPCopy。
 </li>
 <li>主要贡献：
 <ul class="org-ul">
-<li>负责原先高速离线服务的日常维护和项目开发，包括高速加速、高速试用、高速通道、高速明细、资源索引、高速场景、高速鉴权等服务。
+<li>保证原有服务的正常运行。
 </li>
 <li>负责原先高速离线服务的服务迁移工作，并在迁移过程中进行了大量整理工作，包括：
 <ul class="org-ul">
@@ -288,9 +261,9 @@ for the JavaScript code in this tag.
 </li>
 <li>完善项目文档，针对项目流程、协议接口、数据库结构、生产测试环境、服务间依赖关系、上线监控事项等在Confluence系统做了记录，方便后续的开发维护工作。
 </li>
-<li>完善监控系统，针对迁移过程中发现的监控不全，不实时的问题，使用open-falcon用于实时监控系统和服务运行状况。
+<li>完善监控系统，针对迁移过程中发现的监控不全、不实时的问题，使用open-falcon实时监控系统和服务运行状况。
 </li>
-<li>开发协议解析器，针对原有服务使用的二进制协议开发了协议解析器，用来配合Python编写的测试用例对迁移的服务进行接口测试。
+<li>开发协议解析器，针对原有服务使用的二进制协议开发了协议解析器，编写服务的接口测试，保证迁移工作的顺利和线上服务的可用性.
 </li>
 </ul>
 </li>
@@ -299,23 +272,66 @@ for the JavaScript code in this tag.
 </ul>
 </li>
 
-<li>触达系统
+<li>新高速离线系统开发
 <ul class="org-ul">
-<li>项目背景：触达系统通过客户端弹窗、邮件、微信、短信等形式向用户推送提醒消息。
+<li>主要任务：负责新版高速离线系统开发和维护，包括新版高速加速、高速试用、高速鉴权、资源索引、离线下载、离线空间、测速服务、资源爬虫等系统。
 </li>
-<li>涉及技术：Openresty、Python、Redis、MySQL、Docker、Robot Framework，gRPC
+<li>主要技术：C++，Lua，Python，Golang，Openresty，MySQL，Redis，Docker，CMake，gRPC，SSDB，Scrapy。
 </li>
 <li>主要贡献：
 <ul class="org-ul">
-<li>抽象了消息和规则的管理流程，管理人员通过后台可以动态进行增删改查，不需要开发人员修改代码。
+<li>实现二进制协议解析器，基于该解析器，为大部分接口添加了接口测试用例。
 </li>
-<li>通过各种方式触达，增加运营活动营收。
+<li>对接新版DCDN加速系统，并对其代码进行了部分重构，方便进行单元测试。
 </li>
-<li>利用 Robot Framework 进行接口的自动化测试。
+<li>对DCDN加速系统存储部分重构，保证加速资源记录的完整性和可靠性。
+</li>
+<li>新版加速系统资源调度优化，日均2.4PB资源调度（去重后）。
+</li>
+<li>部署爬虫采集线上资源，加快热门资源的采集部署，保证相关资源更新被及时采集到。
+</li>
+<li>使用测试框架（GTest,GMock,LuaUnit,Gocheck等）编写代码单元测试，保证代码质量。
+</li>
+<li>使用Docker Compose建立闭环的测试环境。
+</li>
+<li>所有项目模块化，通过设置模块开关、服务降级等手段保证服务的稳定性和可用性。
+</li>
+<li>项目的测试工作和规范部署为后续持续集成做了良好准备。
 </li>
 </ul>
 </li>
 </ul>
+</li>
+
+<li>触达系统
+<ul class="org-ul">
+<li>项目背景：定向推送触达消息，引导用户充值消费。
+</li>
+<li>主要任务：重构原先的触达系统。
+</li>
+<li>涉及技术：Openresty、Python、Redis、MySQL、Docker、Robot Framework、gRPC。
+</li>
+<li>主要贡献：
+<ul class="org-ul">
+<li>新增客户端弹窗、邮件、微信、短信等多种推送渠道。
+</li>
+<li>日均触达信息从40多万条上升到200多万条，日均收入从6万提高到14万。
+</li>
+<li>通过重构简化触达消息管理流程，简化了操作，加快新触达信息部署速度。
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<ul class="org-ul">
+<li>其他
+<ul class="org-ul">
+<li>开发了自动登录工具和部署工具，方便平时个人开发、测试和项目部署。
 </li>
 </ul>
 </li>
@@ -342,7 +358,7 @@ for the JavaScript code in this tag.
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="validation"></p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>
