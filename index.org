@@ -14,7 +14,7 @@
 | Home   | https://phenix3443.github.io/      |
 | 豆瓣   | http://.douban.com/people/2106771/ |
 
-* 教育背景
+* 教育经历
 -----
 
 #+ATTR_HTML:  :rules none :frame void
@@ -22,7 +22,7 @@
 | 2005.9 ~ 2009.7 | 哈尔滨工业大学 | 计算机信息安全专业（学士） |
 
 
-* 个人作品
+* 个人项目
 -----
 + http://phenix3443.github.io/notebook
   + 项目背景：个人博客
@@ -37,7 +37,7 @@
     + 主要技术：C++，Lua, Python, Openresty，MySQL，Redis，Docker，falcon，Confluence，JIRA，TCPCopy。
     + 主要贡献：
       + 保证原有服务的正常运行。
-      + 负责原先高速离线服务的服务迁移工作，并在迁移过程中进行了大量整理工作，包括：
+      + 负责原先高速离线服务的服务迁移工作，并在后续服务迁移过程中进行了大量整理工作，包括：
         + 梳理项目代码，使用Docker搭建了统一的编译环境，使用CMake等工具规范了项目的编译打包流程。
         + 规范项目部署，整理出一套通用的项目部署结构，规范线上项目部署。参见 [[https://github.com/phenix3443/project_layout][project-layout]] 。
         + 完善项目文档，针对项目流程、协议接口、数据库结构、生产测试环境、服务间依赖关系、上线监控事项等在Confluence系统做了记录，方便后续的开发维护工作。
