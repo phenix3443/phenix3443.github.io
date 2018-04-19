@@ -216,35 +216,17 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> 个人作品</h2>
+<h2 id="sec-3"><span class="section-number-2">3</span> 工作经验</h2>
 <div class="outline-text-2" id="text-3">
-<hr  />
-<ul class="org-ul">
-<li><a href="http://phenix3443.github.io/notebook">http://phenix3443.github.io/notebook</a>
-<ul class="org-ul">
-<li>项目背景：个人博客
-</li>
-<li>涉及技术：org-mode  github-page git
-</li>
-<li>主要任务：记录和更新自己的技术积累和读书笔记，使用 git 进行版本管理，Emacs Org-mode 进行编写，并发布 github。
-</li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> 工作经验</h2>
-<div class="outline-text-2" id="text-4">
 <hr  />
 <ul class="org-ul">
 <li>迅雷网络有限公司（2015.12 ~ 今）
 <ul class="org-ul">
 <li>原高速离线系统项目维护
 <ul class="org-ul">
+<li>项目背景：迅雷原有高速离线加速服务端业务。
+</li>
 <li>主要任务：负责原先高速离线服务的日常维护和项目开发，包括高速加速、高速试用、高速通道、高速明细、资源索引、高速场景、高速鉴权等服务。
 </li>
 <li>主要技术：C++，Lua, Python, Openresty，MySQL，Redis，Docker，falcon，Confluence，JIRA，TCPCopy。
@@ -253,19 +235,7 @@ for the JavaScript code in this tag.
 <ul class="org-ul">
 <li>保证原有服务的正常运行。
 </li>
-<li>负责原先高速离线服务的服务迁移工作，并在迁移过程中进行了大量整理工作，包括：
-<ul class="org-ul">
-<li>梳理项目代码，使用Docker搭建了统一的编译环境，使用CMake等工具规范了项目的编译打包流程。
-</li>
-<li>规范项目部署，整理出一套通用的项目部署结构，规范线上项目部署。参见 <a href="https://github.com/phenix3443/project_layout">project-layout</a> 。
-</li>
-<li>完善项目文档，针对项目流程、协议接口、数据库结构、生产测试环境、服务间依赖关系、上线监控事项等在Confluence系统做了记录，方便后续的开发维护工作。
-</li>
-<li>完善监控系统，针对迁移过程中发现的监控不全、不实时的问题，使用open-falcon实时监控系统和服务运行状况。
-</li>
-<li>开发协议解析器，针对原有服务使用的二进制协议开发了协议解析器，编写服务的接口测试，保证迁移工作的顺利和线上服务的可用性.
-</li>
-</ul>
+<li>负责原先高速离线服务的服务迁移工作，并在迁移过程中进行了大量整理工作。
 </li>
 </ul>
 </li>
@@ -274,31 +244,13 @@ for the JavaScript code in this tag.
 
 <li>新高速离线系统开发
 <ul class="org-ul">
+<li>项目背景：迅雷高速离线加速业务模块重构。
+</li>
 <li>主要任务：负责新版高速离线系统开发和维护，包括新版高速加速、高速试用、高速鉴权、资源索引、离线下载、离线空间、测速服务、资源爬虫等系统。
 </li>
 <li>主要技术：C++，Lua，Python，Golang，Openresty，MySQL，Redis，Docker，CMake，gRPC，SSDB，Scrapy。
 </li>
-<li>主要贡献：
-<ul class="org-ul">
-<li>实现二进制协议解析器，基于该解析器，为大部分接口添加了接口测试用例。
-</li>
-<li>对接新版DCDN加速系统，并对其代码进行了部分重构，方便进行单元测试。
-</li>
-<li>对DCDN加速系统存储部分重构，保证加速资源记录的完整性和可靠性。
-</li>
-<li>新版加速系统资源调度优化，日均2.4PB资源调度（去重后）。
-</li>
-<li>部署爬虫采集线上资源，加快热门资源的采集部署，保证相关资源更新被及时采集到。
-</li>
-<li>使用测试框架（GTest,GMock,LuaUnit,Gocheck等）编写代码单元测试，保证代码质量。
-</li>
-<li>使用Docker Compose建立闭环的测试环境。
-</li>
-<li>所有项目模块化，通过设置模块开关、服务降级等手段保证服务的稳定性和可用性。
-</li>
-<li>项目的测试工作和规范部署为后续持续集成做了良好准备。
-</li>
-</ul>
+<li>主要贡献：存储系统优化，代码重构，加速资源调度逻辑优化。
 </li>
 </ul>
 </li>
@@ -311,15 +263,7 @@ for the JavaScript code in this tag.
 </li>
 <li>涉及技术：Openresty、Python、Redis、MySQL、Docker、Robot Framework、gRPC。
 </li>
-<li>主要贡献：
-<ul class="org-ul">
-<li>新增客户端弹窗、邮件、微信、短信等多种推送渠道。
-</li>
-<li>日均触达信息从40多万条上升到200多万条，日均收入从6万提高到14万。
-</li>
-<li>通过重构简化触达消息管理流程，简化了操作，加快新触达信息部署速度。
-</li>
-</ul>
+<li>主要贡献：代码重构，对接新的触达端。
 </li>
 </ul>
 </li>
@@ -340,7 +284,9 @@ for the JavaScript code in this tag.
 <ul class="org-ul">
 <li>深圳尚游游戏有限公司（2014 ~ 2015）
 <ul class="org-ul">
-<li>手游服务端开发。
+<li>工作职责：手游服务端开发。
+</li>
+<li>主要技术：C++，Lua
 </li>
 </ul>
 </li>
@@ -350,7 +296,9 @@ for the JavaScript code in this tag.
 <ul class="org-ul">
 <li>深圳普联技术有限公司（2013 ~ 2014）
 <ul class="org-ul">
-<li>路由器开发。
+<li>工作职责：路由器开发。
+</li>
+<li>主要技术：C
 </li>
 </ul>
 </li>
@@ -360,7 +308,9 @@ for the JavaScript code in this tag.
 <ul class="org-ul">
 <li>思科中国杭州研发中心（2011 ~ 2012）
 <ul class="org-ul">
-<li>实习。
+<li>工作职责：视频会议系统开发维护。
+</li>
+<li>主要技术：C++
 </li>
 </ul>
 </li>
@@ -369,7 +319,7 @@ for the JavaScript code in this tag.
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="validation"></p>
 </div>
 </body>
 </html>
