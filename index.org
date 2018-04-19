@@ -30,7 +30,7 @@
     + 主要技术：C++，Lua, Python, Openresty，MySQL，Redis，Docker，falcon，Confluence，JIRA，TCPCopy。
     + 主要贡献：
       + 保证原有服务的正常运行。
-      + 负责原先高速离线服务的服务迁移工作，并在迁移过程中进行了大量整理工作。
+      + 负责原先高速离线服务的服务迁移工作。
 
   - 新高速离线系统开发
     + 项目背景：迅雷高速离线加速业务模块重构。
