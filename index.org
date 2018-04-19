@@ -14,7 +14,7 @@
 | Home   | https://phenix3443.github.io/      |
 | 豆瓣   | http://.douban.com/people/2106771/ |
 
-* 教育背景
+* 教育经历
 -----
 
 #+ATTR_HTML:  :rules none :frame void
