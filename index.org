@@ -21,6 +21,10 @@
 | 2010.9 ~ 2013.1 | 中国科技大学   | 软件工程信息安全（硕士）   |
 | 2005.9 ~ 2009.7 | 哈尔滨工业大学 | 计算机信息安全专业（学士） |
 
+* 个人项目
+  + [[https://github.com/phenix3443/openresty-delvelop-frame][openresty-delvelop-frame]] 基于OpenResty的开发框架。
+  + [[https://github.com/phenix3443/lsp-lua-emmy][lsp-lua-emmy]] lsp-mode client EmmyLua-LanguageServer。
+
 * 工作经验
 -----
 + 迅雷网络有限公司（2015.12 ~ 今）
