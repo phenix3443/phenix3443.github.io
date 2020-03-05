@@ -7,11 +7,11 @@
 * 联系方式
 -----
 #+ATTR_HTML:  :rules none :frame void
-| QQ     | 344300476                          |
-| Tel    | 153-3879-6096                      |
-| Email  | phenix3443@gmail.com               |
-| GitHub | https://github.com/phenix3443      |
-| Home   | https://phenix3443.github.io/      |
+| QQ     | 344300476                              |
+| Tel    | 153-3879-6096                          |
+| Email  | phenix3443@gmail.com                   |
+| GitHub | https://github.com/phenix3443          |
+| Home   | https://phenix3443.github.io/          |
 | 豆瓣   | https://www.douban.com/people/2106771/ |
 
 * 教育经历
@@ -21,20 +21,17 @@
 | 2010.9 ~ 2013.1 | 中国科技大学   | 软件工程信息安全（硕士）   |
 | 2005.9 ~ 2009.7 | 哈尔滨工业大学 | 计算机信息安全专业（学士） |
 
-* 个人项目
-  + [[https://github.com/phenix3443/openresty-delvelop-frame][openresty-delvelop-frame]] 基于OpenResty的开发框架。
+* 个人开源项目
+  + [[https://github.com/phenix3443/openresty-delvelop-frame][openresty-delvelop-frame]] 基于 OpenResty 的开发框架。
   + [[https://github.com/phenix3443/lsp-lua-emmy][lsp-lua-emmy]] lsp-mode client EmmyLua-LanguageServer。
+  + [[https://github.com/go-eden/slf4go-zap][slf4go-zap]] slf4go 的 zap 适配器。
+  + [[https://github.com/phenix3443/golog][golog]] 封装 zap，用于项目的日志库。
 
 * 工作经验
 -----
 + 迅雷网络有限公司（2015.12 ~ 今）
-  - 原高速离线系统项目维护
-    + 项目背景：迅雷原有高速离线加速服务端业务。
-    + 主要任务：负责原先高速离线服务的日常维护和项目开发，包括高速加速、高速试用、高速通道、高速明细、资源索引、高速场景、高速鉴权等服务。
-    + 主要技术：C++，Lua, Python, Openresty，MySQL，Redis，Docker，falcon，Confluence，JIRA，TCPCopy。
-    + 主要贡献：
-      + 保证原有服务的正常运行。
-      + 负责原先高速离线服务的服务迁移工作。
+  - 玩客云项目
+    +
 
   - 新高速离线系统开发
     + 项目背景：迅雷高速离线加速业务模块重构。
@@ -48,10 +45,13 @@
     + 涉及技术：Openresty、Python、Redis、MySQL、Docker、Robot Framework、gRPC。
     + 主要贡献：代码重构，对接新的触达端。
 
-  - 其他
-    + 开发了自动登录工具和部署工具，方便平时个人开发、测试和项目部署。
-    + 推进项目规范化，数据可视化，测试自动化，可持续部署等。
-
+  - 原高速离线系统项目维护
+    + 项目背景：迅雷原有高速离线加速服务端业务。
+    + 主要任务：负责原先高速离线服务的日常维护和项目开发，包括高速加速、高速试用、高速通道、高速明细、资源索引、高速场景、高速鉴权等服务。
+    + 主要技术：C++，Lua, Python, Openresty，MySQL，Redis，Docker，falcon，Confluence，JIRA，TCPCopy。
+    + 主要贡献：
+      + 保证原有服务的正常运行。
+      + 负责原先高速离线服务的服务迁移工作。
 
 + 深圳尚游游戏有限公司（2014 ~ 2015）
   - 工作职责：手游服务端开发。
@@ -62,7 +62,8 @@
   - 工作职责：路由器开发。
   - 主要技术：C
 
-
 + 思科中国杭州研发中心（2011 ~ 2012）
   - 工作职责：视频会议系统开发维护。
   - 主要技术：C++
+
+*
