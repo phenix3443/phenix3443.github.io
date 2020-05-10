@@ -229,8 +229,8 @@ for the JavaScript code in this tag.
 <div id="content">
 <h1 class="title">简历</h1>
 
-<div id="outline-container-org0fa75b9" class="outline-2">
-<h2 id="org0fa75b9"><span class="section-number-2">1</span> 联系方式</h2>
+<div id="outline-container-orgab0d4e3" class="outline-2">
+<h2 id="orgab0d4e3"><span class="section-number-2">1</span> 联系方式</h2>
 <div class="outline-text-2" id="text-1">
 <hr />
 <table border="1" cellspacing="0" cellpadding="6" rules="none" frame="void" width="auto">
@@ -276,8 +276,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orga2fc4f0" class="outline-2">
-<h2 id="orga2fc4f0"><span class="section-number-2">2</span> 教育经历</h2>
+<div id="outline-container-org3c351f6" class="outline-2">
+<h2 id="org3c351f6"><span class="section-number-2">2</span> 教育经历</h2>
 <div class="outline-text-2" id="text-2">
 <hr />
 
@@ -308,8 +308,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgd701be3" class="outline-2">
-<h2 id="orgd701be3"><span class="section-number-2">3</span> 个人开源项目</h2>
+<div id="outline-container-orgabfc5ce" class="outline-2">
+<h2 id="orgabfc5ce"><span class="section-number-2">3</span> 个人开源项目</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><a href="https://github.com/phenix3443/openresty-delvelop-frame">openresty-delvelop-frame</a> 基于 OpenResty 的开发框架。</li>
@@ -320,47 +320,104 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orge9abe30" class="outline-2">
-<h2 id="orge9abe30"><span class="section-number-2">4</span> 工作经验</h2>
+<div id="outline-container-org1505e8e" class="outline-2">
+<h2 id="org1505e8e"><span class="section-number-2">4</span> 工作经验</h2>
 <div class="outline-text-2" id="text-4">
 <hr />
+
 <ul class="org-ul">
 <li>迅雷网络有限公司（2015.12 ~ 今）
 <ul class="org-ul">
-<li>玩客云项目
+<li>小说项目
 <ul class="org-ul">
-<li></li>
-</ul></li>
-
-<li>新高速离线系统开发
-<ul class="org-ul">
-<li>项目背景：迅雷高速离线加速业务模块重构。</li>
-<li>主要任务：负责新版高速离线系统开发和维护，包括新版高速加速、高速试用、高速鉴权、资源索引、离线下载、离线空间、测速服务、资源爬虫等系统。</li>
-<li>主要技术：C++，Lua，Python，Golang，Openresty，MySQL，Redis，Docker，CMake，gRPC，SSDB，Scrapy。</li>
-<li>主要贡献：存储系统优化，代码重构，加速资源调度逻辑优化。</li>
-</ul></li>
-
-<li>触达系统
-<ul class="org-ul">
-<li>项目背景：定向推送触达消息，引导用户充值消费。</li>
-<li>主要任务：重构原先的触达系统。</li>
-<li>涉及技术：Openresty、Python、Redis、MySQL、Docker、Robot Framework、gRPC。</li>
-<li>主要贡献：代码重构，对接新的触达端。</li>
-</ul></li>
-
-<li>原高速离线系统项目维护
-<ul class="org-ul">
-<li>项目背景：迅雷原有高速离线加速服务端业务。</li>
-<li>主要任务：负责原先高速离线服务的日常维护和项目开发，包括高速加速、高速试用、高速通道、高速明细、资源索引、高速场景、高速鉴权等服务。</li>
-<li>主要技术：C++，Lua, Python, Openresty，MySQL，Redis，Docker，falcon，Confluence，JIRA，TCPCopy。</li>
+<li>项目背景：迅雷小说功能。</li>
+<li>涉及技术：Golang、MySQL、Redis</li>
+<li>主要任务：小说后台服务开发维护。</li>
 <li>主要贡献：
 <ul class="org-ul">
-<li>保证原有服务的正常运行。</li>
-<li>负责原先高速离线服务的服务迁移工作。</li>
+<li>对接第三方小说平台。</li>
+<li>重要接口响应从交接之前的 1-2s 提高到 50 ms。</li>
+<li>重构服务端相关代码，优化后将缓存使用从高峰的 13GB 左右降到 1GB。</li>
+</ul></li>
+</ul></li>
+
+<li>玩客云项目
+<ul class="org-ul">
+<li>项目背景：玩客云</li>
+<li>涉及技术：C、 C++，Openresty，MySQL，Redis。</li>
+<li>主要任务：
+<ul class="org-ul">
+<li>负责玩客云远场、TS 等多个后端服务，后期支援固件端开发。</li>
+</ul></li>
+
+<li>主要贡献：
+<ul class="org-ul">
+<li>保障玩客云国内、海外（印度、美国等）后台服务正常运行。</li>
+<li>重构后端服务相关代码，提高服务端性能，补全服务端测试、监控等功能。</li>
+<li>修正固件日志上报 BUG，解决统计数据不一致问题。同时引入 <a href="https://phenix3443.github.io/notebook/c/3rd-libs/cmockery.html">cmockery</a> 作为单元测试和 mock 工具。</li>
+</ul></li>
+</ul></li>
+
+<li>高速离线项目
+<ul class="org-ul">
+<li>项目背景：迅雷高速离线功能。</li>
+<li>涉及技术：C++，Lua，Python，Golang，Openresty，MySQL，Redis，Docker，Scrapy，OpenFalcon。</li>
+<li>主要任务：
+<ul class="org-ul">
+<li>负责该项目多个重要模块和服务开发和维护，包括加速、试用、鉴权、资源索引、离线下载、离线空间、测速、资源爬虫等系统。</li>
+<li>经历多个重要项目节点：
+<ul class="org-ul">
+<li>业务服务机房迁移。</li>
+<li>服务去 IDC 机房，资源 DCDN 部署。</li>
+<li>服务上阿里云。</li>
+</ul></li>
+</ul></li>
+
+<li>主要贡献：推进项目工程化、自动化，优化加速效果。
+<ul class="org-ul">
+<li>工程化：
+<ul class="org-ul">
+<li>进行大量的代码重构，总结提炼出适合自身业务的一套代码框架：<a href="https://github.com/phenix3443/openresty-delvelop-frame">openresty-delvelop-frame</a> 。</li>
+<li>推进使用已有工具规范开发流程，例如：使用 Confluence 管理项目文档，JIRA 跟踪缺陷 bug，gitlab 管理项目。</li>
+<li>使用 OpenFalcon 监控所有服务运行情况，对接办公软件钉钉，及时发现和处理线上问题。</li>
+<li>编写并推广基础库和公共库，简化开发流程，提高开发效率。</li>
+</ul></li>
+
+<li>自动化
+<ul class="org-ul">
+<li>开发协议解析器，据此编写服务的接口测试用例，保证重要节点的顺利进行。</li>
+<li>基于 pexpect 开发自动登录和部署工具，供开发和运维人员使用。</li>
+<li>使用测试框架（GTest,GMock,LuaUnit,Gocheck 等），docker 等技术，进行自动化测试。</li>
+<li>引入 tcpcopy，nignx mirror 等技术，进行服务压力测试和流量测试。</li>
+</ul></li>
+
+<li>优化加速效果
+<ul class="org-ul">
+<li>主动提出使用爬虫采集预先采集线上热门资源，提前进行部署，改善加速效果。</li>
+<li>优化加速节点分配算法，提高整个文件的加速成功率。</li>
 </ul></li>
 </ul></li>
 </ul></li>
 
+<li>其他项目
+<ul class="org-ul">
+<li>会员触达系统：
+<ul class="org-ul">
+<li>项目背景：推送触达消息，引导迅雷用户充值消费。</li>
+<li>涉及技术：Python。</li>
+<li>主要任务：重新设计开发该系统。</li>
+<li>主要贡献：
+<ul class="org-ul">
+<li>推动引入多种触达渠道。</li>
+<li>日均触达信息从 40 多万条上升到 200 多万条，日均收入从 6 万提高到 14 万。</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+
+
+<ul class="org-ul">
 <li>深圳尚游游戏有限公司（2014 ~ 2015）
 <ul class="org-ul">
 <li>工作职责：手游服务端开发。</li>
@@ -378,14 +435,10 @@ for the JavaScript code in this tag.
 
 <li>思科中国杭州研发中心（2011 ~ 2012）
 <ul class="org-ul">
-<li>工作职责：视频会议系统开发维护。</li>
+<li>工作职责：实习生，视频会议系统开发维护。</li>
 <li>主要技术：C++</li>
 </ul></li>
 </ul>
-
-<p>
-*
-</p>
 </div>
 </div>
 </div>
