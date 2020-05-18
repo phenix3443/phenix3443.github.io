@@ -27,6 +27,13 @@
   + [[https://github.com/go-eden/slf4go-zap][slf4go-zap]] slf4go 的 zap 适配器。
   + [[https://github.com/phenix3443/golog][golog]] 封装 zap，用于项目的日志库。
 
+* 技术能力
+  + 掌握使用 C/C++、Golang、Python、Lua 语言，以及对应的 gtest，gocheck 等测试框架。
+  + 熟练使用有 Openresty、gin 等技术框架，能够使用火焰图定位问题。
+  + 熟练使用 apache ab，wrk 等工具，并利用 tcpcopy、nginx mirror、goreplay 等工具和技术服务进行压测。
+  + 熟悉 MySQL，有一定的调优经验。
+  + 熟悉 redis、memcache 等 NOSQL 数据库。
+
 * 工作经验
 -----
 
