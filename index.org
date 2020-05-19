@@ -9,7 +9,7 @@
 #+ATTR_HTML:  :rules none :frame void
 | QQ     | 344300476                              |
 | Tel    | 153-3879-6096                          |
-| Email  | phenix3443@gmail.com                   |
+| Email  | 344300476@qq.com                       |
 | GitHub | https://github.com/phenix3443          |
 | Home   | https://phenix3443.github.io/notebook  |
 | 豆瓣   | https://www.douban.com/people/2106771/ |
@@ -28,12 +28,12 @@
   + [[https://github.com/phenix3443/golog][golog]] 封装 zap，用于项目的日志库。
 
 * 技术能力
-  + 熟练掌握 C/C++、Golang、Python、Lua 语言，以及对应的 gtest，gocheck 等测试框架。
+  + 熟练掌握 C/C++、Golang、Python、Lua 语言，以及测试框架，如 cmockery、 gtest，gocheck、unitest、luaunit 等测试框架。
   + 熟练使用 Openresty、beego、gin 等技术框架，能够使用火焰图定位问题。
   + 熟练使用 ab、wrk、vegeta 等压测工具，掌握 tcpcopy、nginx mirror、goreplay 等流量复制工具和技术。
-  + 熟悉 MySQL，有一定的数据库设计和调优经验。
+  + 熟悉 MySQL 数据库设计、使用，有比较丰富的数据库调优经验。
   + 熟悉 redis、memcache 等 NOSQL 数据库。
-  + 有一定的高并发服务架构经验。
+  + 有高并发服务架构和开发经验。
 
 * 工作经验
 -----
