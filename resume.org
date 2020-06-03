@@ -7,6 +7,7 @@
 * Contact
 --------
 #+ATTR_HTML: :rules none :frame void
+| Name   | shangliang liu (刘尚亮)                   |
 | QQ     | 344300476                             |
 | Mobile | (+86)153-3879-6096                    |
 | Email  | 344300476@qq.com                      |
