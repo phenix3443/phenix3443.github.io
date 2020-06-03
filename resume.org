@@ -41,7 +41,7 @@
 + Xunlei Limited (2015.12 ~ Now)
   + Novel Project
     + Technologies: Golang, MySQL, Redis
-    + Tasks: responsible for backstage services for the novel.
+    + Tasks: maintain the novel services.
     + Contributions:
       + Critical interface response is decreased to 50 ms from 1-2s .
       + Reduce cache usage from a peak of around 13GB to 1GB.
@@ -59,7 +59,6 @@
     + Contributions: Promoting project engineering, automation and optimizing acceleration.
       + Engineering.
         + Undertake extensive code refactoring to summarize and refine a code framework that fits their business: [[https://github.com/phenix3443/openresty-delvelop-frame][openresty-delvelop-frame]].
-        + Promote the use of existing tools to standardize development processes, e.g. Confluence to manage project documentation, JIRA to track defect bugs, gitlab to manage projects
         + Use OpenFalcon to monitor all service operations, dock office software nailing, and identify and address online issues in a timely manner.
         + Write and promote public repositories and services to streamline development processes and increase development efficiency.
 
