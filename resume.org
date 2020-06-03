@@ -1,0 +1,83 @@
+# -*- coding:utf-8-*-
+#+TITLE:
+#+AUTHOR: liushangliang
+#+EMAIL: phenix3443+github@gmail.com
+#+OPTIONS: author:nil date:nil creator:nil timestamp:nil validate:nil num:nil
+
+
+* Contact
+--------
+#+ATTR_HTML: :rules none :frame void
+| QQ     | 344300476                             |
+| Mobile | (+86)153-3879-6096                    |
+| Email  | 344300476@qq.com                      |
+| GitHub | https://github.com/phenix3443         |
+| Blog   | https://phenix3443.github.io/notebook |
+
+* Education
+--------
+
+#+ATTR_HTML: :rules none :frame void
+| 2010.9 ~ 2013.1 | University of Science and Technology of China (USTC) | Software Engineering Information Security (Master of Science) |
+| 2005.9 ~ 2009.7 | Harbin Institute of Technology (HIT)                 | Computer Information Security (Bachelor of Science)           |
+
+* Opensource
+--------
+  + [[https://github.com/phenix3443/openresty-delvelop-frame][openresty-delvelop-frame]] a development framework based on OpenResty.
+  + [[https://github.com/phenix3443/lsp-lua-emmy][lsp-lua-emmy]] Emacs's lua LanguageServer client.
+  + [[https://github.com/go-eden/slf4go-zap][slf4go-zap]] slf4go's zap adapter.
+  + [[https://github.com/phenix3443/golog][golog]] a golang log package integrated with zap.
+
+* Skills
+--------
+  + Proficient in C/C++, Golang, Python, Lua languages, and testing frameworks such as cmockery, gtest, gocheck, unitest, luaunit, etc.
+  + Proficient in Openresty, beego, gin, etc., and able to locate problems using flame maps.
+  + Proficient in using pressure measurement tools such as AB, WRK, VEGETA, mastering traffic replication tools and techniques such as TCPCopy, NGINX mirror, goreplay, etc.
+  + Familiar with MySQL database and Redis.
+  + Experience with high concurrency service architecture and development.
+
+* Employment
+--------
+
++ Xunlei Limited (2015.12 ~ Now)
+  + Novel Project
+    + Technologies: Golang, MySQL, Redis
+    + Tasks: responsible for backstage services for the novel.
+    + Contributions:
+      + Critical interface response is decreased to 50 ms from 1-2s .
+      + Reduce cache usage from a peak of around 13GB to 1GB.
+
+  + OneCloud Project
+    + Technologies: C, C++, Openresty, MySQL, Redis.
+    + Tasks: Responsible for several important systems in the backend of Hakka Cloud, with a small amount of involvement in firmware development in the later stages.
+    + contributions:
+      + Guarantee the normal operation of OneCloud.
+      + Reorganize and optimize server-side related code to promote automated testing, monitoring and other functions.
+
+  + High-speed & Offline Download Project
+    + Technologies: C++, Lua, Python, Golang, Openresty, MySQL, Redis, Docker, Scrapy, OpenFalcon.
+    + Tasks: Responsible for the development and maintenance of multiple critical system services.
+    + Contributions: Promoting project engineering, automation and optimizing acceleration.
+      + Engineering.
+        + Undertake extensive code refactoring to summarize and refine a code framework that fits their business: [[https://github.com/phenix3443/openresty-delvelop-frame][openresty-delvelop-frame]].
+        + Promote the use of existing tools to standardize development processes, e.g. Confluence to manage project documentation, JIRA to track defect bugs, gitlab to manage projects
+        + Use OpenFalcon to monitor all service operations, dock office software nailing, and identify and address online issues in a timely manner.
+        + Write and promote public repositories and services to streamline development processes and increase development efficiency.
+
+      + automation
+        + Develop a protocol parser from which to write test cases for the service's interfaces to ensure the smooth running of important nodes.
+        + Develop automated login and deployment tools for development and operations personnel based on PEXPECT.
+        + Automated testing using testing frameworks (GTest, GMock, LuaUnit, Gocheck, etc.), docker and other technologies.
+        + Introduce technologies such as tcpcopy, nignx mirror, etc. for service stress testing and traffic testing.
+
+      + Optimized acceleration effect
+        + Use crawlers to pre-gather popular online resources and deploy them in advance to improve acceleration.
+        + Optimize acceleration node allocation algorithm to improve the success rate and integrity of Xunlei acceleration.
+
++ Shenzhen Shangyou Games Co., Ltd. (2014 ~ 2015)
+  - Tasks: Game server development.
+  - Technologies: C++, Lua
+
++ TP-Link Technologies Co., Ltd (2013 ~ 2014)
+  - Tasks: Router development.
+  - Technologies: C
