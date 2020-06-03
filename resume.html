@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="generator" content="Org mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org4c2d7e2">CONTACT</a></li>
+<li><a href="#org093ee7b">EDUCATION</a></li>
+<li><a href="#org24ed558">MISCELLANEOUS</a></li>
+<li><a href="#org4a758cb">Technical capacity</a></li>
+<li><a href="#org46bfcdb">PROFESSIONAL EXPERIENCE</a></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org4c2d7e2" class="outline-2">
+<h2 id="org4c2d7e2">CONTACT</h2>
+<div class="outline-text-2" id="text-org4c2d7e2">
+<hr />
+<table border="1" cellspacing="0" cellpadding="6" rules="none" frame="void" width="auto">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">QQ</td>
+<td class="org-left">344300476</td>
+</tr>
+
+<tr>
+<td class="org-left">Mobile</td>
+<td class="org-left">(+86)153-3879-6096</td>
+</tr>
+
+<tr>
+<td class="org-left">Email</td>
+<td class="org-left">344300476@qq.com</td>
+</tr>
+
+<tr>
+<td class="org-left">GitHub</td>
+<td class="org-left"><a href="https://github.com/phenix3443">https://github.com/phenix3443</a></td>
+</tr>
+
+<tr>
+<td class="org-left">Blog</td>
+<td class="org-left"><a href="https://phenix3443.github.io/notebook">https://phenix3443.github.io/notebook</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org093ee7b" class="outline-2">
+<h2 id="org093ee7b">EDUCATION</h2>
+<div class="outline-text-2" id="text-org093ee7b">
+<hr />
+
+<table border="1" cellspacing="0" cellpadding="6" rules="none" frame="void" width="auto">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">2010.9 ~ 2013.1</td>
+<td class="org-left">University of Science and Technology of China (USTC)</td>
+<td class="org-left">Software Engineering Information Security (Master of Science)</td>
+</tr>
+
+<tr>
+<td class="org-left">2005.9 ~ 2009.7</td>
+<td class="org-left">Harbin Institute of Technology (HIT)</td>
+<td class="org-left">Computer Information Security (Bachelor of Science)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org24ed558" class="outline-2">
+<h2 id="org24ed558">MISCELLANEOUS</h2>
+<div class="outline-text-2" id="text-org24ed558">
+<hr />
+<ul class="org-ul">
+<li><a href="https://github.com/phenix3443/openresty-delvelop-frame">openresty-delvelop-frame</a> based on OpenResty's development framework.</li>
+<li><a href="https://github.com/phenix3443/lsp-lua-emmy">lsp-lua-emmy</a> lsp-mode client EmmyLua-LanguageServer.</li>
+<li><a href="https://github.com/go-eden/slf4go-zap">slf4go-zap</a> slf4go's zap adapter.</li>
+<li><a href="https://github.com/phenix3443/golog">golog</a> encapsulate zap, the log library for the project.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4a758cb" class="outline-2">
+<h2 id="org4a758cb">Technical capacity</h2>
+<div class="outline-text-2" id="text-org4a758cb">
+<hr />
+<ul class="org-ul">
+<li>Proficiency in C/C++, Golang, Python, Lua languages, and testing frameworks such as cmockery, gtest, gocheck, unitest, luaunit, etc.</li>
+<li>proficient with technical frameworks such as Openresty, beego, gin, etc., and able to locate problems using flame maps.</li>
+<li>Proficient in using pressure measurement tools such as AB, WRK, VEGETA, mastering traffic replication tools and techniques such as TCPCopy, NGINX MIRROR, GOREPLAY, etc.</li>
+<li>Familiar with MySQL database design and use, with rich experience in database tuning.</li>
+<li>familiarity with NOSQL databases such as redis, memcache, etc.</li>
+<li>Experience with high concurrency service architecture and development.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org46bfcdb" class="outline-2">
+<h2 id="org46bfcdb">PROFESSIONAL EXPERIENCE</h2>
+<div class="outline-text-2" id="text-org46bfcdb">
+<hr />
+
+<ul class="org-ul">
+<li>Xunlei Network Limited (2015.12 ~ Today)
+<ul class="org-ul">
+<li>fiction project
+<ul class="org-ul">
+<li>Project Background: Thunderbolt Novel Features.</li>
+<li>Technology involved: Golang, MySQL, Redis</li>
+<li>Primary assignment: responsible for backstage services for the novel.</li>
+<li>Major contributions.
+<ul class="org-ul">
+<li>Access to multiple third-party fiction platforms.</li>
+<li>Critical interface response is increased to 50 ms from 1-2s before handover.</li>
+<li>refactor the server-side related code, optimized to reduce cache usage from a peak of around 13GB to 1GB.</li>
+</ul></li>
+</ul></li>
+
+<li>Project Play Cloud
+<ul class="org-ul">
+<li>Project background: Playcloud</li>
+<li>involved technologies: C, C++, Openresty, MySQL, Redis.</li>
+<li>Key Tasks: Responsible for several important systems in the backend of Hakka Cloud, with a small amount of involvement in firmware development in the later stages.</li>
+<li>Major contributions.
+<ul class="org-ul">
+<li>Guarantee the normal operation of Playcaster Cloud domestic and overseas (India, USA, etc.).</li>
+<li>Reorganize and optimize server-side related code to promote automated testing, monitoring and other functions.</li>
+<li>Fixes bug reported in firmware log to resolve statistical inconsistencies. Also introduce <a href="https://phenix3443.github.io/notebook/c/3rd-libs/cmockery.html">cmockery</a> as a unit test and mock tool.</li>
+</ul></li>
+</ul></li>
+
+<li>High-speed &amp; Offline download projects
+<ul class="org-ul">
+<li>Project background: Xunlei high-speed offline functionality.</li>
+<li>Technologies involved: C++, Lua, Python, Golang, Openresty, MySQL, Redis, Docker, Scrapy, OpenFalcon.</li>
+<li>Key Tasks: Responsible for the development and maintenance of multiple critical system services.</li>
+<li>Key contributions: Promoting project engineering, automation and optimizing acceleration.
+<ul class="org-ul">
+<li>Engineering.
+<ul class="org-ul">
+<li>Undertake extensive code refactoring to summarize and refine a code framework that fits their business: <a href="https://github.com/phenix3443/openresty-delvelop-frame">openresty-delvelop-frame</a>.</li>
+<li>Promote the use of existing tools to standardize development processes, e.g. Confluence to manage project documentation, JIRA to track defect bugs, gitlab to manage projects</li>
+<li>Use OpenFalcon to monitor all service operations, dock office software nailing, and identify and address online issues in a timely manner.</li>
+<li>Write and promote public repositories and services to streamline development processes and increase development efficiency.</li>
+</ul></li>
+
+<li>automation
+<ul class="org-ul">
+<li>Develop a protocol parser from which to write test cases for the service's interfaces to ensure the smooth running of important nodes.</li>
+<li>Develop automated login and deployment tools for development and operations personnel based on PEXPECT.</li>
+<li>Automated testing using testing frameworks (GTest, GMock, LuaUnit, Gocheck, etc.), docker and other technologies.</li>
+<li>Introduce technologies such as tcpcopy, nignx mirror, etc. for service stress testing and traffic testing.</li>
+</ul></li>
+
+<li>Optimized acceleration effect
+<ul class="org-ul">
+<li>Use crawlers to pre-gather popular online resources and deploy them in advance to improve acceleration.</li>
+<li>Optimize acceleration node allocation algorithm to improve the success rate and integrity of Xunlei acceleration.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+
+
+<ul class="org-ul">
+<li>Shenzhen Shangyou Games Co., Ltd. (2014 ~ 2015)
+
+<ul class="org-ul">
+<li>Job Responsibilities: Handheld game server development.</li>
+<li>Main technologies: C++, Lua</li>
+</ul></li>
+</ul>
+
+
+<ul class="org-ul">
+<li>TP-Link Technologies Co., Ltd (2013 ~ 2014)
+<ul class="org-ul">
+<li>Job responsibilities: router development.</li>
+<li>Main technology: C</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="validation"></p>
+</div>
+</body>
+</html>
