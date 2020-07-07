@@ -7,11 +7,11 @@
 * 联系方式
 -----
 #+ATTR_HTML:  :rules none :frame void
-| QQ     | 344300476                              |
-| Tel    | 153-3879-6096                          |
-| Email  | 344300476@qq.com                       |
-| GitHub | https://github.com/phenix3443          |
-| Blog   | https://phenix3443.github.io/notebook  |
+| QQ     | 344300476                             |
+| Tel    | 153-3879-6096                         |
+| Email  | 344300476@qq.com                      |
+| GitHub | https://github.com/phenix3443         |
+| Blog   | https://phenix3443.github.io/notebook |
 
 * 教育经历
 -----
@@ -78,11 +78,11 @@
         + 优化加速节点分配算法，提高迅雷加速的成功率和完整性。
 
 
-+ 深圳尚游游戏有限公司（2014 ~ 2015）
++ 深圳尚游游戏有限公司（2014.4 ~ 2015.8）
   - 工作职责：手游服务端开发。
   - 主要技术：C++，Lua
 
 
-+ 深圳普联技术有限公司（2013 ~ 2014）
++ 深圳普联技术有限公司（2013.4 ~ 2013.11）
   - 工作职责：路由器开发。
   - 主要技术：C
